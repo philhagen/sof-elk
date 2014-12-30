@@ -375,7 +375,7 @@
       "panels": [
         {
           "error": false,
-          "span": 6,
+          "span": 5,
           "editable": true,
           "type": "bettermap",
           "loadingEditor": false,
@@ -395,11 +395,11 @@
         },
         {
           "error": false,
-          "span": 3,
+          "span": 4,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
-          "field": "client_asn.number",
+          "field": "client_asn.str.raw",
           "exclude": [],
           "missing": false,
           "other": true,
@@ -426,7 +426,7 @@
           "tmode": "terms",
           "tstat": "count",
           "valuefield": "client_asn.asn",
-          "title": "Requesting Host ASN Handles"
+          "title": "Requesting Host ASNs"
         },
         {
           "error": false,
@@ -434,9 +434,9 @@
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
-          "field": "client_asn.asn.raw",
+          "field": "httpd_vhost.raw",
           "exclude": [],
-          "missing": false,
+          "missing": true,
           "other": true,
           "size": 10,
           "order": "count",
@@ -461,7 +461,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Requesting Host ASN Name"
+          "title": "Requested VHosts"
         }
       ],
       "notice": false
@@ -486,7 +486,7 @@
           "offset": 0,
           "sort": [
             "@timestamp",
-            "asc"
+            "desc"
           ],
           "style": {
             "font-size": "9pt"
