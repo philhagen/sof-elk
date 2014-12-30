@@ -241,7 +241,7 @@
           "legend_counts": false,
           "timezone": "utc",
           "percentage": false,
-          "zerofill": false,
+          "zerofill": true,
           "derivative": false,
           "tooltip": {
             "value_type": "individual",
@@ -317,7 +317,7 @@
           "legend_counts": false,
           "timezone": "utc",
           "percentage": false,
-          "zerofill": false,
+          "zerofill": true,
           "derivative": false,
           "tooltip": {
             "value_type": "individual",
@@ -393,7 +393,7 @@
           "legend_counts": false,
           "timezone": "utc",
           "percentage": false,
-          "zerofill": false,
+          "zerofill": true,
           "derivative": false,
           "tooltip": {
             "value_type": "individual",
@@ -453,21 +453,21 @@
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
-          "field": "nf.ipv4_src_addr",
+          "field": "nf.l4_src_port",
           "exclude": [],
           "missing": false,
           "other": false,
-          "size": 5,
+          "size": 15,
           "order": "total",
           "style": {
             "font-size": "10pt"
           },
-          "donut": false,
+          "donut": true,
           "tilt": false,
           "labels": true,
           "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
+          "chart": "pie",
+          "counter_pos": "none",
           "spyable": true,
           "queries": {
             "mode": "all",
@@ -481,7 +481,7 @@
           "tmode": "terms_stats",
           "tstat": "total",
           "valuefield": "nf.in_bytes",
-          "title": "Top 5 Src IPs by Volume"
+          "title": "Top 15 SRC Ports by Volume"
         },
         {
           "error": false,
@@ -907,5 +907,5 @@
       "filter_id": 0
     }
   ],
-  "refresh": false
+  "refresh": "15m"
 }
