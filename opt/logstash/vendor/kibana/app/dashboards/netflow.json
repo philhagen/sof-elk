@@ -58,10 +58,19 @@
           "active": true,
           "alias": "",
           "id": 0
+        },
+        "1": {
+          "type": "querystring",
+          "query": "!(nf.ipv4_src_addr == 127.0.0.1 and nf.ipv4_dst_addr == 127.0.0.1)",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 1
         }
       },
       "ids": [
-        0
+        0,
+        1
       ]
     }
   },
@@ -559,7 +568,7 @@
       "notice": false
     },
     {
-      "title": "Traffic Geo",
+      "title": "Traffic Source Geo/ASN",
       "height": "350px",
       "editable": true,
       "collapse": false,
@@ -567,7 +576,7 @@
       "panels": [
         {
           "error": false,
-          "span": 6,
+          "span": 8,
           "editable": true,
           "type": "bettermap",
           "loadingEditor": false,
@@ -588,7 +597,53 @@
         },
         {
           "error": false,
-          "span": 6,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "nf.ipv4_src_geo.asnstr.raw",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "8pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Traffic Source ASN by Connections"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Traffic Dest Geo/ASN",
+      "height": "350px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 8,
           "editable": true,
           "type": "bettermap",
           "loadingEditor": false,
@@ -606,64 +661,18 @@
             ]
           },
           "title": "Traffic Destination Geo"
-        }
-      ],
-      "notice": false
-    },
-    {
-      "title": "Traffic ASN",
-      "height": "150px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "nf.ipv4_src_geo.number",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 5,
-          "order": "count",
-          "style": {
-            "font-size": "8pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Traffic Source ASN"
         },
         {
           "error": false,
-          "span": 3,
+          "span": 4,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
-          "field": "nf.ipv4_src_geo.asn.raw",
+          "field": "nf.ipv4_dst_geo.asnstr.raw",
           "exclude": [],
-          "missing": true,
+          "missing": false,
           "other": true,
-          "size": 5,
+          "size": 10,
           "order": "count",
           "style": {
             "font-size": "8pt"
@@ -687,79 +696,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Traffic Source ASN"
-        },
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "nf.ipv4_dst_geo.number",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 5,
-          "order": "count",
-          "style": {
-            "font-size": "8pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Traffic Dest ASN"
-        },
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "nf.ipv4_dst_geo.asn.raw",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 5,
-          "order": "count",
-          "style": {
-            "font-size": "8pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Traffic Dest ASN"
+          "title": "Traffic Dest ASN by Connections"
         }
       ],
       "notice": false
@@ -780,7 +717,7 @@
           ],
           "type": "table",
           "size": 100,
-          "pages": 15,
+          "pages": 10,
           "offset": 0,
           "sort": [
             "nf.first_switched",
@@ -800,8 +737,7 @@
             "nf.aproto",
             "nf.tcp_aflags",
             "nf.in_bytes",
-            "nf.in_pkts",
-            "nf.flow_records"
+            "nf.in_pkts"
           ],
           "highlight": [],
           "sortable": true,
