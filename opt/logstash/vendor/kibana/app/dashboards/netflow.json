@@ -414,15 +414,15 @@
       "notice": false
     },
     {
-      "title": "Top Stats",
-      "height": "200px",
+      "title": "Top Stats (By Volume)",
+      "height": "225px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
       "panels": [
         {
           "error": false,
-          "span": 3,
+          "span": 2,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -430,7 +430,7 @@
           "exclude": [],
           "missing": false,
           "other": false,
-          "size": 15,
+          "size": 10,
           "order": "total",
           "style": {
             "font-size": "10pt"
@@ -454,11 +454,11 @@
           "tmode": "terms_stats",
           "tstat": "total",
           "valuefield": "nf.in_bytes",
-          "title": "Top 15 Src IPs by Volume"
+          "title": "Src IPs"
         },
         {
           "error": false,
-          "span": 3,
+          "span": 2,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -466,7 +466,7 @@
           "exclude": [],
           "missing": false,
           "other": false,
-          "size": 15,
+          "size": 10,
           "order": "total",
           "style": {
             "font-size": "10pt"
@@ -490,11 +490,11 @@
           "tmode": "terms_stats",
           "tstat": "total",
           "valuefield": "nf.in_bytes",
-          "title": "Top 15 SRC Ports by Volume"
+          "title": "Src Ports"
         },
         {
           "error": false,
-          "span": 3,
+          "span": 2,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -502,7 +502,7 @@
           "exclude": [],
           "missing": false,
           "other": false,
-          "size": 15,
+          "size": 10,
           "order": "total",
           "style": {
             "font-size": "10pt"
@@ -526,11 +526,11 @@
           "tmode": "terms_stats",
           "tstat": "total",
           "valuefield": "nf.in_bytes",
-          "title": "Top 15 Dest IPs by Volume"
+          "title": "Dest IPs"
         },
         {
           "error": false,
-          "span": 3,
+          "span": 2,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -538,7 +538,7 @@
           "exclude": [],
           "missing": false,
           "other": false,
-          "size": 15,
+          "size": 10,
           "order": "total",
           "style": {
             "font-size": "10pt"
@@ -562,7 +562,43 @@
           "tmode": "terms_stats",
           "tstat": "total",
           "valuefield": "nf.in_bytes",
-          "title": "Top 15 Dst Ports by Volume"
+          "title": "Dest Ports"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "host",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "total",
+          "style": {
+            "font-size": "8pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "tmode": "terms_stats",
+          "tstat": "total",
+          "valuefield": "nf.in_bytes",
+          "title": "Exporters"
         }
       ],
       "notice": false
