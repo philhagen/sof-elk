@@ -4,17 +4,47 @@
     "query": {
       "list": {
         "0": {
-          "query": "*",
-          "alias": "",
-          "color": "#7EB26D",
+          "query": "severity:[0 TO 2]",
+          "alias": "Emerg/Alert/Crit",
+          "color": "#E24D42",
           "id": 0,
           "pin": false,
           "type": "lucene",
           "enable": true
+        },
+        "1": {
+          "id": 1,
+          "color": "#EAB839",
+          "alias": "Err/Warn",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "severity:[3 TO 4]"
+        },
+        "2": {
+          "id": 2,
+          "color": "#6ED0E0",
+          "alias": "Notice/Info",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "severity:[5 TO 6]"
+        },
+        "3": {
+          "id": 3,
+          "color": "#7EB26D",
+          "alias": "Debug",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "severity:7"
         }
       },
       "ids": [
-        0
+        0,
+        1,
+        2,
+        3
       ]
     },
     "filter": {
@@ -22,7 +52,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-30d",
+          "from": "now-24h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -57,12 +87,15 @@
           "y_format": "short",
           "grid": {
             "max": null,
-            "min": 0
+            "min": null
           },
           "queries": {
             "mode": "all",
             "ids": [
-              0
+              0,
+              1,
+              2,
+              3
             ]
           },
           "annotate": {
@@ -77,7 +110,7 @@
           },
           "auto_int": true,
           "resolution": 100,
-          "interval": "12h",
+          "interval": "10m",
           "intervals": [
             "auto",
             "1s",
@@ -93,7 +126,7 @@
             "1y"
           ],
           "lines": true,
-          "fill": 0,
+          "fill": 1,
           "linewidth": 2,
           "points": false,
           "pointradius": 5,
@@ -137,7 +170,10 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0
+              0,
+              1,
+              2,
+              3
             ]
           },
           "field": "syslog_hostname.raw",
@@ -172,7 +208,10 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0
+              0,
+              1,
+              2,
+              3
             ]
           },
           "field": "syslog_hostname.raw",
@@ -221,7 +260,10 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0
+              0,
+              1,
+              2,
+              3
             ]
           },
           "tmode": "terms",
@@ -254,7 +296,10 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0
+              0,
+              1,
+              2,
+              3
             ]
           },
           "tmode": "terms",
@@ -314,7 +359,10 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0
+              0,
+              1,
+              2,
+              3
             ]
           },
           "field_list": true,
@@ -357,7 +405,7 @@
   "pulldowns": [
     {
       "type": "query",
-      "collapse": false,
+      "collapse": true,
       "notice": false,
       "query": "*",
       "pinned": true,
