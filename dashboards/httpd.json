@@ -218,7 +218,7 @@
     },
     {
       "title": "Request/Response Stats",
-      "height": "250px",
+      "height": "300px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
@@ -368,14 +368,14 @@
     },
     {
       "title": "Geo/ASN Lookups",
-      "height": "350px",
+      "height": "425px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
       "panels": [
         {
           "error": false,
-          "span": 5,
+          "span": 7,
           "editable": true,
           "type": "bettermap",
           "loadingEditor": false,
@@ -395,7 +395,7 @@
         },
         {
           "error": false,
-          "span": 4,
+          "span": 3,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -430,7 +430,7 @@
         },
         {
           "error": false,
-          "span": 3,
+          "span": 2,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -461,7 +461,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Requested VHosts"
+          "title": "VHosts"
         }
       ],
       "notice": false
