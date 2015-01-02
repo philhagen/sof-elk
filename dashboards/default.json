@@ -1,5 +1,5 @@
 {
-  "title": "Introduction",
+  "title": "SANS FOR572 ELK VM Welcome Dashboard",
   "services": {
     "query": {
       "list": {
@@ -9,7 +9,8 @@
           "color": "#7EB26D",
           "id": 0,
           "pin": false,
-          "type": "lucene"
+          "type": "lucene",
+          "enable": true
         }
       },
       "ids": [
@@ -31,30 +32,95 @@
       "panels": [
         {
           "error": false,
-          "span": 4,
+          "span": 7,
           "editable": false,
           "group": [
             "default"
           ],
           "type": "text",
           "mode": "markdown",
-          "content": "![kibana](img/kibana.png)  \n\n##### Did you just upgrade? Not expecting this screen?\nIf you were using the old default page you might not be expecting this screen. I understand, change can be awkward. Let me explain. \n\n##### Setting a global default dashboard\nKibana has always shipped with an interface for Logstash, still does! You can access it [here](index.html#dashboard/file/logstash.json). However, if you want to make it your default again, all you need to do is rename a file!\nIn your Kibana installation directory: \n\nRename *logstash.json* to *default.json* and refresh. Should be all set.\n\n##### But wait, there's more!\nIn fact, you can add any exported dashboard to that directory and access it as *http://YOUR-HOST -HERE/index.html#dashboard/file/YOUR-DASHBOARD.json*. Neat trick eh?",
+          "content": "![kibana](img/sans_dfir_logo_sm.png)  \n\n### Welcome to The SANS FOR572 ELK (Elasticsearch/Logstash/Kibana) distribution\nThis VMware image was created with a basic but functional ELK configuration.  The VM will ingest various log formats, and includes several dashboards to present the data in useful formats.  Although the VM was created specifically for the FOR572 class, it is maintained as community resource.\n\n#####To ingest data, place files in the following directories (and all subdirectories), depending on their source format:\n* **Syslog files**: `/usr/local/logstash-syslog/`\n    NOTE: Since syslog does not log the year of each event, create subdirectories named for the year from which the evidence was collected.  For example, Logstash will assume all files from `/usr/local/logstash-syslog/2013/` were created in the year 2013.\n* **HTTPD logs**: `/usr/local/logstash-httpd/`,\n* **NetFlow Archives**: `/usr/local/logstash-nfarch/`\n    NOTE: Archived files must be text content in a VERY specific format.  Parse nfcapd-based files to the following nfdump output format string: `$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da` `%nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0`, where `$EXP_IP` is the IP address of the NetFlow exporter.  You'll also need to use hte `-N` switch to nfdump, which forces non-rolled up numbers in the output (e.g. '2048000' instead of '2 M').\n* **PassiveDNS logs**: `/usr/local/logstash-passivedns/`\n Log files created by the passivedns utility, availble from [for572.com/passivedns](http://for572.com/passivedns)\n\n#####To access parsed data, use one of the following dashboards:\n* [Syslog data](index.html#/dashboard/file/syslog.json): FOR572 custom-created (includes PassiveDNS logs)\n* [HTTPD logs](index.html#/dashboard/file/httpd.json): FOR572 custom-created  \n* [NetFlow](index.html#/dashboard/file/netflow.json): FOR572 custom-created  \n* [Original \"default.json\" dashboard from the logstash distribution](index.html#/dashboard/file/ls-default.json)  \n* [Sample Dashboard](index.html#/dashboard/file/guided.json) *I don't have much data yet, please extract some basics for me*  \n* [Unconfigured Dashboard](index.html#/dashboard/file/noted.json) *I have a lot of data and I don't want Kibana to query it at once*  \n* [Blank Dashboard](index.html#/dashboard/file/blank.json) *I'm comfortable figuring it out on my own*",
           "style": {},
-          "title": "",
-          "status": "Stable"
+          "status": "Stable",
+          "title": "Welcome!"
         },
         {
           "error": false,
-          "span": 8,
+          "span": 5,
           "editable": false,
-          "group": [
-            "default"
+          "type": "column",
+          "loadingEditor": false,
+          "panels": [
+            {
+              "loading": false,
+              "error": false,
+              "sizeable": false,
+              "draggable": false,
+              "removable": false,
+              "span": 5,
+              "height": "50px",
+              "editable": false,
+              "type": "stats",
+              "mode": "count",
+              "field": "@timestamp",
+              "unit": "records",
+              "format": "number",
+              "display_breakdown": "no",
+              "label_name": "Query",
+              "value_name": "Value",
+              "queries": {
+                "mode": "all",
+                "ids": [
+                  0
+                ]
+              },
+              "style": {
+                "font-size": "24pt"
+              },
+              "sort_field": "",
+              "sort_reverse": false,
+              "spyable": false,
+              "title": "Records Loaded"
+            },
+            {
+              "loading": false,
+              "error": false,
+              "sizeable": false,
+              "draggable": false,
+              "removable": false,
+              "span": 5,
+              "height": "50px",
+              "editable": false,
+              "type": "terms",
+              "tmode": "terms",
+              "field": "path.raw",
+              "size": 50,
+              "order": "count",
+              "chart": "table",
+              "missing": true,
+              "other": false,
+              "exclude": [],
+              "style": {
+                "font-size": "9pt"
+              },
+              "donut": false,
+              "tilt": false,
+              "labels": true,
+              "arrangement": "horizontal",
+              "counter_pos": "above",
+              "spyable": false,
+              "queries": {
+                "mode": "all",
+                "ids": [
+                  0
+                ]
+              },
+              "tstat": "total",
+              "valuefield": "",
+              "title": "Data Sources"
+            }
           ],
-          "type": "text",
-          "mode": "markdown",
-          "content": "### Welcome to Kibana. \nGlad you could make it. Happy to have you here! Lets get started, shall we?\n##### Requirements\n* **A good browser.**  \n    The latest version of Chrome or Firefox is recommended. Safari (latest version) and Internet Explorer 9 and above are also supported.\n* **A webserver.**  \n    Just somewhere to host the HTML and Javascript. Basically any webserver will work.\n* **Elasticsearch**  \n   0.90.9 or above. \n\n##### Configuration\nIf Kibana and Elasticsearch are on the same host, and you're using the default Elasticsearch port, then you're all set. Kibana is configured to use that setup by default!  \n\nIf not, you need to edit *config.js* and set the *elasticsearch* parameter with the URL (including port, probably 9200) of your Elasticsearch server. The host part should be the entire, fully qualified domain name, or IP, **not localhost**.\n#### Are you a Logstash User?\n+ **YES** - Great! We have a prebuilt dashboard: [(Logstash Dashboard)](index.html#/dashboard/file/logstash.json). See the note to the right about making it your global default  \n\n+ **NO** - Hey, no problem, you just have a bit of setup to do. You have a few choices:  \n\n    1. [Sample Dashboard](index.html#/dashboard/file/guided.json) *I don't have much data yet, please extract some basics for me*  \n    2. [Unconfigured Dashboard](index.html#/dashboard/file/noted.json) *I have a lot of data and I don't want Kibana to query it at once*\n    3. [Blank Dashboard](index.html#/dashboard/file/blank.json) *I'm comfortable figuring it out on my own*",
-          "style": {},
-          "status": "Stable"
+          "title": "Current Status"
         }
       ],
       "notice": false
@@ -62,29 +128,29 @@
   ],
   "editable": false,
   "index": {
-    "interval": "none",
-    "pattern": "[logstash-]YYYY.MM.DD",
-    "default": "_all",
+    "interval": "day",
+    "pattern": "[logstash-]YYYY.MM.DD,[netflow-]YYYY.MM.DD,[httpdlog-]YYYY.MM.DD",
+    "default": "logstash-*,netflow-*,httpdlog-*",
     "warm_fields": false
   },
   "style": "dark",
-  "failover": false,
-  "panel_hints": true,
+  "failover": true,
+  "panel_hints": false,
   "pulldowns": [],
   "nav": [],
   "loader": {
     "save_gist": false,
-    "save_elasticsearch": true,
-    "save_local": true,
-    "save_default": true,
-    "save_temp": true,
-    "save_temp_ttl_enable": true,
+    "save_elasticsearch": false,
+    "save_local": false,
+    "save_default": false,
+    "save_temp": false,
+    "save_temp_ttl_enable": false,
     "save_temp_ttl": "30d",
-    "load_gist": true,
-    "load_elasticsearch": true,
+    "load_gist": false,
+    "load_elasticsearch": false,
     "load_elasticsearch_size": 20,
-    "load_local": true,
+    "load_local": false,
     "hide": false
   },
-  "refresh": false
+  "refresh": "15m"
 }
