@@ -38,13 +38,23 @@
           "type": "lucene",
           "enable": true,
           "query": "severity:7"
+        },
+        "4": {
+          "id": 4,
+          "color": "#3F2B5B",
+          "alias": "Unk",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "NOT severity:[0 TO 7]"
         }
       },
       "ids": [
         0,
         1,
         2,
-        3
+        3,
+        4
       ]
     },
     "filter": {
@@ -95,7 +105,8 @@
               0,
               1,
               2,
-              3
+              3,
+              4
             ]
           },
           "annotate": {
@@ -173,7 +184,8 @@
               0,
               1,
               2,
-              3
+              3,
+              4
             ]
           },
           "field": "syslog_hostname.raw",
@@ -211,7 +223,8 @@
               0,
               1,
               2,
-              3
+              3,
+              4
             ]
           },
           "field": "syslog_hostname.raw",
@@ -263,7 +276,8 @@
               0,
               1,
               2,
-              3
+              3,
+              4
             ]
           },
           "tmode": "terms",
@@ -299,7 +313,8 @@
               0,
               1,
               2,
-              3
+              3,
+              4
             ]
           },
           "tmode": "terms",
@@ -362,7 +377,8 @@
               0,
               1,
               2,
-              3
+              3,
+              4
             ]
           },
           "field_list": true,
