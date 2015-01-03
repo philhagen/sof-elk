@@ -8,3 +8,11 @@ UNIX_MSEC (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]{3})?)|(?:\.[0-9]+)))
 
 #redefine HOSTNAME, adding an underscore
 HOSTNAME \b(?:[0-9A-Za-z][0-9A-Za-z\-_]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z\-_]{0,62}))*(\.?|\b)
+
+# Email addresses
+EMAILADDRESSLOCALPART [a-zA-Z][a-zA-Z0-9_.+-=:]+
+EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
+
+# redefine HTTPD common format (should flow to the combined format) to allow email address as the username
+HTTPDUSER %{EMAILADDRESS}|%{USER}
+COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
