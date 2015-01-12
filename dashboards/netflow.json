@@ -61,7 +61,7 @@
         },
         "1": {
           "type": "querystring",
-          "query": "!(nf.ipv4_src_addr == 127.0.0.1 and nf.ipv4_dst_addr == 127.0.0.1)",
+          "query": "!(nf.ipv4_src_addr:127.0.0.1 and nf.ipv4_dst_addr:127.0.0.1)",
           "mandate": "must",
           "active": true,
           "alias": "",
