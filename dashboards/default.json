@@ -136,7 +136,14 @@
   "style": "dark",
   "failover": true,
   "panel_hints": false,
-  "pulldowns": [],
+  "pulldowns": [
+    {
+      "type": "filtering",
+      "collapse": true,
+      "notice": true,
+      "enable": true
+    }
+  ],
   "nav": [
     {
       "type": "timepicker",
