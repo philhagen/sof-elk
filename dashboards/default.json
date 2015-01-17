@@ -137,34 +137,7 @@
   "failover": true,
   "panel_hints": false,
   "pulldowns": [],
-  "nav": [
-    {
-      "type": "timepicker",
-      "collapse": false,
-      "notice": false,
-      "status": "Stable",
-      "time_options": [
-        "5m",
-        "15m",
-        "1h",
-        "6h",
-        "12h",
-        "24h",
-        "2d",
-        "7d",
-        "30d",
-        "100y"
-      ],
-      "refresh_intervals": [
-        "1m",
-        "1h",
-      ],
-      "timefield": "@timestamp",
-      "enable": true,
-      "now": true,
-      "filter_id": 0
-    }
-  ],
+  "nav": [],
   "loader": {
     "save_gist": false,
     "save_elasticsearch": false,
