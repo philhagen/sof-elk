@@ -607,5 +607,5 @@
       "filter_id": 0
     }
   ],
-  "refresh": false
+  "refresh": "15m"
 }

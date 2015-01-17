@@ -52,7 +52,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-12h",
+          "from": "now-1d",
           "to": "now",
           "mandate": "must",
           "active": true,
