@@ -16,3 +16,7 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 # redefine HTTPD common format (should flow to the combined format) to allow email address as the username
 HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+
+# used to pull just the TLD from a hostname.  Requires hostname to be the only content of the field being searched.  (Technically, just at the end of the line....)
+NOTDOT (?:[^\.])
+TLD %{NOTDOT}+\.%{NOTDOT}+$
