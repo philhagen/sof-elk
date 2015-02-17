@@ -25,4 +25,4 @@ HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
 
 # anything but an equal sign
-NOTEQUAL [^=]
+NOTEQUAL [^=]+
