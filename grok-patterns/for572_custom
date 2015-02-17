@@ -23,3 +23,6 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 # redefine HTTPD common format (should flow to the combined format) to allow email address as the username
 HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+
+# anything but an equal sign
+NOTEQUAL [^=]
