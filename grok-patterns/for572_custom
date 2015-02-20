@@ -4,7 +4,7 @@ NETFILTERMAC %{COMMONMAC:ipt_dstmac}:%{COMMONMAC:ipt_srcmac}:%{ETHTYPE:ipt_ethty
 IPTABLES (?:%{GREEDYDATA:ipt_label}: )?(?:IN=(%{WORD:ipt_indev})? OUT=(%{WORD:ipt_outdev})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:ipt_srcip} DST=%{IP:ipt_dstip}.*TTL=%{INT:ipt_ttl}?.*PROTO=%{WORD:ipt_proto}?.*SPT=%{INT:ipt_srcport}?.*DPT=%{INT:ipt_dstport}?
 
 # Sendmail SMTP Queue IDs
-# version indicated is latest version where format is used
+# version indicated is latest version where format is used. See the O'Reilly Sendmail "Bat Book" for QID makeup by version.
 SENDMAIL_QID_85 [A-Z~][A-Z][0-9]+
 SENDMAIL_QID_89 [A-X]%{SENDMAIL_QID_85}
 SENDMAIL_QID_814 [0-9A-Za-x]{7,8}[0-9]+
