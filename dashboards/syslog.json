@@ -396,7 +396,7 @@
   ],
   "editable": true,
   "index": {
-    "interval": "none",
+    "interval": "day",
     "pattern": "[logstash-]YYYY.MM.DD",
     "default": "logstash-*",
     "warm_fields": false
