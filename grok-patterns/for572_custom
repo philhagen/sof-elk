@@ -26,3 +26,6 @@ COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDAT
 
 # anything but an equal sign
 NOTEQUAL [^=]+
+
+# anything but a colon
+NOTCOLON [^:]+
