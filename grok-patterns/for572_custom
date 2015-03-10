@@ -24,6 +24,9 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
 
+# hours:minutes:seconds, to allow any number of hours
+HMS (?:[0-9]+):%{MINUTE}(?::%{SECOND})(?![0-9])
+
 # anything but an equal sign
 NOTEQUAL [^=]+
 
