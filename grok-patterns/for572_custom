@@ -32,3 +32,6 @@ NOTEQUAL [^=]+
 
 # anything but a colon
 NOTCOLON [^:]+
+
+# add parenthesis to syslog_program
+PROG (?:[\w._/()%-]+)
