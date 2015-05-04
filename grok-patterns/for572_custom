@@ -3,6 +3,13 @@ ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
 NETFILTERMAC %{COMMONMAC:ipt_dstmac}:%{COMMONMAC:ipt_srcmac}:%{ETHTYPE:ipt_ethtype}
 IPTABLES (?:%{GREEDYDATA:ipt_label}: )?(?:IN=(%{WORD:ipt_indev})? OUT=(%{WORD:ipt_outdev})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:ipt_srcip} DST=%{IP:ipt_dstip}.*TTL=%{INT:ipt_ttl}?.*PROTO=%{WORD:ipt_proto}?.*SPT=%{INT:ipt_srcport}?.*DPT=%{INT:ipt_dstport}?
 
+# Sendmail SMTP Queue IDs
+# version indicated is latest version where format is used. See the O'Reilly Sendmail "Bat Book" for QID makeup by version.
+SENDMAIL_QID_85 [A-Z~][A-Z][0-9]+
+SENDMAIL_QID_89 [A-X]%{SENDMAIL_QID_85}
+SENDMAIL_QID_814 [0-9A-Za-x]{7,8}[0-9]+
+SENDMAIL_QID %{SENDMAIL_QID_85}|%{SENDMAIL_QID_89}|%{SENDMAIL_QID_814}
+
 # Unixtime with milliseconds
 UNIX_MSEC (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]{3})?)|(?:\.[0-9]+)))
 
@@ -16,3 +23,12 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 # redefine HTTPD common format (should flow to the combined format) to allow email address as the username
 HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+
+# hours:minutes:seconds, to allow any number of hours
+HMS (?:[0-9]+):%{MINUTE}(?::%{SECOND})(?![0-9])
+
+# anything but an equal sign
+NOTEQUAL [^=]+
+
+# anything but a colon
+NOTCOLON [^:]+

@@ -136,8 +136,42 @@
   "style": "dark",
   "failover": true,
   "panel_hints": false,
-  "pulldowns": [],
-  "nav": [],
+  "pulldowns": [
+    {
+      "type": "filtering",
+      "collapse": true,
+      "notice": true,
+      "enable": true
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d",
+        "1y",
+        "5y"
+      ],
+      "refresh_intervals": [
+        "1m",
+        "15m",
+        "1h"
+      ],
+      "timefield": "@timestamp"
+    }
+  ],
+  "refresh": "15m",
   "loader": {
     "save_gist": false,
     "save_elasticsearch": false,
@@ -151,6 +185,5 @@
     "load_elasticsearch_size": 20,
     "load_local": false,
     "hide": false
-  },
-  "refresh": "15m"
+  }
 }

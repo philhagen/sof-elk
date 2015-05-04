@@ -52,7 +52,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-12h",
+          "from": "now-1d",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -61,7 +61,7 @@
         },
         "1": {
           "type": "querystring",
-          "query": "!(nf.ipv4_src_addr == 127.0.0.1 and nf.ipv4_dst_addr == 127.0.0.1)",
+          "query": "!(nf.ipv4_src_addr:127.0.0.1 and nf.ipv4_dst_addr:127.0.0.1)",
           "mandate": "must",
           "active": true,
           "alias": "",
@@ -804,7 +804,7 @@
   ],
   "editable": true,
   "index": {
-    "interval": "none",
+    "interval": "day",
     "pattern": "[netflow-]YYYY.MM.DD",
     "default": "netflow-*",
     "warm_fields": false
