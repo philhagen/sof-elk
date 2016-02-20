@@ -5,30 +5,47 @@
   },
   "mappings" : {
     "_default_" : {
-       "_all" : {"enabled" : true},
-       "dynamic_templates" : [ {
-         "string_fields" : {
-           "match" : "*",
-           "match_mapping_type" : "string",
-           "mapping" : {
-             "type" : "string", "index" : "analyzed", "omit_norms" : true,
-               "fields" : {
-                 "raw" : {"type": "string", "index" : "not_analyzed", "ignore_above" : 256}
-               }
-           }
-         }
-       } ],
-       "properties" : {
-         "@version": { "type": "string", "index": "not_analyzed" },
-         "geoip"  : {
-           "type" : "object",
-             "dynamic": true,
-             "path": "full",
-             "properties" : {
-               "location" : { "type" : "geo_point" }
-             }
-         }
-       }
+      "_all" : {"enabled" : true},
+      "dynamic_templates" : [ {
+        "string_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "string",
+          "mapping" : {
+            "type" : "string", "index" : "analyzed", "omit_norms" : true,
+              "fields" : {
+                "raw" : {"type": "string", "index" : "not_analyzed", "ignore_above" : 256}
+              }
+          }
+        }
+      } ],
+      "properties" : {
+        "@version": { "type": "string", "index": "not_analyzed" },
+        "nf" : {
+          "type" : "nested",
+          "properties" : {
+            "ipv4_src_geo" : { 
+              "type" : "nested",
+              "properties" : {
+                "location" : {
+                  "type" : "geo_point",
+                  "geohash_prefix" : true,
+                  "geohash_precision" : "1km"
+                }
+              }
+            },
+            "ipv4_dst_geo" : { 
+              "type" : "nested",
+              "properties" : {
+                "location" : {
+                  "type" : "geo_point",
+                  "geohash_prefix" : true,
+                  "geohash_precision" : "1km"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
