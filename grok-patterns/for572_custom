@@ -13,8 +13,12 @@ SENDMAIL_QID %{SENDMAIL_QID_85}|%{SENDMAIL_QID_89}|%{SENDMAIL_QID_814}
 # Unixtime with milliseconds
 UNIX_MSEC (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]{3})?)|(?:\.[0-9]+)))
 
-#redefine HOSTNAME, adding an underscore
-HOSTNAME \b(?:[0-9A-Za-z][0-9A-Za-z\-_]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z\-_]{0,62}))*(\.?|\b)
+# redefine HOSTNAME, adding an underscore (including at the start of a token) and forward slash (latter needed for reverse lookups such as 135.128/27.224.16.206.in-addr.arpa)
+HOSTNAME \b(?:[0-9A-Za-z_][0-9A-Za-z\/\-_]{0,62})(?:\.(?:[0-9A-Za-z_][0-9A-Za-z\/\-_]{0,62}))*(\.?|\b)
+
+# customized HOSTNAME and IPORHOST for PassiveDNS entries, which may use a bare '.' as a hostname
+PDNS_HOSTNAME (?:%{HOSTNAME}|\.)
+PDNS_IPORHOST (?:%{IP}|%{PDNS_HOSTNAME})
 
 # Email addresses
 EMAILADDRESSLOCALPART [a-zA-Z][a-zA-Z0-9_.+-=:]+
