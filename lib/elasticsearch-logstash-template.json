@@ -24,6 +24,12 @@
             "match" : "*_ip",
             "mapping" : { "type" : "ip" }
           }
+        },
+        {
+          "ipv6_address_fields" : {
+            "match" : "*_ipv6",
+            "mapping" : { "type" : "string", "index" : "not_analyzed" }
+          }
         }
       ],
       "properties" : {
