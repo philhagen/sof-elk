@@ -93,6 +93,24 @@
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
           }
+        },
+        "pdns_clientgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "pdns_servergeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "pdns_answergeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
         }
       }
     }
