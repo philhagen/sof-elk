@@ -80,7 +80,18 @@
           "type" : "object",
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-            }
+          }
+        },
+        "smtp_geo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "smtp_relaygeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
           }
         }
       }
