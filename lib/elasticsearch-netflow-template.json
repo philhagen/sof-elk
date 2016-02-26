@@ -26,21 +26,13 @@
             "ipv4_src_geo" : { 
               "type" : "nested",
               "properties" : {
-                "location" : {
-                  "type" : "geo_point",
-                  "geohash_prefix" : true,
-                  "geohash_precision" : "1km"
-                }
+                "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
               }
             },
             "ipv4_dst_geo" : { 
               "type" : "nested",
               "properties" : {
-                "location" : {
-                  "type" : "geo_point",
-                  "geohash_prefix" : true,
-                  "geohash_precision" : "1km"
-                }
+                "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
               }
             }
           }
