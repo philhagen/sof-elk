@@ -13,9 +13,9 @@
             "match_mapping_type" : "string",
             "mapping" : {
               "type" : "string", "index" : "analyzed", "omit_norms" : true,
-                "fields" : {
-                  "raw" : {"type": "string", "index" : "not_analyzed", "ignore_above" : 256 }
-                }
+              "fields" : {
+                "raw" : {"type": "string", "index" : "not_analyzed", "ignore_above" : 256 }
+              }
             }
           }
         },
