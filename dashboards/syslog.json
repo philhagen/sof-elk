@@ -1,475 +1,103 @@
-{
-  "title": "SANS FOR572 Syslog Dashboard",
-  "services": {
-    "query": {
-      "list": {
-        "0": {
-          "query": "severity:[0 TO 2]",
-          "alias": "Emerg/Alert/Crit",
-          "color": "#E24D42",
-          "id": 0,
-          "pin": false,
-          "type": "lucene",
-          "enable": true
-        },
-        "1": {
-          "id": 1,
-          "color": "#EAB839",
-          "alias": "Err/Warn",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "severity:[3 TO 4]"
-        },
-        "2": {
-          "id": 2,
-          "color": "#6ED0E0",
-          "alias": "Notice/Info",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "severity:[5 TO 6]"
-        },
-        "3": {
-          "id": 3,
-          "color": "#7EB26D",
-          "alias": "Debug",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "severity:7"
-        },
-        "4": {
-          "id": 4,
-          "color": "#3F2B5B",
-          "alias": "Unk",
-          "pin": false,
-          "type": "lucene",
-          "enable": true,
-          "query": "NOT severity:[0 TO 7]"
-        }
-      },
-      "ids": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ]
-    },
-    "filter": {
-      "list": {
-        "0": {
-          "type": "time",
-          "field": "@timestamp",
-          "from": "now-24h",
-          "to": "now",
-          "mandate": "must",
-          "active": true,
-          "alias": "",
-          "id": 0
-        }
-      },
-      "ids": [
-        0
-      ]
+[
+  {
+    "_id": "Syslog-Dashboard",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Syslog Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":4,\"id\":\"Syslog-Program\",\"panelIndex\":2,\"row\":6,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-Source-Host\",\"panelIndex\":3,\"row\":6,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Document-Count\",\"panelIndex\":5,\"row\":6,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Event-Timeline-by-Program\",\"panelIndex\":7,\"row\":1,\"size_x\":12,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"syslog_hostname\",\"syslog_program\",\"message\"],\"id\":\"Syslog-Discovery\",\"panelIndex\":9,\"row\":9,\"size_x\":12,\"size_y\":11,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"}]",
+      "optionsJSON": "{\"darkTheme\":true}",
+      "uiStateJSON": "{\"P-3\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  }
+]
+
+[
+  {
+    "_id": "Syslog-Discovery",
+    "_type": "search",
+    "_source": {
+      "title": "Syslog Discovery",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "syslog_hostname",
+        "syslog_program",
+        "message"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"syslog-*\",\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647},\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}"
+      }
+    }
+  }
+]
+
+[
+  {
+    "_id": "Document-Count",
+    "_type": "visualization",
+    "_source": {
+      "title": "Document Count",
+      "visState": "{\"title\":\"Document Count\",\"type\":\"metric\",\"params\":{\"fontSize\":\"36\"},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
     }
   },
-  "rows": [
-    {
-      "title": "Options",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
-        {
-          "span": 12,
-          "editable": true,
-          "type": "histogram",
-          "loadingEditor": false,
-          "mode": "count",
-          "time_field": "@timestamp",
-          "value_field": null,
-          "x-axis": true,
-          "y-axis": true,
-          "scale": 1,
-          "y_format": "short",
-          "grid": {
-            "max": null,
-            "min": null
-          },
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "annotate": {
-            "enable": false,
-            "query": "*",
-            "size": 20,
-            "field": "_type",
-            "sort": [
-              "_score",
-              "desc"
-            ]
-          },
-          "auto_int": true,
-          "resolution": 100,
-          "interval": "10m",
-          "intervals": [
-            "auto",
-            "1s",
-            "1m",
-            "5m",
-            "10m",
-            "30m",
-            "1h",
-            "3h",
-            "12h",
-            "1d",
-            "1w",
-            "1y"
-          ],
-          "lines": true,
-          "fill": 1,
-          "linewidth": 2,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "spyable": true,
-          "zoomlinks": true,
-          "options": true,
-          "legend": true,
-          "show_query": true,
-          "interactive": true,
-          "legend_counts": true,
-          "timezone": "utc",
-          "percentage": false,
-          "zerofill": true,
-          "derivative": false,
-          "tooltip": {
-            "value_type": "cumulative",
-            "query_as_alias": true
-          },
-          "title": "Timeline"
-        }
-      ],
-      "notice": false
-    },
-    {
-      "title": "Graph",
-      "height": "250px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "group": [
-            "default"
-          ],
-          "type": "terms",
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "field": "syslog_hostname.raw",
-          "exclude": [],
-          "missing": false,
-          "other": true,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "pie",
-          "counter_pos": "none",
-          "title": "Source Systems",
-          "spyable": true,
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": ""
-        },
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "group": [
-            "default"
-          ],
-          "type": "terms",
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "field": "syslog_hostname.raw",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "title": "Source Systems",
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": ""
-        },
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "syslog_program.raw",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "pie",
-          "counter_pos": "none",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Source Programs"
-        },
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "syslog_program.raw",
-          "exclude": [],
-          "missing": true,
-          "other": true,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "none",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Source Programs"
-        }
-      ],
-      "notice": false
-    },
-    {
-      "title": "Student Pivot Area",
-      "height": "150px",
-      "editable": true,
-      "collapse": true,
-      "collapsable": true,
-      "panels": [],
-      "notice": false
-    },
-    {
-      "title": "Events",
-      "height": "650px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
-        {
-          "error": false,
-          "span": 12,
-          "editable": true,
-          "group": [
-            "default"
-          ],
-          "type": "table",
-          "size": 100,
-          "pages": 5,
-          "offset": 0,
-          "sort": [
-            "@timestamp",
-            "desc"
-          ],
-          "style": {
-            "font-size": "9pt"
-          },
-          "overflow": "min-height",
-          "fields": [
-            "@timestamp",
-            "syslog_hostname",
-            "syslog_program",
-            "message"
-          ],
-          "highlight": [],
-          "sortable": true,
-          "header": true,
-          "paging": true,
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "field_list": true,
-          "status": "Stable",
-          "trimFactor": 300,
-          "normTimes": true,
-          "title": "Documents",
-          "all_fields": false,
-          "localTime": false,
-          "timeField": "@timestamp"
-        }
-      ],
-      "notice": false
+  {
+    "_id": "Syslog-Source-Host",
+    "_type": "visualization",
+    "_source": {
+      "title": "Syslog Source Host",
+      "visState": "{\"title\":\"Syslog Program\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"syslog_hostname.raw\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
     }
-  ],
-  "editable": true,
-  "index": {
-    "interval": "day",
-    "pattern": "[logstash-]YYYY.MM.DD",
-    "default": "logstash-*",
-    "warm_fields": false
   },
-  "style": "light",
-  "failover": false,
-  "panel_hints": true,
-  "loader": {
-    "save_gist": false,
-    "save_elasticsearch": true,
-    "save_local": true,
-    "save_default": true,
-    "save_temp": true,
-    "save_temp_ttl_enable": true,
-    "save_temp_ttl": "30d",
-    "load_gist": true,
-    "load_elasticsearch": true,
-    "load_elasticsearch_size": 20,
-    "load_local": true,
-    "hide": false
+  {
+    "_id": "Event-Timeline-by-Program",
+    "_type": "visualization",
+    "_source": {
+      "title": "Event Timeline by Program",
+      "visState": "{\"title\":\"Event Timeline by Program\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":true,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:[0 TO 2]\",\"analyze_wildcard\":true}}},\"label\":\"Emerg/Alert/Crit\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:[3 TO 4]\",\"analyze_wildcard\":true}}},\"label\":\"Error/Warning\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:[5 TO 6]\",\"analyze_wildcard\":true}}},\"label\":\"Notice/Info\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:7\",\"analyze_wildcard\":true}}},\"label\":\"Debug\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"NOT(severity:[0 TO 7])\",\"analyze_wildcard\":true}}},\"label\":\"Unknown\"}]}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"Emerg/Alert/Crit\":\"#BF1B00\",\"Debug\":\"#82B5D8\",\"Notice/Info\":\"#9AC48A\",\"Error/Warning\":\"#EAB839\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
   },
-  "pulldowns": [
-    {
-      "type": "query",
-      "collapse": true,
-      "notice": false,
-      "query": "*",
-      "pinned": true,
-      "history": [],
-      "remember": 10,
-      "enable": true
-    },
-    {
-      "type": "filtering",
-      "collapse": false,
-      "notice": true,
-      "enable": true
+  {
+    "_id": "Syslog-Program",
+    "_type": "visualization",
+    "_source": {
+      "title": "Syslog Program",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"syslog_program.raw\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
     }
-  ],
-  "nav": [
-    {
-      "type": "timepicker",
-      "collapse": false,
-      "notice": false,
-      "status": "Stable",
-      "time_options": [
-        "5m",
-        "15m",
-        "1h",
-        "6h",
-        "12h",
-        "24h",
-        "2d",
-        "7d",
-        "30d"
-      ],
-      "refresh_intervals": [
-        "5s",
-        "10s",
-        "30s",
-        "1m",
-        "5m",
-        "15m",
-        "30m",
-        "1h",
-        "2h",
-        "1d"
-      ],
-      "timefield": "@timestamp",
-      "enable": true,
-      "now": true,
-      "filter_id": 0
-    }
-  ],
-  "refresh": "15m"
-}
+  }
+]
