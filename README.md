@@ -10,6 +10,7 @@ This repository contains the configuration and support files for the SANS FOR572
 * `feature/*`:  Branches where new code functionality is tested before being merged into develop.
 * `hotfix/*`: Branches where quick-term fixes are tested before being merged into develop and immediately to master.
 * `release/*`: Branches where code in the develop branch is prepared for release to a VM build via a merge to master.
+* Other branches may be used for major version updates, etc.  These will be merged to master when deployed for mainstream use.
 
 **Tags:**
 
@@ -17,14 +18,14 @@ When a VM is prepared for distribution in the SANS FOR572 course, the revision w
 
 **Using:**
 
-The various configuration files expect some of these files to reside at a specific path on the filesystem.  For this reason, we recommend you clone the git repository at ```/usr/local/for572logstash/```.  The VM distribution points to ```/usr/local/for572logstash/configfiles/``` for ```$LS_CONF_DIR``` (in the /etc/sysconfig/logstash file in many cases).
+The various configuration files expect some of these files to reside at a specific path on the filesystem.  For this reason, we recommend you clone the git repository to ```/usr/local/for572logstash/```.  To use these configuration files, I recommend symlinking them into ```$LS_CONF_DIR``` as defined by your configuration file.
 
 **Contents by directory:**
 
-* `/dashboards/`: These files define the Kibana dashboards for individual data types.  These correspond with the parsing completed by the Logstash files in the ```/configfiles/``` directory, so they probably won't work on your own Logstash instance without some tweaking.
+* `/dashboards/`: These files define the Kibana dashboards for individual data types.  These correspond with the parsing completed by the Logstash files in the ```/configfiles/``` directory, so they probably won't work on your own Logstash instance without some tweaking.  Note that with Kibana 4, dashboards are only kept in the Elastic database, so to load these to the interface, set ```$reset_dashboards``` to ```1``` and run the ```/dashboards/load_all_dashboards.sh``` script.
 * `/configfiles/`: These files conatain parsing/tagging/formatting/etc logic for individual file types as well as output configuration.
 * `/grok-patterns/`: Custom parsing patterns used by the files in the ```/configfiles/``` directory.
-* `/lib/`: Supporting files, including elasticsearch mappings, lookup YAML files, and images.
+* `/lib/`: Supporting files, including elasticsearch mappings, YAML lookup files, and images.
 
 **Questions/Bug Reports/etc:**
 
