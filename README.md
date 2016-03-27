@@ -30,5 +30,3 @@ The various configuration files expect some of these files to reside at a specif
 **Questions/Bug Reports/etc:**
 
 All bugs and feature requests should be logged via the github issue tracker: <https://github.com/philhagen/for572logstash/issues/>.
-
-For now, please use the SourceForge Forums for all discussions: <https://sourceforge.net/p/sansfor572logstash/discussion/>.
