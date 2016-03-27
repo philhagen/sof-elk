@@ -1,0 +1,10 @@
+{
+  "title": "Intro Text",
+  "visState": "{\"title\":\"New Visualization\",\"type\":\"markdown\",\"params\":{\"markdown\":\"This is a test\\n\\n[Link to dashboard](/dashboard)\\n\\n[GitHub Pages](https://pages.github.com/)\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}
