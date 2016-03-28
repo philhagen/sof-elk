@@ -20,12 +20,13 @@ dashboard_dir="/usr/local/for572logstash/dashboards/"
 
 # create the index patterns from files
 for indexid in ${index_patterns}; do
-    curl -s XDELETE http://${es_host}:${es_port}/${kibana_index}/index_pattern/${indexid}-* > /dev/null
-    curl -s XPUT http://${es_host}:${es_port}/${kibana_index}/index_pattern/${indexid}-* -T ${dashboard_dir}/index-patterns/${indexid} > /dev/null
+    curl -s -XDELETE http://${es_host}:${es_port}/${kibana_index}/index-pattern/${indexid}-* > /dev/null
+    curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/index-pattern/${indexid}-* -T ${dashboard_dir}/index-patterns/${indexid} > /dev/null
 done
 
 # set the default index pattern
-curl -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\"}"
+curl -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\"}" > /dev/null
+
 # create the dashboards, searches, and visualizations from files
 for dashboard in ${dashboard_list}; do
     for type in ${dashboard_dir}${dashboard}/*; do
