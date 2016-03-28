@@ -4,6 +4,8 @@
 
 if [ $reset_dashboards -ne 1 ] ; then
     exit 2
+else
+    sleep 30
 fi
 
 es_host=localhost
@@ -25,7 +27,7 @@ for indexid in ${index_patterns}; do
 done
 
 # set the default index pattern
-curl -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\"}" > /dev/null
+curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\"}" > /dev/null
 
 # create the dashboards, searches, and visualizations from files
 for dashboard in ${dashboard_list}; do
