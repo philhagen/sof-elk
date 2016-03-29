@@ -72,13 +72,14 @@ if [ $DISKSHRINK -eq 1 ]; then
     echo "remove any snapshots that already exist and press Return"
     read
 
-    echo "zeroize swap:"
-    swapoff -a
-    for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
-        echo "- zeroize $swappart (swap)"
-        dd if=/dev/zero of=$swappart
-        mkswap $swappart
-    done
+    # we don't use swap any more
+    # echo "zeroize swap:"
+    # swapoff -a
+    # for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
+    #     echo "- zeroize $swappart (swap)"
+    #     dd if=/dev/zero of=$swappart
+    #     mkswap $swappart
+    # done
 
     echo "zeroize free space and shrink:"
     for mtpt in $( mount -t xfs | awk '{print $3}' ); do
