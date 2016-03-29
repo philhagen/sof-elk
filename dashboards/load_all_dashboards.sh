@@ -4,8 +4,6 @@
 
 if [ $reset_dashboards -ne 1 ] ; then
     exit 2
-else
-    sleep 30
 fi
 
 es_host=localhost
@@ -19,6 +17,18 @@ kibana_build=$(jq -r '.build.number' < /opt/kibana/package.json )
 
 dashboard_list="httpd introductory netflow syslog"
 dashboard_dir="/usr/local/for572logstash/dashboards/"
+
+# enter a holding pattern until the elasticsearch server is available, but don't wait too long
+max_wait=60
+wait_step=0
+until curl -s -XGET http://${es_host}:${es_port}/_cluster/health > /dev/null ; do
+    wait_step=$(( ${wait_step} + 1 ))
+    if [ ${wait_step} -gt ${max_wait} ]; then
+        echo "ERROR: elasticsearch server not available for more than ${max_wait} seconds."
+        exit 5
+    fi
+    sleep 1;
+done
 
 # create the index patterns from files
 for indexid in ${index_patterns}; do
