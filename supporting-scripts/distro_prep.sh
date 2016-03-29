@@ -67,11 +67,11 @@ echo "clearing SSH Host Keys"
 service sshd stop
 rm -f /etc/ssh/*key*
 
-echo "ACTION REQUIRED!"
-echo "remove any snapshots that already exist and press Return"
-read
+if [ $DISKSHRINK -eq 1 ]; then
+    echo "ACTION REQUIRED!"
+    echo "remove any snapshots that already exist and press Return"
+    read
 
-if [ $DISKSHRINK -eq 1 ];
     echo "zeroize swap:"
     swapoff -a
     for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
