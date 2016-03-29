@@ -1,4 +1,20 @@
 #!/bin/bash
+
+DISKSHRINK=1
+# parse any command line arguments
+if [ $# -gt 0 ]; then
+    while true; do
+        if [ "$1" ]; then
+            if [ "$1" == '-nodisk' ]; then
+                DISKSHRINK=0
+            fi
+            shift
+        else
+            break
+        fi
+    done
+fi
+
 revdate=$( date +%Y-%m-%d )
 
 echo "looking for specific pre-distribution notes/instructions"
@@ -55,21 +71,24 @@ echo "ACTION REQUIRED!"
 echo "remove any snapshots that already exist and press Return"
 read
 
-echo "zeroize swap:"
-swapoff -a
-for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
-    echo "- zeroize $swappart (swap)"
-    dd if=/dev/zero of=$swappart
-    mkswap $swappart
-done
+if [ $DISKSHRINK -eq 1 ];
+    echo "zeroize swap:"
+    swapoff -a
+    for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
+        echo "- zeroize $swappart (swap)"
+        dd if=/dev/zero of=$swappart
+        mkswap $swappart
+    done
 
-echo "zeroize free space and shrink:"
-for mtpt in $( mount -t xfs | awk '{print $3}' ); do
-    echo "- zeroize $mtpt"
-    dd if=/dev/zero of=$mtpt/ddfile
-    rm -f $mtpt/ddfile
-    echo "- shrink $mtpt"
-    vmware-toolbox-cmd disk shrink $mtpt
-done
+    echo "zeroize free space and shrink:"
+    for mtpt in $( mount -t xfs | awk '{print $3}' ); do
+        echo "- zeroize $mtpt"
+        dd if=/dev/zero of=$mtpt/ddfile
+        rm -f $mtpt/ddfile
+        echo "- shrink $mtpt"
+        vmware-toolbox-cmd disk shrink $mtpt
+    done
+fi
+
 echo "updating /etc/issue* files for boot message"
 cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue.stock
