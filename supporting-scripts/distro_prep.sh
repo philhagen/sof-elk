@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -n $SSH_CONNECTION ]]; then
+    echo "ERROR: This script must be run locally - Exiting."
+    exit 2
+fi
+
 DISKSHRINK=1
 # parse any command line arguments
 if [ $# -gt 0 ]; then
@@ -34,6 +39,9 @@ echo "cleaning user histories"
 rm -f ~root/.bash_history
 rm -f ~elk_user/.bash_history
 
+echo "cleaning temp directories"
+rm -rf ~elk_user/tmp/*
+
 echo "updating GeoIP database"
 /usr/local/sbin/geoip_update.sh -now
 
@@ -49,6 +57,12 @@ echo "removing logstash sincedb"
 rm -f /var/db/logstash/sincedb
 echo "removing any input logs from prior parsing"
 rm -rf /usr/local/logstash-*/*
+echo "force dashboard resets on next boot"
+TMPFILE=$( mktemp )
+grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
+echo "reset_dashboards=1" >> ${TMPFILE}
+cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
+rm -f ${TMPFILE}
 
 echo "create tarball with critical LS-specific files in /root/"
 tar -cjf ~/for572_logstash_files_${revdate}.tar.bz2 /usr/local/for572logstash/
