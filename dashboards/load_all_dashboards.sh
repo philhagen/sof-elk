@@ -36,8 +36,8 @@ for indexid in ${index_patterns}; do
     curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/index-pattern/${indexid}-* -T ${dashboard_dir}/index-patterns/${indexid} > /dev/null
 done
 
-# set the default index pattern
-curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\"}" > /dev/null
+# set the default index pattern, time zone, and add TZ offset to the default date format 
+curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}" > /dev/null
 
 # create the dashboards, searches, and visualizations from files
 for dashboard in ${dashboard_list}; do
@@ -50,3 +50,10 @@ for dashboard in ${dashboard_list}; do
         done
     done
 done
+
+# prevent this script from running again on next boot
+TMPFILE=$( mktemp )
+grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
+echo "reset_dashboards=0" >> ${TMPFILE}
+cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
+rm -f ${TMPFILE}
