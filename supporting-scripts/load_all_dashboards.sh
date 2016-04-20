@@ -60,8 +60,9 @@ for dashboard in ${dashboard_list}; do
     done
 done
 
-if [ ${FORCE} -ne "force" ]; then
-    # prevent this script from automatically running again on next boot
+# prevent this script from automatically running again on next boot
+# ignore this if being forced
+if [ ${FORCE} != "force" ]; then
     TMPFILE=$( mktemp )
     grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
     echo "reset_dashboards=0" >> ${TMPFILE}
