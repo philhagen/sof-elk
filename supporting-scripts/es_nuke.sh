@@ -18,7 +18,7 @@ if [ ${ARGC} -ne 1 ]; then
 fi
 
 BASEINDEX=$1
-DOCCOUNT=$( http://localhost:9200/${BASEINDEX}-*/_count )
+DOCCOUNT=$( curl -s http://localhost:9200/${BASEINDEX}-*/_count | jq '.count' )
 
 echo "WARNING!!  THIS COMMAND CAN DESTROY DATA!  READ CAREFULY!"
 echo "---------------------------------------------------------"
