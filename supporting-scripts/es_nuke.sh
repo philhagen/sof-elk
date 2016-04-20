@@ -23,7 +23,7 @@ echo "WARNING!!  THIS COMMAND CAN DESTROY DATA!  READ CAREFULY!"
 echo "---------------------------------------------------------"
 echo "This script will permanently delete data from the elasticsearch server."
 echo
-echo "To delete all of the '${BASEINDEX}' indices from the server, type \"YES\" below and press return."
+echo -e "To delete all of the '\e[1m${BASEINDEX}\e[0m' indices from the server, type \"\e[1m\e[91mYES\e[0m\" below and press return."
 read RESPONSE
 
 if [ ${RESPONSE} != "YES" ]; then
@@ -32,4 +32,5 @@ if [ ${RESPONSE} != "YES" ]; then
 else
     echo -n "Deleting all data from the ${BASEINDEX}-* indices: "
     curl -s -XDELETE "http://localhost:9200/${BASEINDEX}-*" > /dev/null && success || failure
+    echo
 fi
