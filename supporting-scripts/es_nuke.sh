@@ -31,10 +31,9 @@ echo "---------------------------------------------------------"
 echo "This script will permanently delete data from the elasticsearch server."
 echo
 echo -e "There are currently \e[1m${DOCCOUNT}\e[0m documents in the \e[1m${BASEINDEX}-*\e[0m indices."
-echo
 
 echo
-echo -e "To delete all of the '\e[1m${BASEINDEX}\e[0m' indices from the server, type \"\e[1m\e[91mYES\e[0m\" below and press return."
+echo -e "To delete all of the '\e[1m${BASEINDEX}\e[0m' indices from the server, type \"\e[1mYES\e[0m\" below and press return."
 read RESPONSE
 
 if [ ${RESPONSE} != "YES" ]; then
