@@ -20,6 +20,12 @@ fi
 BASEINDEX=$1
 DOCCOUNT=$( curl -s http://localhost:9200/${BASEINDEX}-*/_count | jq '.count' )
 
+if [ ${DOCCOUNT} -eq 0 ]; then
+    echo "There are no documents in the ${BASEINDEX}-* indices."
+    echo "Exiting."
+    exit
+fi
+
 echo "WARNING!!  THIS COMMAND CAN DESTROY DATA!  READ CAREFULY!"
 echo "---------------------------------------------------------"
 echo "This script will permanently delete data from the elasticsearch server."
