@@ -2,7 +2,8 @@
 
 [ -r /etc/sysconfig/for572/elk_checkout ] && . /etc/sysconfig/for572/elk_checkout
 
-if [ $reset_dashboards -ne 1 ] ; then
+if [ $reset_dashboards -ne 1 && $1 -ne "force" ]; then
+    echo "Not resetting dashboards - run '$0 force' to override."
     exit 2
 fi
 
@@ -51,9 +52,11 @@ for dashboard in ${dashboard_list}; do
     done
 done
 
-# prevent this script from running again on next boot
-TMPFILE=$( mktemp )
-grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
-echo "reset_dashboards=0" >> ${TMPFILE}
-cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
-rm -f ${TMPFILE}
+if [ $1 -ne "force" ]; then
+    # prevent this script from automatically running again on next boot
+    TMPFILE=$( mktemp )
+    grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
+    echo "reset_dashboards=0" >> ${TMPFILE}
+    cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
+    rm -f ${TMPFILE}
+fi
