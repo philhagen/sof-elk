@@ -6,6 +6,8 @@ ARGC=$#
 
 if [ ${ARGC} -eq 1 ]; then
     FORCE=$1
+else
+    FORCE=noforce
 fi
 
 if [ $reset_dashboards -ne 1 && ${FORCE} -ne "force" ]; then
