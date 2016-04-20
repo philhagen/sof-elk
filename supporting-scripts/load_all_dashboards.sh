@@ -10,7 +10,7 @@ else
     FORCE=noforce
 fi
 
-if [ $reset_dashboards -ne 1 && ${FORCE} -ne "force" ]; then
+if [[ $reset_dashboards -ne 1 && ${FORCE} != "force" ]]; then
     echo "Not resetting dashboards - run '$0 force' to override."
     exit 2
 fi
