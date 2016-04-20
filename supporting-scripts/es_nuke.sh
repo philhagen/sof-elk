@@ -24,7 +24,7 @@ echo "WARNING!!  THIS COMMAND CAN DESTROY DATA!  READ CAREFULY!"
 echo "---------------------------------------------------------"
 echo "This script will permanently delete data from the elasticsearch server."
 echo
-echo -e "There are currently \e1m${DOCCOUNT}\e[0m documents in the \e[1m${BASEINDEX}-*\e[0m indices."
+echo -e "There are currently \e[1m${DOCCOUNT}\e[0m documents in the \e[1m${BASEINDEX}-*\e[0m indices."
 echo
 
 echo
