@@ -33,4 +33,9 @@ else
     echo -n "Deleting all data from the ${BASEINDEX}-* indices: "
     curl -s -XDELETE "http://localhost:9200/${BASEINDEX}-*" > /dev/null && success || failure
     echo
+
+    echo "NOTE: This script does not delete the 'sincedb' file, which tracks progress through existing"
+    echo "  log files. If you want to re-parse existing files, you'll need to run the following command:"
+    echo "sudo rm ${sincedb}"
+    echo
 fi
