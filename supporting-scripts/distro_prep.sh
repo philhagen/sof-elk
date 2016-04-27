@@ -64,9 +64,6 @@ echo "reset_dashboards=1" >> ${TMPFILE}
 cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
 rm -f ${TMPFILE}
 
-echo "create tarball with critical LS-specific files in /root/"
-tar -cjf ~/for572_logstash_files_${revdate}.tar.bz2 /usr/local/for572logstash/
-
 echo "stopping network"
 service network stop
 #echo "clearing udev networking rules"
