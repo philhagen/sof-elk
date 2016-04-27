@@ -1,6 +1,6 @@
 {
   "title": "Document Count",
-  "visState": "{\"title\":\"Document Count\",\"type\":\"metric\",\"params\":{\"fontSize\":\"36\"},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+  "visState": "{\"title\":\"Document Count\",\"type\":\"metric\",\"params\":{\"fontSize\":\"36\",\"handleNoResults\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Syslog Records\"}}],\"listeners\":{}}",
   "uiStateJSON": "{}",
   "description": "",
   "version": 1,
