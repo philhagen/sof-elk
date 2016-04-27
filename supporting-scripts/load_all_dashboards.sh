@@ -53,8 +53,6 @@ for dashboard in ${dashboard_list}; do
     for type in ${dashboard_dir}${dashboard}/*; do
         type=$( basename $type )
 
-        curl -XDELETE http://${es_host}:${es_port}/${kibana_index}/_search?type=${type}
-
         for object in ${dashboard_dir}${dashboard}/${type}/*; do
             object=$( basename ${object} )
             curl -s -XDELETE http://${es_host}:${es_port}/${kibana_index}/${type}/${object} > /dev/null
