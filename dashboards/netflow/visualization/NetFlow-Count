@@ -1,6 +1,6 @@
 {
   "title": "NetFlow Count",
-  "visState": "{\"title\":\"New Visualization\",\"type\":\"metric\",\"params\":{\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+  "visState": "{\"title\":\"NetFlow Count\",\"type\":\"metric\",\"params\":{\"fontSize\":60,\"handleNoResults\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"NetFlow Records\"}}],\"listeners\":{}}",
   "uiStateJSON": "{}",
   "description": "",
   "version": 1,
