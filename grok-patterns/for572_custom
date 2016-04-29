@@ -13,6 +13,9 @@ SENDMAIL_QID %{SENDMAIL_QID_85}|%{SENDMAIL_QID_89}|%{SENDMAIL_QID_814}
 # Unixtime with milliseconds
 UNIX_MSEC (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]{3})?)|(?:\.[0-9]+)))
 
+# SSH Authentication key ID
+SSH_KEYID (?:(?:[A-Fa-f0-9]{2}:)*[A-Fa-f0-9]{2})
+
 # redefine HOSTNAME, adding an underscore (including at the start of a token) and forward slash (latter needed for reverse lookups such as 135.128/27.224.16.206.in-addr.arpa)
 HOSTNAME \b(?:[0-9A-Za-z_][0-9A-Za-z\/\-_]{0,62})(?:\.(?:[0-9A-Za-z_][0-9A-Za-z\/\-_]{0,62}))*(\.?|\b)
 
