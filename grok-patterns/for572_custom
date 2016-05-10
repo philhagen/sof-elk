@@ -1,3 +1,6 @@
+# Allow alternate timestamps for syslog entries
+FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP}|%{TIMESTAMP_ISO8601}
+
 # Grok patterns for iptables:
 ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
 NETFILTERMAC %{COMMONMAC:ipt_dstmac}:%{COMMONMAC:ipt_srcmac}:%{ETHTYPE:ipt_ethtype}
