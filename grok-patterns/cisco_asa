@@ -1,4 +1,4 @@
-# FOR572 alumni contributed
+# SANS DFIR FOR572 alumni contributed
 
 #== Cisco ASA ==
 CISCO_TAGGED_SYSLOG ^%{CISCOTIMESTAMP:timestamp}( %{SYSLOGHOST:sysloghost})

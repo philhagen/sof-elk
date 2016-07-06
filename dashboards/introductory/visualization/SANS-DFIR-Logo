@@ -7,4 +7,3 @@
   "kibanaSavedObjectMeta": {
     "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
   }
-}

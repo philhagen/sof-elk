@@ -65,8 +65,8 @@ done
 # # ignore this if being forced
 # if [ ${FORCE} != "force" ]; then
 #     TMPFILE=$( mktemp )
-#     grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
+#     grep -v ^reset_dashboards /etc/sysconfig/sof-elk > ${TMPFILE}
 #     echo "reset_dashboards=0" >> ${TMPFILE}
-#     cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
+#     cat ${TMPFILE} > /etc/sysconfig/sof-elk
 #     rm -f ${TMPFILE}
 # fi
