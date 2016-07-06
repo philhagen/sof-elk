@@ -59,9 +59,9 @@ echo "removing any input logs from prior parsing"
 rm -rf /usr/local/logstash-*/*
 echo "force dashboard resets on next boot"
 TMPFILE=$( mktemp )
-grep -v ^reset_dashboards /etc/sysconfig/for572/elk_checkout > ${TMPFILE}
+grep -v ^reset_dashboards /etc/sysconfig/sof-elk > ${TMPFILE}
 echo "reset_dashboards=1" >> ${TMPFILE}
-cat ${TMPFILE} > /etc/sysconfig/for572/elk_checkout
+cat ${TMPFILE} > /etc/sysconfig/sof-elk
 rm -f ${TMPFILE}
 
 echo "stopping network"

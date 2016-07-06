@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ -r /etc/sysconfig/for572/elk_checkout ] && . /etc/sysconfig/for572/elk_checkout
+[ -r /etc/sysconfig/sof-elk ] && . /etc/sysconfig/sof-elk
 
 ARGC=$#
 
