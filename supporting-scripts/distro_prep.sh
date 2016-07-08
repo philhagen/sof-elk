@@ -52,7 +52,7 @@ curl -s -XDELETE 'http://localhost:9200/_all' > /dev/null
 echo "removing elasticsearch templates"
 curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
 echo "removing elasticsearch .kibana index"
-curl -s _XDELETE 'http://localhost:9200/.kibana' > /dev/null
+curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
 echo "removing logstash sincedb"
 rm -f /var/db/logstash/sincedb
 echo "removing any input logs from prior parsing"
