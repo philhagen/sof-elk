@@ -105,8 +105,10 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 ## Ingesting Archived NetFlow ##
 To ingest existing NetFlow evidence, it must be parsed into a specific format.  The nfdump command line needed to parse existing data is below.  Be sure you review the top of the output file to ensure there are no warning/error messages present.
+
 ```export EXP_IP=1.1.1.1``` (Replace ```1.1.1.1``` with the exporter source for the data, if available.  This field is required and must be a valid IPv4 address, but use a placeholder if needed.)
-```nfdump (-r <input file> | -R <input dir>) -q -N -O tstart -o "fmt:$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0"```
+
+```nfdump (-r <input file> | -R <input dir>) -q -N -O tstart -o "fmt:$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0" > /path/to/some_file.txt```  (Then place ```some_file.txt``` in ```/usr/local/logstash-nfarch```.)
 
 ## Sample Data ##
 Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/usr/local/logstash-syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
