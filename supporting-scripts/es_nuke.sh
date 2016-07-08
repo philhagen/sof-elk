@@ -1,12 +1,10 @@
 #!/bin/sh
-# stop logstash, NUKE ALL data in elasticsearch, remove the sincedb, restart logstash
-# this is incredibly destructive!
+# NUKE ALL data in elasticsearch.  This is incredibly destructive!
 
 # source function library
 . /etc/rc.d/init.d/functions
 
 sourceloc=/usr/local/logstash-*
-sincedb=/var/db/logstash/sincedb
 
 ARGC=$#
 
@@ -46,8 +44,7 @@ else
 
     echo
     echo "NOTE: This script does not delete the 'sincedb' file, which tracks progress through existing"
-    echo "  log files. If you want to re-parse existing files, you'll need to run the following commands:"
-    echo "sudo rm ${sincedb}"
-    echo "sudo /usr/local/sbin/ls_restart.sh"
+    echo "  log files. If you want to re-parse existing files, you'll need to run the following command:"
+    echo "sudo ls_restart.sh -reparse"
     echo
 fi

@@ -20,7 +20,6 @@ if [ $# -gt 0 ]; then
     done
 fi
 
-
 if [ ! -d ${GEOIP_LIBDIR} ]; then
     mkdir -p ${GEOIP_LIBDIR}
 fi
