@@ -1,0 +1,126 @@
+{
+  "template" : "syslog-*",
+  "settings" : {
+    "index.refresh_interval" : "5s"
+  },
+  "mappings" : {
+    "_default_" : {
+      "_all" : { "enabled" : true },
+      "dynamic_templates" : [
+        {
+          "string_fields" : {
+            "match" : "*",
+            "match_mapping_type" : "string",
+            "mapping" : {
+              "type" : "string", "index" : "analyzed", "omit_norms" : true,
+              "fields" : {
+                "raw" : { "type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
+              }
+            }
+          }
+        },
+        {
+          "ip_address_fields" : {
+            "match" : "*_ip",
+            "mapping" : { "type" : "ip" }
+          }
+        },
+        {
+          "ipv6_address_fields" : {
+            "match" : "*_ipv6",
+            "mapping" : { "type" : "string", "index" : "not_analyzed" }
+          }
+        }
+      ],
+      "properties" : {
+        "@version" : { "type" : "string", "index" : "not_analyzed" },
+        "syslog_pid" : { "type" : "integer" },
+        "ipt_srcport" : { "type" : "integer" },
+        "ipt_dstport" : { "type" : "integer" },
+        "ipt_ttl" : { "type" : "short" },
+        "ips" : { "type" : "ip" },
+        "ssh_keyid" : { "type" : "string", "index" : "not_analyzed" },
+        "path" : { "type" : "string", "index" : "not_analyzed" },
+
+        "ipt_srcgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "ipt_dstgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "ssh_srcgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "wp_srcgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "imap_remotegeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "courier_srcgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "xinetd_srcgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "gl_srcgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "smtp_geo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "smtp_relaygeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "pdns_clientgeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "pdns_servergeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "pdns_answergeo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "title": "SOF-ELK VM Intro",
+  "visState": "{\"title\":\"SOF-ELK VM Intro\",\"type\":\"markdown\",\"params\":{\"markdown\":\"## Welcome to the SOF-ELK (Security Operations and Forensics Elasticsearch/Logstash/Kibana) distribution\\n\\nThis VMware image was created with a fully functional ELK configuration.  The VM will ingest various log formats, and includes several dashboards to present the data in useful formats.  While this version of the VM was created specifically for the SANS DFIR FOR572 class, it is maintained as community resource.\\n\\nSee the blocks at the bottom of this page to learn more about which types of data the VM is preconfigured to ingest and how to feed it.\\n\\nYou probably want to see the dashboards, though - here are the three we've pre-built for the VM:\\n\\n[Syslog Dashboard](#/dashboard/Syslog-Dashboard) | [NetFlow Dashboard](#/dashboard/NetFlow-Dashboard) | [HTTPD Log Dashboard](#/dashboard/HTTPD-Log-Dashboard)\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}

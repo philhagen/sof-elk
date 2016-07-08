@@ -5,30 +5,58 @@
   },
   "mappings" : {
     "_default_" : {
-       "_all" : {"enabled" : true},
-       "dynamic_templates" : [ {
-         "string_fields" : {
-           "match" : "*",
-           "match_mapping_type" : "string",
-           "mapping" : {
-             "type" : "string", "index" : "analyzed", "omit_norms" : true,
-               "fields" : {
-                 "raw" : {"type": "string", "index" : "not_analyzed", "ignore_above" : 256}
-               }
-           }
-         }
-       } ],
-       "properties" : {
-         "@version": { "type": "string", "index": "not_analyzed" },
-         "geoip"  : {
-           "type" : "object",
-             "dynamic": true,
-             "path": "full",
-             "properties" : {
-               "location" : { "type" : "geo_point" }
-             }
-         }
-       }
+      "_all" : {"enabled" : true },
+      "dynamic_templates" : [
+        {
+          "string_fields" : {
+            "match" : "*",
+            "match_mapping_type" : "string",
+            "mapping" : {
+              "type" : "string", "index" : "analyzed", "omit_norms" : true,
+              "fields" : {
+                "raw" : {"type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
+              }
+            }
+          }
+        },
+        {
+          "ip_address_fields" : {
+            "match" : "*_ip",
+            "mapping" : { "type" : "ip" }
+          }
+        },
+        {
+          "ipv6_address_fields" : {
+            "match" : "*_ipv6",
+            "mapping" : { "type" : "string", "index" : "not_analyzed" }
+          }
+        }
+      ],
+      "properties" : {
+        "@version" : { "type" : "string", "index" : "not_analyzed" },
+        "host" : { "type" : "ip" },
+        "ips" : { "type" : "ip" },
+        "path" : { "type" : "string", "index" : "not_analyzed" },
+
+        "nf" : {
+          "type" : "object",
+          "properties" : {
+
+            "ipv4_src_geo" : {
+              "type" : "object",
+              "properties" : {
+                "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+              }
+            },
+            "ipv4_dst_geo" : {
+              "type" : "object",
+              "properties" : {
+                "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

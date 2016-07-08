@@ -1,0 +1,10 @@
+{
+  "title": "HTTPD Log Count",
+  "visState": "{\"title\":\"HTTPD Log Count\",\"type\":\"metric\",\"params\":{\"fontSize\":\"36\",\"handleNoResults\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"HTTPD Records\"}}],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"index\":\"httpdlog-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}

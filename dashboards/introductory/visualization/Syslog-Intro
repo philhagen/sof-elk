@@ -1,0 +1,10 @@
+{
+  "title": "Syslog Intro",
+  "visState": "{\"title\":\"Syslog Intro\",\"type\":\"markdown\",\"params\":{\"markdown\":\"Use [the Syslog Dashboard](#/dashboard/Syslog-Dashboard) to explore this data\\n\\nSyslog data is loaded via the following methods:\\n* Files in the `/usr/local/logstash-syslog/` directory.\\n  * NOTE: Create e.g. `/usr/local/logstash-syslog/2015/` for files that should be loaded as if they are from the year 2015.\\n* Network syslog messages sent to UDP or TCP port 5514\\n  * NOTE: Open the firewall ports using the `firewall-cmd` utility.  For example:\\n    * `firewall-cmd --zone=public --add-port=5514/udp --permanent`\\n    * `firewall-cmd --zone=public --add-port=5514/tcp --permanent`\\n    * `firewall-cmd --reload`\\n* [filebeat](https://www.elastic.co/products/beats/filebeat) messages sent to TCP 5044\\n  * NOTE: Open the firewall ports using the `firewall-cmd` utility.  For example:\\n    * `firewall-cmd --zone=public --add-port=5044/tcp --permanent`\\n    * `firewall-cmd --reload`\\n* Network RELP messages sent to TCP 5516\\n  * NOTE: Open firewall ports using the `firewall-cmd` utility.  For example:\\n    * `firewall-cmd --zone=public --add-port=5516/tcp --permanent`\\n    * `firewall-cmd --reload`\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}

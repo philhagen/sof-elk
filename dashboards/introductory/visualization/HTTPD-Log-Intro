@@ -1,0 +1,10 @@
+{
+  "title": "HTTPD Log Intro",
+  "visState": "{\"title\":\"HTTPD Log Intro\",\"type\":\"markdown\",\"params\":{\"markdown\":\"Use [the HTTPD Log Dashboard](#/dashboard/HTTPD-Log-Dashboard) to explore this data\\n\\nHTTPD log data is loaded via the following methods:\\n* Files in the `/usr/local/logstash-httpd/` directory\\n  * NOTE: Logs in the Common, Combined, and Combined + VHost formats are currently supported\\n* Network syslog messages sent to UDP or TCP port 5515\\n  * NOTE: Open the firewall ports using the `firewall-cmd` utility.  For example:\\n    * `firewall-cmd --zone=public --add-port=5515/udp --permanent`\\n    * `firewall-cmd --zone=public --add-port=5515/tcp --permanent`\\n    * `firewall-cmd --reload`\\n* Network RELP messages sent to TCP 5517\\n  * NOTE: Open firewall ports using the `firewall-cmd` utility.  For example:\\n    * `firewall-cmd --zone=public --add-port=5517/tcp --permanent`\\n    * `firewall-cmd --reload`\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}
