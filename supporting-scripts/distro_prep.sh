@@ -57,12 +57,8 @@ echo "removing logstash sincedb"
 rm -f /var/db/logstash/sincedb
 echo "removing any input logs from prior parsing"
 rm -rf /usr/local/logstash-*/*
-echo "force dashboard resets on next boot"
-TMPFILE=$( mktemp )
-grep -v ^reset_dashboards /etc/sysconfig/sof-elk > ${TMPFILE}
-echo "reset_dashboards=1" >> ${TMPFILE}
-cat ${TMPFILE} > /etc/sysconfig/sof-elk
-rm -f ${TMPFILE}
+echo "reload kibana dashboards"
+/usr/local/sbin/load_all_dashboards.sh
 
 echo "stopping network"
 service network stop

@@ -4,17 +4,6 @@
 
 ARGC=$#
 
-if [ ${ARGC} -eq 1 ]; then
-    FORCE=$1
-else
-    FORCE=noforce
-fi
-
-if [[ $reset_dashboards -ne 1 && ${FORCE} != "force" ]]; then
-    echo "Not resetting dashboards - run '$0 force' to override."
-    exit 2
-fi
-
 es_host=localhost
 es_port=9200
 kibana_index=.kibana
