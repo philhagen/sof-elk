@@ -66,6 +66,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 ## Changelog ##
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
+  * Re-branded to SOF-ELK, with awesome logo to boot
   * Now uses CentOS 7.x as a base OS
   * Latest releases of the ELK stack components
   * All dashboards re-created to work in Kibana 4
