@@ -1,5 +1,7 @@
 sof-elk
 =======
+![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
+
 
 This repository contains the configuration and support files for the SANS FOR572 Logstash VM Appliance.  More details about the pre-packaged VM are available here: <http://for572.com/logstash-readme>.
 
