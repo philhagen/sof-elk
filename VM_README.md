@@ -1,4 +1,6 @@
 # SOF-ELK VM Distribution #
+![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
+
 ## Background ##
 This page contains details for the SOF-ELK (Security Operations and Forensics Elasticsearch, Logstash, Kibana) VM.
 The VM is provided as a community resource but is covered in depth in the following course(s):
