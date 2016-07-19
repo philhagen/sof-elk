@@ -1,0 +1,13 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\n  \"filter\": [\n    {\n      \"query\": {\n        \"query_string\": {\n          \"analyze_wildcard\": true,\n          \"query\": \"*\"\n        }\n      }\n    }\n  ]\n}"
+  },
+  "title": "Syslog Analysis",
+  "hits": 0,
+  "description": "",
+  "panelsJSON": "[\n  {\n    \"col\": 7,\n    \"id\": \"A-Failed-logins\",\n    \"panelIndex\": 2,\n    \"row\": 5,\n    \"size_x\": 6,\n    \"size_y\": 4,\n    \"type\": \"visualization\"\n  },\n  {\n    \"col\": 7,\n    \"id\": \"A-Successful-logins\",\n    \"panelIndex\": 3,\n    \"row\": 1,\n    \"size_x\": 6,\n    \"size_y\": 4,\n    \"type\": \"visualization\"\n  },\n  {\n    \"col\": 1,\n    \"id\": \"A-Invalid-SrcIPs\",\n    \"panelIndex\": 4,\n    \"row\": 1,\n    \"size_x\": 6,\n    \"size_y\": 4,\n    \"type\": \"visualization\"\n  },\n  {\n    \"id\": \"A-TextGrid\",\n    \"type\": \"visualization\",\n    \"panelIndex\": 5,\n    \"size_x\": 6,\n    \"size_y\": 4,\n    \"col\": 1,\n    \"row\": 5\n  }\n]",
+  "optionsJSON": "{\n  \"darkTheme\": true\n}",
+  "uiStateJSON": "{}",
+  "version": 1,
+  "timeRestore": false
+}

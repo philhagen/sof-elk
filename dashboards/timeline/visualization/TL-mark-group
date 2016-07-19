@@ -1,0 +1,10 @@
+{
+  "title": "TL-mark-group",
+  "visState": "{\"title\":\"TL-mark-group\",\"type\":\"markdown\",\"params\":{\"markdown\":\"####Group account adds, deletes, modifications \\nColumn 1 | Column 2 | Column 3\\n------ | -------- | -----\\n4727 Security Global Created | 4744 Distrib Local Created | 4749 Distrib Global Created\\n4730 Security Global Deleted | 4750 Distrib Global Changed | 4760 Distrib Universal Changed\\n4731 Security Local Created | 4753 Distrib Global Deleted | 4745 Distrib Local Changed\\n4734 Security Local Deleted | 4755 Security Universal Changed   . | 4763 Distrib Universal Deleted\\n4735 Security Global Changed    . | 4758 Security Universal Deleted | 4748 Distrib Local Deleted\\n4737 Security Local Changed | 4759 Distrib Glob/Univ Deleted\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}
