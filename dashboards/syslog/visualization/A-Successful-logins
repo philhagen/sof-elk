@@ -1,0 +1,11 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"filter\":[]}"
+  },
+  "version": 1,
+  "savedSearchId": "A-Accepted",
+  "description": "",
+  "uiStateJSON": "{}",
+  "visState": "{\"title\":\"A-Successful logins\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"username\",\"size\":14,\"orderAgg\":{\"id\":\"3-orderAgg\",\"type\":\"count\",\"schema\":\"orderAgg\",\"params\":{}},\"order\":\"desc\",\"orderBy\":\"custom\"}}],\"listeners\":{}}",
+  "title": "A-Successful logins"
+}

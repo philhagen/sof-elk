@@ -1,0 +1,3 @@
+SYSLOGPROG2 (%{PROG:syslog_program})?(?:\[%{POSINT:syslog_pid}\])?
+SYSLOGBASE3 %{SYSLOGPROG2}: (\[ID %{NONNEGINT:syslog_id} )?(%{WORD:facility}\.%{WORD:severity})?(\])? *
+TTY2 (?:(/dev/)?(pts|tty([pq])?)(\w+)?/?(?:[0-9]+))
