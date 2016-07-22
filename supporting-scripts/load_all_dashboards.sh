@@ -8,12 +8,12 @@ es_host=localhost
 es_port=9200
 kibana_index=.kibana
 
-index_patterns="httpdlog netflow syslog"
+index_patterns="httpdlog netflow syslog timeline"
 
 kibana_version=$( jq -r '.version' < /opt/kibana/package.json )
 kibana_build=$(jq -r '.build.number' < /opt/kibana/package.json )
 
-dashboard_list="httpd introductory netflow syslog"
+dashboard_list="httpd introductory netflow syslog timeline"
 dashboard_dir="/usr/local/sof-elk/dashboards/"
 
 # enter a holding pattern until the elasticsearch server is available, but don't wait too long
