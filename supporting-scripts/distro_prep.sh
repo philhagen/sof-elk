@@ -1,4 +1,8 @@
 #!/bin/bash
+# SOF-ELK Supporting script
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This script is used to prepare the VM for distribution
 
 if [[ -n $SSH_CONNECTION ]]; then
     echo "ERROR: This script must be run locally - Exiting."

@@ -1,9 +1,13 @@
 #!/bin/bash
+# SOF-ELK Supporting script
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This script is used to perform post-merge steps, eg after the git repository is updated
 
-# load all dashboards to the kibana ES index
+# reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
 
-# activate all "supported" Logstash configurations
+# activate all "supported" Logstash configuration files
 for file in /usr/local/sof-elk/configfiles/*; do
     if [ -h /etc/logstash/conf.d/$( basename $file ) ]; then
         rm -f /etc/logstash/conf.d/$( basename $file )

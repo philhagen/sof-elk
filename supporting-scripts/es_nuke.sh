@@ -1,5 +1,9 @@
 #!/bin/sh
-# NUKE ALL data in elasticsearch.  This is incredibly destructive!
+#!/bin/bash
+# SOF-ELK Supporting script
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This script is used to NUKE ALL data in elasticsearch.  This is incredibly destructive!
 
 # source function library
 . /etc/rc.d/init.d/functions

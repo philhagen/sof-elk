@@ -1,2 +1,7 @@
+# SOF-ELK Supporting file
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This file contains grok patterns used for NetFlow parsers
+
 TIMESTAMP_NETFLOW %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND}\.%{INT:MSECOND}
 ICMP_TYPECODE %{NONNEGINT:icmp_type:int}.%{NONNEGINT:icmp_code:int}

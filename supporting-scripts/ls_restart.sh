@@ -1,5 +1,9 @@
-#!/bin/sh
-# restart the logstash service, clearing the sincedb if -reparse is specified
+#!/bin/bash
+# SOF-ELK Supporting script
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This script is used to restart the logstash service, clearing the sincedb if -reparse is specified
+
 REPARSE=0
 
 # parse any command line arguments

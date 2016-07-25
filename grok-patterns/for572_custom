@@ -1,3 +1,8 @@
+# SOF-ELK Supporting file
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This file contains grok patterns used for various other parsers
+
 # Allow alternate timestamps for syslog entries
 FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP}|%{TIMESTAMP_ISO8601}
 

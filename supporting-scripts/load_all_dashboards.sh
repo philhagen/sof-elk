@@ -1,4 +1,8 @@
 #!/bin/bash
+# SOF-ELK Supporting script
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This script is used to load all dashboards, visualizations, saved searches, and index patterns to Elasticsearch
 
 [ -r /etc/sysconfig/sof-elk ] && . /etc/sysconfig/sof-elk
 

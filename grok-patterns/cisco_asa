@@ -1,4 +1,7 @@
-# SANS DFIR FOR572 alumni contributed
+# SOF-ELK Supporting file
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This file contains grok patterns used for Cisco ASA parsers
 
 #== Cisco ASA ==
 CISCO_TAGGED_SYSLOG ^%{CISCOTIMESTAMP:timestamp}( %{SYSLOGHOST:sysloghost})

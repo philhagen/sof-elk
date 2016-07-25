@@ -1,4 +1,9 @@
 #!/bin/bash
+# SOF-ELK Supporting script
+# (C)2016 Lewes Technology Consulting, LLC
+#
+# This script is used to update the MaxMind GeoIP databases
+
 GEOIP_LIBDIR=/usr/local/share/GeoIP
 GEOIP_CITYSOURCEURL=http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 GEOIP_ASNSOURCEURL=http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
