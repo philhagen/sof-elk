@@ -1,1 +1,2 @@
-curl -XGET localhost:9200/_template/$1
+#!/bin/bash
+curl -s -XGET "http://localhost:9200/_template/$1"
