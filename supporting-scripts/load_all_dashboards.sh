@@ -13,7 +13,7 @@ index_patterns="httpdlog netflow syslog timeline-plaso"
 kibana_version=$( jq -r '.version' < /opt/kibana/package.json )
 kibana_build=$(jq -r '.build.number' < /opt/kibana/package.json )
 
-dashboard_list="httpd introductory netflow syslog timeline-plaso"
+dashboard_list="httpd introductory netflow syslog timeline-plaso "
 dashboard_dir="/usr/local/sof-elk/dashboards/"
 
 # enter a holding pattern until the elasticsearch server is available, but don't wait too long
