@@ -1,0 +1,10 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"index\":\"timelineplaso-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  },
+  "version": 1,
+  "description": "",
+  "uiStateJSON": "{}",
+  "visState": "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"evt-eventid\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Event ID\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"evt-logon_type\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Logon Type\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"evt-provider\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Provider\"}},{\"id\":\"5\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"parser\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Parser\"}}],\"listeners\":{}}",
+  "title": "TL-Event-Data"
+}

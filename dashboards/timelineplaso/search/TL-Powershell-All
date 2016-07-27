@@ -1,0 +1,16 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"index\":\"timelineplaso-*\",\"query\":{\"query_string\":{\"query\":\"evt-eventid:400 OR evt-eventid:403 OR evt-eventid:6 OR evt-eventid:40961 OR evt-eventid:4100 OR evt-eventid:169 OR evt-eventid:81 OR evt-eventid:134 OR evt-eventid:7937 OR evt-eventid:32850 OR evt-eventid:32867 OR evt-eventid:32868\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+  },
+  "version": 1,
+  "sort": [
+    "@timestamp",
+    "desc"
+  ],
+  "columns": [
+    "_source"
+  ],
+  "hits": 0,
+  "description": "",
+  "title": "TL-Powershell-All"
+}

@@ -1,0 +1,10 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\n  \"index\": \"timelineplaso-*\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+  },
+  "version": 1,
+  "description": "",
+  "uiStateJSON": "{}",
+  "visState": "{\n  \"title\": \"New Visualization\",\n  \"type\": \"histogram\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"scale\": \"linear\",\n    \"mode\": \"stacked\",\n    \"times\": [],\n    \"addTimeMarker\": false,\n    \"defaultYExtents\": false,\n    \"setYExtents\": false,\n    \"yAxis\": {}\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"date_histogram\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"@timestamp\",\n        \"interval\": \"auto\",\n        \"customInterval\": \"2h\",\n        \"min_doc_count\": 1,\n        \"extended_bounds\": {}\n      }\n    },\n    {\n      \"id\": \"3\",\n      \"type\": \"terms\",\n      \"schema\": \"group\",\n      \"params\": {\n        \"field\": \"evt-eventid\",\n        \"size\": 20,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    },\n    {\n      \"id\": \"4\",\n      \"type\": \"terms\",\n      \"schema\": \"split\",\n      \"params\": {\n        \"field\": \"filename.raw\",\n        \"size\": 13,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"row\": true\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+  "title": "TL - FN and EventID"
+}

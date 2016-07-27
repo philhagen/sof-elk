@@ -1,0 +1,10 @@
+{
+  "title": "TL-mark-user",
+  "visState": "{\"title\":\"TL-mark-user\",\"type\":\"markdown\",\"params\":{\"markdown\":\"####User account adds, deletes, modifications\\nColumn 1 | Column 2 | Column 3\\n---- | ---- | ----\\n4728 Sec Global Added | 4746 Distrib Local Added | 4756 Sec Univeral Added\\n4729 Sec Global Removed    .| 4747 Distrib Local Removed | 4757 Sec Universal Removed\\n4732 Sec Local Added | 4751 Distrib Global Added | 4761 Distrib Univ Added\\n4733 Sec Local Added | 4752 Distrib Global Removed   . | 4762 Distrib Univ Removed\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}
