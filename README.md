@@ -32,3 +32,5 @@ The various configuration files expect some of these files to reside at a specif
 **Questions/Bug Reports/etc:**
 
 All bugs and feature requests should be logged via the github issue tracker: <https://github.com/philhagen/sof-elk/issues/>.
+
+Please see the pull request submission guidelines before starting any development work - this is in the PULLREQUESTS.md file.
