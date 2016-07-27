@@ -159,6 +159,6 @@
         "refresh_interval": "5s"
       }
     },
-    "template": "timeline-plaso",
+    "template": "timelineplaso-*",
     "order": 0
 }
