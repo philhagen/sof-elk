@@ -8,7 +8,7 @@ es_host=localhost
 es_port=9200
 kibana_index=.kibana
 
-index_patterns="httpdlog netflow syslog"
+index_patterns="httpdlog netflow syslog timelinel2t"
 
 kibana_version=$( jq -r '.version' < /opt/kibana/package.json )
 kibana_build=$(jq -r '.build.number' < /opt/kibana/package.json )

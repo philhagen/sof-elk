@@ -1,0 +1,11 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"filter\":[]}"
+  },
+  "version": 1,
+  "savedSearchId": "TL-Powershell-All",
+  "description": "",
+  "uiStateJSON": "{}",
+  "visState": "{\"title\":\"New Visualization\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Powershell events over time\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"evt-eventid\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Event ID #\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"user_sid.raw\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"User SID\",\"row\":true}}],\"listeners\":{}}",
+  "title": "TL-Powershell_all"
+}

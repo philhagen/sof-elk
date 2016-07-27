@@ -1,0 +1,10 @@
+{
+  "title": "TL-mark-session",
+  "visState": "{\"title\":\"New Visualization\",\"type\":\"markdown\",\"params\":{\"markdown\":\"Event ID Column 1  | Event ID Column 2\\n--------------------- | ------------------\\n4624 Successful Login |  4800 Workstation Locked\\n4625 Logon Failure |  4801 Workstation Unlocked=\\n4647 User Initiated Logoff | 4802 Screen Saver Invoked\\n4778 Remote Desktop reconnect  . | 4803 Screen Saver dismissed\\n4779 Remote Desktop disconn |\"},\"aggs\":[],\"listeners\":{}}",
+  "uiStateJSON": "{}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+  }
+}
