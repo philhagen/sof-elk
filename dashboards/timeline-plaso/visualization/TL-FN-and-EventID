@@ -1,6 +1,6 @@
 {
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\n  \"index\": \"timeline-*\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+    "searchSourceJSON": "{\n  \"index\": \"timeline-plaso\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
   },
   "version": 1,
   "description": "",
