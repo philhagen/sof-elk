@@ -1,0 +1,10 @@
+{
+  "title": "Event Timeline by Program",
+  "visState": "{\"title\":\"Event Timeline by Program\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":true,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Records\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"\"}},{\"id\":\"3\",\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:[0 TO 2]\",\"analyze_wildcard\":true}}},\"label\":\"Emerg/Alert/Crit\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:[3 TO 4]\",\"analyze_wildcard\":true}}},\"label\":\"Error/Warning\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:[5 TO 6]\",\"analyze_wildcard\":true}}},\"label\":\"Notice/Info\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"severity:7\",\"analyze_wildcard\":true}}},\"label\":\"Debug\"},{\"input\":{\"query\":{\"query_string\":{\"query\":\"NOT(severity:[0 TO 7])\",\"analyze_wildcard\":true}}},\"label\":\"Unknown\"}]}}],\"listeners\":{}}",
+  "uiStateJSON": "{\"vis\":{\"colors\":{\"Emerg/Alert/Crit\":\"#BF1B00\",\"Debug\":\"#82B5D8\",\"Notice/Info\":\"#9AC48A\",\"Error/Warning\":\"#EAB839\"}}}",
+  "description": "",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"index\":\"syslog-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+  }
+}
