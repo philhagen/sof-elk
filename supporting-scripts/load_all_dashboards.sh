@@ -41,6 +41,9 @@ done
 # set the default index pattern, time zone, and add TZ offset to the default date format 
 curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}" > /dev/null
 
+# increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
+curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"index.priority\": 100 }" > /dev/null
+
 # create the dashboards, searches, and visualizations from files
 for dashboard in ${dashboard_list}; do
     for type in ${dashboard_dir}${dashboard}/*; do
