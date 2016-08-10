@@ -6,7 +6,7 @@
   "savedSearchId": "NetFlow-Discovery",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{"filter":[]}"
+    "searchSourceJSON": "{\"filter\":[]}"
   }
 
 }
