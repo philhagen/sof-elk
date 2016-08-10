@@ -1,0 +1,12 @@
+{
+  "title": "NetFlow Statistics by Source AS",
+  "visState": "{ "title": "NetFlow Statistics by Source AS", "type": "table", "params": { "perPage": 7, "showPartialRows": false, "showMeticsAtAllLevels": false }, "aggs": [ { "id": "1", "type": "sum", "schema": "metric", "params": { "field": "nf.in_bytes_vis", "customLabel": "Volume" } }, { "id": "2", "type": "terms", "schema": "bucket", "params": { "field": "nf.ipv4_src_geo.asnstr.raw", "size": 100, "order": "desc", "orderBy": "1", "customLabel": "Source AS" } }, { "id": "3", "type": "sum", "schema": "metric", "params": { "field": "nf.in_pkts", "customLabel": "Packets" } }, { "id": "4", "type": "sum", "schema": "metric", "params": { "field": "nf.flow_records", "customLabel": "Flows" } } ], "listeners": {} }",
+  "uiStateJSON": "{}",
+  "description": "",
+  "savedSearchId": "NetFlow-Discovery",
+  "version": 1,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{"filter":[]}"
+  }
+
+}

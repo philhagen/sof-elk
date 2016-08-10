@@ -3,8 +3,9 @@
   "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"customLabel\":\"Volume\",\"field\":\"nf.in_bytes_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"id\":\"2\",\"params\":{\"customLabel\":\"Source IP\",\"field\":\"nf.ipv4_src_ip\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":14},\"schema\":\"bucket\",\"type\":\"terms\"},{\"id\":\"3\",\"params\":{\"customLabel\":\"Packets\",\"field\":\"nf.in_pkts\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"id\":\"4\",\"params\":{\"customLabel\":\"Flows\",\"field\":\"nf.flow_records\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"listeners\":{},\"params\":{\"perPage\":7,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false},\"title\":\"NetFlow Statistics by Source IP\",\"type\":\"table\"}",
   "uiStateJSON": "{}",
   "description": "",
+  "savedSearchId": "NetFlow-Discovery",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\"index\":\"netflow-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+    "searchSourceJSON": "{"filter":[]}"
   }
 }

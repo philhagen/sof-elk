@@ -3,8 +3,9 @@
   "visState": "{\"title\":\"NetFlow Statistics Summary\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"40\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_bytes_vis\",\"customLabel\":\"Bytes\"}},{\"id\":\"2\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_pkts_vis\",\"customLabel\":\"Packets\"}},{\"id\":\"3\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.flow_records_vis\",\"customLabel\":\"Flows\"}}],\"listeners\":{}}",
   "uiStateJSON": "{}",
   "description": "",
+  "savedSearchId": "NetFlow-Discovery",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\"index\":\"netflow-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+    "searchSourceJSON": "{"filter":[]}"
   }
 }

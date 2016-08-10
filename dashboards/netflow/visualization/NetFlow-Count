@@ -3,8 +3,9 @@
   "visState": "{\"title\":\"NetFlow Count\",\"type\":\"metric\",\"params\":{\"fontSize\":36,\"handleNoResults\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"NetFlow Records\"}}],\"listeners\":{}}",
   "uiStateJSON": "{}",
   "description": "",
+  "savedSearchId": "NetFlow-Discovery",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\"index\":\"netflow-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+    "searchSourceJSON": "{"filter":[]}"
   }
 }
