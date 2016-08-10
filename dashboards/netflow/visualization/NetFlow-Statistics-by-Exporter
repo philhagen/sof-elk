@@ -3,8 +3,9 @@
   "visState": "{\"title\":\"NetFlow Statistics by Exporter\",\"type\":\"table\",\"params\":{\"perPage\":8,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_bytes_vis\",\"customLabel\":\"Volume\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"host\",\"size\":8,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Exporter\"}},{\"id\":\"3\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_pkts\",\"customLabel\":\"Packets\"}},{\"id\":\"4\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.flow_records\",\"customLabel\":\"Flows\"}}],\"listeners\":{}}",
   "uiStateJSON": "{}",
   "description": "",
+  "savedSearchId": "NetFlow-Discovery",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\"index\":\"netflow-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+    "searchSourceJSON": "{"filter":[]}"
   }
 }

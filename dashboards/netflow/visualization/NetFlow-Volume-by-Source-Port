@@ -3,8 +3,9 @@
   "visState": "{\"title\":\"NetFlow Volume by Source Port\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_bytes_vis\",\"customLabel\":\"Bytes\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"nf.l4_src_port\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Source Port\"}}],\"listeners\":{}}",
   "uiStateJSON": "{\"spy\":{\"mode\":{\"name\":null,\"fill\":false}}}",
   "description": "",
+  "savedSearchId": "NetFlow-Discovery",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\"index\":\"netflow-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+    "searchSourceJSON": "{"filter":[]}"
   }
 }
