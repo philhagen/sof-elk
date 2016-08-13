@@ -52,7 +52,7 @@
           },
           { "raw_fields": {
               "match_pattern": "regex",
-              "match": "evt-processname|evt-path|filename|user_sid",
+              "match": "evt-processname|evt-path|filename|user_sid|display_name",
               "mapping": {
                 "fields": {
                   "raw": {
