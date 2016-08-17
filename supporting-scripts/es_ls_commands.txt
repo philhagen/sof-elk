@@ -1,0 +1,18 @@
+systemctl stop logstash.service ; rm -f /var/log/logstash/* /var/db/logstash/sincedb ; curl -XDELETE 'http://localhost:9200/logstash-*?pretty' ; curl -XDELETE 'http://localhost:9200/syslog-*?pretty' ; curl -XDELETE 'http://localhost:9200/netflow-*?pretty' ; curl -XDELETE 'http://localhost:9200/httpdlog-*?pretty' ; curl -XDELETE 'http://localhost:9200/_template/*?pretty' ; systemctl start logstash.service
+
+
+
+
+curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
+
+
+for type in search dashboard query; do
+    curl -s -XDELETE http://localhost:9200/.kibana/${type}/_query?q=*\&pretty
+done
+
+curl -XDELETE http://localhost:9200/.kibana/search/_query?q=*\&pretty
+curl -XDELETE http://localhost:9200/.kibana/dashboard/_query?q=*\&pretty
+curl -XDELETE http://localhost:9200/.kibana/visualization/_query?q=*\&pretty
+
+NOTE: after deleting documents, free space with a forcemerge:
+curl -XPOST 'http://localhost:9200/_forcemerge?only_expunge_deletes=true'
