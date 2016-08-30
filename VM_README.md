@@ -50,9 +50,9 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Includes Elasticsearch 2.3.4, Logstash 2.2.4, and Kibana 4.5.2
   * Configuration files are from the "classroom" branch of this Github repository (tag 2016-07-08)
 * Metadata
-  * Filename and size: ```FOR572 SOF-ELK 2016-07-08.zip``` (834162460 bytes)
-  * MD5: ```0b4f61667e873cc1a467557634658b7e```
-  * SHA256: ```55bc444e4d1e9ac29413e27ee426c9683cc8d9a641054e62e4668691baca480e```
+  * Filename and size: ```FOR572 SOF-ELK 2016-08-17.zip``` (830019192 bytes)
+  * MD5: ```c2eebe809e953a8b580d859525592236```
+  * SHA256: ```6019b849b367633a5dbac1f9ec27c7b1ecabbac1e107bbb6d73d2194a44cfbc2```
 
 ## How to Use ##
 * Restore the "Deployment" snapshot
@@ -66,6 +66,9 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
 ## Changelog ##
+* Update: future-pending
+  * Dynamically calculate ES_HEAP_SIZE
+  * Add HTML Visualization type
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
   * Re-branded to SOF-ELK, with awesome logo to boot
