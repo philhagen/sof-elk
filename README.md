@@ -3,7 +3,7 @@ sof-elk
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
 
-This repository contains the configuration and support files for the SANS FOR572 Logstash VM Appliance.  More details about the pre-packaged VM are available here: <http://for572.com/logstash-readme>.
+This repository contains the configuration and support files for the SANS FOR572 SOF-ELK VM Appliance.  More details about the pre-packaged VM are available here: <http://for572.com/sof-elk-readme>.
 
 **Branches:**
 
@@ -16,7 +16,7 @@ This repository contains the configuration and support files for the SANS FOR572
 
 **Tags:**
 
-When a VM is prepared for distribution in the SANS FOR572 course, the revision will be tagged with a corresponding date-based version (e.g. "2014-12-18").  Users may want to consider updating to the contents of the "master" branch, but at times, this branch will expect updates to the Logstash VM itself.  Release notes on the github page (located at <http://for572.com/sof-elk-git>) will alert users when such system-level changes are required.
+When a VM is prepared for distribution in the SANS FOR572 course, the revision will be tagged with a corresponding date-based version (e.g. "2014-12-18").  Users may want to consider updating to the contents of the "master" branch, but at times, this branch will expect updates to the SOF-ELK VM itself.  Release notes on the github page (located at <http://for572.com/sof-elk-git>) will alert users when such system-level changes are required.
 
 **Using:**
 
