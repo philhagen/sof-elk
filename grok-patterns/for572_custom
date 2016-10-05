@@ -8,8 +8,8 @@ FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP}|%{TIMESTAMP_ISO8601}
 
 # Grok patterns for iptables:
 ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
-NETFILTERMAC %{COMMONMAC:ipt_dstmac}:%{COMMONMAC:ipt_srcmac}:%{ETHTYPE:ipt_ethtype}
-IPTABLES (?:%{GREEDYDATA:ipt_label}: )?(?:IN=(%{WORD:ipt_indev})? OUT=(%{WORD:ipt_outdev})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:ipt_src_ip} DST=%{IP:ipt_dst_ip}.*TTL=%{INT:ipt_ttl}?.*PROTO=%{WORD:ipt_proto}?.*SPT=%{INT:ipt_srcport}?.*DPT=%{INT:ipt_dstport}?
+NETFILTERMAC %{COMMONMAC:destination_mac}:%{COMMONMAC:source_mac}:%{ETHTYPE:eth_type}
+IPTABLES (?:%{GREEDYDATA:label}: )?(?:IN=(%{WORD:input_interface})? OUT=(%{WORD:output_interface})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:source_ip} DST=%{IP:destination_ip}.*TTL=%{INT:ttl}?.*PROTO=%{WORD:protocol}?.*SPT=%{INT:source_port}?.*DPT=%{INT:destination_port}?
 
 # Sendmail SMTP Queue IDs
 # version indicated is latest version where format is used. See the O'Reilly Sendmail "Bat Book" for QID makeup by version.

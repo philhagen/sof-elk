@@ -42,13 +42,13 @@
           "type" : "object",
           "properties" : {
 
-            "ipv4_src_geo" : {
+            "ipv4_source_geo" : {
               "type" : "object",
               "properties" : {
                 "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
               }
             },
-            "ipv4_dst_geo" : {
+            "ipv4_destination_geo" : {
               "type" : "object",
               "properties" : {
                 "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }

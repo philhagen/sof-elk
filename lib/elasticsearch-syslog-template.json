@@ -35,62 +35,20 @@
       "properties" : {
         "@version" : { "type" : "string", "index" : "not_analyzed" },
         "syslog_pid" : { "type" : "integer" },
-        "ipt_srcport" : { "type" : "integer" },
-        "ipt_dstport" : { "type" : "integer" },
-        "ipt_ttl" : { "type" : "short" },
+        "source_port" : { "type" : "integer" },
+        "destination_port" : { "type" : "integer" },
+        "ttl" : { "type" : "short" },
         "ips" : { "type" : "ip" },
-        "ssh_keyid" : { "type" : "string", "index" : "not_analyzed" },
+        "key_id" : { "type" : "string", "index" : "not_analyzed" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
 
-        "ipt_srcgeo" : {
+        "source_geo" : {
           "type" : "object",
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
           }
         },
-        "ipt_dstgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "ssh_srcgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "wp_srcgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "imap_remotegeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "courier_srcgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "xinetd_srcgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "gl_srcgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "smtp_geo" : {
+        "destination_geo" : {
           "type" : "object",
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
@@ -102,19 +60,7 @@
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
           }
         },
-        "pdns_clientgeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "pdns_servergeo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-          }
-        },
-        "pdns_answergeo" : {
+        "answer_geo" : {
           "type" : "object",
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
