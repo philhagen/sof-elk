@@ -37,7 +37,7 @@
         "syslog_pid" : { "type" : "integer" },
         "source_port" : { "type" : "integer" },
         "destination_port" : { "type" : "integer" },
-        "ttl" : { "type" : "short" },
+        "ttl" : { "type" : "integer" },
         "ips" : { "type" : "ip" },
         "key_id" : { "type" : "string", "index" : "not_analyzed" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
