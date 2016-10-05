@@ -54,7 +54,7 @@
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
           }
         },
-        "smtp_relaygeo" : {
+        "relay_geo" : {
           "type" : "object",
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
