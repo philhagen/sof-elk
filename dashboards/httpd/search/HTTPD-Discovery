@@ -3,7 +3,7 @@
   "description": "",
   "hits": 0,
   "columns": [
-    "client_ip",
+    "source_ip",
     "verb",
     "httpd_vhost",
     "request",
