@@ -34,7 +34,7 @@ done
 
 # create the index patterns from files
 for indexid in ${index_patterns}; do
-    /usr/local/sbin/index_mapping_management.py --load -t fields -f ${dashboard_dir}/index-patterns/${indexid}.fields -i ${indexid}
+    /usr/local/sbin/index_mapping_management.py --load -f ${dashboard_dir}/index-patterns/${indexid} -i ${indexid}
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
