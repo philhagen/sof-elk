@@ -34,8 +34,7 @@ done
 
 # create the index patterns from files
 for indexid in ${index_patterns}; do
-    curl -s -XDELETE http://${es_host}:${es_port}/${kibana_index}/index-pattern/${indexid}-* > /dev/null
-    curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/index-pattern/${indexid}-* -T ${dashboard_dir}/index-patterns/${indexid} > /dev/null
+    /usr/local/sbin/index_mapping_management.py --load -t fields -f ${dashboard_dir}/index-patterns/${indexid}.fields -i ${indexid}
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
