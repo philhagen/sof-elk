@@ -1,0 +1,2 @@
+#MFT Patterns
+ENDPOINT_extract ([^\/]+$)
