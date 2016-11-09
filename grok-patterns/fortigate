@@ -1,1 +1,0 @@
-FORTIDATE %{YEAR:year}\-%{MONTHNUM:month}\-%{MONTHDAY:day}
