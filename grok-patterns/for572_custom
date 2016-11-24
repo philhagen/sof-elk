@@ -37,7 +37,7 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 
 # redefine HTTPD common format (should flow to the combined format) to allow email address as the username
 HTTPDUSER %{EMAILADDRESS}|%{USER}
-COMMONAPACHELOG %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+COMMONAPACHELOG %{IPORHOST:client_ip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{URIPATH:request}(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
 
 # hours:minutes:seconds, to allow any number of hours
 HMS (?:[0-9]+):%{MINUTE}(?::%{SECOND})(?![0-9])
