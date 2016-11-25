@@ -38,22 +38,18 @@
         "ips" : { "type" : "ip" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
 
-        "nf" : {
+        "source_geo" : {
           "type" : "object",
           "properties" : {
-
-            "ipv4_source_geo" : {
-              "type" : "object",
-              "properties" : {
-                "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-              }
-            },
-            "ipv4_destination_geo" : {
-              "type" : "object",
-              "properties" : {
-                "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
-              }
-            }
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        },
+        "destination_geo" : {
+          "type" : "object",
+          "properties" : {
+            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+          }
+        }
           }
         }
       }

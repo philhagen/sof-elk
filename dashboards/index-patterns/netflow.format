@@ -1,1 +1,1 @@
-{"nf.in_bytes_vis":{"id":"bytes","params":{"pattern":"0,0.[0]b"}},"nf.flow_records_vis":{"id":"number","params":{"pattern":"0,0.[0]a"}},"nf.in_pkts_vis":{"id":"number","params":{"pattern":"0,0.[0]a"}},"@timestamp":{"id":"date","params":{"pattern":"YYYY-MM-DDTHH:mm:ss.SSS\\Z"}}}
+{"in_bytes_vis":{"id":"bytes","params":{"pattern":"0,0.[0]b"}},"flow_records_vis":{"id":"number","params":{"pattern":"0,0.[0]a"}},"in_pkts_vis":{"id":"number","params":{"pattern":"0,0.[0]a"}},"@timestamp":{"id":"date","params":{"pattern":"YYYY-MM-DDTHH:mm:ss.SSS\\Z"}}}

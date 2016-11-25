@@ -4,13 +4,13 @@
   "hits": 0,
   "columns": [
     "host",
-    "nf.aproto",
-    "nf.ipv4_source_ip",
-    "nf.l4_source_port",
-    "nf.ipv4_destination_ip",
-    "nf.l4_destination_port",
-    "nf.in_bytes",
-    "nf.in_pkts"
+    "aproto",
+    "source_ip",
+    "source_port",
+    "destination_ip",
+    "destination_port",
+    "in_bytes",
+    "in_pkts"
   ],
   "sort": [
     "@timestamp",
