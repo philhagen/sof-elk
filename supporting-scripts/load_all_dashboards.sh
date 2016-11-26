@@ -23,13 +23,14 @@ dashboard_dir="/usr/local/sof-elk/dashboards/"
 # enter a holding pattern until the elasticsearch server is available, but don't wait too long
 max_wait=60
 wait_step=0
+interval=5
 until curl -s -XGET http://${es_host}:${es_port}/_cluster/health > /dev/null ; do
-    wait_step=$(( ${wait_step} + 1 ))
+    wait_step=$(( ${wait_step} + ${interval} ))
     if [ ${wait_step} -gt ${max_wait} ]; then
         echo "ERROR: elasticsearch server not available for more than ${max_wait} seconds."
         exit 5
     fi
-    sleep 1;
+    sleep ${interval};
 done
 
 # create the index patterns from files
@@ -42,6 +43,9 @@ curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_vers
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"index.priority\": 100 }" > /dev/null
+
+# delete any existing templates in ES, to allow them to be re-loaded from the git-based files
+curl -XDELETE 'http://${es_host}:${es_port}/_template/*' > /dev/null
 
 # create the dashboards, searches, and visualizations from files
 for dashboard in ${dashboard_list}; do
