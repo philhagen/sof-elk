@@ -45,7 +45,7 @@ curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_vers
 curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"index.priority\": 100 }" > /dev/null
 
 # delete any existing templates in ES, to allow them to be re-loaded from the git-based files
-curl -XDELETE 'http://${es_host}:${es_port}/_template/*' > /dev/null
+curl -XDELETE http://${es_host}:${es_port}/_template/\* > /dev/null
 
 # create the dashboards, searches, and visualizations from files
 for dashboard in ${dashboard_list}; do
