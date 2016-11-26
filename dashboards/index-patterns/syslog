@@ -211,6 +211,9 @@
 {"name": "squid_returncode", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "squid_useragent", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "squid_useragent.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "ssh_disconnect_code", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "ssh_disconnect_statement", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "ssh_disconnect_statement.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "ssh_keyid", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "ssh_keytype", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "ssh_keytype.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
