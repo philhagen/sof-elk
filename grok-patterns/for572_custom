@@ -36,7 +36,7 @@ PDNS_ANSWER (?:%{PDNS_IPORHOST}|%{NOTPIPE})
 EMAILADDRESSLOCALPART [a-zA-Z][a-zA-Z0-9_.+-=:]+
 EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 
-# redefine HTTPD common format (should flow to the combined format) to allow email address as the username
+# redefine HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
 HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{URIPATH:request}(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
 

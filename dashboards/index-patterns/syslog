@@ -111,6 +111,8 @@
 {"name": "facility", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "host", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "host.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "hostname", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "hostname.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "input_interface", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "input_interface.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "input_type", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
@@ -200,10 +202,6 @@
 {"name": "squid_client.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "squid_fullurl", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "squid_fullurl.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "squid_host", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
-{"name": "squid_host.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "squid_method", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
-{"name": "squid_method.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "squid_referer", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "squid_referer.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "squid_request", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
@@ -236,3 +234,5 @@
 {"name": "user.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "user_validity", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "user_validity.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "verb", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "verb.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
