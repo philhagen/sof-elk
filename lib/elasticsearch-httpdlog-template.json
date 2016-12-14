@@ -8,18 +8,6 @@
       "_all" : {"enabled" : true },
       "dynamic_templates" : [ 
         {
-          "string_fields" : {
-            "match" : "*",
-            "match_mapping_type" : "string",
-            "mapping" : {
-              "type" : "string", "index" : "analyzed", "omit_norms" : true,
-              "fields" : {
-                "raw" : {"type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
-              }
-            }
-          }
-        },
-        {
           "ip_address_fields" : {
             "match" : "*_ip",
             "mapping" : { "type" : "ip" }
@@ -29,6 +17,18 @@
           "ipv6_address_fields" : {
             "match" : "*_ipv6",
             "mapping" : { "type" : "string", "index" : "not_analyzed" }
+          }
+        },
+        {
+          "string_fields" : {
+            "match" : "*",
+            "match_mapping_type" : "string",
+            "mapping" : {
+              "type" : "string", "index" : "analyzed", "omit_norms" : true,
+              "fields" : {
+                "raw" : {"type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
+              }
+            }
           }
         }
       ],
