@@ -1,0 +1,13 @@
+[Unit]
+Description=Elastalert
+
+[Service]
+WorkingDirectory=/opt/elastalert
+User=elastalert
+Group=elastalert
+ExecStart=/usr/bin/elastalert --config /etc/sysconfig/elastalert_config.yaml
+PIDFile=/var/run/elastalert.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
