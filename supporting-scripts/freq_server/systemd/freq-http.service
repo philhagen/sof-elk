@@ -1,0 +1,10 @@
+[Unit]
+Description=Freq http service
+
+[Service]
+WorkingDirectory=/usr/bin
+ExecStart=/usr/local/sof-elk/supporting-scripts/freq_server/freq_server.py 10002 /usr/local/sof-elk/supporting-files/freq_server/datafiles/uri.freq
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
