@@ -3,7 +3,7 @@ Description=Freq dns service
 
 [Service]
 WorkingDirectory=/usr/bin
-ExecStart=/usr/local/sof-elk/supporting-scripts/freq_server/freq_server.py 10004 /usr/local/sof-elk/supporting-files/freq_server/datafiles/dns.freq
+ExecStart=/usr/local/sof-elk/supporting-scripts/freq_server/freq_server.py -s 0 10004 /usr/local/sof-elk/supporting-files/freq_server/datafiles/dns.freq
 Restart=always
 
 [Install]
