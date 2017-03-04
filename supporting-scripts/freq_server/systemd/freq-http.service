@@ -1,9 +1,11 @@
 [Unit]
 Description=Freq http service
+After=network.target
 
 [Service]
 WorkingDirectory=/usr/bin
-ExecStart=/usr/local/sof-elk/supporting-scripts/freq_server/freq_server.py -s 0 10002 /usr/local/sof-elk/supporting-files/freq_server/datafiles/uri.freq
+ExecStart=/usr/local/sof-elk/supporting-scripts/freq_server/freq_server.py -s 0 10002 /usr/local/sof-elk/supporting-scripts/freq_server/datafiles/uri.freq
+PIDFile=/var/run/freq-http.pid
 Restart=always
 
 [Install]
