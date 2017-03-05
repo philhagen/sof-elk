@@ -182,7 +182,7 @@ def main():
     parser.add_argument('-v','--verbose',action='count',required=False,help='Print verbose output to the server screen.  -vv is more verbose.')
     parser.add_argument('-a','--alexa',required=False,help='Provide a local file path to an Alexa top-1m.csv')
     parser.add_argument('--all',action="store_true",required=False,help='Return all of the values in a field if multiples exist. By default it only returns the last value.')
-    parser.add_argument('--preload',type=int,default=1000,help='preload cache with this number of the top Alexa domain entries.  Default 1000')
+    parser.add_argument('--preload',type=int,default=1000,help='preload cache with this number of the top Alexa domain entries.  Set to 0 to disable.  Default 1000')
     parser.add_argument('--delay',type=float,default=0.1,help='Delay between whois lookups while staging the initial cache.  Default is 0.1')
     parser.add_argument('--garbage-cycle',type=int,default=86400,help='Delete entries in cache older than --cache-time at this iterval (seconds).  Default is 86400')
 
@@ -200,8 +200,9 @@ def main():
                 server.safe_print("Preloading %s alexa cache" % (args.preload))
                 alexa_file = open(args.alexa).readlines()
                 server.alexa = dict([(a,b) for b,a in re.findall(r"^(\d+),(.*)", "".join(alexa_file), re.MULTILINE)])
-                th = threading.Thread(target=preload_domains, args = (alexa_file[:args.preload], server, args.delay))
-                th.start()
+                if args.preload != 0:
+                    th = threading.Thread(target=preload_domains, args = (alexa_file[:args.preload], server, args.delay))
+                    th.start()
             except Exception as e:
                 server.safe_print("Unable to parse alexa file:%s" % (str(e)))
             finally:
