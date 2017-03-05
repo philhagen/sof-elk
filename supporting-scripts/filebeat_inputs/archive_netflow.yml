@@ -1,0 +1,15 @@
+# SOF-ELK Configuration File
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK VM itself
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /usr/local/logstash-nfarch/*/*/*
+        - /usr/local/logstash-nfarch/*/*
+        - /usr/local/logstash-nfarch/*
+      input_type: log
+      document_type: archive-netflow
+      exclude_files: [ "*.gz", "*.bz2", "*.zip" ]

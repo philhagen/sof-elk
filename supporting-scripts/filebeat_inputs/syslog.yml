@@ -1,0 +1,15 @@
+# SOF-ELK Configuration File
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This file creates a filebeat prospector for syslog source data from the SOF-ELK VM itself
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /usr/local/logstash-syslog/*/*/*
+        - /usr/local/logstash-syslog/*/*
+        - /usr/local/logstash-syslog/*
+      input_type: log
+      document_type: syslog
+      exclude_files: [ "*.gz", "*.bz2", "*.zip" ]
