@@ -12,4 +12,4 @@ filebeat:
         - /usr/local/logstash-httpdlog/*
       input_type: log
       document_type: httpdlog
-      exclude_files: [ "\.gz$", "\.bz2$", ".zip$" ]
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
