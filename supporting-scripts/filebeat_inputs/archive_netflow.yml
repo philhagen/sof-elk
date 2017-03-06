@@ -7,11 +7,11 @@ filebeat:
   prospectors:
     -
       paths:
-        - /usr/local/logstash-nfarch/*/*/*/*/*
-        - /usr/local/logstash-nfarch/*/*/*/*
-        - /usr/local/logstash-nfarch/*/*/*
-        - /usr/local/logstash-nfarch/*/*
-        - /usr/local/logstash-nfarch/*
+        - /logstash/nfarch/*/*/*/*/*
+        - /logstash/nfarch/*/*/*/*
+        - /logstash/nfarch/*/*/*
+        - /logstash/nfarch/*/*
+        - /logstash/nfarch/*
       input_type: log
       document_type: archive-netflow
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]

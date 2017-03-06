@@ -7,11 +7,11 @@ filebeat:
   prospectors:
     -
       paths:
-        - /usr/local/logstash-passivedns/*/*/*/*/*
-        - /usr/local/logstash-passivedns/*/*/*/*
-        - /usr/local/logstash-passivedns/*/*/*
-        - /usr/local/logstash-passivedns/*/*
-        - /usr/local/logstash-passivedns/*
+        - /logstash/passivedns/*/*/*/*/*
+        - /logstash/passivedns/*/*/*/*
+        - /logstash/passivedns/*/*/*
+        - /logstash/passivedns/*/*
+        - /logstash/passivedns/*
       input_type: log
       document_type: archive-passivedns
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]

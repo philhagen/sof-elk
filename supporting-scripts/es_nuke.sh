@@ -8,8 +8,6 @@
 # source function library
 . /etc/rc.d/init.d/functions
 
-sourceloc=/usr/local/logstash-*
-
 ARGC=$#
 
 if [ ${ARGC} -ne 1 ]; then

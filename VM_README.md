@@ -22,11 +22,11 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * password: ```forensics```
     * has sudo access to run ALL commands
 * Logstash will ingest all files from the following filesystem locations:
-  * ```/usr/local/logstash-syslog/```: Syslog-formatted data
-  * ```/usr/local/logstash-nfarch/```: Archived NetFlow output, formatted as described below
-  * ```/usr/local/logstash-httpd/```: Apache logs in common, combined, or vhost-combined formats
-  * ```/usr/local/logstash-passivedns/```: Logs from the passivedns utility
-* NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/usr/local/logstash-syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "logstash-syslog" directory.
+  * ```/logstash/syslog/```: Syslog-formatted data
+  * ```/logstash/nfarch/```: Archived NetFlow output, formatted as described below
+  * ```/logstash/httpd/```: Apache logs in common, combined, or vhost-combined formats
+  * ```/logstash/passivedns/```: Logs from the passivedns utility
+* NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/logstash/syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "logstash-syslog" directory.
 * Commands to be familiar with:
     * ```/usr/local/sbin/es_nuke.sh```: DESTROY contents of the Elasticsearch database.  Requires an index name base (e.g. ```es_nuke.sh syslog``` will delete all data from the Elasticsearch ```syslog-*``` indexes.
     * ```/usr/local/sbin/ls_restart.sh```: Restarts Logstash daemon, activating any changes to the configuration files.  Include the ```-reparse``` option to re-read all files still on the filesystem.  The ```-reparse``` option will result in duplicate entries unless you've used ```es_nuke.sh``` as needed.  (Requires sudo.)
@@ -58,7 +58,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Restore the "Deployment" snapshot
 * Boot the VM
 * Log into the VM with the ```elk_user``` credentials (see above)
-* cd to one of the ```/usr/local/logstash-*/``` directories as appropriate
+* cd to one of the ```/logstash/*/``` directories as appropriate
 * Place files in this location (Mind the above warning about the year for syslog data.  Files must also be readable by the "logstash" user.)
 * Open the main Kibana dashboard using the Kibana URL shown in the pre-authentication screen, ```http://<ip_address>:5601```
     * This dashboard gives a basic overview of what data has been loaded and how many records are present
@@ -114,10 +114,10 @@ To ingest existing NetFlow evidence, it must be parsed into a specific format.  
 
 ```export EXP_IP=1.1.1.1``` (Replace ```1.1.1.1``` with the exporter source for the data, if available.  This field is required and must be a valid IPv4 address, but use a placeholder if needed.)
 
-```nfdump (-r <input file> | -R <input dir>) -q -N -O tstart -o "fmt:$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0" > /path/to/some_file.txt```  (Then place ```some_file.txt``` in ```/usr/local/logstash-nfarch```.)
+```nfdump (-r <input file> | -R <input dir>) -q -N -O tstart -o "fmt:$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0" > /path/to/some_file.txt```  (Then place ```some_file.txt``` in ```/logstash/nfarch```.)
 
 ## Sample Data ##
-Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/usr/local/logstash-syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
+Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
 
 ## Credits ##
 * Derek B: Cisco ASA parsing/debugging and sample data

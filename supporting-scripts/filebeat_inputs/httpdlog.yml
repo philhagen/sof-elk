@@ -7,11 +7,11 @@ filebeat:
   prospectors:
     -
       paths:
-        - /usr/local/logstash-httpd/*/*/*/*/*
-        - /usr/local/logstash-httpd/*/*/*/*
-        - /usr/local/logstash-httpd/*/*/*
-        - /usr/local/logstash-httpd/*/*
-        - /usr/local/logstash-httpd/*
+        - /logstash/httpd/*/*/*/*/*
+        - /logstash/httpd/*/*/*/*
+        - /logstash/httpd/*/*/*
+        - /logstash/httpd/*/*
+        - /logstash/httpd/*
       input_type: log
       document_type: httpdlog
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]

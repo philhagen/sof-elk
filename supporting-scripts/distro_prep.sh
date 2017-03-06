@@ -60,7 +60,7 @@ curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
 echo "removing logstash sincedb"
 rm -f /var/db/logstash/sincedb
 echo "removing any input logs from prior parsing"
-rm -rf /usr/local/logstash-*/*
+rm -rf /logstash/*/*
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 
