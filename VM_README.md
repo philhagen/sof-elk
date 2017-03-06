@@ -46,10 +46,10 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 ## Latest Distribution Vitals ##
 * Basic details on the distribution
-  * VM is a CentOS 7.2 base with all updates as of 2016-07-08
-  * Includes Elasticsearch 2.3.4, Logstash 2.2.4, and Kibana 4.5.2
-  * Configuration files are from the "classroom" branch of this Github repository (tag 2016-07-08)
-* Metadata
+  * VM is a CentOS 7.3 base with all updates as of 2017-03-06
+  * Includes Elasticsearch 2.4.4, Logstash 2.4.1, and Kibana 4.5.4
+  * Configuration files are from the "master" branch of this Github repository (tag TODOTODO: ADD TAG TO MASTER BRANCH ON MERGE :TODOTODO)
+* Metadata (TODOTODO: FIX FILENAMES AND METADATA :TODOTODO)
   * Filename and size: ```FOR572 SOF-ELK 2016-08-17.zip``` (830019192 bytes)
   * MD5: ```c2eebe809e953a8b580d859525592236```
   * SHA256: ```6019b849b367633a5dbac1f9ec27c7b1ecabbac1e107bbb6d73d2194a44cfbc2```
@@ -66,9 +66,17 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
 ## Changelog ##
-* Update: future-pending
+* Update: TODOTODO: VERSION NUMBER :TODOTODO): Another MAJOR update!
+  * Added dozens of parser configurations from Justin Henderson, supporting the SANS SEC555 class
+  * Added experimental Plaso data ingest features, contributed by Mark McCurdy
+  * Added freq_server and domain_stats as localhost-bound services
+  * Added HTML visualization type to Kibana
   * Dynamically calculate ES_HEAP_SIZE
-  * Add HTML Visualization type
+  * Uses a locally-running filebeat process for file ingest instead of logstash's file inputs
+  * Overall file cleanup
+  * Enforce field naming consistency
+  * Various updates to dashboards and parsers
+  * Ingest locations changed to ```/logstash/*/```
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
   * Re-branded to SOF-ELK, with awesome logo to boot
