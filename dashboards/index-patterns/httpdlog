@@ -56,7 +56,7 @@
 {"name": "logstash_source", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "offset", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "offset", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "path", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "path", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
 {"name": "path.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "ports", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "query_string", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
