@@ -15,3 +15,4 @@ filebeat:
       input_type: log
       document_type: archive-netflow
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m

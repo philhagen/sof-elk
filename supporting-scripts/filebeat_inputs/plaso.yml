@@ -15,3 +15,4 @@
 #      input_type: log
 #      document_type: timelineplaso
 #      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+#      close_inactive: 5m
