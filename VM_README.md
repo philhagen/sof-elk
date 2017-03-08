@@ -73,10 +73,12 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Added HTML visualization type to Kibana
   * Dynamically calculate ES_HEAP_SIZE
   * Uses a locally-running filebeat process for file ingest instead of logstash's file inputs
+  * Replaced es_nuke.sh with sof-elk_clear.py, adding by-file/by-directory clear and optional reload from disk
   * Overall file cleanup
   * Enforce field naming consistency
   * Various updates to dashboards and parsers
   * Ingest locations changed to ```/logstash/*/```
+  * Increased VM's RAM to 4GB
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
   * Re-branded to SOF-ELK, with awesome logo to boot
