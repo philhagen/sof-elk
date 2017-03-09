@@ -69,7 +69,7 @@ else:
 doccount = res['hits']['total']
 if doccount > 0:
     # get user confirmation to proceed
-    print('%d documents found' % res['hits']['total'])
+    print '%d documents found' % res['hits']['total']
     print
     if not confirm(prompt='Delete these documents permanently?', resp=False):
         print 'Will NOT delete documents.  Exiting.'
@@ -81,6 +81,9 @@ if doccount > 0:
 
     else:
         delres = es.indices.delete(index='%s-*' % (args.index), ignore=[400, 404])
+
+else:
+    print 'No documents in the %s index.  Nothing to delete.' % (args.index)
 
 ### reload from source files
 if args.reload:
