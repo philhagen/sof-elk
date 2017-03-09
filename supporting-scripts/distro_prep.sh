@@ -1,128 +1,116 @@
-#!/usr/bin/python
+#!/bin/bash
 # SOF-ELK Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2016 Lewes Technology Consulting, LLC
 #
-# This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
-# Optionally, re-load data from disk for the selected index or filepath
+# This script is used to prepare the VM for distribution
 
-from elasticsearch import Elasticsearch
-from subprocess import call
-import json
-import os
-import argparse
+if [[ -n $SSH_CONNECTION ]]; then
+    echo "ERROR: This script must be run locally - Exiting."
+    exit 2
+fi
 
-# source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-def confirm(prompt=None, resp=False):
-    """prompts for yes or no response from the user. Returns True for yes and
-    False for no.
+DISKSHRINK=1
+# parse any command line arguments
+if [ $# -gt 0 ]; then
+    while true; do
+        if [ "$1" ]; then
+            if [ "$1" == '-nodisk' ]; then
+                DISKSHRINK=0
+            fi
+            shift
+        else
+            break
+        fi
+    done
+fi
 
-    'resp' should be set to the default value assumed by the caller when
-    user simply types ENTER.
+revdate=$( date +%Y-%m-%d )
 
-    >>> confirm(prompt='Create Directory?', resp=True)
-    Create Directory? [y]|n:
-    True
-    >>> confirm(prompt='Create Directory?', resp=False)
-    Create Directory? [n]|y:
-    False
-    >>> confirm(prompt='Create Directory?', resp=False)
-    Create Directory? [n]|y: y
-    True
+echo "looking for specific pre-distribution notes/instructions"
+if [ -s ~/distro_prep.txt ]; then
+    echo "~/distro_prep.txt still contains instructions - Exiting."
+    echo
+    cat ~/distro_prep.txt
+    exit 2
+fi
 
-    """
+echo "checking that we're on the correct SOF-ELK branch"
+cd /usr/local/sof-elk/
+git branch
+echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'classroom' or 'master', with 'develop' removed.)"
+read
 
-    if prompt is None:
-        prompt = 'Confirm'
+echo "updating local git repo clones"
+cd /usr/local/sof-elk/
+git pull --all
 
-    if resp:
-        prompt = '%s [%s]|%s: ' % (prompt, 'y', 'n')
-    else:
-        prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
+echo "removing old kernels"
+package-cleanup -y --oldkernels --count=1
+echo "cleaning yum caches"
+yum clean all
 
-    while True:
-        ans = raw_input(prompt)
-        if not ans:
-            return resp
-        if ans not in ['y', 'Y', 'n', 'N']:
-            print 'please enter y or n.'
-            continue
-        if ans == 'y' or ans == 'Y':
-            return True
-        if ans == 'n' or ans == 'N':
-            return False
+echo "cleaning user histories"
+rm -f ~root/.bash_history
+rm -f ~elk_user/.bash_history
 
-parser = argparse.ArgumentParser(description='Clear the SOF-ELK Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
-parser.add_argument('-i', '--index', dest='index', required=True, help='Index to clear.')
-parser.add_argument('-f', '--filepath', dest='filepath', help='Local file or directory to clear.')
-parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK filesystem.')
-args = parser.parse_args()
+echo "cleaning temp directories"
+rm -rf ~elk_user/tmp/*
 
-### delete from existing ES indices
-# display document count
-es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-if args.filepath:
-    res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+echo "updating GeoIP database"
+/usr/local/sbin/geoip_update.sh -now
 
-else:
-    res = es.search(index='%s-*' % (args.index), body={'query': {'match_all': {}}})
+echo "stopping logstash"
+service logstash stop
+echo "clearing elasticsearch"
+curl -s -XDELETE 'http://localhost:9200/_all' > /dev/null
+echo "removing elasticsearch templates"
+curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
+echo "removing elasticsearch .kibana index"
+curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
+echo "removing filebeat registry"
+rm -f /var/lib/filebeat/*
+echo "removing any input logs from prior parsing"
+rm -rf /logstash/*/*
+echo "reload kibana dashboards"
+/usr/local/sbin/load_all_dashboards.sh
 
-doccount = res['hits']['total']
-if doccount > 0:
-    # get user confirmation to proceed
-    print('%d documents found' % res['hits']['total'])
-    print
-    if not confirm(prompt='Delete these documents permanently?', resp=False):
-        print 'Will NOT delete documents.  Exiting.'
-        exit(1)
+echo "stopping network"
+service network stop
+#echo "clearing udev networking rules"
+#echo > /etc/udev/rules.d/70-persistent-net.rules
 
-    # delete the records
-    if args.filepath:
-        es.delete_by_query(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+echo "stopping syslog"
+service rsyslog stop
+echo "clearing existing log files"
+find /var/log -type f -exec rm -f {} \;
 
-    else:
-        delres = es.indices.delete(index='%s-*' % (args.index), ignore=[400, 404])
+echo "clearing SSH Host Keys"
+service sshd stop
+rm -f /etc/ssh/*key*
 
-### reload from source files
-if args.reload:
-    # display files to be re-loaded
-    matches = []
-    for root, dirnames, filenames in os.walk('/logstash/%s' % (args.index)):
-        for filename in filenames:
-            filepath = os.path.join(root, filename)
-            if args.filepath:
-                if filepath.startswith(args.filepath):
-                    matches.append(filepath)
+if [ $DISKSHRINK -eq 1 ]; then
+    echo "ACTION REQUIRED!"
+    echo "remove any snapshots that already exist and press Return"
+    read
 
-            else:
-                matches.append(filepath)
+    # we don't use swap any more
+    # echo "zeroize swap:"
+    # swapoff -a
+    # for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
+    #     echo "- zeroize $swappart (swap)"
+    #     dd if=/dev/zero of=$swappart
+    #     mkswap $swappart
+    # done
 
-    # get user confirmation to proceed
-    print 'will re-load the following files:'
-    for match in matches:
-            print '- %s' % ( match )
-    print
+    echo "zeroize free space and shrink:"
+    for mtpt in $( mount -t xfs | awk '{print $3}' ); do
+        echo "- zeroize $mtpt"
+        dd if=/dev/zero of=$mtpt/ddfile
+        rm -f $mtpt/ddfile
+        echo "- shrink $mtpt"
+        vmware-toolbox-cmd disk shrink $mtpt
+    done
+fi
 
-    if not confirm(prompt='Reload these files?', resp=False):
-        print 'Will NOT reload from files.  Exiting.'
-        exit(1)
-
-    # stop filebeat service
-    call(['/usr/bin/systemctl', 'stop', 'filebeat'])
-
-    # load existing filebeat registry
-    reg_file = open('/var/lib/filebeat/registry')
-    reg_data = json.load(reg_file)
-    reg_file.close()
-
-    # create new registry, minus the files to be re-loaded
-    new_reg_data = {}
-    for file in reg_data.keys():
-        if not file.startswith('/logstash/%s' % (args.index)):
-            new_reg_data[file] = reg_data[file]
-
-    new_reg_file = open('/var/lib/filebeat/registry', 'w')
-    json.dump(new_reg_data, new_reg_file)
-    new_reg_file.close()
-
-    # restart the filebeat service
-    call(['/usr/bin/systemctl', 'start', 'filebeat'])
+echo "updating /etc/issue* files for boot message"
+cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue.stock
