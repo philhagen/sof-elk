@@ -1,0 +1,87 @@
+# SOF-ELK Configuration File
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This file creates filebeats prospector for bro source data from the SOF-ELK VM itself
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /logstash/bro/*/*/*/conn*
+        - /logstash/bro/*/*/conn*
+        - /logstash/bro/*/conn*
+        - /logstash/bro/conn*
+      input_type: log
+      document_type: bro_conn
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/dhcp*
+        - /logstash/bro/*/*/dhcp*
+        - /logstash/bro/*/dhcp*
+        - /logstash/bro/dhcp*
+      input_type: log
+      document_type: bro_dhcp
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/dns*
+        - /logstash/bro/*/*/dns*
+        - /logstash/bro/*/dns*
+        - /logstash/bro/dns*
+      input_type: log
+      document_type: bro_dns
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/dpd*
+        - /logstash/bro/*/*/dpd*
+        - /logstash/bro/*/dpd*
+        - /logstash/bro/dpd*
+      input_type: log
+      document_type: bro_dpd
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/files*
+        - /logstash/bro/*/*/files*
+        - /logstash/bro/*/files*
+        - /logstash/bro/files*
+      input_type: log
+      document_type: bro_files
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/ftp*
+        - /logstash/bro/*/*/ftp*
+        - /logstash/bro/*/ftp*
+        - /logstash/bro/ftp*
+      input_type: log
+      document_type: bro_ftp
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/http*
+        - /logstash/bro/*/*/http*
+        - /logstash/bro/*/http*
+        - /logstash/bro/http*
+      input_type: log
+      document_type: bro_http
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/bro/*/*/*/irc*
+        - /logstash/bro/*/*/irc*
+        - /logstash/bro/*/irc*
+        - /logstash/bro/irc*
+      input_type: log
+      document_type: bro_irc
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      close_inactive: 5m
