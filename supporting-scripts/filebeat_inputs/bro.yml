@@ -15,8 +15,8 @@ filebeat:
         - /logstash/bro/conn. *
       input_type: log
       document_type: bro_conn
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -28,8 +28,8 @@ filebeat:
         - /logstash/bro/dhcp.*
       input_type: log
       document_type: bro_dhcp
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -41,8 +41,8 @@ filebeat:
         - /logstash/bro/dns.*
       input_type: log
       document_type: bro_dns
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -54,8 +54,8 @@ filebeat:
         - /logstash/bro/dpd.*
       input_type: log
       document_type: bro_dpd
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -67,8 +67,8 @@ filebeat:
         - /logstash/bro/files.*
       input_type: log
       document_type: bro_files
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -80,8 +80,8 @@ filebeat:
         - /logstash/bro/ftp.*
       input_type: log
       document_type: bro_ftp
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -93,8 +93,8 @@ filebeat:
         - /logstash/bro/http.*
       input_type: log
       document_type: bro_http
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
@@ -106,8 +106,8 @@ filebeat:
         - /logstash/bro/irc.*
       input_type: log
       document_type: bro_irc
-      tags:
-        - 'bro'
+#      tags:
+#        - 'bro'
       exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
       exclude_lines: [ '^#' ]
       close_inactive: 5m
