@@ -5,8 +5,8 @@
 {"name": "_score", "type": "number", "count": 0, "scripted": false, "indexed": false, "analyzed": false, "doc_values": false}
 {"name": "_source", "type": "_source", "count": 0, "scripted": false, "indexed": false, "analyzed": false, "doc_values": false}
 {"name": "_type", "type": "string", "count": 0, "scripted": false, "indexed": false, "analyzed": false, "doc_values": false}
-{"name": "aproto", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
-{"name": "aproto.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "aprotocol", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "aprotocol.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "destination_as", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "destination_geo.area_code", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "destination_geo.asn", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}

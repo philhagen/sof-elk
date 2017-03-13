@@ -4,7 +4,7 @@
   "hits": 0,
   "columns": [
     "host",
-    "aproto",
+    "aprotocol",
     "source_ip",
     "source_port",
     "destination_ip",
