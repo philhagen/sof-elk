@@ -10,7 +10,7 @@
     "destination_ip",
     "destination_port",
     "in_bytes",
-    "in_pkts"
+    "in_packets"
   ],
   "sort": [
     "@timestamp",
