@@ -16,3 +16,9 @@ curl -XDELETE http://localhost:9200/.kibana/visualization/_query?q=*\&pretty
 
 NOTE: after deleting documents, free space with a forcemerge:
 curl -XPOST 'http://localhost:9200/_forcemerge?only_expunge_deletes=true'
+
+
+
+
+vim command to convert arrays to hashes:
+%s/convert => \[ "\(.\+\)", "\(.\+\)" \]/convert => { "\1" => "\2" }/
