@@ -61,8 +61,8 @@
 {"name": "input_snmp", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "ips", "type": "ip", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "last_switched", "type": "date", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "missed_packets", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "missed_packets_vis", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['missed_packets'].value"}
+{"name": "missed_bytes", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "missed_bytes_vis", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['missed_bytes'].value"}
 {"name": "next_hop_ip", "type": "ip", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "offset", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "out_bytes", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
