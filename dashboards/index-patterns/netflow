@@ -128,9 +128,9 @@
 {"name": "tcp_aflags", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "tcp_aflags.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "total_bytes", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['out_bytes'].value + doc['in_bytes'].value"}
-{"name": "total_bytes_vis", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['total_bytes'].value"}
+{"name": "total_bytes_vis", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['out_bytes'].value + doc['in_bytes'].value"}
 {"name": "total_packets", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['out_packets'].value + doc['in_packets'].value"}
-{"name": "total_packets_vis", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['total_packets'].value"}
+{"name": "total_packets_vis", "type": "number", "count": 0, "scripted": true, "indexed": false, "analyzed": false, "doc_values": false, "lang": "expression", "script": "doc['out_packets'].value + doc['in_packets'].value"}
 {"name": "tunnel_parents", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
 {"name": "type", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "type.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
