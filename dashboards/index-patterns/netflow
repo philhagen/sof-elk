@@ -85,6 +85,8 @@
 {"name": "sampling_interval", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "service", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "service.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
+{"name": "source", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
+{"name": "source.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "source_as", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "source_geo.area_code", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "source_geo.asn", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
