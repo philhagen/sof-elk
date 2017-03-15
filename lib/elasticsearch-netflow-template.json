@@ -37,6 +37,7 @@
         "host" : { "type" : "ip" },
         "ips" : { "type" : "ip" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
+        "original_message" : { "type" : "string", "index" : "not_analyzed" },
 
         "source_geo" : {
           "type" : "object",
