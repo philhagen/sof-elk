@@ -37,6 +37,7 @@
 {"name": "evt-taskname", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "evt-user", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "evt-usercontext", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "fields", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "filename", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "filename.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "filesize", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
