@@ -39,6 +39,8 @@
 {"name": "answer_geo.timezone.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "answer_ip", "type": "ip", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "answer_ipv6", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "aprotocol", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "authoritative", "type": "boolean", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "beat.hostname", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "beat.hostname.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "beat.name", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
@@ -109,6 +111,7 @@
 {"name": "evt_username", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "evt_username.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "facility", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "fields", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "host", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "host.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "hostname", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
@@ -152,6 +155,8 @@
 {"name": "querytype", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "querytype.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "received_at", "type": "date", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "recursion_available", "type": "boolean", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "recursion_desired", "type": "boolean", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "relay_geo.location", "type": "geo_point", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "relay_geo.location.geohash", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "role", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
@@ -226,6 +231,8 @@
 {"name": "syslog_timestamp.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "tags", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "tags.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "transaction_id", "type": "number", "count": 0, "scripted": false, "indexed": false, "analyzed": false, "doc_values": false}
+{"name": "truncated", "type": "boolean", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "ttl", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "type", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "type.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
@@ -236,3 +243,4 @@
 {"name": "user_validity.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "verb", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "verb.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "uid", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
