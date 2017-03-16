@@ -165,6 +165,7 @@
 {"name": "role.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "rrclass", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "rrcount", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "rtt", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "severity", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "source", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "source.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
