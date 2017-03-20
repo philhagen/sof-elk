@@ -95,7 +95,6 @@ elif [ $MODE == "file" ]; then
 fi
 
 # validate source data location
-echo nfdump $READFLAG $SOURCE_LOCATION -q -c 1
 nfdump $READFLAG $SOURCE_LOCATION -q -c 1 > /dev/null 2>&1
 
 TEST_RUN=$?
