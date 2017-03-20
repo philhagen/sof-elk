@@ -4,7 +4,6 @@
 #
 # This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK can read with its NetFlow ingest feature
 
-
 # bash functionality to get command-line parameters
 # source: http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 # Use -gt 1 to consume two arguments per pass in the loop (e.g. each
@@ -13,22 +12,22 @@
 # some arguments don't have a corresponding value to go with it such
 # as in the --default example).
 while [[ $# -gt 1 ]]; do
-key="$1"
+    key="$1"
 
-case $key in
-    -e|--exporter)
-    EXPORTER_IP="$2"
-    shift # past argument
-    ;;
-    -r|-sourcelocation)
-    SOURCE_LOCATION="$2"
-    shift # past argument
-    ;;
-    *)
-            # unknown option
-    ;;
-esac
-shift # past argument or value
+    case $key in
+        -e|--exporter)
+        EXPORTER_IP="$2"
+        shift # past argument
+        ;;
+        -r|-sourcelocation)
+        SOURCE_LOCATION="$2"
+        shift # past argument
+        ;;
+        *)
+        # unknown option
+        ;;
+    esac
+    shift # past argument or value
 done
 
 if [[ $SOURCE_LOCATION == "" ]]; then
@@ -67,7 +66,6 @@ valid_ip() {
         [[ ${ip[0]} -le 255 && ${ip[1]} -le 255 && ${ip[2]} -le 255 && ${ip[3]} -le 255 ]]
         stat=$?
     fi
-
     return $stat
 }
 
