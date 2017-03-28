@@ -19,7 +19,7 @@ while [[ $# -gt 1 ]]; do
         EXPORTER_IP="$2"
         shift # past argument
         ;;
-        -r|-sourcelocation)
+        -r|--sourcelocation)
         SOURCE_LOCATION="$2"
         shift # past argument
         ;;
