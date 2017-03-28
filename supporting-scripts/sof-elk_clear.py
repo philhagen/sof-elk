@@ -52,14 +52,29 @@ def confirm(prompt=None, resp=False):
             return False
 
 parser = argparse.ArgumentParser(description='Clear the SOF-ELK Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
-parser.add_argument('-i', '--index', dest='index', required=True, help='Index to clear.')
+parser.add_argument('-i', '--index', dest='index', required=True, help='Index to clear.  Use "-i list" to see what is currently loaded.')
 parser.add_argument('-f', '--filepath', dest='filepath', help='Local file or directory to clear.')
 parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK filesystem.')
 args = parser.parse_args()
 
+# create Elasticsearch handle
+es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+
+# get list of top-level indices if requested
+top_level_indices = {}
+if args.index == 'list':
+    indices = es.indices.get_aliases().keys()
+    for index in indices:
+        if not index.startswith('.'):
+            baseindex = index.split('-')[0]
+            top_level_indices[baseindex] = True
+    print 'The following indices are currently active in Elasticsearch:'
+    for index in top_level_indices.keys():
+        print '- %s' % ( index)
+    exit(1)
+
 ### delete from existing ES indices
 # display document count
-es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 if args.filepath:
     res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
 
