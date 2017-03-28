@@ -113,8 +113,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Update: 2014-12-03: This is a MAJOR update!
   * Parsing has been updated and is far more robust.  The VM cleanly ingests all known data, but let me know if there is any standard data that's not parsed correctly.
   * The VM can ingest live NetFlow v5 by opening UDP port 9995 in the firewall with the following commands using sudo:
-    * ```firewall-cmd --zone=public --add-port=9995/udp --permanent```
-    * ```firewall-cmd --reload```
+    * ```fw_modify.sh -a open -p 9995 -r udp```
   * Archived NetFlow (e.g. ASCII output from nfdump) is ingested just as live NetFlow, so you can load historical evidence alongside live data, and use the same dashboard to examine both simultaneously.  See the "Ingesting Archived NetFlow" section for details on this process.
   * Cisco ASA events sent via syslog are fully parsed
   * Much, much more!
