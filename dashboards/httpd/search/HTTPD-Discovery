@@ -5,7 +5,7 @@
   "columns": [
     "source_ip",
     "request_method",
-    "httpd_vhost",
+    "hostname",
     "request",
     "response"
   ],
