@@ -69,7 +69,7 @@
 {"name": "request", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "request.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "request_method", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
-{"name": "response", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "response_code", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "response_sub", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "response_time", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "severity", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}

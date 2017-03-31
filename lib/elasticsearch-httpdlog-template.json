@@ -37,7 +37,7 @@
         "http_version" : { "type" : "string", "index" : "not_analyzed" },
         "ident" : { "type" : "string", "index" : "not_analyzed" },
         "ips" : { "type" : "ip" },
-        "response" : { "type" : "short" },
+        "response_code" : { "type" : "short" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
         "original_message" : { "type" : "string", "index" : "not_analyzed" },
         "request_method" : { "type" : "string", "index" : "not_analyzed" },
