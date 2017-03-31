@@ -40,6 +40,7 @@
         "response" : { "type" : "short" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
         "original_message" : { "type" : "string", "index" : "not_analyzed" },
+        "request_method" : { "type" : "string", "index" : "not_analyzed" },
 
         "source_geo" : {
           "type" : "object",

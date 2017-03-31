@@ -4,7 +4,7 @@
   "hits": 0,
   "columns": [
     "source_ip",
-    "verb",
+    "request_method",
     "httpd_vhost",
     "request",
     "response"

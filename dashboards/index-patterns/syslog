@@ -242,6 +242,5 @@
 {"name": "user.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "user_validity", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "user_validity.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "verb", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
-{"name": "verb.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "request_method", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "uid", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
