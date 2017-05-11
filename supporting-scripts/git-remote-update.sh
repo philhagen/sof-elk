@@ -31,5 +31,5 @@ if [ $RUNNOW -eq 0 ]; then
     sleep ${randomNumber}
 fi
 
-cd /usr/local/sof-elk
+cd /usr/local/sof-elk/
 git remote update > /dev/null 2>&1
