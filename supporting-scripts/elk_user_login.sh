@@ -16,4 +16,4 @@ echo "    Resets all Kibana dashboards to the versions on disk in /usr/local/sof
 
 echo
 
-/usr/local/sof-elk/supporting_scripts/git-check-pull-needed.sh
+/usr/local/sof-elk/supporting-scripts/git-check-pull-needed.sh
