@@ -10,10 +10,14 @@ if [ $LOCAL = $REMOTE ]; then
     exit 0
 
 elif [ $LOCAL = $BASE ]; then
-    echo "Updates to the SOF-ELK configuration files are available!"
+    echo "Upstream Updates Available!!!!"
+    echo "------------------------------"
+    echo
+    echo "There are upstream updates to the SOF-ELK configuration files available in the Github repository." 
     echo "These are not required, but if desired, run the following to retrieve:"
     echo
     echo "sudo sof-elk_update.sh"
+    echo
     exit 0
 
 elif [ $REMOTE = $BASE ]; then
