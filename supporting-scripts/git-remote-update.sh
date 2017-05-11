@@ -32,4 +32,4 @@ if [ $RUNNOW -eq 0 ]; then
 fi
 
 cd /usr/local/sof-elk
-git remote update
+git remote update > /dev/null 2>&1
