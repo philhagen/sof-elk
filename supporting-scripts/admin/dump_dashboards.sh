@@ -1,4 +1,9 @@
 #!/bin/bash
+# SOF-ELK Supporting script
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This script simply dumps all dashboards to files on the filesystem, then creates a tgz of them
+
 TYPES="dashboard visualization search index-pattern"
 mkdir -p $TYPES
 
