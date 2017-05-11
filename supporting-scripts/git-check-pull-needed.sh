@@ -4,6 +4,8 @@
 #
 # This script displays a message to STDOUT if the origin has a newer version than the local checkout
 
+cd /usr/local/sof-elk/
+
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @{0})
 REMOTE=$(git rev-parse "$UPSTREAM")
