@@ -7,6 +7,11 @@
 
 FORCE=0
 
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root.  Exiting."
+    exit 1
+fi
+
 # parse any command line arguments
 if [ $# -gt 0 ]; then
     while true; do
