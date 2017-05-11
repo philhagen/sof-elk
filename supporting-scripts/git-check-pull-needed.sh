@@ -1,4 +1,8 @@
 #!/bin/bash
+# SOF-ELK Supporting script
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This script displays a message to STDOUT if the origin has a newer version than the local checkout
 
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @{0})
