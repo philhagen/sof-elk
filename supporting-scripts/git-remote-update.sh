@@ -24,7 +24,12 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-SLEEP=$((RANDOM % 3600))
-sleep $SLEEP
+if [ $RUNNOW -eq 0 ]; then
+    # wait up to 20min to start, so all these VMs don't hit the server at the same exact time
+    randomNumber=$RANDOM
+    let "randomNumber %= 1800"
+    sleep ${randomNumber}
+fi
+
 cd /usr/local/sof-elk
 git remote update
