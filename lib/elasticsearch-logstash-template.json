@@ -1,5 +1,5 @@
 {
-  "template" : "syslog-*",
+  "template" : "logstash-*",
   "settings" : {
     "index.refresh_interval" : "5s"
   },
