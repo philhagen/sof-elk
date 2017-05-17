@@ -36,4 +36,4 @@ fi
 git reset --hard > /dev/null
 git pull origin
 
-/usr/local/sof-elk/supporting-scripts/git-remote-update.sh
+/usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
