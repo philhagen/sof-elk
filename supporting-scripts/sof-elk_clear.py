@@ -68,10 +68,13 @@ if args.index == 'list':
         if not index.startswith('.'):
             baseindex = index.split('-')[0]
             top_level_indices[baseindex] = True
+    if len(top_level_indices.keys()) == 0:
+        print 'There are no active data indices in Elasticsearch'
+    else:
     print 'The following indices are currently active in Elasticsearch:'
     for index in top_level_indices.keys():
         print '- %s' % ( index)
-    exit(1)
+    exit(0)
 
 ### delete from existing ES indices
 # display document count
