@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(description='Dump or load Kibana index-mappings
 parser.add_argument('--dump', dest='mode', action='store_const', const='dump', default='dump', help='Dump values from Elasticsearch to a file. (Default)')
 parser.add_argument('--load', dest='mode', action='store_const', const='load', default='load', help='Load value from file to Elasticsearch')
 parser.add_argument('-f', '--file', dest='file', required=True, help='File to load from or write to')
-parser.add_argument('-i', '--index', dest='index', required=True, help='Index to use.  ("-*" is appended, so "-i syslog" will address the "syslog-*" indices)')
+parser.add_argument('-i', '--index', dest='index', required=True, help='Index to use.  ("-*" is appended, so "-i logstash" will address the "logstash-*" indices)')
 args = parser.parse_args()
 
 kibana_url = 'http://127.0.0.1:9200/.kibana/index-pattern/%s-*' % (args.index)

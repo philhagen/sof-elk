@@ -12,12 +12,12 @@ es_host=localhost
 es_port=9200
 kibana_index=.kibana
 
-index_patterns="httpdlog netflow syslog timelineplaso"
+index_patterns="httpdlog netflow logstash timelineplaso"
 
 kibana_version=$( jq -r '.version' < /opt/kibana/package.json )
 kibana_build=$(jq -r '.build.number' < /opt/kibana/package.json )
 
-dashboard_list="httpd introductory netflow syslog timelineplaso "
+dashboard_list="httpd introductory netflow logstash timelineplaso "
 dashboard_dir="/usr/local/sof-elk/dashboards/"
 
 # enter a holding pattern until the elasticsearch server is available, but don't wait too long
@@ -39,7 +39,7 @@ for indexid in ${index_patterns}; do
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"syslog-*\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}" > /dev/null
+curl -s -XPOST http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"logstash-*\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}" > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"index.priority\": 100 }" > /dev/null

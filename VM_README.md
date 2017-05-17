@@ -28,8 +28,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * ```/logstash/passivedns/```: Logs from the passivedns utility
 * NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/logstash/syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "logstash-syslog" directory.
 * Commands to be familiar with:
-    * ```/usr/local/sbin/es_nuke.sh```: DESTROY contents of the Elasticsearch database.  Requires an index name base (e.g. ```es_nuke.sh syslog``` will delete all data from the Elasticsearch ```syslog-*``` indexes.
-    * ```/usr/local/sbin/ls_restart.sh```: Restarts Logstash daemon, activating any changes to the configuration files.  Include the ```-reparse``` option to re-read all files still on the filesystem.  The ```-reparse``` option will result in duplicate entries unless you've used ```es_nuke.sh``` as needed.  (Requires sudo.)
+    * ```/usr/local/sbin/sof-elk_clear.py```: DESTROY contents of the Elasticsearch database.  Most frequently used with an index name base (e.g. ```sof-elk_clear.py -i logstash``` will delete all data from the Elasticsearch ```logstash-*``` indexes.  Other options detailed with the ```-h``` flag.
     * ```/usr/local/sbin/sof-elk-update.sh```: Update the SOF-ELK configuration files from the Github repository.  (Requires sudo.)
 * Files to be familiar with:
     * ```/etc/logstash/conf.d/*.conf```: Symlinks to github-based FOR572-specific configs that address several common log formats:
@@ -46,8 +45,8 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 ## Latest Distribution Vitals ##
 * Basic details on the distribution
-  * VM is a CentOS 7.3 base with all updates as of 2017-03-06
-  * Includes Elasticsearch 2.4.4, Logstash 2.4.1, and Kibana 4.5.4
+  * VM is a CentOS 7.3 base with all updates as of 2017-05-17
+  * Includes Elasticsearch 2.4.5, Logstash 2.4.1, and Kibana 4.5.4
   * Configuration files are from the "master" branch of this Github repository (tag TODOTODO: ADD TAG TO MASTER BRANCH ON MERGE :TODOTODO)
 * Metadata (TODOTODO: FIX FILENAMES AND METADATA :TODOTODO)
   * Filename and size: ```FOR572 SOF-ELK 2016-08-17.zip``` (830019192 bytes)
