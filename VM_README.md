@@ -65,7 +65,8 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
 ## Changelog ##
-* Update: TODOTODO: VERSION NUMBER :TODOTODO): Another MAJOR update!
+* Update: 2017-05-19: Another MAJOR update!
+  * Daily checks for upstream updates in the Github repository, with advisement on login if updates are available
   * Added dozens of parser configurations from Justin Henderson, supporting the SANS SEC555 class
   * Added experimental Plaso data ingest features, contributed by Mark McCurdy
   * Added freq_server and domain_stats as localhost-bound services
@@ -77,7 +78,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Enforce field naming consistency
   * Various updates to dashboards and parsers
   * Ingest locations changed to ```/logstash/*/```
-  * Increased VM's RAM to 4GB
+  * Increased VM's default RAM to 4GB
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
   * Re-branded to SOF-ELK, with awesome logo to boot
@@ -118,11 +119,13 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Much, much more!
 
 ## Ingesting Archived NetFlow ##
-To ingest existing NetFlow evidence, it must be parsed into a specific format.  The nfdump command line needed to parse existing data is below.  Be sure you review the top of the output file to ensure there are no warning/error messages present.
+To ingest existing NetFlow evidence, it must be parsed into a specific format.  The included nfdump2sof-elk.sh script will take care of this.
 
-```export EXP_IP=1.1.1.1``` (Replace ```1.1.1.1``` with the exporter source for the data, if available.  This field is required and must be a valid IPv4 address, but use a placeholder if needed.)
+* Read from single file: ```nfdump2sof-elk.sh -r /path/to/netflow/nfcapd.201703190000```
+* Read recursively from directory: ```nfdump2sof-elk.sh -r /path/to/netflow/```
+* Optionally, you can specify the IP address of the exporter that created the flow data: ```nfdump2sof-elk.sh -e 10.3.58.1 -r /path/to/netflow/```
 
-```nfdump (-r <input file> | -R <input dir>) -q -N -O tstart -o "fmt:$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0" > /path/to/some_file.txt```  (Then place ```some_file.txt``` in ```/logstash/nfarch```.)
+This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK.
 
 ## Sample Data ##
 Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
