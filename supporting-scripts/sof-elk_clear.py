@@ -72,7 +72,7 @@ if args.reload and not args.filepath:
     print 'Reload functionality requires filepath to be specified.  Exiting.\n'
     exit(1)
 
-if args.reload and os.geteuid != 0:
+if args.reload and os.geteuid() != 0:
     print "Reload functionality requires administrative privileges.  Run with 'sudo'."
     exit(1)
 
