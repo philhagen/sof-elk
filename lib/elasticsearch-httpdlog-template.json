@@ -1,11 +1,12 @@
 {
   "template" : "httpdlog-*",
+  "order" : "1",
   "settings" : {
     "index.refresh_interval" : "5s"
   },
   "mappings" : {
     "_default_" : {
-      "_all" : {"enabled" : true },
+      "_all" : { "enabled" : true },
       "dynamic_templates" : [ 
         {
           "ip_address_fields" : {
