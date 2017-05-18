@@ -45,13 +45,13 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 ## Latest Distribution Vitals ##
 * Basic details on the distribution
-  * VM is a CentOS 7.3 base with all updates as of 2017-05-17
+  * VM is a CentOS 7.3 base with all updates as of 2017-05-18
   * Includes Elasticsearch 2.4.5, Logstash 2.4.1, and Kibana 4.5.4
-  * Configuration files are from the "master" branch of this Github repository (tag TODOTODO: ADD TAG TO MASTER BRANCH ON MERGE :TODOTODO)
-* Metadata (TODOTODO: FIX FILENAMES AND METADATA :TODOTODO)
-  * Filename and size: ```FOR572 SOF-ELK 2016-08-17.zip``` (830019192 bytes)
-  * MD5: ```c2eebe809e953a8b580d859525592236```
-  * SHA256: ```6019b849b367633a5dbac1f9ec27c7b1ecabbac1e107bbb6d73d2194a44cfbc2```
+  * Configuration files are from the "master" branch of this Github repository (tag ```2017-05-18```)
+* Metadata
+  * Filename and size: ```SOF-ELK 2017-05-18.zip``` (978,221,576 bytes)
+  * MD5: ```f151b4fda7741682994f5d45bc67fe19```
+  * SHA256: ```f20456f8c9b1d78492fb5b4db56f921ab9ae4ef0c4e03005dd6ac266b4d0abda```
 
 ## How to Use ##
 * Restore the "Deployment" snapshot
@@ -65,7 +65,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
 ## Changelog ##
-* Update: 2017-05-19: Another MAJOR update!
+* Update: 2017-05-18: Another MAJOR update!
   * Daily checks for upstream updates in the Github repository, with advisement on login if updates are available
   * Added dozens of parser configurations from Justin Henderson, supporting the SANS SEC555 class
   * Added experimental Plaso data ingest features, contributed by Mark McCurdy
