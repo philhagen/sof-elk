@@ -3,11 +3,11 @@
   "description": "",
   "hits": 0,
   "columns": [
-    "client_ip",
-    "verb",
-    "httpd_vhost",
+    "source_ip",
+    "request_method",
+    "hostname",
     "request",
-    "response"
+    "response_code"
   ],
   "sort": [
     "@timestamp",

@@ -36,7 +36,7 @@ if [ $RUNNOW -eq 0 ]; then
     sleep ${randomNumber}
 fi
 
-cd ${GEOIP_LIBDIR}
+cd ${GEOIP_LIBDIR}/
 wget -N -q ${GEOIP_CITYSOURCEURL}
 gunzip -f ${GEOIP_CITYSOURCEFILE}
 wget -N -q ${GEOIP_ASNSOURCEURL}

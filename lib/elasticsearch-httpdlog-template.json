@@ -1,24 +1,13 @@
 {
   "template" : "httpdlog-*",
+  "order" : "1",
   "settings" : {
     "index.refresh_interval" : "5s"
   },
   "mappings" : {
     "_default_" : {
-      "_all" : {"enabled" : true },
+      "_all" : { "enabled" : true },
       "dynamic_templates" : [ 
-        {
-          "string_fields" : {
-            "match" : "*",
-            "match_mapping_type" : "string",
-            "mapping" : {
-              "type" : "string", "index" : "analyzed", "omit_norms" : true,
-              "fields" : {
-                "raw" : {"type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
-              }
-            }
-          }
-        },
         {
           "ip_address_fields" : {
             "match" : "*_ip",
@@ -30,17 +19,31 @@
             "match" : "*_ipv6",
             "mapping" : { "type" : "string", "index" : "not_analyzed" }
           }
+        },
+        {
+          "string_fields" : {
+            "match" : "*",
+            "match_mapping_type" : "string",
+            "mapping" : {
+              "type" : "string", "index" : "analyzed", "omit_norms" : true,
+              "fields" : {
+                "raw" : { "type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
+              }
+            }
+          }
         }
       ],
       "properties" : {
         "@version" : { "type" : "string", "index" : "not_analyzed" },
-        "http_version" : { "type" : "string", "index" : "not_analyzed" },
+        "httpversion" : { "type" : "string", "index" : "not_analyzed" },
         "ident" : { "type" : "string", "index" : "not_analyzed" },
         "ips" : { "type" : "ip" },
-        "response" : { "type" : "short" },
+        "response_code" : { "type" : "short" },
         "path" : { "type" : "string", "index" : "not_analyzed" },
+        "original_message" : { "type" : "string", "index" : "not_analyzed" },
+        "request_method" : { "type" : "string", "index" : "not_analyzed" },
 
-        "client_geo" : {
+        "source_geo" : {
           "type" : "object",
           "properties" : {
             "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }

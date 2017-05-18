@@ -1,0 +1,10 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+  },
+  "version": 1,
+  "description": "",
+  "uiStateJSON": "{}",
+  "visState": "{\"title\":\"TL-Markup-Powershell\",\"type\":\"markdown\",\"params\":{\"markdown\":\"If HostName=ConsoleHost then local session  | If HostName=ServerRemoteHost then remote session  \\n--------------------- | ------------------\\nID 400: Engine Started  | ID 6: Creating WSMan Session\\nID 403: Engine Stopped  | ID 169: User X authenticated successfully using NTLM\\nID 40961: PowerShell console is starting up  | ID 81: Processing client request for operation CreateShell\\nID 4100: Error Messages (PS 3.0 and higher)  | ID 134: Sending response for operation DeleteShell  \\nID 7937: Executed cmdlets, scripts, or commands  .. | ID 32850: Creating a server remote session.  Username listed  \\n | ID 32867: Received remoting fragment.  Payload data.  Encoded.  \\n | ID 32868: Sent remoting fragment.  Payload data.  Encoded.\"},\"aggs\":[],\"listeners\":{}}",
+  "title": "TL-Markup-Powershell"
+}

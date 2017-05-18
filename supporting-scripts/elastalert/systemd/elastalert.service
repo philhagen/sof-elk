@@ -1,0 +1,14 @@
+[Unit]
+Description=Elastalert
+After=elasticsearch.service
+
+[Service]
+WorkingDirectory=/opt/elastalert
+ExecStart=/usr/bin/elastalert --config /etc/sysconfig/elastalert_config.yaml
+PIDFile=/var/run/elastalert.pid
+Restart=always
+User=elastalert
+Group=elastalert
+
+[Install]
+WantedBy=multi-user.target

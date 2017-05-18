@@ -15,3 +15,5 @@ for file in /usr/local/sof-elk/configfiles/*; do
 
     ln -s $file /etc/logstash/conf.d/$( basename $file )
 done
+
+/usr/bin/systemctl restart filebeat

@@ -1,0 +1,16 @@
+{
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"index\":\"timelineplaso-*\",\"query\":{\"query_string\":{\"query\":\"evt-eventid:4727 OR evt-eventid:[4730 TO 4731] OR evt-eventid:[4734 TO 4735] OR evt-eventid:4737 OR evt-eventid:[4744 TO 4745] OR evt-eventid:[4748 TO 4750] OR evt-eventid:[4753 TO 4755] OR evt-eventid:[4758 TO 4760] OR evt-eventid:4763\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+  },
+  "version": 1,
+  "sort": [
+    "@timestamp",
+    "desc"
+  ],
+  "columns": [
+    "_source"
+  ],
+  "hits": 0,
+  "description": "",
+  "title": "TL-Group_Changes"
+}

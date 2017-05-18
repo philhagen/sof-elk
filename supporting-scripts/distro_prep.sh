@@ -34,6 +34,16 @@ if [ -s ~/distro_prep.txt ]; then
     exit 2
 fi
 
+echo "checking that we're on the correct SOF-ELK branch"
+cd /usr/local/sof-elk/
+git branch
+echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'classroom' or 'master', with 'develop' removed.)"
+read
+
+echo "updating local git repo clones"
+cd /usr/local/sof-elk/
+git pull --all
+
 echo "removing old kernels"
 package-cleanup -y --oldkernels --count=1
 echo "cleaning yum caches"
@@ -57,10 +67,10 @@ echo "removing elasticsearch templates"
 curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
 echo "removing elasticsearch .kibana index"
 curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
-echo "removing logstash sincedb"
-rm -f /var/db/logstash/sincedb
+echo "removing filebeat registry"
+rm -f /var/lib/filebeat/*
 echo "removing any input logs from prior parsing"
-rm -rf /usr/local/logstash-*/*
+rm -rf /logstash/*/*
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 

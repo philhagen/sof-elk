@@ -1,4 +1,4 @@
-systemctl stop logstash.service ; rm -f /var/log/logstash/* /var/db/logstash/sincedb ; curl -XDELETE 'http://localhost:9200/logstash-*?pretty' ; curl -XDELETE 'http://localhost:9200/syslog-*?pretty' ; curl -XDELETE 'http://localhost:9200/netflow-*?pretty' ; curl -XDELETE 'http://localhost:9200/httpdlog-*?pretty' ; curl -XDELETE 'http://localhost:9200/_template/*?pretty' ; systemctl start logstash.service
+systemctl stop logstash.service ; rm -f /var/log/logstash/* /var/db/logstash/sincedb ; curl -XDELETE 'http://localhost:9200/logstash-*?pretty' ; curl -XDELETE 'http://localhost:9200/logstash-*?pretty' ; curl -XDELETE 'http://localhost:9200/netflow-*?pretty' ; curl -XDELETE 'http://localhost:9200/httpdlog-*?pretty' ; curl -XDELETE 'http://localhost:9200/_template/*?pretty' ; systemctl start logstash.service
 
 
 
@@ -16,3 +16,9 @@ curl -XDELETE http://localhost:9200/.kibana/visualization/_query?q=*\&pretty
 
 NOTE: after deleting documents, free space with a forcemerge:
 curl -XPOST 'http://localhost:9200/_forcemerge?only_expunge_deletes=true'
+
+
+
+
+vim command to convert arrays to hashes:
+%s/convert => \[ "\(.\+\)", "\(.\+\)" \]/convert => { "\1" => "\2" }/

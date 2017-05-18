@@ -22,14 +22,13 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * password: ```forensics```
     * has sudo access to run ALL commands
 * Logstash will ingest all files from the following filesystem locations:
-  * ```/usr/local/logstash-syslog/```: Syslog-formatted data
-  * ```/usr/local/logstash-nfarch/```: Archived NetFlow output, formatted as described below
-  * ```/usr/local/logstash-httpd/```: Apache logs in common, combined, or vhost-combined formats
-  * ```/usr/local/logstash-passivedns/```: Logs from the passivedns utility
-* NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/usr/local/logstash-syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "logstash-syslog" directory.
+  * ```/logstash/syslog/```: Syslog-formatted data
+  * ```/logstash/nfarch/```: Archived NetFlow output, formatted as described below
+  * ```/logstash/httpd/```: Apache logs in common, combined, or vhost-combined formats
+  * ```/logstash/passivedns/```: Logs from the passivedns utility
+* NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/logstash/syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "logstash-syslog" directory.
 * Commands to be familiar with:
-    * ```/usr/local/sbin/es_nuke.sh```: DESTROY contents of the Elasticsearch database.  Requires an index name base (e.g. ```es_nuke.sh syslog``` will delete all data from the Elasticsearch ```syslog-*``` indexes.
-    * ```/usr/local/sbin/ls_restart.sh```: Restarts Logstash daemon, activating any changes to the configuration files.  Include the ```-reparse``` option to re-read all files still on the filesystem.  The ```-reparse``` option will result in duplicate entries unless you've used ```es_nuke.sh``` as needed.  (Requires sudo.)
+    * ```/usr/local/sbin/sof-elk_clear.py```: DESTROY contents of the Elasticsearch database.  Most frequently used with an index name base (e.g. ```sof-elk_clear.py -i logstash``` will delete all data from the Elasticsearch ```logstash-*``` indexes.  Other options detailed with the ```-h``` flag.
     * ```/usr/local/sbin/sof-elk-update.sh```: Update the SOF-ELK configuration files from the Github repository.  (Requires sudo.)
 * Files to be familiar with:
     * ```/etc/logstash/conf.d/*.conf```: Symlinks to github-based FOR572-specific configs that address several common log formats:
@@ -46,10 +45,10 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 ## Latest Distribution Vitals ##
 * Basic details on the distribution
-  * VM is a CentOS 7.2 base with all updates as of 2016-07-08
-  * Includes Elasticsearch 2.3.4, Logstash 2.2.4, and Kibana 4.5.2
-  * Configuration files are from the "classroom" branch of this Github repository (tag 2016-07-08)
-* Metadata
+  * VM is a CentOS 7.3 base with all updates as of 2017-05-17
+  * Includes Elasticsearch 2.4.5, Logstash 2.4.1, and Kibana 4.5.4
+  * Configuration files are from the "master" branch of this Github repository (tag TODOTODO: ADD TAG TO MASTER BRANCH ON MERGE :TODOTODO)
+* Metadata (TODOTODO: FIX FILENAMES AND METADATA :TODOTODO)
   * Filename and size: ```FOR572 SOF-ELK 2016-08-17.zip``` (830019192 bytes)
   * MD5: ```c2eebe809e953a8b580d859525592236```
   * SHA256: ```6019b849b367633a5dbac1f9ec27c7b1ecabbac1e107bbb6d73d2194a44cfbc2```
@@ -58,7 +57,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Restore the "Deployment" snapshot
 * Boot the VM
 * Log into the VM with the ```elk_user``` credentials (see above)
-* cd to one of the ```/usr/local/logstash-*/``` directories as appropriate
+* cd to one of the ```/logstash/*/``` directories as appropriate
 * Place files in this location (Mind the above warning about the year for syslog data.  Files must also be readable by the "logstash" user.)
 * Open the main Kibana dashboard using the Kibana URL shown in the pre-authentication screen, ```http://<ip_address>:5601```
     * This dashboard gives a basic overview of what data has been loaded and how many records are present
@@ -66,9 +65,20 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
 ## Changelog ##
-* Update: future-pending
+* Update: 2017-05-19: Another MAJOR update!
+  * Daily checks for upstream updates in the Github repository, with advisement on login if updates are available
+  * Added dozens of parser configurations from Justin Henderson, supporting the SANS SEC555 class
+  * Added experimental Plaso data ingest features, contributed by Mark McCurdy
+  * Added freq_server and domain_stats as localhost-bound services
+  * Added HTML visualization type to Kibana
   * Dynamically calculate ES_HEAP_SIZE
-  * Add HTML Visualization type
+  * Uses a locally-running filebeat process for file ingest instead of logstash's file inputs
+  * Replaced es_nuke.sh with sof-elk_clear.py, adding by-file/by-directory clear and optional reload from disk
+  * Overall file cleanup
+  * Enforce field naming consistency
+  * Various updates to dashboards and parsers
+  * Ingest locations changed to ```/logstash/*/```
+  * Increased VM's default RAM to 4GB
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
   * Re-branded to SOF-ELK, with awesome logo to boot
@@ -103,21 +113,22 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Update: 2014-12-03: This is a MAJOR update!
   * Parsing has been updated and is far more robust.  The VM cleanly ingests all known data, but let me know if there is any standard data that's not parsed correctly.
   * The VM can ingest live NetFlow v5 by opening UDP port 9995 in the firewall with the following commands using sudo:
-    * ```firewall-cmd --zone=public --add-port=9995/udp --permanent```
-    * ```firewall-cmd --reload```
+    * ```fw_modify.sh -a open -p 9995 -r udp```
   * Archived NetFlow (e.g. ASCII output from nfdump) is ingested just as live NetFlow, so you can load historical evidence alongside live data, and use the same dashboard to examine both simultaneously.  See the "Ingesting Archived NetFlow" section for details on this process.
   * Cisco ASA events sent via syslog are fully parsed
   * Much, much more!
 
 ## Ingesting Archived NetFlow ##
-To ingest existing NetFlow evidence, it must be parsed into a specific format.  The nfdump command line needed to parse existing data is below.  Be sure you review the top of the output file to ensure there are no warning/error messages present.
+To ingest existing NetFlow evidence, it must be parsed into a specific format.  The included nfdump2sof-elk.sh script will take care of this.
 
-```export EXP_IP=1.1.1.1``` (Replace ```1.1.1.1``` with the exporter source for the data, if available.  This field is required and must be a valid IPv4 address, but use a placeholder if needed.)
+* Read from single file: ```nfdump2sof-elk.sh -r /path/to/netflow/nfcapd.201703190000```
+* Read recursively from directory: ```nfdump2sof-elk.sh -r /path/to/netflow/```
+* Optionally, you can specify the IP address of the exporter that created the flow data: ```nfdump2sof-elk.sh -e 10.3.58.1 -r /path/to/netflow/```
 
-```nfdump (-r <input file> | -R <input dir>) -q -N -O tstart -o "fmt:$EXP_IP %das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0" > /path/to/some_file.txt```  (Then place ```some_file.txt``` in ```/usr/local/logstash-nfarch```.)
+This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK.
 
 ## Sample Data ##
-Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/usr/local/logstash-syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
+Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
 
 ## Credits ##
 * Derek B: Cisco ASA parsing/debugging and sample data

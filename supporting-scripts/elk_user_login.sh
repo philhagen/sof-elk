@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 # SOF-ELK Supporting script
 # (C)2016 Lewes Technology Consulting, LLC
 #
@@ -10,9 +9,11 @@ echo
 echo "Welcome to the SOF-ELK VM Distribution"
 echo "--------------------------------------"
 echo "Here are some useful commands:"
-echo "  es_nuke.sh <indexname>"
-echo "    Forcibly removes all records from the <indexname> Elasticsearch index"
-echo "  sudo ls_restart.sh"
-echo "    Restart the logstash parser service, re"
+echo "  sof-elk_clear.py"
+echo "    Forcibly removes all records from the Elasticsearch index.  Use '-h' for usage."
 echo "  load_all_dashboards.sh"
 echo "    Resets all Kibana dashboards to the versions on disk in /usr/local/sof-elk/"
+
+echo
+
+/usr/local/sof-elk/supporting-scripts/git-check-pull-needed.sh

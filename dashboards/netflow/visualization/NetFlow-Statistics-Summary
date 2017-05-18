@@ -1,6 +1,6 @@
 {
   "title": "NetFlow Statistics Summary",
-  "visState": "{\"title\":\"NetFlow Statistics Summary\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"40\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_bytes_vis\",\"customLabel\":\"Bytes\"}},{\"id\":\"2\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.in_pkts_vis\",\"customLabel\":\"Packets\"}},{\"id\":\"3\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"nf.flow_records_vis\",\"customLabel\":\"Flows\"}}],\"listeners\":{}}",
+  "visState": "{\"title\":\"NetFlow Statistics Summary\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"40\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_bytes_vis\",\"customLabel\":\"Bytes\"}},{\"id\":\"2\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"flow_records_vis\",\"customLabel\":\"Flows\"}},{\"id\":\"3\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_packets_vis\",\"customLabel\":\"Packets\"}}],\"listeners\":{}}",
   "uiStateJSON": "{}",
   "description": "",
   "savedSearchId": "NetFlow-Discovery",
