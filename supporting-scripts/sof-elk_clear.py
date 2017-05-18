@@ -65,8 +65,16 @@ parser = argparse.ArgumentParser(description='Clear the SOF-ELK Elasticsearch da
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-i', '--index', dest='index', help='Index to clear.  Use "-i list" to see what is currently loaded.')
 group.add_argument('-f', '--filepath', dest='filepath', help='Local directory root or single local file to clear.')
-parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK filesystem.')
+parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK filesystem.  Requires "-f".')
 args = parser.parse_args()
+
+if args.reload and not args.filepath:
+    print 'Reload functionality requires filepath to be specified.  Exiting.\n'
+    exit(1)
+
+if args.reload and os.geteuid != 0:
+    print "Reload functionality requires administrative privileges.  Run with 'sudo'."
+    exit(1)
 
 # create Elasticsearch handle
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
@@ -152,7 +160,6 @@ if args.reload:
     # stop filebeat service
     call(['/usr/bin/systemctl', 'stop', 'filebeat'])
 
-## TODO: requires root for this... (only for reloading)
     # load existing filebeat registry
     reg_file = open('/var/lib/filebeat/registry')
     reg_data = json.load(reg_file)
@@ -161,7 +168,7 @@ if args.reload:
     # create new registry, minus the files to be re-loaded
     new_reg_data = {}
     for file in reg_data.keys():
-        if not file.startswith('/logstash/%s' % (args.index)):
+        if not file.startswith('%s' % (args.filepath)):
             new_reg_data[file] = reg_data[file]
 
     new_reg_file = open('/var/lib/filebeat/registry', 'w')
