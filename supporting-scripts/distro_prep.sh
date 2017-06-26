@@ -37,7 +37,7 @@ fi
 echo "checking that we're on the correct SOF-ELK branch"
 cd /usr/local/sof-elk/
 git branch
-echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'classroom' or 'master', with 'develop' removed.)"
+echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'class/v*' or 'master', with  all others removed.)"
 read
 
 echo "updating local git repo clones"
