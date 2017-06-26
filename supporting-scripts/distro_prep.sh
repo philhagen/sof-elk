@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK Supporting script
-# (C)2016 Lewes Technology Consulting, LLC
+# (C)2017 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
 
@@ -78,6 +78,11 @@ echo "stopping network"
 service network stop
 #echo "clearing udev networking rules"
 #echo > /etc/udev/rules.d/70-persistent-net.rules
+
+echo "clearing MAC address from interface"
+grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-eno16777736 > /tmp/tmp_ifcfg_eno
+cat /tmp/tmp_ifcfg_eno > /etc/sysconfig/network-scripts/ifcfg-eno16777736
+rm /tmp/tmp_ifcfg_eno
 
 echo "stopping syslog"
 service rsyslog stop
