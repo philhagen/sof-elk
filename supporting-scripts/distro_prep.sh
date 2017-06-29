@@ -60,13 +60,15 @@ echo "updating GeoIP database"
 /usr/local/sbin/geoip_update.sh -now
 
 echo "stopping logstash"
-service logstash stop
+systemctl stop logstash
 echo "clearing elasticsearch"
 curl -s -XDELETE 'http://localhost:9200/_all' > /dev/null
 echo "removing elasticsearch templates"
 curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
 echo "removing elasticsearch .kibana index"
 curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
+echo "stopping filebeat service"
+systemctl stop filebeat
 echo "removing filebeat registry"
 rm -f /var/lib/filebeat/*
 echo "removing any input logs from prior parsing"
@@ -75,7 +77,7 @@ echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 
 echo "stopping network"
-service network stop
+systemctl stop network
 #echo "clearing udev networking rules"
 #echo > /etc/udev/rules.d/70-persistent-net.rules
 
@@ -85,12 +87,12 @@ cat /tmp/tmp_ifcfg_eno > /etc/sysconfig/network-scripts/ifcfg-eno16777736
 rm /tmp/tmp_ifcfg_eno
 
 echo "stopping syslog"
-service rsyslog stop
+systemctl stop rsyslog
 echo "clearing existing log files"
 find /var/log -type f -exec rm -f {} \;
 
 echo "clearing SSH Host Keys"
-service sshd stop
+systemctl stop sshd
 rm -f /etc/ssh/*key*
 
 if [ $DISKSHRINK -eq 1 ]; then
