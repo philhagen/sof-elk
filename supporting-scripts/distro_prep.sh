@@ -79,11 +79,11 @@ echo "reload kibana dashboards"
 echo "stopping network"
 systemctl stop network
 #echo "clearing udev networking rules"
-#echo > /etc/udev/rules.d/70-persistent-net.rules
+echo > /etc/udev/rules.d/90-eno-fix.rules
 
 echo "clearing MAC address from interface"
-grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-eno16777736 > /tmp/tmp_ifcfg_eno
-cat /tmp/tmp_ifcfg_eno > /etc/sysconfig/network-scripts/ifcfg-eno16777736
+grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-ens33 > /tmp/tmp_ifcfg_ens
+cat /tmp/tmp_ifcfg_ens > /etc/sysconfig/network-scripts/ifcfg-ens33
 rm /tmp/tmp_ifcfg_eno
 
 echo "stopping syslog"
