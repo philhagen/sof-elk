@@ -26,7 +26,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * ```/logstash/nfarch/```: Archived NetFlow output, formatted as described below
   * ```/logstash/httpd/```: Apache logs in common, combined, or vhost-combined formats
   * ```/logstash/passivedns/```: Logs from the passivedns utility
-* NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/logstash/syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "/logstash/syslog" directory.
+* NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/logstash/syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "/logstash/syslog/" directory.
 * Commands to be familiar with:
     * ```/usr/local/sbin/sof-elk_clear.py```: DESTROY contents of the Elasticsearch database.  Most frequently used with an index name base (e.g. ```sof-elk_clear.py -i logstash``` will delete all data from the Elasticsearch ```logstash-*``` indexes.  Other options detailed with the ```-h``` flag.
     * ```/usr/local/sbin/sof-elk-update.sh```: Update the SOF-ELK configuration files from the Github repository.  (Requires sudo.)
