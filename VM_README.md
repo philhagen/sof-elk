@@ -57,6 +57,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Restore the "Deployment" snapshot
 * Boot the VM
 * Log into the VM with the ```elk_user``` credentials (see above)
+  * Logging in via SSH recommended, but if using the console login and a non-US keyboard, run ```sudo loadkeys uk```, replacing ```uk``` as needed for your local keyboard mapping
 * cd to one of the ```/logstash/*/``` directories as appropriate
 * Place files in this location (Mind the above warning about the year for syslog data.  Files must also be readable by the "logstash" user.)
 * Open the main Kibana dashboard using the Kibana URL shown in the pre-authentication screen, ```http://<ip_address>:5601```
