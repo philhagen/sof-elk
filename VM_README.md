@@ -129,7 +129,7 @@ To ingest existing NetFlow evidence, it must be parsed into a specific format.  
 This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK.
 
 ## Sample Data ##
-Some sample data is available in the ```~ls_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
+Some sample data is available in the ```~elk_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
 
 ## Credits ##
 * Derek B: Cisco ASA parsing/debugging and sample data
