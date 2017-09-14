@@ -51,6 +51,16 @@ def confirm(prompt=None, resp=False):
         if ans == 'n' or ans == 'N':
             return False
 
+# return a list of files that match the supplied root path
+def file_path_matches(path):
+    matches = []
+    for root, dirnames, filenames in os.walk(path):
+        for filename in filenames:
+            filepath = os.path.join(root, filename)
+            if filepath.startswith(path):
+                matches.append(filepath)
+    return matches
+
 # this dictionary associates each on-disk source location with its correspodning ES index root name
 sourcedir_index_mapping = {
     'syslog': 'logstash',
@@ -60,6 +70,11 @@ sourcedir_index_mapping = {
     'httpd': 'httpdlog',
     'plaso': 'timelineplaso',
 }
+# automaticcally create the reverse dictionary
+index_sourcedir_mapping = {}
+for k, v in sourcedir_index_mapping.iteritems():
+    index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
+    index_sourcedir_mapping[v].append('/logstash/' + k)
 
 parser = argparse.ArgumentParser(description='Clear the SOF-ELK Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
 group = parser.add_mutually_exclusive_group(required=True)
@@ -67,10 +82,6 @@ group.add_argument('-i', '--index', dest='index', help='Index to clear.  Use "-i
 group.add_argument('-f', '--filepath', dest='filepath', help='Local directory root or single local file to clear.')
 parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK filesystem.  Requires "-f".')
 args = parser.parse_args()
-
-if args.reload and not args.filepath:
-    print 'Reload functionality requires filepath to be specified.  Exiting.\n'
-    exit(1)
 
 if args.reload and os.geteuid() != 0:
     print "Reload functionality requires administrative privileges.  Run with 'sudo'."
@@ -118,7 +129,7 @@ doccount = res['hits']['total']
 if doccount > 0:
     # get user confirmation to proceed
     print '%d documents found\n' % res['hits']['total']
-    
+
     if not confirm(prompt='Delete these documents permanently?', resp=False):
         print 'Will NOT delete documents.  Exiting.'
         exit(0)
@@ -137,15 +148,12 @@ else:
 if args.reload:
     # display files to be re-loaded
     matches = []
-    for root, dirnames, filenames in os.walk(args.filepath):
-        for filename in filenames:
-            filepath = os.path.join(root, filename)
-            if args.filepath:
-                if filepath.startswith(args.filepath):
-                    matches.append(filepath)
 
-            else:
-                matches.append(filepath)
+    if args.index and not args.filepath:
+        for filepath in index_sourcedir_mapping[args.index]:
+            matches = matches + file_path_matches(filepath)
+    elif args.filepath:
+        matches = file_path_matches(args.filepath)
 
     # get user confirmation to proceed
     print 'will re-load the following files:'
@@ -168,7 +176,7 @@ if args.reload:
     # create new registry, minus the files to be re-loaded
     new_reg_data = {}
     for file in reg_data.keys():
-        if not file.startswith('%s' % (args.filepath)):
+        if not file in matches:
             new_reg_data[file] = reg_data[file]
 
     new_reg_file = open('/var/lib/filebeat/registry', 'w')
