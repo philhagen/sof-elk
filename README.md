@@ -8,15 +8,12 @@ This repository contains the configuration and support files for the SANS FOR572
 **Branches:**
 
 * `master`: This branch is considered suitable for widespread use, but should not be used in the FOR572 class itself.  The classroom labs are version-locked, but work on this repository is ongoing.
+* `class/*`: When a VM is prepared for distribution in a SANS course such as FOR572, a new sub-branch will be created under the "class" branch with a name corresponding to the VM version.  (e.g. "```class/v20170629```").
 * `develop`: This branch contains code that should be functional, but may break at times (and remain broken).  Of course, we'll try to avoid that, but it should be clear that this is NOT a branch suitable for "real world" use.
 * `feature/*`:  Branches where new code functionality is tested before being merged into develop.
 * `hotfix/*`: Branches where quick-term fixes are tested before being merged into develop and immediately to master.
 * `release/*`: Branches where code in the develop branch is prepared for release to a VM build via a merge to master.
 * Other branches may be used for major version updates, etc.  These will be merged to master when deployed for mainstream use.
-
-**Tags:**
-
-When a VM is prepared for distribution in the SANS FOR572 course, the revision will be tagged with a corresponding date-based version (e.g. "2014-12-18").  Users may want to consider updating to the contents of the "master" branch, but at times, this branch will expect updates to the SOF-ELK VM itself.  Release notes on the github page (located at <http://for572.com/sof-elk-git>) will alert users when such system-level changes are required.
 
 **Using:**
 
