@@ -1,8 +1,8 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2017 Lewes Technology Consulting, LLC
 #
-# This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK can read with its NetFlow ingest feature
+# This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK® can read with its NetFlow ingest feature
 
 # bash functionality to get command-line parameters
 # source: http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash

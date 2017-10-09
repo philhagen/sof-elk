@@ -1,5 +1,5 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2017 Lewes Technology Consulting, LLC
 #
 # This script runs as a post-dhcp lease acquisition hook to change the /etc/issue file with a new IP address, then restarting any agetty processes so the new IP is shown on the prelogin authentiction screen
