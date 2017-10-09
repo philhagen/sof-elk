@@ -1,5 +1,5 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2016 Lewes Technology Consulting, LLC
 #
 # This script is used to update the MaxMind GeoIP databases

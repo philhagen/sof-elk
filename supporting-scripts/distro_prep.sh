@@ -1,5 +1,5 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2017 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
@@ -34,7 +34,7 @@ if [ -s ~/distro_prep.txt ]; then
     exit 2
 fi
 
-echo "checking that we're on the correct SOF-ELK branch"
+echo "checking that we're on the correct SOF-ELK® branch"
 cd /usr/local/sof-elk/
 git branch
 echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'class/v*' or 'master', with  all others removed.)"

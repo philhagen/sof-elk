@@ -1,5 +1,5 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2016 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository is updated
