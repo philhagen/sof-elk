@@ -1,5 +1,5 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2017 Lewes Technology Consulting, LLC
 #
 # This script displays a message to STDOUT if the origin has a newer version than the local checkout
@@ -19,7 +19,7 @@ elif [ $LOCAL = $BASE ]; then
     echo "Upstream Updates Available!!!!"
     echo "------------------------------"
     echo
-    echo "There are upstream updates to the SOF-ELK configuration files available"
+    echo "There are upstream updates to the SOF-ELK® configuration files available"
     echo " in the Github repository.  These are not required, but if desired,"
     echo "run the following command to retrieve and activate them:"
     echo

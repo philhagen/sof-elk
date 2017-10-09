@@ -10,11 +10,11 @@ The code in this repository is used in a number of different environments, so th
 1. Do not modify the following stock dashboards, except for bug-level edits.  New dashboards will be considered, but as the codebase is designed to address a
 broad community, highly customized dashboards may not be accepted into master.
   * HTTPD Log Dashboard
-  * SOF-ELK VM Introduction Dashboard
+  * SOF-ELK® VM Introduction Dashboard
   * NetFlow Dashboard
   * Syslog Dashboard
 1. Any custom parsers must be created in the /configfiles-UNSUPPORTED/ subdirectory.  Any that are suitable for universal deployment will be moved to the /con
-figfiles/ subdirectory by the SOF-ELK team.
+figfiles/ subdirectory by the SOF-ELK® team.
 1. All IP addresses pulled via grok must be in a field with a name formatted as such: <directionality>_ip or <use_case>_ip
   * Examples: source_ip, destination_ip, relay_ip, answer_ip
 1. All IP addresses must be enriched with the GeoIP location and ASN filters (see existing files for examples)

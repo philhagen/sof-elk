@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2017 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
@@ -76,11 +76,11 @@ for k, v in sourcedir_index_mapping.iteritems():
     index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
     index_sourcedir_mapping[v].append('/logstash/' + k)
 
-parser = argparse.ArgumentParser(description='Clear the SOF-ELK Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
+parser = argparse.ArgumentParser(description='Clear the SOF-ELK® Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-i', '--index', dest='index', help='Index to clear.  Use "-i list" to see what is currently loaded.')
 group.add_argument('-f', '--filepath', dest='filepath', help='Local directory root or single local file to clear.')
-parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK filesystem.  Requires "-f".')
+parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK® filesystem.  Requires "-f".')
 args = parser.parse_args()
 
 if args.reload and os.geteuid() != 0:

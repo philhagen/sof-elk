@@ -1,8 +1,8 @@
-# SOF-ELK VM Distribution #
+#SOF-ELK® VM Distribution#
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
-## Background ##
-This page contains details for the SOF-ELK (Security Operations and Forensics Elasticsearch, Logstash, Kibana) VM.
+##Background##
+This page contains details for the SOF-ELK® (Security Operations and Forensics Elasticsearch, Logstash, Kibana) VM.
 The VM is provided as a community resource but is covered in depth in the following course(s):
 
 * [SANS FOR572, Advanced Network Forensics and Analysis](http://for572.com/course)
@@ -11,7 +11,7 @@ The latest version of the VM itself is available here: <http://for572.com/sof-el
 
 All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <http://for572.com/sof-elk-git>
 
-## General Information ##
+##General Information##
 * The VM was created with VMware Fusion v8.1.1 and ships with virtual hardware v10.
   * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
   * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
@@ -29,7 +29,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * NOTICE: Remember that syslog DOES NOT reflect the year of a log entry!  Therefore, Logstash has been configured to look for a year value in the path to a file.  For example:  ```/logstash/syslog/2015/var/log/messages``` will assign all entries from that file to the year 2015.  If no year is present, the current year will be assumed.  This is enabled only for the "/logstash/syslog/" directory.
 * Commands to be familiar with:
     * ```/usr/local/sbin/sof-elk_clear.py```: DESTROY contents of the Elasticsearch database.  Most frequently used with an index name base (e.g. ```sof-elk_clear.py -i logstash``` will delete all data from the Elasticsearch ```logstash-*``` indexes.  Other options detailed with the ```-h``` flag.
-    * ```/usr/local/sbin/sof-elk_update.sh```: Update the SOF-ELK configuration files from the Github repository.  (Requires sudo.)
+    * ```/usr/local/sbin/sof-elk_update.sh```: Update the SOF-ELK® configuration files from the Github repository.  (Requires sudo.)
 * Files to be familiar with:
     * ```/etc/logstash/conf.d/*.conf```: Symlinks to github-based FOR572-specific configs that address several common log formats:
         * syslog
@@ -43,7 +43,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
         * Live NetFlow v5 and archived NetFlow records
     * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - master branch)
 
-## Latest Distribution Vitals ##
+##Latest Distribution Vitals##
 * Basic details on the distribution
   * VM is a CentOS 7.3 base with all updates as of 2017-05-18
   * Includes Elasticsearch 2.4.5, Logstash 2.4.1, and Kibana 4.5.4
@@ -53,7 +53,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * MD5: ```f151b4fda7741682994f5d45bc67fe19```
   * SHA256: ```f20456f8c9b1d78492fb5b4db56f921ab9ae4ef0c4e03005dd6ac266b4d0abda```
 
-## How to Use ##
+##How to Use##
 * Restore the "Deployment" snapshot
 * Boot the VM
 * Log into the VM with the ```elk_user``` credentials (see above)
@@ -65,7 +65,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * There are links to several stock dashboards on the left hand side
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
-## Changelog ##
+##Changelog##
 * Update: 2017-05-18: Another MAJOR update!
   * Daily checks for upstream updates in the Github repository, with advisement on login if updates are available
   * Added dozens of parser configurations from Justin Henderson, supporting the SANS SEC555 class
@@ -82,7 +82,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Increased VM's default RAM to 4GB
 * Update: 2016-07-08: This is a MAJOR update!
   * Complete overhaul of the VM
-  * Re-branded to SOF-ELK, with awesome logo to boot
+  * Re-branded to SOF-ELK®, with awesome logo to boot
   * Now uses CentOS 7.x as a base OS
   * Latest releases of the ELK stack components
   * All dashboards re-created to work in Kibana 4
@@ -119,24 +119,25 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Cisco ASA events sent via syslog are fully parsed
   * Much, much more!
 
-## Ingesting Archived NetFlow ##
+##Ingesting Archived NetFlow##
 To ingest existing NetFlow evidence, it must be parsed into a specific format.  The included nfdump2sof-elk.sh script will take care of this.
 
 * Read from single file: ```nfdump2sof-elk.sh -r /path/to/netflow/nfcapd.201703190000```
 * Read recursively from directory: ```nfdump2sof-elk.sh -r /path/to/netflow/```
 * Optionally, you can specify the IP address of the exporter that created the flow data: ```nfdump2sof-elk.sh -e 10.3.58.1 -r /path/to/netflow/```
 
-This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK.
+This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK®.
 
-## Sample Data ##
+##Sample Data##
 Some sample data is available in the ```~elk_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
 
-## Credits ##
+##Credits##
 * Derek B: Cisco ASA parsing/debugging and sample data
 * Barry A: Sample data and trobuleshooting
 * Ryan Johnson: Testing
 * Matt Bromiley: Testing
 
-## Administrative Notifications/Disclaimers/Legal/Boring Stuff ##
+##Administrative Notifications/Disclaimers/Legal/Boring Stuff##
 * This virtual appliance is provided "as is" with no express or implied warranty for accuracy or accessibility.  No support for the functionality the VM provides is offered outside of this document.
 * This virtual appliance includes GeoLite2 data created by MaxMind, available from <http://www.maxmind.com>
+* SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.

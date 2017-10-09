@@ -1,8 +1,8 @@
 #!/bin/bash
-# SOF-ELK Supporting script
+# SOF-ELK® Supporting script
 # (C)2017 Lewes Technology Consulting, LLC
 #
-# This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK can read with its NetFlow ingest feature
+# This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK® can read with its NetFlow ingest feature
 
 # bash functionality to get command-line parameters
 # source: http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
@@ -74,7 +74,7 @@ if [[ $EXPORTER_IP == "" ]]; then
     EXPORTER_IP="0.0.0.0"
 fi
 
-# this is the custom format that SOF-ELK will understand
+# this is the custom format that SOF-ELK® will understand
 NFDUMP2SOFELK_FMT="%das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0"
 
 # make sure nfdump is available

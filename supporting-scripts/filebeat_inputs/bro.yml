@@ -1,7 +1,7 @@
-# SOF-ELK Configuration File
+# SOF-ELK® Configuration File
 # (C)2017 Lewes Technology Consulting, LLC
 #
-# This file creates filebeats prospector for bro source data from the SOF-ELK VM itself
+# This file creates filebeats prospector for bro source data from the SOF-ELK® VM itself
 
 # NOTE: the "tags" assignment only works with filebeat >=5.0.  It's in here now, but we need to handle that on the logstash side for now.
 

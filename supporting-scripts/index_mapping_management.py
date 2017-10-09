@@ -1,4 +1,9 @@
 #!/usr/bin/python
+# SOF-ELK® Supporting script
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This script will dump or load Kibana mappings to/from files
+
 import json
 from collections import OrderedDict
 import argparse
