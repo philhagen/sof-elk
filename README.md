@@ -1,4 +1,4 @@
-#SOF-ELK® Confuguration Files#
+SOF-ELK® Confuguration Files
 =======
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
