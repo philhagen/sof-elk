@@ -174,10 +174,11 @@ if args.reload:
     reg_file.close()
 
     # create new registry, minus the files to be re-loaded
-    new_reg_data = {}
-    for file in reg_data.keys():
+    new_reg_data = []
+    for filebeatrecord in reg_data:
+        file = str(filebeatrecord['source'])
         if not file in matches:
-            new_reg_data[file] = reg_data[file]
+            new_reg_data.append(filebeatrecord)
 
     new_reg_file = open('/var/lib/filebeat/registry', 'w')
     json.dump(new_reg_data, new_reg_file)
