@@ -45,6 +45,8 @@
 {"name": "beat.hostname.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "beat.name", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "beat.name.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "beat.version", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "cachehits", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "count", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "destination_geo.area_code", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "destination_geo.asn", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
@@ -165,7 +167,7 @@
 {"name": "role", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "role.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "rrclass", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "cachehits", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "rrcount", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "rtt", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "severity", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "source", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
