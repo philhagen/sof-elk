@@ -31,7 +31,7 @@
 {"name": "beat.hostname.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "beat.name", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "beat.name.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
-{"name": "beat.version", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
+{"name": "beat.version", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
 {"name": "cookie", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "cookie.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "count", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
