@@ -116,3 +116,15 @@ fi
 
 # finally run nfdump command
 nfdump $READFLAG $SOURCE_LOCATION -q -N -O tstart -o "fmt:$EXPORTER_IP $NFDUMP2SOFELK_FMT"
+
+REAL_RUN=$?
+if [ $REAL_RUN != 0 ]; then
+    echoerr ""
+    echoerr "An error occurred - data may not have loaded correctly."
+    exit 7
+else
+    echoerr ""
+    echoerr "Output complete."
+    echoerr "If you redirected the output to a file in /logstash/nfarch/, allow SOF-ELK some time to load the data."
+    echoerr "If you redirected somewhere else, copy the resulting file to the /logstash/nfarch/ directory."
+fi
