@@ -3,16 +3,16 @@
 #
 # This file creates a filebeat prospector for plaso json source data from the SOF-ELK® VM itself
 
-#filebeat:
-#  prospectors:
-#    -
-#      paths:
-#        - /logstash/plaso/*/*/*/*/*
-#        - /logstash/plaso/*/*/*/*
-#        - /logstash/plaso/*/*/*
-#        - /logstash/plaso/*/*
-#        - /logstash/plaso/*
-#      input_type: log
-#      document_type: timelineplaso
-#      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-#      close_inactive: 5m
+#filebeat.prospectors:
+#  - type: log
+#    paths:
+#      - /logstash/plaso/*/*/*/*/*
+#      - /logstash/plaso/*/*/*/*
+#      - /logstash/plaso/*/*/*
+#      - /logstash/plaso/*/*
+#      - /logstash/plaso/*
+#    exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+#    close_inactive: 5m
+#    fields_under_root: true
+#    fields:
+#      type: timelineplaso
