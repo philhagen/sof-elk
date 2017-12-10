@@ -17,3 +17,4 @@ for file in /usr/local/sof-elk/configfiles/*; do
 done
 
 /usr/bin/systemctl restart filebeat
+/usr/bin/systemctl reload logstash
