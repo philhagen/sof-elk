@@ -10,7 +10,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/conn.*
       - /logstash/bro/*/*/conn.*
       - /logstash/bro/*/conn.*
-      - /logstash/bro/conn. *
+      - /logstash/bro/conn.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -25,7 +25,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/dhcp.*
       - /logstash/bro/*/*/dhcp.*
       - /logstash/bro/*/dhcp.*
-      - /logstash/bro/dhcp. *
+      - /logstash/bro/dhcp.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -40,7 +40,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/dns.*
       - /logstash/bro/*/*/dns.*
       - /logstash/bro/*/dns.*
-      - /logstash/bro/dns. *
+      - /logstash/bro/dns.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -55,7 +55,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/dpd.*
       - /logstash/bro/*/*/dpd.*
       - /logstash/bro/*/dpd.*
-      - /logstash/bro/dpd. *
+      - /logstash/bro/dpd.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -70,7 +70,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/files.*
       - /logstash/bro/*/*/files.*
       - /logstash/bro/*/files.*
-      - /logstash/bro/files. *
+      - /logstash/bro/files.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -85,7 +85,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/ftp.*
       - /logstash/bro/*/*/ftp.*
       - /logstash/bro/*/ftp.*
-      - /logstash/bro/ftp. *
+      - /logstash/bro/ftp.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -100,7 +100,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/http.*
       - /logstash/bro/*/*/http.*
       - /logstash/bro/*/http.*
-      - /logstash/bro/http. *
+      - /logstash/bro/http.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
@@ -115,7 +115,7 @@ filebeat.prospectors:
       - /logstash/bro/*/*/*/irc.*
       - /logstash/bro/*/*/irc.*
       - /logstash/bro/*/irc.*
-      - /logstash/bro/irc. *
+      - /logstash/bro/irc.*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     exclude_lines: [ '^#' ]
     close_inactive: 5m
