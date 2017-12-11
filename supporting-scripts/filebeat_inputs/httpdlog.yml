@@ -6,11 +6,11 @@
 filebeat.prospectors:
   - type: log
     paths:
-      - /logstash/httpdlog/*/*/*/*/*
-      - /logstash/httpdlog/*/*/*/*
-      - /logstash/httpdlog/*/*/*
-      - /logstash/httpdlog/*/*
-      - /logstash/httpdlog/*
+      - /logstash/httpd/*/*/*/*/*
+      - /logstash/httpd/*/*/*/*
+      - /logstash/httpd/*/*/*
+      - /logstash/httpd/*/*
+      - /logstash/httpd/*
     exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
     close_inactive: 5m
     fields_under_root: true
