@@ -10,6 +10,7 @@ from subprocess import call
 import json
 import os
 import argparse
+import signal
 
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
 def confirm(prompt=None, resp=False):
@@ -60,6 +61,13 @@ def file_path_matches(path):
             if filepath.startswith(path):
                 matches.append(filepath)
     return matches
+
+# handle a ctrl-c cleanly
+# source: https://stackoverflow.com/a/1112350
+def ctrlc_handler(signal, frame):
+    print '\n\nCtrl-C pressed. Exiting.'
+    exit()
+signal.signal(signal.SIGINT, ctrlc_handler)
 
 # this dictionary associates each on-disk source location with its correspodning ES index root name
 sourcedir_index_mapping = {
