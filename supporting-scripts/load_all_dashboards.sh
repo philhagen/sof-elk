@@ -48,7 +48,7 @@ curl -s -XPUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"ind
 # this will not change existing mappings, just new indexes as they are created
 # (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
 for es_template in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template.json | sed 's/.*elasticsearch-\(.*\)-template.json/\1/' ); do
-    curl -XPUT localhost:9200/_template/${es_template} -d @/usr/local/sof-elk/lib/elasticsearch-${es_template}-template.json
+    curl -s -XPUT localhost:9200/_template/${es_template} -d @/usr/local/sof-elk/lib/elasticsearch-${es_template}-template.json > /dev/null
 done
 
 # create the dashboards, searches, and visualizations from files
