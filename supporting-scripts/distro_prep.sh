@@ -78,13 +78,11 @@ echo "reload kibana dashboards"
 
 echo "stopping network"
 systemctl stop network
-#echo "clearing udev networking rules"
-echo > /etc/udev/rules.d/90-eno-fix.rules
 
 echo "clearing MAC address from interface"
 grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-ens33 > /tmp/tmp_ifcfg_ens
 cat /tmp/tmp_ifcfg_ens > /etc/sysconfig/network-scripts/ifcfg-ens33
-rm /tmp/tmp_ifcfg_eno
+rm /tmp/tmp_ifcfg_ens
 
 echo "stopping syslog"
 systemctl stop rsyslog
@@ -109,13 +107,9 @@ if [ $DISKSHRINK -eq 1 ]; then
     #     mkswap $swappart
     # done
 
-    echo "zeroize free space and shrink:"
-    for mtpt in $( mount -t xfs | awk '{print $3}' ); do
-        echo "- zeroize $mtpt"
-        dd if=/dev/zero of=$mtpt/ddfile
-        rm -f $mtpt/ddfile
-        echo "- shrink $mtpt"
-        vmware-toolbox-cmd disk shrink $mtpt
+    echo "shrink all drives:"
+    for shrinkpart in $( vmware-toolbox-cmd disk list ); do
+        vmware-toolbox-cmd disk shrink ${shrinkpart}
     done
 fi
 
