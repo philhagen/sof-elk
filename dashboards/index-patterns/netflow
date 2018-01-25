@@ -137,6 +137,7 @@
 {"name": "type.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "uid", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
 {"name": "version", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
+{"name": "vpcflow_account_id", "type": "number", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
 {"name": "vpcflow_action", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": false}
 {"name": "vpcflow_interface_id", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": true, "doc_values": false}
 {"name": "vpcflow_interface_id.raw", "type": "string", "count": 0, "scripted": false, "indexed": true, "analyzed": false, "doc_values": true}
