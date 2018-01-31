@@ -78,7 +78,7 @@ sourcedir_index_mapping = {
     'httpd': 'httpdlog',
     'plaso': 'timelineplaso',
 }
-# automaticcally create the reverse dictionary
+# automatically create the reverse dictionary
 index_sourcedir_mapping = {}
 for k, v in sourcedir_index_mapping.iteritems():
     index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
