@@ -72,6 +72,16 @@ def ctrlc_handler(signal, frame):
     exit()
 signal.signal(signal.SIGINT, ctrlc_handler)
 
+# get a list of indices other than .kibana
+def get_es_indices(es):
+    index_dict = {}
+    indices = es.indices.get_aliases().keys()
+    for index in indices:
+        if index != '.kibana':
+            baseindex = index.split('-')[0]
+            index_dict[baseindex] = True
+    return index_dict.keys()
+
 # this dictionary associates each on-disk source location with its correspodning ES index root name
 sourcedir_index_mapping = {
     'syslog': 'logstash',
@@ -91,6 +101,7 @@ parser = argparse.ArgumentParser(description='Clear the SOF-ELK(R) Elasticsearch
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-i', '--index', dest='index', help='Index to clear.  Use "-i list" to see what is currently loaded.')
 group.add_argument('-f', '--filepath', dest='filepath', help='Local directory root or single local file to clear.')
+group.add_argument('-a', '--all', dest='nukeitall', action='store_true', default=False, help='Remove all documents from all indices.')
 parser.add_argument('-r', '--reload', dest='reload', action='store_true', default=False, help='Reload source files from SOF-ELK(R) filesystem.  Requires "-f".')
 args = parser.parse_args()
 
@@ -102,19 +113,14 @@ if args.reload and os.geteuid() != 0:
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 # get list of top-level indices if requested
-top_level_indices = {}
 if args.index == 'list':
-    indices = es.indices.get_aliases().keys()
-    for index in indices:
-        if not index.startswith('.'):
-            baseindex = index.split('-')[0]
-            top_level_indices[baseindex] = True
-    if len(top_level_indices.keys()) == 0:
+    populated_indices = get_es_indices(es)
+    if len(populated_indices) == 0:
         print 'There are no active data indices in Elasticsearch'
     else:
         print 'The following indices are currently active in Elasticsearch:'
-        for index in top_level_indices.keys():
-            print '- %s' % ( index)
+        for index in populated_indices:
+            print '- %s' % (index)
     exit(0)
 
 ### delete from existing ES indices
@@ -133,6 +139,10 @@ if args.filepath:
         print 'File path must start with "%s".  Exiting.' % (topdir)
         exit(1)
 
+elif args.nukeitall:
+    populated_indices = [s + '-*' for s in get_es_indices(es)]
+    res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
+
 else:
     res = es.search(index='%s-*' % (args.index), body={'query': {'match_all': {}}})
 
@@ -149,11 +159,14 @@ if doccount > 0:
     if args.filepath:
         es.delete_by_query(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
 
+    elif args.nukeitall:
+        es.indices.delete(index='%s' % (','.join(populated_indices)), ignore=[400, 404])
+
     else:
-        delres = es.indices.delete(index='%s-*' % (args.index), ignore=[400, 404])
+        es.indices.delete(index='%s-*' % (args.index), ignore=[400, 404])
 
 else:
-    print 'No matching documents in the %s index.  Nothing to delete.' % (args.index)
+    print 'No matching documents.  Nothing to delete.'
 
 ### reload from source files
 if args.reload:
@@ -165,11 +178,13 @@ if args.reload:
             matches = matches + file_path_matches(filepath)
     elif args.filepath:
         matches = file_path_matches(args.filepath)
+    elif args.nukeitall:
+        matches = file_path_matches(topdir)
 
     # get user confirmation to proceed
     print 'will re-load the following files:'
     for match in matches:
-            print '- %s' % ( match )
+            print '- %s' % (match)
     print
 
     if not confirm(prompt='Reload these files?', resp=False):
