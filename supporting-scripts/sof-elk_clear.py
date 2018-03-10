@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # SOF-ELK(R) Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2018 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath
@@ -136,7 +136,7 @@ else:
 doccount = res['hits']['total']
 if doccount > 0:
     # get user confirmation to proceed
-    print '%d documents found\n' % res['hits']['total']
+    print '%d documents found\n' % doccount
 
     if not confirm(prompt='Delete these documents permanently?', resp=False):
         print 'Will NOT delete documents.  Exiting.'
