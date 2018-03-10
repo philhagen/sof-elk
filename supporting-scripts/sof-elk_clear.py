@@ -12,6 +12,9 @@ import os
 import argparse
 import signal
 
+# set the top-level root location for all loaded files
+topdir = '/logstash/'
+
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
 def confirm(prompt=None, resp=False):
     """prompts for yes or no response from the user. Returns True for yes and
@@ -82,7 +85,7 @@ sourcedir_index_mapping = {
 index_sourcedir_mapping = {}
 for k, v in sourcedir_index_mapping.iteritems():
     index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
-    index_sourcedir_mapping[v].append('/logstash/' + k)
+    index_sourcedir_mapping[v].append(topdir + k)
 
 parser = argparse.ArgumentParser(description='Clear the SOF-ELK(R) Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
 group = parser.add_mutually_exclusive_group(required=True)
@@ -117,7 +120,7 @@ if args.index == 'list':
 ### delete from existing ES indices
 # display document count
 if args.filepath:
-    if args.filepath.startswith('/logstash/'):
+    if args.filepath.startswith(topdir):
         # force-set the index based on the directory
         try:
             args.index = sourcedir_index_mapping[args.filepath.split('/')[2]]
@@ -127,7 +130,7 @@ if args.filepath:
 
         res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
     else:
-        print 'File path must start with "/logstash/".  Exiting.'
+        print 'File path must start with "%s".  Exiting.' % (topdir)
         exit(1)
 
 else:
