@@ -6,7 +6,6 @@
   },
   "mappings" : {
     "_default_" : {
-      "_all" : { "enabled" : true },
       "dynamic_templates" : [ 
         {
           "ip_address_fields" : {
@@ -46,7 +45,7 @@
         "source_geo" : {
           "type" : "object",
           "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+            "location" : { "type" : "geo_point", "ignore_malformed" : false }
           }
         }
       }

@@ -61,7 +61,7 @@ elif args.mode == 'load':
 
     new_mapping = OrderedDict()
     new_mapping['attributes'] = {}
-    new_mapping['attributes']['fields'] = '[%s]' % (','.join(field_list))
+    new_mapping['attributes']['fields'] = '[%s]' % (',\n'.join(field_list))
     new_mapping['attributes']['timeFieldName'] = '@timestamp'
     new_mapping['attributes']['title'] = args.index + '-*'
 
