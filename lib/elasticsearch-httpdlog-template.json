@@ -17,7 +17,7 @@
         {
           "ipv6_address_fields" : {
             "match" : "*_ipv6",
-            "mapping" : { "type" : "string", "index" : "not_analyzed" }
+            "mapping" : { "type" : "ip" }
           }
         },
         {
@@ -25,23 +25,23 @@
             "match" : "*",
             "match_mapping_type" : "string",
             "mapping" : {
-              "type" : "string", "index" : "analyzed", "omit_norms" : true,
+              "type" : "text",
               "fields" : {
-                "raw" : { "type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
+                "keyword" : { "type" : "keyword" }
               }
             }
           }
         }
       ],
       "properties" : {
-        "@version" : { "type" : "string", "index" : "not_analyzed" },
-        "httpversion" : { "type" : "string", "index" : "not_analyzed" },
-        "ident" : { "type" : "string", "index" : "not_analyzed" },
+        "@version" : { "type" : "keyword" },
+        "httpversion" : { "type" : "keyword" },
+        "ident" : { "type" : "keyword" },
         "ips" : { "type" : "ip" },
         "response_code" : { "type" : "short" },
-        "path" : { "type" : "string", "index" : "not_analyzed" },
-        "original_message" : { "type" : "string", "index" : "not_analyzed" },
-        "request_method" : { "type" : "string", "index" : "not_analyzed" },
+        "path" : { "type" : "keyword" },
+        "original_message" : { "type" : "keyword" },
+        "request_method" : { "type" : "keyword" },
 
         "source_geo" : {
           "type" : "object",
