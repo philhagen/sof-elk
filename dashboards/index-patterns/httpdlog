@@ -54,7 +54,6 @@
 {"name": "destination_geo.dma_code", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_geo.latitude", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_geo.location", "type": "geo_point", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "destination_geo.location.geohash", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_geo.longitude", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_geo.number", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "destination_geo.number.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
@@ -138,7 +137,6 @@
 {"name": "source_geo.dma_code", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_geo.latitude", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_geo.location", "type": "geo_point", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "source_geo.location.geohash", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_geo.longitude", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_geo.number", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "source_geo.number.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
