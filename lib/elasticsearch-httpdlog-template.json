@@ -16,17 +16,18 @@
         {
           "string_fields" : {
             "match" : "*",
-            "match_mapping_type" : "string",
+            "match_mapping_type" : "text",
             "mapping" : {
-              "type" : "text",
+              "type" : "text", "norms" : false,
               "fields" : {
-                "keyword" : { "type" : "keyword" }
+                "keyword" : { "type" : "keyword", "ignore_above" : 256 }
               }
             }
           }
         }
       ],
       "properties" : {
+        "@timestamp" : { "type" : "date" },
         "@version" : { "type" : "keyword" },
         "httpversion" : { "type" : "keyword" },
         "ident" : { "type" : "keyword" },
@@ -37,9 +38,12 @@
         "request_method" : { "type" : "keyword" },
 
         "source_geo" : {
-          "type" : "object",
+          "dynamic" : true,
           "properties" : {
-            "location" : { "type" : "geo_point", "ignore_malformed" : false }
+            "ip" : { "type" : "ip" },
+            "location" : { "type" : "geo_point" },
+            "latitude" : { "type" : "half_float" },
+            "longitude" : { "type" : "half_float" }
           }
         }
       }
