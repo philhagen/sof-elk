@@ -14,12 +14,6 @@
           }
         },
         {
-          "ipv6_address_fields" : {
-            "match" : "*_ipv6",
-            "mapping" : { "type" : "ip" }
-          }
-        },
-        {
           "string_fields" : {
             "match" : "*",
             "match_mapping_type" : "string",
