@@ -68,9 +68,6 @@
           "source_geo": {
             "dynamic": true,
             "properties": {
-              "ip": {
-                "type": "ip"
-              },
               "location": {
                 "type": "geo_point"
               },
@@ -85,9 +82,6 @@
           "destination_geo": {
             "dynamic": true,
             "properties": {
-              "ip": {
-                "type": "ip"
-              },
               "location": {
                 "type": "geo_point"
               },
@@ -102,9 +96,6 @@
           "relay_geo": {
             "dynamic": true,
             "properties": {
-              "ip": {
-                "type": "ip"
-              },
               "location": {
                 "type": "geo_point"
               },
@@ -119,9 +110,6 @@
           "answer_geo": {
             "dynamic": true,
             "properties": {
-              "ip": {
-                "type": "ip"
-              },
               "location": {
                 "type": "geo_point"
               },
