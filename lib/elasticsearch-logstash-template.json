@@ -17,9 +17,9 @@
         {
           "string_fields" : {
             "match" : "*",
-            "match_mapping_type" : "text",
+            "match_mapping_type" : "string",
             "mapping" : {
-              "type" : "text", "norms" : "false",
+              "type" : "text", "norms" : false,
               "fields" : {
                 "keyword" : { "type" : "keyword", "ignore_above" : 256 }
               }
