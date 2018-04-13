@@ -6,7 +6,6 @@
   },
   "mappings" : {
     "_default_" : {
-      "_all" : { "enabled" : true },
       "dynamic_templates" : [
         {
           "ip_address_fields" : {

@@ -6,7 +6,7 @@
   },
   "mappings" : {
     "_default_" : {
-      "dynamic_templates" : [ 
+      "dynamic_templates" : [
         {
           "ip_address_fields" : {
             "match" : "*_ip",
