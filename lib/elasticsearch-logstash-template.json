@@ -39,9 +39,12 @@
         "original_message" : { "type" : "keyword" },
 
         "source_geo" : {
-          "type" : "object",
+          "dynamic" : true,
           "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+            "ip" : { "type" : "ip" },
+            "location" : { "type" : "geo_point" },
+            "latitude" : { "type" : "half_float" },
+            "longitude" : { "type" : "half_float" }
           }
         },
         "destination_geo" : {
