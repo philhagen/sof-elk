@@ -20,6 +20,6 @@ loadkeys $1 > /dev/null
 echo "Changed keymap for this session to ${1}"
 
 # Permanent keymap change
-sed -i 's/keymap=us/keymap=$1/g' /etc/default/grub
+sed -i 's/^keymap=/keymap=$1/g' /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg > /dev/null 2>/dev/null
 echo "Changed keymap persistently to ${1}"
