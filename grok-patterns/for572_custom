@@ -36,9 +36,12 @@ PDNS_ANSWER (?:%{PDNS_IPORHOST}|%{NOTPIPE})
 EMAILADDRESSLOCALPART [a-zA-Z][a-zA-Z0-9_.+-=:]+
 EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME_CUSTOM}
 
+# Custom URI path, to accommodate "OPTIONS * HTTP/1.0" requests
+URIPATH_CUSTOM [%{URIPATH}|*]
+
 # custom HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
 HTTPDUSER %{EMAILADDRESS}|%{USER}
-COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} %{URIPATH:request}(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
+COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{URIPATH_CUSTOM:request}|*)(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
 COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:referrer} %{QS:agent}
 
 # hours:minutes:seconds, to allow any number of hours
