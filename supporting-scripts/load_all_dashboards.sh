@@ -14,8 +14,8 @@ kibana_index=.kibana
 
 index_patterns="httpdlog netflow logstash timelineplaso"
 
-kibana_version=$( jq -r '.version' < /opt/kibana/package.json )
-kibana_build=$(jq -r '.build.number' < /opt/kibana/package.json )
+kibana_version=$( jq -r '.version' < /usr/share/kibana/package.json )
+kibana_build=$(jq -r '.build.number' < /usr/share/kibana/package.json )
 
 dashboard_list="httpd introductory netflow syslog timelineplaso "
 dashboard_dir="/usr/local/sof-elk/dashboards/"
