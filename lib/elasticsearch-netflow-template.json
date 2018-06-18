@@ -1,6 +1,6 @@
 {
   "index_patterns": [
-    "httpdlog-*"
+    "netflow-*"
   ],
   "settings": {
     "index": {
