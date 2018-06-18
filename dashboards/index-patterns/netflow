@@ -41,8 +41,7 @@
 {"name": "destination_geo.region_name.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_geo.timezone", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "destination_geo.timezone.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "destination_ip", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
-{"name": "destination_ip.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
+{"name": "destination_ip", "type": "ip", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_mask", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "destination_port", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "engine_id", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
@@ -59,13 +58,11 @@
 {"name": "input.type", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "input.type.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "input_snmp", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "ips", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
-{"name": "ips.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
+{"name": "ips", "type": "ip", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "last_switched", "type": "date", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "missed_bytes", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "missed_bytes_vis", "type": "number", "count": 0, "scripted": true, "searchable": true, "aggregatable": true, "readFromDocValues": false, "lang": "painless", "script": "doc['missed_bytes'].value"}
-{"name": "next_hop_ip", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
-{"name": "next_hop_ip.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
+{"name": "next_hop_ip", "type": "ip", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "offset", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "out_bytes", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "out_bytes_vis", "type": "number", "count": 0, "scripted": true, "searchable": true, "aggregatable": true, "readFromDocValues": false, "lang": "painless", "script": "doc['out_packets'].value"}
@@ -106,8 +103,7 @@
 {"name": "source_geo.region_name.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_geo.timezone", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "source_geo.timezone.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "source_ip", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
-{"name": "source_ip.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
+{"name": "source_ip", "type": "ip", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_mask", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_port", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "source_tos", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
