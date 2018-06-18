@@ -1,96 +1,93 @@
 {
-  "netflow": {
-    "order": 1,
-    "index_patterns": [
-      "httpdlog-*"
-    ],
-    "settings": {
-      "index": {
-        "refresh_interval": "5s"
-      }
-    },
-    "mappings": {
-      "_default_": {
-        "dynamic_templates": [
-          {
-            "ip_address_fields": {
-              "match": "*_ip",
-              "mapping": {
-                "type": "ip"
-              }
+  "index_patterns": [
+    "httpdlog-*"
+  ],
+  "settings": {
+    "index": {
+      "refresh_interval": "5s"
+    }
+  },
+  "mappings": {
+    "_default_": {
+      "dynamic_templates": [
+        {
+          "ip_address_fields": {
+            "match": "*_ip",
+            "mapping": {
+              "type": "ip"
             }
-          },
-          {
-            "string_fields": {
-              "match": "*",
-              "match_mapping_type": "string",
-              "mapping": {
-                "type": "text",
-                "norms": false,
-                "fields": {
-                  "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                  }
+          }
+        },
+        {
+          "string_fields": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "text",
+              "norms": false,
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
                 }
               }
             }
           }
-        ],
-        "properties": {
-          "@version": {
-            "type": "keyword"
-          },
-          "host": {
-            "type": "ip"
-          },
-          "source_port": {
-            "type": "integer"
-          },
-          "destination_port": {
-            "type": "integer"
-          },
-          "ips": {
-            "type": "ip"
-          },
-          "path": {
-            "type": "keyword"
-          },
-          "original_message": {
-            "type": "keyword"
-          },
-  
-          "source_geo": {
-            "dynamic": true,
-            "properties": {
-              "location": {
-                "type": "geo_point"
-              },
-              "latitude": {
-                "type": "half_float"
-              },
-              "longitude": {
-                "type": "half_float"
-              }
+        }
+      ],
+      "properties": {
+        "@version": {
+          "type": "keyword"
+        },
+        "host": {
+          "type": "ip"
+        },
+        "source_port": {
+          "type": "integer"
+        },
+        "destination_port": {
+          "type": "integer"
+        },
+        "ips": {
+          "type": "ip"
+        },
+        "path": {
+          "type": "keyword"
+        },
+        "original_message": {
+          "type": "keyword"
+        },
+
+        "source_geo": {
+          "dynamic": true,
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            },
+            "latitude": {
+              "type": "half_float"
+            },
+            "longitude": {
+              "type": "half_float"
             }
-          },
-          "destination_geo": {
-            "dynamic": true,
-            "properties": {
-              "location": {
-                "type": "geo_point"
-              },
-              "latitude": {
-                "type": "half_float"
-              },
-              "longitude": {
-                "type": "half_float"
-              }
+          }
+        },
+        "destination_geo": {
+          "dynamic": true,
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            },
+            "latitude": {
+              "type": "half_float"
+            },
+            "longitude": {
+              "type": "half_float"
             }
           }
         }
       }
-    },
-    "aliases": {}
-  }
+    }
+  },
+  "aliases": {}
 }
