@@ -90,7 +90,6 @@
 {"name": "original_message", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "password", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": false}
 {"name": "path", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "path.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "ports", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "prospector.type", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "prospector.type.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}

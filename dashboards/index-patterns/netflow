@@ -49,8 +49,7 @@
 {"name": "first_switched", "type": "date", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "flow_records", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "flow_records_vis", "type": "number", "count": 0, "scripted": true, "searchable": true, "aggregatable": true, "readFromDocValues": false, "lang": "painless", "script": "doc['flow_records'].value"}
-{"name": "host", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
-{"name": "host.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
+{"name": "host", "type": "ip", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "in_bytes", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "in_bytes_vis", "type": "number", "count": 0, "scripted": true, "searchable": true, "aggregatable": true, "readFromDocValues": false, "lang": "painless", "script": "doc['in_bytes'].value"}
 {"name": "in_packets", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
@@ -69,8 +68,7 @@
 {"name": "out_packets", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "out_packets_vis", "type": "number", "count": 0, "scripted": true, "searchable": true, "aggregatable": true, "readFromDocValues": false, "lang": "painless", "script": "doc['out_packets'].value"}
 {"name": "output_snmp", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
-{"name": "path", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
-{"name": "path.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
+{"name": "path", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "ports", "type": "number", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
 {"name": "protocol", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": false, "readFromDocValues": false}
 {"name": "protocol.keyword", "type": "string", "count": 0, "scripted": false, "searchable": true, "aggregatable": true, "readFromDocValues": true}
