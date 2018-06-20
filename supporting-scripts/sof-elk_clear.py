@@ -72,12 +72,13 @@ def ctrlc_handler(signal, frame):
     exit()
 signal.signal(signal.SIGINT, ctrlc_handler)
 
-# get a list of indices other than .kibana
+# get a list of indices other than the standard set
 def get_es_indices(es):
+    standard_indices = ('.kibana', '.logstash', '.elasticsearch')
     index_dict = {}
     indices = es.indices.get_aliases().keys()
     for index in indices:
-        if index != '.kibana':
+        if index not in standard_indices:
             baseindex = index.split('-')[0]
             index_dict[baseindex] = True
     return index_dict.keys()
