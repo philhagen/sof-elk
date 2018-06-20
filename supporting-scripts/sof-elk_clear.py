@@ -76,7 +76,7 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 def get_es_indices(es):
     standard_indices = ('.kibana', '.logstash', '.elasticsearch')
     index_dict = {}
-    indices = es.indices.get_aliases().keys()
+    indices = es.indices.get_alias('*').keys()
     for index in indices:
         if index not in standard_indices:
             baseindex = index.split('-')[0]
