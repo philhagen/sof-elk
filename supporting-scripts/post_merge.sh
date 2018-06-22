@@ -17,4 +17,6 @@ for file in /usr/local/sof-elk/configfiles/*; do
 done
 
 /usr/bin/systemctl restart filebeat
-/usr/bin/systemctl reload logstash
+for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
+    kill -s HUP $lspid
+done
