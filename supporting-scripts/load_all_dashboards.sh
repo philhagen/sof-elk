@@ -10,14 +10,13 @@ ARGC=$#
 
 es_host=localhost
 es_port=9200
+kibana_host=localhost
+kibana_port=5601
 kibana_index=.kibana
-
-index_patterns="httpdlog netflow logstash timelineplaso"
 
 kibana_version=$( jq -r '.version' < /usr/share/kibana/package.json )
 kibana_build=$(jq -r '.build.number' < /usr/share/kibana/package.json )
 
-dashboard_list="httpd introductory netflow syslog timelineplaso "
 dashboard_dir="/usr/local/sof-elk/dashboards/"
 
 # enter a holding pattern until the elasticsearch server is available, but don't wait too long
@@ -33,35 +32,22 @@ until curl -s -XGET http://${es_host}:${es_port}/_cluster/health > /dev/null ; d
     sleep ${interval};
 done
 
-# create the index patterns from files
-for indexid in ${index_patterns}; do
-    /usr/local/sbin/index_mapping_management.py --load -f ${dashboard_dir}/index-patterns/${indexid} -i ${indexid}
-done
-
 # set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/config/${kibana_version} -d "{\"buildNum\": ${kibana_build}, \"defaultIndex\": \"logstash-*\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}" > /dev/null
+curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"defaultIndex\": \"logstash\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}}" > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
-curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"index.priority\": 100 }" > /dev/null
+curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
 # re-insert all ES templates in case anything has changed
 # this will not change existing mappings, just new indexes as they are created
 # (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
 for es_template in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template.json | sed 's/.*elasticsearch-\(.*\)-template.json/\1/' ); do
-    curl -s -XPUT -H 'Content-Type: application/json' http://localhost:9200/_template/${es_template} -d @/usr/local/sof-elk/lib/elasticsearch-${es_template}-template.json > /dev/null
+    curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/_template/${es_template} -d @/usr/local/sof-elk/lib/elasticsearch-${es_template}-template.json > /dev/null
 done
 
 # create the dashboards, searches, and visualizations from files
-for dashboard in ${dashboard_list}; do
-    for type in ${dashboard_dir}${dashboard}/*; do
-        type=$( basename $type )
-
-        for object in ${dashboard_dir}${dashboard}/${type}/*; do
-            object=$( basename ${object} )
-            curl -s -XDELETE -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/${type}/${object} > /dev/null
-            curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/${type}/${object} -T ${dashboard_dir}${dashboard}/${type}/${object} > /dev/null
-        done
-    done
+for dashboardfile in ${dashboard_dir}/*.json; do
+    curl -s -XPOST 'http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true' -H 'kbn-xsrf:true' -H 'Content-type:application/json' -d @$dashboardfile > /dev/null
 done
 
 # # prevent this script from automatically running again on next boot
