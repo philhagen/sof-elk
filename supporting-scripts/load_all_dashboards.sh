@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2016 Lewes Technology Consulting, LLC
+# (C)2018 Lewes Technology Consulting, LLC
 #
 # This script is used to load all dashboards, visualizations, saved searches, and index patterns to Elasticsearch
 
@@ -47,7 +47,7 @@ done
 
 # create the dashboards, searches, and visualizations from files
 for dashboardfile in ${dashboard_dir}/*.json; do
-    curl -s -XPOST 'http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true' -H 'kbn-xsrf:true' -H 'Content-type:application/json' -d @$dashboardfile > /dev/null
+    curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${dashboardfile} > /dev/null
 done
 
 # # prevent this script from automatically running again on next boot
