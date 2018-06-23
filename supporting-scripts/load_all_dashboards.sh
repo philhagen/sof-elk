@@ -33,7 +33,7 @@ until curl -s -XGET http://${es_host}:${es_port}/_cluster/health > /dev/null ; d
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"defaultIndex\": \"logstash\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\"}}" > /dev/null
+curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"defaultIndex\": \"logstash\", \"dateFormat:tz\": \"Etc/UTC\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\", \"telemetry:optIn\": false}}" > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
