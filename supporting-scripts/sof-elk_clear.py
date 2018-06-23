@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 # SOF-ELK(R) Supporting script
 # (C)2018 Lewes Technology Consulting, LLC
 #
