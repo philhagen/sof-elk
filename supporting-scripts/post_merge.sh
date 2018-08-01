@@ -16,7 +16,17 @@ for file in /usr/local/sof-elk/configfiles/*; do
     ln -s $file /etc/logstash/conf.d/$( basename $file )
 done
 
+# other housecleaning
+LOGO_PATH="/usr/share/kibana/src/core_plugins/kibana/public/assets/sof-elk.svg"
+if [ -a $LOGO_PATH ]; then
+    rm -rf $LOGO_PATH
+fi
+ln -fs /usr/local/sof-elk/lib/sof-elk.svg $LOGO_PATH
+
+# restart filebeat
 /usr/bin/systemctl restart filebeat
+
+# reload logstash
 for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
     kill -s HUP $lspid
 done
