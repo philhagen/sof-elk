@@ -7,7 +7,7 @@
 issueupdate_config() {
         IP=$( ip address show $( ip route|grep default | awk '{print $5}' ) | awk '/inet / {print $2}' | cut -d '/' -f 1 )
             cat /etc/issue.stock | sed -e "s/<%IP%>/$IP/" > /etc/issue
-                skill -9 agetty
+            skill -9 agetty
 }
 
 issueupdate_restore() {
