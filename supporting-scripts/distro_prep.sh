@@ -67,17 +67,26 @@ echo "removing elasticsearch templates"
 curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
 echo "removing elasticsearch .kibana index"
 curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
+
 echo "stopping filebeat service"
 systemctl stop filebeat
 echo "removing filebeat registry"
 rm -f /var/lib/filebeat/*
+
 echo "removing any input logs from prior parsing"
 rm -rf /logstash/*/*
+
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 
 echo "stopping network"
 systemctl stop network
+
+echo "stopping elasticsearch"
+systemctl stop elasticsearch
+
+echo "stopping logstash"
+systemctl stop logstash
 
 echo "clearing MAC address from interface"
 grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-ens33 > /tmp/tmp_ifcfg_ens
