@@ -103,7 +103,7 @@
         "hits": 0,
         "description": "",
         "panelsJSON": "[{\"panelIndex\":\"2\",\"gridData\":{\"x\":0,\"y\":40,\"w\":48,\"h\":35,\"i\":\"2\"},\"id\":\"e45686d0-3021-11e8-9faf-f77fbc81a50d\",\"type\":\"search\",\"version\":\"6.3.0\"},{\"panelIndex\":\"3\",\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":25,\"i\":\"3\"},\"id\":\"a7b68c60-3022-11e8-9faf-f77fbc81a50d\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"4\",\"gridData\":{\"x\":0,\"y\":25,\"w\":12,\"h\":15,\"i\":\"4\"},\"id\":\"33820360-3022-11e8-9faf-f77fbc81a50d\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"5\",\"gridData\":{\"x\":12,\"y\":25,\"w\":12,\"h\":15,\"i\":\"5\"},\"id\":\"20daa9f0-3023-11e8-9faf-f77fbc81a50d\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"6\",\"gridData\":{\"x\":24,\"y\":25,\"w\":8,\"h\":15,\"i\":\"6\"},\"id\":\"f8529370-3023-11e8-9faf-f77fbc81a50d\",\"type\":\"visualization\",\"version\":\"6.3.0\"}]",
-        "optionsJSON": "{\"darkTheme\":true,\"hidePanelTitles\":false,\"useMargins\":true}",
+        "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
         "timeRestore": false,
         "kibanaSavedObjectMeta": {
           "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
