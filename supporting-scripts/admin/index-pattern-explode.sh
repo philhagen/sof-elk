@@ -16,7 +16,7 @@ if [ ! -s ${DASHID}_fields.txt ]; then
     echo "NOTE: ${DASHID} did not have any index-pattern fields"
     rm ${DASHID}_fields.txt
 fi
-cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fieldFormatMap' | jq -c '.[]' > ${DASHID}_fieldFormatMap.txt
+cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fieldFormatMap' | jq '.' > ${DASHID}_fieldFormatMap.txt
 if [ ! -s ${DASHID}_fieldFormatMap.txt ]; then
     echo "NOTE: ${DASHID} did not have any index-pattern fieldFormats"
     rm ${DASHID}_fieldFormatMap.txt
