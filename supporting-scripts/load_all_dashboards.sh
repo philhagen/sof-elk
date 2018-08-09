@@ -47,7 +47,31 @@ curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/$
 
 # create the dashboards, searches, and visualizations from files
 for dashboardfile in ${dashboard_dir}/*.json; do
-    curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${dashboardfile} > /dev/null
+    DASHID=$( basename ${dashboardfile} | cut -d \. -f 1 )
+    FIELDFILE=${dashboard_dir/${DASHID}_fields.txt
+    FIELDFORMATFILE=${dashboard_dir}/${DASHID}_fieldFormatMap.txt
+
+    if [ -f ${FIELDFILE} ]; then
+        TMPDASH=$( mktemp )
+        NEWFIELDS=$( cat ${FIELDFILE} |sed '1s/^/[/; $!s/$/,/; $s/$/]/' | jq -scR '.' )
+        if [ -f ${FIELDFORMATFILE} ]; then
+# todo
+        fi
+
+        cat ${dashboardfile} | jq --argjson newfields "$NEWFIELDS"  '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields' > ${TMPDASH}
+        curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${TMPDASH} > /dev/null
+        rm -f ${TMPDASH}
+
+    else
+        curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${dashboardfile} > /dev/null
+    fi
+
+# NEWFIELDS=$( cat 99d1b510-72b3-11e8-9159-894bd7d62352_fields.txt |sed '1s/^/[/; $!s/$/,/; $s/$/]/' | jq -scR '.' )
+# old way: cat 99d1b510-72b3-11e8-9159-894bd7d62352.json |jq --argjson newfields "$NEWFIELDS"  '(.objects) |= (map((if .type == "index-pattern" then .attributes.fields=$newfields else . end)))'|less
+# jq 1.5+ way: cat 99d1b510-72b3-11e8-9159-894bd7d62352.json |jq --argjson newfields "$NEWFIELDS"  '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields' | less
+
+
+    #curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${dashboardfile} > /dev/null
 done
 
 # # prevent this script from automatically running again on next boot
