@@ -9,7 +9,7 @@ for DASHID in $( curl -s "http://localhost:9200/.kibana/_search?q=type:dashboard
 
     # get the dashboard content, filter to remove unnecessary fields
     curl -s -XGET http://localhost:5601/api/kibana/dashboards/export?dashboard=${DASHID} > ${DASHID}_raw.json 2> /dev/null
-    cat ${DASHID}_raw.json | jq '.|del(.objects[].version)|del(.objects[].attributes.version)' > ${DASHID}.json 2> /dev/null
+    cat ${DASHID}_raw.json | jq '.|del(.objects[].version)|del(.objects[].attributes.version)|del(.objects[].updated_at)' > ${DASHID}.json 2> /dev/null
     RES=$?
     if [ $RES -eq 0 ]; then
         rm -f ${DASHID}_raw.json
