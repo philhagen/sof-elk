@@ -15,15 +15,40 @@ for DASHID in $( curl -s "http://localhost:9200/.kibana/_search?q=type:dashboard
         rm -f ${DASHID}_raw.json
     else
         rm -f ${DASHID}.json
-        echo "WARNING!! ${DASHID} paring-down failed.  This must be manually performed - the source data likely is missing some closure brackets."
+        echo "WARNING!! ${DASHID} pare-down failed.  This must be manually performed - the source data likely is missing some closure brackets."
         continue
     fi
 
-    # remove the index-patterns on the intro dashboard
+    # remove the index-patterns on the intro dashboard file
     DASHTITLE=$( cat ${DASHID}.json | jq -r ".objects[] | select(.id == \"${DASHID}\") | .attributes.title" )
     if [ "${DASHTITLE}" == "SOF-ELK® VM Introduction Dashboard" ]; then
-        cat ${DASHID}.json | jq ". | del(.objects[] | select(.type==\"index-pattern\"))" > ${DASHID}_temp.json
+        cat ${DASHID}.json | jq ". | del(.objects[] | select(.type == \"index-pattern\"))" > ${DASHID}_temp.json
         rm ${DASHID}.json
         mv ${DASHID}_temp.json ${DASHID}.json
     fi
+
+    # pull out fields and fieldFormats to their own files
+    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | jq -c '.[]' > ${DASHID}_fields.txt
+    if [ ! -s ${DASHID}_fields.txt ]; then
+        echo "NOTE: ${DASHID} did not have any index-pattern fields"
+        rm ${DASHID}_fields.txt
+    else
+        # replace the fields in the original file with a stub
+### TODO: THIS NEEDS TO BE MORE RESILIENT - WE'RE LUCKY THERE ARE NO 'fields' ITEMS IN NON-INDEX-PATTERN TYPES
+        cat ${DASHID}.json | jq 'del(.objects[].attributes.fields)' > ${DASHID}_temp.json
+        rm ${DASHID}.json
+        mv ${DASHID}_temp.json ${DASHID}.json
+    fi
+    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fieldFormatMap' | jq '.' > ${DASHID}_fieldFormatMap.txt
+    if [ ! -s ${DASHID}_fieldFormatMap.txt ]; then
+        echo "NOTE: ${DASHID} did not have any index-pattern fieldFormats"
+        rm ${DASHID}_fieldFormatMap.txt
+    else
+        # replace the fieldFormats in the original file with a stub
+### TODO: THIS NEEDS TO BE MORE RESILIENT - WE'RE LUCKY THERE ARE NO 'fieldFormatMap' ITEMS IN NON-INDEX-PATTERN TYPES
+        cat ${DASHID}.json | jq 'del(.objects[].attributes.fieldFormatMap)' > ${DASHID}_temp.json
+        rm ${DASHID}.json
+        mv ${DASHID}_temp.json ${DASHID}.json
+    fi
+
 done
