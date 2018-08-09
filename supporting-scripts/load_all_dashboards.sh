@@ -46,19 +46,23 @@ curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/
 curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
 # create the dashboards, searches, and visualizations from files
+# TODO: This will not handle if there are more than one index-pattern per dashboard.  I dont *think* this should ever happen, but may need more fine-grained control in the export/import process
 for dashboardfile in ${dashboard_dir}/*.json; do
     DASHID=$( basename ${dashboardfile} | cut -d \. -f 1 )
-    FIELDFILE=${dashboard_dir/${DASHID}_fields.txt
+    FIELDFILE=${dashboard_dir}/${DASHID}_fields.txt
     FIELDFORMATFILE=${dashboard_dir}/${DASHID}_fieldFormatMap.txt
 
     if [ -f ${FIELDFILE} ]; then
         TMPDASH=$( mktemp )
         NEWFIELDS=$( cat ${FIELDFILE} |sed '1s/^/[/; $!s/$/,/; $s/$/]/' | jq -scR '.' )
+
         if [ -f ${FIELDFORMATFILE} ]; then
-# todo
+            NEWFIELDFORMATMAP=$( cat ${FIELDFORMATFILE} | jq -c '.' )
+            cat ${dashboardfile} | jq --argjson newfields "$NEWFIELDS" --arg newfieldformatmap "$NEWFIELDFORMATMAP" '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields | (.objects[] | select(.type == "index-pattern").attributes.fieldFormatMap) |= $newfieldformatmap' > ${TMPDASH}
+        else
+            cat ${dashboardfile} | jq --argjson newfields "$NEWFIELDS"  '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields' > ${TMPDASH} > /dev/null
         fi
 
-        cat ${dashboardfile} | jq --argjson newfields "$NEWFIELDS"  '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields' > ${TMPDASH}
         curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${TMPDASH} > /dev/null
         rm -f ${TMPDASH}
 
@@ -67,8 +71,12 @@ for dashboardfile in ${dashboard_dir}/*.json; do
     fi
 
 # NEWFIELDS=$( cat 99d1b510-72b3-11e8-9159-894bd7d62352_fields.txt |sed '1s/^/[/; $!s/$/,/; $s/$/]/' | jq -scR '.' )
+# NEWFIELDFORMATMAP=': FF=$( cat 99d1b510-72b3-11e8-9159-894bd7d62352_fieldFormatMap.txt|jq -c '.' )
 # old way: cat 99d1b510-72b3-11e8-9159-894bd7d62352.json |jq --argjson newfields "$NEWFIELDS"  '(.objects) |= (map((if .type == "index-pattern" then .attributes.fields=$newfields else . end)))'|less
 # jq 1.5+ way: cat 99d1b510-72b3-11e8-9159-894bd7d62352.json |jq --argjson newfields "$NEWFIELDS"  '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields' | less
+#              cat 99d1b510-72b3-11e8-9159-894bd7d62352.json | jq --arg newfieldformatmap "$NEWFIELDFORMATMAP" '(.objects[] | select(.type == "index-pattern").attributes.fieldFormatMap) |= $newfieldformatmap'
+# for both:
+# cat 99d1b510-72b3-11e8-9159-894bd7d62352.json |jq --argjson newfields "$NEWFIELDS" --arg newfieldformatmap "$NEWFIELDFORMATMAP" '(.objects[] | select(.type == "index-pattern").attributes.fields) |= $newfields | (.objects[] | select(.type == "index-pattern").attributes.fieldFormatMap) |= $newfieldformatmap' | less
 
 
     #curl -s -XPOST "http://${kibana_host}:${kibana_port}/api/kibana/dashboards/import?force=true" -H "kbn-xsrf:true" -H "Content-type:application/json" -d @${dashboardfile} > /dev/null
