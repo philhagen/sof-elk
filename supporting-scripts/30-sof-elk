@@ -27,7 +27,7 @@ if [ -d $ETCDIR/dhclient.d ]; then
             subsystem="${f%.sh}"
             subsystem="${subsystem##*/}"
             . ${f}
-            if [ "$subsystem" = "issueupdate"]; the
+            if [ "$subsystem" = "issueupdate"]; then
                 if [ "$2" = "up" ]; then
                     "${subsystem}_config"
                 elif [ "$2" = "dhcp4-change" ]; then
