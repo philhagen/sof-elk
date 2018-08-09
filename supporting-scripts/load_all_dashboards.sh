@@ -32,18 +32,18 @@ until curl -s -XGET http://${es_host}:${es_port}/_cluster/health > /dev/null ; d
     sleep ${interval};
 done
 
-# set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"Etc/UTC\"}}" > /dev/null
-
-# increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
-curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
-
 # re-insert all ES templates in case anything has changed
 # this will not change existing mappings, just new indexes as they are created
 # (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
 for es_template in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template.json | sed 's/.*elasticsearch-\(.*\)-template.json/\1/' ); do
     curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/_template/${es_template} -d @/usr/local/sof-elk/lib/elasticsearch-${es_template}-template.json > /dev/null
 done
+
+# set the default index pattern, time zone, and add TZ offset to the default date format 
+curl -s -XPOST -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"MMMM Do YYYY, HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"Etc/UTC\"}}" > /dev/null
+
+# increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
+curl -s -XPUT -H 'Content-Type: application/json' http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
 # create the dashboards, searches, and visualizations from files
 for dashboardfile in ${dashboard_dir}/*.json; do
