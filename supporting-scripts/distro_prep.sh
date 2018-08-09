@@ -112,6 +112,9 @@ echo "clearing SSH Host Keys"
 systemctl stop sshd
 rm -f /etc/ssh/*key*
 
+echo "clearing /tmp/"
+rm -rf /tmp/*
+
 if [ $DISKSHRINK -eq 1 ]; then
     echo "ACTION REQUIRED!"
     echo "remove any snapshots that already exist and press Return"
