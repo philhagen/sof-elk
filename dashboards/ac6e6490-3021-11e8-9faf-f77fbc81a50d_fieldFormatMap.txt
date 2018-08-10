@@ -1,0 +1,26 @@
+{
+  "destination_port": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
+    }
+  },
+  "source_port": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
+    }
+  },
+  "ports": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
+    }
+  },
+  "@timestamp": {
+    "id": "date",
+    "params": {
+      "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+    }
+  }
+}
