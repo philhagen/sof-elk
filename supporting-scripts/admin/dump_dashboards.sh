@@ -5,10 +5,10 @@
 # This script simply dumps all dashboards to files on the filesystem
 
 # get list of all dashboard IDs to use for export and filenames
-for DASHID in $( curl -s "http://localhost:9200/.kibana/_search?q=type:dashboard&size=10000" | jq -r '.hits.hits[]._id[10:]' ); do
+for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, br" "http://localhost:9200/.kibana/_search?q=type:dashboard&size=10000" | jq -r '.hits.hits[]._id[10:]' ); do
 
     # get the dashboard content, filter to remove unnecessary fields
-    curl -s -XGET http://localhost:5601/api/kibana/dashboards/export?dashboard=${DASHID} > ${DASHID}_raw.json 2> /dev/null
+    curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, br" http://localhost:5601/api/kibana/dashboards/export?dashboard=${DASHID} > ${DASHID}_raw.json 2> /dev/null
     cat ${DASHID}_raw.json | jq '.|del(.objects[].version)|del(.objects[].attributes.version)|del(.objects[].updated_at)' > ${DASHID}.json 2> /dev/null
     RES=$?
     if [ $RES -eq 0 ]; then
