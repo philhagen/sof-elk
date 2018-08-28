@@ -3,6 +3,7 @@
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
 **Background**
+
 This page contains details for the SOF-ELK® (Security Operations and Forensics Elasticsearch, Logstash, Kibana) VM.
 The VM is provided as a community resource but is covered in depth in the following course(s):
 
@@ -43,18 +44,18 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
         * Passivedns (<http://for572.com/passivedns>)
         * HTTPD Common/Combined/vhost+Combined/SSL Access Logs
         * Live NetFlow v5 and archived NetFlow records
-    * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - master branch)
+    * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - develop branch)
 
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
-  * VM is a CentOS 7.3 base with all updates as of 2017-05-18
-  * Includes Elasticsearch 2.4.5, Logstash 2.4.1, and Kibana 4.5.4
-  * Configuration files are from the "master" branch of this Github repository (tag ```2017-05-18```)
+  * VM is a CentOS 7.5 base with all updates as of 2018-08-10
+  * Includes Elastic stack components v6.3.2
+  * Configuration files are from the "develop" branch of this Github repository
 * Metadata
-  * Filename and size: ```SOF-ELK 2017-05-18.zip``` (978,221,576 bytes)
-  * MD5: ```f151b4fda7741682994f5d45bc67fe19```
-  * SHA256: ```f20456f8c9b1d78492fb5b4db56f921ab9ae4ef0c4e03005dd6ac266b4d0abda```
+  * Filename and size: ```TODO.zip``` (978,221,576 bytes)
+  * MD5: ```TODO.md5```
+  * SHA256: ```TODO.sha256```
 
 **How to Use**
 
