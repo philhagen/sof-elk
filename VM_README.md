@@ -1,4 +1,4 @@
-*SOF-ELK® VM Distribution*
+SOF-ELK® VM Distribution
 =======
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
