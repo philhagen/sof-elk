@@ -1,4 +1,4 @@
-SOF-ELK® VM Distribution
+*SOF-ELK® VM Distribution*
 =======
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
@@ -13,6 +13,7 @@ The latest version of the VM itself is available here: <http://for572.com/sof-el
 All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <http://for572.com/sof-elk-git>
 
 **General Information**
+
 * The VM was created with VMware Fusion v8.1.1 and ships with virtual hardware v10.
   * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
   * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
@@ -45,6 +46,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - master branch)
 
 **Latest Distribution Vitals**
+
 * Basic details on the distribution
   * VM is a CentOS 7.3 base with all updates as of 2017-05-18
   * Includes Elasticsearch 2.4.5, Logstash 2.4.1, and Kibana 4.5.4
@@ -55,6 +57,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * SHA256: ```f20456f8c9b1d78492fb5b4db56f921ab9ae4ef0c4e03005dd6ac266b4d0abda```
 
 **How to Use**
+
 * Restore the "Deployment" snapshot
 * Boot the VM
 * Log into the VM with the ```elk_user``` credentials (see above)
@@ -67,6 +70,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
 **Changelog**
+
 * Update: yyyy-mm-dd: All-new with 6.3.2
   * VM was rebuilt entirely from scratch with all Elastic stack components at v6.3.2
   * Updated system components to match latest CentOS 7.5
@@ -132,6 +136,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Much, much more!
 
 **Ingesting Archived NetFlow**
+
 To ingest existing NetFlow evidence, it must be parsed into a specific format.  The included nfdump2sof-elk.sh script will take care of this.
 * Read from single file: ```nfdump2sof-elk.sh -r /path/to/netflow/nfcapd.201703190000```
 * Read recursively from directory: ```nfdump2sof-elk.sh -r /path/to/netflow/```
@@ -140,6 +145,7 @@ To ingest existing NetFlow evidence, it must be parsed into a specific format.  
 This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK®.
 
 **Sample Data**
+
 Some sample data is available in the ```~elk_user/exercise_source_logs/``` directory.  Unzip this to the ```/logstash/syslog/``` directory and check out the syslog dashboard to get a quick feel for the overall process.
 
 **Credits**
@@ -151,6 +157,7 @@ Some sample data is available in the ```~elk_user/exercise_source_logs/``` direc
 * Mark Hallman: Testing
 
 **Administrative Notifications/Disclaimers/Legal/Boring Stuff**
+
 * This virtual appliance is provided "as is" with no express or implied warranty for accuracy or accessibility.  No support for the functionality the VM provides is offered outside of this document.
 * This virtual appliance includes GeoLite2 data created by MaxMind, available from <http://www.maxmind.com>
 * SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.
