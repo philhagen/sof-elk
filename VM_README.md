@@ -70,6 +70,13 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * There are links to several stock dashboards on the left hand side
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
+**Sample Data Included**
+
+* Syslog data in `~elk_user/lab-2.3_source_evidence/`
+  * Unzip each of these files **into the `/logstash/syslog/` directory**, such as: `cd /logstash/syslog/ ; unzip ~elk_user/lab-2.3_source_evidence/<file>`
+* NetFlow data in `~elk_user/lab-3.2_source_evidence/`
+  * Use the `nfdump2sof-elk.sh` script and redirect output **to the `/logstash/nfarch/` directory**, such as: `cd /logstash/nfarch/ ; nfdump2sof-elk.sh -e 10.3.58.1 -r ~elk_user/lab-3.2_source_evidence/netflow/ > lab-3.2_netflow.txt`
+
 **Changelog**
 
 * Update: yyyy-mm-dd: All-new with 6.3.2
