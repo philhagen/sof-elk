@@ -105,6 +105,13 @@ fi
 # validate source data location
 nfdump $READFLAG $SOURCE_LOCATION -q -c 1 > /dev/null 2>&1
 
+TEST_RUN=$?
+if [ $TEST_RUN != 0 ]; then
+    echoerr ""
+    echoerr "ERROR: Source data problem - please address prior to running this command."
+    exit 5
+fi
+
 if [ -z $DESTINATION_FILE ]; then
     echoerr "ERROR: No destination file specified.  Exiting."
     exit 8
@@ -124,13 +131,6 @@ if [[ ! $DESTINATION_FILE =~ ^/logstash/nfarch/ ]]; then
     echoerr "         Press Ctrl-C to try again or <Enter> to continue."
     read
     NONSTANDARD_OUTPUT=1
-fi
-
-TEST_RUN=$?
-if [ $TEST_RUN != 0 ]; then
-    echoerr ""
-    echoerr "ERROR: Source data problem - please address prior to running this command."
-    exit 5
 fi
 
 # validate exporter IP address
