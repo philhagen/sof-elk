@@ -74,7 +74,7 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    standard_indices = ('.kibana', '.logstash', '.elasticsearch')
+    standard_indices = ('.kibana', '.logstash', '.elasticsearch', 'elastalert_status_error', 'elastalert_status_status')
     index_dict = {}
     indices = es.indices.get_alias('*').keys()
     for index in indices:

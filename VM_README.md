@@ -75,7 +75,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * Syslog data in `~elk_user/lab-2.3_source_evidence/`
   * Unzip each of these files **into the `/logstash/syslog/` directory**, such as: `cd /logstash/syslog/ ; unzip ~elk_user/lab-2.3_source_evidence/<file>`
 * NetFlow data in `~elk_user/lab-3.1_source_evidence/`
-  * Use the `nfdump2sof-elk.sh` script and redirect output **to the `/logstash/nfarch/` directory**, such as: `cd /logstash/nfarch/ ; nfdump2sof-elk.sh -e 10.3.58.1 -r ~elk_user/lab-3.1_source_evidence/netflow/ > lab-3.1_netflow.txt`
+  * Use the `nfdump2sof-elk.sh` script and write output **to the `/logstash/nfarch/` directory**, such as: `cd /home/elk_user/lab-3.1_source_evidence/ ; nfdump2sof-elk.sh -e 10.3.58.1 -r ~elk_user/lab-3.1_source_evidence/netflow/ -w /logstash/nfarch/lab-3.1_netflow.txt`
 
 **Changelog**
 
