@@ -15,7 +15,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 **General Information**
 
-* The VM was created with VMware Fusion v8.1.1 and ships with virtual hardware v10.
+* The VM was created with VMware Fusion v10.1.3 and ships with virtual hardware v12.
   * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
   * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
 * The "Deployment" snapshot is a "known-good" state, which is used as a basis for use in the FOR572 classroom materials
@@ -49,8 +49,8 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
-  * VM is a CentOS 7.5 base with all updates as of 2018-08-10
-  * Includes Elastic stack components v6.3.2
+  * VM is a CentOS 7.5 base with all updates as of 2018-09-09
+  * Includes Elastic stack components v6.4.0
   * Configuration files are from the "develop" branch of this Github repository
 * Metadata
   * Filename and size: ```TODO.zip``` (978,221,576 bytes)
@@ -74,13 +74,13 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 * Syslog data in `~elk_user/lab-2.3_source_evidence/`
   * Unzip each of these files **into the `/logstash/syslog/` directory**, such as: `cd /logstash/syslog/ ; unzip ~elk_user/lab-2.3_source_evidence/<file>`
-* NetFlow data in `~elk_user/lab-3.2_source_evidence/`
-  * Use the `nfdump2sof-elk.sh` script and redirect output **to the `/logstash/nfarch/` directory**, such as: `cd /logstash/nfarch/ ; nfdump2sof-elk.sh -e 10.3.58.1 -r ~elk_user/lab-3.2_source_evidence/netflow/ > lab-3.2_netflow.txt`
+* NetFlow data in `~elk_user/lab-3.1_source_evidence/`
+  * Use the `nfdump2sof-elk.sh` script and redirect output **to the `/logstash/nfarch/` directory**, such as: `cd /logstash/nfarch/ ; nfdump2sof-elk.sh -e 10.3.58.1 -r ~elk_user/lab-3.1_source_evidence/netflow/ > lab-3.1_netflow.txt`
 
 **Changelog**
 
-* Update: yyyy-mm-dd: All-new with 6.3.2
-  * VM was rebuilt entirely from scratch with all Elastic stack components at v6.3.2
+* Update: yyyy-mm-dd: All-new with 6.4.0
+  * VM was rebuilt entirely from scratch with all Elastic stack components at v6.4.0
   * Updated system components to match latest CentOS 7.5
   * Rebuilt and revalidated all Logstash parsers against latest syntax
   * Total overhaul of most supporting_scripts files to address latest Elasticsearch and Kibana APIs
