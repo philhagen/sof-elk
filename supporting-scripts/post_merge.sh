@@ -8,7 +8,7 @@
 /usr/local/sbin/load_all_dashboards.sh
 
 # activate all "supported" Logstash configuration files
-for file in /usr/local/sof-elk/configfiles/*; do
+for file in $( ls -1 /usr/local/sof-elk/configfiles/* 2> /dev/null ) ; do
     if [ -h /etc/logstash/conf.d/$( basename $file ) ]; then
         rm -f /etc/logstash/conf.d/$( basename $file )
     fi
@@ -21,7 +21,7 @@ for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
 done
 
 # activate all elastalert rules
-for file in /usr/local/sof-elk/lib/elastalert_rules/*.yaml; do
+for file in $( ls -1 /usr/local/sof-elk/lib/elastalert_rules/*.yaml 2> /dev/null ); do
 	if [ -h /etc/elastalert_rules/$( basename $file ) ]; then
 		rm -f /etc/elastalert_rules/$( basebame $file )
 	fi
