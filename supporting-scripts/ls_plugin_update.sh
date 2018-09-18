@@ -11,5 +11,5 @@ PLUGINBIN=/usr/share/logstash/bin/logstash-plugin
 lsplugins="logstash-input-relp logstash-filter-tld logstash-filter-rest"
 
 for lsplugin in ${lsplugins}; do
-	echo $PLUGINBIN install ${lsplugin}
+	$PLUGINBIN install ${lsplugin}
 done
