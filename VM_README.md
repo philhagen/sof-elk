@@ -49,11 +49,11 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
-  * VM is a CentOS 7.5 base with all updates as of 2018-09-09
-  * Includes Elastic stack components v6.4.0
+  * VM is a CentOS 7.5 base with all updates as of 2018-09-18
+  * Includes Elastic stack components v6.4.1
   * Configuration files are from the "develop" branch of this Github repository
 * Metadata
-  * Filename and size: ```TODO.zip``` (978,221,576 bytes)
+  * Filename and size: ```TODO.zip``` (```TODO``` bytes)
   * MD5: ```TODO.md5```
   * SHA256: ```TODO.sha256```
 

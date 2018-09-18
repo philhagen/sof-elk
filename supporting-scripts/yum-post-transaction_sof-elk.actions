@@ -1,6 +1,6 @@
 # SOF-ELK® Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2018 Lewes Technology Consulting, LLC
 #
 # This file contains all post-update triggers for the yum-post-transaction-actions plugin
 
-elasticsearch:update:/usr/local/sof-elk/supporting-scripts/es_plugin_update.sh
+logstash:update:/usr/local/sof-elk/supporting-scripts/ls_plugin_update.sh
