@@ -1,5 +1,5 @@
 # SOF-ELK® Supporting file
-# (C)2016 Lewes Technology Consulting, LLC
+# (C)2018 Lewes Technology Consulting, LLC
 #
 # This file contains grok patterns used for various other parsers
 
@@ -24,21 +24,25 @@ UNIX_MSEC (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]{3})?)|(?:\.[0-9]+)))
 # SSH Authentication key ID
 SSH_KEYID (?:(?:[A-Fa-f0-9]{2}:)*[A-Fa-f0-9]{2})
 
-# redefine HOSTNAME, adding an underscore (including at the start of a token) and forward slash (latter needed for reverse lookups such as 135.128/27.224.16.206.in-addr.arpa)
-HOSTNAME \b(?:[0-9A-Za-z_][0-9A-Za-z\/\-_]{0,62})(?:\.(?:[0-9A-Za-z_][0-9A-Za-z\/\-_]{0,62}))*(\.?|\b)
+# custom HOSTNAME, adding an underscore (including at the start of a token)
+HOSTNAME_CUSTOM \b(?:[0-9A-Za-z_][0-9A-Za-z\-_]{0,62})(?:\.(?:[0-9A-Za-z_][0-9A-Za-z\-_]{0,62}))*(\.?|\b)
 
-# customized HOSTNAME and IPORHOST for PassiveDNS entries, which may use a bare '.' as a hostname
-PDNS_HOSTNAME (?:%{HOSTNAME}|\.)
+# customized HOSTNAME and IPORHOST for PassiveDNS entries, which may use a bare '.' as a hostname and a forward slash (needed for some reverse DNS lookups such as 135.128/27.224.16.206.in-addr.arpa)
+PDNS_HOSTNAME (?:%{HOSTNAME}|\.\/)
 PDNS_IPORHOST (?:%{IP}|%{PDNS_HOSTNAME})
 PDNS_ANSWER (?:%{PDNS_IPORHOST}|%{NOTPIPE})
 
 # Email addresses
 EMAILADDRESSLOCALPART [a-zA-Z][a-zA-Z0-9_.+-=:]+
-EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
+EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME_CUSTOM}
 
-# redefine HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
+# Custom URI path, to accommodate "OPTIONS * HTTP/1.0" requests
+URIPATH_CUSTOM %{URIPATH}|\*
+
+# custom HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
 HTTPDUSER %{EMAILADDRESS}|%{USER}
-COMMONAPACHELOG %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} %{URIPATH:request}(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
+COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{URIPATH_CUSTOM:request}|\*)(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
+COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:referrer} %{QS:agent}
 
 # hours:minutes:seconds, to allow any number of hours
 HMS (?:[0-9]+):%{MINUTE}(?::%{SECOND})(?![0-9])

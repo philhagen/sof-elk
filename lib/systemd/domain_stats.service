@@ -1,0 +1,12 @@
+[Unit]
+Description=Domain Stats Alexa Top 1M Lookup
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/bin
+ExecStart=/usr/local/share/domain_stats/domain_stats.py -a /usr/local/share/domain_stats/top-1m.csv --preload 0 10010
+PIDFile=/var/run/domainstats-alexa.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,14 +1,15 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2016 Lewes Technology Consulting, LLC
+# (C)2018 Lewes Technology Consulting, LLC
 #
 # This script is used to update the MaxMind GeoIP databases
 
 GEOIP_LIBDIR=/usr/local/share/GeoIP
-GEOIP_CITYSOURCEURL=http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
-GEOIP_ASNSOURCEURL=http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
-GEOIP_CITYSOURCEFILE=GeoLiteCity.dat.gz
-GEOIP_ASNSOURCEFILE=GeoIPASNum.dat.gz
+GEOIP_BASEURL=http://geolite.maxmind.com/download/geoip/database/
+GEOIP_CITYSOURCEARCH=GeoLite2-City.tar.gz
+GEOIP_ASNSOURCEARCH=GeoLite2-ASN.tar.gz
+GEOIP_CITYSOURCEFILE=GeoLite2-City.mmdb
+GEOIP_ASNSOURCEFILE=GeoLite2-ASN.mmdb
 RUNNOW=0
 
 # parse any command line arguments
@@ -30,14 +31,21 @@ if [ ! -d ${GEOIP_LIBDIR} ]; then
 fi
 
 if [ $RUNNOW -eq 0 ]; then
-    # wait up to 20min to start, so all these VMs don't hit the server at the same exact time
+    # wait up to 60min to start, so all these VMs don't hit the server at the same exact time
     randomNumber=$RANDOM
-    let "randomNumber %= 1800"
+    let "randomNumber %= 3600"
     sleep ${randomNumber}
 fi
 
 cd ${GEOIP_LIBDIR}/
-wget -N -q ${GEOIP_CITYSOURCEURL}
-gunzip -f ${GEOIP_CITYSOURCEFILE}
-wget -N -q ${GEOIP_ASNSOURCEURL}
-gunzip -f ${GEOIP_ASNSOURCEFILE}
+wget -N -q ${GEOIP_BASEURL}${GEOIP_CITYSOURCEARCH}
+tar xzf ${GEOIP_CITYSOURCEARCH}
+mv GeoLite2-City_*/${GEOIP_CITYSOURCEFILE} ${GEOIP_LIBDIR}/
+rm -rf ${GEOIP_CITYSOURCEARCH} GeoLite2-City_*/
+
+wget -N -q ${GEOIP_BASEURL}${GEOIP_ASNSOURCEARCH}
+tar xzf ${GEOIP_ASNSOURCEARCH}
+mv GeoLite2-ASN_*/${GEOIP_ASNSOURCEFILE} ${GEOIP_LIBDIR}/
+rm -rf ${GEOIP_ASNSOURCEARCH} GeoLite2-ASN_*/
+
+chown -R root:root ${GEOIP_LIBDIR}

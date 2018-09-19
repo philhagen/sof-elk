@@ -34,4 +34,3 @@ cd /etc/init.d/
 sudo wget https://github.com/SMAPPER/Logstash-Configs/raw/master/configfiles-setup_required/freq/freq
 sudo chmod +x freq
 sudo service freq start
-

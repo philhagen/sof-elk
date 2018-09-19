@@ -1,0 +1,7 @@
+# SOF-ELK® Supporting script
+# (C)2018 Lewes Technology Consulting, LLC
+#
+# This file contains all post-update triggers for the yum-post-transaction-actions plugin
+
+logstash:update:/usr/local/sof-elk/supporting-scripts/ls_plugin_update.sh
+kibana:update:/usr/local/sbin/load_all_dashboards.sh

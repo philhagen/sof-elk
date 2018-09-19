@@ -1,58 +1,93 @@
 {
-  "template" : "netflow-*",
-  "order" : "1",
-  "settings" : {
-    "index.refresh_interval" : "5s"
+  "index_patterns": [
+    "netflow-*"
+  ],
+  "settings": {
+    "index": {
+      "refresh_interval": "5s"
+    }
   },
-  "mappings" : {
-    "_default_" : {
-      "_all" : { "enabled" : true },
-      "dynamic_templates" : [
+  "mappings": {
+    "_default_": {
+      "dynamic_templates": [
         {
-          "ip_address_fields" : {
-            "match" : "*_ip",
-            "mapping" : { "type" : "ip" }
+          "ip_address_fields": {
+            "match": "*_ip",
+            "mapping": {
+              "type": "ip"
+            }
           }
         },
         {
-          "ipv6_address_fields" : {
-            "match" : "*_ipv6",
-            "mapping" : { "type" : "string", "index" : "not_analyzed" }
-          }
-        },
-        {
-          "string_fields" : {
-            "match" : "*",
-            "match_mapping_type" : "string",
-            "mapping" : {
-              "type" : "string", "index" : "analyzed", "omit_norms" : true,
-              "fields" : {
-                "raw" : {"type" : "string", "index" : "not_analyzed", "ignore_above" : 256 }
+          "string_fields": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "text",
+              "norms": false,
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
               }
             }
           }
         }
       ],
-      "properties" : {
-        "@version" : { "type" : "string", "index" : "not_analyzed" },
-        "host" : { "type" : "ip" },
-        "ips" : { "type" : "ip" },
-        "path" : { "type" : "string", "index" : "not_analyzed" },
-        "original_message" : { "type" : "string", "index" : "not_analyzed" },
+      "properties": {
+        "@version": {
+          "type": "keyword"
+        },
+        "host": {
+          "type": "ip"
+        },
+        "source_port": {
+          "type": "integer"
+        },
+        "destination_port": {
+          "type": "integer"
+        },
+        "ips": {
+          "type": "ip"
+        },
+        "path": {
+          "type": "keyword"
+        },
+        "original_message": {
+          "type": "keyword"
+        },
 
-        "source_geo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+        "source_geo": {
+          "dynamic": true,
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            },
+            "latitude": {
+              "type": "half_float"
+            },
+            "longitude": {
+              "type": "half_float"
+            }
           }
         },
-        "destination_geo" : {
-          "type" : "object",
-          "properties" : {
-            "location" : { "type" : "geo_point", "geohash" : true, "geohash_prefix" : true, "geohash_precision" : "1km" }
+        "destination_geo": {
+          "dynamic": true,
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            },
+            "latitude": {
+              "type": "half_float"
+            },
+            "longitude": {
+              "type": "half_float"
+            }
           }
         }
       }
     }
-  }
+  },
+  "aliases": {}
 }

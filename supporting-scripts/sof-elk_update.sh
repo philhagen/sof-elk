@@ -37,4 +37,6 @@ git reset --hard > /dev/null
 git pull origin
 
 /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
-kill -s HUP $( cat /var/run/logstash.pid )
+for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
+    kill -s HUP $lspid
+done
