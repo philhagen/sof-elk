@@ -44,18 +44,18 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
         * Passivedns (<http://for572.com/passivedns>)
         * HTTPD Common/Combined/vhost+Combined/SSL Access Logs
         * Live NetFlow v5 and archived NetFlow records
-    * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - develop branch)
+    * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - public/v20180918 branch)
 
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
   * VM is a CentOS 7.5 base with all updates as of 2018-09-18
   * Includes Elastic stack components v6.4.1
-  * Configuration files are from the "develop" branch of this Github repository
+  * Configuration files are from the "public/v20180918" branch of this Github repository
 * Metadata
-  * Filename and size: ```TODO.zip``` (```TODO``` bytes)
-  * MD5: ```TODO.md5```
-  * SHA256: ```TODO.sha256```
+  * Filename and size: ```Public SOF ELK v20180918.zip``` (```2,087,466,994``` bytes)
+  * MD5: ```27b6e941557c41d5667808600bb59724```
+  * SHA256: ```4d4c680d5a36c8f9b608d2f0576ca9cf1c979700381ded1f64c4ce7c4ebd70b1```
 
 **How to Use**
 
@@ -79,7 +79,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 **Changelog**
 
-* Update: yyyy-mm-dd: All-new with 6.4.0
+* Update: 2018-09-18: All-new with 6.4.1
   * VM was rebuilt entirely from scratch with all Elastic stack components at v6.4.0
   * Updated system components to match latest CentOS 7.5
   * Rebuilt and revalidated all Logstash parsers against latest syntax

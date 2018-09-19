@@ -37,7 +37,7 @@ fi
 echo "checking that we're on the correct SOF-ELK® branch"
 cd /usr/local/sof-elk/
 git branch
-echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'class/v*' or 'master', with  all others removed.)"
+echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*' or 'class/v*', with  all others removed.)"
 read
 
 echo "updating local git repo clones"
@@ -48,6 +48,7 @@ echo "removing old kernels"
 package-cleanup -y --oldkernels --count=1
 echo "cleaning yum caches"
 yum clean all
+rm -rf /var/cache/yum
 
 echo "cleaning user histories"
 rm -f ~root/.bash_history

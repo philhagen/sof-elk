@@ -14,6 +14,7 @@ More details about the pre-packaged VM are available here: <http://for572.com/so
 **Branches:**
 
 * `master`: This branch is considered suitable for widespread use, but should not be used in the FOR572 class itself.  The classroom labs are version-locked, but work on this repository is ongoing.
+* `public/*`: These branches will be tied to public releases of the VM, allowing version-locked content control after deployment.
 * `class/*`: When a VM is prepared for distribution in a SANS course such as FOR572, a new sub-branch will be created under the "class" branch with a name corresponding to the VM version.  (e.g. "```class/v20170629```").
 * `develop`: This branch contains code that should be functional, but may break at times (and remain broken).  Of course, we'll try to avoid that, but it should be clear that this is NOT a branch suitable for "real world" use.
 * `feature/*`:  Branches where new code functionality is tested before being merged into develop.
