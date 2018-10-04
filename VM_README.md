@@ -19,7 +19,6 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 * The VM was created with VMware Fusion v10.1.3 and ships with virtual hardware v12.
   * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
   * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
-* The "Deployment" snapshot is a "known-good" state, which is used as a basis for use in the FOR572 classroom materials
 * The VM is deployed with the "NAT" network mode enabled
 * Credentials:
   * username: ```elk_user```
