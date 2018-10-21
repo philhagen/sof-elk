@@ -21,6 +21,10 @@ while [[ $# -gt 1 ]]; do
         SOURCE_LOCATION="$2"
         shift # past argument
         ;;
+        -w|--destfile)
+        DESTINATION_FILE="$2"
+        shift # past argument
+        ;;
         *)
         # unknown option
         ;;
@@ -33,8 +37,8 @@ if [[ $SOURCE_LOCATION == "" ]]; then
     echoerr "Please supply a source nfcapd filename or parent directory containing VPC Flow data"
     echoerr "   to be parsed for SOF-ELK."
     echoerr ""
-    echoerr "Example: $0 -r /path/to/vpcflow/dm-flowlogs.json"
-    echoerr "Example: $0 -r /path/to/vpcflow/"
+    echoerr "Example: $0 -r /path/to/vpcflow/dm-flowlogs.json -w /logstash/nfarch/<filename>.txt"
+    echoerr "Example: $0 -r /path/to/vpcflow/ -w /logstash/nfarch/<filename>.txt"
     echoerr ""
     exit 2
 fi
@@ -51,6 +55,27 @@ fi
 if [ ! -d "$SOURCE_LOCATION" -a ! -f "$SOURCE_LOCATION" ]; then
     echoerr "Invalid source location specified.  Exiting."
     exit 4
+fi
+
+if [ -z $DESTINATION_FILE ]; then
+    echoerr "ERROR: No destination file specified.  Exiting."
+    exit 8
+fi
+
+if [ -d $( dirname $DESTINATION_FILE ) ]; then
+    DESTINATION_FILE=$( realpath $DESTINATION_FILE )
+else
+    echoerr "ERROR: Parent path to requested destination file does not exist.  Exiting."
+    exit 9
+fi
+
+if [[ ! $DESTINATION_FILE =~ ^/logstash/nfarch/ ]]; then
+    echoerr "WARNING: Output file location is not in /logstash/nfarch/. Resulting file will"
+    echoerr "         not be automatically ingested unless moved/copied to the correct"
+    echoerr "         filesystem location."
+    echoerr "         Press Ctrl-C to try again or <Enter> to continue."
+    read
+    NONSTANDARD_OUTPUT=1
 fi
 
 # prepare list of input file(s) to read
@@ -73,7 +98,7 @@ for READFILE in $READFILES; do
     fi
 
     # finally run jq command
-    cat $READFILE |jq -crM '.events[].message'
+    cat $READFILE | jq -crM '.events[].message' > ${DESTINATION_FILE}
 
     REAL_RUN=$?
     if [ $REAL_RUN != 0 ]; then
@@ -88,8 +113,13 @@ done
 echoerr ""
 if [ $CONVERT_SUCCESS == 1 ]; then
     echoerr "Output complete."
-    echoerr "If you redirected the output to a file in /logstash/nfarch/, allow SOF-ELK some time to load the data."
-    echoerr "If you redirected somewhere else, copy the resulting file to the /logstash/nfarch/ directory."
+    if [ $NONSTANDARD_OUTPUT ]; then
+        echoerr "You must move/copy the generated file to the /logstash/nfarch/ directory before"
+        echoerr "  SOF-ELK can process it."
+    else
+        echoerr "SOF-ELK should now be processing the generated file - check system load and the"
+        echoerr "  Kibana interface to confirm."
+    fi
 else
     echoerr "No files were successfully converted."
     echoerr "Please validate the input data to ensure it contains proper JSON data."

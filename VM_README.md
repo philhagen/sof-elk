@@ -145,12 +145,10 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 **Ingesting Archived NetFlow**
 
-To ingest existing NetFlow evidence, it must be parsed into a specific format.  The included nfdump2sof-elk.sh script will take care of this.
-* Read from single file: ```nfdump2sof-elk.sh -r /path/to/netflow/nfcapd.201703190000```
-* Read recursively from directory: ```nfdump2sof-elk.sh -r /path/to/netflow/```
-* Optionally, you can specify the IP address of the exporter that created the flow data: ```nfdump2sof-elk.sh -e 10.3.58.1 -r /path/to/netflow/```
-
-This script prints to STDOUT.  Redirect to a file and place into the ```/logstash/nfarch/``` directory for parsing into SOF-ELK®.
+To ingest existing NetFlow evidence, it must be parsed into a specific format.  The included ```nfdump2sof-elk.sh``` script will take care of this.
+* Read from single file: ```nfdump2sof-elk.sh -r /path/to/netflow/nfcapd.201703190000 -w /logstash/nfarch/inputfile_1.txt```
+* Read recursively from directory: ```nfdump2sof-elk.sh -r /path/to/netflow/ -w /logstash/nfarch/inputfile_2.txt```
+* Optionally, you can specify the IP address of the exporter that created the flow data: ```nfdump2sof-elk.sh -e 10.3.58.1 -r /path/to/netflow/ -w /logstash/nfarch/inputfile_3.txt```
 
 **Sample Data**
 

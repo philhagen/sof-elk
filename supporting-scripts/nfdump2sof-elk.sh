@@ -61,12 +61,12 @@ if [[ $SOURCE_LOCATION == "" ]]; then
     echoerr "Please supply a source nfcapd filename or parent directory containing nfcapd data"
     echoerr "   to be parsed for SOF-ELK."
     echoerr ""
-    echoerr "Example: $0 -r /path/to/netflow/nfcapd.201703190000 -w /logstash/nfarch/<somefilename>.txt"
-    echoerr "Example: $0 -r /path/to/netflow/ -w /logstash/nfarch/<somefilename>.txt"
+    echoerr "Example: $0 -r /path/to/netflow/nfcapd.201703190000 -w /logstash/nfarch/<filename>.txt"
+    echoerr "Example: $0 -r /path/to/netflow/ -w /logstash/nfarch/<filename>.txt"
     echoerr ""
     echoerr "Can optionally supply an exporter IP address"
     echoerr
-    echoerr "Example: $0 -e 1.2.3.4 -r /path/to/netflow/ -w /logstash/nfarch/<somefilename>.txt"
+    echoerr "Example: $0 -e 1.2.3.4 -r /path/to/netflow/ -w /logstash/nfarch/<filename>.txt"
     echoerr ""
     exit 2
 fi
@@ -102,14 +102,11 @@ elif [ $MODE == "file" ]; then
     READFLAG="-r"
 fi
 
-# validate source data location
-nfdump $READFLAG $SOURCE_LOCATION -q -c 1 > /dev/null 2>&1
-
-TEST_RUN=$?
-if [ $TEST_RUN != 0 ]; then
+# validate exporter IP address
+if ! valid_ip $EXPORTER_IP; then
     echoerr ""
-    echoerr "ERROR: Source data problem - please address prior to running this command."
-    exit 5
+    echoerr "ERROR: Invalid Exporter IP address provided - exiting."
+    exit 6
 fi
 
 if [ -z $DESTINATION_FILE ]; then
@@ -133,11 +130,14 @@ if [[ ! $DESTINATION_FILE =~ ^/logstash/nfarch/ ]]; then
     NONSTANDARD_OUTPUT=1
 fi
 
-# validate exporter IP address
-if ! valid_ip $EXPORTER_IP; then
+# validate source data location
+nfdump $READFLAG $SOURCE_LOCATION -q -c 1 > /dev/null 2>&1
+
+TEST_RUN=$?
+if [ $TEST_RUN != 0 ]; then
     echoerr ""
-    echoerr "ERROR: Invalid Exporter IP address provided - exiting."
-    exit 6
+    echoerr "ERROR: Source data problem - please address prior to running this command."
+    exit 5
 fi
 
 # finally run nfdump command
@@ -156,6 +156,6 @@ else
         echoerr "  SOF-ELK can process it."
     else
         echoerr "SOF-ELK should now be processing the generated file - check system load and the"
-        echoerr "  Kibana interface to confirm"
+        echoerr "  Kibana interface to confirm."
     fi
 fi
