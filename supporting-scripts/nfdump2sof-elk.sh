@@ -71,13 +71,6 @@ if [[ $SOURCE_LOCATION == "" ]]; then
     exit 2
 fi
 
-if [[ $EXPORTER_IP == "" ]]; then
-    echoerr "WARNING: Using default exporter IP address. Specify with '-e' if needed."
-    echoerr "         Press Ctrl-C to try again or <Enter> to continue."
-    read
-    EXPORTER_IP="0.0.0.0"
-fi
-
 # this is the custom format that SOF-ELK® will understand
 NFDUMP2SOFELK_FMT="%das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0"
 
@@ -102,13 +95,7 @@ elif [ $MODE == "file" ]; then
     READFLAG="-r"
 fi
 
-# validate exporter IP address
-if ! valid_ip $EXPORTER_IP; then
-    echoerr ""
-    echoerr "ERROR: Invalid Exporter IP address provided - exiting."
-    exit 6
-fi
-
+# validate output file location
 if [ -z $DESTINATION_FILE ]; then
     echoerr "ERROR: No destination file specified.  Exiting."
     exit 8
@@ -138,6 +125,20 @@ if [ $TEST_RUN != 0 ]; then
     echoerr ""
     echoerr "ERROR: Source data problem - please address prior to running this command."
     exit 5
+fi
+
+# validate exporter IP address
+if [[ $EXPORTER_IP == "" ]]; then
+    echoerr "WARNING: Using default exporter IP address. Specify with '-e' if needed."
+    echoerr "         Press Ctrl-C to try again or <Enter> to continue."
+    read
+    EXPORTER_IP="0.0.0.0"
+fi
+
+if ! valid_ip $EXPORTER_IP; then
+    echoerr ""
+    echoerr "ERROR: Invalid Exporter IP address provided - exiting."
+    exit 6
 fi
 
 # finally run nfdump command
