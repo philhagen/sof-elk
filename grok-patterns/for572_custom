@@ -4,7 +4,7 @@
 # This file contains grok patterns used for various other parsers
 
 # Allow alternate timestamps for syslog entries
-FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP}|%{TIMESTAMP_ISO8601}
+FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP:default_syslog_timestamp}|%{TIMESTAMP_ISO8601}
 
 # Grok patterns for iptables:
 ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
