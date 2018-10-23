@@ -41,7 +41,7 @@ URIPATH_CUSTOM %{URIPATH}|\*
 
 # custom HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
 HTTPDUSER %{EMAILADDRESS}|%{USER}
-COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{URIPATH_CUSTOM:request}|\*)(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
+COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{WORD:protocol}://%{HOSTNAME:hostname})?%{URIPATH_CUSTOM:request}(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
 COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:squid_cachestatus}:%{WORD:squid_hierarchystatus}
 COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:referrer} %{QS:agent}
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:squid_cachestatus}:%{WORD:squid_hierarchystatus}
