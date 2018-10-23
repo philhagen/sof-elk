@@ -20,6 +20,14 @@ for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
     kill -s HUP $lspid
 done
 
+# create necessary ingest directories
+ingest_dirs="syslog nfarch httpd passivedns bro"
+for ingest_dir in ${ingest_dirs}; do
+    if [ ! -d /logstash/${ingest_dir} ]; then
+        mkdir -m 1777 -p /logstash/${ingest_dir}
+    fi
+done
+
 # activate all elastalert rules
 for file in $( ls -1 /usr/local/sof-elk/lib/elastalert_rules/*.yaml 2> /dev/null ); do
 	if [ -h /etc/elastalert_rules/$( basename $file ) ]; then
