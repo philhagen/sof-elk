@@ -45,10 +45,10 @@
 {"name":"destination_port","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"engine_id","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"engine_type","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"exporter","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"first_switched","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['flow_records'].value"}
-{"name":"host","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"in_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"in_bytes_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['in_bytes'].value"}
 {"name":"in_packets","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
