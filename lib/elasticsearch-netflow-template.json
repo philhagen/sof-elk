@@ -39,7 +39,7 @@
         "@version": {
           "type": "keyword"
         },
-        "host": {
+        "exporter": {
           "type": "ip"
         },
         "source_port": {
