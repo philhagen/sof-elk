@@ -87,7 +87,7 @@ def get_es_indices(es):
 sourcedir_index_mapping = {
     'syslog': 'logstash',
     'passivedns': 'logstash',
-    'bro': 'logstash',
+    'zeek': 'logstash',
     'nfarch': 'netflow',
     'httpd': 'httpdlog',
     'plaso': 'timelineplaso',

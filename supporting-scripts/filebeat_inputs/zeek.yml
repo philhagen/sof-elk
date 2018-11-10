@@ -1,0 +1,113 @@
+# SOF-ELK® Configuration File
+# (C)2017 Lewes Technology Consulting, LLC
+#
+# This file creates filebeats prospector for zeek source data from the SOF-ELK® VM itself
+
+# NOTE: the "tags" assignment only works with filebeat >=5.0.  It's in here now, but we need to handle that on the logstash side for now.
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /logstash/zeek/*/*/*/conn.*
+        - /logstash/zeek/*/*/conn.*
+        - /logstash/zeek/*/conn.*
+        - /logstash/zeek/conn. *
+      input_type: log
+      document_type: zeek_conn
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/dhcp.*
+        - /logstash/zeek/*/*/dhcp.*
+        - /logstash/zeek/*/dhcp.*
+        - /logstash/zeek/dhcp.*
+      input_type: log
+      document_type: zeek_dhcp
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/dns.*
+        - /logstash/zeek/*/*/dns.*
+        - /logstash/zeek/*/dns.*
+        - /logstash/zeek/dns.*
+      input_type: log
+      document_type: zeek_dns
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/dpd.*
+        - /logstash/zeek/*/*/dpd.*
+        - /logstash/zeek/*/dpd.*
+        - /logstash/zeek/dpd.*
+      input_type: log
+      document_type: zeek_dpd
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/files.*
+        - /logstash/zeek/*/*/files.*
+        - /logstash/zeek/*/files.*
+        - /logstash/zeek/files.*
+      input_type: log
+      document_type: zeek_files
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/ftp.*
+        - /logstash/zeek/*/*/ftp.*
+        - /logstash/zeek/*/ftp.*
+        - /logstash/zeek/ftp.*
+      input_type: log
+      document_type: zeek_ftp
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/http.*
+        - /logstash/zeek/*/*/http.*
+        - /logstash/zeek/*/http.*
+        - /logstash/zeek/http.*
+      input_type: log
+      document_type: zeek_http
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
+    -
+      paths:
+        - /logstash/zeek/*/*/*/irc.*
+        - /logstash/zeek/*/*/irc.*
+        - /logstash/zeek/*/irc.*
+        - /logstash/zeek/irc.*
+      input_type: log
+      document_type: zeek_irc
+#      tags:
+#        - 'zeek'
+      exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+      exclude_lines: [ '^#' ]
+      close_inactive: 5m
