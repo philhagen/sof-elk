@@ -8,7 +8,10 @@ issueupdate_config() {
     IP=$( ip address show $( ip route|grep default | awk '{print $5}' ) | awk '/inet / {print $2}' | cut -d '/' -f 1 )
     logger "SOF-ELK post-dhcp lease: issueupdate_config() - IP=${IP}"
     cat /etc/issue.stock | sed -e "s/<%IP%>/$IP/" > /etc/issue
-    skill -9 agetty
+    TTYLIST=$( ps -h -p  $( pidof agetty) | awk '{print $2}' | sort | uniq)
+    for TTY in $TTYLIST; do
+    	systemctl restart getty@${TTY}
+    done
 }
 
 issueupdate_restore() {
