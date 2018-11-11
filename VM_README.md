@@ -166,4 +166,4 @@ Some sample data is available in the ```~elk_user/exercise_source_logs/``` direc
 
 * This virtual appliance is provided "as is" with no express or implied warranty for accuracy or accessibility.  No support for the functionality the VM provides is offered outside of this document.
 * This virtual appliance includes GeoLite2 data created by MaxMind, available from <http://www.maxmind.com>
-* SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.
+* SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.  SOF-ELK logo is a wholly owned property of Lewes Technology Consulting, LLC and is used by permission.
