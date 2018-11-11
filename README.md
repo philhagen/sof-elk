@@ -2,7 +2,6 @@ SOF-ELK® Configuration Files
 =======
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
-
 This repository contains the configuration and support files for the SANS FOR572 SOF-ELK® VM Appliance.
 
 SOF-ELK® is a “big data analytics” platform focused on the typical needs of computer forensic investigators/analysts and information security operations personnel.  The platform is a customized build of the open source ELK stack, consisting of the Elasticsearch storage and search engine, Logstash ingest and enrichment system, and the Kibana dashboard frontend.  With a significant amount of customization and ongoing development, SOF-ELK® users can avoid the typically long and involved setup process the ELK stack requires.  Instead, they can simply download the pre-built and ready-to-use SOF-ELK® virtual appliance that consumes various source data types (numerous log types as well as NetFlow), parsing out the most critical data and visualizing it on several stock dashboards.  Advanced users can build visualizations the suit their own investigative or operational requirements, optionally contributing those back to the primary code repository.
@@ -37,3 +36,9 @@ The various configuration files expect some of these files to reside at a specif
 All bugs and feature requests should be logged via the github issue tracker: <https://github.com/philhagen/sof-elk/issues/>.
 
 Please see the pull request submission guidelines before starting any development work - this is in the PULLREQUESTS.md file.
+
+**Administrative Notifications/Disclaimers/Legal/Boring Stuff**
+
+* Content of this repository are provided "as is" with no express or implied warranty for accuracy or accessibility.
+* SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.  SOF-
+ELK logo is a wholly owned property of Lewes Technology Consulting, LLC and is used by permission.
