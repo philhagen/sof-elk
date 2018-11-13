@@ -136,18 +136,25 @@ if args.filepath:
             exit(1)
 
         res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+        doccount = res['hits']['total']
+
     else:
         print 'File path must start with "%s".  Exiting.' % (topdir)
         exit(1)
 
 elif args.nukeitall:
     populated_indices = [s + '-*' for s in get_es_indices(es)]
-    res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
+    if len(populated_indices) == 0:
+        print 'There are no active data indices in Elasticsearch'
+        doccount = 0
+    else:
+        res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
+        doccount = res['hits']['total']
 
 else:
     res = es.search(index='%s-*' % (args.index), body={'query': {'match_all': {}}})
+    doccount = res['hits']['total']
 
-doccount = res['hits']['total']
 if doccount > 0:
     # get user confirmation to proceed
     print '%d documents found\n' % doccount
