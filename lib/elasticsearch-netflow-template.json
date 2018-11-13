@@ -8,7 +8,7 @@
     }
   },
   "mappings": {
-    "_default_": {
+    "doc": {
       "dynamic_templates": [
         {
           "ip_address_fields": {
