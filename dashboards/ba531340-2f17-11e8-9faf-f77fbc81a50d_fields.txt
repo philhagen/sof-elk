@@ -86,7 +86,6 @@
 {"name":"ips","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"logsource","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"logsource.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"logstash_source","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"offset","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"original_message","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"password","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":false}

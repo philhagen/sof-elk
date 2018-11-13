@@ -255,9 +255,6 @@
 {"name":"login_result.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"logsource","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"logsource.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"logstash_source","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
-{"name":"logstash_source","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
-{"name":"logstash_source.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"message","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"message.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"missed_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
