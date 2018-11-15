@@ -11,6 +11,10 @@ issueupdate_config() {
     TTYLIST=$( ps -h -p  $( pidof agetty) | awk '{print $2}' | sort | uniq)
     for TTY in $TTYLIST; do
     	systemctl restart getty@${TTY}
+        while ( ! ps -h -p $( pidof agetty ) | grep -q $TTY ); do
+            sleep 3;
+            systemctl restart getty@${TTY})
+        done
     done
 }
 
