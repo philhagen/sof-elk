@@ -157,7 +157,7 @@ else:
 
 if doccount > 0:
     # get user confirmation to proceed
-    print '%d documents found\n' % doccount
+    print '%s documents found\n' % "{:,}".format(doccount)
 
     if not confirm(prompt='Delete these documents permanently?', resp=False):
         print 'Will NOT delete documents.  Exiting.'
