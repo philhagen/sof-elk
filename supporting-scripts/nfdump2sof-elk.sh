@@ -142,6 +142,7 @@ if ! valid_ip $EXPORTER_IP; then
 fi
 
 # finally run nfdump command
+echoerr "Running distillation.  Putting output in $DESTINATION_FILE"
 nfdump $READFLAG $SOURCE_LOCATION -q -N -o "fmt:$EXPORTER_IP $NFDUMP2SOFELK_FMT" > $DESTINATION_FILE
 
 REAL_RUN=$?
