@@ -13,7 +13,7 @@ issueupdate_config() {
     	systemctl restart getty@${TTY}
         while ( ! ps -h -p $( pidof agetty ) | grep -q $TTY ); do
             sleep 3;
-            systemctl restart getty@${TTY})
+            systemctl restart getty@${TTY}
         done
     done
 }
