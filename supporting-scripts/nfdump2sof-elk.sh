@@ -142,7 +142,7 @@ if ! valid_ip $EXPORTER_IP; then
 fi
 
 # finally run nfdump command
-nfdump $READFLAG $SOURCE_LOCATION -q -N -O tstart -o "fmt:$EXPORTER_IP $NFDUMP2SOFELK_FMT" > $DESTINATION_FILE
+nfdump $READFLAG $SOURCE_LOCATION -q -N -o "fmt:$EXPORTER_IP $NFDUMP2SOFELK_FMT" > $DESTINATION_FILE
 
 REAL_RUN=$?
 if [ $REAL_RUN != 0 ]; then
