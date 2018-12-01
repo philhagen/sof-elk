@@ -61,7 +61,7 @@
           "total_packets"
         ],
         "sort": [
-          "in_bytes_vis",
+          "@timestamp",
           "desc"
         ],
         "kibanaSavedObjectMeta": {
