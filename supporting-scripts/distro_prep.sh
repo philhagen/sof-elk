@@ -72,12 +72,16 @@ elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-pr
 
 echo "stopping logstash"
 systemctl stop logstash
-echo "clearing elasticsearch"
-curl -s -XDELETE 'http://localhost:9200/_all' > /dev/null
-echo "removing elasticsearch templates"
-curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
+#echo "clearing elasticsearch"
+#curl -s -XDELETE 'http://localhost:9200/_all' > /dev/null
+#echo "removing elasticsearch templates"
+#curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
 echo "removing elasticsearch .kibana index"
 curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
+
+curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
+echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
+read
 
 echo "stopping filebeat service"
 systemctl stop filebeat
