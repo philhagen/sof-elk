@@ -75,7 +75,7 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    standard_index_rawregex = [ '.kibana', '.logstash', '.elasticsearch', 'elastalert_.*' ]
+    standard_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*' ]
     standard_index_regex = []
     for raw_regex in standard_index_rawregex:
         standard_index_regex.append(re.compile(raw_regex))
