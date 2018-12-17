@@ -11,6 +11,7 @@ import json
 import os
 import argparse
 import signal
+import re
 
 # set the top-level root location for all loaded files
 topdir = '/logstash/'
@@ -74,11 +75,15 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    standard_indices = ('.kibana', '.logstash', '.elasticsearch', 'elastalert_status', 'elastalert_status_error', 'elastalert_status_past', 'elastalert_status_status')
+    standard_index_rawregex = [ '.kibana', '.logstash', '.elasticsearch', 'elastalert_.*' ]
+    standard_index_regex = []
+    for raw_regex in standard_index_rawregex:
+        standard_index_regex.append(re.compile(raw_regex))
+
     index_dict = {}
     indices = es.indices.get_alias('*').keys()
     for index in indices:
-        if index not in standard_indices:
+        if not any(compiled_reg.match(index) for compiled_reg in standard_index_regex):
             baseindex = index.split('-')[0]
             index_dict[baseindex] = True
     return index_dict.keys()
