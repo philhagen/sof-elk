@@ -92,8 +92,9 @@ systemctl stop filebeat
 echo "removing filebeat registry"
 rm -f /var/lib/filebeat/*
 
-echo "the following logs are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
+echo "the following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
 find /logstash/ -type f -print
+find /logstash/ -mindepth 2 -type d
 read
 
 echo "reload kibana dashboards"
