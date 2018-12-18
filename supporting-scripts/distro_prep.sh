@@ -72,10 +72,6 @@ elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-pr
 
 echo "stopping logstash"
 systemctl stop logstash
-#echo "clearing elasticsearch"
-#curl -s -XDELETE 'http://localhost:9200/_all' > /dev/null
-#echo "removing elasticsearch templates"
-#curl -s -XDELETE 'http://localhost:9200/_template/*' > /dev/null
 echo "removing elasticsearch .kibana index"
 curl -s -XDELETE 'http://localhost:9200/.kibana_1' > /dev/null
 curl -s -XDELETE 'http://localhost:9200/.kibana_2' > /dev/null
@@ -87,15 +83,20 @@ curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
 echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
 read
 
-echo "stopping filebeat service"
-systemctl stop filebeat
-echo "removing filebeat registry"
-rm -f /var/lib/filebeat/*
-
 echo "the following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
 find /logstash/ -type f -print
 find /logstash/ -mindepth 2 -type d
 read
+
+echo "stopping filebeat service"
+systemctl stop filebeat
+echo "clearing filebeat data"
+if [ -f /var/lib/filebeat/registry ]; then
+    echo "filebeat registry is not empty.  The sources below are still tracked.  Press return if this is correct or Ctrl-C to quit.""
+    cat /var/lib/filebeat/registry | jq -r .[].source | sed -e 's/^/- /
+    read
+fi
+rm -f /var/lib/filebeat/meta.json
 
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
