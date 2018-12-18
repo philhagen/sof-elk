@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2018 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
 
@@ -94,6 +94,7 @@ rm -f /var/lib/filebeat/*
 
 echo "the following logs are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
 find /logstash/ -type f -print
+read
 
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
