@@ -93,7 +93,7 @@ systemctl stop filebeat
 echo "clearing filebeat data"
 if [ -f /var/lib/filebeat/registry ]; then
     echo "filebeat registry is not empty.  The sources below are still tracked.  Press return if this is correct or Ctrl-C to quit.""
-    cat /var/lib/filebeat/registry | jq -r .[].source | sed -e 's/^/- /
+    cat /var/lib/filebeat/registry | jq -r .[].source | sed -e 's/^/- /'
     read
 fi
 rm -f /var/lib/filebeat/meta.json
@@ -133,13 +133,13 @@ if [ $DISKSHRINK -eq 1 ]; then
     read
 
     # we don't use swap any more
-    # echo "zeroize swap:"
-    # swapoff -a
-    # for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
-    #     echo "- zeroize $swappart (swap)"
-    #     dd if=/dev/zero of=$swappart
-    #     mkswap $swappart
-    # done
+    echo "zeroize swap:"
+    swapoff -a
+    for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
+        echo "- zeroize $swappart (swap)"
+        dd if=/dev/zero of=$swappart
+        mkswap $swappart
+    done
 
     echo "shrink all drives:"
     for shrinkpart in $( vmware-toolbox-cmd disk list ); do
