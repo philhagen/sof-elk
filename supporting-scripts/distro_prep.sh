@@ -92,7 +92,7 @@ echo "stopping filebeat service"
 systemctl stop filebeat
 echo "clearing filebeat data"
 if [ -f /var/lib/filebeat/registry ]; then
-    echo "filebeat registry is not empty.  The sources below are still tracked.  Press return if this is correct or Ctrl-C to quit.""
+    echo "filebeat registry is not empty.  The sources below are still tracked.  Press return if this is correct or Ctrl-C to quit."
     cat /var/lib/filebeat/registry | jq -r .[].source | sed -e 's/^/- /'
     read
 fi
