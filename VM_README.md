@@ -16,7 +16,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 **General Information**
 
-* The VM was created with VMware Fusion v10.1.3 and ships with virtual hardware v12.
+* The VM was created with VMware Fusion v11.0.2 and ships with virtual hardware v12.
   * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
   * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
 * The VM is deployed with the "NAT" network mode enabled
@@ -44,18 +44,18 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
         * Passivedns (<http://for572.com/passivedns>)
         * HTTPD Common/Combined/vhost+Combined/SSL Access Logs
         * Live NetFlow v5 and archived NetFlow records
-    * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - public/v20180918 branch)
+    * ```/usr/local/sof-elk/*```: Clone of Github repository (<http://for572.com/sof-elk-git> - public/v20190102 branch)
 
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
-  * VM is a CentOS 7.5 base with all updates as of 2018-09-18
-  * Includes Elastic stack components v6.4.1
-  * Configuration files are from the "public/v20180918" branch of this Github repository
+  * VM is a CentOS 7.5 base with all OS updates as of 2019-01-02
+  * Includes Elastic stack components v6.5.3
+  * Configuration files are from the "public/v20190102" branch of this Github repository
 * Metadata
-  * Filename and size: ```Public SOF ELK v20180918.zip``` (```2,087,466,994``` bytes)
-  * MD5: ```27b6e941557c41d5667808600bb59724```
-  * SHA256: ```4d4c680d5a36c8f9b608d2f0576ca9cf1c979700381ded1f64c4ce7c4ebd70b1```
+  * Filename and size: ```Public SOF ELK v20190102.zip``` (```1,707,502,761``` bytes)
+  * MD5: ```8468fdce074445e6df6c0fcae791e1de```
+  * SHA256: ```b6ae8f1f5ebc4792e6ad7d5a771316d7ab4b8855cf3928c34925b2851fb3a2a7```
 
 **How to Use**
 
@@ -74,11 +74,17 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 
 * Syslog data in `~elk_user/lab-2.3_source_evidence/`
   * Unzip each of these files **into the `/logstash/syslog/` directory**, such as: `cd /logstash/syslog/ ; unzip ~elk_user/lab-2.3_source_evidence/<file>`
+  * Use the time frame `2013-06-08 15:00:00` to `2013-06-08 23:30:00` to examine this data.
 * NetFlow data in `~elk_user/lab-3.1_source_evidence/`
   * Use the `nfdump2sof-elk.sh` script and write output **to the `/logstash/nfarch/` directory**, such as: `cd /home/elk_user/lab-3.1_source_evidence/ ; nfdump2sof-elk.sh -e 10.3.58.1 -r ~elk_user/lab-3.1_source_evidence/netflow/ -w /logstash/nfarch/lab-3.1_netflow.txt`
+  * Use the time frame `2012-04-02` to `2012-04-07` to examine this data.
 
 **Changelog**
 
+* Update: 2019-01-02: Updated to ES 6.5.3 components
+  * Updated system components to latest CentOS 7.6
+  * Updated all Elastic Stack components to 6.5.3
+  * Numerous other config file, parser, and dashboard updates as documented in the Git history
 * Update: 2018-09-18: All-new with 6.4.1
   * VM was rebuilt entirely from scratch with all Elastic stack components at v6.4.0
   * Updated system components to match latest CentOS 7.5
