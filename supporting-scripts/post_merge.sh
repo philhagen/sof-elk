@@ -15,9 +15,25 @@ for file in $( ls -1 /usr/local/sof-elk/configfiles/* 2> /dev/null ) ; do
 
     ln -s $file /etc/logstash/conf.d/$( basename $file )
 done
+
+# deactivate dead configuration file symlinks links
+for deadlink in $( ls -1 /etc/logstash/conf.d/* ); do
+    if [ ! -e "${deadlink}" ] ; then
+        rm -f ${deadlink}
+    fi
+done
+
 # reload logstash
 for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
     kill -s HUP $lspid
+done
+
+# create necessary ingest directories
+ingest_dirs="syslog nfarch httpd passivedns zeek"
+for ingest_dir in ${ingest_dirs}; do
+    if [ ! -d /logstash/${ingest_dir} ]; then
+        mkdir -m 1777 -p /logstash/${ingest_dir}
+    fi
 done
 
 # activate all elastalert rules

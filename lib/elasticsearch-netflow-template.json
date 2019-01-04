@@ -8,7 +8,7 @@
     }
   },
   "mappings": {
-    "_default_": {
+    "doc": {
       "dynamic_templates": [
         {
           "ip_address_fields": {
@@ -39,7 +39,7 @@
         "@version": {
           "type": "keyword"
         },
-        "host": {
+        "exporter": {
           "type": "ip"
         },
         "source_port": {

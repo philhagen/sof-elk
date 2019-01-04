@@ -11,6 +11,7 @@ import json
 import os
 import argparse
 import signal
+import re
 
 # set the top-level root location for all loaded files
 topdir = '/logstash/'
@@ -74,11 +75,15 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    standard_indices = ('.kibana', '.logstash', '.elasticsearch', 'elastalert_status_error', 'elastalert_status_status')
+    standard_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*' ]
+    standard_index_regex = []
+    for raw_regex in standard_index_rawregex:
+        standard_index_regex.append(re.compile(raw_regex))
+
     index_dict = {}
     indices = es.indices.get_alias('*').keys()
     for index in indices:
-        if index not in standard_indices:
+        if not any(compiled_reg.match(index) for compiled_reg in standard_index_regex):
             baseindex = index.split('-')[0]
             index_dict[baseindex] = True
     return index_dict.keys()
@@ -87,7 +92,7 @@ def get_es_indices(es):
 sourcedir_index_mapping = {
     'syslog': 'logstash',
     'passivedns': 'logstash',
-    'bro': 'logstash',
+    'zeek': 'logstash',
     'nfarch': 'netflow',
     'httpd': 'httpdlog',
     'plaso': 'timelineplaso',
@@ -136,21 +141,28 @@ if args.filepath:
             exit(1)
 
         res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+        doccount = res['hits']['total']
+
     else:
         print 'File path must start with "%s".  Exiting.' % (topdir)
         exit(1)
 
 elif args.nukeitall:
     populated_indices = [s + '-*' for s in get_es_indices(es)]
-    res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
+    if len(populated_indices) == 0:
+        print 'There are no active data indices in Elasticsearch'
+        doccount = 0
+    else:
+        res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
+        doccount = res['hits']['total']
 
 else:
     res = es.search(index='%s-*' % (args.index), body={'query': {'match_all': {}}})
+    doccount = res['hits']['total']
 
-doccount = res['hits']['total']
 if doccount > 0:
     # get user confirmation to proceed
-    print '%d documents found\n' % doccount
+    print '%s documents found\n' % "{:,}".format(doccount)
 
     if not confirm(prompt='Delete these documents permanently?', resp=False):
         print 'Will NOT delete documents.  Exiting.'
