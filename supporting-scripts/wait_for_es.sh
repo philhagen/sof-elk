@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 # SOF-ELK® Supporting script
 # (C)2018 Lewes Technology Consulting, LLC
 #
