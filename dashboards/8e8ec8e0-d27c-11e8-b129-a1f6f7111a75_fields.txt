@@ -73,12 +73,12 @@
 {"name":"cookie.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"count","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_as","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"destination_asnstr","type":"string","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['destination_geo.as_org.keyword'].value + ' (AS' + doc['destination_geo.asn'].value + ')'"}
 {"name":"destination_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.area_code","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"destination_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.asn","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
+{"name":"destination_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( !doc.containsKey('destination_geo.asn') || doc.containsKey('destination_geo.as_org.keyword') ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"destination_geo.asn.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.asnstr","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"destination_geo.asnstr.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
@@ -142,7 +142,7 @@
 {"name":"fields","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"first_switched","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"flow_records_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['flow_records'].value"}
+{"name":"flow_records_vis","type":"number","count":0,"scripted":true,"script":"return doc['flow_records'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"host.name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"host.name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"hostname","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
@@ -152,9 +152,9 @@
 {"name":"httpversion","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"ident","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"in_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"in_bytes_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['in_bytes'].value"}
+{"name":"in_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['in_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"in_packets","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"in_packets_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['in_packets'].value"}
+{"name":"in_packets_vis","type":"number","count":0,"scripted":true,"script":"return doc['in_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"info_code","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"info_phrase","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"info_phrase.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":false}
@@ -177,14 +177,14 @@
 {"name":"message","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"message.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"missed_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"missed_bytes_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['missed_bytes'].value"}
+{"name":"missed_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['missed_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"next_hop_ip","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"offset","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"original_message","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"out_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"out_bytes_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['out_packets'].value"}
+{"name":"out_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"out_packets","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"out_packets_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['out_packets'].value"}
+{"name":"out_packets_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"output_interface","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"output_interface.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"output_snmp","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
@@ -247,7 +247,6 @@
 {"name":"source","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_as","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"source_asnstr","type":"string","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['source_geo.as_org.keyword'].value + ' (AS' + doc['source_geo.asn'].value + ')'"}
 {"name":"source_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_filename","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_filename.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":false}
@@ -255,7 +254,7 @@
 {"name":"source_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_geo.asn","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"source_geo.asnstr","type":"string","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value"}
+{"name":"source_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( !doc.containsKey('source_geo.asn') || doc.containsKey('source_geo.as_org.keyword') ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"source_geo.asnstr.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_geo.city_name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_geo.city_name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
@@ -308,10 +307,10 @@
 {"name":"tags.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"tcp_aflags","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"tcp_aflags.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"total_bytes","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['out_bytes'].value + doc['in_bytes'].value"}
-{"name":"total_bytes_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['out_bytes'].value + doc['in_bytes'].value"}
-{"name":"total_packets","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['out_packets'].value + doc['in_packets'].value"}
-{"name":"total_packets_vis","type":"number","count":0,"scripted":true,"searchable":true,"aggregatable":true,"readFromDocValues":false,"lang":"painless","script":"doc['out_packets'].value + doc['in_packets'].value"}
+{"name":"total_bytes","type":"number","count":0,"scripted":true,"script":"return doc['out_bytes'].value + doc['in_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"total_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_bytes'].value + doc['in_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"total_packets","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value + doc['in_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"total_packets_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value + doc['in_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"trans_depth","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"ttl","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"type","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}

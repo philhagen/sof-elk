@@ -71,12 +71,6 @@
   "total_packets": {
     "id": "number"
   },
-  "destination_asnstr": {
-    "id": "string"
-  },
-  "source_asnstr": {
-    "id": "string"
-  },
   "first_switched": {
     "id": "date",
     "params": {
@@ -93,6 +87,18 @@
     "id": "number",
     "params": {
       "pattern": "00"
+    }
+  },
+  "destination_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
+    }
+  },
+  "source_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
     }
   }
 }
