@@ -28,7 +28,7 @@ for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, 
     fi
 
     # pull out fields and fieldFormats to their own files
-    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | jq -c '.[]' > ${DASHID}_fields.txt
+    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | sort | jq -c '.[]' > ${DASHID}_fields.txt
     if [ ! -s ${DASHID}_fields.txt ]; then
         echo "NOTE: ${DASHID} did not have any index-pattern fields"
         rm ${DASHID}_fields.txt
