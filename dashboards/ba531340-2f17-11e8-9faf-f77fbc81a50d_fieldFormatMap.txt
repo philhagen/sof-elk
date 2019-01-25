@@ -24,6 +24,9 @@
     }
   },
   "source_geo.asnstr": {
-    "id": "string"
+    "id": "string",
+    "params": {
+      "transform": "false"
+    }
   }
 }
