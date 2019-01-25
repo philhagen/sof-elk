@@ -22,5 +22,11 @@
     "params": {
       "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
+  },
+  "source_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
+    }
   }
 }
