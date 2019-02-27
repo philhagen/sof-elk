@@ -88,6 +88,18 @@
     "params": {
       "pattern": "00"
     }
+  },
+  "destination_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
+    }
+  },
+  "source_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
+    }
   }
 }
 {
