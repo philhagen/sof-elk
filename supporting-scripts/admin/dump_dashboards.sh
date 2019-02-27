@@ -28,7 +28,7 @@ for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, 
     fi
 
     # pull out fields and fieldFormats to their own files
-    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | sort | jq -c '.[]' > ${DASHID}_fields.txt
+    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | sort | jq -c '.[]' > ${DASHID}_fields.txt 2> /dev/null
     if [ ! -s ${DASHID}_fields.txt ]; then
         echo "NOTE: ${DASHID} did not have any index-pattern fields"
         rm ${DASHID}_fields.txt
@@ -39,7 +39,7 @@ for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, 
         rm ${DASHID}.json
         mv ${DASHID}_temp.json ${DASHID}.json
     fi
-    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fieldFormatMap' | jq '.' > ${DASHID}_fieldFormatMap.txt
+    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fieldFormatMap' | jq '.' > ${DASHID}_fieldFormatMap.txt 2> /dev/null
     if [ ! -s ${DASHID}_fieldFormatMap.txt ]; then
         echo "NOTE: ${DASHID} did not have any index-pattern fieldFormats"
         rm ${DASHID}_fieldFormatMap.txt
