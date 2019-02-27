@@ -9,7 +9,7 @@ for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, 
 
     # get the dashboard content, filter to remove unnecessary fields
     curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, br" http://localhost:5601/api/kibana/dashboards/export?dashboard=${DASHID} > ${DASHID}_raw.json 2> /dev/null
-    cat ${DASHID}_raw.json | jq '.|del(.objects[].version)|del(.objects[].attributes.version)|del(.objects[].updated_at)' > ${DASHID}.json 2> /dev/null
+    cat ${DASHID}_raw.json | jq '.|del(.objects[].version)|del(.objects[].attributes.version)|del(.objects[].updated_at)|del(.objects[].migrationVersion)' > ${DASHID}.json 2> /dev/null
     RES=$?
     if [ $RES -eq 0 ]; then
         rm -f ${DASHID}_raw.json
@@ -28,7 +28,7 @@ for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, 
     fi
 
     # pull out fields and fieldFormats to their own files
-    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | jq -c '.[]' | sort > ${DASHID}_fields.txt 2> /dev/null
+    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | jq -c '.[]' | sort | uniq > ${DASHID}_fields.txt 2> /dev/null
     if [ ! -s ${DASHID}_fields.txt ]; then
         echo "NOTE: ${DASHID} did not have any index-pattern fields"
         rm ${DASHID}_fields.txt
