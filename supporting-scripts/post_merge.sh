@@ -4,9 +4,6 @@
 #
 # This script is used to perform post-merge steps, eg after the git repository is updated
 
-# reload all dashboards
-/usr/local/sbin/load_all_dashboards.sh
-
 # activate all "supported" Logstash configuration files
 for file in $( ls -1 /usr/local/sof-elk/configfiles/* 2> /dev/null ) ; do
     if [ -h /etc/logstash/conf.d/$( basename $file ) ]; then
@@ -56,3 +53,7 @@ if [ -a $LOGO_PATH ]; then
     rm -rf $LOGO_PATH
 fi
 ln -fs /usr/local/sof-elk/lib/sof-elk.svg $LOGO_PATH
+
+# reload all dashboards
+/usr/local/sbin/load_all_dashboards.sh
+
