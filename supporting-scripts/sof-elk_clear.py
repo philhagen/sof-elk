@@ -143,7 +143,7 @@ if args.filepath:
             print 'No corresponding index for requested filepath.  Exiting.'
             exit(1)
 
-        res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+        res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.keyword': '%s' % (args.filepath)}}})
         doccount = res['hits']['total']
 
     else:
@@ -173,7 +173,7 @@ if doccount > 0:
 
     # delete the records
     if args.filepath:
-        es.delete_by_query(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+        es.delete_by_query(index='%s-*' % (args.index), body={'query': {'prefix': {'source.keyword': '%s' % (args.filepath)}}})
 
     elif args.nukeitall:
         es.indices.delete(index='%s' % (','.join(populated_indices)), ignore=[400, 404])
