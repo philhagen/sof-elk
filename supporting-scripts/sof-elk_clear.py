@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 # SOF-ELK(R) Supporting script
-# (C)2018 Lewes Technology Consulting, LLC
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath
@@ -123,10 +123,14 @@ if args.index == 'list':
     populated_indices = get_es_indices(es)
     if len(populated_indices) == 0:
         print 'There are no active data indices in Elasticsearch'
+
     else:
         print 'The following indices are currently active in Elasticsearch:'
         for index in populated_indices:
-            print '- %s' % (index)
+            es = es.search(index='%s-*' % (index), body={'query': {'match_all': {}}})
+            doccount = res['hits']['total']
+
+            print '- %s (%s documents)' % (index, "{:,}".format(doccount))
     exit(0)
 
 ### delete from existing ES indices
@@ -162,7 +166,7 @@ else:
 
 if doccount > 0:
     # get user confirmation to proceed
-    print '%s documents found\n' % "{:,}".format(doccount)
+    print '%s documents found\n' % ("{:,}".format(doccount))
 
     if not confirm(prompt='Delete these documents permanently?', resp=False):
         print 'Will NOT delete documents.  Exiting.'
