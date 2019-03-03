@@ -5,10 +5,11 @@ SOF-ELK® Virtual Machine Distribution
 **Background**
 
 This page contains details for the SOF-ELK® (Security Operations and Forensics Elasticsearch, Logstash, Kibana) VM.
-The VM is provided as a community resource but is covered in depth in the following course(s):
+The VM is provided as a community resource but is covered at varying depths in the following SANS course(s):
 
 * [SANS FOR572, Advanced Network Forensics and Analysis](http://for572.com/course)
 * [SANS SEC555, SIEM with Tactical Analysis](http://for572.com/sec555)
+* [SANS SEC501, Advanced Security Essentials - Enterprise Defender](http://for572.com/sec501)
 
 The latest version of the VM itself is available here: <http://for572.com/sof-elk-vm>
 
