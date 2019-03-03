@@ -95,7 +95,6 @@ sourcedir_index_mapping = {
     'zeek': 'logstash',
     'nfarch': 'netflow',
     'httpd': 'httpdlog',
-    'plaso': 'timelineplaso',
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
