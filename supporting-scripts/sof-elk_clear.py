@@ -126,7 +126,7 @@ if args.index == 'list':
     else:
         print 'The following indices are currently active in Elasticsearch:'
         for index in populated_indices:
-            es = es.search(index='%s-*' % (index), body={'query': {'match_all': {}}})
+            res = es.search(index='%s-*' % (index), body={'query': {'match_all': {}}})
             doccount = res['hits']['total']
 
             print '- %s (%s documents)' % (index, "{:,}".format(doccount))
