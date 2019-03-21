@@ -3,7 +3,7 @@
 #
 # This file creates a filebeat prospector for passivedn source data from the SOF-ELK® VM itself
 #
-filebeat.prospectors:
+filebeat.config.inputs:
   - type: log
     paths:
       - /logstash/passivedns/*/*/*/*/*

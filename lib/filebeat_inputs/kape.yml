@@ -3,7 +3,7 @@
 #
 # This file creates a filebeat prospector for syslog source data from the SOF-ELK® VM itself
 
-filebeat.prospectors:
+filebeat.config.inputs:
   - type: log
     paths:
       - /logstash/kape/*/*/*/*/*_MFTECmd_Output.json

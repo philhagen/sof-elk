@@ -3,7 +3,7 @@
 #
 # This file creates filebeats prospector for Zeek source data from the SOF-ELK® VM itself
 
-filebeat.prospectors:
+filebeat.config.inputs:
   - type: log
     paths:
       - /logstash/zeek/*/*/*/*/conn.*
