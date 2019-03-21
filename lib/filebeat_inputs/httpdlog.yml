@@ -3,16 +3,15 @@
 #
 # This file creates a filebeat prospector for httpd access log source data from the SOF-ELK® VM itself
 
-filebeat.config.inputs:
-  - type: log
-    paths:
-      - /logstash/httpd/*/*/*/*/*
-      - /logstash/httpd/*/*/*/*
-      - /logstash/httpd/*/*/*
-      - /logstash/httpd/*/*
-      - /logstash/httpd/*
-    exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-    close_inactive: 5m
-    fields_under_root: true
-    fields:
-      type: httpdlog
+- type: log
+  paths:
+    - /logstash/httpd/*/*/*/*/*
+    - /logstash/httpd/*/*/*/*
+    - /logstash/httpd/*/*/*
+    - /logstash/httpd/*/*
+    - /logstash/httpd/*
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: httpdlog
