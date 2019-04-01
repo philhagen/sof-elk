@@ -15,3 +15,16 @@
   fields:
     type: kape_filesystem
   tags: [ 'json' ]
+
+- type: log
+  paths:
+    - /logstash/kape/*/*/*/*/FileFolderAccess/*.json
+    - /logstash/kape/*/*/*/FileFolderAccess/*.json
+    - /logstash/kape/*/*/FileFolderAccess/*.json
+    - /logstash/kape/*/FileFolderAccess/*.json
+    - /logstash/kape/FileFolderAccess/*.json
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: kape_filefolderaccess
+  tags: [ 'json' ]
