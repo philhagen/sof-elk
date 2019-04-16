@@ -1,4 +1,8 @@
 #!/bin/bash
+# SOF-ELK® Supporting script
+# (C)2019 Lewes Technology Consulting, LLC
+#
+# This script fixes the elasticsearch jvm.options file to maximize use of available RAM
 
 ES_HEAP_MAX=31000
 

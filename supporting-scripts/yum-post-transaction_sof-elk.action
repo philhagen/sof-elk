@@ -1,5 +1,5 @@
-# SOF-ELK® Supporting script
-# (C)2018 Lewes Technology Consulting, LLC
+# SOF-ELK® Supporting file
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This file contains all post-update triggers for the yum-post-transaction-actions plugin
 
