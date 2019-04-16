@@ -7,7 +7,7 @@
 # core concepts/syntax from: https://github.com/jjfalling/update-elasticsearch-plugins
 
 elasticsearchPluginDir='/usr/share/elasticsearch/plugins'
-elasticsearchPlugin='/usr/share/elasticsearch/bin/plugin'
+elasticsearchPlugin='/usr/share/elasticsearch/bin/elasticsearch-plugin'
 elasticsearchPluginPage='https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-plugins.html'
 
 declare -A customPlugins
