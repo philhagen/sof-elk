@@ -1,4 +1,3 @@
-#!/bin/bash
 # SOF-ELK® Supporting script
 # (C)2019 Lewes Technology Consulting, LLC
 #
@@ -17,21 +16,21 @@ end
 def filter(event)
     type = event.get("type")
 
-    if @type == "netflow"
-        tcp_flags_int = event.get(@source_field)
+    if type == "netflow"
+        tcp_flags_int = event.get(@source_field).to_i
 
         # create empty array
         tcp_flags = Array.new()
 
         # Add to the array based on values in the bitmask
-        tcp_flags.push("F") if (tcp_flags_int & 0x01 != 0)
-        tcp_flags.push("S") if (tcp_flags_int & 0x02 != 0)
-        tcp_flags.push("R") if (tcp_flags_int & 0x04 != 0)
-        tcp_flags.push("P") if (tcp_flags_int & 0x08 != 0)
-        tcp_flags.push("A") if (tcp_flags_int & 0x10 != 0)
-        tcp_flags.push("U") if (tcp_flags_int & 0x20 != 0)
-        tcp_flags.push("E") if (tcp_flags_int & 0x40 != 0)
         tcp_flags.push("C") if (tcp_flags_int & 0x80 != 0)
+        tcp_flags.push("E") if (tcp_flags_int & 0x40 != 0)
+        tcp_flags.push("U") if (tcp_flags_int & 0x20 != 0)
+        tcp_flags.push("A") if (tcp_flags_int & 0x10 != 0)
+        tcp_flags.push("P") if (tcp_flags_int & 0x08 != 0)
+        tcp_flags.push("R") if (tcp_flags_int & 0x04 != 0)
+        tcp_flags.push("S") if (tcp_flags_int & 0x02 != 0)
+        tcp_flags.push("F") if (tcp_flags_int & 0x01 != 0)
 
         tcp_flags_str = tcp_flags.join()
 
@@ -52,6 +51,7 @@ def filter(event)
         tcp_flags_int += 32 if tcp_flags.include? "U"
         tcp_flags_int += 64 if tcp_flags.include? "E"
         tcp_flags_int += 128 if tcp_flags.include? "C"
+    end
 
     event.set("tcp_flags_str", tcp_flags_str)
     event.set("tcp_flags_hex", "0x" + tcp_flags_int.to_s(16).upcase)
