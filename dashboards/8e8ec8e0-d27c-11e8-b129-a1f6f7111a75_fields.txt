@@ -139,7 +139,7 @@
 {"name":"exporter","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"facility","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"fields","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"first_switched","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"flow_start","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records_vis","type":"number","count":0,"scripted":true,"script":"return doc['flow_records'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"host","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
@@ -168,7 +168,7 @@
 {"name":"key_id","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"label","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"label.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"last_switched","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"flow_end","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"login_method","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"login_method.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"login_result","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}

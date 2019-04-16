@@ -71,13 +71,13 @@
   "total_packets": {
     "id": "number"
   },
-  "first_switched": {
+  "flow_start": {
     "id": "date",
     "params": {
       "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
   },
-  "last_switched": {
+  "flow_end": {
     "id": "date",
     "params": {
       "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
