@@ -110,8 +110,9 @@
 {"name":"source_tos","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"tags","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"tags.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"tcp_aflags","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
-{"name":"tcp_aflags.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"tcp_flags","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"tcp_flags_str","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"tcp_flags_hex","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"total_bytes","type":"number","count":0,"scripted":true,"script":"return doc['out_bytes'].value + doc['in_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"total_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_bytes'].value + doc['in_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"total_packets","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value + doc['in_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
