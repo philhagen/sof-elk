@@ -8,7 +8,7 @@
 
 PLUGINBIN=/usr/share/logstash/bin/logstash-plugin
 
-lsplugins="logstash-input-relp logstash-filter-tld logstash-filter-rest logstash-filter-json_encode"
+lsplugins="logstash-input-relp logstash-filter-tld logstash-filter-rest logstash-filter-json_encode logstash-filter-cidr"
 
 for lsplugin in ${lsplugins}; do
 	$PLUGINBIN install ${lsplugin}
