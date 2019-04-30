@@ -45,6 +45,11 @@ done
 /usr/bin/systemctl restart elastalert
 
 # restart filebeat to account for any new config files and/or prospectors
+FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
+if [ -a  $FILEBEAT_CONF_PATH ]; then
+    rm -f $FILEBEAT_CONF_PATH
+fi
+ln -fs /usr/local/sof-elk/lib/configfiles/filebeat.yml $FILEBEAT_CONF_PATH
 /usr/bin/systemctl restart filebeat
 
 # other housecleaning
