@@ -17,6 +17,7 @@
   tags: [ 'json' ]
 
 - type: log
+  paths:
     - /logstash/kape/*/*/*/*/LnkFiles/*_LECmd_Output.json
     - /logstash/kape/*/*/*/LnkFiles/*_LECmd_Output.json
     - /logstash/kape/*/*/LnkFiles/*_LECmd_Output.json
