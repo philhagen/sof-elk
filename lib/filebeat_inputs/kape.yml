@@ -17,6 +17,18 @@
   tags: [ 'json' ]
 
 - type: log
+    - /logstash/kape/*/*/*/*/LnkFiles/*_LECmd_Output.json
+    - /logstash/kape/*/*/*/LnkFiles/*_LECmd_Output.json
+    - /logstash/kape/*/*/LnkFiles/*_LECmd_Output.json
+    - /logstash/kape/*/LnkFiles/*_LECmd_Output.json
+    - /logstash/kape/LnkFiles/*_LECmd_Output.json
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: kape_lnkfiles
+  tags: [ 'json' ]
+
+- type: log
   paths:
     - /logstash/kape/*/*/*/*/FileFolderAccess/*.json
     - /logstash/kape/*/*/*/FileFolderAccess/*.json
