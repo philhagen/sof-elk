@@ -45,10 +45,15 @@ done
 /usr/bin/systemctl restart elastalert
 
 # restart filebeat to account for any new config files and/or prospectors
+FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
+if [ -a  $FILEBEAT_CONF_PATH ]; then
+    rm -f $FILEBEAT_CONF_PATH
+fi
+ln -fs /usr/local/sof-elk/lib/configfiles/filebeat.yml $FILEBEAT_CONF_PATH
 /usr/bin/systemctl restart filebeat
 
 # other housecleaning
-LOGO_PATH="/usr/share/kibana/src/core_plugins/kibana/public/assets/sof-elk.svg"
+LOGO_PATH="/usr/share/kibana/src/ui/public/assets/favicons/sof-elk.svg"
 if [ -a $LOGO_PATH ]; then
     rm -rf $LOGO_PATH
 fi
