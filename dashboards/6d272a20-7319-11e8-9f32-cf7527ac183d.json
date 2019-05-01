@@ -138,7 +138,7 @@
       "type": "visualization",
       "attributes": {
         "title": "SOF-ELK®",
-        "visState": "{\"title\":\"SOF-ELK®\",\"type\":\"markdown\",\"params\":{\"fontSize\":12,\"openLinksInNewTab\":false,\"markdown\":\"![SOF-ELK Logo](/plugins/kibana/assets/sof-elk.svg)\"},\"aggs\":[]}",
+        "visState": "{\"title\":\"SOF-ELK®\",\"type\":\"markdown\",\"params\":{\"fontSize\":12,\"openLinksInNewTab\":false,\"markdown\":\"![SOF-ELK Logo](/ui/favicons/sof-elk.svg)\"},\"aggs\":[]}",
         "uiStateJSON": "{}",
         "description": "",
         "kibanaSavedObjectMeta": {

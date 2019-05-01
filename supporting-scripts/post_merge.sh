@@ -53,7 +53,7 @@ ln -fs /usr/local/sof-elk/lib/configfiles/filebeat.yml $FILEBEAT_CONF_PATH
 /usr/bin/systemctl restart filebeat
 
 # other housecleaning
-LOGO_PATH="/usr/share/kibana/src/core_plugins/kibana/public/assets/sof-elk.svg"
+LOGO_PATH="/usr/share/kibana/src/ui/public/assets/favicons/sof-elk.svg"
 if [ -a $LOGO_PATH ]; then
     rm -rf $LOGO_PATH
 fi
