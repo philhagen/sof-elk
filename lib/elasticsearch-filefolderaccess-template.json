@@ -30,6 +30,14 @@
       "properties": {
         "@version": {
           "type": "keyword"
+        },
+
+        "prospector": {
+          "properties": {
+            "type": {
+              "type": "keyword"
+            }
+          }
         }
       }
     }
