@@ -1,0 +1,20 @@
+{
+  "attributes": {
+    "title": "Filesystem Discovery",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "ParentPath",
+      "FileName",
+      "FileSize"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"8649f230-5199-11e9-8b54-fde301eff14e\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}

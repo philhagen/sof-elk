@@ -1,0 +1,6 @@
+{
+  "attributes": {
+    "title": "lnkfiles-*",
+    "timeFieldName": "@timestamp"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "attributes": {
+    "title": "filesystem-*",
+    "timeFieldName": "@timestamp"
+  }
+}
