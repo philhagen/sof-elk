@@ -1,0 +1,13 @@
+{
+  "attributes": {
+    "title": "SOF-ELK® VM Introduction Dashboard",
+    "hits": 0,
+    "description": "",
+    "panelsJSON": "[{\"panelIndex\":\"1\",\"gridData\":{\"x\":21,\"y\":0,\"w\":27,\"h\":11,\"i\":\"1\"},\"embeddableConfig\":{},\"id\":\"bdecdc70-731e-11e8-9f32-cf7527ac183d\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"2\",\"gridData\":{\"x\":0,\"y\":11,\"w\":16,\"h\":6,\"i\":\"2\"},\"embeddableConfig\":{},\"id\":\"f8529370-3023-11e8-9faf-f77fbc81a50d\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"3\",\"gridData\":{\"x\":32,\"y\":11,\"w\":16,\"h\":6,\"i\":\"3\"},\"embeddableConfig\":{},\"id\":\"fc97bf70-2f2c-11e8-9faf-f77fbc81a50d\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"4\",\"gridData\":{\"x\":16,\"y\":11,\"w\":16,\"h\":6,\"i\":\"4\"},\"embeddableConfig\":{},\"id\":\"b9aee980-746f-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"5\",\"gridData\":{\"x\":0,\"y\":17,\"w\":16,\"h\":14,\"i\":\"5\"},\"embeddableConfig\":{},\"id\":\"2ddd09e0-7470-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"7\",\"gridData\":{\"x\":32,\"y\":17,\"w\":16,\"h\":14,\"i\":\"7\"},\"embeddableConfig\":{},\"id\":\"820f2570-7470-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"8\",\"gridData\":{\"x\":16,\"y\":17,\"w\":16,\"h\":14,\"i\":\"8\"},\"embeddableConfig\":{},\"id\":\"28d920a0-7489-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"9\",\"gridData\":{\"x\":0,\"y\":31,\"w\":16,\"h\":15,\"i\":\"9\"},\"embeddableConfig\":{},\"id\":\"ea84ac10-7510-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"10\",\"gridData\":{\"x\":16,\"y\":31,\"w\":16,\"h\":15,\"i\":\"10\"},\"embeddableConfig\":{},\"id\":\"36c823e0-7511-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"11\",\"gridData\":{\"x\":32,\"y\":31,\"w\":16,\"h\":15,\"i\":\"11\"},\"embeddableConfig\":{},\"id\":\"57704730-7511-11e8-b583-8357aefbc6ed\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"panelIndex\":\"12\",\"gridData\":{\"x\":0,\"y\":0,\"w\":21,\"h\":11,\"i\":\"12\"},\"embeddableConfig\":{},\"id\":\"98309f20-8873-11e8-b4c2-17db52b8990d\",\"type\":\"visualization\",\"version\":\"6.3.2\"}]",
+    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+    "timeRestore": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+    }
+  }
+}

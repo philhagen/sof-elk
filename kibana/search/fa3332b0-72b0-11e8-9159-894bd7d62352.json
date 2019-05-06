@@ -1,0 +1,24 @@
+{
+  "attributes": {
+    "title": "NetFlow Discovery",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "exporter",
+      "aprotocol",
+      "source_ip",
+      "source_port",
+      "destination_ip",
+      "destination_port",
+      "total_bytes",
+      "total_packets"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"netflow\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}
