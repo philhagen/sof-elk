@@ -63,6 +63,15 @@
         "original_message": {
           "type": "keyword"
         },
+
+        "prospector": {
+          "properties": {
+            "type": {
+              "type": "keyword"
+            }
+          }
+        },
+
         "source_geo": {
           "dynamic": true,
           "properties": {
@@ -74,6 +83,9 @@
             },
             "longitude": {
               "type": "half_float"
+            },
+            "asn": {
+              "type": "integer"
             }
           }
         },
@@ -88,6 +100,9 @@
             },
             "longitude": {
               "type": "half_float"
+            },
+            "asn": {
+              "type": "integer"
             }
           }
         },
@@ -102,6 +117,9 @@
             },
             "longitude": {
               "type": "half_float"
+            },
+            "asn": {
+              "type": "integer"
             }
           }
         },
@@ -116,6 +134,9 @@
             },
             "longitude": {
               "type": "half_float"
+            },
+            "asn": {
+              "type": "integer"
             }
           }
         }

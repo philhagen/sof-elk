@@ -1,0 +1,19 @@
+{
+  "attributes": {
+    "title": "Syslog Discovery",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "syslog_hostname",
+      "syslog_program",
+      "message"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\n  \"index\": \"logstash\",\n  \"highlightAll\": true,\n  \"version\": true,\n  \"query\": {\n    \"query\": \"\",\n    \"language\": \"lucene\"\n  },\n  \"filter\": []\n}"
+    }
+  }
+}
