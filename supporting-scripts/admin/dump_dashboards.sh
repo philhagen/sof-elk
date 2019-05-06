@@ -16,7 +16,7 @@ kibana_port=5601
 
 mkdir dashboard visualization search index-pattern index-pattern/fields index-pattern/fieldformats
 
-# get list of all dashboard IDs and tehir content
+# get list of all dashboard IDs and their content
 for DASHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=dashboard&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
     curl -s -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}" -H 'kbn-xsrf: true' | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > dashboard/${DASHID}.json
 done
@@ -39,9 +39,6 @@ for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_hos
     # just the fields, sorting (per LC_ALL) for easier revision control
     curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq -c '.attributes.fields | fromjson[]' 2> /dev/null | sort > index-pattern/fields/${INDEXPATTERNID}.json 2> /dev/null
 
-
-# this sort of works: 
-### curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq '.attributes.fieldFormatMap'|jq -r 'fromjson | to_entries'                | jq 'from_entries | tojson'
     # just the fieldFormatMap, sorting (per LC_ALL) for easier revision control
     curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq '.attributes.fieldFormatMap | fromjson | to_entries | sort_by(.key)' > index-pattern/fieldformats/${INDEXPATTERNID}.json 2> /dev/null
 
