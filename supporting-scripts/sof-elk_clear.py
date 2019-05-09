@@ -219,20 +219,22 @@ if args.reload:
         reg_file = open(filebeat_registry_file, 'rb')
         try:
             reg_data = json.load(reg_file)
+            reg_file.close()
+
+            # create new registry, minus the files to be re-loaded
+            new_reg_data = []
+            for filebeatrecord in reg_data:
+                file = str(filebeatrecord['source'])
+                if not file in matches:
+                    new_reg_data.append(filebeatrecord)
+
+            new_reg_file = open(filebeat_registry_file, 'wb')
+            json.dump(new_reg_data, new_reg_file)
+            new_reg_file.close()
+
+
         except JSONDecodeError:
-            print('ERROR: Source data in filebeat registry file %s is not valid json.  Exiting.' % filebeat_registry_file)
-        reg_file.close()
-
-        # create new registry, minus the files to be re-loaded
-        new_reg_data = []
-        for filebeatrecord in reg_data:
-            file = str(filebeatrecord['source'])
-            if not file in matches:
-                new_reg_data.append(filebeatrecord)
-
-        new_reg_file = open(filebeat_registry_file, 'wb')
-        json.dump(new_reg_data, new_reg_file)
-        new_reg_file.close()
-
+            print('ERROR: Source data in filebeat registry file %s is not valid json.  Skipping.' % filebeat_registry_file)
+    
     # restart the filebeat service
     call(['/usr/bin/systemctl', 'start', 'filebeat'])
