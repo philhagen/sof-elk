@@ -5,11 +5,11 @@
 
 - type: log
   paths:
-    - /logstash/kape/*/*/*/*/FileSystem/*_MFTECmd_Output.json
-    - /logstash/kape/*/*/*/FileSystem/*_MFTECmd_Output.json
-    - /logstash/kape/*/*/FileSystem/*_MFTECmd_Output.json
-    - /logstash/kape/*/FileSystem/*_MFTECmd_Output.json
-    - /logstash/kape/FileSystem/*_MFTECmd_Output.json
+    - /logstash/kape/*/*/*/*/*_MFTECmd_Output.json
+    - /logstash/kape/*/*/*/*_MFTECmd_Output.json
+    - /logstash/kape/*/*/*_MFTECmd_Output.json
+    - /logstash/kape/*/*_MFTECmd_Output.json
+    - /logstash/kape/*_MFTECmd_Output.json
   close_inactive: 5m
   fields_under_root: true
   fields:
@@ -18,26 +18,13 @@
 
 - type: log
   paths:
-    - /logstash/kape/*/*/*/*/FileFolderAccess/*_LECmd_Output.json
-    - /logstash/kape/*/*/*/FileFolderAccess/*_LECmd_Output.json
-    - /logstash/kape/*/*/FileFolderAccess/*_LECmd_Output.json
-    - /logstash/kape/*/FileFolderAccess/*_LECmd_Output.json
-    - /logstash/kape/FileFolderAccess/*_LECmd_Output.json
+    - /logstash/kape/*/*/*/*/*_LECmd_Output.json
+    - /logstash/kape/*/*/*/*_LECmd_Output.json
+    - /logstash/kape/*/*/*_LECmd_Output.json
+    - /logstash/kape/*/*_LECmd_Output.json
+    - /logstash/kape/*_LECmd_Output.json
   close_inactive: 5m
   fields_under_root: true
   fields:
     type: kape_lnkfiles
-  tags: [ 'json' ]
-
-- type: log
-  paths:
-    - /logstash/kape/*/*/*/*/FileFolderAccess/*.json
-    - /logstash/kape/*/*/*/FileFolderAccess/*.json
-    - /logstash/kape/*/*/FileFolderAccess/*.json
-    - /logstash/kape/*/FileFolderAccess/*.json
-    - /logstash/kape/FileFolderAccess/*.json
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: kape_filefolderaccess
   tags: [ 'json' ]
