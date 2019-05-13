@@ -3,6 +3,7 @@
     "httpdlog-*"
   ],
   "settings": {
+    "number_of_shards" : 1,
     "index": {
       "refresh_interval": "5s"
     }

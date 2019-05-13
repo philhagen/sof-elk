@@ -104,6 +104,8 @@ for (k, v) in sourcedir_index_mapping.items():
     index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
     index_sourcedir_mapping[v].append(topdir + k)
 
+filebeat_registry_file='/var/lib/filebeat/registry'
+
 parser = argparse.ArgumentParser(description='Clear the SOF-ELK(R) Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-i', '--index', dest='index', help='Index to clear.  Use "-i list" to see what is currently loaded.')
@@ -118,6 +120,11 @@ if args.reload and os.geteuid() != 0:
 
 # create Elasticsearch handle
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+try:
+    es.info()    
+except:
+    print("Could not establish a connection to elasticsearch.  Exiting.")
+    exit(1)
 
 # get list of top-level indices if requested
 if args.index == 'list':
@@ -212,21 +219,27 @@ if args.reload:
     # stop filebeat service
     call(['/usr/bin/systemctl', 'stop', 'filebeat'])
 
-    # load existing filebeat registry
-    reg_file = open('/var/lib/filebeat/registry', 'rb')
-    reg_data = json.load(reg_file)
-    reg_file.close()
+    if os.path.isfile(filebeat_registry_file) and os.path.getsize(filebeat_registry_file) > 0:
+        # load existing filebeat registry
+        reg_file = open(filebeat_registry_file, 'rb')
+        try:
+            reg_data = json.load(reg_file)
+            reg_file.close()
 
-    # create new registry, minus the files to be re-loaded
-    new_reg_data = []
-    for filebeatrecord in reg_data:
-        file = str(filebeatrecord['source'])
-        if not file in matches:
-            new_reg_data.append(filebeatrecord)
+            # create new registry, minus the files to be re-loaded
+            new_reg_data = []
+            for filebeatrecord in reg_data:
+                file = str(filebeatrecord['source'])
+                if not file in matches:
+                    new_reg_data.append(filebeatrecord)
 
-    new_reg_file = open('/var/lib/filebeat/registry', 'wb')
-    json.dump(new_reg_data, new_reg_file)
-    new_reg_file.close()
+            new_reg_file = open(filebeat_registry_file, 'wb')
+            json.dump(new_reg_data, new_reg_file)
+            new_reg_file.close()
 
+
+        except JSONDecodeError:
+            print('ERROR: Source data in filebeat registry file %s is not valid json.  Skipping.' % filebeat_registry_file)
+    
     # restart the filebeat service
     call(['/usr/bin/systemctl', 'start', 'filebeat'])
