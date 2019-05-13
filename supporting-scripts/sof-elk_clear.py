@@ -120,6 +120,11 @@ if args.reload and os.geteuid() != 0:
 
 # create Elasticsearch handle
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+try:
+    es.info()    
+except:
+    print("Could not establish a connection to elasticsearch.  Exiting.")
+    exit(1)
 
 # get list of top-level indices if requested
 if args.index == 'list':
