@@ -47,7 +47,7 @@ git pull --all
 echo "removing old kernels"
 package-cleanup -y --oldkernels --count=1
 echo "cleaning yum caches"
-yum clean all
+yum clean all --enablerepo=elk-*
 rm -rf /var/cache/yum
 
 echo "cleaning user histories"
