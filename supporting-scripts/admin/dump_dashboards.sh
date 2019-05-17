@@ -18,21 +18,21 @@ mkdir dashboard visualization search index-pattern index-pattern/fields index-pa
 
 # get list of all dashboard IDs and their content
 for DASHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=dashboard&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    curl -s -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}" -H 'kbn-xsrf: true' | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > dashboard/${DASHID}.json
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}" | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > dashboard/${DASHID}.json
 done
 
 # get a list of all visualization IDs and their content
 for VISUALIZATIONID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=visualization&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    curl -s -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/visualization/${VISUALIZATIONID}" -H 'kbn-xsrf: true' | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > visualization/${VISUALIZATIONID}.json
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/visualization/${VISUALIZATIONID}" | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > visualization/${VISUALIZATIONID}.json
 done
 
 # get a list of all search IDs and their content
 for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=search&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    curl -s -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/search/${SEARCHID}" -H 'kbn-xsrf: true' | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > search/${SEARCHID}.json
+    curl -s  -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/search/${SEARCHID}" | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > search/${SEARCHID}.json
 done
 
 # get a list of all index-patterns and their content, separate out the fields and fieldformatmap
-for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" -H 'kbn-xsrf: true' | jq -cr '.saved_objects[].id' ); do
+for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
     # index-pattern itself, stripping the fields and fieldFormatMap elements
     curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq 'del(.id,.type,.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion)' > index-pattern/${INDEXPATTERNID}.json
 

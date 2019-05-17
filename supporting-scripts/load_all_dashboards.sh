@@ -21,7 +21,7 @@ kibana_build=$(jq -r '.build.number' < /usr/share/kibana/package.json )
 max_wait=60
 wait_step=0
 interval=5
-until curl -s -XGET http://${es_host}:${es_port}/_cluster/health > /dev/null ; do
+until curl -s -X GET http://${es_host}:${es_port}/_cluster/health > /dev/null ; do
     wait_step=$(( ${wait_step} + ${interval} ))
     if [ ${wait_step} -gt ${max_wait} ]; then
         echo "ERROR: elasticsearch server not available for more than ${max_wait} seconds."
@@ -91,6 +91,7 @@ for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
         cat ${indexpatternfile} | jq --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -sc '.' )" '.attributes += { fields: $fields }' > ${TMPFILE}
     fi
 
+    # NOTE! This will change with Elastic 7 TODO: Fix this when that upgrade occurs.... will need to revalidate all the APIs of course
     curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}?overwrite=true" -d @${TMPFILE} > /dev/null
 
     # remove the temp file
