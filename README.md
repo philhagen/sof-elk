@@ -27,7 +27,7 @@ The various configuration files expect some of these files to reside at a specif
 
 **Contents by directory:**
 
-* `/dashboards/`: These files define the Kibana dashboards for individual data types.  These correspond with the parsing completed by the Logstash files in the ```/configfiles/``` directory, so they probably won't work on your own Logstash instance without some tweaking.  Note that with Kibana 4, dashboards are only kept in the Elastic database, so to load these to the interface, run the ```/dashboards/load_all_dashboards.sh``` script.
+* `/kibana/`: These files define the Kibana dashboards and associated files for individual data types.  These correspond with the parsing completed by the Logstash files in the ```/configfiles/``` directory, so they probably won't work on your own Logstash instance without some tweaking.  Note that with Kibana 4, dashboards are only kept in the Elastic database, so to load these to the interface, run the ```/dashboards/load_all_dashboards.sh``` script.
 * `/configfiles/`: These files conatain parsing/tagging/formatting/etc logic for individual file types as well as output configuration.
 * `/grok-patterns/`: Custom parsing patterns used by the files in the ```/configfiles/``` directory.
 * `/lib/`: Supporting files, including elasticsearch mappings, YAML lookup files, and images.
