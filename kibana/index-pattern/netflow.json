@@ -1,6 +1,6 @@
 {
   "attributes": {
-    "timeFieldName": "@timestamp",
-    "title": "netflow-*"
+    "title": "netflow-*",
+    "timeFieldName": "@timestamp"
   }
 }
