@@ -33,10 +33,34 @@ if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
     exit 2
 fi
 
-git reset --hard > /dev/null
-git pull origin
 
-/usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
-for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
-    kill -s HUP $lspid
-done
+# This method adapted from method here: from https://stackoverflow.com/a/3278427
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse "$UPSTREAM")
+BASE=$(git merge-base @ "$UPSTREAM")
+
+if [ $LOCAL = $REMOTE ]; then
+    echo "Up-to-date"
+
+elif [ $LOCAL = $BASE ]; then
+    # Need to pull
+    git reset --hard > /dev/null
+    git pull origin
+
+    /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
+    for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
+        kill -s HUP $lspid
+    done
+
+elif [ $REMOTE = $BASE ]; then
+    echo "Need to push - this should never happen"
+
+else
+    echo "Diverged - this should never happen"
+fi
+
+
+
+
+
