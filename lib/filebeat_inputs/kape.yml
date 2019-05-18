@@ -5,11 +5,11 @@
 
 - type: log
   paths:
-    - /logstash/kape/*/*/*/*/*_MFTECmd_Output.json
-    - /logstash/kape/*/*/*/*_MFTECmd_Output.json
-    - /logstash/kape/*/*/*_MFTECmd_Output.json
-    - /logstash/kape/*/*_MFTECmd_Output.json
-    - /logstash/kape/*_MFTECmd_Output.json
+    - /logstash/kape/*/*/*/*/*_MFTECmd*_Output.json
+    - /logstash/kape/*/*/*/*_MFTECmd*_Output.json
+    - /logstash/kape/*/*/*_MFTECmd*_Output.json
+    - /logstash/kape/*/*_MFTECmd*_Output.json
+    - /logstash/kape/*_MFTECmd*_Output.json
   close_inactive: 5m
   fields_under_root: true
   fields:
