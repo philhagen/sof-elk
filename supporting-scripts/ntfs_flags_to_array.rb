@@ -20,7 +20,7 @@ def filter(event)
         "archive" => false,
         "device" => false,
         "normal" => false,
-        "remporary" => false,
+        "temporary" => false,
         "sparsefile" => false,
         "reparsepoint" => false,
         "compressed" => false,

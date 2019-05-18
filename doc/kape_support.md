@@ -7,7 +7,8 @@ SOF-ELK will parse a number of the growing set of reports that KAPE generates.  
 
 **Supported KAPE Tools:**
 
-- [LECmd]: Parses Microsoft Windows LNK shortcut files(<https://github.com/EricZimmerman/LECmd>): v1.3.2.0
+- [LECmd](<https://github.com/EricZimmerman/LECmd>): Parses Microsoft Windows LNK shortcut files: v1.3.2.0
+- [MFTECmd](<https://github.com/EricZimmerman/MFTECmd>): Parses $MFT from NTFS file systems: v0.4.4.2
 
 **Credits:**
 
