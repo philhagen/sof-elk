@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2018 Lewes Technology Consulting, LLC
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository is updated
 
@@ -26,7 +26,7 @@ for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
 done
 
 # create necessary ingest directories
-ingest_dirs="syslog nfarch httpd passivedns zeek"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d /logstash/${ingest_dir} ]; then
         mkdir -m 1777 -p /logstash/${ingest_dir}
