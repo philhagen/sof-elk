@@ -33,17 +33,15 @@ if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
     exit 2
 fi
 
+# This method adapted from method here: https://stackoverflow.com/a/3278427
+LOCAL=$(git rev-parse @{0})
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @{0} @{u})
 
-# This method adapted from method here: from https://stackoverflow.com/a/3278427
-UPSTREAM=${1:-'@{u}'}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
-BASE=$(git merge-base @ "$UPSTREAM")
-
-if [ $LOCAL = $REMOTE ]; then
+if [[ $LOCAL = $REMOTE ]]; then
     echo "Up-to-date"
 
-elif [ $LOCAL = $BASE ]; then
+elif [[ $LOCAL = $BASE ]]; then
     # Need to pull
     git reset --hard > /dev/null
     git pull origin
@@ -53,14 +51,9 @@ elif [ $LOCAL = $BASE ]; then
         kill -s HUP $lspid
     done
 
-elif [ $REMOTE = $BASE ]; then
+elif [[ $REMOTE = $BASE ]]; then
     echo "Need to push - this should never happen"
 
 else
     echo "Diverged - this should never happen"
 fi
-
-
-
-
-
