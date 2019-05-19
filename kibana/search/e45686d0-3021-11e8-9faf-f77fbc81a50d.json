@@ -13,7 +13,7 @@
       "desc"
     ],
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\n  \"index\": \"logstash\",\n  \"highlightAll\": true,\n  \"version\": true,\n  \"query\": {\n    \"query\": \"\",\n    \"language\": \"lucene\"\n  },\n  \"filter\": []\n}"
+      "searchSourceJSON": "{\"index\":\"logstash\",\"highlightAll\": true,\"version\": true,\"query\": {\"query\":\"\",\"language\":\"lucene\" },\"filter\":[]}"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "attributes": {
-    "title": "logstash-*",
-    "timeFieldName": "@timestamp"
+    "timeFieldName": "@timestamp",
+    "title": "logstash-*"
   }
 }

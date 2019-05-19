@@ -1,6 +1,6 @@
 {
   "attributes": {
-    "title": "httpdlog-*",
-    "timeFieldName": "@timestamp"
+    "timeFieldName": "@timestamp",
+    "title": "httpdlog-*"
   }
 }
