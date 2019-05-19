@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2016 Lewes Technology Consulting, LLC
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This script is used to update the repository from its git origin
 # It will not overwrite any local changes unless -force is specified
