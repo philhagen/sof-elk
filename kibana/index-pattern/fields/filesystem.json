@@ -21,6 +21,7 @@
 {"name":"filename_ts.lastmodified","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"filename_ts.lastrecordchange","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"filesize","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"filesize_vis","type":"number","count":0,"scripted":true,"script":"return doc['filesize'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"host.name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"host.name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"input.type","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
