@@ -129,6 +129,7 @@ except:
 # get list of top-level indices if requested
 if args.index == 'list':
     populated_indices = get_es_indices(es)
+    populated_indices.sort()
     if len(populated_indices) == 0:
         print('There are no active data indices in Elasticsearch')
 
