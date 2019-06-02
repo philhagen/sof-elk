@@ -66,6 +66,8 @@
 {"name":"input_snmp","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"ip_protocol_version","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"ips","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
+{"name":"log.file.path","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
+{"name":"log.file.path.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"missed_bytes","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"missed_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['missed_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"next_hop_ip","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
