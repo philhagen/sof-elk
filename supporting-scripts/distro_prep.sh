@@ -40,6 +40,15 @@ git branch
 echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*' or 'class/v*', with  all others removed.)"
 read
 
+curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
+echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
+read
+
+echo "the following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
+find /logstash/ -type f -print
+find /logstash/ -mindepth 2 -type d
+read
+
 echo "updating local git repo clones"
 cd /usr/local/sof-elk/
 git pull --all
@@ -78,15 +87,6 @@ curl -s -XDELETE 'http://localhost:9200/.kibana_2' > /dev/null
 curl -s -XDELETE 'http://localhost:9200/.kibana' > /dev/null
 echo "removing elasticsearch .tasks index"
 curl -s -XDELETE 'http://localhost:9200/.tasks' > /dev/null
-
-curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
-echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
-read
-
-echo "the following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
-find /logstash/ -type f -print
-find /logstash/ -mindepth 2 -type d
-read
 
 echo "stopping filebeat service"
 systemctl stop filebeat
