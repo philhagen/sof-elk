@@ -33,6 +33,7 @@ if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
     exit 2
 fi
 
+/usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
 # This method adapted from method here: https://stackoverflow.com/a/3278427
 LOCAL=$(git rev-parse @{0})
 REMOTE=$(git rev-parse @{u})
