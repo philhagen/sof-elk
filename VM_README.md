@@ -51,13 +51,13 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
-  * VM is a CentOS 7.5 base with all OS updates as of 2019-01-02
-  * Includes Elastic stack components v6.5.3
-  * Configuration files are from the "public/v20190102" branch of this Github repository
+  * VM is a CentOS 7.6 base with all OS updates as of 2019-06-06
+  * Includes Elastic stack components v6.7.2
+  * Configuration files are from the "public/v20190606" branch of this Github repository
 * Metadata
-  * Filename and size: ```Public SOF ELK v20190102.zip``` (```1,707,502,761``` bytes)
-  * MD5: ```8468fdce074445e6df6c0fcae791e1de```
-  * SHA256: ```b6ae8f1f5ebc4792e6ad7d5a771316d7ab4b8855cf3928c34925b2851fb3a2a7```
+  * Filename and size: ```Public SOF ELK v20190606.zip``` (```FIXME``` bytes)
+  * MD5: ```FIXME```
+  * SHA256: ```FIXME```
 
 **How to Use**
 
