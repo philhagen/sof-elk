@@ -51,18 +51,18 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
 **Latest Distribution Vitals**
 
 * Basic details on the distribution
-  * VM is a CentOS 7.5 base with all OS updates as of 2019-01-02
-  * Includes Elastic stack components v6.5.3
-  * Configuration files are from the "public/v20190102" branch of this Github repository
+  * VM is a CentOS 7.6 base with all OS updates as of 2019-06-06
+  * Includes Elastic stack components v6.7.2
+  * Configuration files are from the "public/v20190606" branch of this Github repository
 * Metadata
-  * Filename and size: ```Public SOF ELK v20190102.zip``` (```1,707,502,761``` bytes)
-  * MD5: ```8468fdce074445e6df6c0fcae791e1de```
-  * SHA256: ```b6ae8f1f5ebc4792e6ad7d5a771316d7ab4b8855cf3928c34925b2851fb3a2a7```
+  * Filename and size: ```Public SOF ELK v20190606.zip``` (```FIXME``` bytes)
+  * MD5: ```FIXME```
+  * SHA256: ```FIXME```
 
 **How to Use**
 
-* Restore the "Deployment" snapshot
-* Boot the VM
+* Extract the compressed archive to your host system
+* Open and boot the VM
 * Log into the VM with the ```elk_user``` credentials (see above)
   * Logging in via SSH recommended, but if using the console login and a non-US keyboard, run ```sudo loadkeys uk```, replacing ```uk``` as needed for your local keyboard mapping
 * cd to one of the ```/logstash/*/``` directories as appropriate
@@ -71,6 +71,11 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * This dashboard gives a basic overview of what data has been loaded and how many records are present
     * There are links to several stock dashboards on the left hand side
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
+
+**Configuration Documentation**
+
+* Note: This will migrate to a new document at some point - just capturing here for the time being.
+* Change replica count in `/etc/sysconfig/sof-elk` if using this in a cluster
 
 **Sample Data Included**
 

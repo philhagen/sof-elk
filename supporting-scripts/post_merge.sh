@@ -59,6 +59,19 @@ if [ -a $LOGO_PATH ]; then
 fi
 ln -fs /usr/local/sof-elk/lib/sof-elk.svg $LOGO_PATH
 
+# set up all cron jobs, remove old ones
+for file in $( ls -1 /usr/local/sof-elk/supporting-scripts/cronjobs/* 2> /dev/null ) ; do
+    if [ -h /etc/cron.d/$( basename $file ) ]; then
+        rm -f /etc/cron.d/$( basename $file )
+    fi
+
+    ln -s $file /etc/cron.d/$( basename $file )
+done
+for deadlink in $( ls -1 /etc/cron.d/* ); do
+    if [ ! -e "${deadlink}" ] ; then
+        rm -f ${deadlink}
+    fi
+done
+
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
-
