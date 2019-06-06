@@ -72,6 +72,11 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * There are links to several stock dashboards on the left hand side
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
 
+**Configuration Documentation**
+
+* Note: This will migrate to a new document at some point - just capturing here for the time being.
+* Change replica count in `/etc/sysconfig/sof-elk` if using this in a cluster
+
 **Sample Data Included**
 
 * Syslog data in `~elk_user/lab-2.3_source_evidence/`
