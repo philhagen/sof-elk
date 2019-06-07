@@ -1,0 +1,21 @@
+{
+  "attributes": {
+    "title": "LNKfile Discovery",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "origin.filename",
+      "origin.modified",
+      "target.absolutepath",
+      "target.modified"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"lnkfiles\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}

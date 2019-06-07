@@ -3,16 +3,15 @@
 #
 # This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
 
-filebeat.prospectors:
-  - type: log
-    paths:
-      - /logstash/nfarch/*/*/*/*/*
-      - /logstash/nfarch/*/*/*/*
-      - /logstash/nfarch/*/*/*
-      - /logstash/nfarch/*/*
-      - /logstash/nfarch/*
-    exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-    close_inactive: 5m
-    fields_under_root: true
-    fields:
-      type: archive-netflow
+- type: log
+  paths:
+    - /logstash/nfarch/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*
+    - /logstash/nfarch/*/*/*
+    - /logstash/nfarch/*/*
+    - /logstash/nfarch/*
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: archive-netflow

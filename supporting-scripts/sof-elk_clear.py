@@ -1,12 +1,14 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2018 Lewes Technology Consulting, LLC
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath
 
 from elasticsearch import Elasticsearch
 from subprocess import call
+from io import open
+from builtins import input
 import json
 import os
 import argparse
@@ -45,11 +47,11 @@ def confirm(prompt=None, resp=False):
         prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
 
     while True:
-        ans = raw_input(prompt)
+        ans = input(prompt)
         if not ans:
             return resp
         if ans not in ['y', 'Y', 'n', 'N']:
-            print 'please enter y or n.'
+            print('please enter y or n.')
             continue
         if ans == 'y' or ans == 'Y':
             return True
@@ -69,24 +71,24 @@ def file_path_matches(path):
 # handle a ctrl-c cleanly
 # source: https://stackoverflow.com/a/1112350
 def ctrlc_handler(signal, frame):
-    print '\n\nCtrl-C pressed. Exiting.'
+    print('\n\nCtrl-C pressed. Exiting.')
     exit()
 signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    standard_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*' ]
-    standard_index_regex = []
-    for raw_regex in standard_index_rawregex:
-        standard_index_regex.append(re.compile(raw_regex))
+    special_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*' ]
+    special_index_regex = []
+    for raw_regex in special_index_rawregex:
+        special_index_regex.append(re.compile(raw_regex))
 
     index_dict = {}
-    indices = es.indices.get_alias('*').keys()
+    indices = list(es.indices.get_alias('*'))
     for index in indices:
-        if not any(compiled_reg.match(index) for compiled_reg in standard_index_regex):
+        if not any(compiled_reg.match(index) for compiled_reg in special_index_regex):
             baseindex = index.split('-')[0]
             index_dict[baseindex] = True
-    return index_dict.keys()
+    return list(index_dict)
 
 # this dictionary associates each on-disk source location with its correspodning ES index root name
 sourcedir_index_mapping = {
@@ -95,13 +97,16 @@ sourcedir_index_mapping = {
     'zeek': 'logstash',
     'nfarch': 'netflow',
     'httpd': 'httpdlog',
-    'plaso': 'timelineplaso',
+    'kape': 'lnkfiles',
+    'kape': 'filesystem',
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
-for k, v in sourcedir_index_mapping.iteritems():
+for (k, v) in sourcedir_index_mapping.items():
     index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
     index_sourcedir_mapping[v].append(topdir + k)
+
+filebeat_registry_file='/var/lib/filebeat/registry'
 
 parser = argparse.ArgumentParser(description='Clear the SOF-ELK(R) Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem.')
 group = parser.add_mutually_exclusive_group(required=True)
@@ -112,21 +117,31 @@ parser.add_argument('-r', '--reload', dest='reload', action='store_true', defaul
 args = parser.parse_args()
 
 if args.reload and os.geteuid() != 0:
-    print "Reload functionality requires administrative privileges.  Run with 'sudo'."
+    print("Reload functionality requires administrative privileges.  Run with 'sudo'.")
     exit(1)
 
 # create Elasticsearch handle
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+try:
+    es.info()    
+except:
+    print("Could not establish a connection to elasticsearch.  Exiting.")
+    exit(1)
 
 # get list of top-level indices if requested
 if args.index == 'list':
     populated_indices = get_es_indices(es)
+    populated_indices.sort()
     if len(populated_indices) == 0:
-        print 'There are no active data indices in Elasticsearch'
+        print('There are no active data indices in Elasticsearch')
+
     else:
-        print 'The following indices are currently active in Elasticsearch:'
+        print('The following indices are currently active in Elasticsearch:')
         for index in populated_indices:
-            print '- %s' % (index)
+            res = es.search(index='%s-*' % (index), body={'query': {'match_all': {}}})
+            doccount = res['hits']['total']
+
+            print('- %s (%s documents)' % (index, "{:,}".format(doccount)))
     exit(0)
 
 ### delete from existing ES indices
@@ -137,20 +152,20 @@ if args.filepath:
         try:
             args.index = sourcedir_index_mapping[args.filepath.split('/')[2]]
         except KeyError:
-            print 'No corresponding index for requested filepath.  Exiting.'
+            print('No corresponding index for requested filepath.  Exiting.')
             exit(1)
 
-        res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+        res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.keyword': '%s' % (args.filepath)}}})
         doccount = res['hits']['total']
 
     else:
-        print 'File path must start with "%s".  Exiting.' % (topdir)
+        print('File path must start with "%s".  Exiting.' % (topdir))
         exit(1)
 
 elif args.nukeitall:
     populated_indices = [s + '-*' for s in get_es_indices(es)]
     if len(populated_indices) == 0:
-        print 'There are no active data indices in Elasticsearch'
+        print('There are no active data indices in Elasticsearch')
         doccount = 0
     else:
         res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
@@ -162,15 +177,15 @@ else:
 
 if doccount > 0:
     # get user confirmation to proceed
-    print '%s documents found\n' % "{:,}".format(doccount)
+    print('%s documents found\n' % ("{:,}".format(doccount)))
 
     if not confirm(prompt='Delete these documents permanently?', resp=False):
-        print 'Will NOT delete documents.  Exiting.'
+        print('Will NOT delete documents.  Exiting.')
         exit(0)
 
     # delete the records
     if args.filepath:
-        es.delete_by_query(index='%s-*' % (args.index), body={'query': {'prefix': {'source.raw': '%s' % (args.filepath)}}})
+        es.delete_by_query(index='%s-*' % (args.index), body={'query': {'prefix': {'source.keyword': '%s' % (args.filepath)}}})
 
     elif args.nukeitall:
         es.indices.delete(index='%s' % (','.join(populated_indices)), ignore=[400, 404])
@@ -179,7 +194,7 @@ if doccount > 0:
         es.indices.delete(index='%s-*' % (args.index), ignore=[400, 404])
 
 else:
-    print 'No matching documents.  Nothing to delete.'
+    print('No matching documents.  Nothing to delete.')
 
 ### reload from source files
 if args.reload:
@@ -195,33 +210,39 @@ if args.reload:
         matches = file_path_matches(topdir)
 
     # get user confirmation to proceed
-    print 'will re-load the following files:'
+    print('will re-load the following files:')
     for match in matches:
-            print '- %s' % (match)
+            print('- %s' % (match))
     print
 
     if not confirm(prompt='Reload these files?', resp=False):
-        print 'Will NOT reload from files.  Exiting.'
+        print('Will NOT reload from files.  Exiting.')
         exit(1)
 
     # stop filebeat service
     call(['/usr/bin/systemctl', 'stop', 'filebeat'])
 
-    # load existing filebeat registry
-    reg_file = open('/var/lib/filebeat/registry')
-    reg_data = json.load(reg_file)
-    reg_file.close()
+    if os.path.isfile(filebeat_registry_file) and os.path.getsize(filebeat_registry_file) > 0:
+        # load existing filebeat registry
+        reg_file = open(filebeat_registry_file, 'rb')
+        try:
+            reg_data = json.load(reg_file)
+            reg_file.close()
 
-    # create new registry, minus the files to be re-loaded
-    new_reg_data = []
-    for filebeatrecord in reg_data:
-        file = str(filebeatrecord['source'])
-        if not file in matches:
-            new_reg_data.append(filebeatrecord)
+            # create new registry, minus the files to be re-loaded
+            new_reg_data = []
+            for filebeatrecord in reg_data:
+                file = str(filebeatrecord['source'])
+                if not file in matches:
+                    new_reg_data.append(filebeatrecord)
 
-    new_reg_file = open('/var/lib/filebeat/registry', 'w')
-    json.dump(new_reg_data, new_reg_file)
-    new_reg_file.close()
+            new_reg_file = open(filebeat_registry_file, 'wb')
+            json.dump(new_reg_data, new_reg_file)
+            new_reg_file.close()
 
+
+        except JSONDecodeError:
+            print('ERROR: Source data in filebeat registry file %s is not valid json.  Skipping.' % filebeat_registry_file)
+    
     # restart the filebeat service
     call(['/usr/bin/systemctl', 'start', 'filebeat'])

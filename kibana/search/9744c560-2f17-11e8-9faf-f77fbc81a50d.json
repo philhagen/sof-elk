@@ -1,0 +1,21 @@
+{
+  "attributes": {
+    "title": "HTTPD Discovery",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "source_ip",
+      "request_method",
+      "hostname",
+      "request",
+      "response_code"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"httpdlog\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}

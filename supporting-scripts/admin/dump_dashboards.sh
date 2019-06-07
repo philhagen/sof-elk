@@ -2,55 +2,51 @@
 # SOF-ELK® Supporting script
 # (C)2019 Lewes Technology Consulting, LLC
 #
-# This script simply dumps all dashboards to files on the filesystem
+# This script dumps all dashboards, visualizations, index-patterns and associated field data into files on the filesystem
 
-LC_ALL=C
+export LC_ALL=C
 
-# get list of all dashboard IDs to use for export and filenames
-for DASHID in $( curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, br" "http://localhost:9200/.kibana/_search?q=type:dashboard&size=10000" | jq -r '.hits.hits[]._id[10:]' ); do
+# set defaults
+kibana_host=localhost
+kibana_port=5601
 
-    # get the dashboard content, filter to remove unnecessary fields
-    curl -s -XGET --compressed -H "Accept-Encoding: gzip, deflate, br" http://localhost:5601/api/kibana/dashboards/export?dashboard=${DASHID} > ${DASHID}_raw.json 2> /dev/null
-    cat ${DASHID}_raw.json | jq '.|del(.objects[].version)|del(.objects[].attributes.version)|del(.objects[].updated_at)|del(.objects[].migrationVersion)' > ${DASHID}.json 2> /dev/null
-    RES=$?
-    if [ $RES -eq 0 ]; then
-        rm -f ${DASHID}_raw.json
-    else
-        rm -f ${DASHID}.json
-        echo "WARNING!! ${DASHID} pare-down failed.  This must be manually performed - the source data likely is missing some closure brackets."
-        continue
+[ -r /etc/sysconfig/sof-elk ] && . /etc/sysconfig/sof-elk
+
+# TODO: this may need to sort output for better revision control (http://bigdatums.net/2016/11/29/sorting-json-by-value-with-jq/)
+
+mkdir dashboard visualization search index-pattern index-pattern/fields index-pattern/fieldformats
+
+# get list of all dashboard IDs and their content
+for DASHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=dashboard&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}" | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > dashboard/${DASHID}.json
+done
+
+# get a list of all visualization IDs and their content
+for VISUALIZATIONID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=visualization&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/visualization/${VISUALIZATIONID}" | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > visualization/${VISUALIZATIONID}.json
+done
+
+# get a list of all search IDs and their content
+for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=search&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    curl -s  -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/search/${SEARCHID}" | jq 'del(.id,.type,.version,.updated_at,.migrationVersion)' > search/${SEARCHID}.json
+done
+
+# get a list of all index-patterns and their content, separate out the fields and fieldformatmap
+for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    # index-pattern itself, stripping the fields and fieldFormatMap elements
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq 'del(.id,.type,.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion)' > index-pattern/${INDEXPATTERNID}.json
+
+    # just the fields, sorting (per LC_ALL) for easier revision control
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq -c '.attributes.fields | fromjson[]' 2> /dev/null | sort > index-pattern/fields/${INDEXPATTERNID}.json 2> /dev/null
+
+    # just the fieldFormatMap, sorting (per LC_ALL) for easier revision control
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq '.attributes.fieldFormatMap | fromjson | to_entries | sort_by(.key)' > index-pattern/fieldformats/${INDEXPATTERNID}.json 2> /dev/null
+
+    # if any of these files are zero-length, remove them
+    if [ ! -s index-pattern/fields/${INDEXPATTERNID}.json ]; then
+        rm -f index-pattern/fields/${INDEXPATTERNID}.json
     fi
-
-    # remove the index-patterns on the intro dashboard file
-    DASHTITLE=$( cat ${DASHID}.json | jq -r ".objects[] | select(.id == \"${DASHID}\") | .attributes.title" )
-    if [ "${DASHTITLE}" == "SOF-ELK® VM Introduction Dashboard" ]; then
-        cat ${DASHID}.json | jq ". | del(.objects[] | select(.type == \"index-pattern\"))" > ${DASHID}_temp.json
-        rm ${DASHID}.json
-        mv ${DASHID}_temp.json ${DASHID}.json
+    if [ ! -s index-pattern/fieldformats/${INDEXPATTERNID}.json ]; then
+        rm -f index-pattern/fieldformats/${INDEXPATTERNID}.json
     fi
-
-    # pull out fields and fieldFormats to their own files
-    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fields' | jq -c '.[]' | sort | uniq > ${DASHID}_fields.txt 2> /dev/null
-    if [ ! -s ${DASHID}_fields.txt ]; then
-        echo "NOTE: ${DASHID} did not have any index-pattern fields"
-        rm ${DASHID}_fields.txt
-    else
-        # replace the fields in the original file with a stub
-### TODO: THIS NEEDS TO BE MORE RESILIENT - WE'RE LUCKY THERE ARE NO 'fields' ITEMS IN NON-INDEX-PATTERN TYPES
-        cat ${DASHID}.json | jq 'del(.objects[].attributes.fields)' > ${DASHID}_temp.json
-        rm ${DASHID}.json
-        mv ${DASHID}_temp.json ${DASHID}.json
-    fi
-    cat ${DASHID}.json | jq -r '.objects[] | select(.type=="index-pattern") | .attributes.fieldFormatMap' | jq '.' > ${DASHID}_fieldFormatMap.txt 2> /dev/null
-    if [ ! -s ${DASHID}_fieldFormatMap.txt ]; then
-        echo "NOTE: ${DASHID} did not have any index-pattern fieldFormats"
-        rm ${DASHID}_fieldFormatMap.txt
-    else
-        # replace the fieldFormats in the original file with a stub
-### TODO: THIS NEEDS TO BE MORE RESILIENT - WE'RE LUCKY THERE ARE NO 'fieldFormatMap' ITEMS IN NON-INDEX-PATTERN TYPES
-        cat ${DASHID}.json | jq 'del(.objects[].attributes.fieldFormatMap)' > ${DASHID}_temp.json
-        rm ${DASHID}.json
-        mv ${DASHID}_temp.json ${DASHID}.json
-    fi
-
 done

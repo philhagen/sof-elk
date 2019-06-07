@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2016 Lewes Technology Consulting, LLC
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This script is used to update the repository from its git origin
 # It will not overwrite any local changes unless -force is specified
@@ -33,10 +33,28 @@ if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
     exit 2
 fi
 
-git reset --hard > /dev/null
-git pull origin
-
 /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
-for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
-    kill -s HUP $lspid
-done
+# This method adapted from method here: https://stackoverflow.com/a/3278427
+LOCAL=$(git rev-parse @{0})
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @{0} @{u})
+
+if [[ $LOCAL = $REMOTE ]]; then
+    echo "Up-to-date"
+
+elif [[ $LOCAL = $BASE ]]; then
+    # Need to pull
+    git reset --hard > /dev/null
+    git pull origin
+
+    /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
+    for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
+        kill -s HUP $lspid
+    done
+
+elif [[ $REMOTE = $BASE ]]; then
+    echo "Need to push - this should never happen"
+
+else
+    echo "Diverged - this should never happen"
+fi

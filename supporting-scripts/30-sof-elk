@@ -1,4 +1,9 @@
 #!/bin/bash
+# SOF-ELK® Supporting script
+# (C)2019 Lewes Technology Consulting, LLC
+#
+# This runs scripts after a dhcp lease is secured or renewed
+
 # run dhclient.d scripts in an emulated environment
 
 PATH=/bin:/usr/bin:/sbin
