@@ -1,7 +1,7 @@
 # SOF-ELK® Configuration File
 # (C)2019 Lewes Technology Consulting, LLC
 #
-# This file creates a filebeat prospector for source data from the KAPE forensic tool
+# This file creates a filebeat prospector for source data from the KAPE forensic tool suite
 
 - type: log
   paths:
@@ -27,4 +27,17 @@
   fields_under_root: true
   fields:
     type: kape_lnkfiles
+  tags: [ 'json' ]
+
+- type: log
+  paths:
+    - /logstash/kape/*/*/*/*/*_EvtxECmd_Output.json
+    - /logstash/kape/*/*/*/*_EvtxECmd_Output.json
+    - /logstash/kape/*/*/*_EvtxECmd_Output.json
+    - /logstash/kape/*/*_EvtxECmd_Output.json
+    - /logstash/kape/*_EvtxECmd_Output.json
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: kape_evtxlogs
   tags: [ 'json' ]
