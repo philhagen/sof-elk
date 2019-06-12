@@ -1,0 +1,11 @@
+[
+  {
+    "key": "@timestamp",
+    "value": {
+      "id": "date",
+      "params": {
+        "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+      }
+    }
+  }
+]

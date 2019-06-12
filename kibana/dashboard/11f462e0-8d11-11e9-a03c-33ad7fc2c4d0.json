@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "title": "Eventlog Dashboard",
+    "hits": 0,
+    "description": "",
+    "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":29,\"w\":48,\"h\":35,\"i\":\"1\"},\"id\":\"eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0\",\"panelIndex\":\"1\",\"type\":\"search\",\"version\":\"6.7.2\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":14,\"i\":\"2\"},\"id\":\"9b4512b0-8d0c-11e9-a03c-33ad7fc2c4d0\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"version\":\"6.7.2\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":16,\"y\":14,\"w\":16,\"h\":15,\"i\":\"3\"},\"id\":\"f11b8810-8d0f-11e9-a03c-33ad7fc2c4d0\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"version\":\"6.7.2\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":14,\"w\":16,\"h\":15,\"i\":\"4\"},\"id\":\"9d772d90-8d0f-11e9-a03c-33ad7fc2c4d0\",\"panelIndex\":\"4\",\"type\":\"visualization\",\"version\":\"6.7.2\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":32,\"y\":14,\"w\":16,\"h\":6,\"i\":\"5\"},\"id\":\"3f24a4b0-8d10-11e9-a03c-33ad7fc2c4d0\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"version\":\"6.7.2\"}]",
+    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+    "version": 1,
+    "timeRestore": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}
