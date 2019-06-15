@@ -1,6 +1,6 @@
 {
   "index_patterns": [
-    "log2timeline-*"
+    "plaso-*"
   ],
   "settings": {
     "number_of_shards" : 1,

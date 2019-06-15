@@ -1,0 +1,6 @@
+{
+  "attributes": {
+    "title": "plaso-*",
+    "timeFieldName": "@timestamp"
+  }
+}

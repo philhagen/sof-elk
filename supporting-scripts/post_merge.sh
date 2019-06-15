@@ -26,7 +26,7 @@ for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
 done
 
 # create necessary ingest directories
-ingest_dirs="syslog nfarch httpd passivedns zeek kape"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d /logstash/${ingest_dir} ]; then
         mkdir -m 1777 -p /logstash/${ingest_dir}

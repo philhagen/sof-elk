@@ -5,13 +5,13 @@
 
 - type: log
   paths:
-    - /logstash/log2timeline/*/*/*/*/*
-    - /logstash/log2timeline/*/*/*/*
-    - /logstash/log2timeline/*/*/*
-    - /logstash/log2timeline/*/*
-    - /logstash/log2timeline/*
+    - /logstash/plaso/*/*/*/*/*
+    - /logstash/plaso/*/*/*/*
+    - /logstash/plaso/*/*/*
+    - /logstash/plaso/*/*
+    - /logstash/plaso/*
   exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close_inactive: 5m
   fields_under_root: true
   fields:
-    type: log2timeline
+    type: plaso
