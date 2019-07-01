@@ -99,6 +99,7 @@ sourcedir_index_mapping = {
     'httpd': 'httpdlog',
     'kape': 'lnkfiles',
     'kape': 'filesystem',
+    'kape': 'evtxfiles',
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}

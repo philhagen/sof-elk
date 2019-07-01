@@ -1,0 +1,6 @@
+{
+  "attributes": {
+    "title": "evtxlogs-*",
+    "timeFieldName": "@timestamp"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "attributes": {
+    "title": "Eventlog Discovery",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "computer",
+      "username",
+      "channel",
+      "payload"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"evtxlogs\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}

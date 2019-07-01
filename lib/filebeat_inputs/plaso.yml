@@ -1,0 +1,17 @@
+# SOF-ELK® Configuration File
+# (C)2019 Lewes Technology Consulting, LLC
+#
+# This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
+
+- type: log
+  paths:
+    - /logstash/plaso/*/*/*/*/*
+    - /logstash/plaso/*/*/*/*
+    - /logstash/plaso/*/*/*
+    - /logstash/plaso/*/*
+    - /logstash/plaso/*
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: plaso
