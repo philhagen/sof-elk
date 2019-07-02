@@ -8,6 +8,7 @@
   yum:
     name: '{{ nux_repo_url }}'
     state: present
+    validate_certs: no
   when: not nux_repofile_result.stat.exists
   register: yum_repo_installed
 

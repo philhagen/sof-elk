@@ -9,6 +9,7 @@
   become_user: root
 
   roles:
+    - sof-elk_pre
     - epel_repo
     - nux_repo
     - elastic_repo
@@ -18,3 +19,5 @@
     - logstash
     - filebeat
     - kibana
+
+    - sof-elk_finalize
