@@ -95,7 +95,12 @@
     mode: 0644
   with_items:
     - { src: 'sof-elk_sysctl.conf', dest: '/etc/sysctl.d/sof-elk.conf' }
-  notify: reload sysctl
+  register: sysctl_update
+  tags: sof-elk_base
+
+- name: Load sysctl settings
+  command: 'sysctl --system'
+  when: sysctl_update.changeA
   tags: sof-elk_base
 
 - name: Compress rotated log files

@@ -1,4 +1,4 @@
 ---
-nux_repo_url: "https://li.nux.ro/download/nux/dextop/el{{ ansible_distribution_major_version }}/x86_64/nux-dextop-release-0-5.el{{ ansible_distribution_major_version }}.nux.noarch.rpm"
-nux_repo_gpg_key_url: "http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro"
-nux_repofile_path: "/etc/yum.repos.d/nux-dextop.repo"
+nux_repo_url: 'https://li.nux.ro/download/nux/dextop/el{{ ansible_distribution_major_version }}/x86_64/nux-dextop-release-0-5.el{{ ansible_distribution_major_version }}.nux.noarch.rpm'
+nux_repo_gpg_key_url: 'http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro'
+nux_repofile_path: '/etc/yum.repos.d/nux-dextop.repo'
