@@ -1,4 +1,0 @@
----
-elasticsearch_repo_baseurl: 'https://artifacts.elastic.co/packages/7.x/yum'
-elasticsearch_repo_gpg_key_url: 'https://artifacts.elastic.co/GPG-KEY-elasticsearch'
-elasticsearch_repofile_path: 'elasticsearch'

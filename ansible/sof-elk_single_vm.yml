@@ -11,6 +11,8 @@
   roles:
     - epel_repo
     - nux_repo
+    - elastic_repo
     - sof-elk_base
     - elasticsearch
     - cerebro
+    - logstash

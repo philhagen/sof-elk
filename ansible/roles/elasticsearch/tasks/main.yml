@@ -1,22 +1,4 @@
 ---
-- name: Add Elasticsearch Repository
-  yum_repository:
-    file: '{{ elasticsearch_repofile_path }}'
-    name: 'elasticsearch-7.x'
-    description: 'Elasticsearch repository for 7.x packages'
-    baseurl: '{{ elasticsearch_repo_baseurl }}'
-    gpgcheck: yes
-    gpgkey: '{{ elasticsearch_repo_gpg_key_url }}'
-    enabled: yes
-  register: yum_repo_installed
-  tags: sof-elk_elasticsearch
-
-- name: Import Elasticsearch GPG key
-  rpm_key:
-    key: '{{ elasticsearch_repo_gpg_key_url }}'
-    state: present
-  tags: sof-elk_elasticsearch
-
 - name: Install Elasticsearch
   yum:
     name: elasticsearch
