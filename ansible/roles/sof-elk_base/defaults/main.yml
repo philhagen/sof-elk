@@ -23,9 +23,9 @@ base_yum_packages:
   - python-pip
   - python-requests
   - python-six
-  - python34
-  - python34-pip
-  - python34-six
+  - python36
+  - python36-pip
+  - python36-six
   - tcpdump
   - unzip
   - vim
