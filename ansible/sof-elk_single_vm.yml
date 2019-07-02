@@ -17,3 +17,4 @@
     - cerebro
     - logstash
     - filebeat
+    - kibana

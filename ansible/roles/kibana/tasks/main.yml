@@ -1,0 +1,30 @@
+---
+- name: Install Kibana
+  yum:
+    name: kibana
+    state: present
+  tags: sof-elk_kibana
+
+- name: Configure Kibana
+  copy:
+    src: 'kibana.yml'
+    dest: '/etc/kibana/kibana.yml'
+    owner: root
+    group: root
+    mode: 0644
+  tags: sof-elk_kibana
+
+- name: Open firewall ports
+  firewalld:
+    port: 5601/tcp
+    permanent: yes
+    state: enabled
+  notify: restart firewalld
+  tags: sof-elk_kibana
+
+- name: Start Kibana service
+  systemd:
+    name: kibana
+    enabled: yes
+    state: started
+  tags: sof-elk_kibana

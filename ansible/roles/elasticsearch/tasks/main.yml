@@ -25,7 +25,7 @@
     dest: /etc/systemd/system/multi-user.target.wants/elasticsearch.service
     regexp: 'ExecStartPre=/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
     line: 'ExecStartPre=/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
-    insertbefore: '^ExecStart'
+    insertbefore: '^ExecStart='
     firstmatch: yes
     state: present
   tags: sof-elk_elasticsearch
