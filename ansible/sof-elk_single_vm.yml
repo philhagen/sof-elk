@@ -1,0 +1,14 @@
+---
+# This playbook configures a single-instance SOF-ELK(R) system
+
+- name: Setup a single-instance SOF-ELK system
+  hosts: sof-elk_dev
+  remote_user: ansible
+  become: True
+  become_method: sudo
+  become_user: root
+
+  roles:
+    - epel_repo
+    - nux_repo
+    - sof-elk_base

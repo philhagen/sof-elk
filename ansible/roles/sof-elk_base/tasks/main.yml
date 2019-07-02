@@ -1,0 +1,204 @@
+---
+- name: Clear YUM cache
+  command: yum clean all
+  args:
+    warn: false
+  when: yum_repo_installed.changed
+  tags: sof-elk_base
+
+- name: Install core RPM set via YUM
+  yum:
+    name: '{{ base_yum_packages }}'
+    state: present
+  tags: sof-elk_base
+
+- name: Disable DNS resolution for SSHD
+  lineinfile:
+    dest: '/etc/ssh/sshd_config'
+    regexp: '^UseDNS.*'
+    line: 'UseDNS no'
+  notify: restart sshd
+  tags: sof-elk_base
+
+- name: Modify secure_path in /etc/sudoers
+  lineinfile:
+    dest: '/etc/sudoers'
+    regex: '^Defaults.*secure_path'
+    line: 'Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sof-elk/supporting-scripts'
+  tags: sof-elk_base
+
+- name: Create elk_user account
+  user:
+    name: 'elk_user'
+    comment: 'SOF-ELK User'
+    password: '$6$572forsofelk$BdARbzeCTR5w.I/Tcjy8S2MxFjU51xEuzv/V30oUuL1n8P.GtOC7sQ2ZIUkoGWITBXnfAZAXzOWDz5djiLLK.1'
+    state: present
+  tags: sof-elk_base
+
+- name: Set up elk_user's .bash_profile
+  blockinfile:
+    path: '/home/elk_user/.bash_profile'
+    block: |
+      if [ -f /usr/local/sof-elk/supporting-scripts/elk_user_login.sh ]; then
+          . /usr/local/sof-elk/supporting-scripts/elk_user_login.sh
+      fi
+  tags: sof-elk_base
+
+- name: Create vim configs if they does not exist
+  copy:
+    content: ''
+    dest: '~{{ item }}/.vimrc'
+    force: no
+    owner: '{{ item }}'
+    group: '{{ item }}'
+    mode: 0600
+  with_items:
+    - [ 'root', 'elk_user' ]
+  tags: sof-elk_base
+
+- name: Configure vim
+  lineinfile:
+    dest: '~{{ item[0] }}/.vimrc'
+    regex: '^{{ item[1] }}'
+    line: '{{ item[1] }}'
+  with_nested:
+    - [ 'root', 'elk_user' ]
+    - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
+  tags: sof-elk_base
+
+- name: Edit rc.local to update IP address in login banner
+  blockinfile:
+    path: /etc/rc.local
+    block: |
+      # get current IP address and replace the pre-auth text template accordingly
+      IP=$( ip address show $( ip route|grep default | awk '{print $5}' ) | awk '/inet / {print $2}' | cut -d '/' -f 1 )
+      cat /etc/issue.stock | sed -e "s/<%IP%>/$IP/" > /etc/issue
+
+- name: Set up login banner text files
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: 'issue.stock', dest: '/etc/issue.stock' }
+    - { src: 'issue.prep', dest: '/etc/issue.prep' }
+  tags: sof-elk_base
+
+- name: Set up sysctl configuration
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: 'sof-elk_sysctl.conf', dest: '/etc/sysctl.d/sof-elk.conf' }
+  notify: reload sysctl
+  tags: sof-elk_base
+
+- name: Compress rotated log files
+  lineinfile:
+    dest: '/etc/logrotate.conf'
+    regex: '^compress'
+    line: 'compress'
+  tags: sof-elk_base
+
+- name: Check out SOF-ELK repo
+  git:
+    repo: 'https://github.com/philhagen/sof-elk'
+    dest: '/usr/local/sof-elk'
+    refspec: master
+    update: yes
+  tags: sof-elk_base
+
+- name: set git clone post-merge hook
+  copy:
+    src: 'sof-elk_post-merge.sh'
+    dest: '/usr/local/sof-elk/.git/hooks/post-merge'
+    owner: root
+    group: root
+    mode: 700
+  tags: sof-elk_base
+
+- name: Create required symlinks from git repo
+  file:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    state: link
+  with_items:
+    - { src: '/usr/local/sof-elk/supporting-scripts/distro_prep.sh', dest: '/root/distro_prep.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/yum-post-transaction_sof-elk.action', dest: '/etc/yum/post-actions/yum-post-transaction_sof-elk.action' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/es_heapsize_calc.sh', dest: '/usr/local/sbin/es_heapsize_calc.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/fw_modify.sh', dest: '/usr/local/sbin/fw_modify.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/load_all_dashboards.sh', dest: '/usr/local/sbin/load_all_dashboards.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/nfdump2sof-elk.sh', dest: '/usr/local/sbin/nfdump2sof-elk.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/post_merge.sh', dest: '/usr/local/sbin/post_merge.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_clear.py', dest: '/usr/local/sbin/sof-elk_clear.py' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_update.sh', dest: '/usr/local/sbin/sof-elk_update.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/issueupdate.sh', dest: '/etc/dhcp/dhclient.d/issueupdate.sh' }
+ #   - { src: 'xxx', dest: 'xxx' }
+  tags: sof-elk_base
+
+- name: Set up geoip updates
+  file:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    state: link
+  with_items:
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update.sh', dest: '/usr/local/sbin/geoip_update.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/geoip_update.cron', dest: '/etc/cron.d/geoip_update.cron' }
+ #   - { src: 'xxx', dest: 'xxx' }
+  register: geoip_added
+  tags: sof-elk_base
+
+- name: Install geoip data
+  command: /usr/local/sbin/geoip_update.sh -now
+  tags: sof-elk_base
+  when: geoip_added.changed
+
+####################################
+
+#- name: Load cron jobs
+#  copy: src={{ item }} dest=/etc/cron.d/ owner=root group=root mode=0644
+#  with_items:
+#    - ivs-gitup.cron
+#    - yumcheck.cron
+#  tags: ivs-base
+#
+#- name: configure logrotate
+#  copy: src=logrotate.conf dest=/etc/logrotate.conf owner=root group=root mode=0644
+#  tags: ivs-base
+#
+#- name: lock down perms on shared parent directories
+#  file: path={{ item }} mode=0711
+#  with_items:
+#    - /home
+#  tags: ivs-base
+#
+#- name: install IVS ca cert
+#  copy: src=ivs_cacert.pem dest=/etc/pki/tls/certs/ivs_cacert.pem owner=root group=root mode=0444
+#  tags: ivs-base
+#
+#- name: enable firewall logging
+#  shell: /usr/bin/firewall-cmd --set-log-denied=unicast
+#  tags: ivs-base
+#
+#- name: fix PAM userid restrictions (1)
+#  pamd: name={{ item }} type=auth control=requisite module_path=pam_succeed_if.so module_arguments='uid >= {{ pam_min_userid }} quiet_success' state=updated
+#  with_items:
+#    - system-auth-ac
+#    - password-auth-ac
+#  tags: ivs-base
+#
+#- name: fix PAM userid restrictions (2)
+#  pamd: name={{ item }} type=account control=sufficient module_path=pam_succeed_if.so module_arguments='uid < {{ pam_min_userid }} quiet' state=updated
+#  with_items:
+#    - system-auth-ac
+#    - fingerprint-auth-ac
+#    - password-auth-ac
+#    - smartcard-auth-ac
+#  tags: ivs-base

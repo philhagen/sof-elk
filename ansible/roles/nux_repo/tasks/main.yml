@@ -1,0 +1,28 @@
+---
+- name: Check if NUX repo is already configured
+  stat:
+    path: '{{ nux_repofile_path }}'
+  register: nux_repofile_result
+
+- name: Install NUX repo
+  yum:
+    name: '{{ nux_repo_url }}'
+    state: present
+  when: not nux_repofile_result.stat.exists
+  register: yum_repo_installed
+
+- name: Import NUX GPG key
+  rpm_key:
+    key: '{{ nux_repo_gpg_key_url }}'
+    state: present
+  when: not nux_repofile_result.stat.exists
+
+- name: Limit NUX packages
+  ini_file:
+    path: '{{ nux_repofile_path }}'
+    section: '{{ item }}'
+    option: 'includepkgs'
+    value: 'exfat-utils,fuse-exfat'
+  with_items:
+    - nux-dextop
+    - nux-dextop-testing
