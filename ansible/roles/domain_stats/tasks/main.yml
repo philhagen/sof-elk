@@ -1,0 +1,26 @@
+---
+- name: Install domain_stats pip dependencies
+  pip:
+    name: python-whois
+    state: present
+  tags: sof-elk_domainstats
+
+- name: Install domain_stats
+  git:
+    repo: 'https://github.com/markbaggett/domain_stats'
+    dest: '/usr/local/share/domain_stats'
+    refspec: master
+    update: yes
+  tags: sof-elk_domainstats
+
+- name: Enable domain_stats service
+  systemd:
+    name: /usr/local/sof-elk/lib/systemd/domain_stats.service
+    enabled: yes
+  tags: sof-elk_domainstats
+
+- name: Start domain_stats service
+  systemd:
+    name: domain_stats
+    state: started
+  tags: sof-elk_domainstats

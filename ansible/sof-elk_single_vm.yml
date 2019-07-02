@@ -19,5 +19,7 @@
     - logstash
     - filebeat
     - kibana
+    - domain_stats
+    - freq
 
     - sof-elk_finalize
