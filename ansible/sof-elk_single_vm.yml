@@ -12,3 +12,4 @@
     - epel_repo
     - nux_repo
     - sof-elk_base
+    - elasticsearch
