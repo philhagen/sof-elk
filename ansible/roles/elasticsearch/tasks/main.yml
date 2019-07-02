@@ -18,6 +18,7 @@
     owner: root
     group: root
     mode: 0755
+  notify: restart elasticsearch
   tags: sof-elk_elasticsearch
 
 - name: Modify Elasticsearch systemd startup
@@ -28,6 +29,7 @@
     insertbefore: '^ExecStart='
     firstmatch: yes
     state: present
+  notify: systemd daemon-reload
   tags: sof-elk_elasticsearch
 
 - name: Create Elasticsearch systemd override directory
@@ -37,6 +39,7 @@
     owner: root
     group: root
     mode: 0755
+  notify: restart elasticsearch
   tags: sof-elk_elasticsearch
 
 - name: Override Elasticsearch systemd limits
@@ -46,6 +49,7 @@
     owner: root
     group: root
     mode: 0644
+  notify: restart elasticsearch
   tags: sof-elk_elasticsearch
 
 - name: Configure Elasticsearch
@@ -55,6 +59,7 @@
     owner: root
     group: elasticsearch
     mode: 0660
+  notify: restart elasticsearch
   tags: sof-elk_elasticsearch
 
 - name: Start Elasticsearch service

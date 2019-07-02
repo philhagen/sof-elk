@@ -1,4 +1,8 @@
 ---
+- name: restart cerebro
+  systemd:
+    name: cerebro
+    state: restarted
 
 - name: restart firewalld
   command: firewall-cmd --reload

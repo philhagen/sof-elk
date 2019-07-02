@@ -12,6 +12,7 @@
     owner: root
     group: root
     mode: 0644
+  notify: restart kibana
   tags: sof-elk_kibana
 
 - name: Open firewall ports
@@ -22,7 +23,7 @@
   notify: restart firewalld
   tags: sof-elk_kibana
 
-- name: Start Kibana service
+- name: Enable and start Kibana service
   systemd:
     name: kibana
     enabled: yes

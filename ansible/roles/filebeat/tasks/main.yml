@@ -12,6 +12,7 @@
     owner: root
     group: root
     mode: 0644
+  notify: restart filebeat
   tags: sof-elk_filebeat
 
 - name: Create filebeat input directories
@@ -28,6 +29,7 @@
     - passivedns
     - syslog
     - kape
+  notify: restart filebeat
   tags: sof-elk_filebeat
 
 - name: Start and enable Filebeat service

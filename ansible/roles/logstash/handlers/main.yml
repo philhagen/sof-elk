@@ -2,7 +2,7 @@
 - name: restart firewalld
   command: firewall-cmd --reload
 
-- name: restart kibana
+- name: restart logstash
   systemd:
-    name: kibana
+    name: logstash
     state: restarted
