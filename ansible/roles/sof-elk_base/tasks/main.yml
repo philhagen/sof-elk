@@ -44,7 +44,7 @@
       fi
   tags: sof-elk_base
 
-- name: Create vim configs if they does not exist
+- name: Create vim configs if they do not exist
   copy:
     content: ''
     dest: '~{{ item }}/.vimrc'
