@@ -16,3 +16,4 @@
     - elasticsearch
     - cerebro
     - logstash
+    - filebeat

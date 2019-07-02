@@ -1,0 +1,38 @@
+---
+- name: Install Filebeat
+  yum:
+    name: filebeat
+    state: present
+  tags: sof-elk_filebeat
+
+- name: Configure filebeat
+  copy:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: 0644
+  tags: sof-elk_filebeat
+
+- name: Create filebeat input directories
+  file:
+    dest: '/logstash/{{ item }}'
+    state: directory
+    owner: root
+    group: root
+    mode: 01777
+  with_items:
+    - nfarch
+    - zeek
+    - httpd
+    - passivedns
+    - syslog
+    - kape
+  tags: sof-elk_filebeat
+
+- name: Start and enable Filebeat service
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: started
+  tags: sof-elk_filebeat
