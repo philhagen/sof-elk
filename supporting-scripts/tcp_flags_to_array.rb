@@ -16,11 +16,13 @@ end
 def filter(event)
     type = event.get("type")
 
+    # create empty array
+    tcp_flags = Array.new()
+    tcp_flags_str = ""
+    tcp_flags_int = 0
+
     if type == "netflow"
         tcp_flags_int = event.get(@source_field).to_i
-
-        # create empty array
-        tcp_flags = Array.new()
 
         # Add to the array based on values in the bitmask
         tcp_flags.push("C") if (tcp_flags_int & 0x80 != 0)
@@ -34,7 +36,7 @@ def filter(event)
 
         tcp_flags_str = tcp_flags.join()
 
-    elsif @type == "archive-netflow"
+    elsif type == "archive-netflow"
         # remove dots
         tcp_flags_str = event.get(@source_field).tr(".","")
 
@@ -42,7 +44,6 @@ def filter(event)
         tcp_flags = tcp_flags_str.chars
 
         # get the integer value
-        tcp_flags_int = 0
         tcp_flags_int += 1 if tcp_flags.include? "F"
         tcp_flags_int += 2 if tcp_flags.include? "S"
         tcp_flags_int += 4 if tcp_flags.include? "R"
