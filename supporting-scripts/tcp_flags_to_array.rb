@@ -34,7 +34,7 @@ def filter(event)
         tcp_flags.push("S") if (tcp_flags_int & 0x02 != 0)
         tcp_flags.push("F") if (tcp_flags_int & 0x01 != 0)
 
-        tcp_flags_str = tcp_flags.join()
+        tcp_flags_str = tcp_flags.sort.join()
 
     elsif type == "archive-netflow"
         # remove dots
@@ -54,7 +54,7 @@ def filter(event)
         tcp_flags_int += 128 if tcp_flags.include? "C"
     end
 
-    event.set("tcp_flags_str", tcp_flags_str)
+    event.set("tcp_flags_str", tcp_flags_str.chars.sort.join)
     event.set("tcp_flags_hex", "0x" + tcp_flags_int.to_s(16).upcase)
     event.set(@source_field, tcp_flags)
 
