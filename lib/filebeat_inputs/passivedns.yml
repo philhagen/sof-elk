@@ -10,7 +10,7 @@
     - /logstash/passivedns/*/*/*
     - /logstash/passivedns/*/*
     - /logstash/passivedns/*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   close_inactive: 5m
   fields_under_root: true
   fields:
