@@ -1,8 +1,7 @@
 {
   "attributes": {
     "title": "NetFlow Intro",
-    "visState": "{\"title\":\"NetFlow Intro\",\"type\":\"markdown\",\"params\":{\"fontSize\":10,\"openLinksInNewTab\":false,\"markdown\":\"Use the [NetFlow Dashboard](#/dashboard/99d1b510-72b3-11e8-9159-894bd7d62352) to explore this data\\n\\nNetFlow data is loaded via the following methods:\\n* Files in the `/logstash/nfarch/` directory.\\n  * NOTE: Files must be in CSV format, created with the supplied `nfdump2sof-elk.sh` script: `nfdump2sof-elk.sh [-e <exporter ip address>] -r <path to nfcapd-based netflow data>`\\n* NetFlow v5 network messages sent to UDP port 9995\\n  * NOTE: Open the firewall ports using the `fw_modify.sh` script.  For example:\\n    * `fw_modify.sh -a open -p 9995 -r udp`\"},\"aggs\":[]}",
-    "uiStateJSON": "{}",
+    "visState": "{\"title\":\"NetFlow Intro\",\"type\":\"markdown\",\"params\":{\"fontSize\":10,\"openLinksInNewTab\":false,\"markdown\":\"Use the [NetFlow Dashboard](#/dashboard/99d1b510-72b3-11e8-9159-894bd7d62352) to explore this data\\n\\nNetFlow data is loaded via the following methods:\\n* Files in the `/logstash/nfarch/` directory.\\n  * NOTE: Files must be in the format from the supplied `nfdump2sof-elk.sh` script: `nfdump2sof-elk.sh [-e <exporter ip address>] -r <path to nfcapd-based netflow data>`\\n* Zeek `conn.log` files in the `/logstash/zeek/` directory.\\n* NetFlow v5 or v9 network messages sent to UDP port 9995\"},\"aggs\":[]}",
     "description": "",
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{}"

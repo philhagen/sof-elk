@@ -1,0 +1,34 @@
+---
+base_yum_packages:
+  - bc
+  - bind-utils
+  - bzip2
+  - deltarpm
+  - exfat-utils
+  - fuse-exfat
+  - gcc
+  - git
+  - htop
+  - htop
+  - java-1.8.0
+  - java-1.8.0-devel
+  - jq
+  - lsof
+  - mlocate
+  - net-tools
+  - nfdump
+  - open-vm-tools
+  - psmisc
+  - python-devel
+  - python-pip
+  - python-requests
+  - python-six
+  - python36
+  - python36-pip
+  - python36-six
+  - tcpdump
+  - unzip
+  - vim
+  - wget
+  - whois
+  - yum-plugin-post-transaction-actions

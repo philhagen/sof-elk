@@ -1,0 +1,7 @@
+---
+
+- name: Update all YUM packages
+  yum:
+    update_cache: yes
+    name: '*'
+    state: latest

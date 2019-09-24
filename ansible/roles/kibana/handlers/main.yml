@@ -1,0 +1,8 @@
+---
+- name: restart firewalld
+  command: firewall-cmd --reload
+
+- name: restart kibana
+  systemd:
+    name: kibana
+    state: restarted

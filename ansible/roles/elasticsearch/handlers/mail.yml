@@ -1,0 +1,8 @@
+---
+- name: systemd daemon-reload
+  action: command systemctl daemon-reload
+
+- name: restart elasticsearch
+  systemd:
+    name: elasticsearch
+    state: restarted

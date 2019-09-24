@@ -10,7 +10,7 @@
     - /logstash/zeek/*/*/conn.*
     - /logstash/zeek/*/conn.*
     - /logstash/zeek/conn.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -25,7 +25,7 @@
     - /logstash/zeek/*/*/dhcp.*
     - /logstash/zeek/*/dhcp.*
     - /logstash/zeek/dhcp.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -40,7 +40,7 @@
     - /logstash/zeek/*/*/dns.*
     - /logstash/zeek/*/dns.*
     - /logstash/zeek/dns.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -55,7 +55,7 @@
     - /logstash/zeek/*/*/dpd.*
     - /logstash/zeek/*/dpd.*
     - /logstash/zeek/dpd.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -70,7 +70,7 @@
     - /logstash/zeek/*/*/files.*
     - /logstash/zeek/*/files.*
     - /logstash/zeek/files.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -85,7 +85,7 @@
     - /logstash/zeek/*/*/ftp.*
     - /logstash/zeek/*/ftp.*
     - /logstash/zeek/ftp.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -100,7 +100,7 @@
     - /logstash/zeek/*/*/http.*
     - /logstash/zeek/*/http.*
     - /logstash/zeek/http.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true
@@ -115,7 +115,7 @@
     - /logstash/zeek/*/*/irc.*
     - /logstash/zeek/*/irc.*
     - /logstash/zeek/irc.*
-  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   exclude_lines: [ '^#' ]
   close_inactive: 5m
   fields_under_root: true

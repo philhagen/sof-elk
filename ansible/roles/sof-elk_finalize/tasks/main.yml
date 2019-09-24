@@ -1,0 +1,4 @@
+---
+- name: Load all dashboards
+  command: '/usr/local/sbin/load_all_dashboards.sh'
+  tags: sof-elk_finalize

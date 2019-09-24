@@ -1,0 +1,69 @@
+---
+- name: Install Elasticsearch
+  yum:
+    name: elasticsearch
+    state: present
+  tags: sof-elk_elasticsearch
+
+- name: Enable Elasticsearch service
+  systemd:
+    name: elasticsearch
+    enabled: yes
+  tags: sof-elk_elasticsearch
+
+- name: Automatically determine Elasticsearch JVM options
+  copy:
+    src: 'elasticsearch-systemd-pre-exec'
+    dest: '/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
+    owner: root
+    group: root
+    mode: 0755
+  notify: restart elasticsearch
+  tags: sof-elk_elasticsearch
+
+- name: Modify Elasticsearch systemd startup
+  lineinfile:
+    dest: /etc/systemd/system/multi-user.target.wants/elasticsearch.service
+    regexp: 'ExecStartPre=/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
+    line: 'ExecStartPre=/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
+    insertbefore: '^ExecStart='
+    firstmatch: yes
+    state: present
+  notify: systemd daemon-reload
+  tags: sof-elk_elasticsearch
+
+- name: Create Elasticsearch systemd override directory
+  file:
+    dest: '/etc/systemd/system/elasticsearch.service.d'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  notify: restart elasticsearch
+  tags: sof-elk_elasticsearch
+
+- name: Override Elasticsearch systemd limits
+  copy:
+    src: 'systemd_override.conf'
+    dest: '/etc/systemd/system/elasticsearch.service.d/override.conf'
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart elasticsearch
+  tags: sof-elk_elasticsearch
+
+- name: Configure Elasticsearch
+  copy:
+    src: 'elasticsearch.yml'
+    dest: '/etc/elasticsearch/elasticsearch.yml'
+    owner: root
+    group: elasticsearch
+    mode: 0660
+  notify: restart elasticsearch
+  tags: sof-elk_elasticsearch
+
+- name: Start Elasticsearch service
+  systemd:
+    name: elasticsearch
+    state: started
+  tags: sof-elk_elasticsearch

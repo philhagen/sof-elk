@@ -1,0 +1,29 @@
+---
+- name: Install Cerebro RPM
+  yum:
+    name: '{{ cerebro_rpm_url }}'
+    state: present
+  tags: sof-elk_cerebro
+
+- name: Set Cerebro directory permissions
+  file:
+    dest: '/usr/share/cerebro'
+    recurse: yes
+    owner: cerebro
+    group: cerebro
+  tags: sof-elk_cerebro
+
+- name: Open firewall ports
+  firewalld:
+    port: 9000/tcp
+    permanent: yes
+    state: enabled
+  notify: restart firewalld
+  tags: sof-elk_cerebro
+
+- name: Enable and start Cerebro service
+  systemd:
+    name: cerebro
+    enabled: yes
+    state: started
+  tags: sof-elk_cerebro

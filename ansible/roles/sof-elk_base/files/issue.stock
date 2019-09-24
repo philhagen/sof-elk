@@ -1,0 +1,21 @@
+\S
+Kernel \r on an \m
+
+SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
+         Logstash, and Kibana) Virtual machine
+         Used in: SANS FOR572, Advanced Network Forensics and Analysis
+To learn more: http://for572.com/sof-elk-readme
+Revision: FUTURE
+
+-------------------------------------------------------------------------------
+This VM is running the Logstash and Kibana applications.
+
+You can access Kibana at http://<%IP%>:5601
+You can SSH to this system at IP address <%IP%>
+
+The VM will ingest logfiles placed into the "/logstash/*/"
+directories.  See the Kibana homepage (link above) for specific guidance.
+Be sure all files are world-readable (or at least readable by the "logstash"
+user account).
+
+Logstash configuration files are in /etc/logstash/
