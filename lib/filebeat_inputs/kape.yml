@@ -10,6 +10,7 @@
     - /logstash/kape/*/*/*_MFTECmd*_Output.json
     - /logstash/kape/*/*_MFTECmd*_Output.json
     - /logstash/kape/*_MFTECmd*_Output.json
+  exclude_files: [ 'readme.txt' ]
   close_inactive: 5m
   fields_under_root: true
   fields:
@@ -23,6 +24,7 @@
     - /logstash/kape/*/*/*_LECmd_Output.json
     - /logstash/kape/*/*_LECmd_Output.json
     - /logstash/kape/*_LECmd_Output.json
+  exclude_files: [ 'readme.txt' ]
   close_inactive: 5m
   fields_under_root: true
   fields:
