@@ -21,9 +21,7 @@ for deadlink in $( ls -1 /etc/logstash/conf.d/* ); do
 done
 
 # reload logstash
-for lspid in $( ps -u logstash | grep java | awk '{print $1}' ); do
-    kill -s HUP $lspid
-done
+systemctl restart logstash
 
 # create necessary ingest directories
 ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso"
