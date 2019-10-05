@@ -148,19 +148,28 @@
  #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
-- name: Set up geoip updates
+- name: Configure geoip updates
+  copy:
+    src: 'GeoIP.conf'
+    dest: '/etc/GeoIP.conf'
+    owner: root
+    group: root
+    mode: 644
+  register: geoipupdate_config
+  tags: sof-elk_base
+
+- name: Enable geoip updates
   file:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
     state: link
   with_items:
-    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update.sh', dest: '/usr/local/sbin/geoip_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/geoip_update.cron', dest: '/etc/cron.d/geoip_update.cron' }
  #   - { src: 'xxx', dest: 'xxx' }
-  register: geoip_added
+  register: geoipup_enabled
   tags: sof-elk_base
 
 - name: Install geoip data
-  command: /usr/local/sbin/geoip_update.sh -now
+  command: geoipupdate
   tags: sof-elk_base
-  when: geoip_added.changed
+  when: geoipupdate_config.changed or geoipupdate_enabled.changed
