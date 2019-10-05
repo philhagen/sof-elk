@@ -20,5 +20,6 @@
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"index\":\"netflow\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
     }
-  }
+  },
+  "references": []
 }

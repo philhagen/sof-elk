@@ -1,0 +1,20 @@
+{
+  "attributes": {
+    "title": "NetFlow Statistics by Source IP",
+    "visState": "{\"title\":\"NetFlow Statistics by Source IP\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMetricsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"percentageCol\":\"\",\"dimensions\":{\"metrics\":[{\"accessor\":0,\"format\":{\"id\":\"bytes\"},\"params\":{},\"aggType\":\"sum\"},{\"accessor\":1,\"format\":{\"id\":\"number\",\"params\":{\"pattern\":\"0,0.[0]a\"}},\"params\":{},\"aggType\":\"sum\"},{\"accessor\":2,\"format\":{\"id\":\"number\",\"params\":{\"pattern\":\"0,0.[0]a\"}},\"params\":{},\"aggType\":\"sum\"}],\"buckets\":[]}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_bytes_vis\",\"customLabel\":\"Volume\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_packets_vis\",\"customLabel\":\"Packets\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"flow_records_vis\",\"customLabel\":\"Flows\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"source_ip\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":10,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Source IP\"}}]}",
+    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+    "description": "",
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+    },
+    "savedSearchRefName": "search_0"
+  },
+  "references": [
+    {
+      "name": "search_0",
+      "type": "search",
+      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352"
+    }
+  ]
+}

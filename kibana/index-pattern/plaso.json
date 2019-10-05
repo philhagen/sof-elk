@@ -2,5 +2,6 @@
   "attributes": {
     "title": "plaso-*",
     "timeFieldName": "@timestamp"
-  }
+  },
+  "references": []
 }

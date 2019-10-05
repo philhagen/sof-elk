@@ -3,11 +3,69 @@
     "title": "SOF-ELK® VM Introduction Dashboard",
     "hits": 0,
     "description": "",
-    "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"h\":11,\"i\":\"1\",\"w\":27,\"x\":21,\"y\":0},\"id\":\"bdecdc70-731e-11e8-9f32-cf7527ac183d\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":6,\"i\":\"2\",\"w\":16,\"x\":0,\"y\":11},\"id\":\"f8529370-3023-11e8-9faf-f77fbc81a50d\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":6,\"i\":\"3\",\"w\":16,\"x\":0,\"y\":43},\"id\":\"fc97bf70-2f2c-11e8-9faf-f77fbc81a50d\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":6,\"i\":\"4\",\"w\":16,\"x\":0,\"y\":27},\"id\":\"b9aee980-746f-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"4\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":16,\"i\":\"5\",\"w\":32,\"x\":16,\"y\":11},\"id\":\"2ddd09e0-7470-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":10,\"i\":\"9\",\"w\":16,\"x\":0,\"y\":17},\"id\":\"ea84ac10-7510-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"9\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":10,\"i\":\"10\",\"w\":16,\"x\":0,\"y\":33},\"id\":\"36c823e0-7511-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"10\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":10,\"i\":\"11\",\"w\":16,\"x\":0,\"y\":49},\"id\":\"57704730-7511-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"11\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":11,\"i\":\"12\",\"w\":21,\"x\":0,\"y\":0},\"id\":\"98309f20-8873-11e8-b4c2-17db52b8990d\",\"panelIndex\":\"12\",\"type\":\"visualization\",\"version\":\"6.3.2\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":16,\"i\":\"13\",\"w\":32,\"x\":16,\"y\":43},\"id\":\"820f2570-7470-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"13\",\"type\":\"visualization\",\"version\":\"6.5.4\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":16,\"i\":\"14\",\"w\":32,\"x\":16,\"y\":27},\"id\":\"28d920a0-7489-11e8-b583-8357aefbc6ed\",\"panelIndex\":\"14\",\"type\":\"visualization\",\"version\":\"6.5.4\"}]",
+    "panelsJSON": "[{\"version\":\"7.4.0\",\"gridData\":{\"x\":21,\"y\":0,\"w\":27,\"h\":11,\"i\":\"1\"},\"panelIndex\":\"1\",\"embeddableConfig\":{},\"panelRefName\":\"panel_0\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":17,\"w\":16,\"h\":14,\"i\":\"5\"},\"panelIndex\":\"5\",\"embeddableConfig\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"panelRefName\":\"panel_1\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":32,\"y\":17,\"w\":16,\"h\":14,\"i\":\"7\"},\"panelIndex\":\"7\",\"embeddableConfig\":{},\"panelRefName\":\"panel_2\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":16,\"y\":17,\"w\":16,\"h\":14,\"i\":\"8\"},\"panelIndex\":\"8\",\"embeddableConfig\":{},\"panelRefName\":\"panel_3\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":31,\"w\":16,\"h\":15,\"i\":\"9\"},\"panelIndex\":\"9\",\"embeddableConfig\":{},\"panelRefName\":\"panel_4\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":16,\"y\":31,\"w\":16,\"h\":15,\"i\":\"10\"},\"panelIndex\":\"10\",\"embeddableConfig\":{},\"panelRefName\":\"panel_5\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":32,\"y\":31,\"w\":16,\"h\":15,\"i\":\"11\"},\"panelIndex\":\"11\",\"embeddableConfig\":{},\"panelRefName\":\"panel_6\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":0,\"w\":21,\"h\":11,\"i\":\"12\"},\"panelIndex\":\"12\",\"embeddableConfig\":{},\"panelRefName\":\"panel_7\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":11,\"w\":16,\"h\":6,\"i\":\"16b3e4dd-48ff-4718-ac62-f9abe55e4553\"},\"panelIndex\":\"16b3e4dd-48ff-4718-ac62-f9abe55e4553\",\"embeddableConfig\":{},\"panelRefName\":\"panel_8\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":16,\"y\":11,\"w\":16,\"h\":6,\"i\":\"536308f6-44a2-4807-a10e-5826c5ddfb16\"},\"panelIndex\":\"536308f6-44a2-4807-a10e-5826c5ddfb16\",\"embeddableConfig\":{},\"panelRefName\":\"panel_9\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":32,\"y\":11,\"w\":16,\"h\":6,\"i\":\"6f7c1dc6-d753-4624-848c-9868ee07ef1d\"},\"panelIndex\":\"6f7c1dc6-d753-4624-848c-9868ee07ef1d\",\"embeddableConfig\":{},\"panelRefName\":\"panel_10\"}]",
     "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+    "version": 1,
     "timeRestore": false,
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
     }
-  }
+  },
+  "references": [
+    {
+      "name": "panel_0",
+      "type": "visualization",
+      "id": "bdecdc70-731e-11e8-9f32-cf7527ac183d"
+    },
+    {
+      "name": "panel_1",
+      "type": "visualization",
+      "id": "2ddd09e0-7470-11e8-b583-8357aefbc6ed"
+    },
+    {
+      "name": "panel_2",
+      "type": "visualization",
+      "id": "820f2570-7470-11e8-b583-8357aefbc6ed"
+    },
+    {
+      "name": "panel_3",
+      "type": "visualization",
+      "id": "28d920a0-7489-11e8-b583-8357aefbc6ed"
+    },
+    {
+      "name": "panel_4",
+      "type": "visualization",
+      "id": "ea84ac10-7510-11e8-b583-8357aefbc6ed"
+    },
+    {
+      "name": "panel_5",
+      "type": "visualization",
+      "id": "36c823e0-7511-11e8-b583-8357aefbc6ed"
+    },
+    {
+      "name": "panel_6",
+      "type": "visualization",
+      "id": "57704730-7511-11e8-b583-8357aefbc6ed"
+    },
+    {
+      "name": "panel_7",
+      "type": "visualization",
+      "id": "98309f20-8873-11e8-b4c2-17db52b8990d"
+    },
+    {
+      "name": "panel_8",
+      "type": "visualization",
+      "id": "bb663030-e5f7-11e9-a3ea-d7d01b053a51"
+    },
+    {
+      "name": "panel_9",
+      "type": "visualization",
+      "id": "28a5c240-e5f9-11e9-a3ea-d7d01b053a51"
+    },
+    {
+      "name": "panel_10",
+      "type": "visualization",
+      "id": "7304d490-e5f7-11e9-a3ea-d7d01b053a51"
+    }
+  ]
 }

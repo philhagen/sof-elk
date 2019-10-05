@@ -17,5 +17,6 @@
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"index\":\"evtxlogs\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
     }
-  }
+  },
+  "references": []
 }

@@ -7,5 +7,6 @@
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"index\":\"netflow\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
     }
-  }
+  },
+  "references": []
 }

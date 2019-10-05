@@ -2,5 +2,6 @@
   "attributes": {
     "title": "evtxlogs-*",
     "timeFieldName": "@timestamp"
-  }
+  },
+  "references": []
 }

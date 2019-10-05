@@ -7,5 +7,6 @@
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{}"
     }
-  }
+  },
+  "references": []
 }

@@ -7,5 +7,6 @@
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"index\":\"httpdlog\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
     }
-  }
+  },
+  "references": []
 }
