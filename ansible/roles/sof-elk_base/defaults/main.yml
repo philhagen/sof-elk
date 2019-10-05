@@ -1,5 +1,7 @@
 ---
 base_yum_packages:
+  - GeoIP
+  - geoipupdate
   - bc
   - bind-utils
   - bzip2
