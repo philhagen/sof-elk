@@ -100,7 +100,7 @@
 
 - name: Load sysctl settings
   command: 'sysctl --system'
-  when: sysctl_update.changeA
+  when: sysctl_update.changed
   tags: sof-elk_base
 
 - name: Compress rotated log files
