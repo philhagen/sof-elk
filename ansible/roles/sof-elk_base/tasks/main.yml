@@ -148,6 +148,15 @@
  #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
+- name: Create geoip database directory
+  file:
+    path: '/usr/local/share/GeoIP'
+    owner: root
+    group: root
+    mode: 755
+    state: directory
+  tags: sof-elk_base
+
 - name: Configure geoip updates
   copy:
     src: 'GeoIP.conf'
@@ -166,7 +175,7 @@
   with_items:
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/geoip_update.cron', dest: '/etc/cron.d/geoip_update.cron' }
  #   - { src: 'xxx', dest: 'xxx' }
-  register: geoipup_enabled
+  register: geoipupdate_enabled
   tags: sof-elk_base
 
 - name: Install geoip data
