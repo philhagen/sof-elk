@@ -35,7 +35,7 @@ done
 # (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
 for es_template_file in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template.json ); do
     es_template=$( echo $es_template_file | sed 's/.*elasticsearch-\(.*\)-template.json/\1/' )
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_template/${es_template} -d @/usr/local/sof-elk/lib/${es_template_file} > /dev/null
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_template/${es_template} -d @${es_template_file} > /dev/null
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
