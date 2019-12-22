@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2018 Lewes Technology Consulting, LLC
+# (C)2019 Lewes Technology Consulting, LLC
 #
 # This script runs as a post-dhcp lease acquisition hook to change the /etc/issue file with a new IP address, then restarting any agetty processes so the new IP is shown on the prelogin authentiction screen
 
@@ -11,7 +11,7 @@ issueupdate_config() {
     TTYLIST=$( ps -h -p  $( pidof agetty) | awk '{print $2}' | sort | uniq)
     for TTY in $TTYLIST; do
     	systemctl restart getty@${TTY}
-        while ( ! ps -h -p $( pidof agetty ) | grep -q $TTY ); do
+        while ( ! ps -h  | grep -q [a]getty.*$TTY ); do
             sleep 3;
             systemctl restart getty@${TTY}
         done
