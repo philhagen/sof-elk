@@ -39,7 +39,7 @@ for es_template_file in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"YYYY-MM-DD HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"Etc/UTC\"}}" > /dev/null
+curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"YYYY-MM-DD HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"UTC\"}}" > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null

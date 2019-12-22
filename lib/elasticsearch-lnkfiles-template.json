@@ -10,39 +10,37 @@
     }
   },
   "mappings": {
-    "doc": {
-      "dynamic_templates": [
-        {
-          "string_fields": {
-            "match": "*",
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "text",
-              "norms": false,
-              "fields": {
-                "keyword": {
-                  "type": "keyword",
-                  "ignore_above": 256
-                }
+    "dynamic_templates": [
+      {
+        "string_fields": {
+          "match": "*",
+          "match_mapping_type": "string",
+          "mapping": {
+            "type": "text",
+            "norms": false,
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
               }
             }
           }
         }
-      ],
-      "properties": {
-        "@version": {
-          "type": "keyword"
-        },
+      }
+    ],
+    "properties": {
+      "@version": {
+        "type": "keyword"
+      },
 
-        "prospector": {
-          "properties": {
-            "type": {
-              "type": "keyword"
-            }
+      "prospector": {
+        "properties": {
+          "type": {
+            "type": "keyword"
           }
         }
-
       }
+
     }
   },
   "aliases": {}
