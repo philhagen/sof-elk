@@ -27,16 +27,16 @@
   tags: sof-elk_elastalert
 
 - name: Configure Elastalert
- copy:
-   src: 'elastalert_config.yml'
-   dest: '/etc/sysconfig/elastalert_config.yaml'
-   owner: root
-   group: root
-   mode: 0644
- tags: sof-elk_elastalert
+  copy:
+    src: 'elastalert_config.yml'
+    dest: '/etc/sysconfig/elastalert_config.yml'
+    owner: root
+    group: root
+    mode: 0644
+  tags: sof-elk_elastalert
 
 - name: Create Elastalert index
-  command: 'elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix '' --index 'elastalert_status' --old-index '' --config /etc/sysconfig/elastalert_config.yaml'
+  command: 'elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml'
   tags: sof-elk_elastalert
 
 - name: Enable Elastalert service
