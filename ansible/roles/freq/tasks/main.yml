@@ -27,8 +27,6 @@
   systemd:
     name: /usr/local/sof-elk/lib/systemd/freq.service
     enabled: yes
-  args:
-    warn: false
   tags: sof-elk_freq
 
 - name: Start freq service

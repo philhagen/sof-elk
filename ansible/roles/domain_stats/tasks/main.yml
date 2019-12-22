@@ -17,8 +17,6 @@
   systemd:
     name: /usr/local/sof-elk/lib/systemd/domain_stats.service
     enabled: yes
-  args:
-    warn: false
   tags: sof-elk_domainstats
 
 - name: Start domain_stats service
