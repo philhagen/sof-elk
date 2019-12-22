@@ -1,16 +1,12 @@
 ---
 # This playbook configures a single-instance SOF-ELK(R) system
 
-- name: Setup a single-instance SOF-ELK system
+- name: Run all preload steps required for a SOF-ELK system
   hosts: all
   become_method: sudo
   become_user: root
 
   roles:
-    - epel_repo
-    - nux_repo
-    - elastic_repo
-    - sof-elk_pre
     - sof-elk_base
     - elasticsearch
     - cerebro
