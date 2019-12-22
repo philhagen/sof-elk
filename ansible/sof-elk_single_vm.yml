@@ -13,6 +13,7 @@
     - logstash
     - filebeat
     - kibana
+    - elastalert
     - domain_stats
     - freq
 
