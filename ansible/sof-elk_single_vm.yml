@@ -3,8 +3,6 @@
 
 - name: Setup a single-instance SOF-ELK system
   hosts: all
-  remote_user: ansible
-  become: True
   become_method: sudo
   become_user: root
 
