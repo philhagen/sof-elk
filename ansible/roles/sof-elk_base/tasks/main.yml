@@ -1,6 +1,8 @@
 ---
 - name: Clear YUM cache
   command: 'yum clean all'
+  args:
+    warn: false
   when: yum_repo_installed.changed
   tags: sof-elk_base
 
