@@ -4,7 +4,7 @@ After=elasticsearch.service
 
 [Service]
 WorkingDirectory=/home/elastalert
-ExecStart=/usr/local/bin/elastalert --config /etc/sysconfig/elastalert_config.yaml
+ExecStart=/usr/local/bin/elastalert --config /etc/sysconfig/elastalert_config.yml
 PIDFile=/var/run/elastalert.pid
 Restart=always
 User=elastalert
