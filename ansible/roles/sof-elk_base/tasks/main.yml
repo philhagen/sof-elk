@@ -3,7 +3,6 @@
   command: 'yum clean all'
   args:
     warn: false
-  when: yum_repo_installed.changed
   tags: sof-elk_base
 
 - name: Install core RPM set via YUM
