@@ -3,8 +3,8 @@ Description=Elastalert
 After=elasticsearch.service
 
 [Service]
-WorkingDirectory=/opt/elastalert
-ExecStart=/usr/bin/elastalert --config /etc/sysconfig/elastalert_config.yaml
+WorkingDirectory=/home/elastalert
+ExecStart=/usr/local/bin/elastalert --config /etc/sysconfig/elastalert_config.yaml
 PIDFile=/var/run/elastalert.pid
 Restart=always
 User=elastalert

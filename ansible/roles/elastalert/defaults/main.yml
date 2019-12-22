@@ -1,0 +1,6 @@
+elastalert_version: '0.2.1'
+elastalert_pip_modules: 
+  - setuptools
+  - texttable
+  - thehive4py
+  - elastalert==0.2.1
