@@ -41,7 +41,7 @@
 
 - name: Enable Elastalert service
   systemd:
-    name: elastalert
+    name: /usr/local/sof-elk/lib/systemd/elastalert.service
     enabled: yes
   tags: sof-elk_elastalert
 
