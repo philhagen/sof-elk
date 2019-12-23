@@ -43,7 +43,7 @@ URIPATH_CUSTOM %{URIPATH}|\*
 HTTPDUSER %{EMAILADDRESS}|%{USER}
 COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{WORD:protocol}://)?(?:%{HOSTNAME:hostname}(?::%{POSINT:destination_port})?)?(?:%{URIPATH_CUSTOM:request})?(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
 COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:proxy_cachestatus}:%{WORD:proxy_hierarchystatus}
-COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:referrer} %{QS:agent}
+COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:referrer} %{QS:useragent}
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:proxy_cachestatus}:%{WORD:proxy_hierarchystatus}
 
 # hours:minutes:seconds, to allow any number of hours
