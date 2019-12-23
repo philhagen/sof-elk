@@ -67,7 +67,7 @@ echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
 echo "updating GeoIP database"
-/usr/local/sbin/geoip_update.sh -now
+geoipupdate
 
 echo "stopping elastalert"
 systemctl stop elastalert
@@ -77,7 +77,7 @@ curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_error' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_past' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_silence' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_status' > /dev/null
-elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix '' --index 'elastalert_status' --old-index ''
+elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
 
 echo "stopping logstash"
 systemctl stop logstash
