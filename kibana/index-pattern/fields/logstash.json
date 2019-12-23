@@ -50,7 +50,7 @@
 {"name":"destination_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"destination_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.asn","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"destination_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( !doc.containsKey('destination_geo.asn') || !doc.containsKey('destination_geo.as_org.keyword') ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"destination_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( doc['destination_geo.asn'].size() == 0 || doc['destination_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"destination_geo.city_name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"destination_geo.city_name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.continent_code","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
@@ -166,7 +166,7 @@
 {"name":"source_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_geo.asn","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"source_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( !doc.containsKey('source_geo.asn') || !doc.containsKey('source_geo.as_org.keyword') ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"source_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( doc['source_geo.asn'].size() == 0 || doc['source_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"source_geo.city_name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_geo.city_name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_geo.continent_code","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
