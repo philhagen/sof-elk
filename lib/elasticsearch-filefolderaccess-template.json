@@ -3,10 +3,10 @@
     "filefolderaccess-*"
   ],
   "settings": {
-    "number_of_shards" : 1,
-    "number_of_replicas": 0,
     "index": {
-      "refresh_interval": "5s"
+      "number_of_shards" : 1,
+      "auto_expand_replicas": "0-1",
+      "codec": "best_compression"
     }
   },
   "mappings": {
