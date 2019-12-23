@@ -77,7 +77,7 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    special_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*' ]
+    special_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*', '.apm' ]
     special_index_regex = []
     for raw_regex in special_index_rawregex:
         special_index_regex.append(re.compile(raw_regex))
@@ -90,7 +90,7 @@ def get_es_indices(es):
             index_dict[baseindex] = True
     return list(index_dict)
 
-# this dictionary associates each on-disk source location with its correspodning ES index root name
+# this dictionary associates each on-disk source location with its corresponding ES index root name
 sourcedir_index_mapping = {
     'syslog': 'logstash',
     'passivedns': 'logstash',
@@ -139,8 +139,8 @@ if args.index == 'list':
     else:
         print('The following indices are currently active in Elasticsearch:')
         for index in populated_indices:
-            res = es.search(index='%s-*' % (index), body={'query': {'match_all': {}}})
-            doccount = res['hits']['total']
+            res = es.count(index='%s-*' % (index), body={'query': {'match_all': {}}})
+            doccount = res['count']
 
             print('- %s (%s documents)' % (index, "{:,}".format(doccount)))
     exit(0)
@@ -156,8 +156,8 @@ if args.filepath:
             print('No corresponding index for requested filepath.  Exiting.')
             exit(1)
 
-        res = es.search(index='%s-*' % (args.index), body={'query': {'prefix': {'source.keyword': '%s' % (args.filepath)}}})
-        doccount = res['hits']['total']
+        res = es.count(index='%s-*' % (args.index), body={'query': {'prefix': {'source.keyword': '%s' % (args.filepath)}}})
+        doccount = res['count']
 
     else:
         print('File path must start with "%s".  Exiting.' % (topdir))
@@ -169,12 +169,12 @@ elif args.nukeitall:
         print('There are no active data indices in Elasticsearch')
         doccount = 0
     else:
-        res = es.search(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
-        doccount = res['hits']['total']
+        res = es.count(index='%s' % (','.join(populated_indices)), body={'query': {'match_all': {}}})
+        doccount = res['count']
 
 else:
-    res = es.search(index='%s-*' % (args.index), body={'query': {'match_all': {}}})
-    doccount = res['hits']['total']
+    res = es.count(index='%s-*' % (args.index), body={'query': {'match_all': {}}})
+    doccount = res['count']
 
 if doccount > 0:
     # get user confirmation to proceed
