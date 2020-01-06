@@ -123,7 +123,7 @@
     dest: '/usr/local/sof-elk/.git/hooks/post-merge'
     owner: root
     group: root
-    mode: 700
+    mode: 0700
   tags: sof-elk_base
 
 - name: Create required symlinks from git repo
@@ -153,7 +153,7 @@
     path: '/usr/local/share/GeoIP'
     owner: root
     group: root
-    mode: 755
+    mode: 0755
     state: directory
   tags: sof-elk_base
 
@@ -163,7 +163,7 @@
     dest: '/etc/GeoIP.conf.default'
     owner: root
     group: root
-    mode: 644
+    mode: 0644
   tags: sof-elk_base
 
 - name: Enable geoip updates
