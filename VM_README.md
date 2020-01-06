@@ -105,5 +105,5 @@ To ingest existing NetFlow evidence, it must be parsed into a specific format.  
 **Administrative Notifications/Disclaimers/Legal/Boring Stuff**
 
 * This virtual appliance is provided "as is" with no express or implied warranty for accuracy or accessibility.  No support for the functionality the VM provides is offered outside of this document.
-* This virtual appliance includes GeoLite2 data created by MaxMind, available from <http://www.maxmind.com>
+* This virtual appliance includes GeoLite2 data created by MaxMind, available from <http://www.maxmind.com>.  Note that further use of this data requires a free MaxMind account, which also enables automatic updates to be downloaded.  Further information on this is located in the `/etc/GeoIP.conf.default` file on the VM.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).
 * SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.  SOF-ELK logo is a wholly owned property of Lewes Technology Consulting, LLC and is used by permission.

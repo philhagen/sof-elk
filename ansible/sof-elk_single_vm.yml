@@ -6,6 +6,18 @@
   become_method: sudo
   become_user: root
 
+  vars_prompt:
+    - name: geoip_accountid
+      prompt: "Enter GeoIP Account ID"
+      private: no
+    - name: geoip_licensekey
+      prompt:  "Enter GeoIP License Key"
+      private: no
+    - name: geoip_config_persist
+      prompt: "Do you want the GeoIP data to persist after installation (default: no)?"
+      default: no
+      private: no
+
   roles:
     - sof-elk_base
     - elasticsearch
