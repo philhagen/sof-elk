@@ -11,7 +11,7 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
     * Remove Printer
     * Remove Camera
     * Hardware (compatibility) version so $current-1 is supported
-    * 500GB SCSI HDD, Split files, named `FOR572 SOF-ELK.vmdk`
+    * 500GB SCSI HDD, single file, named `FOR572 SOF-ELK.vmdk`
 2. CentOS 7 network install
     * I had to append `vga=794` to the install command line or the windows got cut off
     * Enable networking (DHCP)
