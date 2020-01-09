@@ -67,7 +67,18 @@ echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
 echo "updating GeoIP database"
-geoipupdate
+echo -n "Enter GeoIP AccountID: "
+read geoip_accountid
+echo -n "Enter GeoIP LicenseKey: "
+read geoip_licensekey
+echo "
+AccountID ${geoip_accountid}
+LicenseKey ${geoip_licensekey}
+EditionIDs GeoLite2-Country GeoLite2-City GeoLite2-ASN
+DatabaseDirectory /usr/local/share/GeoIP
+" > ~/GeoIP.conf
+geoipupdate -f ~/GeoIP.conf
+shred -u ~/GeoIP.conf
 
 echo "stopping elastalert"
 systemctl stop elastalert

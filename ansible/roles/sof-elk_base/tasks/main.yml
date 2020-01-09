@@ -123,7 +123,7 @@
     dest: '/usr/local/sof-elk/.git/hooks/post-merge'
     owner: root
     group: root
-    mode: 700
+    mode: 0700
   tags: sof-elk_base
 
 - name: Create required symlinks from git repo
@@ -141,6 +141,7 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/post_merge.sh', dest: '/usr/local/sbin/post_merge.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_clear.py', dest: '/usr/local/sbin/sof-elk_clear.py' }
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_update.sh', dest: '/usr/local/sbin/sof-elk_update.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update.sh', dest: '/usr/local/sbin/geoip_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
     - { src: '/usr/local/sof-elk/supporting-scripts/issueupdate.sh', dest: '/etc/dhcp/dhclient.d/issueupdate.sh' }
@@ -152,18 +153,17 @@
     path: '/usr/local/share/GeoIP'
     owner: root
     group: root
-    mode: 755
+    mode: 0755
     state: directory
   tags: sof-elk_base
 
-- name: Configure geoip updates
+- name: Install default GeoIP configuration
   copy:
-    src: 'GeoIP.conf'
-    dest: '/etc/GeoIP.conf'
+    src: 'GeoIP.conf.default'
+    dest: '/etc/GeoIP.conf.default'
     owner: root
     group: root
-    mode: 644
-  register: geoipupdate_config
+    mode: 0644
   tags: sof-elk_base
 
 - name: Enable geoip updates
@@ -174,10 +174,23 @@
   with_items:
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/geoip_update.cron', dest: '/etc/cron.d/geoip_update.cron' }
  #   - { src: 'xxx', dest: 'xxx' }
-  register: geoipupdate_enabled
+  tags: sof-elk_base
+
+- name: Install templated GeoIP configuration to perform download
+  template:
+    src: 'GeoIP.conf.j2'
+    dest: '/etc/GeoIP.conf'
+    owner: root
+    group: root
+    mode: 0600
   tags: sof-elk_base
 
 - name: Install geoip data
   command: geoipupdate
   tags: sof-elk_base
-  when: geoipupdate_config.changed or geoipupdate_enabled.changed
+
+- name: Remove GeoIP configuration
+  file:
+    path: /etc/GeoIP.conf
+    state: absent
+  when: not geoip_config_persist |bool
