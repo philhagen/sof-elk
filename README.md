@@ -1,4 +1,5 @@
-SOF-ELK® Configuration Files
+# SOF-ELK® Configuration Files
+
 =======
 ![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
@@ -10,7 +11,7 @@ The SOF-ELK® platform was initially developed for SANS FOR572, Advanced Network
 
 More details about the pre-packaged VM are available here: <http://for572.com/sof-elk-readme>.
 
-**Branches:**
+## Branches
 
 * `master`: This branch is considered suitable for widespread use, but should not be used in the FOR572 class itself.  The classroom labs are version-locked, but work on this repository is ongoing.
 * `public/*`: These branches will be tied to public releases of the VM, allowing version-locked content control after deployment.
@@ -18,11 +19,11 @@ More details about the pre-packaged VM are available here: <http://for572.com/so
 * `develop`: This branch contains code that should be functional, but may break at times (and remain broken).  Of course, we'll try to avoid that, but it should be clear that this is NOT a branch suitable for "real world" use.
 * Other branches may be used for major version updates, etc.  These will be merged to master when deployed for mainstream use.
 
-**Using:**
+## Using
 
 These files are only recommended to be used in the SOF-ELK VM distribution at this time.  A great deal of system-level configuration and tie-in is required for them to be used.  No support can be provided for the use of these files outsie the SOF-ELK VM as distributed via the [readme](http://for572.com/sof-elk-readme).
 
-**Contents by directory:**
+## Contents by directory
 
 * `/configfiles/`: These files conatain parsing/tagging/formatting/etc logic for individual file types as well as output configuration.
 * `/configfiles-UNSUPPORTED/`: These configuration files are either not ready for operational use, in testing, or otherwise staged/stashed.
@@ -32,13 +33,13 @@ These files are only recommended to be used in the SOF-ELK VM distribution at th
 * `/lib/`: Supporting files, including elasticsearch mappings, YAML lookup files, and images.
 * `/supporting-scripts/`: Numerous scripts and supporting files needed for the SOF-ELK VM to function.  Any scripts that may be required for user functionality are symlinked to be in the `elk_user`'s `$PATH`.
 
-**Questions/Bug Reports/etc:**
+## Questions/Bug Reports/etc
 
 All bugs and feature requests should be logged via the github issue tracker: <https://github.com/philhagen/sof-elk/issues/>.
 
 Please see the pull request submission guidelines before starting any development work - this is in the [](PULLREQUESTS.md) file.
 
-**Administrative Notifications/Disclaimers/Legal/Boring Stuff**
+## Administrative Notifications/Disclaimers/Legal/Boring Stuff
 
 * Content of this repository are provided "as is" with no express or implied warranty for accuracy or accessibility.
 * SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.  SOF-ELK logo is a wholly owned property of Lewes Technology Consulting, LLC and is used by permission.
