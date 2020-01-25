@@ -37,11 +37,17 @@
       }
     ],
     "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
       "@version": {
         "type": "keyword"
       },
 
+      /* place any required field type definitions here */
+
       "prospector": {
+        "dynamic": true,
         "properties": {
           "type": {
             "type": "keyword"
