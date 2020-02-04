@@ -1,7 +1,6 @@
 # SOF-ELK® Virtual Machine Distribution
 
-=======
-![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
+![SOF-ELK Logo](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
 ## Background
 
