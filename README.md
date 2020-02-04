@@ -1,7 +1,6 @@
 # SOF-ELK® Configuration Files
 
-=======
-![alt tag](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
+![SOF-ELK Logo](https://raw.githubusercontent.com/philhagen/sof-elk/master/lib/sof-elk_logo_sm.png)
 
 This repository contains the configuration and support files for the SOF-ELK® VM Appliance.
 
