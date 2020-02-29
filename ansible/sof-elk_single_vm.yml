@@ -6,7 +6,7 @@
   become_method: sudo
   become_user: root
 
-  tasks:
+  pre_tasks:
     - name: "Get current git branch"
       command: "git rev-parse --abbrev-ref HEAD"
       args:
