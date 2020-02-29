@@ -43,4 +43,4 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
    2. Public VM
       * Old Lab 2.3 (Logs)
       * New Lab 3.1 (NetFlow)
-9.  Reboot the VM.  (Technically not required, but ensures all is set up to start on boot.)
+9. Reboot the VM.  (Technically not required, but ensures all is set up to start on boot.)
