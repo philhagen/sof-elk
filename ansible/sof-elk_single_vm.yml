@@ -6,6 +6,13 @@
   become_method: sudo
   become_user: root
 
+  tasks:
+    - name: "Get current git branch"
+      command: "git rev-parse --abbrev-ref HEAD"
+      register: git_branch_output
+    - set_fact:
+      git_branch: "{{ git_branch_output.stdout }}"
+
   vars_prompt:
     - name: geoip_accountid
       prompt: "Enter GeoIP Account ID"
@@ -14,7 +21,7 @@
       prompt:  "Enter GeoIP License Key"
       private: no
     - name: geoip_config_persist
-      prompt: "Do you want the GeoIP data to persist after installation (default: no)?"
+      prompt: "Do you want GeoIP account/license data to persist after installation (default: no)?"
       default: no
       private: no
 
