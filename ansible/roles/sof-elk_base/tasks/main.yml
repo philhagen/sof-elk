@@ -113,7 +113,7 @@
   git:
     repo: 'https://github.com/philhagen/sof-elk'
     dest: '/usr/local/sof-elk'
-    refspec: git_branch
+    refspec: "{{ git_branch }}"
     update: yes
   tags: sof-elk_base
 
