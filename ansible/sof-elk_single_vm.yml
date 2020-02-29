@@ -12,7 +12,8 @@
       args:
         chdir: "{{ playbook_dir }}"
       register: git_branch_result
-    - set_fact: "git_branch:{{ git_branch_result.stdout }}"
+    - set_fact:
+        git_branch: "{{ git_branch_result.stdout }}"
 
   vars_prompt:
     - name: geoip_accountid
