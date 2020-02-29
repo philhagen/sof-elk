@@ -32,9 +32,9 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
 3. `yum -y install git ansible` (as root or with sudo)
 4. `git clone https://github.com/philhagen/sof-elk /tmp/sof-elk` (as root or with sudo)
     * Change to the desired branch in the cloned repository, e.g.`git branch public/v20200229`
-5. `ansible-playbook -i 127.0.0.1, --connection=local /tmp/sof-elk/sof-elk_preload.yml`
+5. `ansible-playbook -i 127.0.0.1, --connection=local /tmp/sof-elk/ansible/sof-elk_preload.yml`
     * This has to take place in two stages because the ansible in the CentOS core repo has a broken `command` module (and maybe others). This step ensures a version of ansible that works and is needed for several steps in the `sof-elk_single_vm_.yml` playbook below.
-6. `ansible-playbook -i 127.0.0.1, --connection=local /tmp/sof-elk/sof-elk_single_vm.yml`
+6. `ansible-playbook -i 127.0.0.1, --connection=local /tmp/sof-elk/ansible/sof-elk_single_vm.yml`
 7. `rm -rf /tmp/sof-elk`
 8. Stage evidence as required.
    1. Classroom VM (evidence not distributed publicly)
