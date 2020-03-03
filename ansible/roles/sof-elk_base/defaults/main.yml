@@ -20,6 +20,7 @@ base_yum_packages:
   - net-tools
   - nfdump
   - open-vm-tools
+  - p7zip
   - psmisc
   - python-devel
   - python-pip
