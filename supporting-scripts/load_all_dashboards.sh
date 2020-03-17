@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2020 Lewes Technology Consulting, LLC
 #
 # This script is used to load all dashboards, visualizations, saved searches, and index patterns to Kibana
 
@@ -39,7 +39,7 @@ for es_template_file in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"YYYY-MM-DD HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"UTC\"}}" > /dev/null
+curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/_doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"YYYY-MM-DD HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"UTC\"}}" > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
