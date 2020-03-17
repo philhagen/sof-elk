@@ -6,6 +6,8 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
     * Name: `FOR572 SOF-ELK`
     * 4 cores
     * 4096 MB RAM
+    * Enable hypervisor applications
+    * Disable 3D graphics acceleration
     * USB 3.0 Controller
     * Remove Sound
     * Remove Printer
@@ -27,8 +29,10 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
     * During install, create a user
       * Full name: `SOF-ELK User`
       * Username: `elk_user`
+      * Select "Make this user an administrator"
       * Set password as desired - for class, this is `forensics`.  This weak password will requires you to click "Done" twice.
-    * You may need to manually remove the installation ISO file from the VM.
+    * You may need to manually remove the installation ISO file from the VMX file when initial installation is complete.
+    * Reboot the VM.
 3. `yum -y install git ansible` (as root or with sudo)
 4. `git clone https://github.com/philhagen/sof-elk /tmp/sof-elk` (as root or with sudo)
     * Change to the desired branch in the cloned repository, e.g.`git branch public/v20200229`.  This branch will be the same as what is deployed in the completed installation.
