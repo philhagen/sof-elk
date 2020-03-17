@@ -16,6 +16,7 @@ base_yum_packages:
   - java-1.8.0
   - java-1.8.0-devel
   - jq
+  - libffi-devel
   - lsof
   - mlocate
   - net-tools
@@ -27,6 +28,7 @@ base_yum_packages:
   - python-requests
   - python-six
   - python36
+  - python36-devel
   - python36-pip
   - python36-six
   - tcpdump
@@ -35,3 +37,4 @@ base_yum_packages:
   - wget
   - whois
   - yum-plugin-post-transaction-actions
+  - yum-utils
