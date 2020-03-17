@@ -23,7 +23,7 @@
   lineinfile:
     dest: '/etc/sudoers'
     regex: '^Defaults.*secure_path'
-    line: 'Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sof-elk/supporting-scripts'
+    line: 'Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sof-elk/supporting-scripts'
   tags: sof-elk_base
 
 - name: Create elk_user account
@@ -34,6 +34,8 @@
     groups: wheel
     append: yes
     state: present
+    append: yes
+    groups: wheel
   tags: sof-elk_base
 
 - name: Set up elk_user's .bash_profile

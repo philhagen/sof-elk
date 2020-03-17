@@ -1,4 +1,8 @@
 ---
+- name: Wait for Elasticsearch to be ready
+  command: '/usr/local/sof-elk/supporting-scripts/wait_for_es.sh'
+  tags: sof-elk_finalize
+
 - name: Load all dashboards
   command: '/usr/local/sbin/load_all_dashboards.sh'
   tags: sof-elk_finalize
