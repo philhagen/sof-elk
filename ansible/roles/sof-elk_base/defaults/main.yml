@@ -5,6 +5,7 @@ base_yum_packages:
   - bc
   - bind-utils
   - bzip2
+  - cifs-utils
   - deltarpm
   - exfat-utils
   - fuse-exfat
