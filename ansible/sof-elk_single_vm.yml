@@ -34,7 +34,8 @@
     - logstash
     - filebeat
     - kibana
-    - elastalert
+# this is broken for ES7 for now - revisit after full ES7 support is in Elastalert
+    #- elastalert
     - domain_stats
     - freq
 
