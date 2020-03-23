@@ -34,8 +34,6 @@
     groups: wheel
     append: yes
     state: present
-    append: yes
-    groups: wheel
   tags: sof-elk_base
 
 - name: Set up elk_user's .bash_profile
