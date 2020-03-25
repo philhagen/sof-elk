@@ -1,4 +1,10 @@
 ---
+- name: Disable root account
+  user:
+    name: root
+    password: "*"
+  when: disable_root | bool
+
 - name: Clear YUM cache
   command: 'yum clean all'
   args:
@@ -195,4 +201,4 @@
   file:
     path: /etc/GeoIP.conf
     state: absent
-  when: not geoip_config_persist |bool
+  when: not geoip_config_persist | bool
