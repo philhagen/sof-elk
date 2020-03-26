@@ -39,5 +39,5 @@ base_yum_packages:
   - yum-plugin-post-transaction-actions
   - yum-utils
 
-base_pip_packages:
+base_pip_modules:
   - elasticsearch
