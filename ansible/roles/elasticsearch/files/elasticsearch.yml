@@ -86,4 +86,5 @@ path.logs: /var/log/elasticsearch
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
+xpack.ilm.enabled: false
 xpack.security.enabled: false

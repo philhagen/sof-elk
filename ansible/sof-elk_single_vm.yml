@@ -39,7 +39,7 @@
     - filebeat
     - kibana
 # this is broken for ES7 for now - revisit after full ES7 support is in Elastalert
-    #- elastalert
+    - elastalert
     - domain_stats
     - freq
 

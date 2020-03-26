@@ -17,6 +17,20 @@
     state: present
   tags: sof-elk_base
 
+- name: Upgrade pip
+  pip:
+    name: pip
+    executable: pip3
+    state: latest
+  tags: sof-elk_base
+
+- name: Install pip dependencies
+  pip:
+    name: '{{ base_pip_modules }}'
+    executable: pip3
+    state: present
+  tags: sof-elk_base
+
 - name: Disable DNS resolution for SSHD
   lineinfile:
     dest: '/etc/ssh/sshd_config'
