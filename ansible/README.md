@@ -49,3 +49,13 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
       * Old Lab 2.3 (Logs)
       * New Lab 3.1 (NetFlow)
 9. Reboot the VM.  (Technically not required, but ensures all is set up to start on boot.)
+
+## For FOR572 Class Version Preparation
+
+1. Run `~root/distro_prep.sh`
+2. Halt and power down the VM
+3. Take a release candidate snapshot
+4. Reboot
+5. Test:
+   1. Data load (syslog, httpdlog, netflow, passivedns)
+   2. `sof-elk_clear.py -i list`
