@@ -38,3 +38,6 @@ base_yum_packages:
   - whois
   - yum-plugin-post-transaction-actions
   - yum-utils
+
+base_pip_modules:
+  - elasticsearch
