@@ -11,9 +11,11 @@ The VM is provided as a community resource but is covered at varying depths in t
 * [SANS SEC555, SIEM with Tactical Analysis](http://for572.com/sec555)
 * [SANS SEC501, Advanced Security Essentials - Enterprise Defender](http://for572.com/sec501)
 
-The latest version of the VM itself is available here: <http://for572.com/sof-elk-vm>
-
 All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <http://for572.com/sof-elk-git>
+
+## Download
+
+The latest version of the VM itself is available here: <http://for572.com/sof-elk-vm>
 
 ## Latest Distribution Vitals
 
