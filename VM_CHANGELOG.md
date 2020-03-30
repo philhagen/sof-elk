@@ -1,10 +1,10 @@
 SOF-ELK® Virtual Machine Changelog
 =======
 
-* Update: 2020-03-25: Upgraded to ES 7.6 components, more
+* Update: 2020-03-27: Upgraded to ES 7.6 components, more
   * Updated all Elastic stack components to 7.6.1
   * VM now built completely from the included Ansible playbooks
-  * All CentOS 7 updates applied as of 2020-03-25
+  * All CentOS 7 updates applied as of 2020-03-27
 * Update: 2019-06-06: Upgraded to ES 6.7.2 components, KAPE, and more
   * Updated all Elastic stack components to 6.7.2. This will be the last update with v6.x.
   * NetFlow v9 handling in both live collector and archived ingestion modes - including all IPv6 addresses, of course!
