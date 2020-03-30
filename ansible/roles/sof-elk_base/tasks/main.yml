@@ -1,4 +1,10 @@
 ---
+- name: Disable root account
+  user:
+    name: root
+    password: "*"
+  when: disable_root | bool
+
 - name: Clear YUM cache
   command: 'yum clean all'
   args:
@@ -8,6 +14,20 @@
 - name: Install core RPM set via YUM
   yum:
     name: '{{ base_yum_packages }}'
+    state: present
+  tags: sof-elk_base
+
+- name: Upgrade pip
+  pip:
+    name: pip
+    executable: pip3
+    state: latest
+  tags: sof-elk_base
+
+- name: Install pip dependencies
+  pip:
+    name: '{{ base_pip_modules }}'
+    executable: pip3
     state: present
   tags: sof-elk_base
 
@@ -34,8 +54,6 @@
     groups: wheel
     append: yes
     state: present
-    append: yes
-    groups: wheel
   tags: sof-elk_base
 
 - name: Set up elk_user's .bash_profile
@@ -197,4 +215,4 @@
   file:
     path: /etc/GeoIP.conf
     state: absent
-  when: not geoip_config_persist |bool
+  when: not geoip_config_persist | bool

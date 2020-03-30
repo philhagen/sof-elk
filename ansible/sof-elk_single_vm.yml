@@ -16,6 +16,10 @@
         git_branch: "{{ git_branch_result.stdout }}"
 
   vars_prompt:
+    - name: disable_root
+      prompt: "Disable root account from native login (default: yes)?"
+      default: yes
+      private: no
     - name: geoip_accountid
       prompt: "Enter GeoIP Account ID"
       private: no
@@ -35,7 +39,7 @@
     - filebeat
     - kibana
 # this is broken for ES7 for now - revisit after full ES7 support is in Elastalert
-    #- elastalert
+    - elastalert
     - domain_stats
     - freq
 
