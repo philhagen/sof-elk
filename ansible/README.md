@@ -59,3 +59,6 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
 5. Test:
    1. Data load (syslog, httpdlog, netflow, passivedns)
    2. `sof-elk_clear.py -i list`
+6. Remove release candidate snapshot
+7. Remove extra files in `*.vmwarevm` package (logs, cache, vmsd file, etc.)
+8. Create zip archive for distribution
