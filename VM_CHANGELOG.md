@@ -1,6 +1,10 @@
-SOF-ELK® Virutal Machine Changelog
+SOF-ELK® Virtual Machine Changelog
 =======
 
+* Update: 2020-03-27: Upgraded to ES 7.6 components, more
+  * Updated all Elastic stack components to 7.6.1
+  * VM now built completely from the included Ansible playbooks
+  * All CentOS 7 updates applied as of 2020-03-27
 * Update: 2019-06-06: Upgraded to ES 6.7.2 components, KAPE, and more
   * Updated all Elastic stack components to 6.7.2. This will be the last update with v6.x.
   * NetFlow v9 handling in both live collector and archived ingestion modes - including all IPv6 addresses, of course!
@@ -43,14 +47,14 @@ SOF-ELK® Virutal Machine Changelog
   * Latest releases of the ELK stack components
   * All dashboards re-created to work in Kibana 4
   * Optimized Logstash parsing
-  * Better post-deployment upgradability path
+  * Better post-deployment upgrade path
   * Far more than can be adequately documented here - see the git logs for all the details
   * No longer includes the Xplico application
 * Update: 2015-09-18
   * Adjusted sample source evidence to correspond to the UTC change
   * Re-configured Xplico to start on boot (not Logstash-related)
 * Update: 2015-07-16
-  * Force permanence for UTC (seriously, why doesn't replacing /etc/localtime last an update to the tzdata package?!)
+  * Force permanence for UTC (seriously, why doesn't replacing `/etc/localtime` last through an update to the `tzdata` package?!)
   * Updated all packages
 * Update: 2015-05-05
   * Uses separate ElasticSearch instance instead of Logstash's embedded version (also disabled Groovy scripting engine to address CVE-2015-1427)

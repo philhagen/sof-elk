@@ -2,7 +2,7 @@
 # SOF-ELK® Supporting script
 # (C)2018 Lewes Technology Consulting, LLC
 #
-# This script will wait for elasticsearch to be avalable, preventing silly kibana errors in the browser
+# This script will wait for elasticsearch to be available, preventing silly kibana errors in the browser
 
 eshost=127.0.0.1
 esport=9200

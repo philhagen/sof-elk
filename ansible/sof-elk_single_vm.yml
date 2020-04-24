@@ -6,7 +6,20 @@
   become_method: sudo
   become_user: root
 
+  pre_tasks:
+    - name: "Get current git branch"
+      command: "git rev-parse --abbrev-ref HEAD"
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: git_branch_result
+    - set_fact:
+        git_branch: "{{ git_branch_result.stdout }}"
+
   vars_prompt:
+    - name: disable_root
+      prompt: "Disable root account from native login (default: yes)?"
+      default: yes
+      private: no
     - name: geoip_accountid
       prompt: "Enter GeoIP Account ID"
       private: no
@@ -14,7 +27,7 @@
       prompt:  "Enter GeoIP License Key"
       private: no
     - name: geoip_config_persist
-      prompt: "Do you want the GeoIP data to persist after installation (default: no)?"
+      prompt: "Do you want GeoIP account/license data to persist after installation (default: no)?"
       default: no
       private: no
 
@@ -25,6 +38,7 @@
     - logstash
     - filebeat
     - kibana
+# this is broken for ES7 for now - revisit after full ES7 support is in Elastalert
     - elastalert
     - domain_stats
     - freq

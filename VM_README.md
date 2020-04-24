@@ -11,13 +11,26 @@ The VM is provided as a community resource but is covered at varying depths in t
 * [SANS SEC555, SIEM with Tactical Analysis](http://for572.com/sec555)
 * [SANS SEC501, Advanced Security Essentials - Enterprise Defender](http://for572.com/sec501)
 
+All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <http://for572.com/sof-elk-git>
+
+## Download
+
 The latest version of the VM itself is available here: <http://for572.com/sof-elk-vm>
 
-All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <http://for572.com/sof-elk-git>
+## Latest Distribution Vitals
+
+* Basic details on the distribution
+  * VM is a CentOS 7.7 base with all OS updates as of 2020-03-27
+  * Includes Elastic stack components v7.6.1
+  * Configuration files are from the "public/v20200327" branch of this Github repository
+* Metadata
+  * Filename and size: `Public SOF ELK v20200327.zip` (`2,012,124,174` bytes)
+  * MD5: `d0511038e0554c8b6baf9194f7220bec`
+  * SHA256: `9ec8b3f384cf14c4386c226da1d83f1611d833059caec2f84994ecb5ff642090`
 
 ## General Information
 
-* The VM was created with VMware Fusion v11.0.2 and ships with virtual hardware v12.
+* The VM was created with VMware Fusion v11.5.3 and ships with virtual hardware v15.
   * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
   * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
 * The VM is deployed with the "NAT" network mode enabled
@@ -46,19 +59,8 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
     * Windows messages sent by Snare
     * Passivedns (<http://for572.com/passivedns>)
     * HTTPD Common/Combined/vhost+Combined/SSL Access Logs
-    * Live NetFlow v5 and archived NetFlow records
-* `/usr/local/sof-elk/*`: Clone of Github repository (<http://for572.com/sof-elk-git> - public/v20190606 branch)
-
-## Latest Distribution Vitals
-
-* Basic details on the distribution
-  * VM is a CentOS 7.6 base with all OS updates as of 2019-06-06
-  * Includes Elastic stack components v6.7.2
-  * Configuration files are from the "public/v20190606" branch of this Github repository
-* Metadata
-  * Filename and size: `Public SOF ELK v20190606.zip` (`1,615,255,701` bytes)
-  * MD5: `de54153fa977307f71f071f39c5b2670`
-  * SHA256: `c0b70d2fde4b025e15867e2d44f937656b0a586acdb42932a665bc289c920853`
+    * Live NetFlow v5 and v9 and archived NetFlow records
+* `/usr/local/sof-elk/*`: Clone of Github repository (<http://for572.com/sof-elk-git> - public/v20200327 branch)
 
 ## How to Use
 
@@ -68,7 +70,7 @@ All parsers and dashboards for this VM are now maintained in this Github reposit
   * Logging in via SSH recommended, but if using the console login and a non-US keyboard, run `sudo loadkeys uk`, replacing `uk` as needed for your local keyboard mapping
 * cd to one of the `/logstash/*/` directories as appropriate
 * Place files in this location (Mind the above warning about the year for syslog data.  Files must also be readable by the "logstash" user.)
-* Open the main Kibana dashboard using the Kibana URL shown in the pre-authentication screen, ```http://<ip_address>:5601```
+* Open the main Kibana dashboard using the Kibana URL shown in the pre-authentication screen, `http://<ip_address>:5601`
   * This dashboard gives a basic overview of what data has been loaded and how many records are present
   * There are links to several stock dashboards on the left hand side
 * Wait for Logstash to parse the input files, load the appropriate dashboard URL, and start interacting with your data
@@ -98,11 +100,12 @@ To ingest existing NetFlow evidence, it must be parsed into a specific format.  
 ## Credits
 
 * Derek B: Cisco ASA parsing/debugging and sample data
-* Barry A: Sample data and trobuleshooting
+* Barry A: Sample data and troubleshooting
 * Ryan Johnson: Testing
 * Matt Bromiley: Testing
 * Mike Pilkington: Testing
 * Mark Hallman: Testing
+* David Szili: Testing and troubleshooting
 
 ## Administrative Notifications/Disclaimers/Legal/Boring Stuff
 
