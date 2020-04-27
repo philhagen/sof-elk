@@ -2,7 +2,6 @@
 - name: Install domain_stats pip dependencies
   pip:
     name: python-whois
-    executable: pip3
     state: present
   tags: sof-elk_domainstats
 
