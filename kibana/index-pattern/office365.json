@@ -1,0 +1,7 @@
+{
+  "attributes": {
+    "title": "office365-*",
+    "timeFieldName": "@timestamp"
+  },
+  "references": []
+}
