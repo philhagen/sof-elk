@@ -98,7 +98,7 @@ To ingest existing NetFlow evidence, it must be parsed into a specific format.  
 ## Credits
 
 * Derek B: Cisco ASA parsing/debugging and sample data
-* Barry A: Sample data and trobuleshooting
+* Barry A: Sample data and troubleshooting
 * Ryan Johnson: Testing
 * Matt Bromiley: Testing
 * Mike Pilkington: Testing

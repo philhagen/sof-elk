@@ -1,4 +1,4 @@
-SOF-ELK® Virutal Machine Changelog
+SOF-ELK® Virtual Machine Changelog
 =======
 
 * Update: 2019-06-06: Upgraded to ES 6.7.2 components, KAPE, and more
@@ -43,7 +43,7 @@ SOF-ELK® Virutal Machine Changelog
   * Latest releases of the ELK stack components
   * All dashboards re-created to work in Kibana 4
   * Optimized Logstash parsing
-  * Better post-deployment upgradability path
+  * Better post-deployment upgrade path
   * Far more than can be adequately documented here - see the git logs for all the details
   * No longer includes the Xplico application
 * Update: 2015-09-18
