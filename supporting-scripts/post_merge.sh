@@ -1,11 +1,11 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2020 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository is updated
 
 # activate all "supported" Logstash configuration files
-for file in $( ls -1 /usr/local/sof-elk/configfiles/* 2> /dev/null ) ; do
+for file in $( ls -1 /usr/local/sof-elk/configfiles/*.conf 2> /dev/null ) ; do
     if [ -h /etc/logstash/conf.d/$( basename $file ) ]; then
         rm -f /etc/logstash/conf.d/$( basename $file )
     fi

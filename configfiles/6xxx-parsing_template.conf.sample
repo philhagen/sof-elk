@@ -13,78 +13,78 @@
 # if you'd like to have a number or group of numbers assigned.
 
 filter {
-    # Be sure this file only applies to the necessary type(s).
-    # This improves performance, and is not limited to the [type] field - any comparative logic can be used.
-    if ([type] == "logtype") {
-
-        # Drop what you don't want to handle.
-        # The directive below drops comments (assuming comments are lines starting with a # character.)
-        if ([message] =~ /^#/) {
-            drop {}
-        }
-
-        # If you want to use a particular type of blanket filter, put it here.
-        # Be sure to consult the documentation on the filter capability, as it can vary wildly between filters.
-        # By default this is applied against the "message" field, but this can be changed.
-        csv {
-            columns => ["PSComputerName", "RunspaceId", "PSShowComputerName", "RecordType", "CreationDate", "UserIds", "Operations", "AuditData", "ResultIndex", "ResultCount", "Identity", "IsValid", "ObjectState"]
-            skip_header => "true"
-        }
-
-        # This is critical!
-        # It sets the @timestamp field by default, which is used for most visualizations.
-        # The source field is first ("CreationDate" in this example), and the format filter to apply is second.
-        # The format field is very extensive, and can be written to adapt to nearly any date value you encounter.
-        # Note that SOF-ELK runs in UTC, so unless the time stamp has an offset included, the timestamp will be
-        # interpreted as UTC.
-        # Think of it as constructing a timestamp by applying the format like a regex against the source field.
-        date {
-            match => [ "CreationDate", "ISO8601" ]
-        }
-
-        # If further blanket filters are needed, perform them as needed.
-        # In this case, we're parsing JSON from the "AuditData" source field and placing it in "auditdata".
-        # With the JSON filter, this means the subfields will be named "auditdata.whatever".
-        json {
-            source => "AuditData"
-            target => "auditdata"
-        }
-
-        # You would have to do this AFTER the previous directive - if done in the same directive, Logstash
-        # might remove the field before the parser is applied.
-        mutate {
-            remove_field => "AuditData"
-        }
-
-        # Some common data migration and normalization steps below.
-        mutate {
-            # Rename a field without changing nested level
-            rename => {
-                "PSComputerName" => "hostname"
-                "RecordType" => "record_type"
-            }
-            
-            # Create a new field.            
-            # Renaming does not seem to work from a nested field.
-            # Also note the syntax to use the data from a nested field.
-            add_field => {
-                "source_ip" => "%{[auditdata][ClientName]}"
-                "some_field" => "%{RunspaceId} : %{RecordType} event from %{hostname}"
-            }
-            remove_field => "SomethingElse"
-        }
-
-        # If you want to perform GeoIP lookups against IP addresses, name the field "<something>_ip" and ensure
-        # the 8050-postprocess-ip_addresses.conf file is modified (if needed) to enrich the field.  Several fields
-        # are already enriched, so you may not need to do anything here.
-
-        # The possibilities here are literally endless...
-
-        # Last step (or at least somewhere along the way), you should put some meaningful string into the "message" field
-        # This may be the original data in some cases, or a human-readable summary line that is used in many
-        # visualizations on the Dashboards as well as the Discovery tab.
-        mutate {
-            replace => { "message" => "This is a log from %{source_ip} and the operation was %{Operations}." }
-        }
-    }
+#    # Be sure this file only applies to the necessary type(s).
+#    # This improves performance, and is not limited to the [type] field - any comparative logic can be used.
+#    if ([type] == "logtype") {
+#
+#        # Drop what you don't want to handle.
+#        # The directive below drops comments (assuming comments are lines starting with a # character.)
+#        if ([message] =~ /^#/) {
+#            drop {}
+#        }
+#
+#        # If you want to use a particular type of blanket filter, put it here.
+#        # Be sure to consult the documentation on the filter capability, as it can vary wildly between filters.
+#        # By default this is applied against the "message" field, but this can be changed.
+#        csv {
+#            columns => ["PSComputerName", "RunspaceId", "PSShowComputerName", "RecordType", "CreationDate", "UserIds", "Operations", "AuditData", "ResultIndex", "ResultCount", "Identity", "IsValid", "ObjectState"]
+#            skip_header => "true"
+#        }
+#
+#        # This is critical!
+#        # It sets the @timestamp field by default, which is used for most visualizations.
+#        # The source field is first ("CreationDate" in this example), and the format filter to apply is second.
+#        # The format field is very extensive, and can be written to adapt to nearly any date value you encounter.
+#        # Note that SOF-ELK runs in UTC, so unless the time stamp has an offset included, the timestamp will be
+#        # interpreted as UTC.
+#        # Think of it as constructing a timestamp by applying the format like a regex against the source field.
+#        date {
+#            match => [ "CreationDate", "ISO8601" ]
+#        }
+#
+#        # If further blanket filters are needed, perform them as needed.
+#        # In this case, we're parsing JSON from the "AuditData" source field and placing it in "auditdata".
+#        # With the JSON filter, this means the subfields will be named "auditdata.whatever".
+#        json {
+#            source => "AuditData"
+#            target => "auditdata"
+#        }
+#
+#        # You would have to do this AFTER the previous directive - if done in the same directive, Logstash
+#        # might remove the field before the parser is applied.
+#        mutate {
+#            remove_field => "AuditData"
+#        }
+#
+#        # Some common data migration and normalization steps below.
+#        mutate {
+#            # Rename a field without changing nested level
+#            rename => {
+#                "PSComputerName" => "hostname"
+#                "RecordType" => "record_type"
+#            }
+#            
+#            # Create a new field.            
+#            # Renaming does not seem to work from a nested field.
+#            # Also note the syntax to use the data from a nested field.
+#            add_field => {
+#                "source_ip" => "%{[auditdata][ClientName]}"
+#                "some_field" => "%{RunspaceId} : %{RecordType} event from %{hostname}"
+#            }
+#            remove_field => "SomethingElse"
+#        }
+#
+#        # If you want to perform GeoIP lookups against IP addresses, name the field "<something>_ip" and ensure
+#        # the 8050-postprocess-ip_addresses.conf file is modified (if needed) to enrich the field.  Several fields
+#        # are already enriched, so you may not need to do anything here.
+#
+#        # The possibilities here are literally endless...
+#
+#        # Last step (or at least somewhere along the way), you should put some meaningful string into the "message" field
+#        # This may be the original data in some cases, or a human-readable summary line that is used in many
+#        # visualizations on the Dashboards as well as the Discovery tab.
+#        mutate {
+#            replace => { "message" => "This is a log from %{source_ip} and the operation was %{Operations}." }
+#        }
+#    }
 }

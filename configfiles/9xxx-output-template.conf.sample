@@ -7,14 +7,14 @@
 # 4-digit value. See the 6xxx template for an explanation of how these numbers are used.
 
 output {
-  # use standard logic syntax here
-  if [type] == "logtype" or [type] == "other_logtype" {
-    elasticsearch {
-      index => "logtype-%{+YYYY.MM.dd}"
-      # adjust template filename as needed
-      template => "/usr/local/sof-elk/lib/elasticsearch-logtype-template.json"
-      template_name => "logtype"
-      template_overwrite => true
-    }
-  }
+#  # use standard logic syntax here
+#  if [type] == "logtype" or [type] == "other_logtype" {
+#    elasticsearch {
+#      index => "logtype-%{+YYYY.MM.dd}"
+#      # adjust template filename as needed
+#      template => "/usr/local/sof-elk/lib/elasticsearch-logtype-template.json"
+#      template_name => "logtype"
+#      template_overwrite => true
+#    }
+#  }
 }
