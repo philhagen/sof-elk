@@ -27,15 +27,6 @@
     }
   },
   {
-    "key": "flow_duration_msec",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "0,0a"
-      }
-    }
-  },
-  {
     "key": "flow_end",
     "value": {
       "id": "date",
