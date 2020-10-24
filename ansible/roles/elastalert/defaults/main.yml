@@ -3,4 +3,4 @@ elastalert_pip_modules:
   - setuptools
   - texttable
   - thehive4py
-  - elastalert==0.2.1
+  - elastalert==0.2.4
