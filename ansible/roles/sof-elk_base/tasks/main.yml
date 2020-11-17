@@ -17,6 +17,13 @@
     state: present
   tags: sof-elk_base
 
+- name: Install VMware-specific RPM set if installing to VMware guest
+  yum:
+    name: '{{ vmware_yum_packages }}'
+    state: present
+  tags: sof-elk_base
+  when: ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware"
+
 - name: Upgrade pip
   pip:
     name: pip

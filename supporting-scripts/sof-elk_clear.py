@@ -100,6 +100,7 @@ sourcedir_index_mapping = {
     'kape': 'lnkfiles',
     'kape': 'filesystem',
     'kape': 'evtxfiles',
+    'office365': 'office365',
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
@@ -240,7 +241,6 @@ if args.reload:
             new_reg_file = open(filebeat_registry_file, 'wb')
             json.dump(new_reg_data, new_reg_file)
             new_reg_file.close()
-
 
         except JSONDecodeError:
             print('ERROR: Source data in filebeat registry file %s is not valid json.  Skipping.' % filebeat_registry_file)
