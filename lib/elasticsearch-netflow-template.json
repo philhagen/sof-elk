@@ -95,6 +95,9 @@
           },
           "longitude": {
             "type": "half_float"
+          },
+          "asn": {
+            "type": "integer"
           }
         }
       }

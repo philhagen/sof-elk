@@ -4,4 +4,4 @@
 #
 # This script prints the template requested on the commandline on STDOUT
 
-curl -s -XGET "http://localhost:9200/_template/$1"
+curl -s -XGET "http://localhost:9200/_template/${1}" | jq -S ".${1}"

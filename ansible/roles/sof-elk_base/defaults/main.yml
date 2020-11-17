@@ -40,5 +40,8 @@ base_yum_packages:
   - yum-plugin-post-transaction-actions
   - yum-utils
 
-base_pip_modules:
+vmware_yum_packages:
+  - open-vm-tools
+
+  base_pip_modules:
   - elasticsearch

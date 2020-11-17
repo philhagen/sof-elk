@@ -9,6 +9,18 @@
     }
   },
   {
+    "key": "answer_geo.asnstr",
+    "value": {
+      "id": "string"
+    }
+  },
+  {
+    "key": "destination_geo.asnstr",
+    "value": {
+      "id": "string"
+    }
+  },
+  {
     "key": "destination_port",
     "value": {
       "id": "number",

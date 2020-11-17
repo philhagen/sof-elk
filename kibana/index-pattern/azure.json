@@ -1,0 +1,7 @@
+{
+  "attributes": {
+    "title": "azure-*",
+    "timeFieldName": "@timestamp"
+  },
+  "references": []
+}

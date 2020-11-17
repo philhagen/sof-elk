@@ -6,7 +6,7 @@
 # the value of `params` is the value of the hash passed to `script_params`
 # in the logstash configuration
 def register(params)
-        @source_field = params["source_field"]
+    @source_field = params["source_field"]
 end
 
 # the filter method receives an event and must return a list of events.
