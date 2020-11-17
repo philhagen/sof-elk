@@ -1,0 +1,66 @@
+{
+  "aliases": {},
+  "index_patterns": [
+    "azure-*"
+  ],
+  "mappings": {
+    "_meta": {},
+    "_source": {},
+    "dynamic_templates": [
+      {
+        "guid_fields": {
+          "mapping": {
+            "type": "keyword"
+          },
+          "match": "*_guid"
+        }
+      },
+      {
+        "string_fields": {
+          "mapping": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "norms": false,
+            "type": "text"
+          },
+          "match": "*",
+          "match_mapping_type": "string"
+        }
+      }
+    ],
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "@version": {
+        "type": "keyword"
+      },
+      "prospector": {
+        "properties": {
+          "type": {
+            "type": "keyword"
+          }
+        },
+        "type": "object"
+      },
+      "type": {
+        "type": "keyword"
+      },
+      "version": {
+        "type": "integer"
+      }
+    }
+  },
+  "order": 0,
+  "settings": {
+    "index": {
+      "auto_expand_replicas": "0-1",
+      "codec": "best_compression",
+      "number_of_shards": "1"
+    }
+  }
+}

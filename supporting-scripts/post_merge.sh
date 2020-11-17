@@ -24,7 +24,7 @@ done
 systemctl restart logstash
 
 # create necessary ingest directories
-ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso office365"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso office365 azure"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d /logstash/${ingest_dir} ]; then
         mkdir -m 1777 -p /logstash/${ingest_dir}
