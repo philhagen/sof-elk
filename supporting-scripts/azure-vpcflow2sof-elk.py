@@ -11,10 +11,10 @@ import sys
 import os
 import json
 import csv
-import hashlib
 
 default_destdir = '/logstash/nfarch/'
 flow_fields = ['timestamp', 'source_ip', 'destination_ip', 'source_port', 'destination_port', 'protocol', 'traffic_flow', 'traffic_decision', 'flow_state', 'out_packets', 'out_bytes', 'in_packets', 'in_bytes']
+output_csv_columns = ['exporter_guid', 'exporter_mac', 'version', 'flow_rule', 'source', 'state', 'first_seen', 'last_seen', 'source_ip', 'source_port', 'destination_ip', 'destination_port', 'protocol', 'out_bytes', 'out_packets', 'in_bytes', 'in_packets', 'direction', 'traffic_decision', 'tags']
 
 def process_azure_vpc_flow(infile, outfh):
     input_file = open(infile, 'r')
@@ -23,8 +23,9 @@ def process_azure_vpc_flow(infile, outfh):
     except json.decoder.JSONDecodeError:
         sys.stderr.write('- ERROR: Could not process JSON from %s. Skipping file.\n' % (infile))
         return
-
     input_file.close()
+
+    writer = csv.DictWriter(outfh, fieldnames=output_csv_columns)
 
     inflight_flows = {}
 
@@ -39,11 +40,10 @@ def process_azure_vpc_flow(infile, outfh):
             for flowset in ruleset['flows']:
                 #process all flow records in flowset['flowTuples']
                 exporter_mac = flowset['mac'].lower()
-                flowtuples = csv.DictReader(flowset['flowTuples'], flow_fields)
+                flowtuples = csv.DictReader(sorted(flowset['flowTuples']), flow_fields)
 
                 for flowtuple in flowtuples:
-                    index_string = '-'.join((flowtuple['source_ip'], flowtuple['destination_ip'], flowtuple['source_port'], flowtuple['destination_port'], flowtuple['protocol']))
-                    inflight_index = hashlib.sha256(index_string.encode('utf-8')).hexdigest()
+                    inflight_index = '-'.join((flowtuple['source_ip'], flowtuple['destination_ip'], flowtuple['source_port'], flowtuple['destination_port'], flowtuple['protocol']))
 
                     if flowtuple['flow_state'] == 'B':
                         # we are at the start of the flow
@@ -54,8 +54,10 @@ def process_azure_vpc_flow(infile, outfh):
                         inflight_flows[inflight_index]['version'] = int(flow_version)
                         inflight_flows[inflight_index]['flow_rule'] = flow_rule
                         inflight_flows[inflight_index]['source'] = infile
+                        inflight_flows[inflight_index]['state'] = 'initial'
 
                         inflight_flows[inflight_index]['first_seen'] = int(flowtuple['timestamp'])
+                        inflight_flows[inflight_index]['last_seen'] = int(flowtuple['timestamp'])
                         inflight_flows[inflight_index]['source_ip'] = flowtuple['source_ip']
                         inflight_flows[inflight_index]['source_port'] = int(flowtuple['source_port'])
                         inflight_flows[inflight_index]['destination_ip'] = flowtuple['destination_ip']
@@ -64,6 +66,14 @@ def process_azure_vpc_flow(infile, outfh):
                             inflight_flows[inflight_index]['protocol'] = 6
                         elif flowtuple['protocol'] == 'U':
                             inflight_flows[inflight_index]['protocol'] = 17
+                        if flowtuple['traffic_flow'] == 'I':
+                            inflight_flows[inflight_index]['direction'] = 0
+                        elif flowtuple['traffic_flow'] == 'O':
+                            inflight_flows[inflight_index]['direction'] = 1
+                        if flowtuple['traffic_decision'] == 'A':
+                            inflight_flows[inflight_index]['traffic_decision'] = 'Allowed'
+                        elif flowtuple['traffic_decision'] == 'D':
+                            inflight_flows[inflight_index]['traffic_decision'] = 'Denied'
 
                         inflight_flows[inflight_index]['out_bytes'] = 0
                         inflight_flows[inflight_index]['out_packets'] = 0
@@ -78,10 +88,12 @@ def process_azure_vpc_flow(infile, outfh):
                             continue
 
                         # update the "in flight" tracker
+                        inflight_flows[inflight_index]['last_seen'] = int(flowtuple['timestamp'])
                         inflight_flows[inflight_index]['out_bytes'] += int(flowtuple['out_bytes'])
                         inflight_flows[inflight_index]['out_packets'] += int(flowtuple['out_packets'])
                         inflight_flows[inflight_index]['in_bytes'] += int(flowtuple['in_bytes'])
                         inflight_flows[inflight_index]['in_packets'] += int(flowtuple['in_packets'])
+                        inflight_flows[inflight_index]['state'] = 'partial'
                     
                     elif flowtuple['flow_state'] == 'E':
                         # close out the flow
@@ -96,13 +108,14 @@ def process_azure_vpc_flow(infile, outfh):
                         inflight_flows[inflight_index]['out_packets'] += int(flowtuple['out_packets'])
                         inflight_flows[inflight_index]['in_bytes'] += int(flowtuple['in_bytes'])
                         inflight_flows[inflight_index]['in_packets'] += int(flowtuple['in_packets'])
+                        inflight_flows[inflight_index].pop('state')
 
                         # write to output file and remove the "in flight" tracker
-                        #flow_json = json.dumps(inflight_flows.pop(inflight_index, None))
-                        #outfh.write(flow_json+'\n')
-                        csv_columns = ['exporter_guid', 'exporter_mac', 'version', 'flow_rule', 'source', 'first_seen', 'source_ip', 'source_port', 'destination_ip', 'destination_port', 'protocol', 'out_bytes', 'out_packets', 'in_bytes', 'in_packets', 'last_seen']
-                        writer = csv.DictWriter(outfh, fieldnames=csv_columns)
                         writer.writerow(inflight_flows.pop(inflight_index, None))
+
+    # finish out any still in flight
+    for flow in inflight_flows.keys():
+        writer.writerow(inflight_flows[flow])
 
 parser = argparse.ArgumentParser(description='Process Azure VPC Flow logs into a format that is consistent with other SOF-ELK(R) NetFlow entries and place them into an output file.')
 parser.add_argument('-r', '--read', dest='infile', help='Azure VPC Flow log file to read, or a directory containing Azure VPC Flow log files.')
