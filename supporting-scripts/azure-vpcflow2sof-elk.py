@@ -108,7 +108,7 @@ def process_azure_vpc_flow(infile, outfh):
                         inflight_flows[inflight_index]['out_packets'] += int(flowtuple['out_packets'])
                         inflight_flows[inflight_index]['in_bytes'] += int(flowtuple['in_bytes'])
                         inflight_flows[inflight_index]['in_packets'] += int(flowtuple['in_packets'])
-                        inflight_flows[inflight_index].pop('state')
+                        inflight_flows[inflight_index]['state'] = 'complete'
 
                         # write to output file and remove the "in flight" tracker
                         writer.writerow(inflight_flows.pop(inflight_index, None))
