@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2021 Lewes Technology Consulting, LLC
 #
 # This file is a template for outputting to Elasticsearch
 # To use:
@@ -10,7 +10,7 @@ output {
   # use standard logic syntax here
   if [type] == "logtype" or [type] == "other_logtype" {
     elasticsearch {
-      index => "logtype-%{+YYYY.MM.dd}"
+      index => "logtype-%{+YYYY.MM}"
       # adjust template filename as needed
       template => "/usr/local/sof-elk/lib/elasticsearch-logtype-template.json"
       template_name => "logtype"
