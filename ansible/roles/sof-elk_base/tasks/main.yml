@@ -94,14 +94,6 @@
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
   tags: sof-elk_base
 
-- name: Edit rc.local to update IP address in login banner
-  blockinfile:
-    path: /etc/rc.local
-    block: |
-      # get current IP address and replace the pre-auth text template accordingly
-      IP=$( ip address show $( ip route|grep default | awk '{print $5}' ) | awk '/inet / {print $2}' | cut -d '/' -f 1 )
-      cat /etc/issue.stock | sed -e "s/<%IP%>/$IP/" > /etc/issue
-
 - name: Set up login banner text files
   copy:
     src: '{{ item.src }}'
@@ -110,7 +102,6 @@
     group: root
     mode: 0644
   with_items:
-    - { src: 'issue.stock', dest: '/etc/issue.stock' }
     - { src: 'issue.prep', dest: '/etc/issue.prep' }
   tags: sof-elk_base
 
@@ -173,7 +164,6 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update.sh', dest: '/usr/local/sbin/geoip_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/issueupdate.sh', dest: '/etc/dhcp/dhclient.d/issueupdate.sh' }
  #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 

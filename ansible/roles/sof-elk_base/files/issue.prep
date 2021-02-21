@@ -10,8 +10,8 @@ Revision: <%REVNO%>
 -------------------------------------------------------------------------------
 This VM is running the Logstash and Kibana applications.
 
-You can access Kibana at http://<%IP%>:5601
-You can SSH to this system at IP address <%IP%>
+You can access Kibana at http://\4:5601
+You can SSH to this system at IP address \4
 
 The VM will ingest logfiles placed into the "/logstash/*/"
 directories.  See the Kibana homepage (link above) for specific guidance.
