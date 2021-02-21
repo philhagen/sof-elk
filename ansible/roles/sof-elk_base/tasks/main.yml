@@ -129,6 +129,15 @@
     line: 'compress'
   tags: sof-elk_base
 
+- name: Create geoip database directory
+  file:
+    path: '/usr/local/share/GeoIP'
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  tags: sof-elk_base
+
 - name: Check out SOF-ELK repo
   git:
     repo: 'https://github.com/philhagen/sof-elk'
@@ -164,16 +173,9 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update.sh', dest: '/usr/local/sbin/geoip_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/bin/geoip_bootstrap.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty.mmdb', dest: '/usr/local/share/GeoIP/empty.mmdb' }
  #   - { src: 'xxx', dest: 'xxx' }
-  tags: sof-elk_base
-
-- name: Create geoip database directory
-  file:
-    path: '/usr/local/share/GeoIP'
-    owner: root
-    group: root
-    mode: 0755
-    state: directory
   tags: sof-elk_base
 
 - name: Install default GeoIP configuration
@@ -183,16 +185,6 @@
     owner: root
     group: root
     mode: 0644
-  tags: sof-elk_base
-
-- name: Enable geoip updates
-  file:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-    state: link
-  with_items:
-    - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/geoip_update.cron', dest: '/etc/cron.d/geoip_update.cron' }
- #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
 - name: Install templated GeoIP configuration to perform download

@@ -66,22 +66,11 @@ rm -f ~elk_user/.bash_history
 echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
-echo "updating GeoIP database.  (Leave both of these blank to skip the GeoIP update.)"
-echo -n "Enter GeoIP AccountID: "
-read geoip_accountid
-echo -n "Enter GeoIP LicenseKey: "
-read geoip_licensekey
-
-if [ -z "${geoip_accountid}" -o -z "${geoip_licensekey}" ]; then
-    echo "
-    AccountID ${geoip_accountid}
-    LicenseKey ${geoip_licensekey}
-    EditionIDs GeoLite2-Country GeoLite2-City GeoLite2-ASN
-    DatabaseDirectory /usr/local/share/GeoIP
-    " > ~/GeoIP.conf
-    geoipupdate -f ~/GeoIP.conf
-    shred -u ~/GeoIP.conf
-fi
+echo "Resetting GeoIP databases to empty."
+cp /usr/local/share/GeoIP/empty.mmdb /usr/local/share/GeoIP/GeoLite2-ASN.mmdb
+cp /usr/local/share/GeoIP/empty.mmdb /usr/local/share/GeoIP/GeoLite2-City.mmdb
+cp /usr/local/share/GeoIP/empty.mmdb /usr/local/share/GeoIP/GeoLite2-Country.mmdb
+rm -f /etc/GeoIP.conf
 
 echo "stopping elastalert"
 systemctl stop elastalert
