@@ -32,6 +32,7 @@ base_yum_packages:
   - python36-devel
   - python36-pip
   - python36-six
+  - rpmdevtools
   - tcpdump
   - unzip
   - vim
