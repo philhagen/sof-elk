@@ -80,7 +80,7 @@ curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_error' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_past' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_silence' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_status' > /dev/null
-#elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
+elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
 
 echo "removing documents from the elasticsearch .kibana index"
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST 'http://localhost:9200/.kibana/_delete_by_query?conflicts=proceed' -d '{"query": { "match_all": {} } }' > /dev/null
