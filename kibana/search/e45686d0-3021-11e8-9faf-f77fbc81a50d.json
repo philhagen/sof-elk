@@ -1,20 +1,23 @@
 {
   "attributes": {
-    "title": "Syslog Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "syslog_hostname",
       "syslog_program",
       "message"
     ],
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"logstash\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+    },
     "sort": [
       "@timestamp",
       "desc"
     ],
-    "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"logstash\",\"highlightAll\": true,\"version\": true,\"query\": {\"query\":\"\",\"language\":\"lucene\" },\"filter\":[]}"
-    }
+    "title": "Syslog Discovery"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

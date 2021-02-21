@@ -1,8 +1,5 @@
 {
   "attributes": {
-    "title": "HTTPD Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "source_ip",
       "request_method",
@@ -10,13 +7,19 @@
       "request",
       "response_code"
     ],
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"httpdlog\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+    },
     "sort": [
       "@timestamp",
       "desc"
     ],
-    "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"httpdlog\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+    "title": "HTTPD Discovery"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

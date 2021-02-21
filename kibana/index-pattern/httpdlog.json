@@ -3,5 +3,8 @@
     "timeFieldName": "@timestamp",
     "title": "httpdlog-*"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

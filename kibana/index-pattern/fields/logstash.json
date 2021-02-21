@@ -15,7 +15,6 @@
 {"name":"answer_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"answer_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"answer_geo.asn","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"answer_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( doc['answer_geo.asn'].size() == 0 || doc['answer_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"answer_geo.city_name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"answer_geo.city_name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"answer_geo.continent_code","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}

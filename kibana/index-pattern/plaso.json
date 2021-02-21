@@ -1,7 +1,10 @@
 {
   "attributes": {
-    "title": "plaso-*",
-    "timeFieldName": "@timestamp"
+    "timeFieldName": "@timestamp",
+    "title": "plaso-*"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

@@ -1,8 +1,5 @@
 {
   "attributes": {
-    "title": "NetFlow Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "exporter",
       "aprotocol",
@@ -13,13 +10,19 @@
       "total_bytes",
       "total_packets"
     ],
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"netflow\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+    },
     "sort": [
       "@timestamp",
       "desc"
     ],
-    "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"netflow\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+    "title": "NetFlow Discovery"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

@@ -1,20 +1,23 @@
 {
   "attributes": {
-    "title": "NetFlow Traffic Destination",
-    "visState": "{\"title\":\"NetFlow Traffic Destination\",\"type\":\"tile_map\",\"params\":{\"colorSchema\":\"Green to Red\",\"mapType\":\"Shaded Geohash Grid\",\"isDesaturated\":true,\"addTooltip\":true,\"heatClusterSize\":1.5,\"legendPosition\":\"bottomright\",\"mapZoom\":2,\"mapCenter\":[0,0],\"wms\":{\"enabled\":false,\"options\":{\"format\":\"image/png\",\"transparent\":true},\"selectedTmsLayer\":{\"origin\":\"elastic_maps_service\",\"id\":\"road_map\",\"minZoom\":0,\"maxZoom\":20,\"attribution\":\"<p><a rel=\\\"noreferrer noopener\\\" href=\\\"https://www.openstreetmap.org/copyright\\\">OpenStreetMap contributors</a> | <a rel=\\\"noreferrer noopener\\\" href=\\\"https://openmaptiles.org\\\">OpenMapTiles</a> | <a rel=\\\"noreferrer noopener\\\" href=\\\"https://www.maptiler.com\\\">MapTiler</a> | <a rel=\\\"noreferrer noopener\\\" href=\\\"https://www.elastic.co/elastic-maps-service\\\">Elastic Maps Service</a></p>\"}},\"dimensions\":{\"metric\":{\"accessor\":2,\"format\":{\"id\":\"bytes\"},\"params\":{},\"aggType\":\"sum\"},\"geohash\":{\"accessor\":1,\"format\":{\"id\":\"string\"},\"params\":{\"precision\":2,\"useGeocentroid\":true},\"aggType\":\"geohash_grid\"},\"geocentroid\":{\"accessor\":3,\"format\":{\"id\":\"string\"},\"params\":{},\"aggType\":\"geo_centroid\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_bytes_vis\",\"customLabel\":\"Bytes Exchanged\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"destination_geo.location\",\"autoPrecision\":true,\"precision\":2,\"useGeocentroid\":true,\"isFilteredByCollar\":true,\"mapZoom\":2,\"mapCenter\":{\"lon\":0,\"lat\":-0.17578097424708533},\"mapBounds\":{\"bottom_right\":{\"lat\":-82.35580019800932,\"lon\":260.50781250000006},\"top_left\":{\"lat\":82.30889251821554,\"lon\":-260.50781250000006}}}}]}",
-    "uiStateJSON": "{}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "NetFlow Traffic Destination",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Bytes Exchanged\",\"field\":\"total_bytes_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"autoPrecision\":true,\"field\":\"destination_geo.location\",\"isFilteredByCollar\":true,\"mapBounds\":{\"bottom_right\":{\"lat\":-82.35580019800932,\"lon\":260.50781250000006},\"top_left\":{\"lat\":82.30889251821554,\"lon\":-260.50781250000006}},\"mapCenter\":{\"lat\":-0.17578097424708533,\"lon\":0},\"mapZoom\":2,\"precision\":2,\"useGeocentroid\":true},\"schema\":\"segment\",\"type\":\"geohash_grid\"}],\"params\":{\"addTooltip\":true,\"colorSchema\":\"Green to Red\",\"dimensions\":{\"geocentroid\":{\"accessor\":3,\"aggType\":\"geo_centroid\",\"format\":{\"id\":\"string\"},\"params\":{}},\"geohash\":{\"accessor\":1,\"aggType\":\"geohash_grid\",\"format\":{\"id\":\"string\"},\"params\":{\"precision\":2,\"useGeocentroid\":true}},\"metric\":{\"accessor\":2,\"aggType\":\"sum\",\"format\":{\"id\":\"bytes\"},\"params\":{}}},\"heatClusterSize\":1.5,\"isDesaturated\":true,\"legendPosition\":\"bottomright\",\"mapCenter\":[0,0],\"mapType\":\"Shaded Geohash Grid\",\"mapZoom\":2,\"wms\":{\"enabled\":false,\"options\":{\"format\":\"image/png\",\"transparent\":true},\"selectedTmsLayer\":{\"attribution\":\"<p><a rel=\\\"noreferrer noopener\\\" href=\\\"https://www.openstreetmap.org/copyright\\\">OpenStreetMap contributors</a> | <a rel=\\\"noreferrer noopener\\\" href=\\\"https://openmaptiles.org\\\">OpenMapTiles</a> | <a rel=\\\"noreferrer noopener\\\" href=\\\"https://www.maptiler.com\\\">MapTiler</a> | <a rel=\\\"noreferrer noopener\\\" href=\\\"https://www.elastic.co/elastic-maps-service\\\">Elastic Maps Service</a></p>\",\"id\":\"road_map\",\"maxZoom\":20,\"minZoom\":0,\"origin\":\"elastic_maps_service\"}}},\"title\":\"NetFlow Traffic Destination\",\"type\":\"tile_map\"}"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
       "name": "search_0",
-      "type": "search",
-      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352"
+      "type": "search"
     }
   ]
 }

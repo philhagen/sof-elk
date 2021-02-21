@@ -1,22 +1,25 @@
 {
   "attributes": {
-    "title": "LNKfile Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "origin.filename",
       "origin.modified",
       "target.absolutepath",
       "target.modified"
     ],
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"lnkfiles\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+    },
     "sort": [
       "@timestamp",
       "desc"
     ],
-    "version": 1,
-    "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"lnkfiles\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+    "title": "LNKfile Discovery",
+    "version": 1
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

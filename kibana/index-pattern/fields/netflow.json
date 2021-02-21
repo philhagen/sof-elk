@@ -16,7 +16,7 @@
 {"name":"destination_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"destination_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.asn","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"destination_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( !doc.containsKey('destination_geo.asn') || doc['destination_geo.asn'].size() == 0 || !doc.containsKey('destination_geo.as_org.keyword') || doc['destination_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"destination_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( doc['destination_geo.asn'].size() == 0 || doc['destination_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"destination_geo.city_name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"destination_geo.city_name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"destination_geo.continent_code","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
@@ -47,13 +47,9 @@
 {"name":"engine_id","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"engine_type","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"exporter","type":"ip","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"exporter_guid","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"exporter_mac","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"flow_duration","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_end","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_records_vis","type":"number","count":0,"scripted":true,"script":"return doc['flow_records'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
-{"name":"flow_rule","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_seq_num","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flow_start","type":"date","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"flowset_id","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
@@ -93,7 +89,7 @@
 {"name":"source_geo.as_org","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_geo.as_org.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_geo.asn","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"source_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( !doc.containsKey('source_geo.asn') || doc['source_geo.asn'].size() == 0 || !doc.containsKey('source_geo.as_org.keyword') || doc['source_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
+{"name":"source_geo.asnstr","type":"string","count":0,"scripted":true,"script":"if ( doc['source_geo.asn'].size() == 0 || doc['source_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"source_geo.city_name","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"source_geo.city_name.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_geo.continent_code","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
@@ -120,7 +116,6 @@
 {"name":"source_mask","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_port","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"source_tos","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"state","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"tags","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"tags.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"tcp_flags","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
@@ -130,8 +125,6 @@
 {"name":"total_bytes_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_bytes'].value + doc['in_bytes'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"total_packets","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value + doc['in_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
 {"name":"total_packets_vis","type":"number","count":0,"scripted":true,"script":"return doc['out_packets'].value + doc['in_packets'].value","lang":"painless","searchable":true,"aggregatable":true,"readFromDocValues":false}
-{"name":"traffic_decision","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"type","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":false,"readFromDocValues":false}
 {"name":"type.keyword","type":"string","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
 {"name":"version","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}
-{"name":"vpcflow_version","type":"number","count":0,"scripted":false,"searchable":true,"aggregatable":true,"readFromDocValues":true}

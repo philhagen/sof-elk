@@ -1,12 +1,15 @@
 {
   "attributes": {
-    "title": "HTTPD Logs Collected",
-    "visState": "{\"title\":\"HTTPD Logs Collected\",\"type\":\"table\",\"params\":{\"perPage\":8,\"showPartialRows\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"showMetricsAtAllLevels\":false},\"aggs\":[{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"path\",\"size\":8,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Top Sources\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"min\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"Start\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"End\"}},{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Records\"}}]}",
-    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
     "description": "",
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"httpdlog\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"index\":\"httpdlog\",\"query\":{\"language\":\"lucene\",\"query\":\"\"}}"
+    },
+    "title": "HTTPD Logs Collected",
+    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Top Sources\",\"field\":\"path\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":8},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Start\",\"field\":\"@timestamp\"},\"schema\":\"metric\",\"type\":\"min\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"End\",\"field\":\"@timestamp\"},\"schema\":\"metric\",\"type\":\"max\"},{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Records\"},\"schema\":\"metric\",\"type\":\"count\"}],\"params\":{\"perPage\":8,\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showToolbar\":true,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"HTTPD Logs Collected\",\"type\":\"table\"}"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

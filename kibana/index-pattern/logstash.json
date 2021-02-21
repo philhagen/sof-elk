@@ -3,5 +3,8 @@
     "timeFieldName": "@timestamp",
     "title": "logstash-*"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

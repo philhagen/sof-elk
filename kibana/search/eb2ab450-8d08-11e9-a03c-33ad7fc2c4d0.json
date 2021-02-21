@@ -1,22 +1,25 @@
 {
   "attributes": {
-    "title": "Eventlog Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "computer",
       "username",
       "channel",
       "payload"
     ],
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"evtxlogs\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+    },
     "sort": [
       "@timestamp",
       "desc"
     ],
-    "version": 1,
-    "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"evtxlogs\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+    "title": "Eventlog Discovery",
+    "version": 1
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }

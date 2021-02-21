@@ -1,7 +1,10 @@
 {
   "attributes": {
-    "title": "filesystem-*",
-    "timeFieldName": "@timestamp"
+    "timeFieldName": "@timestamp",
+    "title": "filesystem-*"
   },
+  "namespaces": [
+    "default"
+  ],
   "references": []
 }
