@@ -166,6 +166,6 @@ for infile in input_files:
 
 print('Output complete.')
 if not args.outfile.startswith(default_destdir):
-    print('You must move/copy the generated file to teh /logstash/nfarch/ directory before SOF-ELK can process it.')
+    print('You must move/copy the generated file to the /logstash/nfarch/ directory before SOF-ELK can process it.')
 else:
     print('SOF-ELK should now be processing the generated file - check system load and the Kibana interface to confirm.')
