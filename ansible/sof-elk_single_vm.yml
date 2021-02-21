@@ -12,6 +12,7 @@
       args:
         chdir: "{{ playbook_dir }}"
       register: git_branch_result
+      check_mode: no
     - set_fact:
         git_branch: "{{ git_branch_result.stdout }}"
 

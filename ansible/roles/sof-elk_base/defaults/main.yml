@@ -13,8 +13,8 @@ base_yum_packages:
   - git
   - htop
   - htop
-  - java-1.8.0
-  - java-1.8.0-devel
+  - java-1.8.0-openjdk
+  - java-1.8.0-openjdk-devel
   - jq
   - libffi-devel
   - lsof
@@ -25,17 +25,17 @@ base_yum_packages:
   - p7zip
   - psmisc
   - python-devel
-  - python-pip
+  - python2-pip
   - python-requests
   - python-six
-  - python36
-  - python36-devel
-  - python36-pip
+  - python3
+  - python3-devel
+  - python3-pip
   - python36-six
   - rpmdevtools
   - tcpdump
   - unzip
-  - vim
+  - vim-enhanced
   - wget
   - whois
   - yum-plugin-post-transaction-actions
@@ -44,5 +44,5 @@ base_yum_packages:
 vmware_yum_packages:
   - open-vm-tools
 
-  base_pip_modules:
+base_pip_modules:
   - elasticsearch
