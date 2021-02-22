@@ -4,8 +4,6 @@
 #
 # This runs scripts after a dhcp lease is secured or renewed
 
-# run dhclient.d scripts in an emulated environment
-
 if [ ${NM_DISPATCHER_ACTION} == "up" ]; then
-    kill -HUP $( pidof agetty )
+    kill -HUP $( pidof agetty ) > /dev/null 2>&1
 fi
