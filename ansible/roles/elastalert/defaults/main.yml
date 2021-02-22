@@ -1,4 +1,4 @@
-elastalert_version: '0.2.1'
+elastalert_version: '0.2.4'
 elastalert_pip_modules: 
   - setuptools
   - texttable

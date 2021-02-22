@@ -6,12 +6,10 @@
   tags: sof-elk_filebeat
 
 - name: Configure filebeat
-  copy:
-    src: filebeat.yml
-    dest: /etc/filebeat/filebeat.yml
-    owner: root
-    group: root
-    mode: 0644
+  file:
+    src: '/usr/local/sof-elk/lib/configfiles/filebeat.yml'
+    dest: '/etc/filebeat/filebeat.yml'
+    state: link
   notify: restart filebeat
   tags: sof-elk_filebeat
 

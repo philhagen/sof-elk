@@ -73,6 +73,7 @@ kibana.defaultAppId: "dashboard/6d272a20-7319-11e8-9f32-cf7527ac183d"
 
 # Time in milliseconds to wait for responses from the back end or Elasticsearch. This value
 # must be a positive integer.
+#elasticsearch.requestTimeout: 30000
 elasticsearch.requestTimeout: 300000
 
 # List of Kibana client-side headers to send to Elasticsearch. To send *no* client-side
@@ -84,6 +85,7 @@ elasticsearch.requestTimeout: 300000
 #elasticsearch.customHeaders: {}
 
 # Time in milliseconds for Elasticsearch to wait for responses from shards. Set to 0 to disable.
+#elasticsearch.shardTimeout: 30000
 elasticsearch.shardTimeout: 90000
 
 # Logs queries sent to Elasticsearch. Requires logging.verbose set to true.
