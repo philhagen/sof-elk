@@ -29,7 +29,7 @@ echo "This prompt will time out in 30 seconds."
 read -t 30 -p "Y/N: " installmmdb
 echo
 
-if [ -z ${installmmdb} ] || [ ${installmmdb} != "Y" ]; then
+if [ -z ${installmmdb} ] || [ ${installmmdb^^} != "Y" ]; then
     exit
 fi
 
