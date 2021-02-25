@@ -1,0 +1,11 @@
+{
+    "config": {
+        "telemetry:optIn": false,
+        "defaultIndex": "logstash",
+        "dateFormat": "YYYY-MM-DD HH:mm:ss.SSS Z",
+        "dateFormat:tz": "UTC",
+        "securitySolution:enableNewsFeed": false,
+        "securitySolution:ipReputationLinks": "[\n  { \"name\": \"virustotal.com\", \"url_template\": \"https://www.virustotal.com/gui/search/{{ip}}\" },\n  { \"name\": \"talosIntelligence.com\", \"url_template\": \"https://talosintelligence.com/reputation_center/lookup?search={{ip}}\" },\n  { \"name\": \"SANS ISC\", \"url_template\": \"https://isc.sans.edu/ipinfo.html?ip={{ip}}\" }\n]",
+        "defaultRoute": "/app/dashboards#/view/6d272a20-7319-11e8-9f32-cf7527ac183d"
+    }
+}

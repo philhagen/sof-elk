@@ -39,7 +39,6 @@ server.name: "SOF-ELK®"
 
 # The default application to load.
 #kibana.defaultAppId: "home"
-kibana.defaultAppId: "dashboard/6d272a20-7319-11e8-9f32-cf7527ac183d"
 
 # If your Elasticsearch is protected with basic authentication, these settings provide
 # the username and password that the Kibana server uses to perform maintenance on the Kibana
@@ -116,3 +115,4 @@ elasticsearch.shardTimeout: 90000
 #i18n.locale: "en"
 xpack.security.enabled: false
 xpack.telemetry.enabled: false
+security.showInsecureClusterWarning: false
