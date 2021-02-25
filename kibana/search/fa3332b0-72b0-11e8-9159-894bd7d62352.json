@@ -13,16 +13,27 @@
     "description": "",
     "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"netflow\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
     "sort": [
-      "@timestamp",
-      "desc"
+      [
+        "@timestamp",
+        "desc"
+      ]
     ],
-    "title": "NetFlow Discovery"
+    "title": "NetFlow Discovery",
+    "version": 1
   },
+  "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [
+    {
+      "id": "netflow",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search"
 }

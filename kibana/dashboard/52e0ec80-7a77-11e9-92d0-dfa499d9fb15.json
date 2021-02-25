@@ -3,14 +3,15 @@
     "description": "",
     "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"lucene\",\"query\":\"\"}}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
     "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":10,\"w\":48,\"h\":38,\"i\":\"1\"},\"panelIndex\":\"1\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_0\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":0,\"w\":16,\"h\":10,\"i\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\"},\"panelIndex\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_1\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":16,\"y\":0,\"w\":16,\"h\":10,\"i\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\"},\"panelIndex\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_2\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":32,\"y\":0,\"w\":16,\"h\":10,\"i\":\"e9495c14-1879-4b57-a681-ba597fb576f8\"},\"panelIndex\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_3\"}]",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":38,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":10},\"panelIndex\":\"1\",\"panelRefName\":\"panel_0\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"w\":16,\"x\":0,\"y\":0},\"panelIndex\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"panelRefName\":\"panel_1\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"w\":16,\"x\":16,\"y\":0},\"panelIndex\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"panelRefName\":\"panel_2\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"w\":16,\"x\":32,\"y\":0},\"panelIndex\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"panelRefName\":\"panel_3\",\"version\":\"7.11.1\"}]",
     "timeRestore": false,
     "title": "LNK File Dashboard",
     "version": 1
   },
+  "id": "52e0ec80-7a77-11e9-92d0-dfa499d9fb15",
   "namespaces": [
     "default"
   ],
@@ -35,5 +36,6 @@
       "name": "panel_3",
       "type": "visualization"
     }
-  ]
+  ],
+  "type": "dashboard"
 }

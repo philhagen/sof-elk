@@ -10,16 +10,27 @@
     "description": "",
     "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"httpdlog\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
     "sort": [
-      "@timestamp",
-      "desc"
+      [
+        "@timestamp",
+        "desc"
+      ]
     ],
-    "title": "HTTPD Discovery"
+    "title": "HTTPD Discovery",
+    "version": 1
   },
+  "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search"
 }

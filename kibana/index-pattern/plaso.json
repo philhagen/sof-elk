@@ -3,8 +3,10 @@
     "timeFieldName": "@timestamp",
     "title": "plaso-*"
   },
+  "id": "plaso",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [],
+  "type": "index-pattern"
 }

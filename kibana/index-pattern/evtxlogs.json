@@ -3,8 +3,10 @@
     "timeFieldName": "@timestamp",
     "title": "evtxlogs-*"
   },
+  "id": "evtxlogs",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [],
+  "type": "index-pattern"
 }

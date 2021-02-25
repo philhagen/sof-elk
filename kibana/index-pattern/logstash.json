@@ -1,10 +1,13 @@
 {
   "attributes": {
+    "fieldAttrs": "{}",
     "timeFieldName": "@timestamp",
     "title": "logstash-*"
   },
+  "id": "logstash",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [],
+  "type": "index-pattern"
 }

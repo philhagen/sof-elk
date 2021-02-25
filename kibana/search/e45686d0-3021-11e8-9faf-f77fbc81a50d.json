@@ -8,16 +8,27 @@
     "description": "",
     "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"index\":\"logstash\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
     "sort": [
-      "@timestamp",
-      "desc"
+      [
+        "@timestamp",
+        "desc"
+      ]
     ],
-    "title": "Syslog Discovery"
+    "title": "Syslog Discovery",
+    "version": 1
   },
+  "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [
+    {
+      "id": "logstash",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search"
 }

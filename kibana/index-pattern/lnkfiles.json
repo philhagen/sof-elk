@@ -3,8 +3,10 @@
     "timeFieldName": "@timestamp",
     "title": "lnkfiles-*"
   },
+  "id": "lnkfiles",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [],
+  "type": "index-pattern"
 }

@@ -3,14 +3,15 @@
     "description": "",
     "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"version\":true}"
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
     "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":72,\"w\":48,\"h\":53,\"i\":\"16\"},\"panelIndex\":\"16\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_0\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":0,\"w\":16,\"h\":14,\"i\":\"569d397a-bfd3-4e4d-9060-2224f344badd\"},\"panelIndex\":\"569d397a-bfd3-4e4d-9060-2224f344badd\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_1\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":16,\"y\":0,\"w\":16,\"h\":14,\"i\":\"0827066a-5a28-4b27-aa3f-0fe61b94d448\"},\"panelIndex\":\"0827066a-5a28-4b27-aa3f-0fe61b94d448\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_2\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":32,\"y\":0,\"w\":16,\"h\":14,\"i\":\"acc8d310-a9e9-4721-83a0-540c09e20d1d\"},\"panelIndex\":\"acc8d310-a9e9-4721-83a0-540c09e20d1d\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_3\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":14,\"w\":48,\"h\":7,\"i\":\"6f8ddbd9-e3ac-4acb-8e88-f5e228680b46\"},\"panelIndex\":\"6f8ddbd9-e3ac-4acb-8e88-f5e228680b46\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_4\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":21,\"w\":14,\"h\":18,\"i\":\"7b74461e-2dee-4dff-97c4-f76bd020a6c8\"},\"panelIndex\":\"7b74461e-2dee-4dff-97c4-f76bd020a6c8\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_5\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":14,\"y\":21,\"w\":19,\"h\":18,\"i\":\"ad119214-1c1f-4788-8a64-04548d389bc4\"},\"panelIndex\":\"ad119214-1c1f-4788-8a64-04548d389bc4\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_6\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":33,\"y\":21,\"w\":15,\"h\":18,\"i\":\"dc788cec-a0cc-4afc-b961-3867b0230870\"},\"panelIndex\":\"dc788cec-a0cc-4afc-b961-3867b0230870\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_7\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":39,\"w\":14,\"h\":18,\"i\":\"1bac1bd5-5170-414b-9213-f434f00dd724\"},\"panelIndex\":\"1bac1bd5-5170-414b-9213-f434f00dd724\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_8\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":14,\"y\":39,\"w\":19,\"h\":18,\"i\":\"50c24c06-c532-4ad4-af29-cea1e8a43ba7\"},\"panelIndex\":\"50c24c06-c532-4ad4-af29-cea1e8a43ba7\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_9\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":33,\"y\":39,\"w\":15,\"h\":18,\"i\":\"0131b19b-15d8-4114-aea3-0770e61d4fcf\"},\"panelIndex\":\"0131b19b-15d8-4114-aea3-0770e61d4fcf\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_10\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":57,\"w\":10,\"h\":15,\"i\":\"0f61de1a-3abf-4945-bd7a-0b568993aadc\"},\"panelIndex\":\"0f61de1a-3abf-4945-bd7a-0b568993aadc\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_11\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":10,\"y\":57,\"w\":19,\"h\":15,\"i\":\"18d400b7-1d1b-4e7c-8639-11f3f48866f6\"},\"panelIndex\":\"18d400b7-1d1b-4e7c-8639-11f3f48866f6\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_12\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":29,\"y\":57,\"w\":19,\"h\":15,\"i\":\"e4f433be-a176-41d3-b622-4a68f1b7b5d5\"},\"panelIndex\":\"e4f433be-a176-41d3-b622-4a68f1b7b5d5\",\"embeddableConfig\":{\"enhancements\":{}},\"panelRefName\":\"panel_13\"}]",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":53,\"i\":\"16\",\"w\":48,\"x\":0,\"y\":72},\"panelIndex\":\"16\",\"panelRefName\":\"panel_0\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"569d397a-bfd3-4e4d-9060-2224f344badd\",\"w\":16,\"x\":0,\"y\":0},\"panelIndex\":\"569d397a-bfd3-4e4d-9060-2224f344badd\",\"panelRefName\":\"panel_1\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"0827066a-5a28-4b27-aa3f-0fe61b94d448\",\"w\":16,\"x\":16,\"y\":0},\"panelIndex\":\"0827066a-5a28-4b27-aa3f-0fe61b94d448\",\"panelRefName\":\"panel_2\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"acc8d310-a9e9-4721-83a0-540c09e20d1d\",\"w\":16,\"x\":32,\"y\":0},\"panelIndex\":\"acc8d310-a9e9-4721-83a0-540c09e20d1d\",\"panelRefName\":\"panel_3\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":7,\"i\":\"6f8ddbd9-e3ac-4acb-8e88-f5e228680b46\",\"w\":48,\"x\":0,\"y\":14},\"panelIndex\":\"6f8ddbd9-e3ac-4acb-8e88-f5e228680b46\",\"panelRefName\":\"panel_4\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"7b74461e-2dee-4dff-97c4-f76bd020a6c8\",\"w\":14,\"x\":0,\"y\":21},\"panelIndex\":\"7b74461e-2dee-4dff-97c4-f76bd020a6c8\",\"panelRefName\":\"panel_5\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"hidePanelTitles\":false,\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":39.62448,\"lon\":-75.79347,\"zoom\":6.3},\"openTOCDetails\":[]},\"gridData\":{\"h\":18,\"i\":\"c72c8431-f55a-4cea-8047-ab2d1ce8fefc\",\"w\":19,\"x\":14,\"y\":21},\"panelIndex\":\"c72c8431-f55a-4cea-8047-ab2d1ce8fefc\",\"panelRefName\":\"panel_6\",\"title\":\"Netflow Traffic Source\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"dc788cec-a0cc-4afc-b961-3867b0230870\",\"w\":15,\"x\":33,\"y\":21},\"panelIndex\":\"dc788cec-a0cc-4afc-b961-3867b0230870\",\"panelRefName\":\"panel_7\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"1bac1bd5-5170-414b-9213-f434f00dd724\",\"w\":14,\"x\":0,\"y\":39},\"panelIndex\":\"1bac1bd5-5170-414b-9213-f434f00dd724\",\"panelRefName\":\"panel_8\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"hidePanelTitles\":false,\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":23.3621,\"lon\":0,\"zoom\":0.18},\"openTOCDetails\":[]},\"gridData\":{\"h\":18,\"i\":\"c7ebdb7f-0cef-4a8c-9482-78b92d26028c\",\"w\":19,\"x\":14,\"y\":39},\"panelIndex\":\"c7ebdb7f-0cef-4a8c-9482-78b92d26028c\",\"panelRefName\":\"panel_9\",\"title\":\"NetFlow Traffic Destination\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"0131b19b-15d8-4114-aea3-0770e61d4fcf\",\"w\":15,\"x\":33,\"y\":39},\"panelIndex\":\"0131b19b-15d8-4114-aea3-0770e61d4fcf\",\"panelRefName\":\"panel_10\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"0f61de1a-3abf-4945-bd7a-0b568993aadc\",\"w\":10,\"x\":0,\"y\":57},\"panelIndex\":\"0f61de1a-3abf-4945-bd7a-0b568993aadc\",\"panelRefName\":\"panel_11\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"18d400b7-1d1b-4e7c-8639-11f3f48866f6\",\"w\":19,\"x\":10,\"y\":57},\"panelIndex\":\"18d400b7-1d1b-4e7c-8639-11f3f48866f6\",\"panelRefName\":\"panel_12\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"e4f433be-a176-41d3-b622-4a68f1b7b5d5\",\"w\":19,\"x\":29,\"y\":57},\"panelIndex\":\"e4f433be-a176-41d3-b622-4a68f1b7b5d5\",\"panelRefName\":\"panel_13\",\"version\":\"7.11.1\"}]",
     "timeRestore": false,
     "title": "NetFlow Dashboard",
     "version": 1
   },
+  "id": "99d1b510-72b3-11e8-9159-894bd7d62352",
   "namespaces": [
     "default"
   ],
@@ -46,9 +47,9 @@
       "type": "visualization"
     },
     {
-      "id": "b91bd160-e5ff-11e9-a3ea-d7d01b053a51",
+      "id": "f2425180-76db-11eb-9d54-294249e0048f",
       "name": "panel_6",
-      "type": "visualization"
+      "type": "map"
     },
     {
       "id": "fbce8e30-e5ff-11e9-a3ea-d7d01b053a51",
@@ -61,9 +62,9 @@
       "type": "visualization"
     },
     {
-      "id": "e0ed5dc0-e62d-11e9-a3ea-d7d01b053a51",
+      "id": "7d14c280-76db-11eb-9d54-294249e0048f",
       "name": "panel_9",
-      "type": "visualization"
+      "type": "map"
     },
     {
       "id": "019b9b90-e62e-11e9-a3ea-d7d01b053a51",
@@ -85,5 +86,6 @@
       "name": "panel_13",
       "type": "visualization"
     }
-  ]
+  ],
+  "type": "dashboard"
 }

@@ -1,8 +1,5 @@
 {
   "attributes": {
-    "title": "Azure Activity Log Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "operation_name",
       "status",
@@ -11,22 +8,30 @@
       "resource_type",
       "resource"
     ],
+    "description": "",
+    "hits": 0,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
     "sort": [
       [
         "@timestamp",
         "desc"
       ]
     ],
-    "version": 1,
-    "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
-    }
+    "title": "Azure Activity Log Discovery",
+    "version": 1
   },
+  "id": "c80386c0-286e-11eb-bf98-fb32763e0d19",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "azure",
       "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
-      "type": "index-pattern",
-      "id": "azure"
+      "type": "index-pattern"
     }
-  ]
+  ],
+  "type": "search"
 }

@@ -3,8 +3,10 @@
     "timeFieldName": "@timestamp",
     "title": "netflow-*"
   },
+  "id": "netflow",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [],
+  "type": "index-pattern"
 }

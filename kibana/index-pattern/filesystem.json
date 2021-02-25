@@ -3,8 +3,10 @@
     "timeFieldName": "@timestamp",
     "title": "filesystem-*"
   },
+  "id": "filesystem",
   "namespaces": [
     "default"
   ],
-  "references": []
+  "references": [],
+  "type": "index-pattern"
 }
