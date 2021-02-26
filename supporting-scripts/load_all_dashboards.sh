@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2021 Lewes Technology Consulting, LLC
 #
 # This script is used to load all dashboards, visualizations, saved searches, and index patterns to Kibana
 
@@ -44,13 +44,8 @@ curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://$
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
-# insert/update dashboards, visualizations, maps, and searches
-TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
-cat ${kibana_file_dir}/dashboard/*.json ${kibana_file_dir}/visualization/*.json ${kibana_file_dir}/map/*.json ${kibana_file_dir}/search/*.json | jq -c '.' > ${TMPNDJSONFILE}
-curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
-rm -f ${TMPNDJSONFILE}
-
 # replace index patterns
+# these must be inserted FIRST becuase they are the basis for the other stored objects' references
 for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
     INDEXPATTERNID=$( basename ${indexpatternfile} | sed -e 's/\.json$//' )
 
@@ -81,3 +76,12 @@ for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
     # remove the temp file
     rm -f ${TMPNDJSONFILE}
 done
+
+# insert/update dashboards, visualizations, maps, and searches
+# ORDER MATTERS!!! dependencies in the "references" field will cause failure to insert if the references are not already present
+TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
+for objecttype in visualization map search dashboard; do
+    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
+done
+curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
+rm -f ${TMPNDJSONFILE}

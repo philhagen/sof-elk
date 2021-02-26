@@ -83,19 +83,19 @@ curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_silence' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_status' > /dev/null
 elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
 
-echo "removing documents from the elasticsearch .kibana index"
-curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST 'http://localhost:9200/.kibana/_delete_by_query?conflicts=proceed' -d '{"query": { "match_all": {} } }' > /dev/null
+echo "removing documents from the elasticsearch .kibana indexes"
+curl -s -H 'kbn-xsrd: true' -X DELETE "http://127.0.0.1:9200/.kibana*" > /dev/null
 
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 
-echo "stopping logstash"
+echo "stopping kibana"
 systemctl stop kibana
 
 echo "stopping filebeat service"
 systemctl stop filebeat
 echo "clearing filebeat data"
-rm -f /var/lib/filebeat
+rm -rf /var/lib/filebeat
 
 echo "removing elasticsearch .tasks index"
 curl -s -XDELETE 'http://localhost:9200/.tasks' > /dev/null
