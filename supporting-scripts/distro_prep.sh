@@ -69,7 +69,7 @@ rm -rf ~elk_user/tmp/*
 echo "Resetting GeoIP databases to empty."
 for GEOIPDB in "ASN City Country"; do
     rm -f /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb
-    cp -a /usr/local/sof-elk/supporting_scripts/geoip_bootstrap/empty-GeoLite2-${GEOIPDB}.mmdb /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
+    cp -a /usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty-GeoLite2-${GEOIPDB}.mmdb /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
 done
 rm -f /etc/GeoIP.conf
 
