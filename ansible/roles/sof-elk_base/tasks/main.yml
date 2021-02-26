@@ -173,8 +173,18 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty.mmdb', dest: '/usr/local/share/GeoIP/empty.mmdb' }
  #   - { src: 'xxx', dest: 'xxx' }
+  tags: sof-elk_base
+
+- name: Install empty GeoIP databases
+  copy:
+    src: /usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty-GeoLite2-{{ item }}.mmdb
+    dest: /usr/local/share/GeoIP/GeoLite2-{{ item }}.mmdb
+    remote_src: yes
+  with_items:
+    - ASN
+    - City
+    - Country
   tags: sof-elk_base
 
 - name: Install default GeoIP configuration

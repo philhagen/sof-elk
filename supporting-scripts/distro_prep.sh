@@ -67,9 +67,10 @@ echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
 echo "Resetting GeoIP databases to empty."
-cp /usr/local/share/GeoIP/empty.mmdb /usr/local/share/GeoIP/GeoLite2-ASN.mmdb
-cp /usr/local/share/GeoIP/empty.mmdb /usr/local/share/GeoIP/GeoLite2-City.mmdb
-cp /usr/local/share/GeoIP/empty.mmdb /usr/local/share/GeoIP/GeoLite2-Country.mmdb
+for GEOIPDB in "ASN City Country"; do
+    rm -f /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb
+    cp -a /usr/local/sof-elk/supporting_scripts/geoip_bootstrap/empty-GeoLite2-${GEOIPDB}.mmdb /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
+done
 rm -f /etc/GeoIP.conf
 
 echo "stopping elastalert"
@@ -94,12 +95,7 @@ systemctl stop kibana
 echo "stopping filebeat service"
 systemctl stop filebeat
 echo "clearing filebeat data"
-if [ -f /var/lib/filebeat/registry ]; then
-    echo "filebeat registry is not empty.  The sources below are still tracked.  Press return if this is correct or Ctrl-C to quit."
-    cat /var/lib/filebeat/registry | jq -r '.[].source' | sed -e 's/^/- /'
-    read
-fi
-rm -f /var/lib/filebeat/meta.json
+rm -f /var/lib/filebeat
 
 echo "removing elasticsearch .tasks index"
 curl -s -XDELETE 'http://localhost:9200/.tasks' > /dev/null
