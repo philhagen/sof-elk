@@ -73,6 +73,7 @@ for GEOIPDB in ASN City Country; do
     cp -a /usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty-GeoLite2-${GEOIPDB}.mmdb /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
 done
 rm -f /etc/GeoIP.conf
+rm -f /etc/cron.d/geoipupdate
 
 echo "stopping elastalert"
 systemctl stop elastalert
