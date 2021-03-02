@@ -69,5 +69,5 @@ echo "Do you want to set a weekly cron job that will update the MaxMind GeoIP da
 read -p "Y/N: " install_cron_job
 
 if [ ${install_cron_job^^} == "Y" ]; then
-    echo "18 4 * * 2 root /usr/local/sbin/geoip_update_logstash" > /etc/cron.d/geoipupdate
+    echo "18 4 * * 2 root /usr/local/sbin/geoip_update_logstash.sh" > /etc/cron.d/geoipupdate
 fi
