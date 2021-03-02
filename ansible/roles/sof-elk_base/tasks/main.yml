@@ -173,6 +173,7 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
  #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 

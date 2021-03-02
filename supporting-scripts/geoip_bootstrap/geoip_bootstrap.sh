@@ -11,6 +11,11 @@
 geoip_conf_template="/etc//GeoIP.conf.default"
 geoip_conf_target="/etc/GeoIP.conf"
 
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root.  Exiting."
+    exit 1
+fi
+
 if [ -f ${geoip_conf_target} ]; then
     # not clobbering existing file
     exit
@@ -55,12 +60,14 @@ if [ $? -ne 0 ]; then
     exit
 else
     echo "MaxMind GeoIP databases have been installed."
+    echo "Restarting Logstash to pick up the new database files."
+    systemctl restart logstash.service
     echo
 fi
 
 echo "Do you want to set a weekly cron job that will update the MaxMind GeoIP databases automatically?"
 read -p "Y/N: " install_cron_job
 
-if [ ${install_cron_job} == "Y" ]; then
-    echo "18 4 * * 2 root geoipupdate -f ${geoip_conf_target}" > /etc/cron.d/geoipupdate
+if [ ${install_cron_job^^} == "Y" ]; then
+    echo "18 4 * * 2 root /usr/local/sbin/geoip_update_logstash" > /etc/cron.d/geoipupdate
 fi

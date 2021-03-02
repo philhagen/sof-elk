@@ -62,6 +62,7 @@ rm -rf /var/cache/yum
 echo "cleaning user histories"
 rm -f ~root/.bash_history
 rm -f ~elk_user/.bash_history
+#cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
 echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
