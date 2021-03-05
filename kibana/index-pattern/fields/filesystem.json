@@ -1,12 +1,14 @@
-{
-  "aggregatable": true,
-  "count": 0,
-  "customLabel": "",
-  "lang": "painless",
-  "name": "filesize_vis",
-  "readFromDocValues": false,
-  "script": "return doc['filesize'].value",
-  "scripted": true,
-  "searchable": true,
-  "type": "number"
-}
+[
+  {
+    "aggregatable": true,
+    "count": 0,
+    "customLabel": "",
+    "lang": "painless",
+    "name": "filesize_vis",
+    "readFromDocValues": false,
+    "script": "return doc['filesize'].value",
+    "scripted": true,
+    "searchable": true,
+    "type": "number"
+  }
+]

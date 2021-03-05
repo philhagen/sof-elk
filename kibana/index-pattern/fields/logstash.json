@@ -1,36 +1,38 @@
-{
-  "aggregatable": true,
-  "count": 0,
-  "customLabel": "",
-  "lang": "painless",
-  "name": "answer_geo.asnstr",
-  "readFromDocValues": false,
-  "script": "if ( doc['answer_geo.asn'].size() == 0 || doc['answer_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword'].value }",
-  "scripted": true,
-  "searchable": true,
-  "type": "string"
-},
-{
-  "aggregatable": true,
-  "count": 0,
-  "customLabel": "",
-  "lang": "painless",
-  "name": "destination_geo.asnstr",
-  "readFromDocValues": false,
-  "script": "if ( doc['destination_geo.asn'].size() == 0 || doc['destination_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }",
-  "scripted": true,
-  "searchable": true,
-  "type": "string"
-},
-{
-  "aggregatable": true,
-  "count": 0,
-  "customLabel": "",
-  "lang": "painless",
-  "name": "source_geo.asnstr",
-  "readFromDocValues": false,
-  "script": "if ( doc['source_geo.asn'].size() == 0 || doc['source_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }",
-  "scripted": true,
-  "searchable": true,
-  "type": "number"
-}
+[
+  {
+    "aggregatable": true,
+    "count": 0,
+    "customLabel": "",
+    "lang": "painless",
+    "name": "answer_geo.asnstr",
+    "readFromDocValues": false,
+    "script": "if ( doc['answer_geo.asn'].size() == 0 || doc['answer_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword'].value }",
+    "scripted": true,
+    "searchable": true,
+    "type": "string"
+  },
+  {
+    "aggregatable": true,
+    "count": 0,
+    "customLabel": "",
+    "lang": "painless",
+    "name": "destination_geo.asnstr",
+    "readFromDocValues": false,
+    "script": "if ( doc['destination_geo.asn'].size() == 0 || doc['destination_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value }",
+    "scripted": true,
+    "searchable": true,
+    "type": "string"
+  },
+  {
+    "aggregatable": true,
+    "count": 0,
+    "customLabel": "",
+    "lang": "painless",
+    "name": "source_geo.asnstr",
+    "readFromDocValues": false,
+    "script": "if ( doc['source_geo.asn'].size() == 0 || doc['source_geo.as_org.keyword'].size() == 0 ) { return 'ASN: Not Available' } else { return 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value }",
+    "scripted": true,
+    "searchable": true,
+    "type": "number"
+  }
+]

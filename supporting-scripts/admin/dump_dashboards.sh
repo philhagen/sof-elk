@@ -89,10 +89,10 @@ for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_hos
     cat ${TMPFILE} | jq -S 'del(.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion)' > index-pattern/${INDEXPATTERNID}.json
 
     # pull out just the fields
-    cat ${TMPFILE} | jq -S '. | select(.attributes.fields != null) | .attributes.fields | fromjson[]' > index-pattern/fields/${INDEXPATTERNID}.json
+    cat ${TMPFILE} | jq -S '. | select(.attributes.fields != null) | .attributes.fields | fromjson' > index-pattern/fields/${INDEXPATTERNID}.json
 
     # pull out just the fieldFormatMap
-    cat ${TMPFILE} | jq -S '. | select(.attributes.fieldFormatMap != null) | .attributes.fieldFormatMap | fromjson | del(.[].params.parsedUrl)[]' > index-pattern/fieldformats/${INDEXPATTERNID}.json
+    cat ${TMPFILE} | jq -S '. | select(.attributes.fieldFormatMap != null) | .attributes.fieldFormatMap | fromjson | del(.[].params.parsedUrl)' > index-pattern/fieldformats/${INDEXPATTERNID}.json
 
     rm -f ${TMPFILE}
 
