@@ -82,7 +82,8 @@ for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
 
     # remove the temp files
     rm -f ${TMPFILE}
-    rm -f ${TMPNDJSONFILE}done
+    rm -f ${TMPNDJSONFILE}
+done
 
 # insert/update dashboards, visualizations, maps, and searches
 # ORDER MATTERS!!! dependencies in the "references" field will cause failure to insert if the references are not already present
