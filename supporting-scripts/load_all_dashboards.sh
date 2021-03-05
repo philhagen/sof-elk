@@ -68,17 +68,16 @@ for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
     cat ${indexpatternfile} | jq -c '.' > ${TMPNDJSONFILE}
 
     if [ ${fields} == 1 ]; then
-        cat ${TMPNDJSONFILE} | jq -c --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -sc '.' )" '.attributes += { fields: $fields }' > ${TMPFILE}
+        cat ${TMPNDJSONFILE} | jq -c --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -c '.' )" '.attributes += { fields: $fields }' > ${TMPFILE}
         cat ${TMPFILE} > ${TMPNDJSONFILE}
     fi
     if [ ${fieldformatmap} == 1 ]; then
-        cat ${TMPNDJSONFILE} | jq -c --arg fieldformatmap "$( cat ${kibana_file_dir}/index-pattern/fieldformats/${INDEXPATTERNID}.json | jq -sc '.' )" '.attributes += { fieldFormatMap: $fieldformatmap }' > ${TMPFILE}
+        cat ${TMPNDJSONFILE} | jq -c --arg fieldformatmap "$( cat ${kibana_file_dir}/index-pattern/fieldformats/${INDEXPATTERNID}.json | jq -c '.' )" '.attributes += { fieldFormatMap: $fieldformatmap }' > ${TMPFILE}
         cat ${TMPFILE} > ${TMPNDJSONFILE}
     fi
 
     # update the index-mapping object
     curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
-    echo
 
     # remove the temp files
     rm -f ${TMPFILE}
