@@ -1,19 +1,35 @@
 # SOF-ELK® Configuration File
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2021 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/azure/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
 - type: log
   paths:
-    - /logstash/azure/*/*/*/*/*
-    - /logstash/azure/*/*/*/*
-    - /logstash/azure/*/*/*
-    - /logstash/azure/*/*
-    - /logstash/azure/*
+    - /logstash/azure/*/*/*/*/*.csv
+    - /logstash/azure/*/*/*/*.csv
+    - /logstash/azure/*/*/*.csv
+    - /logstash/azure/*/*.csv
+    - /logstash/azure/*.csv
   exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   close_inactive: 5m
   fields_under_root: true
   fields:
     # this is important - it's as the [type] field in Logstash
     type: azure
+  tags: [ 'csv' ]
+
+- type: log
+  paths:
+    - /logstash/azure/*/*/*/*/*.json
+    - /logstash/azure/*/*/*/*.json
+    - /logstash/azure/*/*/*.json
+    - /logstash/azure/*/*.json
+    - /logstash/azure/*.json
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    # this is important - it's as the [type] field in Logstash
+    type: azure
+  tags: [ 'json' ]
