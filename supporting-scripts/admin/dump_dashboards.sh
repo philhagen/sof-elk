@@ -81,14 +81,20 @@ done
 echo "Dumping Index Patterns"
 # get a list of all index-patterns and their content, separate out the fields and fieldformatmap
 for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    # get full index pattern definition
+    TMPFILE=$( mktemp )
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" > ${TMPFILE} 2> /dev/null
+
     # index-pattern itself, stripping the fields and fieldFormatMap elements
-    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq -S 'del(.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion)' > index-pattern/${INDEXPATTERNID}.json
+    cat ${TMPFILE} | jq -S 'del(.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion)' > index-pattern/${INDEXPATTERNID}.json
 
-    # just the fields, sorting (per LC_ALL) for easier revision control
-    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq -c '.attributes.fields | fromjson[]' 2> /dev/null | sort > index-pattern/fields/${INDEXPATTERNID}.json 2> /dev/null
+    # pull out just the fields
+    cat ${TMPFILE} | jq -S '. | select(.attributes.fields != null) | .attributes.fields | fromjson[]' > index-pattern/fields/${INDEXPATTERNID}.json
 
-    # just the fieldFormatMap, sorting (per LC_ALL) for easier revision control
-    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" | jq -S '.attributes.fieldFormatMap | fromjson | to_entries | sort_by(.key)' > index-pattern/fieldformats/${INDEXPATTERNID}.json 2> /dev/null
+    # pull out just the fieldFormatMap
+    cat ${TMPFILE} | jq -S '. | select(.attributes.fieldFormatMap != null) | .attributes.fieldFormatMap | fromjson | del(.[].params.parsedUrl)[]' > index-pattern/fieldformats/${INDEXPATTERNID}.json
+
+    rm -f ${TMPFILE}
 
     # if any of these files are zero-length, remove them
     if [ ! -s index-pattern/fields/${INDEXPATTERNID}.json ]; then

@@ -1,8 +1,11 @@
-[
-  {
-    "key": "filesize_vis",
-    "value": {
-      "id": "bytes"
+{
+  "@timestamp": {
+    "id": "date",
+    "params": {
+      "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
+  },
+  "filesize_vis": {
+    "id": "bytes"
   }
-]
+}
