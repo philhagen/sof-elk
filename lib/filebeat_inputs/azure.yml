@@ -33,3 +33,22 @@
     # this is important - it's as the [type] field in Logstash
     type: azure
   tags: [ 'json' ]
+
+- type: log
+  paths:
+    - /logstash/azure/*/*/*/*/*.xml
+    - /logstash/azure/*/*/*/*.xml
+    - /logstash/azure/*/*/*.xml
+    - /logstash/azure/*/*.xml
+    - /logstash/azure/*.xml
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    # this is important - it's as the [type] field in Logstash
+    type: azure
+  tags: [ 'xml' ]
+  multiline.type: pattern
+  multiline.pattern: "^\"?<Event "
+  multiline.negate: true
+  multiline.match: after

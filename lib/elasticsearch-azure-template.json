@@ -47,6 +47,9 @@
       "@version": {
         "type": "keyword"
       },
+      "event_data": {
+        "type": "object"
+      },
       "ips": {
         "type": "ip"
       },
