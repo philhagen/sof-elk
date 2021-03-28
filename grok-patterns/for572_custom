@@ -1,5 +1,5 @@
 # SOF-ELK® Supporting file
-# (C)2018 Lewes Technology Consulting, LLC
+# (C)2021 Lewes Technology Consulting, LLC
 #
 # This file contains grok patterns used for various other parsers
 
@@ -40,8 +40,8 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 URIPATH_CUSTOM %{URIPATH}|\*
 
 # custom HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
-HTTPDUSER %{EMAILADDRESS}|%{USER}
-COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{USER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{WORD:protocol}://)?(?:%{HOSTNAME:hostname}(?::%{POSINT:destination_port})?)?(?:%{URIPATH_CUSTOM:request})?(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
+HTTPDUSER %{EMAILADDRESS}|%{WORD}[/\\]%{USER}|%{USER}
+COMMONAPACHELOG_CUSTOM %{IPORHOST:source_ip} %{HTTPDUSER:ident} %{HTTPDUSER:username} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:request_method} (?:%{WORD:protocol}://)?(?:%{HOSTNAME:hostname}(?::%{POSINT:destination_port})?)?(?:%{URIPATH_CUSTOM:request})?(?:\?%{NOTSPACE:query_string})?(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response_code} (?:%{NUMBER:destination_bytes}|-)
 COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:proxy_cachestatus}:%{WORD:proxy_hierarchystatus}
 COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:referrer} %{QS:useragent}
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:proxy_cachestatus}:%{WORD:proxy_hierarchystatus}
