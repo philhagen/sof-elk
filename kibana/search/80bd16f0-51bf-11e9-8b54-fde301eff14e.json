@@ -1,21 +1,34 @@
 {
   "attributes": {
-    "title": "Filesystem Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "parentpath",
       "filename",
       "filesize"
     ],
-    "sort": [
-      "@timestamp",
-      "desc"
-    ],
-    "version": 1,
+    "description": "",
+    "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"filesystem\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [
+      [
+        "@timestamp",
+        "desc"
+      ]
+    ],
+    "title": "Filesystem Discovery",
+    "version": 1
   },
-  "references": []
+  "id": "80bd16f0-51bf-11e9-8b54-fde301eff14e",
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search"
 }

@@ -1,158 +1,104 @@
-[
-  {
-    "key": "@timestamp",
-    "value": {
-      "id": "date",
-      "params": {
-        "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
-      }
+{
+  "@timestamp": {
+    "id": "date",
+    "params": {
+      "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
   },
-  {
-    "key": "destination_geo.asnstr",
-    "value": {
-      "id": "string",
-      "params": {
-        "transform": "false"
-      }
+  "destination_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
     }
   },
-  {
-    "key": "destination_port",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "00"
-      }
+  "destination_port": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
     }
   },
-  {
-    "key": "flow_end",
-    "value": {
-      "id": "date",
-      "params": {
-        "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
-      }
+  "flow_end": {
+    "id": "date",
+    "params": {
+      "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
   },
-  {
-    "key": "flow_records_vis",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "0,0.[0]a"
-      }
+  "flow_records_vis": {
+    "id": "number",
+    "params": {
+      "pattern": "0,0.[0]a"
     }
   },
-  {
-    "key": "flow_start",
-    "value": {
-      "id": "date",
-      "params": {
-        "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
-      }
+  "flow_start": {
+    "id": "date",
+    "params": {
+      "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
   },
-  {
-    "key": "in_bytes_vis",
-    "value": {
-      "id": "bytes",
-      "params": {
-        "pattern": "0,0.[0]b"
-      }
+  "in_bytes_vis": {
+    "id": "bytes",
+    "params": {
+      "pattern": "0,0.[0]b"
     }
   },
-  {
-    "key": "in_packets_vis",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "0,0.[0]a"
-      }
+  "in_packets_vis": {
+    "id": "number",
+    "params": {
+      "pattern": "0,0.[0]a"
     }
   },
-  {
-    "key": "missed_bytes_vis",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "0,0.[0]a"
-      }
+  "missed_bytes_vis": {
+    "id": "number",
+    "params": {
+      "pattern": "0,0.[0]a"
     }
   },
-  {
-    "key": "out_bytes_vis",
-    "value": {
-      "id": "bytes",
-      "params": {
-        "pattern": "0,0.[0]b"
-      }
+  "out_bytes_vis": {
+    "id": "bytes",
+    "params": {
+      "pattern": "0,0.[0]b"
     }
   },
-  {
-    "key": "out_packets_vis",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "0,0.[0]a"
-      }
+  "out_packets_vis": {
+    "id": "number",
+    "params": {
+      "pattern": "0,0.[0]a"
     }
   },
-  {
-    "key": "ports",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "00"
-      }
+  "ports": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
     }
   },
-  {
-    "key": "source_geo.asnstr",
-    "value": {
-      "id": "string",
-      "params": {
-        "transform": "false"
-      }
+  "source_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
     }
   },
-  {
-    "key": "source_port",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "00"
-      }
+  "source_port": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
     }
   },
-  {
-    "key": "total_bytes",
-    "value": {
-      "id": "number"
+  "total_bytes": {
+    "id": "number"
+  },
+  "total_bytes_vis": {
+    "id": "bytes",
+    "params": {
+      "pattern": "0,0.[0]b"
     }
   },
-  {
-    "key": "total_bytes_vis",
-    "value": {
-      "id": "bytes",
-      "params": {
-        "pattern": "0,0.[0]b"
-      }
-    }
+  "total_packets": {
+    "id": "number"
   },
-  {
-    "key": "total_packets",
-    "value": {
-      "id": "number"
-    }
-  },
-  {
-    "key": "total_packets_vis",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "0,0.[0]a"
-      }
+  "total_packets_vis": {
+    "id": "number",
+    "params": {
+      "pattern": "0,0.[0]a"
     }
   }
-]
+}

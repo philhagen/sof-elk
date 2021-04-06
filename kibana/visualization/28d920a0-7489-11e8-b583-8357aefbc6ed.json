@@ -1,12 +1,24 @@
 {
   "attributes": {
-    "title": "NetFlow Collected",
-    "visState": "{\"title\":\"NetFlow Collected\",\"type\":\"table\",\"params\":{\"perPage\":8,\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":4,\"direction\":\"desc\"},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"path\",\"size\":8,\"order\":\"desc\",\"orderBy\":\"5\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Top Sources\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"min\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"Start\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"End\"}},{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Flows\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_bytes_vis\",\"customLabel\":\"Bytes\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"total_packets_vis\",\"customLabel\":\"Packets\"}},{\"id\":\"7\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"exporter\",\"size\":8,\"order\":\"desc\",\"orderBy\":\"5\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Exporter\"}}]}",
-    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":4,\"direction\":\"desc\"}}}}",
     "description": "",
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"netflow\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "title": "NetFlow Collected",
+    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":4,\"direction\":\"desc\"}}}}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Top Sources\",\"field\":\"path\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"5\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":8},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Start\",\"field\":\"@timestamp\"},\"schema\":\"metric\",\"type\":\"min\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"End\",\"field\":\"@timestamp\"},\"schema\":\"metric\",\"type\":\"max\"},{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Flows\"},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"5\",\"params\":{\"customLabel\":\"Bytes\",\"field\":\"total_bytes_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"6\",\"params\":{\"customLabel\":\"Packets\",\"field\":\"total_packets_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"7\",\"params\":{\"customLabel\":\"Exporter\",\"field\":\"exporter\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"5\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":8},\"schema\":\"bucket\",\"type\":\"terms\"}],\"params\":{\"perPage\":10,\"percentageCol\":\"\",\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showToolbar\":true,\"showTotal\":false,\"sort\":{\"columnIndex\":4,\"direction\":\"desc\"},\"totalFunc\":\"sum\"},\"title\":\"NetFlow Collected\",\"type\":\"table\"}"
   },
-  "references": []
+  "id": "28d920a0-7489-11e8-b583-8357aefbc6ed",
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "visualization"
 }

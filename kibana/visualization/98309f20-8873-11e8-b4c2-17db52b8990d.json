@@ -1,12 +1,18 @@
 {
   "attributes": {
-    "title": "SOF-ELK®",
-    "visState": "{\"title\":\"SOF-ELK®\",\"type\":\"markdown\",\"params\":{\"fontSize\":12,\"openLinksInNewTab\":false,\"markdown\":\"![SOF-ELK Logo](/bundles/sof-elk.svg)\"},\"aggs\":[]}",
-    "uiStateJSON": "{}",
     "description": "",
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "title": "SOF-ELK®",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"aggs\":[],\"params\":{\"fontSize\":12,\"markdown\":\"![SOF-ELK Logo](/ui/sof-elk.svg)\",\"openLinksInNewTab\":false},\"title\":\"SOF-ELK®\",\"type\":\"markdown\"}"
   },
-  "references": []
+  "id": "98309f20-8873-11e8-b4c2-17db52b8990d",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "visualization"
 }

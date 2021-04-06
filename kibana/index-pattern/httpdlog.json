@@ -1,7 +1,13 @@
 {
   "attributes": {
+    "fieldAttrs": "{}",
     "timeFieldName": "@timestamp",
     "title": "httpdlog-*"
   },
-  "references": []
+  "id": "httpdlog",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
 }

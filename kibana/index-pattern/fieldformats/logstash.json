@@ -1,59 +1,32 @@
-[
-  {
-    "key": "@timestamp",
-    "value": {
-      "id": "date",
-      "params": {
-        "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
-      }
+{
+  "@timestamp": {
+    "id": "date",
+    "params": {
+      "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
     }
   },
-  {
-    "key": "answer_geo.asnstr",
-    "value": {
-      "id": "string"
+  "destination_port": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
     }
   },
-  {
-    "key": "destination_geo.asnstr",
-    "value": {
-      "id": "string"
+  "ports": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
     }
   },
-  {
-    "key": "destination_port",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "00"
-      }
+  "source_geo.asnstr": {
+    "id": "string",
+    "params": {
+      "transform": "false"
     }
   },
-  {
-    "key": "ports",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "00"
-      }
-    }
-  },
-  {
-    "key": "source_geo.asnstr",
-    "value": {
-      "id": "string",
-      "params": {
-        "transform": "false"
-      }
-    }
-  },
-  {
-    "key": "source_port",
-    "value": {
-      "id": "number",
-      "params": {
-        "pattern": "00"
-      }
+  "source_port": {
+    "id": "number",
+    "params": {
+      "pattern": "00"
     }
   }
-]
+}

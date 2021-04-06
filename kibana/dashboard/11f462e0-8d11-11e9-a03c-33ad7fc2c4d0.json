@@ -1,41 +1,46 @@
 {
   "attributes": {
-    "title": "Eventlog Dashboard",
-    "hits": 0,
     "description": "",
-    "panelsJSON": "[{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":30,\"w\":48,\"h\":35,\"i\":\"1\"},\"panelIndex\":\"1\",\"embeddableConfig\":{},\"panelRefName\":\"panel_0\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":0,\"w\":48,\"h\":15,\"i\":\"ff234412-5eae-4913-b905-f46529dcbadf\"},\"panelIndex\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"embeddableConfig\":{},\"panelRefName\":\"panel_1\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":0,\"y\":15,\"w\":16,\"h\":15,\"i\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\"},\"panelIndex\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"embeddableConfig\":{},\"panelRefName\":\"panel_2\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":16,\"y\":15,\"w\":16,\"h\":15,\"i\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\"},\"panelIndex\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"embeddableConfig\":{},\"panelRefName\":\"panel_3\"},{\"version\":\"7.4.0\",\"gridData\":{\"x\":32,\"y\":15,\"w\":16,\"h\":6,\"i\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\"},\"panelIndex\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"embeddableConfig\":{},\"panelRefName\":\"panel_4\"}]",
-    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "version": 1,
-    "timeRestore": false,
+    "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":35,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":30},\"panelIndex\":\"1\",\"panelRefName\":\"panel_0\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"panelRefName\":\"panel_1\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"w\":16,\"x\":0,\"y\":15},\"panelIndex\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"panelRefName\":\"panel_2\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"w\":16,\"x\":16,\"y\":15},\"panelIndex\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"panelRefName\":\"panel_3\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":6,\"i\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"w\":16,\"x\":32,\"y\":15},\"panelIndex\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"panelRefName\":\"panel_4\",\"version\":\"7.11.1\"}]",
+    "timeRestore": false,
+    "title": "Eventlog Dashboard",
+    "version": 1
   },
+  "id": "11f462e0-8d11-11e9-a03c-33ad7fc2c4d0",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0",
       "name": "panel_0",
-      "type": "search",
-      "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0"
+      "type": "search"
     },
     {
+      "id": "029f7a20-e6f6-11e9-a3ea-d7d01b053a51",
       "name": "panel_1",
-      "type": "visualization",
-      "id": "029f7a20-e6f6-11e9-a3ea-d7d01b053a51"
+      "type": "visualization"
     },
     {
+      "id": "82a7a940-e6f6-11e9-a3ea-d7d01b053a51",
       "name": "panel_2",
-      "type": "visualization",
-      "id": "82a7a940-e6f6-11e9-a3ea-d7d01b053a51"
+      "type": "visualization"
     },
     {
+      "id": "968913e0-e6f6-11e9-a3ea-d7d01b053a51",
       "name": "panel_3",
-      "type": "visualization",
-      "id": "968913e0-e6f6-11e9-a3ea-d7d01b053a51"
+      "type": "visualization"
     },
     {
+      "id": "b2585ef0-e6f6-11e9-a3ea-d7d01b053a51",
       "name": "panel_4",
-      "type": "visualization",
-      "id": "b2585ef0-e6f6-11e9-a3ea-d7d01b053a51"
+      "type": "visualization"
     }
-  ]
+  ],
+  "type": "dashboard"
 }

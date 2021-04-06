@@ -12,6 +12,7 @@
       args:
         chdir: "{{ playbook_dir }}"
       register: git_branch_result
+      check_mode: no
     - set_fact:
         git_branch: "{{ git_branch_result.stdout }}"
 
@@ -38,7 +39,6 @@
     - logstash
     - filebeat
     - kibana
-# this is broken for ES7 for now - revisit after full ES7 support is in Elastalert
     - elastalert
     - domain_stats
     - freq

@@ -1,8 +1,5 @@
 {
   "attributes": {
-    "title": "NetFlow Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "exporter",
       "aprotocol",
@@ -13,13 +10,30 @@
       "total_bytes",
       "total_packets"
     ],
-    "sort": [
-      "@timestamp",
-      "desc"
-    ],
+    "description": "",
+    "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"netflow\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [
+      [
+        "@timestamp",
+        "desc"
+      ]
+    ],
+    "title": "NetFlow Discovery",
+    "version": 1
   },
-  "references": []
+  "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search"
 }

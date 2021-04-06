@@ -8,6 +8,14 @@
     "_source": {},
     "dynamic_templates": [
       {
+        "ip_address_fields": {
+          "match": "*_ip",
+          "mapping": {
+            "type": "ip"
+          }
+        }
+      },
+      {
         "guid_fields": {
           "mapping": {
             "type": "keyword"
@@ -39,6 +47,12 @@
       "@version": {
         "type": "keyword"
       },
+      "event_data": {
+        "type": "object"
+      },
+      "ips": {
+        "type": "ip"
+      },
       "prospector": {
         "properties": {
           "type": {
@@ -46,6 +60,23 @@
           }
         },
         "type": "object"
+      },
+      "source_geo": {
+        "dynamic": true,
+        "properties": {
+          "location": {
+            "type": "geo_point"
+          },
+          "latitude": {
+            "type": "half_float"
+          },
+          "longitude": {
+            "type": "half_float"
+          },
+          "asn": {
+            "type": "integer"
+          }
+        }
       },
       "type": {
         "type": "keyword"

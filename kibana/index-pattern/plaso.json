@@ -1,7 +1,13 @@
 {
   "attributes": {
-    "title": "plaso-*",
-    "timeFieldName": "@timestamp"
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "plaso-*"
   },
-  "references": []
+  "id": "plaso",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
 }

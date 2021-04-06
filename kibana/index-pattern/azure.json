@@ -1,7 +1,13 @@
 {
   "attributes": {
-    "title": "azure-*",
-    "timeFieldName": "@timestamp"
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "azure-*"
   },
-  "references": []
+  "id": "azure",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
 }

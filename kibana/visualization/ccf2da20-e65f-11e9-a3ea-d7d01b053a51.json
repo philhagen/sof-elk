@@ -1,20 +1,25 @@
 {
   "attributes": {
-    "title": "Login Results",
-    "visState": "{\"title\":\"Login Results\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true,\"truncate\":100},\"dimensions\":{\"metric\":{\"accessor\":0,\"format\":{\"id\":\"number\"},\"params\":{},\"aggType\":\"count\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"login_result.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":5,\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Login Result\"}}]}",
-    "uiStateJSON": "{}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "Login Results",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Login Result\",\"field\":\"login_result.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"size\":5},\"schema\":\"segment\",\"type\":\"terms\"}],\"params\":{\"addLegend\":true,\"addTooltip\":true,\"dimensions\":{\"metric\":{\"accessor\":0,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"params\":{}}},\"isDonut\":true,\"labels\":{\"last_level\":true,\"show\":false,\"truncate\":100,\"values\":true},\"legendPosition\":\"right\",\"type\":\"pie\"},\"title\":\"Login Results\",\"type\":\"pie\"}"
   },
+  "id": "ccf2da20-e65f-11e9-a3ea-d7d01b053a51",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
       "name": "search_0",
-      "type": "search",
-      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d"
+      "type": "search"
     }
-  ]
+  ],
+  "type": "visualization"
 }

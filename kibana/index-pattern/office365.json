@@ -1,7 +1,13 @@
 {
   "attributes": {
-    "title": "office365-*",
-    "timeFieldName": "@timestamp"
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "office365-*"
   },
-  "references": []
+  "id": "office365",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
 }

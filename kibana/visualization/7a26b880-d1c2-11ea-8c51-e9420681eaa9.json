@@ -1,20 +1,25 @@
 {
   "attributes": {
-    "title": "DNS Query Types",
-    "visState": "{\"title\":\"DNS Query Types\",\"type\":\"pie\",\"params\":{\"addLegend\":true,\"addTooltip\":true,\"dimensions\":{\"metric\":{\"accessor\":1,\"format\":{\"id\":\"number\"},\"params\":{},\"aggType\":\"count\"},\"buckets\":[{\"accessor\":0,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\"}},\"params\":{},\"aggType\":\"terms\"},{\"accessor\":2,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\"}},\"params\":{},\"aggType\":\"terms\"}]},\"isDonut\":true,\"labels\":{\"last_level\":true,\"show\":false,\"truncate\":100,\"values\":true},\"legendPosition\":\"top\",\"type\":\"pie\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"rrclass.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":10,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Query Class\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"querytype.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":10,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Query Type\"}}]}",
-    "uiStateJSON": "{}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"filter\":[]}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "DNS Query Types",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Query Class\",\"field\":\"rrclass.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":10},\"schema\":\"segment\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Query Type\",\"field\":\"querytype.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":10},\"schema\":\"segment\",\"type\":\"terms\"}],\"params\":{\"addLegend\":true,\"addTooltip\":true,\"dimensions\":{\"buckets\":[{\"accessor\":0,\"aggType\":\"terms\",\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"missingBucketLabel\":\"Missing\",\"otherBucketLabel\":\"Other\"}},\"params\":{}},{\"accessor\":2,\"aggType\":\"terms\",\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"missingBucketLabel\":\"Missing\",\"otherBucketLabel\":\"Other\"}},\"params\":{}}],\"metric\":{\"accessor\":1,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"params\":{}}},\"isDonut\":true,\"labels\":{\"last_level\":true,\"show\":false,\"truncate\":100,\"values\":true},\"legendPosition\":\"top\",\"type\":\"pie\"},\"title\":\"DNS Query Types\",\"type\":\"pie\"}"
   },
+  "id": "7a26b880-d1c2-11ea-8c51-e9420681eaa9",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
       "name": "search_0",
-      "type": "search",
-      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d"
+      "type": "search"
     }
-  ]
+  ],
+  "type": "visualization"
 }

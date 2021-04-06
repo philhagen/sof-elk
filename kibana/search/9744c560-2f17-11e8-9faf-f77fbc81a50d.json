@@ -1,8 +1,5 @@
 {
   "attributes": {
-    "title": "HTTPD Discovery",
-    "description": "",
-    "hits": 0,
     "columns": [
       "source_ip",
       "request_method",
@@ -10,13 +7,30 @@
       "request",
       "response_code"
     ],
-    "sort": [
-      "@timestamp",
-      "desc"
-    ],
+    "description": "",
+    "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"index\":\"httpdlog\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [
+      [
+        "@timestamp",
+        "desc"
+      ]
+    ],
+    "title": "HTTPD Discovery",
+    "version": 1
   },
-  "references": []
+  "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "search"
 }

@@ -11,8 +11,7 @@
     state: present
   with_items:
     - logstash-input-relp
-# VERSION CONFLICT - IGNORING FOR NOW
-#    - logstash-filter-tld
+    - logstash-filter-tld
     - logstash-filter-rest
     - logstash-filter-json_encode
     - logstash-filter-cidr

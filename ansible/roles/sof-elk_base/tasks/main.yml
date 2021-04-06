@@ -94,14 +94,6 @@
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
   tags: sof-elk_base
 
-- name: Edit rc.local to update IP address in login banner
-  blockinfile:
-    path: /etc/rc.local
-    block: |
-      # get current IP address and replace the pre-auth text template accordingly
-      IP=$( ip address show $( ip route|grep default | awk '{print $5}' ) | awk '/inet / {print $2}' | cut -d '/' -f 1 )
-      cat /etc/issue.stock | sed -e "s/<%IP%>/$IP/" > /etc/issue
-
 - name: Set up login banner text files
   copy:
     src: '{{ item.src }}'
@@ -110,7 +102,6 @@
     group: root
     mode: 0644
   with_items:
-    - { src: 'issue.stock', dest: '/etc/issue.stock' }
     - { src: 'issue.prep', dest: '/etc/issue.prep' }
   tags: sof-elk_base
 
@@ -136,6 +127,15 @@
     dest: '/etc/logrotate.conf'
     regex: '^compress'
     line: 'compress'
+  tags: sof-elk_base
+
+- name: Create geoip database directory
+  file:
+    path: '/usr/local/share/GeoIP'
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
   tags: sof-elk_base
 
 - name: Check out SOF-ELK repo
@@ -170,20 +170,22 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/post_merge.sh', dest: '/usr/local/sbin/post_merge.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_clear.py', dest: '/usr/local/sbin/sof-elk_clear.py' }
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_update.sh', dest: '/usr/local/sbin/sof-elk_update.sh' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update.sh', dest: '/usr/local/sbin/geoip_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/30-sof-elk', dest: '/etc/NetworkManager/dispatcher.d/30-sof-elk' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/issueupdate.sh', dest: '/etc/dhcp/dhclient.d/issueupdate.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
  #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
-- name: Create geoip database directory
-  file:
-    path: '/usr/local/share/GeoIP'
-    owner: root
-    group: root
-    mode: 0755
-    state: directory
+- name: Install empty GeoIP databases
+  copy:
+    src: /usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty-GeoLite2-{{ item }}.mmdb
+    dest: /usr/local/share/GeoIP/GeoLite2-{{ item }}.mmdb
+    remote_src: yes
+  with_items:
+    - ASN
+    - City
+    - Country
   tags: sof-elk_base
 
 - name: Install default GeoIP configuration
@@ -193,16 +195,6 @@
     owner: root
     group: root
     mode: 0644
-  tags: sof-elk_base
-
-- name: Enable geoip updates
-  file:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-    state: link
-  with_items:
-    - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/geoip_update.cron', dest: '/etc/cron.d/geoip_update.cron' }
- #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
 - name: Install templated GeoIP configuration to perform download

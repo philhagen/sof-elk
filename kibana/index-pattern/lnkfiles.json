@@ -1,7 +1,13 @@
 {
   "attributes": {
-    "title": "lnkfiles-*",
-    "timeFieldName": "@timestamp"
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "lnkfiles-*"
   },
-  "references": []
+  "id": "lnkfiles",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
 }

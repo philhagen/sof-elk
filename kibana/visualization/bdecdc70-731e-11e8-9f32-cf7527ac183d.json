@@ -1,12 +1,17 @@
 {
   "attributes": {
-    "title": "SOF-ELK® VM Intro",
-    "visState": "{\"title\":\"SOF-ELK® VM Intro\",\"type\":\"markdown\",\"params\":{\"fontSize\":11,\"openLinksInNewTab\":false,\"markdown\":\"## Welcome to the SOF-ELK® (Security Operations and Forensics Elasticsearch/Logstash/Kibana) distribution\\n\\nThis VMware image was created with a fully functional ELK configuration.  The VM will ingest various log formats, and includes several dashboards to present the data in useful formats.  While this version of the VM was created specifically for the SANS DFIR FOR572 class, it is maintained as community resource.\\n\\nSee the blocks at the bottom of this page to learn more about which types of data the VM is preconfigured to ingest and how to feed it.\"},\"aggs\":[]}",
-    "uiStateJSON": "{}",
     "description": "",
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[]}"
-    }
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"lucene\",\"query\":\"\"}}"
+    },
+    "title": "SOF-ELK® VM Intro",
+    "uiStateJSON": "{}",
+    "visState": "{\"aggs\":[],\"params\":{\"fontSize\":11,\"markdown\":\"## Welcome to the SOF-ELK® (Security Operations and Forensics Elasticsearch/Logstash/Kibana) distribution\\n\\nThis VMware image was created with a fully functional ELK configuration. The VM will ingest various log formats, and includes several dashboards to present the data in useful formats. While this version of the VM was created specifically for the SANS DFIR FOR572 class, it is maintained as community resource.\\n\\nSee the blocks at the bottom of this page to learn more about which types of data the VM is preconfigured to ingest and how to feed it.\",\"openLinksInNewTab\":false},\"title\":\"SOF-ELK® VM Intro\",\"type\":\"markdown\"}"
   },
-  "references": []
+  "id": "bdecdc70-731e-11e8-9f32-cf7527ac183d",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "visualization"
 }

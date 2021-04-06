@@ -1,20 +1,25 @@
 {
   "attributes": {
-    "title": "Syslog Destination IP Addresses",
-    "visState": "{\"title\":\"Syslog Destination IP Addresses\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMetricsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"percentageCol\":\"\",\"dimensions\":{\"metrics\":[{\"accessor\":1,\"format\":{\"id\":\"number\"},\"params\":{},\"aggType\":\"count\"}],\"buckets\":[{\"accessor\":0,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"ip\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\"}},\"params\":{},\"aggType\":\"terms\"}]}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"destination_ip\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":10,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Destination IP\"}}]}",
-    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "Syslog Destination IP Addresses",
+    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Destination IP\",\"field\":\"destination_ip\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":10},\"schema\":\"bucket\",\"type\":\"terms\"}],\"params\":{\"dimensions\":{\"buckets\":[{\"accessor\":0,\"aggType\":\"terms\",\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"ip\",\"missingBucketLabel\":\"Missing\",\"otherBucketLabel\":\"Other\"}},\"params\":{}}],\"metrics\":[{\"accessor\":1,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"params\":{}}]},\"perPage\":10,\"percentageCol\":\"\",\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showToolbar\":true,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"Syslog Destination IP Addresses\",\"type\":\"table\"}"
   },
+  "id": "5133f520-d1ca-11ea-8c51-e9420681eaa9",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
       "name": "search_0",
-      "type": "search",
-      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d"
+      "type": "search"
     }
-  ]
+  ],
+  "type": "visualization"
 }

@@ -1,20 +1,25 @@
 {
   "attributes": {
-    "title": "HTTP User Agents",
-    "visState": "{\"title\":\"HTTP User Agents\",\"type\":\"table\",\"params\":{\"perPage\":7,\"showPartialRows\":false,\"showMetricsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"percentageCol\":\"\",\"dimensions\":{\"metrics\":[{\"accessor\":1,\"format\":{\"id\":\"number\"},\"params\":{},\"aggType\":\"count\"}],\"buckets\":[{\"accessor\":0,\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"otherBucketLabel\":\"Other\",\"missingBucketLabel\":\"Missing\"}},\"params\":{},\"aggType\":\"terms\"}]}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Records\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"useragent.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":20,\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"HTTP User Agent\"}}]}",
-    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "HTTP User Agents",
+    "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Records\"},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"HTTP User Agent\",\"field\":\"useragent.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"size\":20},\"schema\":\"bucket\",\"type\":\"terms\"}],\"params\":{\"dimensions\":{\"buckets\":[{\"accessor\":0,\"aggType\":\"terms\",\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"string\",\"missingBucketLabel\":\"Missing\",\"otherBucketLabel\":\"Other\"}},\"params\":{}}],\"metrics\":[{\"accessor\":1,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"params\":{}}]},\"perPage\":7,\"percentageCol\":\"\",\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showToolbar\":true,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"HTTP User Agents\",\"type\":\"table\"}"
   },
+  "id": "b2d27890-e654-11e9-a3ea-d7d01b053a51",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
       "name": "search_0",
-      "type": "search",
-      "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d"
+      "type": "search"
     }
-  ]
+  ],
+  "type": "visualization"
 }

@@ -1,20 +1,25 @@
 {
   "attributes": {
-    "title": "Azure Activity Log Operations",
-    "visState": "{\"title\":\"Azure Activity Log Operations\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true,\"truncate\":100},\"dimensions\":{\"metric\":{\"accessor\":0,\"format\":{\"id\":\"number\"},\"params\":{},\"label\":\"Count\",\"aggType\":\"count\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"event_category.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":15,\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Event Category\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"operation_name.keyword\",\"orderBy\":\"1\",\"order\":\"desc\",\"size\":15,\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"customLabel\":\"Operation Name\"}}]}",
-    "uiStateJSON": "{}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "Azure Activity Log Operations",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Event Category\",\"field\":\"event_category.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":15},\"schema\":\"segment\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Operation Name\",\"field\":\"operation_name.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"size\":15},\"schema\":\"segment\",\"type\":\"terms\"}],\"params\":{\"addLegend\":true,\"addTooltip\":true,\"dimensions\":{\"metric\":{\"accessor\":0,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"label\":\"Count\",\"params\":{}}},\"isDonut\":true,\"labels\":{\"last_level\":true,\"show\":false,\"truncate\":100,\"values\":true},\"legendPosition\":\"right\",\"type\":\"pie\"},\"title\":\"Azure Activity Log Operations\",\"type\":\"pie\"}"
   },
+  "id": "afda9520-2873-11eb-bf98-fb32763e0d19",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "c80386c0-286e-11eb-bf98-fb32763e0d19",
       "name": "search_0",
-      "type": "search",
-      "id": "c80386c0-286e-11eb-bf98-fb32763e0d19"
+      "type": "search"
     }
-  ]
+  ],
+  "type": "visualization"
 }

@@ -1,7 +1,13 @@
 {
   "attributes": {
-    "title": "evtxlogs-*",
-    "timeFieldName": "@timestamp"
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "evtxlogs-*"
   },
-  "references": []
+  "id": "evtxlogs",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
 }

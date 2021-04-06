@@ -4,8 +4,8 @@
 
 # Enter your account ID and license key below. These are available from
 # https://www.maxmind.com/en/my_license_key.
-AccountID 0
-LicenseKey 00000000
+AccountID <%ACCOUNT_ID%>
+LicenseKey <%LICENSE_KEY%>
 
 # Enter the edition IDs of the databases you would like to update.
 # Multiple edition IDs are separated by spaces.

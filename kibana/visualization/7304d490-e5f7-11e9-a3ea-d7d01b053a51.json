@@ -1,20 +1,25 @@
 {
   "attributes": {
-    "title": "HTTPD Log Count",
-    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"HTTPD Records\"},\"schema\":\"metric\",\"type\":\"count\"}],\"params\":{\"addLegend\":false,\"addTooltip\":true,\"dimensions\":{\"metrics\":[{\"accessor\":0,\"format\":{\"id\":\"number\",\"params\":{}},\"type\":\"vis_dimension\"}]},\"metric\":{\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":10000,\"type\":\"range\"}],\"invertColors\":false,\"labels\":{\"show\":true},\"metricColorMode\":\"None\",\"percentageMode\":false,\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":36,\"labelColor\":false,\"subText\":\"\"},\"useRanges\":false},\"type\":\"metric\"},\"title\":\"HTTPD Log Count\",\"type\":\"metric\"}",
-    "uiStateJSON": "{}",
     "description": "",
-    "version": 1,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"filter\":[]}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "savedSearchRefName": "search_0"
+    "savedSearchRefName": "search_0",
+    "title": "HTTPD Log Count",
+    "uiStateJSON": "{}",
+    "version": 1,
+    "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"HTTPD Records\"},\"schema\":\"metric\",\"type\":\"count\"}],\"params\":{\"addLegend\":false,\"addTooltip\":true,\"dimensions\":{\"metrics\":[{\"accessor\":0,\"format\":{\"id\":\"number\",\"params\":{}},\"type\":\"vis_dimension\"}]},\"metric\":{\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":10000,\"type\":\"range\"}],\"invertColors\":false,\"labels\":{\"show\":true},\"metricColorMode\":\"None\",\"percentageMode\":false,\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":36,\"labelColor\":false,\"subText\":\"\"},\"useRanges\":false},\"type\":\"metric\"},\"title\":\"HTTPD Log Count\",\"type\":\"metric\"}"
   },
+  "id": "7304d490-e5f7-11e9-a3ea-d7d01b053a51",
+  "namespaces": [
+    "default"
+  ],
   "references": [
     {
+      "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
       "name": "search_0",
-      "type": "search",
-      "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d"
+      "type": "search"
     }
-  ]
+  ],
+  "type": "visualization"
 }

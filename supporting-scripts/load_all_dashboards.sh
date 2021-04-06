@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2021 Lewes Technology Consulting, LLC
 #
 # This script is used to load all dashboards, visualizations, saved searches, and index patterns to Kibana
 
@@ -38,38 +38,16 @@ for es_template_file in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template
     curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_template/${es_template} -d @${es_template_file} > /dev/null
 done
 
-# set the default index pattern, time zone, and add TZ offset to the default date format 
-curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/_doc/config:${kibana_version} -d "{\"config\": {\"buildNum\": ${kibana_build}, \"telemetry:optIn\": false, \"defaultIndex\": \"logstash\", \"dateFormat\": \"YYYY-MM-DD HH:mm:ss.SSS Z\", \"dateFormat:tz\": \"UTC\"}}" > /dev/null
+# set the default index pattern, time zone, and add TZ offset to the default date format, and other custom Kibana settings
+curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/_doc/config:${kibana_version} -d @${kibana_file_dir}/sof-elk_config.json > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
-# insert/update dashboard definitions
-for dashboardfile in ${kibana_file_dir}/dashboard/*.json; do
-    DASHID=$( basename ${dashboardfile} | sed -e 's/\.json$//' )
-
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}?overwrite=true" -d @${dashboardfile} > /dev/null
-done
-
-# insert/update visualization definitions
-for visualizationfile in ${kibana_file_dir}/visualization/*.json; do
-    VISUALIZATIONID=$( basename ${visualizationfile} | sed -e 's/\.json$//' )
-
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/visualization/${VISUALIZATIONID}?overwrite=true" -d @${visualizationfile} > /dev/null
-done
-
-# insert/update search definitions
-for searchfile in ${kibana_file_dir}/search/*.json; do
-    SEARCHID=$( basename ${searchfile} | sed -e 's/\.json$//' )
-
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/search/${SEARCHID}?overwrite=true" -d @${searchfile} > /dev/null
-done
-
+# replace index patterns
+# these must be inserted FIRST becuase they are the basis for the other stored objects' references
 for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
     INDEXPATTERNID=$( basename ${indexpatternfile} | sed -e 's/\.json$//' )
-
-    # create a temp file to hold the reconstructed index-pattern
-    TMPFILE=$( mktemp )
 
     # reconstruct the new index-pattern with the proper fields and fieldFormatMap values
     if [ -f ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json ]; then
@@ -83,23 +61,34 @@ for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
         fieldformatmap=0
     fi
 
-    if [ ${fieldformatmap} == 1 ]; then
-       cat ${indexpatternfile} | jq --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -sc '.' )" --arg fieldformatmap "$( cat ${kibana_file_dir}/index-pattern/fieldformats/${INDEXPATTERNID}.json | jq -c 'from_entries' )" '.attributes += { fields: $fields, fieldFormatMap: $fieldformatmap }' > ${TMPFILE}
+    # create temp files to hold the reconstructed index-pattern
+    TMPFILE=$( mktemp )
+    TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
 
-    else
-        # TODO: there should always be fields - assuming that is the case here
-        cat ${indexpatternfile} | jq --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -sc '.' )" '.attributes += { fields: $fields }' > ${TMPFILE}
+    cat ${indexpatternfile} | jq -c '.' > ${TMPNDJSONFILE}
+
+    if [ ${fields} == 1 ]; then
+        cat ${TMPNDJSONFILE} | jq -c --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -c '.' )" '.attributes += { fields: $fields }' > ${TMPFILE}
+        cat ${TMPFILE} > ${TMPNDJSONFILE}
     fi
-
-    # if for some strange reason the index-mapping object does not yet exist, create it
-    if [ $( curl -s -H 'kbn-xsrf: true' -w '%{http_code}' -o /dev/null -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" ) == 404 ]; then
-        curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" -d @${kibana_file_dir}/index-pattern/${INDEXPATTERNID}.json > /dev/null
+    if [ ${fieldformatmap} == 1 ]; then
+        cat ${TMPNDJSONFILE} | jq -c --arg fieldformatmap "$( cat ${kibana_file_dir}/index-pattern/fieldformats/${INDEXPATTERNID}.json | jq -c '.' )" '.attributes += { fieldFormatMap: $fieldformatmap }' > ${TMPFILE}
+        cat ${TMPFILE} > ${TMPNDJSONFILE}
     fi
 
     # update the index-mapping object
-    # NOTE! This will change with Elastic 7 TODO: Fix this when that upgrade occurs.... will need to revalidate all the APIs of course
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}?overwrite=true" -d @${TMPFILE} > /dev/null
+    curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
 
-    # remove the temp file
+    # remove the temp files
     rm -f ${TMPFILE}
+    rm -f ${TMPNDJSONFILE}
 done
+
+# insert/update dashboards, visualizations, maps, and searches
+# ORDER MATTERS!!! dependencies in the "references" field will cause failure to insert if the references are not already present
+TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
+for objecttype in visualization map search dashboard; do
+    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
+done
+curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
+rm -f ${TMPNDJSONFILE}
