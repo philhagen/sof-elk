@@ -1,8 +1,16 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2021 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository is updated
+
+# if a SKIP_HOOK variable is set to 1, don't do any of this
+# method from here: https://stackoverflow.com/a/33431504/1400064
+case ${SKIP_HOOK:-0} in
+1) exit 0;;
+0) ;;
+*) ;; # this should never happen
+esac
 
 # activate all "supported" Logstash configuration files
 for file in $( ls -1 /usr/local/sof-elk/configfiles/* 2> /dev/null ) ; do
