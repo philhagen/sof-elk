@@ -1,0 +1,7 @@
+{
+    "attributes": {
+      "title": "aws-*",
+      "timeFieldName": "@timestamp"
+    },
+    "references": []
+  }
