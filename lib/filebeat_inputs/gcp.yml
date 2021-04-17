@@ -18,7 +18,7 @@
     # this is important - it's as the [type] field in Logstash
     type: gcp
   tags: [ 'json' ]
-  exclude_lines: ['^[\[\]$']
+  exclude_lines: ['^[\[\]]$']
   multiline.type: pattern
   multiline.pattern: "^  {$"
   multiline.negate: true
