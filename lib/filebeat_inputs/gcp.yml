@@ -1,0 +1,20 @@
+# SOF-ELK® Configuration File
+# (C)2021 Lewes Technology Consulting, LLC
+#
+# This is a sample Filebeat prospector file that looks into the /logstash/gcp/ directory for files to load.
+# These are sent to localhost:5044, where Logstash is listening.
+
+- type: log
+  paths:
+    - /logstash/gcp/*/*/*/*/*.json
+    - /logstash/gcp/*/*/*/*.json
+    - /logstash/gcp/*/*/*.json
+    - /logstash/gcp/*/*.json
+    - /logstash/gcp/*.json
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    # this is important - it's as the [type] field in Logstash
+    type: gcp
+  tags: [ 'json' ]
