@@ -1,0 +1,14 @@
+{
+    "attributes": {
+      "fieldAttrs": "{}",
+      "timeFieldName": "@timestamp",
+      "title": "gcp-*"
+    },
+    "id": "gcp",
+    "namespaces": [
+      "default"
+    ],
+    "references": [],
+    "type": "index-pattern"
+  }
+  
