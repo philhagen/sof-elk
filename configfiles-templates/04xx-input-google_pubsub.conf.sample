@@ -1,0 +1,34 @@
+# SOF-ELK® Configuration File
+# (C)2021 Lewes Technology Consulting, LLC
+#
+# This template file can be used to build inputs for Google Cloud Platform
+# (GCP) sources using the pub/sub method.
+
+# To use this file:
+# 1. Create a copy and place it in the /etc/logstash/conf.d/ directory.
+#    Rename the new file with an incremental number and remove the ".sample"
+#    suffix.  For example: "0400-input-google_pubsub.conf". Use file
+#    permissions of at least 0444.
+# 2. From your GCP account, follow the platform's instructions to create a
+#    service account (https://cloud.google.com/solutions/exporting-stackdriver-logging-elasticsearch).
+# 3. Using the project_id name (not number), subscription name, topic, and
+#    the JSON key generated using the GCP instructions, uncomment and populate
+# 4. If you wish to use multiple inputs, add additional input {} stanzas in
+#    this file or create additional files. Using incremental numbers in the
+#    filename is recommended but not required (e.g. they could all be
+#    "0400-...conf" without affecting functionality.)
+#    the contents of the copy of this file template.  Complete all template
+#    fields.  Note that the "tags" field is optional and the "type" field"
+#    MUST be "gcp"
+# 5. Restart the logstash service
+
+input {
+#  google_pubsub {
+#    project_id => "<%PROJECT_ID%>"
+#    topic => "<%TOPIC_NAME%>"
+#    subscription => "<%SUBSCRIPTION_NAME%>"
+#    json_key_file => "/path/to/gcp-es-service-account.json"
+#    type => "gcp"
+#    tags => [ "json" ]
+#  }
+}
