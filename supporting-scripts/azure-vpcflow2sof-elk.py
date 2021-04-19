@@ -159,7 +159,7 @@ if os.path.isfile(args.outfile) and args.append == False:
 else:
     outfh = open(args.outfile, 'w')
 
-fileno = 1
+fileno = 0
 for infile in input_files:
     fileno = fileno + 1
     if args.verbose:
