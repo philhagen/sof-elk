@@ -38,7 +38,7 @@ def process_cloudtrail_file(infile, outfh):
         return
 
     for record in rawjson['Records']:
-        outfh.write('%s\n' % (record))
+        outfh.write('%s\n' % (json.dumps(record)))
 
 parser = argparse.ArgumentParser(description='Process AWS Cloudtrail logs into a format that SOF-ELK(R) can read, in ndjson form.')
 parser.add_argument('-r', '--read', dest='infile', help='AWS Cloudtrail log file to read, or a directory containing AWS Cloudtrail log files.  Files can be in native JSON or gzipped JSON.')
