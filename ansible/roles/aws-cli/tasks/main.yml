@@ -2,7 +2,7 @@
 # adapted from https://github.com/xchangebit/ansible-aws-cli
 - name: Install pip packages
   pip:
-    name: '{{ aws-cli_pip_modules }}'
+    name: '{{ aws_cli_pip_modules }}'
     executable: pip3
     state: present
   tags: aws-cli
