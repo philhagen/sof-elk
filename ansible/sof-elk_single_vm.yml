@@ -42,5 +42,8 @@
     - elastalert
     - domain_stats
     - freq
+    - aws-cli
+    - azure-cli
+    - gcp-cli
 
     - sof-elk_finalize
