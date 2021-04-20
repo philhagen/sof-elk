@@ -11,6 +11,7 @@
   stat:
     path: /usr/local/bin/aws
   register: aws_binary
+  tags: aws-cli
 
 - name: Download the awscli bundle
   get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscli-bundle.zip
@@ -29,3 +30,4 @@
   args:
     creates: /usr/bin/aws
   when: aws_cli_unarchive_installer|bool
+  tags: aws-cli
