@@ -10,7 +10,7 @@
 - name: Check to see if aws binary exists
   stat:
     path: /usr/local/bin/aws
-register: aws_binary
+  register: aws_binary
 
 - name: Download the awscli bundle
   get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscli-bundle.zip
