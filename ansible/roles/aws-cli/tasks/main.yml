@@ -39,4 +39,5 @@
   with_items:
     - /tmp/aws
     - /tmp/awscli-bundle.zip
-   tags: aws-cli
+  when: aws_cli_download_bundle.changed or aws_cli_unarchive_installer.changed
+  tags: aws-cli

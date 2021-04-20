@@ -45,5 +45,6 @@
     - aws-cli
     - azure-cli
     - gcp-cli
+    - powershell
 
     - sof-elk_finalize
