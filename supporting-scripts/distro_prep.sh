@@ -59,9 +59,23 @@ echo "cleaning yum caches"
 yum clean all --enablerepo=elk-*
 rm -rf /var/cache/yum
 
-echo "cleaning user histories"
+echo "cleaning user home directories"
 rm -f ~root/.bash_history
 rm -f ~elk_user/.bash_history
+rm -f ~root/.python_hisory
+rm -f ~elk_user/.python_history
+rm -f ~root/.lesshst
+rm -f ~elk_user/.lesshst
+rm -rf ~root/.local
+rm -rf ~elk_user/.local
+rm -rf ~root/.cache
+rm -rf ~elk_user/.cache
+rm -rf ~root/.config/htop
+rm -rf ~elk_user/.config/htop
+rm -rf ~root/.config/gcloud/logs
+rm -rf ~elk_user/.config/gcloud/logs
+rm -rf ~root/.vim
+rm -rf ~elk_user/.vim
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
 echo "cleaning temp directories"
