@@ -7,8 +7,14 @@
     state: present
   tags: aws-cli
 
+- name: Check to see if aws binary exists
+  stat:
+    path: /usr/local/bin/aws
+register: aws_binary
+
 - name: Download the awscli bundle
   get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscli-bundle.zip
+  when: not aws_binary.stat.exists
   register: aws_cli_download_bundle
   tags: aws-cli
 
