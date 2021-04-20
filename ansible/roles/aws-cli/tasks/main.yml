@@ -9,17 +9,17 @@
 
 - name: Download the awscli bundle
   get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscli-bundle.zip
-  register: aws_cli_download_bundle|bool
+  register: aws_cli_download_bundle
   tags: aws-cli
 
 - name: Unarchive the installer
   unarchive: src=/tmp/awscli-bundle.zip dest=/tmp copy=no creates=/tmp/aws
-  when: aws_cli_download_bundle
-  register: aws_cli_unarchive_installer|bool
+  when: aws_cli_download_bundle|bool
+  register: aws_cli_unarchive_installer
   tags: aws-cli
 
 - name: Install awscli package
   shell: /tmp/aws/install
   args:
     creates: /usr/bin/aws
-  when: aws_cli_unarchive_installer
+  when: aws_cli_unarchive_installer|bool
