@@ -22,3 +22,11 @@ curl -XPOST 'http://localhost:9200/_forcemerge?only_expunge_deletes=true'
 
 vim command to convert arrays to hashes:
 %s/convert => \[ "\(.\+\)", "\(.\+\)" \]/convert => { "\1" => "\2" }/
+
+Raw results in JSON (including event count per file):
+INDEX='logstash-*'
+curl -s -XGET -H "Content-Type: application/json" "http://127.0.0.1:9200/${INDEX}/_search" -d '{ "size": "0", "aggs": { "unique_filesource": { "terms": { "field": "log.file.path.keyword"}}}}’
+
+Just the filenames:
+INDEX='logstash-*'
+curl -s -XGET -H "Content-Type: application/json" "http://127.0.0.1:9200/%{INDEX}/_search" -d '{ "size": "0", "aggs": { "unique_filesource": { "terms": { "field": "log.file.path.keyword"}}}}'|jq -c '.aggregations.unique_filesource.buckets[].key’

@@ -9,10 +9,6 @@
 # Use -gt 1 to consume two arguments per pass in the loop (e.g. each argument has a corresponding value to go with it).
 # Use -gt 0 to consume one or more arguments per pass in the loop (e.g. some arguments don't have a corresponding value to go with it such as in the --default example).
 
-# bash function to echo to STDERR instead of STDOUT
-# source: https://stackoverflow.com/a/2990533/1400064
-echoerr() { echo "$@" 1>&2; }
-
 while [[ $# -gt 1 ]]; do
     key="$1"
 
@@ -32,6 +28,10 @@ while [[ $# -gt 1 ]]; do
     shift # past argument or value
 done
 
+# bash function to echo to STDERR instead of STDOUT
+# source: https://stackoverflow.com/a/2990533/1400064
+echoerr() { echo "$@" 1>&2; }
+
 if [[ $SOURCE_LOCATION == "" ]]; then
     echoerr ""
     echoerr "Please supply a source nfcapd filename or parent directory containing VPC Flow data"
@@ -50,6 +50,11 @@ EXPORTER_IP="0.0.0.0"
 if [ ! $( which jq ) ]; then
     echoerr "jq not found - exiting."
     exit 3
+fi
+# make sure realpath is available
+if [ ! $( which realpath ) ]; then
+    echoerr "realpath not found - exiting."
+    exit 1
 fi
 
 if [ ! -d "$SOURCE_LOCATION" -a ! -f "$SOURCE_LOCATION" ]; then
