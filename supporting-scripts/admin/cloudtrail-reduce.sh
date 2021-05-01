@@ -88,7 +88,7 @@ for READFILE in $READFILES; do
     if [ $COMPRESSED_FILE == 0 ]; then
         cat $READFILE | jq -crM '.Records[0].eventName' > /dev/null 2>&1
     elif [ $COMPRESSED_FILE == 1 ]; then
-        gzcat $READFILE | jq -crM '.Records[0].eventName' > /dev/null 2>&1
+        gunzip -c $READFILE | jq -crM '.Records[0].eventName' > /dev/null 2>&1
     fi
 
     TEST_RUN=$?
@@ -106,6 +106,6 @@ for READFILE in $READFILES; do
     if [ $COMPRESSED_FILE == 0 ]; then
         cat $READFILE | jq '.Records[] | select(.requestParameters.bucketName == null or .requestParameters.bucketName != "for509trails")' | jq -cn '.Records |= [inputs]' > $DESTINATION_LOCATION/$DIR_STRUCTURE/$FILENAME
     elif [ $COMPRESSED_FILE == 1 ]; then
-        gzcat $READFILE | jq '.Records[] | select(.requestParameters.bucketName == null or .requestParameters.bucketName != "for509trails")' | jq -cn '.Records |= [inputs]' | gzip -f > $DESTINATION_LOCATION/$DIR_STRUCTURE/$FILENAME
+        gunzip -c $READFILE | jq '.Records[] | select(.requestParameters.bucketName == null or .requestParameters.bucketName != "for509trails")' | jq -cn '.Records |= [inputs]' | gzip -f > $DESTINATION_LOCATION/$DIR_STRUCTURE/$FILENAME
     fi
 done
