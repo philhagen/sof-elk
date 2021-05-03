@@ -162,5 +162,6 @@ if [ $DISKSHRINK -eq 1 ]; then
     done
 fi
 
-echo "updating /etc/issue* files for boot message"
-cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue.stock
+echo "updating /etc/issue file for boot message"
+cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+rm -f /etc/issue.stock
