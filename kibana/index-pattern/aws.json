@@ -1,7 +1,13 @@
 {
-    "attributes": {
-      "title": "aws-*",
-      "timeFieldName": "@timestamp"
-    },
-    "references": []
-  }
+  "attributes": {
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "aws-*"
+  },
+  "id": "aws",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
+}
