@@ -6,14 +6,14 @@
 #
 # To use a specified template or target configuration file export the
 # geoip_conf_update and/or geoip_conf_target variables before running this script
-# the /etc/GeoIP.conf.dist and /etc/GeoIP.conf filenames are the defaults
+# the /etc/GeoIP.conf.default and /etc/GeoIP.conf filenames are the defaults
 
 # requires:
 # - geoipupdate utility on $PATH
-# - template GeoIP.conf.dist identified in ${geoip_conf_template}
+# - template GeoIP.conf.default identified in ${geoip_conf_template}
 
 if [ -z ${geoip_conf_template} ]; then
-    geoip_conf_template="/etc/GeoIP.conf.dist"
+    geoip_conf_template="/etc/GeoIP.conf.default"
 fi
 if [ -z ${geoip_conf_target} ]; then
     geoip_conf_target="/etc/GeoIP.conf"
