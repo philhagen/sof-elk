@@ -8,7 +8,7 @@
 # - geoipupdate utility on $PATH
 # - template GeoIP.conf.dist identified in ${geoip_conf_template}
 
-geoip_conf_template="/etc//GeoIP.conf.default"
+geoip_conf_template="/etc/GeoIP.conf.default"
 geoip_conf_target="/etc/GeoIP.conf"
 
 if [[ $EUID -ne 0 ]]; then
