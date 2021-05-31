@@ -13,6 +13,7 @@
         chdir: "{{ playbook_dir }}"
       register: git_branch_result
       check_mode: no
+      delegate_to: 127.0.0.1
     - set_fact:
         git_branch: "{{ git_branch_result.stdout }}"
 
