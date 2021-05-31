@@ -10,6 +10,7 @@
     src: '/usr/local/sof-elk/lib/configfiles/filebeat.yml'
     dest: '/etc/filebeat/filebeat.yml'
     state: link
+    force: yes
   notify: restart filebeat
   tags: sof-elk_filebeat
 
