@@ -60,3 +60,6 @@ NOTPIPE [^|]+
 
 # guid
 GUID [0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}
+
+# S3 Bucket Name hash
+AWSACCOUNTID (?:[0-9a-fA-f]{64}|[0-9]{12}|arn:%{NOTSPACE}|-)
