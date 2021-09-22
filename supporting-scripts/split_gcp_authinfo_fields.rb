@@ -34,7 +34,7 @@ def filter(event)
         if item.key?(@key_field)
             new_key = item[@key_field]
             unless output.key?(new_key)
-                output[pemission] = Array.new()
+                output[new_key] = Array.new()
             end
 
             new_value = Hash.new()
