@@ -32,6 +32,7 @@
     - office365
     - azure
     - aws
+    - gcp
   notify: restart filebeat
   tags: sof-elk_filebeat
 
