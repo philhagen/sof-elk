@@ -4,6 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "netflow-*"
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "netflow",
   "namespaces": [
     "default"

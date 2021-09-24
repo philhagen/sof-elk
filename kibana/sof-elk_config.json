@@ -1,11 +1,19 @@
 {
     "config": {
-        "telemetry:optIn": false,
-        "defaultIndex": "logstash",
-        "dateFormat": "YYYY-MM-DD HH:mm:ss.SSS Z",
-        "dateFormat:tz": "UTC",
-        "securitySolution:enableNewsFeed": false,
-        "securitySolution:ipReputationLinks": "[{ \"name\": \"virustotal.com\", \"url_template\": \"https://www.virustotal.com/gui/search/{{ip}}\" }, { \"name\": \"talosIntelligence.com\", \"url_template\": \"https://talosintelligence.com/reputation_center/lookup?search={{ip}}\" }, { \"name\": \"SANS ISC\", \"url_template\": \"https://isc.sans.edu/ipinfo.html?ip={{ip}}\" }]",
-        "defaultRoute": "/app/dashboards#/view/6d272a20-7319-11e8-9f32-cf7527ac183d"
-    }
+      "buildNum": 44040,
+      "dateFormat": "YYYY-MM-DD HH:mm:ss.SSS Z",
+      "dateFormat:tz": "UTC",
+      "dateNanosFormat": "YYYY-MM-DD HH:mm:ss.SSSSSSSSS Z",
+      "defaultIndex": "logstash",
+      "defaultRoute": "/app/dashboards#/view/6d272a20-7319-11e8-9f32-cf7527ac183d",
+      "securitySolution:enableNewsFeed": false,
+      "securitySolution:ipReputationLinks": "[{ \"name\": \"virustotal.com\", \"url_template\": \"https://www.virustotal.com/gui/search/{{ip}}\" }, { \"name\": \"talosIntelligence.com\", \"url_template\": \"https://talosintelligence.com/reputation_center/lookup?search={{ip}}\" }, { \"name\": \"SANS ISC\", \"url_template\": \"https://isc.sans.edu/ipinfo.html?ip={{ip}}\" }]"
+    },
+    "coreMigrationVersion": "7.15.0",
+    "migrationVersion": {
+      "config": "7.13.0"
+    },
+    "references": [],
+    "type": "config",
+    "updated_at": "2021-09-24T02:06:23.447Z"
 }

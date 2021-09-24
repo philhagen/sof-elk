@@ -6,6 +6,7 @@
     "title": "NetFlow Traffic Destination",
     "uiStateJSON": "{\"isLayerTOCOpen\":false,\"openTOCDetails\":[]}"
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "7d14c280-76db-11eb-9d54-294249e0048f",
   "namespaces": [
     "default"
