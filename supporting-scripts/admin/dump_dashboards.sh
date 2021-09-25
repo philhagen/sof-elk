@@ -81,6 +81,8 @@ done
 echo "Dumping Index Patterns"
 # get a list of all index-patterns and their content, separate out the fields and fieldformatmap
 for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    echo "Dumping Index Pattern: ${INDEXPATTERNID}"
+
     # get full index pattern definition
     TMPFILE=$( mktemp )
     curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" > ${TMPFILE} 2> /dev/null

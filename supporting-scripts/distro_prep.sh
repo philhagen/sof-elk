@@ -102,6 +102,21 @@ elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-pr
 echo "removing documents from the elasticsearch .kibana indexes"
 curl -s -H 'kbn-xsrd: true' -X DELETE "http://127.0.0.1:9200/.kibana*" > /dev/null
 
+echo "restarting kibana and waiting for it to be ready"
+systemctl restart kibana
+
+max_wait=60
+wait_step=0
+interval=2
+until curl -s -X GET http://${es_host}:${es_port}/_cluster/health > /dev/null ; do
+    wait_step=$(( ${wait_step} + ${interval} ))
+    if [ ${wait_step} -gt ${max_wait} ]; then
+        echo "ERROR: elasticsearch server not available for more than ${max_wait} seconds."
+        exit 5
+    fi
+    sleep ${interval}
+done
+
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 
