@@ -108,14 +108,16 @@ systemctl restart kibana
 max_wait=60
 wait_step=0
 interval=2
-until curl -s -X GET http://${es_host}:${es_port}/_cluster/health > /dev/null ; do
+until curl -s -X GET http://127.0.0.1:5601/_cluster/health > /dev/null ; do
     wait_step=$(( ${wait_step} + ${interval} ))
     if [ ${wait_step} -gt ${max_wait} ]; then
-        echo "ERROR: elasticsearch server not available for more than ${max_wait} seconds."
+        echo "ERROR: kibana not available for more than ${max_wait} seconds."
         exit 5
     fi
+    echo -n "."
     sleep ${interval}
 done
+echo
 
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
