@@ -21,7 +21,7 @@ server.host: "0.0.0.0"
 
 # Specifies the public URL at which Kibana is available for end users. If
 # `server.basePath` is configured this URL should end with the same basePath.
-#server.publicBaseUrl: ""
+#server.publicBaseUrl: "http://sof-elk"
 
 # The maximum payload size in bytes for incoming server requests.
 #server.maxPayload: 1048576
