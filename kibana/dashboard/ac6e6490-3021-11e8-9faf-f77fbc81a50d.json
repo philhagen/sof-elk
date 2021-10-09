@@ -6,11 +6,12 @@
       "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
     "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":56,\"i\":\"2\",\"w\":48,\"x\":0,\"y\":29},\"panelIndex\":\"2\",\"panelRefName\":\"panel_0\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1\",\"panelRefName\":\"panel_1\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"57fc8778-2322-4200-97ff-93478ec86a4c\",\"w\":16,\"x\":0,\"y\":14},\"panelIndex\":\"57fc8778-2322-4200-97ff-93478ec86a4c\",\"panelRefName\":\"panel_2\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"67bcdae0-bcc3-44f0-a32e-319025530347\",\"w\":16,\"x\":16,\"y\":14},\"panelIndex\":\"67bcdae0-bcc3-44f0-a32e-319025530347\",\"panelRefName\":\"panel_3\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":6,\"i\":\"dd74a074-e482-4016-a990-763c236953b6\",\"w\":16,\"x\":32,\"y\":14},\"panelIndex\":\"dd74a074-e482-4016-a990-763c236953b6\",\"panelRefName\":\"panel_4\",\"version\":\"7.11.1\"}]",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":56,\"i\":\"2\",\"w\":48,\"x\":0,\"y\":29},\"panelIndex\":\"2\",\"panelRefName\":\"panel_2\",\"type\":\"search\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1\",\"panelRefName\":\"panel_85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"57fc8778-2322-4200-97ff-93478ec86a4c\",\"w\":16,\"x\":0,\"y\":14},\"panelIndex\":\"57fc8778-2322-4200-97ff-93478ec86a4c\",\"panelRefName\":\"panel_57fc8778-2322-4200-97ff-93478ec86a4c\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"67bcdae0-bcc3-44f0-a32e-319025530347\",\"w\":16,\"x\":16,\"y\":14},\"panelIndex\":\"67bcdae0-bcc3-44f0-a32e-319025530347\",\"panelRefName\":\"panel_67bcdae0-bcc3-44f0-a32e-319025530347\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":6,\"i\":\"dd74a074-e482-4016-a990-763c236953b6\",\"w\":16,\"x\":32,\"y\":14},\"panelIndex\":\"dd74a074-e482-4016-a990-763c236953b6\",\"panelRefName\":\"panel_dd74a074-e482-4016-a990-763c236953b6\",\"type\":\"visualization\",\"version\":\"7.11.1\"}]",
     "timeRestore": false,
     "title": "Syslog Dashboard",
     "version": 1
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "ac6e6490-3021-11e8-9faf-f77fbc81a50d",
   "namespaces": [
     "default"
@@ -18,27 +19,27 @@
   "references": [
     {
       "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
-      "name": "panel_0",
+      "name": "2:panel_2",
       "type": "search"
     },
     {
       "id": "826d3d60-e5fb-11e9-a3ea-d7d01b053a51",
-      "name": "panel_1",
+      "name": "85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1:panel_85bb3e59-4f1f-4f95-8a55-bf5c0fb346d1",
       "type": "visualization"
     },
     {
       "id": "50424370-e5fc-11e9-a3ea-d7d01b053a51",
-      "name": "panel_2",
+      "name": "57fc8778-2322-4200-97ff-93478ec86a4c:panel_57fc8778-2322-4200-97ff-93478ec86a4c",
       "type": "visualization"
     },
     {
       "id": "02101b00-e5fc-11e9-a3ea-d7d01b053a51",
-      "name": "panel_3",
+      "name": "67bcdae0-bcc3-44f0-a32e-319025530347:panel_67bcdae0-bcc3-44f0-a32e-319025530347",
       "type": "visualization"
     },
     {
       "id": "bb663030-e5f7-11e9-a3ea-d7d01b053a51",
-      "name": "panel_4",
+      "name": "dd74a074-e482-4016-a990-763c236953b6:panel_dd74a074-e482-4016-a990-763c236953b6",
       "type": "visualization"
     }
   ],

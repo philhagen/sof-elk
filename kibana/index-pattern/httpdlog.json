@@ -4,6 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "httpdlog-*"
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "httpdlog",
   "namespaces": [
     "default"

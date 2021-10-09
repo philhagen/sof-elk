@@ -4,6 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "azure-*"
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "azure",
   "namespaces": [
     "default"

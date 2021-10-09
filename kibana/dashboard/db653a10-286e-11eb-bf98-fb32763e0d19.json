@@ -6,11 +6,12 @@
       "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
     "optionsJSON": "{\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"b1df7e58-0fbd-4208-ac92-f5b9815db536\",\"w\":20,\"x\":0,\"y\":0},\"panelIndex\":\"b1df7e58-0fbd-4208-ac92-f5b9815db536\",\"panelRefName\":\"panel_0\",\"version\":\"7.6.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"18d9606b-caa9-4ce3-a4d1-e4375301d85e\",\"w\":16,\"x\":20,\"y\":0},\"panelIndex\":\"18d9606b-caa9-4ce3-a4d1-e4375301d85e\",\"panelRefName\":\"panel_1\",\"version\":\"7.6.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"eb51bcec-673a-4816-856d-b0ca45c1e54c\",\"w\":12,\"x\":36,\"y\":0},\"panelIndex\":\"eb51bcec-673a-4816-856d-b0ca45c1e54c\",\"panelRefName\":\"panel_2\",\"version\":\"7.6.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"e2539797-73a5-402d-b83e-ffed95db312a\",\"w\":48,\"x\":0,\"y\":15},\"panelIndex\":\"e2539797-73a5-402d-b83e-ffed95db312a\",\"panelRefName\":\"panel_3\",\"version\":\"7.6.1\"}]",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"b1df7e58-0fbd-4208-ac92-f5b9815db536\",\"w\":20,\"x\":0,\"y\":0},\"panelIndex\":\"b1df7e58-0fbd-4208-ac92-f5b9815db536\",\"panelRefName\":\"panel_b1df7e58-0fbd-4208-ac92-f5b9815db536\",\"type\":\"visualization\",\"version\":\"7.6.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"18d9606b-caa9-4ce3-a4d1-e4375301d85e\",\"w\":16,\"x\":20,\"y\":0},\"panelIndex\":\"18d9606b-caa9-4ce3-a4d1-e4375301d85e\",\"panelRefName\":\"panel_18d9606b-caa9-4ce3-a4d1-e4375301d85e\",\"type\":\"visualization\",\"version\":\"7.6.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"eb51bcec-673a-4816-856d-b0ca45c1e54c\",\"w\":12,\"x\":36,\"y\":0},\"panelIndex\":\"eb51bcec-673a-4816-856d-b0ca45c1e54c\",\"panelRefName\":\"panel_eb51bcec-673a-4816-856d-b0ca45c1e54c\",\"type\":\"visualization\",\"version\":\"7.6.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"e2539797-73a5-402d-b83e-ffed95db312a\",\"w\":48,\"x\":0,\"y\":15},\"panelIndex\":\"e2539797-73a5-402d-b83e-ffed95db312a\",\"panelRefName\":\"panel_e2539797-73a5-402d-b83e-ffed95db312a\",\"type\":\"search\",\"version\":\"7.6.1\"}]",
     "timeRestore": false,
     "title": "Azure Activity Logs",
     "version": 1
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "db653a10-286e-11eb-bf98-fb32763e0d19",
   "namespaces": [
     "default"
@@ -18,22 +19,22 @@
   "references": [
     {
       "id": "18bf98f0-2870-11eb-bf98-fb32763e0d19",
-      "name": "panel_0",
+      "name": "b1df7e58-0fbd-4208-ac92-f5b9815db536:panel_b1df7e58-0fbd-4208-ac92-f5b9815db536",
       "type": "visualization"
     },
     {
       "id": "afda9520-2873-11eb-bf98-fb32763e0d19",
-      "name": "panel_1",
+      "name": "18d9606b-caa9-4ce3-a4d1-e4375301d85e:panel_18d9606b-caa9-4ce3-a4d1-e4375301d85e",
       "type": "visualization"
     },
     {
       "id": "4061ca00-2874-11eb-bf98-fb32763e0d19",
-      "name": "panel_2",
+      "name": "eb51bcec-673a-4816-856d-b0ca45c1e54c:panel_eb51bcec-673a-4816-856d-b0ca45c1e54c",
       "type": "visualization"
     },
     {
       "id": "c80386c0-286e-11eb-bf98-fb32763e0d19",
-      "name": "panel_3",
+      "name": "e2539797-73a5-402d-b83e-ffed95db312a:panel_e2539797-73a5-402d-b83e-ffed95db312a",
       "type": "search"
     }
   ],

@@ -20,6 +20,7 @@
     "title": "LNKfile Discovery",
     "version": 1
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "8d421a80-7a76-11e9-92d0-dfa499d9fb15",
   "namespaces": [
     "default"

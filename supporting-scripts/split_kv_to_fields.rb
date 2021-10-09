@@ -27,7 +27,7 @@ def filter(event)
     end
     source_array = event.get(@source_field)
 
-    # create empty hash
+    # create empty hash to hold new result
     output = Hash.new()
 
     for item in source_array

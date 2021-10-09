@@ -11,6 +11,7 @@
     state: present
   with_items:
     - logstash-input-relp
+    - logstash-input-google_pubsub
     - logstash-filter-tld
     - logstash-filter-rest
     - logstash-filter-json_encode

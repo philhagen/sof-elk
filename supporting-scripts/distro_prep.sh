@@ -59,9 +59,23 @@ echo "cleaning yum caches"
 yum clean all --enablerepo=elk-*
 rm -rf /var/cache/yum
 
-echo "cleaning user histories"
+echo "cleaning user home directories"
 rm -f ~root/.bash_history
 rm -f ~elk_user/.bash_history
+rm -f ~root/.python_hisory
+rm -f ~elk_user/.python_history
+rm -f ~root/.lesshst
+rm -f ~elk_user/.lesshst
+rm -rf ~root/.local
+rm -rf ~elk_user/.local
+rm -rf ~root/.cache
+rm -rf ~elk_user/.cache
+rm -rf ~root/.config/htop
+rm -rf ~elk_user/.config/htop
+rm -rf ~root/.config/gcloud/logs
+rm -rf ~elk_user/.config/gcloud/logs
+rm -rf ~root/.vim
+rm -rf ~elk_user/.vim
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
 echo "cleaning temp directories"
@@ -87,6 +101,23 @@ elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-pr
 
 echo "removing documents from the elasticsearch .kibana indexes"
 curl -s -H 'kbn-xsrd: true' -X DELETE "http://127.0.0.1:9200/.kibana*" > /dev/null
+
+echo "restarting kibana and waiting for it to be ready"
+systemctl restart kibana
+
+max_wait=60
+wait_step=0
+interval=2
+until curl -s -X GET http://127.0.0.1:5601/_cluster/health > /dev/null ; do
+    wait_step=$(( ${wait_step} + ${interval} ))
+    if [ ${wait_step} -gt ${max_wait} ]; then
+        echo "ERROR: kibana not available for more than ${max_wait} seconds."
+        exit 5
+    fi
+    echo -n "."
+    sleep ${interval}
+done
+echo
 
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
@@ -148,5 +179,6 @@ if [ $DISKSHRINK -eq 1 ]; then
     done
 fi
 
-echo "updating /etc/issue* files for boot message"
-cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue.stock
+echo "updating /etc/issue file for boot message"
+cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+rm -f /etc/issue.stock

@@ -6,11 +6,12 @@
       "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
     "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":38,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":10},\"panelIndex\":\"1\",\"panelRefName\":\"panel_0\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"w\":16,\"x\":0,\"y\":0},\"panelIndex\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"panelRefName\":\"panel_1\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"w\":16,\"x\":16,\"y\":0},\"panelIndex\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"panelRefName\":\"panel_2\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"w\":16,\"x\":32,\"y\":0},\"panelIndex\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"panelRefName\":\"panel_3\",\"version\":\"7.11.1\"}]",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":38,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":10},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"type\":\"search\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"w\":16,\"x\":0,\"y\":0},\"panelIndex\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"panelRefName\":\"panel_5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"w\":16,\"x\":16,\"y\":0},\"panelIndex\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"panelRefName\":\"panel_bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"w\":16,\"x\":32,\"y\":0},\"panelIndex\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"panelRefName\":\"panel_e9495c14-1879-4b57-a681-ba597fb576f8\",\"type\":\"visualization\",\"version\":\"7.11.1\"}]",
     "timeRestore": false,
     "title": "LNK File Dashboard",
     "version": 1
   },
+  "coreMigrationVersion": "7.15.0",
   "id": "52e0ec80-7a77-11e9-92d0-dfa499d9fb15",
   "namespaces": [
     "default"
@@ -18,22 +19,22 @@
   "references": [
     {
       "id": "8d421a80-7a76-11e9-92d0-dfa499d9fb15",
-      "name": "panel_0",
+      "name": "1:panel_1",
       "type": "search"
     },
     {
       "id": "ab54d000-e65d-11e9-a3ea-d7d01b053a51",
-      "name": "panel_1",
+      "name": "5d578338-7cc0-4ef9-9de0-39b51f6b0ddd:panel_5d578338-7cc0-4ef9-9de0-39b51f6b0ddd",
       "type": "visualization"
     },
     {
       "id": "c3cd7600-e65d-11e9-a3ea-d7d01b053a51",
-      "name": "panel_2",
+      "name": "bd4d4e00-246f-4b26-9b22-6223ebfb18e3:panel_bd4d4e00-246f-4b26-9b22-6223ebfb18e3",
       "type": "visualization"
     },
     {
       "id": "da395c10-e65d-11e9-a3ea-d7d01b053a51",
-      "name": "panel_3",
+      "name": "e9495c14-1879-4b57-a681-ba597fb576f8:panel_e9495c14-1879-4b57-a681-ba597fb576f8",
       "type": "visualization"
     }
   ],

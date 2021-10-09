@@ -22,12 +22,17 @@
     group: root
     mode: 01777
   with_items:
+    - syslog
     - nfarch
-    - zeek
     - httpd
     - passivedns
-    - syslog
+    - zeek
     - kape
+    - plaso
+    - office365
+    - azure
+    - aws
+    - gcp
   notify: restart filebeat
   tags: sof-elk_filebeat
 

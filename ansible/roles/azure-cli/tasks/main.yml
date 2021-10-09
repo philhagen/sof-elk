@@ -1,0 +1,31 @@
+---
+- name: Install pip packages
+  pip:
+    name: '{{ azure_pip_modules }}'
+    executable: pip3
+    state: present
+  tags: azure-cli
+
+- name: Add Azure Repository
+  yum_repository:
+    file: '{{ azure_repofile_path }}'
+    name: 'azure-cli'
+    description: 'Azure CLI repository'
+    baseurl: '{{ azure_repo_baseurl }}'
+    gpgcheck: yes
+    gpgkey: '{{ azure_repo_gpg_key_url }}'
+    enabled: yes
+  register: yum_repo_installed
+  tags: azure-cli
+
+- name: Import Azure GPG key
+  rpm_key:
+    key: '{{ azure_repo_gpg_key_url }}'
+    state: present
+  tags: azure-cli
+
+- name: Install Azure RPMs
+  yum:
+    name: '{{ azure_yum_packages }}'
+    state: present
+  tags: azure-cli

@@ -1,0 +1,24 @@
+---
+- name: Add Microsoft Prod Repository
+  yum_repository:
+    file: '{{ msprod_repofile_path }}'
+    name: 'microsoft-prod'
+    description: 'Microsoft Prod repository'
+    baseurl: '{{ msprod_repo_baseurl }}'
+    gpgcheck: yes
+    gpgkey: '{{ msprod_repo_gpg_key_url }}'
+    enabled: yes
+  register: yum_repo_installed
+  tags: powershell
+
+- name: Import Microsoft Prod GPG key
+  rpm_key:
+    key: '{{ msprod_repo_gpg_key_url }}'
+    state: present
+  tags: powershell
+
+- name: Install Powershell RPMs
+  yum:
+    name: '{{ powershell_yum_packages }}'
+    state: present
+  tags: powershell

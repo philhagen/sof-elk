@@ -10,7 +10,8 @@ es_port=9200
 kibana_host=localhost
 kibana_port=5601
 kibana_index=.kibana
-kibana_file_dir="/usr/local/sof-elk/kibana/"
+sofelk_root_dir="/usr/local/sof-elk/"
+kibana_file_dir="${sofelk_root_dir}kibana/"
 
 [ -r /etc/sysconfig/sof-elk ] && . /etc/sysconfig/sof-elk
 
@@ -33,21 +34,27 @@ done
 # re-insert all ES templates in case anything has changed
 # this will not change existing mappings, just new indexes as they are created
 # (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
-for es_template_file in $( ls -1 /usr/local/sof-elk/lib/elasticsearch-*-template.json ); do
+for es_template_file in $( ls -1 ${sofelk_root_dir}lib/elasticsearch-*-template.json ); do
     es_template=$( echo $es_template_file | sed 's/.*elasticsearch-\(.*\)-template.json/\1/' )
+    echo "Loading ES Template: ${es_template}"
+
     curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_template/${es_template} -d @${es_template_file} > /dev/null
 done
 
 # set the default index pattern, time zone, and add TZ offset to the default date format, and other custom Kibana settings
-curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${es_host}:${es_port}/${kibana_index}/_doc/config:${kibana_version} -d @${kibana_file_dir}/sof-elk_config.json > /dev/null
+echo "Setting Kibana Defaults"
+curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X DELETE http://${kibana_host}:${kibana_port}/api/saved_objects/config/${kibana_version} > /dev/null
+curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${kibana_host}:${kibana_port}/api/saved_objects/config/${kibana_version} -d@${kibana_file_dir}/sof-elk_config.json > /dev/null
 
 # increase the recovery priority for the kibana index so we don't have to wait to use it upon recovery
+echo "Increasing Kibana index recovery priority"
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
 # replace index patterns
 # these must be inserted FIRST becuase they are the basis for the other stored objects' references
 for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
     INDEXPATTERNID=$( basename ${indexpatternfile} | sed -e 's/\.json$//' )
+    echo "Loading Index Pattern: ${INDEXPATTERNID}"
 
     # reconstruct the new index-pattern with the proper fields and fieldFormatMap values
     if [ -f ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json ]; then
@@ -88,7 +95,9 @@ done
 # ORDER MATTERS!!! dependencies in the "references" field will cause failure to insert if the references are not already present
 TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
 for objecttype in visualization map search dashboard; do
+    echo "Preparing objects: ${objecttype}"
     cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
 done
+echo "Loading objects in bulk"
 curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
 rm -f ${TMPNDJSONFILE}

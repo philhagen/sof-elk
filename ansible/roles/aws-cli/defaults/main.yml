@@ -1,0 +1,3 @@
+---
+aws_cli_pip_modules:
+  - boto3

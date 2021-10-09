@@ -42,7 +42,7 @@ for DASHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kib
 
     jsonModString=$( sortNestedJSON "${nestedJSONKeys}" "${dashboardJSON}" )
 
-    echo ${dashboardJSON} | jq -S "${jsonModString}"  > dashboard/${DASHID}.json
+    echo ${dashboardJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}"  > dashboard/${DASHID}.json
 done
 
 # get a list of all visualization IDs and their content
@@ -53,7 +53,7 @@ for VISUALIZATIONID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_ho
 
     jsonModString=$( sortNestedJSON "${nestedJSONKeys}" "${visualizationJSON}" )
 
-    echo ${visualizationJSON} | jq -S "${jsonModString}" > visualization/${VISUALIZATIONID}.json
+    echo ${visualizationJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}" > visualization/${VISUALIZATIONID}.json
 done
 
 # get a list of all map IDs and their content
@@ -64,7 +64,7 @@ for MAPID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kiba
 
     jsonModString=$( sortNestedJSON "${nestedJSONKeys}" "${mapJSON}" )
 
-    echo ${mapJSON} | jq -S "${jsonModString}" > map/${MAPID}.json
+    echo ${mapJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}" > map/${MAPID}.json
 done
 
 # get a list of all search IDs and their content
@@ -75,18 +75,20 @@ for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${k
 
     jsonModString=$( sortNestedJSON "${nestedJSONKeys}" "${searchJSON}" )
 
-    echo ${searchJSON} | jq -S "${jsonModString}" > search/${SEARCHID}.json
+    echo ${searchJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}" > search/${SEARCHID}.json
 done
 
 echo "Dumping Index Patterns"
 # get a list of all index-patterns and their content, separate out the fields and fieldformatmap
 for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    echo "Dumping Index Pattern: ${INDEXPATTERNID}"
+
     # get full index pattern definition
     TMPFILE=$( mktemp )
     curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" > ${TMPFILE} 2> /dev/null
 
     # index-pattern itself, stripping the fields and fieldFormatMap elements
-    cat ${TMPFILE} | jq -S 'del(.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion)' > index-pattern/${INDEXPATTERNID}.json
+    cat ${TMPFILE} | jq -S 'del(.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion) | .references? |= unique_by(.id)' > index-pattern/${INDEXPATTERNID}.json
 
     # pull out just the fields
     cat ${TMPFILE} | jq -S '. | select(.attributes.fields != null) | .attributes.fields | fromjson' > index-pattern/fields/${INDEXPATTERNID}.json
