@@ -20,7 +20,7 @@ More details about the pre-packaged VM are available here: <http://for572.com/so
 
 ## Using
 
-These files are only recommended to be used in the SOF-ELK VM distribution at this time.  A great deal of system-level configuration and tie-in is required for them to be used.  No support can be provided for the use of these files outsie the SOF-ELK VM as distributed via the [readme](http://for572.com/sof-elk-readme).
+These files are only recommended to be used in the SOF-ELK VM distribution at this time.  A great deal of system-level configuration and tie-in is required for them to be used.  No support can be provided for the use of these files outside the SOF-ELK VM as distributed via the [readme](http://for572.com/sof-elk-readme).
 
 ## Contents by directory
 
