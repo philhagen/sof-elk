@@ -18,7 +18,7 @@ SOF-ELK® Virtual Machine Changelog
 * Update: 2019-06-06: Upgraded to ES 6.7.2 components, KAPE, and more
     * Updated all Elastic stack components to 6.7.2. This will be the last update with v6.x.
     * NetFlow v9 handling in both live collector and archived ingestion modes - including all IPv6 addresses, of course!
-    * Processing of KAPE output data! This is huge. The [Kroll Artifact Parser and Extractor (KAPE)](https://learn.duffandphelps.com/kape) is a free suite of tools written by Eric Zimmerman. Place the JSON output files into `/logstash/kape/` to be parsed.  SOF-ELK currently parses KAPE's MFT and .LNK file output, with more types forthcoming. Dashboards are thin with this release, but the "Discover" tab is particularly helpful for these data types and more dashboard support will be released via the Github-based internal updating process soon.
+    * Processing of KAPE output data! This is huge. The [Kroll Artifact Parser and Extractor (KAPE)](https://learn.duffandphelps.com/kape) is a free suite of tools written by Eric Zimmerman. Place the JSON output files into `/logstash/kape/` to be parsed.  SOF-ELK currently parses KAPE's MFT and .LNK file output, with more types forthcoming. Dahsboards are thin with this release, but the "Discover" tab is particularly helpful for these data types and more dashboard support will be released via the Github-based internal updating process soon.
     * Lots of internal refactoring to make the background system management procedures better
     * Elasticsearch shard count is now forced to 1 (which matches the default in ES7), and replica count is set to zero by default.  These should improve performance somewhere between a little and a lot.  To override replica count, edit the `/etc/sysconfig/sof-elk` file.
 * Update: 2019-01-02: Updated to ES 6.5.3 components
@@ -84,7 +84,7 @@ SOF-ELK® Virtual Machine Changelog
 * Update: 2014-12-03: This is a MAJOR update!
     * Parsing has been updated and is far more robust.  The VM cleanly ingests all known data, but let me know if there is any standard data that's not parsed correctly.
     * The VM can ingest live NetFlow v5 by opening UDP port 9995 in the firewall with the following commands using sudo:
-    * `fw_modify.sh -a open -p 9995 -r udp`
+        * `fw_modify.sh -a open -p 9995 -r udp`
     * Archived NetFlow (e.g. ASCII output from nfdump) is ingested just as live NetFlow, so you can load historical evidence alongside live data, and use the same dashboard to examine both simultaneously.  See the "Ingesting Archived NetFlow" section for details on this process.
     * Cisco ASA events sent via syslog are fully parsed
     * Much, much more!
