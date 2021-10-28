@@ -5,7 +5,7 @@
   register: cert_forensics_repofile_result
 
 - name: Install CERT Forensics repo
- yum:
+  yum:
     name: '{{ cert_forensics_repo_url }}'
     state: present
   when: not cert_forensics_repofile_result.stat.exists
