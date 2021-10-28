@@ -37,7 +37,6 @@
     - epel_repo
     - cert_forensics_repo
     - elastic_repo
-    - sof-elk_pre
     - sof-elk_base
     - elasticsearch
     - cerebro

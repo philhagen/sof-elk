@@ -1,4 +1,19 @@
 ---
+- name: Disable running SELinux
+  selinux: state=disabled
+
+- name: Disable boot time SELinux
+  lineinfile:
+    dest: '/etc/selinux/config'
+    regexp: '^SELINUX.*'
+    line: 'SELINUX=disabled'
+
+- name: Update all YUM packages
+  yum:
+    update_cache: yes
+    name: '*'
+    state: latest
+
 - name: Disable root account
   user:
     name: root
