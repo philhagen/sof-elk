@@ -8,7 +8,6 @@ base_yum_packages:
   - cifs-utils
   - deltarpm
   - exfat-utils
-  - fuse-exfat
   - gcc
   - git
   - htop
