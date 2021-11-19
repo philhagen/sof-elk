@@ -25,17 +25,17 @@
               }
             }
           }
-        },
-        "runtime": {
-          "filesizevis": {
-            "type": "long",
-            "script": {
-              "source": "emit(doc['filesize'].value);"
-            }
-          }    
         }
       }
     ],
+    "runtime": {
+      "filesize_vis": {
+        "type": "long",
+        "script": {
+          "source": "emit(doc['filesize'].value);"
+        }
+      }
+    },
     "properties": {
       "@version": {
         "type": "keyword"
