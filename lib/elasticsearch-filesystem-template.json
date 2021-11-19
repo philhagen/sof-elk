@@ -25,6 +25,14 @@
               }
             }
           }
+        },
+        "runtime": {
+          "filesizevis": {
+            "type": "long",
+            "script": {
+              "source": "emit(doc['filesize'].value);"
+            }
+          }    
         }
       }
     ],
