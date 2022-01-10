@@ -170,6 +170,8 @@ def freeze_index(es, source_index_spec, delete_source, newindex=False, tag=False
     #        - remove the source directory
 
 def thaw_index(es, frozen_index):
+    ## TODO: Handle wildcarded frozen_index specification
+
     ## TODO: handle encrypted files?
     #        - run a 7z or similar command, extracting and decrypting files from archive
     #        - remove the archive file??
