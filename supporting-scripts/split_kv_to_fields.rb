@@ -1,5 +1,5 @@
 # SOF-ELK® Supporting script
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2022 Lewes Technology Consulting, LLC
 #
 # This script takes an array of "name: x, value: y" pairs and creates "x: y" fields
 # for example:
@@ -31,7 +31,8 @@ def filter(event)
     output = Hash.new()
 
     for item in source_array
-        output[item[@key_field]] = item[@val_field]
+        if defined?(item[@val_field])
+            output[item[@key_field]] = item[@val_field]
     end
 
     event.set(@destination_field, output)

@@ -1,0 +1,35 @@
+# SOF-ELK® Configuration File
+# (C)2022 Lewes Technology Consulting, LLC
+#
+# This is a sample Filebeat prospector file that looks into the /logstash/gws/ directory for files to load.
+# These are sent to localhost:5044, where Logstash is listening.
+
+- type: log
+  paths:
+    - /logstash/gws/*/*/*/*/*.json
+    - /logstash/gws/*/*/*/*.json
+    - /logstash/gws/*/*/*.json
+    - /logstash/gws/*/*.json
+    - /logstash/gws/*.json
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    # this is important - it's as the [type] field in Logstash
+    type: gws
+  tags: [ 'json' ]
+
+- type: log
+  paths:
+    - /logstash/gws/*/*/*/*/LogSearchResults-*.csv
+    - /logstash/gws/*/*/*/LogSearchResults-*.csv
+    - /logstash/gws/*/*/LogSearchResults-*.csv
+    - /logstash/gws/*/LogSearchResults-*.csv
+    - /logstash/gws/LogSearchResults-*.csv
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    # this is important - it's as the [type] field in Logstash
+    type: gws
+  tags: [ 'gws_email', 'csv' ]

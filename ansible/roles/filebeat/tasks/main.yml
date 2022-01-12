@@ -33,6 +33,7 @@
     - azure
     - aws
     - gcp
+    - gws
   notify: restart filebeat
   tags: sof-elk_filebeat
 
