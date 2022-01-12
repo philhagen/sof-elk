@@ -1,4 +1,0 @@
----
-cert_forensics_repo_url: 'https://forensics.cert.org/cert-forensics-tools-release-el{{ ansible_distribution_major_version }}.rpm'
-cert_forensics_repo_gpg_key_file: '/etc/pki/rpm-gpg/RPM-GPG-KEY-cert-forensics-2022-04-03'
-cert_forensics_repofile_path: '/etc/yum.repos.d/cert-forensics-tools-release-7-15.noarch'

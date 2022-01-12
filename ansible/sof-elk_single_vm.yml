@@ -35,7 +35,7 @@
 
   roles:
     - epel_repo
-    - cert_forensics_repo
+    - rpmfusion_repo
     - elastic_repo
     - sof-elk_base
     - elasticsearch
