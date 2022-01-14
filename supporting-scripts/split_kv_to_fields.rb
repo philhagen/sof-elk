@@ -33,6 +33,7 @@ def filter(event)
     for item in source_array
         if defined?(item[@val_field])
             output[item[@key_field]] = item[@val_field]
+        end
     end
 
     event.set(@destination_field, output)
