@@ -2,7 +2,7 @@
   "attributes": {
     "fieldAttrs": "{}",
     "timeFieldName": "@timestamp",
-    "title": "gcp-*"
+    "title": "gws-*"
   },
   "coreMigrationVersion": "7.15.0",
   "id": "gws",
