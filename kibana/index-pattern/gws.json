@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "gcp-*"
+  },
+  "coreMigrationVersion": "7.15.0",
+  "id": "gws",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
+}
