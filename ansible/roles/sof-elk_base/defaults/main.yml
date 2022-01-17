@@ -41,6 +41,7 @@ base_yum_packages:
   - yum-plugin-post-transaction-actions
   - yum-utils
   - firewalld
+  - tree
 
 vmware_yum_packages:
   - open-vm-tools
