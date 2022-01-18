@@ -233,5 +233,4 @@
   file:
     path: /etc/GeoIP.conf
     state: absent
-  when: not geoip_config_persist | bool
-  when: geoip_accountid|length > 0
+  when: not geoip_config_persist | bool and geoip_accountid|length > 0
