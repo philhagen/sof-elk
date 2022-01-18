@@ -23,15 +23,18 @@
       default: yes
       private: no
     - name: geoip_accountid
-      prompt: "Enter GeoIP Account ID"
+      prompt: "Enter GeoIP Account ID (leave blank to skip GeoIP installation"
       private: no
+      when: geoip_accountid|length > 0
     - name: geoip_licensekey
       prompt:  "Enter GeoIP License Key (old format)"
       private: no
+      when: geoip_accountid|length > 0
     - name: geoip_config_persist
       prompt: "Do you want GeoIP account/license data to persist after installation (default: no)?"
       default: no
       private: no
+      when: geoip_accountid|length > 0
 
   roles:
     - epel_repo
