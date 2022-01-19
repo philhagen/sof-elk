@@ -212,7 +212,6 @@
     group: root
     mode: 0644
   tags: sof-elk_base
-  when: geoip_accountid|length > 0
 
 - name: Install templated GeoIP configuration to perform download
   template:

@@ -1,4 +1,4 @@
-AccountID {{ geoip_accountid }}
-LicenseKey {{ geoip_licensekey }}
+AccountID {{ geoip_accountid | default 0 }}
+LicenseKey {{ geoip_licensekey | default 0 }}
 EditionIDs GeoLite2-Country GeoLite2-City GeoLite2-ASN
 DatabaseDirectory /usr/local/share/GeoIP
