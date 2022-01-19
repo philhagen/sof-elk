@@ -31,7 +31,7 @@ def filter(event)
     output = Hash.new()
 
     for item in source_array
-        if item.key?(@val_field) && item[@val_field].length > 0
+        if item.key?(@val_field) && !item[@val_field] == ""
             output[item[@key_field]] = item[@val_field]
         end
     end
