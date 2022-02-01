@@ -25,7 +25,7 @@ The latest version of the VM itself is available here: <http://for572.com/sof-el
     * Includes Elastic stack components v7.15.0
     * Configuration files are from the "public/v20211006" branch of this Github repository
 * Metadata
-    * Filename and size: `Public SOF ELK v20200327.7z` (`2,775,553,496` bytes)
+    * Filename and size: `Public SOF-ELK v20211006.7z` (`2,775,553,496` bytes)
     * MD5: `47bd3907ccd5fd6d216e413b6540ebd0`
     * SHA256: `d331277215961a79f0a60e46736a1149a52d7e412d446ece701bdc27b3817d43`
 
