@@ -50,6 +50,9 @@
         },
         "type": "object"
       },
+      "raw_request_parameters": {
+        "type": "keyword"
+      },
       "type": {
         "type": "keyword"
       },
