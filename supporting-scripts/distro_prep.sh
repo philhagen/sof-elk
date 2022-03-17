@@ -99,26 +99,6 @@ curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_silence' > /dev/null
 curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_status' > /dev/null
 elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
 
-echo "removing documents from the elasticsearch .kibana indexes"
-curl -s -H 'kbn-xsrd: true' -X DELETE "http://127.0.0.1:9200/.kibana*" > /dev/null
-
-echo "restarting kibana and waiting for it to be ready"
-systemctl restart kibana
-
-max_wait=60
-wait_step=0
-interval=2
-until curl -s -X GET http://127.0.0.1:5601/api/features > /dev/null ; do
-    wait_step=$(( ${wait_step} + ${interval} ))
-    if [ ${wait_step} -gt ${max_wait} ]; then
-        echo "ERROR: kibana not available for more than ${max_wait} seconds."
-        exit 5
-    fi
-    echo -n "."
-    sleep ${interval}
-done
-echo
-
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
 
@@ -141,11 +121,6 @@ systemctl stop elasticsearch
 
 echo "stopping logstash"
 systemctl stop logstash
-
-# echo "clearing MAC address from interface"
-# grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-ens33 > /tmp/tmp_ifcfg_ens
-# cat /tmp/tmp_ifcfg_ens > /etc/sysconfig/network-scripts/ifcfg-ens33
-# rm /tmp/tmp_ifcfg_ens
 
 echo "stopping syslog"
 systemctl stop rsyslog
