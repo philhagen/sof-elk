@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2018 Lewes Technology Consulting, LLC
+# (C)2022 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
 
@@ -108,7 +108,7 @@ systemctl restart kibana
 max_wait=60
 wait_step=0
 interval=2
-until curl -s -X GET http://127.0.0.1:5601/_cluster/health > /dev/null ; do
+until curl -s -X GET http://127.0.0.1:5601/api/features > /dev/null ; do
     wait_step=$(( ${wait_step} + ${interval} ))
     if [ ${wait_step} -gt ${max_wait} ]; then
         echo "ERROR: kibana not available for more than ${max_wait} seconds."
@@ -142,10 +142,10 @@ systemctl stop elasticsearch
 echo "stopping logstash"
 systemctl stop logstash
 
-echo "clearing MAC address from interface"
-grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-ens33 > /tmp/tmp_ifcfg_ens
-cat /tmp/tmp_ifcfg_ens > /etc/sysconfig/network-scripts/ifcfg-ens33
-rm /tmp/tmp_ifcfg_ens
+# echo "clearing MAC address from interface"
+# grep -v HWADDR /etc/sysconfig/network-scripts/ifcfg-ens33 > /tmp/tmp_ifcfg_ens
+# cat /tmp/tmp_ifcfg_ens > /etc/sysconfig/network-scripts/ifcfg-ens33
+# rm /tmp/tmp_ifcfg_ens
 
 echo "stopping syslog"
 systemctl stop rsyslog
