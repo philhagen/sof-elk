@@ -11,17 +11,12 @@
     "title": "Eventlog Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "11f462e0-8d11-11e9-a03c-33ad7fc2c4d0",
   "namespaces": [
     "default"
   ],
   "references": [
-    {
-      "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0",
-      "name": "1:panel_1",
-      "type": "search"
-    },
     {
       "id": "029f7a20-e6f6-11e9-a3ea-d7d01b053a51",
       "name": "ff234412-5eae-4913-b905-f46529dcbadf:panel_ff234412-5eae-4913-b905-f46529dcbadf",
@@ -41,6 +36,11 @@
       "id": "b2585ef0-e6f6-11e9-a3ea-d7d01b053a51",
       "name": "88e6d6f0-0d3b-46ad-afca-f7ed1bf27110:panel_88e6d6f0-0d3b-46ad-afca-f7ed1bf27110",
       "type": "visualization"
+    },
+    {
+      "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0",
+      "name": "1:panel_1",
+      "type": "search"
     }
   ],
   "type": "dashboard"

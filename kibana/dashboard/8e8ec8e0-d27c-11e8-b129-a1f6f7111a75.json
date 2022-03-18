@@ -11,41 +11,21 @@
     "title": "Login Activity Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "8e8ec8e0-d27c-11e8-b129-a1f6f7111a75",
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "netflow",
-      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
-      "type": "index-pattern"
-    },
-    {
-      "id": "netflow",
-      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[1].meta.index",
-      "type": "index-pattern"
-    },
-    {
-      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
-      "name": "4:panel_4",
-      "type": "search"
-    },
-    {
-      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
-      "name": "5:panel_5",
-      "type": "search"
-    },
-    {
-      "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
-      "name": "9:panel_9",
-      "type": "search"
-    },
-    {
       "id": "1db41ae0-e5fd-11e9-a3ea-d7d01b053a51",
       "name": "6e01e1d2-8f0d-4de3-92ba-6fb4dac6e24c:panel_6e01e1d2-8f0d-4de3-92ba-6fb4dac6e24c",
       "type": "visualization"
+    },
+    {
+      "id": "222d6430-76f4-11eb-9d54-294249e0048f",
+      "name": "ba4c62a2-e4f2-4d27-a927-a28f10ccb380:panel_ba4c62a2-e4f2-4d27-a927-a28f10ccb380",
+      "type": "map"
     },
     {
       "id": "30df06c0-e5fd-11e9-a3ea-d7d01b053a51",
@@ -63,14 +43,29 @@
       "type": "visualization"
     },
     {
+      "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
+      "name": "9:panel_9",
+      "type": "search"
+    },
+    {
       "id": "ccf2da20-e65f-11e9-a3ea-d7d01b053a51",
       "name": "32ca8175-7227-4733-b32c-5a0fe76a84bb:panel_32ca8175-7227-4733-b32c-5a0fe76a84bb",
       "type": "visualization"
     },
     {
-      "id": "222d6430-76f4-11eb-9d54-294249e0048f",
-      "name": "ba4c62a2-e4f2-4d27-a927-a28f10ccb380:panel_ba4c62a2-e4f2-4d27-a927-a28f10ccb380",
-      "type": "map"
+      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
+      "name": "5:panel_5",
+      "type": "search"
+    },
+    {
+      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
+      "name": "4:panel_4",
+      "type": "search"
+    },
+    {
+      "id": "netflow",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+      "type": "index-pattern"
     }
   ],
   "type": "dashboard"

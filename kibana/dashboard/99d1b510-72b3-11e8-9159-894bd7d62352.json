@@ -11,16 +11,16 @@
     "title": "NetFlow Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "99d1b510-72b3-11e8-9159-894bd7d62352",
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
-      "name": "16:panel_16",
-      "type": "search"
+      "id": "019b9b90-e62e-11e9-a3ea-d7d01b053a51",
+      "name": "0131b19b-15d8-4114-aea3-0770e61d4fcf:panel_0131b19b-15d8-4114-aea3-0770e61d4fcf",
+      "type": "visualization"
     },
     {
       "id": "1db41ae0-e5fd-11e9-a3ea-d7d01b053a51",
@@ -38,28 +38,8 @@
       "type": "visualization"
     },
     {
-      "id": "bc4c3bb0-e5fd-11e9-a3ea-d7d01b053a51",
-      "name": "6f8ddbd9-e3ac-4acb-8e88-f5e228680b46:panel_6f8ddbd9-e3ac-4acb-8e88-f5e228680b46",
-      "type": "visualization"
-    },
-    {
-      "id": "a8328d90-e5fe-11e9-a3ea-d7d01b053a51",
-      "name": "7b74461e-2dee-4dff-97c4-f76bd020a6c8:panel_7b74461e-2dee-4dff-97c4-f76bd020a6c8",
-      "type": "visualization"
-    },
-    {
-      "id": "f2425180-76db-11eb-9d54-294249e0048f",
-      "name": "c72c8431-f55a-4cea-8047-ab2d1ce8fefc:panel_c72c8431-f55a-4cea-8047-ab2d1ce8fefc",
-      "type": "map"
-    },
-    {
-      "id": "fbce8e30-e5ff-11e9-a3ea-d7d01b053a51",
-      "name": "dc788cec-a0cc-4afc-b961-3867b0230870:panel_dc788cec-a0cc-4afc-b961-3867b0230870",
-      "type": "visualization"
-    },
-    {
-      "id": "b6992f40-e62d-11e9-a3ea-d7d01b053a51",
-      "name": "1bac1bd5-5170-414b-9213-f434f00dd724:panel_1bac1bd5-5170-414b-9213-f434f00dd724",
+      "id": "6d917a20-e630-11e9-a3ea-d7d01b053a51",
+      "name": "e4f433be-a176-41d3-b622-4a68f1b7b5d5:panel_e4f433be-a176-41d3-b622-4a68f1b7b5d5",
       "type": "visualization"
     },
     {
@@ -68,8 +48,18 @@
       "type": "map"
     },
     {
-      "id": "019b9b90-e62e-11e9-a3ea-d7d01b053a51",
-      "name": "0131b19b-15d8-4114-aea3-0770e61d4fcf:panel_0131b19b-15d8-4114-aea3-0770e61d4fcf",
+      "id": "a8328d90-e5fe-11e9-a3ea-d7d01b053a51",
+      "name": "7b74461e-2dee-4dff-97c4-f76bd020a6c8:panel_7b74461e-2dee-4dff-97c4-f76bd020a6c8",
+      "type": "visualization"
+    },
+    {
+      "id": "b6992f40-e62d-11e9-a3ea-d7d01b053a51",
+      "name": "1bac1bd5-5170-414b-9213-f434f00dd724:panel_1bac1bd5-5170-414b-9213-f434f00dd724",
+      "type": "visualization"
+    },
+    {
+      "id": "bc4c3bb0-e5fd-11e9-a3ea-d7d01b053a51",
+      "name": "6f8ddbd9-e3ac-4acb-8e88-f5e228680b46:panel_6f8ddbd9-e3ac-4acb-8e88-f5e228680b46",
       "type": "visualization"
     },
     {
@@ -78,13 +68,23 @@
       "type": "visualization"
     },
     {
+      "id": "f2425180-76db-11eb-9d54-294249e0048f",
+      "name": "c72c8431-f55a-4cea-8047-ab2d1ce8fefc:panel_c72c8431-f55a-4cea-8047-ab2d1ce8fefc",
+      "type": "map"
+    },
+    {
+      "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
+      "name": "16:panel_16",
+      "type": "search"
+    },
+    {
       "id": "fbc2cd90-e62f-11e9-a3ea-d7d01b053a51",
       "name": "18d400b7-1d1b-4e7c-8639-11f3f48866f6:panel_18d400b7-1d1b-4e7c-8639-11f3f48866f6",
       "type": "visualization"
     },
     {
-      "id": "6d917a20-e630-11e9-a3ea-d7d01b053a51",
-      "name": "e4f433be-a176-41d3-b622-4a68f1b7b5d5:panel_e4f433be-a176-41d3-b622-4a68f1b7b5d5",
+      "id": "fbce8e30-e5ff-11e9-a3ea-d7d01b053a51",
+      "name": "dc788cec-a0cc-4afc-b961-3867b0230870:panel_dc788cec-a0cc-4afc-b961-3867b0230870",
       "type": "visualization"
     }
   ],

@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "aws-*"
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "aws",
   "namespaces": [
     "default"
