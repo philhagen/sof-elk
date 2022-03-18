@@ -11,7 +11,7 @@
     "title": "Azure Activity Logs",
     "version": 1
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "db653a10-286e-11eb-bf98-fb32763e0d19",
   "namespaces": [
     "default"
@@ -23,13 +23,13 @@
       "type": "visualization"
     },
     {
-      "id": "afda9520-2873-11eb-bf98-fb32763e0d19",
-      "name": "18d9606b-caa9-4ce3-a4d1-e4375301d85e:panel_18d9606b-caa9-4ce3-a4d1-e4375301d85e",
+      "id": "4061ca00-2874-11eb-bf98-fb32763e0d19",
+      "name": "eb51bcec-673a-4816-856d-b0ca45c1e54c:panel_eb51bcec-673a-4816-856d-b0ca45c1e54c",
       "type": "visualization"
     },
     {
-      "id": "4061ca00-2874-11eb-bf98-fb32763e0d19",
-      "name": "eb51bcec-673a-4816-856d-b0ca45c1e54c:panel_eb51bcec-673a-4816-856d-b0ca45c1e54c",
+      "id": "afda9520-2873-11eb-bf98-fb32763e0d19",
+      "name": "18d9606b-caa9-4ce3-a4d1-e4375301d85e:panel_18d9606b-caa9-4ce3-a4d1-e4375301d85e",
       "type": "visualization"
     },
     {

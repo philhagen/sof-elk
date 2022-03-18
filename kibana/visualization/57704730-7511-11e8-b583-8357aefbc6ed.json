@@ -8,7 +8,7 @@
     "uiStateJSON": "{}",
     "visState": "{\"aggs\":[],\"params\":{\"fontSize\":10,\"markdown\":\"Use the [HTTPD Log Dashboard](#/dashboard/ba531340-2f17-11e8-9faf-f77fbc81a50d) to explore this data\\n\\nHTTPD log data is loaded via the following methods:\\n* Files in the `/logstash/httpd/` directory\\n dashboard index-pattern map search visualization NOTE: Logs in the Common, Combined, and Combined + VHost formats are currently supported\\n* Network syslog messages sent to UDP or TCP port 5515\\n* Network RELP messages sent to TCP 5517\",\"openLinksInNewTab\":false},\"title\":\"HTTPD Log Intro\",\"type\":\"markdown\"}"
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "57704730-7511-11e8-b583-8357aefbc6ed",
   "namespaces": [
     "default"
