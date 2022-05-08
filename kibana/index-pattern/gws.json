@@ -2,10 +2,10 @@
   "attributes": {
     "fieldAttrs": "{}",
     "timeFieldName": "@timestamp",
-    "title": "evtxlogs-*"
+    "title": "gws-*"
   },
   "coreMigrationVersion": "7.17.1",
-  "id": "evtxlogs",
+  "id": "gws",
   "namespaces": [
     "default"
   ],

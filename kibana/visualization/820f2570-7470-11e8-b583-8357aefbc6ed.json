@@ -9,7 +9,7 @@
     "version": 1,
     "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Top Sources\",\"field\":\"path\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":8},\"schema\":\"bucket\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Start\",\"field\":\"@timestamp\"},\"schema\":\"metric\",\"type\":\"min\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"End\",\"field\":\"@timestamp\"},\"schema\":\"metric\",\"type\":\"max\"},{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Records\"},\"schema\":\"metric\",\"type\":\"count\"}],\"params\":{\"perPage\":10,\"percentageCol\":\"\",\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showToolbar\":true,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"HTTPD Logs Collected\",\"type\":\"table\"}"
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "820f2570-7470-11e8-b583-8357aefbc6ed",
   "namespaces": [
     "default"

@@ -11,17 +11,12 @@
     "title": "Filesystem Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "f8c3cbb0-51c1-11e9-8b54-fde301eff14e",
   "namespaces": [
     "default"
   ],
   "references": [
-    {
-      "id": "80bd16f0-51bf-11e9-8b54-fde301eff14e",
-      "name": "8:panel_8",
-      "type": "search"
-    },
     {
       "id": "4d14de60-e656-11e9-a3ea-d7d01b053a51",
       "name": "fcdeeaae-a737-4373-9238-62e33300ae2d:panel_fcdeeaae-a737-4373-9238-62e33300ae2d",
@@ -31,6 +26,11 @@
       "id": "73a3ee90-e656-11e9-a3ea-d7d01b053a51",
       "name": "3c26dbf7-908c-427c-b166-ca697fb1a1cf:panel_3c26dbf7-908c-427c-b166-ca697fb1a1cf",
       "type": "visualization"
+    },
+    {
+      "id": "80bd16f0-51bf-11e9-8b54-fde301eff14e",
+      "name": "8:panel_8",
+      "type": "search"
     },
     {
       "id": "86a77c50-e656-11e9-a3ea-d7d01b053a51",
@@ -48,13 +48,13 @@
       "type": "visualization"
     },
     {
-      "id": "c578b1d0-e659-11e9-a3ea-d7d01b053a51",
-      "name": "51d1662b-d246-423f-a7ff-c6518c77a343:panel_51d1662b-d246-423f-a7ff-c6518c77a343",
+      "id": "b132eaa0-e65a-11e9-a3ea-d7d01b053a51",
+      "name": "b7e8bab9-e86e-4102-9a1d-693a4f4e082a:panel_b7e8bab9-e86e-4102-9a1d-693a4f4e082a",
       "type": "visualization"
     },
     {
-      "id": "b132eaa0-e65a-11e9-a3ea-d7d01b053a51",
-      "name": "b7e8bab9-e86e-4102-9a1d-693a4f4e082a:panel_b7e8bab9-e86e-4102-9a1d-693a4f4e082a",
+      "id": "c578b1d0-e659-11e9-a3ea-d7d01b053a51",
+      "name": "51d1662b-d246-423f-a7ff-c6518c77a343:panel_51d1662b-d246-423f-a7ff-c6518c77a343",
       "type": "visualization"
     },
     {

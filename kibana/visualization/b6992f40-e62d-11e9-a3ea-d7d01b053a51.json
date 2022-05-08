@@ -10,7 +10,7 @@
     "version": 1,
     "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Volume\",\"field\":\"total_bytes_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Packets\",\"field\":\"total_packets\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Flows\",\"field\":\"flow_records\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"4\",\"params\":{\"customLabel\":\"Destination IP\",\"field\":\"destination_ip\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":10},\"schema\":\"bucket\",\"type\":\"terms\"}],\"params\":{\"dimensions\":{\"buckets\":[{\"accessor\":0,\"aggType\":\"terms\",\"format\":{\"id\":\"terms\",\"params\":{\"id\":\"ip\",\"missingBucketLabel\":\"Missing\",\"otherBucketLabel\":\"Other\"}},\"params\":{}}],\"metrics\":[{\"accessor\":1,\"aggType\":\"sum\",\"format\":{\"id\":\"bytes\"},\"params\":{}},{\"accessor\":2,\"aggType\":\"sum\",\"format\":{\"id\":\"number\",\"params\":{\"pattern\":\"0,0.[0]a\"}},\"params\":{}},{\"accessor\":3,\"aggType\":\"sum\",\"format\":{\"id\":\"number\",\"params\":{\"pattern\":\"0,0.[0]a\"}},\"params\":{}}]},\"perPage\":10,\"percentageCol\":\"\",\"showMetricsAtAllLevels\":false,\"showPartialRows\":false,\"showToolbar\":true,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"title\":\"NetFlow Statistics by Destination IP\",\"type\":\"table\"}"
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "b6992f40-e62d-11e9-a3ea-d7d01b053a51",
   "namespaces": [
     "default"

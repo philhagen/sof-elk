@@ -14,6 +14,7 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
     * Remove Camera
     * Hardware (compatibility) version so $current-1 is supported
     * 500GB SCSI HDD, single file, named `FOR572 SOF-ELK.vmdk`
+    * Three IDE CD/DVD-ROM devices
 2. CentOS 7 network install
     * I had to append `vga=794` to the kernel command line or the windows got cut off
     * Enable networking (DHCP)
@@ -25,7 +26,7 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
         * Click "Click here to create them automatically"
         * Change `/home` to 200GB
         * Create `/var/lib/elasticsearch` partition and leave size blank - should auto-fill disk at ~256GB
-    * Set a strong root password.  It is recommended to *disable* direct use of this account after the system is installed.
+    * Set a strong root password.  It is recommended to *disable* direct use of this account after the system is installed.  This is the default action during the Ansible installation process.
     * During install, create a user
         * Full name: `SOF-ELK User`
         * Username: `elk_user`

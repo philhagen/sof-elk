@@ -221,13 +221,15 @@
     group: root
     mode: 0600
   tags: sof-elk_base
+  when: geoip_accountid|length > 0
 
 - name: Install geoip data
   command: geoipupdate
   tags: sof-elk_base
+  when: geoip_accountid|length > 0
 
 - name: Remove GeoIP configuration
   file:
     path: /etc/GeoIP.conf
     state: absent
-  when: not geoip_config_persist | bool
+  when: not geoip_config_persist | bool and geoip_accountid|length > 0

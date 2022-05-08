@@ -11,31 +11,16 @@
     "title": "DNS Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "14142080-d1c4-11ea-8c51-e9420681eaa9",
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "7a26b880-d1c2-11ea-8c51-e9420681eaa9",
-      "name": "8f15e251-9832-4681-8bb2-7623b6495f24:panel_8f15e251-9832-4681-8bb2-7623b6495f24",
-      "type": "visualization"
-    },
-    {
-      "id": "76fd2c00-d1c4-11ea-8c51-e9420681eaa9",
-      "name": "e5852520-5038-469d-bdfd-af4a425cf61f:panel_e5852520-5038-469d-bdfd-af4a425cf61f",
-      "type": "visualization"
-    },
-    {
-      "id": "972998c0-e0f0-11ea-8ee6-e9b3b5a10b22",
-      "name": "5e939a96-315d-4791-aa58-567ca7bb7403:panel_5e939a96-315d-4791-aa58-567ca7bb7403",
-      "type": "visualization"
-    },
-    {
-      "id": "bb663030-e5f7-11e9-a3ea-d7d01b053a51",
-      "name": "554353ff-06cc-4ace-b599-ad3e7f211ea9:panel_554353ff-06cc-4ace-b599-ad3e7f211ea9",
-      "type": "visualization"
+      "id": "4c447f20-76f3-11eb-9d54-294249e0048f",
+      "name": "5d5004bc-2c75-413e-9936-0d41289f884b:panel_5d5004bc-2c75-413e-9936-0d41289f884b",
+      "type": "map"
     },
     {
       "id": "50424370-e5fc-11e9-a3ea-d7d01b053a51",
@@ -43,38 +28,8 @@
       "type": "visualization"
     },
     {
-      "id": "b6b5a680-d1c2-11ea-8c51-e9420681eaa9",
-      "name": "ca671972-77a0-4426-a380-4b92c24e3155:panel_ca671972-77a0-4426-a380-4b92c24e3155",
-      "type": "visualization"
-    },
-    {
-      "id": "c59cbc40-d1c4-11ea-8c51-e9420681eaa9",
-      "name": "9cbccfea-7e1c-4e40-aa08-3d1c0a53937c:panel_9cbccfea-7e1c-4e40-aa08-3d1c0a53937c",
-      "type": "visualization"
-    },
-    {
-      "id": "4c447f20-76f3-11eb-9d54-294249e0048f",
-      "name": "5d5004bc-2c75-413e-9936-0d41289f884b:panel_5d5004bc-2c75-413e-9936-0d41289f884b",
-      "type": "map"
-    },
-    {
       "id": "5133f520-d1ca-11ea-8c51-e9420681eaa9",
       "name": "0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3:panel_0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3",
-      "type": "visualization"
-    },
-    {
-      "id": "c7572430-d1c9-11ea-8c51-e9420681eaa9",
-      "name": "9e4d3533-779e-443a-91c5-792db27644af:panel_9e4d3533-779e-443a-91c5-792db27644af",
-      "type": "visualization"
-    },
-    {
-      "id": "f20ed3a0-d1c2-11ea-8c51-e9420681eaa9",
-      "name": "2bf84863-6ca6-455d-82ec-dbf7ca0af70e:panel_2bf84863-6ca6-455d-82ec-dbf7ca0af70e",
-      "type": "visualization"
-    },
-    {
-      "id": "b77c26a0-d1c9-11ea-8c51-e9420681eaa9",
-      "name": "67939f6e-c23b-4376-9806-cf356924d98d:panel_67939f6e-c23b-4376-9806-cf356924d98d",
       "type": "visualization"
     },
     {
@@ -83,14 +38,59 @@
       "type": "map"
     },
     {
-      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
-      "name": "5469976e-da6d-41fd-a682-c91464286910:panel_5469976e-da6d-41fd-a682-c91464286910",
-      "type": "search"
+      "id": "76fd2c00-d1c4-11ea-8c51-e9420681eaa9",
+      "name": "e5852520-5038-469d-bdfd-af4a425cf61f:panel_e5852520-5038-469d-bdfd-af4a425cf61f",
+      "type": "visualization"
+    },
+    {
+      "id": "7a26b880-d1c2-11ea-8c51-e9420681eaa9",
+      "name": "8f15e251-9832-4681-8bb2-7623b6495f24:panel_8f15e251-9832-4681-8bb2-7623b6495f24",
+      "type": "visualization"
     },
     {
       "id": "8ad7a190-76f3-11eb-9d54-294249e0048f",
       "name": "8a91a613-8d6c-4e91-a22a-33ca27052ec4:panel_8a91a613-8d6c-4e91-a22a-33ca27052ec4",
       "type": "map"
+    },
+    {
+      "id": "972998c0-e0f0-11ea-8ee6-e9b3b5a10b22",
+      "name": "5e939a96-315d-4791-aa58-567ca7bb7403:panel_5e939a96-315d-4791-aa58-567ca7bb7403",
+      "type": "visualization"
+    },
+    {
+      "id": "b6b5a680-d1c2-11ea-8c51-e9420681eaa9",
+      "name": "ca671972-77a0-4426-a380-4b92c24e3155:panel_ca671972-77a0-4426-a380-4b92c24e3155",
+      "type": "visualization"
+    },
+    {
+      "id": "b77c26a0-d1c9-11ea-8c51-e9420681eaa9",
+      "name": "67939f6e-c23b-4376-9806-cf356924d98d:panel_67939f6e-c23b-4376-9806-cf356924d98d",
+      "type": "visualization"
+    },
+    {
+      "id": "bb663030-e5f7-11e9-a3ea-d7d01b053a51",
+      "name": "554353ff-06cc-4ace-b599-ad3e7f211ea9:panel_554353ff-06cc-4ace-b599-ad3e7f211ea9",
+      "type": "visualization"
+    },
+    {
+      "id": "c59cbc40-d1c4-11ea-8c51-e9420681eaa9",
+      "name": "9cbccfea-7e1c-4e40-aa08-3d1c0a53937c:panel_9cbccfea-7e1c-4e40-aa08-3d1c0a53937c",
+      "type": "visualization"
+    },
+    {
+      "id": "c7572430-d1c9-11ea-8c51-e9420681eaa9",
+      "name": "9e4d3533-779e-443a-91c5-792db27644af:panel_9e4d3533-779e-443a-91c5-792db27644af",
+      "type": "visualization"
+    },
+    {
+      "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
+      "name": "5469976e-da6d-41fd-a682-c91464286910:panel_5469976e-da6d-41fd-a682-c91464286910",
+      "type": "search"
+    },
+    {
+      "id": "f20ed3a0-d1c2-11ea-8c51-e9420681eaa9",
+      "name": "2bf84863-6ca6-455d-82ec-dbf7ca0af70e:panel_2bf84863-6ca6-455d-82ec-dbf7ca0af70e",
+      "type": "visualization"
     }
   ],
   "type": "dashboard"

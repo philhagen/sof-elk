@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "plaso-*"
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "plaso",
   "namespaces": [
     "default"

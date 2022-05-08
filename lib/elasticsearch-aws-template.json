@@ -50,6 +50,15 @@
         },
         "type": "object"
       },
+      "raw_request_parameters": {
+        "type": "keyword"
+      },
+      "raw_response_parameters": {
+        "type": "keyword"
+      },
+      "raw_session_context": {
+        "type": "keyword"
+      },
       "type": {
         "type": "keyword"
       },

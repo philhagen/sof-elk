@@ -23,7 +23,7 @@
       default: yes
       private: no
     - name: geoip_accountid
-      prompt: "Enter GeoIP Account ID"
+      prompt: "Enter GeoIP Account ID (leave this and next two blank to skip GeoIP installation)"
       private: no
     - name: geoip_licensekey
       prompt:  "Enter GeoIP License Key (old format)"

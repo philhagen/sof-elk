@@ -29,10 +29,10 @@
       }
     ],
     "runtime": {
-      "source_geo.asnstr": {
-        "type": "keyword",
+      "filesize_vis": {
+        "type": "long",
         "script": {
-          "source": "String m; if ( doc['source_geo.asn'].size() == 0 || doc['source_geo.as_org.keyword'].size() == 0 ) { m = 'ASN: Not Available' } else { m = ('ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value) } emit(m);"
+          "source": "emit(doc['filesize'].value);"
         }
       }
     },

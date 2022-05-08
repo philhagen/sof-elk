@@ -9,4 +9,4 @@ gcp_repo_gpg_key_url:
   - 'https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg'
 
 gcp_yum_packages:
-  - google-cloud-sdk
+  - google-cloud-cli

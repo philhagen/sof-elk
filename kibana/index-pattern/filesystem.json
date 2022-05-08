@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "filesystem-*"
   },
-  "coreMigrationVersion": "7.15.0",
+  "coreMigrationVersion": "7.17.1",
   "id": "filesystem",
   "namespaces": [
     "default"

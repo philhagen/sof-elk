@@ -1,7 +1,7 @@
 {
   "aliases": {},
   "index_patterns": [
-    "gcp-*"
+    "gws-*"
   ],
   "mappings": {
     "_meta": {},
@@ -57,6 +57,23 @@
         "type": "integer"
       },
       "source_geo": {
+        "dynamic": true,
+        "properties": {
+          "location": {
+            "type": "geo_point"
+          },
+          "latitude": {
+            "type": "half_float"
+          },
+          "longitude": {
+            "type": "half_float"
+          },
+          "asn": {
+            "type": "integer"
+          }
+        }
+      },
+      "destination_geo": {
         "dynamic": true,
         "properties": {
           "location": {
