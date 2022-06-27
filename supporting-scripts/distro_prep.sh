@@ -131,6 +131,17 @@ echo "clearing SSH Host Keys"
 systemctl stop sshd
 rm -f /etc/ssh/*key*
 
+echo "clearing cron/at content"
+systemctl stop atd
+systemctl stop crond
+rm -f /var/spool/at/.SEQ
+rm -f /var/spool/at/*
+
+echo "clearing mail spools"
+systemctl stop postfix
+rm -f /var/spool/mail/root
+rm -f /var/spool/mail/elk_user
+
 echo "clearing /tmp/"
 rm -rf /tmp/*
 
