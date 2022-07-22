@@ -8,7 +8,7 @@ SOF-ELK® is a “big data analytics” platform focused on the typical needs of
 
 The SOF-ELK® platform was initially developed for SANS FOR572, Advanced Network Forensics and Analysis, and is now used in several other SANS courses, with additional course integrations being considered.  Most importantly, the platform is also distributed as a free and open source resource for the community at large, without a specific course requirement or tie-in required to use it.
 
-More details about the pre-packaged VM are available here: <http://for572.com/sof-elk-readme>.
+More details about the pre-packaged VM are available here: <https://for572.com/sof-elk-readme>.
 
 ## Branches
 
@@ -20,7 +20,7 @@ More details about the pre-packaged VM are available here: <http://for572.com/so
 
 ## Using
 
-These files are only recommended to be used in the SOF-ELK VM distribution at this time.  A great deal of system-level configuration and tie-in is required for them to be used.  No support can be provided for the use of these files outside the SOF-ELK VM as distributed via the [readme](http://for572.com/sof-elk-readme).
+These files are only recommended to be used in the SOF-ELK VM distribution at this time.  A great deal of system-level configuration and tie-in is required for them to be used.  No support can be provided for the use of these files outside the SOF-ELK VM as distributed via the [readme](https://for572.com/sof-elk-readme).
 
 ## Contents by directory
 
