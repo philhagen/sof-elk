@@ -7,16 +7,16 @@
 This page contains details for the SOF-ELK® (Security Operations and Forensics Elasticsearch, Logstash, Kibana) VM.
 The VM is provided as a community resource but is covered at varying depths in the following SANS course(s):
 
-* [SANS FOR572, Advanced Network Forensics and Analysis](http://for572.com/course)
-* [SANS FOR509, Cloud Forensics and Incident Response](http://for572.com/for509)
-* [SANS SEC555, SIEM with Tactical Analysis](http://for572.com/sec555)
-* [SANS SEC501, Advanced Security Essentials - Enterprise Defender](http://for572.com/sec501)
+* [SANS FOR572, Advanced Network Forensics and Analysis](https://for572.com/course)
+* [SANS FOR509, Cloud Forensics and Incident Response](https://for572.com/for509)
+* [SANS SEC555, SIEM with Tactical Analysis](https://for572.com/sec555)
+* [SANS SEC501, Advanced Security Essentials - Enterprise Defender](https://for572.com/sec501)
 
-All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <http://for572.com/sof-elk-git>
+All parsers and dashboards for this VM are now maintained in this Github repository.  You can access them directly via <https://for572.com/sof-elk-git>
 
 ## Download
 
-The latest version of the VM itself is available here: <http://for572.com/sof-elk-vm>
+The latest version of the VM itself is available here: <https://for572.com/sof-elk-vm>
 
 ## Latest Distribution Vitals
 
@@ -33,7 +33,7 @@ The latest version of the VM itself is available here: <http://for572.com/sof-el
 
 * The VM was created with VMware Fusion v12.1.2 and ships with virtual hardware v16.
     * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
-    * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](http://www.vmware.com/products/converter) helpful.
+    * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](https://www.vmware.com/products/converter) helpful.
 * The VM is deployed with the "NAT" network mode enabled
 * Credentials:
     * username: `elk_user`
@@ -63,10 +63,10 @@ The latest version of the VM itself is available here: <http://for572.com/sof-el
         * iptables
         * Squid access_log
         * Windows messages sent by Snare
-        * Passivedns (<http://for572.com/passivedns>)
+        * Passivedns (<https://for572.com/passivedns>)
         * HTTPD Common/Combined/vhost+Combined/SSL Access Logs
         * Live NetFlow v5 and v9 and archived NetFlow records
-    * `/usr/local/sof-elk/*`: Clone of Github repository (<http://for572.com/sof-elk-git> - public/v20211006 branch)
+    * `/usr/local/sof-elk/*`: Clone of Github repository (<https://for572.com/sof-elk-git> - public/v20211006 branch)
 
 ## How to Use
 
@@ -123,5 +123,5 @@ The latest version of the VM itself is available here: <http://for572.com/sof-el
 ## Administrative Notifications/Disclaimers/Legal/Boring Stuff
 
 * This virtual appliance is provided "as is" with no express or implied warranty for accuracy or accessibility.  No support for the functionality the VM provides is offered outside of this document.
-* This virtual appliance includes GeoLite2 data created by MaxMind, available from <http://www.maxmind.com> and subject to the [GeoLite2 EULA](https://www.maxmind.com/en/geolite2/eula).  Installation of GeoIP databases should be accomplished by the included `geoip_bootstrap.sh` script.  This also optionally enables scheduled automatic updates to the databases for Internet-connected systems.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).
+* This virtual appliance includes GeoLite2 data created by MaxMind, available from <https://www.maxmind.com> and subject to the [GeoLite2 EULA](https://www.maxmind.com/en/geolite2/eula).  Installation of GeoIP databases should be accomplished by the included `geoip_bootstrap.sh` script.  This also optionally enables scheduled automatic updates to the databases for Internet-connected systems.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).
 * SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.  SOF-ELK logo is a wholly owned property of Lewes Technology Consulting, LLC and is used by permission.
