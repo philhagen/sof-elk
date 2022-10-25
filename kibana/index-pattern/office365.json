@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "office365-*"
   },
-  "coreMigrationVersion": "7.17.1",
+  "coreMigrationVersion": "7.17.7",
   "id": "office365",
   "namespaces": [
     "default"

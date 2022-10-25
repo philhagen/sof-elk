@@ -19,7 +19,7 @@
     "title": "Filesystem Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "7.17.1",
+  "coreMigrationVersion": "7.17.7",
   "id": "80bd16f0-51bf-11e9-8b54-fde301eff14e",
   "namespaces": [
     "default"
