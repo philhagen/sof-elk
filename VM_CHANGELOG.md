@@ -1,8 +1,14 @@
 SOF-ELK® Virtual Machine Changelog
 =======
 
+* Update: 2022-10-25: Upgraded to ES 7.17.7 components, integrated upstream parsers
+    * Updated all Elastic Stack components to 7.17.7
+    * All CentOS 7 updates applied as of 2022-10-25
+    * Updated and added to cloud platform parsers
+    * Parser and dashboard improvements
+
 * Update: 2021-10-06: Upgraded to ES 7.15.0 components, added numerous cloud platform log parsers
-    * Updated all Elastic stack components to 7.15.0
+    * Updated all Elastic Stack components to 7.15.0
     * Dashboards adjusted for ES 7.15.0
     * All CentOS 7 updates applied as of 2021-10-06
     * LOTS of cloud platform logs are parsed.  Various AWS, GCP, and Azure logs are all handled.  Several of these require helper scripts (aws-cloudtrail2sof-elk.py, aws-vpcflow2sof-elk.sh, and azure-vpcflow2sof-elk.py).  More documentation on these is pending.
@@ -12,11 +18,11 @@ SOF-ELK® Virtual Machine Changelog
     * Numerous other parser and dashboard improvements
 
 * Update: 2020-03-27: Upgraded to ES 7.6 components, more
-    * Updated all Elastic stack components to 7.6.1
+    * Updated all Elastic Stack components to 7.6.1
     * VM now built completely from the included Ansible playbooks
     * All CentOS 7 updates applied as of 2020-03-27
 * Update: 2019-06-06: Upgraded to ES 6.7.2 components, KAPE, and more
-    * Updated all Elastic stack components to 6.7.2. This will be the last update with v6.x.
+    * Updated all Elastic Stack components to 6.7.2. This will be the last update with v6.x.
     * NetFlow v9 handling in both live collector and archived ingestion modes - including all IPv6 addresses, of course!
     * Processing of KAPE output data! This is huge. The [Kroll Artifact Parser and Extractor (KAPE)](https://learn.duffandphelps.com/kape) is a free suite of tools written by Eric Zimmerman. Place the JSON output files into `/logstash/kape/` to be parsed.  SOF-ELK currently parses KAPE's MFT and .LNK file output, with more types forthcoming. Dashboards are thin with this release, but the "Discover" tab is particularly helpful for these data types and more dashboard support will be released via the Github-based internal updating process soon.
     * Lots of internal refactoring to make the background system management procedures better

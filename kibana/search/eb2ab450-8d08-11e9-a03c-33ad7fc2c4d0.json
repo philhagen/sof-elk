@@ -20,7 +20,7 @@
     "title": "Eventlog Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "7.17.1",
+  "coreMigrationVersion": "7.17.7",
   "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0",
   "namespaces": [
     "default"

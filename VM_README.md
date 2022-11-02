@@ -21,13 +21,13 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 ## Latest Distribution Vitals
 
 * Basic details on the distribution
-    * VM is a CentOS 7.7 base with all OS updates as of 2021-10-06
-    * Includes Elastic stack components v7.15.0
-    * Configuration files are from the "public/v20211006" branch of this Github repository
+    * VM is a CentOS 7.7 base with all OS updates as of 2022-10-25
+    * Includes Elastic stack components v7.17.7
+    * Configuration files are from the "public/v20221025" branch of this Github repository
 * Metadata
-    * Filename and size: `Public SOF-ELK v20211006.7z` (`2,775,553,496` bytes)
-    * MD5: `47bd3907ccd5fd6d216e413b6540ebd0`
-    * SHA256: `d331277215961a79f0a60e46736a1149a52d7e412d446ece701bdc27b3817d43`
+    * Filename and size: `Public SOF-ELK v20221025.7z` (`2,192,493,169` bytes)
+    * MD5: `1f22d1cde6447fe142df86bc0af2cc18`
+    * SHA256: `129a0e3d35ac427f2e438ede96fc7025379b818760866b779339e512a8863bab`
 
 ## General Information
 
@@ -116,7 +116,7 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 * Mike Pilkington: Testing
 * Mark Hallman: Testing
 * David Szili: Testing and troubleshooting
-* Pierre Lidome: Microsoft 365 assistance
+* Pierre Lidome: Microsoft 365 assistance and overall testing
 * Josh Lemon: GCP assistance
 * David Cowen: AWS assistance
 

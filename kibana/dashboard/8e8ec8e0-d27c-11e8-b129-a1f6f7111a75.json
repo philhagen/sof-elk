@@ -11,7 +11,7 @@
     "title": "Login Activity Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.17.1",
+  "coreMigrationVersion": "7.17.7",
   "id": "8e8ec8e0-d27c-11e8-b129-a1f6f7111a75",
   "namespaces": [
     "default"
