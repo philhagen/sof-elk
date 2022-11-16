@@ -36,11 +36,15 @@ def filter(event)
                 output[item[@key_field]] = item[@val_field]
             end
         end
+
     elsif source_data.is_a?(Hash)
         item = source_data
         if item.key?(@val_field) && !(item[@val_field] == "")
             output[item[@key_field]] = item[@val_field]
         end
+    
+    # PJH: This should probably have a final "else" stanza to raise an exception
+    #      if the source is not a hash or an array of hashes
     end
 
     event.set(@destination_field, output)
