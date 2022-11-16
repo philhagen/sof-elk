@@ -44,6 +44,16 @@
   notify: restart logstash
   tags: sof-elk_logstash
 
+- name: Configure Logstash
+  copy:
+    src: 'logstash.yml'
+    dest: '/etc/logstash/logstash.yml'
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart logstash
+  tags: sof-elk_logstash
+
 - name: Start and Enable Logstash service
   systemd:
     name: logstash

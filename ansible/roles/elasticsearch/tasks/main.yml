@@ -62,8 +62,9 @@
   notify: restart elasticsearch
   tags: sof-elk_elasticsearch
 
-- name: Start Elasticsearch service
+- name: Start and Enable Elasticsearch service
   systemd:
     name: elasticsearch
+    enabled: yes
     state: started
   tags: sof-elk_elasticsearch
