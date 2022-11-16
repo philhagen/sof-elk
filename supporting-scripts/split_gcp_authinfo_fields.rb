@@ -25,12 +25,12 @@ def filter(event)
         return [event]
     end
 
-    source_array = event.get(@source_field)
+    source_data = event.get(@source_field)
 
     # create empty hash to hold new result
     output = Hash.new()
 
-    for item in source_array
+    for item in source_data
         if item.key?(@key_field)
             new_key = item[@key_field]
             unless output.key?(new_key)

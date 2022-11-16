@@ -25,12 +25,19 @@ def filter(event)
         event.tag("#{@source_field}_not_found")
         return [event]
     end
-    source_array = event.get(@source_field)
+    source_data = event.get(@source_field)
 
     # create empty hash to hold new result
     output = Hash.new()
 
-    for item in source_array
+    if source_data.is_a?(Array)
+        for item in source_data
+            if item.key?(@val_field) && !(item[@val_field] == "")
+                output[item[@key_field]] = item[@val_field]
+            end
+        end
+    elsif source_data.is_a?(Hash)
+        item = source_data
         if item.key?(@val_field) && !(item[@val_field] == "")
             output[item[@key_field]] = item[@val_field]
         end

@@ -24,12 +24,12 @@ def filter(event)
         event.tag("#{@source_field}_not_found")
         return [event]
     end
-    source_array = event.get(@source_field)
+    source_data = event.get(@source_field)
 
     # create empty hash to hold new result
     output = Hash.new()
 
-    for item in source_array
+    for item in source_data
         new_value = Marshal.load(Marshal.dump(item))
         key = new_value.delete(@key_field)
 
