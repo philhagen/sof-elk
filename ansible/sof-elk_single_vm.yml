@@ -43,7 +43,8 @@
     - logstash
     - filebeat
     - kibana
-    - elastalert
+# disabling this until elastalert2 is usable
+#    - elastalert
     - domain_stats
     - freq
     - aws-cli
