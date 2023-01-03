@@ -1,9 +1,9 @@
 # SOF-ELK® Supporting script
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2022 Lewes Technology Consulting, LLC
 #
 # This file configures the filebeat daemon
 
-######################## Filebeat Configuration ############################
+###################### Filebeat Configuration #########################
 
 # You can find the full configuration reference here:
 # https://www.elastic.co/guide/en/beats/filebeat/index.html
@@ -11,6 +11,7 @@
 # For more available modules and options, please see the filebeat.reference.yml sample
 # configuration file.
 
+# ============================== Filebeat inputs ===============================
 filebeat.config.inputs:
   enabled: true
   path: /usr/local/sof-elk/lib/filebeat_inputs/*.yml
@@ -27,9 +28,27 @@ filebeat.config.modules:
   # Period on which files under path should be checked for changes
   #reload.period: 10s
 
-#================================ Outputs =====================================
+# ================================ Outputs =====================================
 
-#----------------------------- Logstash output --------------------------------
+# ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
   hosts: ["localhost:5044"]
+
+  # Optional SSL. By default is off.
+  # List of root certificates for HTTPS server verifications
+  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+
+  # Certificate for SSL client authentication
+  #ssl.certificate: "/etc/pki/client/cert.pem"
+
+  # Client Certificate Key
+  #ssl.key: "/etc/pki/client/cert.key"
+
+# ================================= Processors =================================
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
