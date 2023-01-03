@@ -3,11 +3,7 @@
   command: '/usr/local/sof-elk/supporting-scripts/wait_for_es.sh'
   tags: sof-elk_finalize
 
-- name: Load all dashboards
-  command: '/usr/local/sbin/load_all_dashboards.sh'
-  tags: sof-elk_finalize
-
-- name: Run the post-merge script
+- name: Run the post-merge script, which also loads all dashboards
   command: '/usr/local/sof-elk/supporting-scripts/post_merge.sh'
   tags: sof-elk_finalize
 
