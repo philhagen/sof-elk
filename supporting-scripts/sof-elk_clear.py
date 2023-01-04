@@ -83,7 +83,7 @@ def get_es_indices(es):
         special_index_regex.append(re.compile(raw_regex))
 
     index_dict = {}
-    indices = list(es.indices.get_alias('*'))
+    indices = list(es.indices.get_alias(index = '*', expand_wildcards='open'))
     for index in indices:
         if not any(compiled_reg.match(index) for compiled_reg in special_index_regex):
             baseindex = index.split('-')[0]
@@ -123,7 +123,7 @@ if args.reload and os.geteuid() != 0:
     exit(1)
 
 # create Elasticsearch handle
-es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+es = Elasticsearch(['http://localhost:9200'])
 try:
     es.info()    
 except:
