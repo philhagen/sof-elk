@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath

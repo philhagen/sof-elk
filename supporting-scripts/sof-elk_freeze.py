@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2022 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This script is used to take elasticsearch indices offline or back online again.
 # The resulting frozen index is not truly "hidden" from someone that knows Elasticsearch well, but will prevent casual browsing until the index is thawed.
