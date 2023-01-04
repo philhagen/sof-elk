@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "gws-*"
   },
-  "coreMigrationVersion": "7.17.7",
+  "coreMigrationVersion": "8.5.3",
   "id": "gws",
   "namespaces": [
     "default"

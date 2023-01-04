@@ -22,7 +22,7 @@
     "title": "Azure Activity Log Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "7.17.7",
+  "coreMigrationVersion": "8.5.3",
   "id": "c80386c0-286e-11eb-bf98-fb32763e0d19",
   "namespaces": [
     "default"

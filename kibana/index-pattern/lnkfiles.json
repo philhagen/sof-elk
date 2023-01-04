@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "lnkfiles-*"
   },
-  "coreMigrationVersion": "7.17.7",
+  "coreMigrationVersion": "8.5.3",
   "id": "lnkfiles",
   "namespaces": [
     "default"

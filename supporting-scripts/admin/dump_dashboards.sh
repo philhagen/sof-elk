@@ -99,10 +99,10 @@ for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_hos
     rm -f ${TMPFILE}
 
     # if any of these files are zero-length, remove them
-    if [ ! -s index-pattern/fields/${INDEXPATTERNID}.json ]; then
+    if [ ! -s index-pattern/fields/${INDEXPATTERNID}.json ] || [[ $( jq 'length' < index-pattern/fields/${INDEXPATTERNID}.json ) -eq "0" ]]; then
         rm -f index-pattern/fields/${INDEXPATTERNID}.json
     fi
-    if [ ! -s index-pattern/fieldformats/${INDEXPATTERNID}.json ]; then
+    if [ ! -s index-pattern/fieldformats/${INDEXPATTERNID}.json ] || [[ $( jq 'keys | length' < index-pattern/fieldformats/${INDEXPATTERNID}.json ) -eq "0" ]]; then
         rm -f index-pattern/fieldformats/${INDEXPATTERNID}.json
     fi
 done

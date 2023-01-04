@@ -11,7 +11,7 @@
     "title": "NetFlow Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.17.7",
+  "coreMigrationVersion": "8.5.3",
   "id": "99d1b510-72b3-11e8-9159-894bd7d62352",
   "namespaces": [
     "default"
