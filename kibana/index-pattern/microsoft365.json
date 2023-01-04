@@ -2,10 +2,10 @@
   "attributes": {
     "fieldAttrs": "{}",
     "timeFieldName": "@timestamp",
-    "title": "office365-*"
+    "title": "microsoft365-*"
   },
   "coreMigrationVersion": "8.5.3",
-  "id": "office365",
+  "id": "microsoft365",
   "namespaces": [
     "default"
   ],

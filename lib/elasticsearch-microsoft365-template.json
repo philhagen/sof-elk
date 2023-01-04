@@ -1,7 +1,7 @@
 {
   "aliases": {},
   "index_patterns": [
-    "office365-*"
+    "microsoft365-*"
   ],
   "mappings": {
     "_meta": {},

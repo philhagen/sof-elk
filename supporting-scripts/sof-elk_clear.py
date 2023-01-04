@@ -100,7 +100,7 @@ sourcedir_index_mapping = {
     'kape': 'lnkfiles',
     'kape': 'filesystem',
     'kape': 'evtxfiles',
-    'office365': 'office365',
+    'microsoft365': 'microsoft365',
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
