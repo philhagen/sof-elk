@@ -89,15 +89,15 @@ done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
 
-echo "stopping elastalert"
-systemctl stop elastalert
-echo "clearing elastalert"
-curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status' > /dev/null
-curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_error' > /dev/null
-curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_past' > /dev/null
-curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_silence' > /dev/null
-curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_status' > /dev/null
-elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
+# echo "stopping elastalert"
+# systemctl stop elastalert
+# echo "clearing elastalert"
+# curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status' > /dev/null
+# curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_error' > /dev/null
+# curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_past' > /dev/null
+# curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_silence' > /dev/null
+# curl -s -XDELETE 'http://127.0.0.1:9200/elastalert_status_status' > /dev/null
+# elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml
 
 echo "reload kibana dashboards"
 /usr/local/sbin/load_all_dashboards.sh
