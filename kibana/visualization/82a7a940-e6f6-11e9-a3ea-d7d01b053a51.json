@@ -10,7 +10,7 @@
     "version": 1,
     "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"field\":\"computer.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"size\":10},\"schema\":\"segment\",\"type\":\"terms\"}],\"params\":{\"addTooltip\":true,\"dimensions\":{\"metric\":{\"accessor\":0,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"params\":{}}},\"distinctColors\":true,\"isDonut\":false,\"labels\":{\"last_level\":true,\"show\":false,\"truncate\":100,\"values\":true},\"legendDisplay\":\"show\",\"legendPosition\":\"right\",\"legendSize\":\"auto\",\"palette\":{\"name\":\"kibana_palette\",\"type\":\"palette\"},\"type\":\"pie\"},\"title\":\"Eventlog Computer\",\"type\":\"pie\"}"
   },
-  "coreMigrationVersion": "8.5.3",
+  "coreMigrationVersion": "8.6.0",
   "id": "82a7a940-e6f6-11e9-a3ea-d7d01b053a51",
   "namespaces": [
     "default"

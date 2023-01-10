@@ -6,7 +6,7 @@
     "title": "Syslog Destination Geo",
     "uiStateJSON": "{\"isLayerTOCOpen\":false,\"openTOCDetails\":[]}"
   },
-  "coreMigrationVersion": "8.5.3",
+  "coreMigrationVersion": "8.6.0",
   "id": "6d844e90-76f3-11eb-9d54-294249e0048f",
   "namespaces": [
     "default"

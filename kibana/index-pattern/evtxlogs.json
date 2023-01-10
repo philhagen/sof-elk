@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "evtxlogs-*"
   },
-  "coreMigrationVersion": "8.5.3",
+  "coreMigrationVersion": "8.6.0",
   "id": "evtxlogs",
   "namespaces": [
     "default"

@@ -21,7 +21,7 @@
     "title": "HTTPD Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "8.5.3",
+  "coreMigrationVersion": "8.6.0",
   "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
   "namespaces": [
     "default"
