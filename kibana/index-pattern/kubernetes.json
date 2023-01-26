@@ -1,0 +1,18 @@
+{
+  "attributes": {
+    "fieldAttrs": "{\"groups\":{\"count\":2},\"path\":{\"count\":1}}",
+    "name": "kubernetes-*",
+    "runtimeFieldMap": "{}",
+    "sourceFilters": "[{\"value\":\"event.original*\",\"clientId\":1}]",
+    "timeFieldName": "@timestamp",
+    "title": "kubernetes-*",
+    "typeMeta": "{}"
+  },
+  "coreMigrationVersion": "8.6.0",
+  "id": "kubernetes",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
+}

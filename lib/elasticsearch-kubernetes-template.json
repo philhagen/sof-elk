@@ -9,10 +9,10 @@
     "dynamic_templates": [
       {
         "ip_address_fields": {
-          "match": "*_ip",
           "mapping": {
             "type": "ip"
-          }
+          },
+          "match": "*_ip"
         }
       },
       {
@@ -39,8 +39,32 @@
       "@version": {
         "type": "keyword"
       },
+      "client_geo": {
+        "dynamic": true,
+        "properties": {
+          "asn": {
+            "type": "integer"
+          },
+          "latitude": {
+            "type": "half_float"
+          },
+          "location": {
+            "type": "geo_point"
+          },
+          "longitude": {
+            "type": "half_float"
+          }
+        },
+        "type": "object"
+      },
+      "client_port": {
+        "type": "integer"
+      },
       "ips": {
         "type": "ip"
+      },
+      "ports": {
+        "type": "integer"
       },
       "prospector": {
         "properties": {
@@ -50,28 +74,29 @@
         },
         "type": "object"
       },
+      "client_geo": {
+        "dynamic": true,
+        "properties": {
+          "asn": {
+            "type": "integer"
+          },
+          "latitude": {
+            "type": "half_float"
+          },
+          "location": {
+            "type": "geo_point"
+          },
+          "longitude": {
+            "type": "half_float"
+          }
+        },
+        "type": "object"
+      },
       "type": {
         "type": "keyword"
       },
       "version": {
         "type": "integer"
-      },
-      "client_geo": {
-        "dynamic": true,
-        "properties": {
-          "location": {
-            "type": "geo_point"
-          },
-          "latitude": {
-            "type": "half_float"
-          },
-          "longitude": {
-            "type": "half_float"
-          },
-          "asn": {
-            "type": "integer"
-          }
-        }
       }
     }
   },
