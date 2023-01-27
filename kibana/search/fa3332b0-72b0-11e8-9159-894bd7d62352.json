@@ -24,7 +24,7 @@
     "title": "NetFlow Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "8.6.0",
+  "coreMigrationVersion": "8.6.1",
   "id": "fa3332b0-72b0-11e8-9159-894bd7d62352",
   "namespaces": [
     "default"

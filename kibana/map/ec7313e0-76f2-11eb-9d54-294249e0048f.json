@@ -6,7 +6,7 @@
     "title": "HTTPD Access Source",
     "uiStateJSON": "{\"isLayerTOCOpen\":false,\"openTOCDetails\":[]}"
   },
-  "coreMigrationVersion": "8.6.0",
+  "coreMigrationVersion": "8.6.1",
   "id": "ec7313e0-76f2-11eb-9d54-294249e0048f",
   "namespaces": [
     "default"

@@ -11,7 +11,7 @@
     "title": "Eventlog Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "8.6.0",
+  "coreMigrationVersion": "8.6.1",
   "id": "11f462e0-8d11-11e9-a03c-33ad7fc2c4d0",
   "namespaces": [
     "default"

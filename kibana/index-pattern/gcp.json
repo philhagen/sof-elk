@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "gcp-*"
   },
-  "coreMigrationVersion": "8.6.0",
+  "coreMigrationVersion": "8.6.1",
   "id": "gcp",
   "namespaces": [
     "default"
