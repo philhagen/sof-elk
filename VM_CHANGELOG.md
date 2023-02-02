@@ -1,12 +1,18 @@
 SOF-ELK® Virtual Machine Changelog
 =======
 
+* MAJOR Update: 2023-01-xx: Upgraded to ES 8.6.1 components, upstream parsers
+    * Updated to all ES 8.6.1 components, including Ansible playbooks, configuration files, APIs, etc.
+    * Elastalert has been removed because it is not compatible with the newest ES components and Elastalert2 is not yet usable
+    * Added specific login screen for Ansible-built instances
+    * ELB log format from bedangSen #262
+    * Initial parser for k8s logs with help from jameroddie #268
+
 * Update: 2022-10-25: Upgraded to ES 7.17.7 components, integrated upstream parsers
     * Updated all Elastic Stack components to 7.17.7
     * All CentOS 7 updates applied as of 2022-10-25
     * Updated and added to cloud platform parsers
     * Parser and dashboard improvements
-
 * Update: 2021-10-06: Upgraded to ES 7.15.0 components, added numerous cloud platform log parsers
     * Updated all Elastic Stack components to 7.15.0
     * Dashboards adjusted for ES 7.15.0
@@ -16,7 +22,6 @@ SOF-ELK® Virtual Machine Changelog
     * All dashboards default to KQL instead of Lucene
     * Better handling of GeoIP database download, installation, and updates
     * Numerous other parser and dashboard improvements
-
 * Update: 2020-03-27: Upgraded to ES 7.6 components, more
     * Updated all Elastic Stack components to 7.6.1
     * VM now built completely from the included Ansible playbooks
