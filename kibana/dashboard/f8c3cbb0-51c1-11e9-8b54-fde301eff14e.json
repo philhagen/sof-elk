@@ -11,7 +11,7 @@
     "title": "Filesystem Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "8.6.1",
+  "coreMigrationVersion": "8.6.2",
   "id": "f8c3cbb0-51c1-11e9-8b54-fde301eff14e",
   "namespaces": [
     "default"

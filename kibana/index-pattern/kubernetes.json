@@ -7,7 +7,7 @@
     "title": "kubernetes-*",
     "typeMeta": "{}"
   },
-  "coreMigrationVersion": "8.6.1",
+  "coreMigrationVersion": "8.6.2",
   "id": "kubernetes",
   "namespaces": [
     "default"

@@ -11,7 +11,7 @@
     "title": "SOF-ELK® VM Introduction Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "8.6.1",
+  "coreMigrationVersion": "8.6.2",
   "id": "6d272a20-7319-11e8-9f32-cf7527ac183d",
   "namespaces": [
     "default"

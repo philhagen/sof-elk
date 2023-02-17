@@ -4,7 +4,7 @@
     "timeFieldName": "@timestamp",
     "title": "logstash-*"
   },
-  "coreMigrationVersion": "8.6.1",
+  "coreMigrationVersion": "8.6.2",
   "id": "logstash",
   "namespaces": [
     "default"

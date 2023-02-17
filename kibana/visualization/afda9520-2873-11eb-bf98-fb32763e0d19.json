@@ -10,7 +10,7 @@
     "version": 1,
     "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Event Category\",\"field\":\"event_category.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"size\":15},\"schema\":\"segment\",\"type\":\"terms\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Operation Name\",\"field\":\"operation_name.keyword\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"size\":15},\"schema\":\"segment\",\"type\":\"terms\"}],\"params\":{\"addTooltip\":true,\"dimensions\":{\"metric\":{\"accessor\":0,\"aggType\":\"count\",\"format\":{\"id\":\"number\"},\"label\":\"Count\",\"params\":{}}},\"distinctColors\":true,\"isDonut\":true,\"labels\":{\"last_level\":true,\"show\":false,\"truncate\":100,\"values\":true},\"legendDisplay\":\"hide\",\"legendPosition\":\"right\",\"legendSize\":\"auto\",\"palette\":{\"name\":\"kibana_palette\",\"type\":\"palette\"},\"type\":\"pie\"},\"title\":\"Azure Activity Log Operations\",\"type\":\"pie\"}"
   },
-  "coreMigrationVersion": "8.6.1",
+  "coreMigrationVersion": "8.6.2",
   "id": "afda9520-2873-11eb-bf98-fb32763e0d19",
   "namespaces": [
     "default"
