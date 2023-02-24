@@ -1,0 +1,23 @@
+{
+  "index_patterns": [
+    "logtype-*"
+  ],
+  "composed_of": [
+    "settings-component_template",
+    "mappings-corecommon-component_template",
+    "mappings-string-component_template",
+    "mappings-ip_address-component_template",
+    "mappings-geohash-component_template"
+  ],
+  "template": {
+    "mappings": {
+      "properties": {
+        /* place any required field type definitions here */
+
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

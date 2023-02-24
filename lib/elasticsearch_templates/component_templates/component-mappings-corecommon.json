@@ -1,0 +1,32 @@
+{
+  "template": {
+    "mappings": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "@version": {
+          "type": "keyword"
+        },
+        "prospector": {
+          "properties": {
+            "type": {
+              "type": "keyword"
+            }
+          },
+          "type": "object"
+        },
+        "path": {
+          "type": "keyword"
+        },
+        "original_message": {
+          "type": "keyword"
+        }
+      }
+    }
+  },
+  "_meta": {
+    "description": "Core/common fields",
+    "provider": "SOF-ELK"
+  }
+}

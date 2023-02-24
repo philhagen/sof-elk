@@ -1,0 +1,31 @@
+{
+  "index_patterns": [
+    "azure-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-ip_address",
+    "mappings-geohash",
+    "mappings-guid"
+  ],
+  "template": {
+    "mappings": {
+      "properties": {
+        "event_data": {
+          "type": "object"
+        },
+        "type": {
+          "type": "keyword"
+        },
+        "version": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "index_patterns": [
+    "netflow-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-ip_address",
+    "mappings-geohash",
+    "mappings-port"
+  ],
+  "template": {
+    "mappings": {
+      "runtime": {
+        "destination_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "String m; if ( doc['destination_geo.asn'].size() == 0 || doc['destination_geo.as_org.keyword'].size() == 0 ) { m = 'ASN: Not Available' } else { m = ('ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value) } emit(m);"
+          }
+        },
+        "flow_records_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['flow_records'].value);"
+          }
+        },
+        "in_bytes_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['in_bytes'].value);"
+          }
+        },
+        "in_packets_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['in_packets'].value);"
+          }
+        },
+        "missed_bytes_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['missed_bytes'].value);"
+          }
+        },
+        "out_bytes_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['out_bytes'].value);"
+          }
+        },
+        "out_packets_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['out_packets'].value);"
+          }
+        },
+        "total_bytes": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['out_bytes'].value + doc['in_bytes'].value);"
+          }
+        },
+        "total_bytes_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['out_bytes'].value + doc['in_bytes'].value);"
+          }
+        },
+        "total_packets": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"
+          }
+        },
+        "total_packets_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"
+          }
+        },
+        "source_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "String m; if ( doc['source_geo.asn'].size() == 0 || doc['source_geo.as_org.keyword'].size() == 0 ) { m = 'ASN: Not Available' } else { m = ('ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value) } emit(m);"
+          }
+        }
+      },
+      "properties": {
+        "exporter": {
+          "type": "ip"
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

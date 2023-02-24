@@ -1,0 +1,13 @@
+{
+  "index_patterns": [
+    "evtxlogs-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string"
+  ],
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

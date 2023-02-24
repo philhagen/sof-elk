@@ -1,0 +1,38 @@
+{
+  "template": {
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "geohash_fields": {
+            "match": "*_geo",
+            "mapping": {
+
+              "dynamic": true,
+              "properties": {
+                "location": {
+                  "type": "geo_point"
+                },
+                "latitude": {
+                  "type": "half_float"
+                },
+                "longitude": {
+                  "type": "half_float"
+                },
+                "asn": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "description": "Geohash fields",
+    "provider": "SOF-ELK"
+  }
+}
+
+
+
