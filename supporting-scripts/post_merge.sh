@@ -48,7 +48,7 @@ for file in $( ls -1 /usr/local/sof-elk/lib/elastalert_rules/*.yaml 2> /dev/null
 	ln -s $file /etc/elastalert_rules/$( basename $file )
 done
 # reload elastalert
-/usr/bin/systemctl restart elastalert
+#/usr/bin/systemctl restart elastalert
 
 # restart filebeat to account for any new config files and/or prospectors
 FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
