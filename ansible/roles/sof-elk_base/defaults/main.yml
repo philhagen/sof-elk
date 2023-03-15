@@ -9,7 +9,7 @@ base_yum_packages:
   - deltarpm
   - exfat-utils
   - gcc
-  - geoipupdate
+  - https://github.com/maxmind/geoipupdate/releases/download/v4.10.0/geoipupdate_4.10.0_linux_386.rpm
   - git
   - htop
   - java-11-openjdk
