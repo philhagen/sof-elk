@@ -8,7 +8,8 @@
     "mappings-string",
     "mappings-ip_address",
     "mappings-geohash",
-    "mappings-guid"
+    "mappings-guid",
+    "mappings-final"
   ],
   "template": {
     "mappings": {

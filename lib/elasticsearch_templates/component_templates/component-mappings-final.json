@@ -1,0 +1,28 @@
+{
+  "template": {
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "fields": {
+                "keyword": {
+                  "ignore_above": 256,
+                  "type": "keyword"
+                }
+              },
+              "norms": false,
+              "type": "text"
+            },
+            "match": "*",
+            "match_mapping_type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "description": "String fields",
+    "provider": "SOF-ELK"
+  }
+}

@@ -59,12 +59,12 @@ curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${
 
 # replace data_views
 # these must be inserted FIRST becuase they are the basis for the other stored objects' references
-for dataviewfile in ${kibana_file_dir}/data_views/*.json; do
+for dataviewfile in $( ls -1 ${kibana_file_dir}/data_views/*.json ); do
     DATAVIEWID=$( basename ${dataviewfile} | sed -e 's/\.json$//' )
     echo "Loading Data View: ${DATAVIEWID}"
 
     # update the data_view object
-    curl -s -H 'kbn-xsrf: true' --form file=@${dataviewfile} -X POST "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" > /dev/null
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type; application/json' -X POST "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" -d@${dataviewfile} > /dev/null
 done
 
 # insert/update dashboards, visualizations, maps, and searches
@@ -72,7 +72,7 @@ done
 TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
 for objecttype in visualization map search dashboard; do
     echo "Preparing objects: ${objecttype}"
-    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
+    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE} > /dev/null
 done
 echo "Loading objects in bulk"
 curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
