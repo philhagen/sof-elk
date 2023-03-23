@@ -26,7 +26,7 @@
       prompt: "Enter GeoIP Account ID"
       private: no
     - name: geoip_licensekey
-      prompt:  "Enter GeoIP License Key (old format)"
+      prompt:  "Enter GeoIP License Key (new 3.x+ format)"
       private: no
     - name: geoip_config_persist
       prompt: "Do you want GeoIP account/license data to persist after installation (default: no)?"
