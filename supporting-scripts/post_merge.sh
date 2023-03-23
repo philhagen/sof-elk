@@ -73,3 +73,6 @@ done
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
+
+# run the geoip updater script
+/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoipupdate_updater.sh

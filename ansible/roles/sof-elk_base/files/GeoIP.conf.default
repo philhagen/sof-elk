@@ -1,9 +1,10 @@
-# Please see http://dev.maxmind.com/geoip/geoipupdate/ for instructions
-# on setting up geoipupdate, including information on how to download a
-# pre-filled GeoIP.conf file.
+# Please see https://dev.maxmind.com/geoip/updating-databases?lang=en for
+# instructions on setting up geoipupdate, including information on how to
+# download a pre-filled GeoIP.conf file.
 
-# Enter your account ID and license key below. These are available from
-# https://www.maxmind.com/en/my_license_key.
+# Replace YOUR_ACCOUNT_ID_HERE and YOUR_LICENSE_KEY_HERE with an active account
+# ID and license key combination associated with your MaxMind account. These
+# are available from https://www.maxmind.com/en/my_license_key.
 AccountID <%ACCOUNT_ID%>
 LicenseKey <%LICENSE_KEY%>
 
@@ -13,14 +14,11 @@ EditionIDs GeoLite2-Country GeoLite2-City GeoLite2-ASN
 
 # The remaining settings are OPTIONAL.
 
-# The directory to store the database files. Defaults to /usr/local/share/GeoIP
+# The directory to store the database files. Defaults to /usr/share/GeoIP
 DatabaseDirectory /usr/local/share/GeoIP
 
 # The server to use. Defaults to "updates.maxmind.com".
 # Host updates.maxmind.com
-
-# The desired protocol either "https" (default) or "http".
-# Protocol https
 
 # The proxy host name or IP address. You may optionally specify a
 # port number, e.g., 127.0.0.1:8888. If no port number is specified, 1080
@@ -30,19 +28,20 @@ DatabaseDirectory /usr/local/share/GeoIP
 # The user name and password to use with your proxy server.
 # ProxyUserPassword username:password
 
-# Whether to skip host name verification on HTTPS connections.
-# Defaults to "0".
-# SkipHostnameVerification 0
-
-# Whether to skip peer verification on HTTPS connections.
-# Defaults to "0".
-# SkipPeerVerification 0
-
 # Whether to preserve modification times of files downloaded from the server.
 # Defaults to "0".
 # PreserveFileTimes 0
 
 # The lock file to use. This ensures only one geoipupdate process can run at a
 # time.
+# Note: Once created, this lockfile is not removed from the filesystem.
 # Defaults to ".geoipupdate.lock" under the DatabaseDirectory.
 # LockFile /usr/local/share/GeoIP/.geoipupdate.lock
+
+
+# The amount of time to retry for when errors during HTTP transactions are
+# encountered. It can be specified as a (possibly fractional) decimal number
+# followed by a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms",
+# "s", "m", "h".
+# Defaults to "5m" (5 minutes).
+# RetryFor 5m
