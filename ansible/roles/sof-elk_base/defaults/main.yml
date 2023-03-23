@@ -1,7 +1,7 @@
 ---
 base_yum_packages:
   - GeoIP
-  - geoipupdate
+  - https://github.com/maxmind/geoipupdate/releases/download/v4.10.0/geoipupdate_4.10.0_linux_386.rpm
   - bc
   - bind-utils
   - bzip2
