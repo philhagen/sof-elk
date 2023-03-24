@@ -17,19 +17,19 @@
         "answer_geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "String m; if ( doc.containsKey('answer_geo.asn') && doc.containsKey('answer_geo.as_org.keyword') ) { m = ('ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword'].value); emit(m) }"
+            "source": "if (doc['answer_geo.asn'].size() != 0 && doc['answer_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword']; emit(m); }"
           }
         },
         "destination_geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "String m; if ( doc.containsKey('destination_geo.asn') && doc.containsKey('destination_geo.as_org.keyword') ) { m = ('ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword'].value); emit(m) }"
+            "source": "if (doc['destination_geo.asn'].size() != 0 && doc['destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword']; emit(m); }"
           }
         },
         "source_geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "String m; if ( doc.containsKey('source_geo.asn') && doc.containsKey('source_geo.as_org.keyword') ) { m = ('ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword'].value); emit(m) }"
+            "source": "if (doc['source_geo.asn'].size() != 0 && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
           }
         }
       },
