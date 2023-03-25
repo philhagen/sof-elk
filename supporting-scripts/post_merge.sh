@@ -35,7 +35,7 @@ systemctl restart logstash
 ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d /logstash/${ingest_dir} ]; then
-        mkdir -m 1777 -p /logstash/${ingest_dir}
+        mkdir -m 1777 /logstash/${ingest_dir}
     fi
 done
 
