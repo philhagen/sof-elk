@@ -8,6 +8,6 @@
     "securitySolution:enableNewsFeed": false,
     "securitySolution:ipReputationLinks": "[{ \"name\": \"virustotal.com\", \"url_template\": \"https://www.virustotal.com/gui/search/{{ip}}\" }, { \"name\": \"talosIntelligence.com\", \"url_template\": \"https://talosintelligence.com/reputation_center/lookup?search={{ip}}\" }, { \"name\": \"SANS ISC\", \"url_template\": \"https://isc.sans.edu/ipinfo.html?ip={{ip}}\" }]",
     "discover:rowHeightOption": -1,
-    "discover:sampleSize": 1000
+    "discover:sampleSize": 5000
   }
 }
