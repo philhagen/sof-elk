@@ -21,13 +21,13 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 ## Latest Distribution Vitals
 
 * Basic details on the distribution
-    * VM is a CentOS 7.7 base with all OS updates as of 2022-10-25
-    * Includes Elastic stack components v7.17.7
-    * Configuration files are from the "public/v20221025" branch of this Github repository
+    * VM is a CentOS 7.7 base with all OS updates as of 2023-03-29
+    * Includes Elastic stack components v8.6.2
+    * Configuration files are from the "public/v20230329" branch of this Github repository
 * Metadata
-    * Filename and size: `Public SOF-ELK v20221025.7z` (`2,192,493,169` bytes)
-    * MD5: `1f22d1cde6447fe142df86bc0af2cc18`
-    * SHA256: `129a0e3d35ac427f2e438ede96fc7025379b818760866b779339e512a8863bab`
+    * Filename and size: `Public SOF-ELK v20230329.7z` (`2,207,950,892` bytes)
+    * MD5: `ba74b78fbbfb9217d6c17658741eaa7e`
+    * SHA256: `32fe29d7d5f144a5c05532991eab4fb74568369d542c5561350bb89e51f3d4da`
 
 ## General Information
 
