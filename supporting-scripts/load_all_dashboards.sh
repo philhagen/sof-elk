@@ -1,8 +1,8 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
-# This script is used to load all dashboards, visualizations, saved searches, and index patterns to Kibana
+# This script is used to load all dashboards, visualizations, saved searches, and data views to Kibana
 
 # set defaults
 es_host=localhost
@@ -34,14 +34,21 @@ done
 # re-insert all ES templates in case anything has changed
 # this will not change existing mappings, just new indexes as they are created
 # (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
-for es_template_file in $( ls -1 ${sofelk_root_dir}lib/elasticsearch-*-template.json ); do
-    es_template=$( echo $es_template_file | sed 's/.*elasticsearch-\(.*\)-template.json/\1/' )
-    echo "Loading ES Template: ${es_template}"
+for es_component_template_file in $( ls -1 ${sofelk_root_dir}lib/elasticsearch_templates/component_templates/*.json); do
+    es_component_template=$( echo $es_component_template_file | sed -e s'/.*\/component-\(.*\)\.json$/\1/' )
+    echo "Loading ES Component Template: ${es_component_template}"
 
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_template/${es_template} -d @${es_template_file} > /dev/null
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_component_template/${es_component_template} -d @${es_component_template_file} > /dev/null
 done
 
-# set the default index pattern, time zone, and add TZ offset to the default date format, and other custom Kibana settings
+for es_index_template_file in $( ls -1 ${sofelk_root_dir}lib/elasticsearch_templates/index_templates/*.json ); do
+    es_index_template=$( echo $es_index_template_file | sed 's/.*\/index-\(.*\)\.json/\1/' )
+    echo "Loading ES Index Template: ${es_index_template}"
+
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_index_template/${es_index_template} -d @${es_index_template_file} > /dev/null
+done
+
+# set the default data view, time zone, and add TZ offset to the default date format, and other custom Kibana settings
 echo "Setting Kibana Defaults"
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X DELETE http://${kibana_host}:${kibana_port}/api/saved_objects/config/${kibana_version} > /dev/null
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://${kibana_host}:${kibana_port}/api/saved_objects/config/${kibana_version} -d@${kibana_file_dir}/sof-elk_config.json > /dev/null
@@ -50,45 +57,14 @@ curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST http://$
 echo "Increasing Kibana index recovery priority"
 curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/${kibana_index}/_settings -d "{ \"settings\": {\"index\": {\"priority\": 100 }}}" > /dev/null
 
-# replace index patterns
+# replace data_views
 # these must be inserted FIRST becuase they are the basis for the other stored objects' references
-for indexpatternfile in ${kibana_file_dir}/index-pattern/*.json; do
-    INDEXPATTERNID=$( basename ${indexpatternfile} | sed -e 's/\.json$//' )
-    echo "Loading Index Pattern: ${INDEXPATTERNID}"
+for dataviewfile in $( ls -1 ${kibana_file_dir}/data_views/*.json ); do
+    DATAVIEWID=$( basename ${dataviewfile} | sed -e 's/\.json$//' )
+    echo "Loading Data View: ${DATAVIEWID}"
 
-    # reconstruct the new index-pattern with the proper fields and fieldFormatMap values
-    if [ -f ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json ]; then
-        fields=1
-    else
-        fields=0
-    fi
-    if [ -f ${kibana_file_dir}/index-pattern/fieldformats/${INDEXPATTERNID}.json ]; then
-        fieldformatmap=1
-    else
-        fieldformatmap=0
-    fi
-
-    # create temp files to hold the reconstructed index-pattern
-    TMPFILE=$( mktemp )
-    TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
-
-    cat ${indexpatternfile} | jq -c '.' > ${TMPNDJSONFILE}
-
-    if [ ${fields} == 1 ]; then
-        cat ${TMPNDJSONFILE} | jq -c --arg fields "$( cat ${kibana_file_dir}/index-pattern/fields/${INDEXPATTERNID}.json | jq -c '.' )" '.attributes += { fields: $fields }' > ${TMPFILE}
-        cat ${TMPFILE} > ${TMPNDJSONFILE}
-    fi
-    if [ ${fieldformatmap} == 1 ]; then
-        cat ${TMPNDJSONFILE} | jq -c --arg fieldformatmap "$( cat ${kibana_file_dir}/index-pattern/fieldformats/${INDEXPATTERNID}.json | jq -c '.' )" '.attributes += { fieldFormatMap: $fieldformatmap }' > ${TMPFILE}
-        cat ${TMPFILE} > ${TMPNDJSONFILE}
-    fi
-
-    # update the index-mapping object
-    curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
-
-    # remove the temp files
-    rm -f ${TMPFILE}
-    rm -f ${TMPNDJSONFILE}
+    # update the data_view object
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type; application/json' -X POST "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" -d@${dataviewfile} > /dev/null
 done
 
 # insert/update dashboards, visualizations, maps, and searches
@@ -96,7 +72,7 @@ done
 TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
 for objecttype in visualization map search dashboard; do
     echo "Preparing objects: ${objecttype}"
-    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
+    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE} > /dev/null
 done
 echo "Loading objects in bulk"
 curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null

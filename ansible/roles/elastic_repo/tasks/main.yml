@@ -3,7 +3,7 @@
   yum_repository:
     file: '{{ elastic_repofile_path }}'
     name: 'elastic-7.x'
-    description: 'Elastic repository for 7.x packages'
+    description: 'Elastic repository for 8.x packages'
     baseurl: '{{ elastic_repo_baseurl }}'
     gpgcheck: yes
     gpgkey: '{{ elastic_repo_gpg_key_url }}'

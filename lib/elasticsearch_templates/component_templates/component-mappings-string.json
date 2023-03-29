@@ -1,0 +1,10 @@
+{
+  "template": {
+    "mappings": {
+    }
+  },
+  "_meta": {
+    "description": "String fields",
+    "provider": "SOF-ELK"
+  }
+}

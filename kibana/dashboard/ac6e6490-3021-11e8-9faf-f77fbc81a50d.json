@@ -11,7 +11,7 @@
     "title": "Syslog Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "7.17.7",
+  "coreMigrationVersion": "8.6.2",
   "id": "ac6e6490-3021-11e8-9faf-f77fbc81a50d",
   "namespaces": [
     "default"

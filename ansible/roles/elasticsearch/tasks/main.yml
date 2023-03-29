@@ -5,6 +5,15 @@
     state: present
   tags: sof-elk_elasticsearch
 
+- name: Create empty file for dynamic Elasticsearch startup parameters
+  copy:
+    content: ""
+    dest: '/etc/elasticsearch/jvm.options.d/sof-elk'
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0640
+  tags: sof-elk_elasticsearch
+
 - name: Enable Elasticsearch service
   systemd:
     name: elasticsearch
@@ -60,6 +69,10 @@
     group: elasticsearch
     mode: 0660
   notify: restart elasticsearch
+  tags: sof-elk_elasticsearch
+
+- name: Run daemon-reload so service can start
+  command: 'systemctl daemon-reload'
   tags: sof-elk_elasticsearch
 
 - name: Start and Enable Elasticsearch service

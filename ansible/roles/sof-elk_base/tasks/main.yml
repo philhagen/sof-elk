@@ -120,6 +120,10 @@
     - { src: 'issue.prep', dest: '/etc/issue.prep' }
   tags: sof-elk_base
 
+- name: Customize login banner
+  shell: cat /etc/issue.prep | sed -e "s/<%REVNO%>/*Ansible-built* on $( date +%Y-%m-%d )/" > /etc/issue
+  tags: sof-elk_base
+
 - name: Set up sysctl configuration
   copy:
     src: '{{ item.src }}'

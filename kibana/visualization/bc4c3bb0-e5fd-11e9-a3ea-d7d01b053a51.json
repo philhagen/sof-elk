@@ -10,7 +10,7 @@
     "version": 1,
     "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Bytes\",\"field\":\"total_bytes_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"customLabel\":\"Flows\",\"field\":\"flow_records_vis\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"enabled\":true,\"id\":\"3\",\"params\":{\"customLabel\":\"Packets\",\"field\":\"total_packets_vis\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"params\":{\"addLegend\":false,\"addTooltip\":true,\"dimensions\":{\"metrics\":[{\"accessor\":0,\"format\":{\"id\":\"bytes\",\"params\":{}},\"type\":\"vis_dimension\"},{\"accessor\":1,\"format\":{\"id\":\"number\",\"params\":{\"pattern\":\"0,0.[0]a\"}},\"type\":\"vis_dimension\"},{\"accessor\":2,\"format\":{\"id\":\"number\",\"params\":{\"pattern\":\"0,0.[0]a\"}},\"type\":\"vis_dimension\"}]},\"metric\":{\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":10000,\"type\":\"range\"}],\"invertColors\":false,\"labels\":{\"show\":true},\"metricColorMode\":\"None\",\"percentageMode\":false,\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":40,\"labelColor\":false,\"subText\":\"\"},\"useRanges\":false},\"type\":\"metric\"},\"title\":\"NetFlow Statistics Summary\",\"type\":\"metric\"}"
   },
-  "coreMigrationVersion": "7.17.7",
+  "coreMigrationVersion": "8.6.2",
   "id": "bc4c3bb0-e5fd-11e9-a3ea-d7d01b053a51",
   "namespaces": [
     "default"

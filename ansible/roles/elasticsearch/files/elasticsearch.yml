@@ -75,9 +75,18 @@ path.logs: /var/log/elasticsearch
 #
 # For more information, consult the discovery and cluster formation module documentation.
 #
+# --------------------------------- Readiness ----------------------------------
+#
+# Enable an unauthenticated TCP readiness endpoint on localhost
+#
+#readiness.port: 9399
+#
 # ---------------------------------- Various -----------------------------------
 #
-# Require explicit names when deleting indices:
+# Allow wildcard deletion of indices:
 #
-#action.destructive_requires_name: true
+action.destructive_requires_name: false
+
 xpack.security.enabled: false
+xpack.security.http.ssl.enabled: false
+xpack.security.transport.ssl.enabled: false

@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "logstash-*"
+  },
+  "coreMigrationVersion": "8.6.2",
+  "id": "logstash",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
+}

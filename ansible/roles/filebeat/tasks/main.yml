@@ -14,6 +14,14 @@
   notify: restart filebeat
   tags: sof-elk_filebeat
 
+- name: Create filebeat input base directory
+  file:
+    dest: '/logstash'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Create filebeat input directories
   file:
     dest: '/logstash/{{ item }}'
@@ -29,7 +37,7 @@
     - zeek
     - kape
     - plaso
-    - office365
+    - microsoft365
     - azure
     - aws
     - gcp

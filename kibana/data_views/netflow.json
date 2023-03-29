@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "netflow-*"
+  },
+  "coreMigrationVersion": "8.6.2",
+  "id": "netflow",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
+}

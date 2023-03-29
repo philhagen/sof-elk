@@ -1,0 +1,28 @@
+{
+  "template": {
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "port_fields": {
+            "match": "*_port",
+            "mapping": {
+              "type": "integer"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "ports": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "_meta": {
+    "description": "Port number fields",
+    "provider": "SOF-ELK"
+  }
+}
+
+
+

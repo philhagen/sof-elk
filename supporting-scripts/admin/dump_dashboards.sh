@@ -1,8 +1,8 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
-# This script dumps all dashboards, visualizations, index-patterns and associated field data into files on the filesystem
+# This script dumps all dashboards, visualizations, data views and associated field data into files on the filesystem
 
 export LC_ALL=C
 
@@ -31,12 +31,12 @@ sortNestedJSON () {
     echo ${jsonMod}
 }
 
-mkdir dashboard visualization map search index-pattern index-pattern/fields index-pattern/fieldformats
+mkdir dashboard visualization map search data_views
 nestedJSONKeys=".attributes.kibanaSavedObjectMeta.searchSourceJSON .attributes.optionsJSON .attributes.panelsJSON .attributes.uiStateJSON .attributes.visState"
 
 # get list of all dashboard IDs and their content
 for DASHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=dashboard&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    dashboardJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}" | jq -cS 'del(.version,.updated_at,.migrationVersion)' )
+    dashboardJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/dashboard/${DASHID}" | jq -cS 'del(.version,.created_at,.updated_at,.migrationVersion)' )
     dashboardName=$( echo ${dashboardJSON} | jq '.attributes.title' )
     echo "Dumping Dashboard: ${dashboardName}"
 
@@ -47,7 +47,7 @@ done
 
 # get a list of all visualization IDs and their content
 for VISUALIZATIONID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=visualization&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    visualizationJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/visualization/${VISUALIZATIONID}" | jq -cS "del(.version,.updated_at,.migrationVersion)" )
+    visualizationJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/visualization/${VISUALIZATIONID}" | jq -cS "del(.version,.created_at,.updated_at,.migrationVersion)" )
     visualizationName=$( echo ${visualizationJSON} | jq '.attributes.title' )
     echo "Dumping Visualization: ${visualizationName}"
 
@@ -58,7 +58,7 @@ done
 
 # get a list of all map IDs and their content
 for MAPID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=map&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    mapJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/map/${MAPID}" | jq -Sc 'del(.version,.updated_at,.migrationVersion)' )
+    mapJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/map/${MAPID}" | jq -Sc 'del(.version,.created_at,.updated_at,.migrationVersion)' )
     mapName=$( echo ${mapJSON} | jq '.attributes.title' )
     echo "Dumping Map: ${mapName}"
 
@@ -69,7 +69,7 @@ done
 
 # get a list of all search IDs and their content
 for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=search&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    searchJSON=$( curl -s  -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/search/${SEARCHID}" | jq -Sc 'del(.version,.updated_at,.migrationVersion)' )
+    searchJSON=$( curl -s  -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/search/${SEARCHID}" | jq -Sc 'del(.version,.created_at,.updated_at,.migrationVersion)' )
     searchName=$( echo ${searchJSON} | jq '.attributes.title' )
     echo "Dumping Search: ${searchName}"
 
@@ -78,31 +78,9 @@ for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${k
     echo ${searchJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}" > search/${SEARCHID}.json
 done
 
-echo "Dumping Index Patterns"
-# get a list of all index-patterns and their content, separate out the fields and fieldformatmap
-for INDEXPATTERNID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=index-pattern&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
-    echo "Dumping Index Pattern: ${INDEXPATTERNID}"
+# get a list of all data_views and their content
+for DATAVIEWID in $( curl -s -H 'kbn-xsrd: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views" | jq -cr '.data_view[] | .id' ); do
+    echo "Dumping Data View: ${DATAVIEWID}"
 
-    # get full index pattern definition
-    TMPFILE=$( mktemp )
-    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/index-pattern/${INDEXPATTERNID}" > ${TMPFILE} 2> /dev/null
-
-    # index-pattern itself, stripping the fields and fieldFormatMap elements
-    cat ${TMPFILE} | jq -S 'del(.version,.updated_at,.attributes.fields,.attributes.fieldFormatMap,.migrationVersion) | .references? |= unique_by(.id)' > index-pattern/${INDEXPATTERNID}.json
-
-    # pull out just the fields
-    cat ${TMPFILE} | jq -S '. | select(.attributes.fields != null) | .attributes.fields | fromjson' > index-pattern/fields/${INDEXPATTERNID}.json
-
-    # pull out just the fieldFormatMap
-    cat ${TMPFILE} | jq -S '. | select(.attributes.fieldFormatMap != null) | .attributes.fieldFormatMap | fromjson | del(.[].params.parsedUrl)' > index-pattern/fieldformats/${INDEXPATTERNID}.json
-
-    rm -f ${TMPFILE}
-
-    # if any of these files are zero-length, remove them
-    if [ ! -s index-pattern/fields/${INDEXPATTERNID}.json ]; then
-        rm -f index-pattern/fields/${INDEXPATTERNID}.json
-    fi
-    if [ ! -s index-pattern/fieldformats/${INDEXPATTERNID}.json ]; then
-        rm -f index-pattern/fieldformats/${INDEXPATTERNID}.json
-    fi
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" | jq -S 'del(.data_view.version,.data_view.fields,.data_view.fieldAttrs,.data_view.runtimeFieldMap)' > data_views/${DATAVIEWID}.json
 done

@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "fieldAttrs": "{}",
+    "timeFieldName": "@timestamp",
+    "title": "lnkfiles-*"
+  },
+  "coreMigrationVersion": "8.6.2",
+  "id": "lnkfiles",
+  "namespaces": [
+    "default"
+  ],
+  "references": [],
+  "type": "index-pattern"
+}

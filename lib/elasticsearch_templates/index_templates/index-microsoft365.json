@@ -1,0 +1,84 @@
+{
+  "index_patterns": [
+    "microsoft365-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-ip_address",
+    "mappings-geohash",
+    "mappings-guid",
+    "mappings-port",
+    "mappings-final"
+  ],
+  "template": {
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "sid_fields": {
+            "mapping": {
+              "type": "keyword"
+            },
+            "match": "*_sid"
+          }
+        }
+      ],
+      "properties": {
+        "actor": {
+          "type": "object"
+        },
+        "folder": {
+          "properties": {
+            "Id": {
+              "type": "keyword"
+            }
+          },
+          "type": "object"
+        },
+        "folders": {
+          "type": "object"
+        },
+        "is_valid": {
+          "type": "boolean"
+        },
+        "modified_properties": {
+          "type": "object"
+        },
+        "operation": {
+          "type": "keyword"
+        },
+        "operation_properties": {
+          "type": "object"
+        },
+        "operations": {
+          "type": "keyword"
+        },
+        "ps_show_computer_name": {
+          "type": "boolean"
+        },
+        "result_status": {
+          "type": "keyword"
+        },
+        "target": {
+          "type": "object"
+        },
+        "type": {
+          "type": "keyword"
+        },
+        "user_type": {
+          "type": "integer"
+        },
+        "version": {
+          "type": "integer"
+        },
+        "workload": {
+          "type": "keyword"
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

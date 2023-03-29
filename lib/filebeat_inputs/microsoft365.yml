@@ -1,0 +1,18 @@
+# SOF-ELK® Configuration File
+# (C)2023 Lewes Technology Consulting, LLC
+#
+# This file creates a filebeat prospector for Office 365 source data from the SOF-ELK® VM itself
+
+- type: log
+  paths:
+    - /logstash/microsoft365/*/*/*/*/*.json
+    - /logstash/microsoft365/*/*/*/*.json
+    - /logstash/microsoft365/*/*/*.json
+    - /logstash/microsoft365/*/*.json
+    - /logstash/microsoft365/*.json
+  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
+  fields_under_root: true
+  fields:
+    type: microsoft365
+  tags: [ 'json' ]

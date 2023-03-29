@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2022 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository is updated
 
@@ -32,10 +32,10 @@ done
 systemctl restart logstash
 
 # create necessary ingest directories
-ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso office365 azure aws gcp gws"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d /logstash/${ingest_dir} ]; then
-        mkdir -m 1777 -p /logstash/${ingest_dir}
+        mkdir -m 1777 /logstash/${ingest_dir}
     fi
 done
 
@@ -48,7 +48,7 @@ for file in $( ls -1 /usr/local/sof-elk/lib/elastalert_rules/*.yaml 2> /dev/null
 	ln -s $file /etc/elastalert_rules/$( basename $file )
 done
 # reload elastalert
-/usr/bin/systemctl restart elastalert
+#/usr/bin/systemctl restart elastalert
 
 # restart filebeat to account for any new config files and/or prospectors
 FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
@@ -59,7 +59,7 @@ ln -fs /usr/local/sof-elk/lib/configfiles/filebeat.yml $FILEBEAT_CONF_PATH
 /usr/bin/systemctl restart filebeat
 
 # other housecleaning
-LOGO_PATH="/usr/share/kibana/src/core/server/core_app/assets/sof-elk.svg"
+LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/asset"
 if [ -a $LOGO_PATH ]; then
     rm -rf $LOGO_PATH
 fi
@@ -81,3 +81,6 @@ done
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
+
+# run the geoip updater script
+/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoipupdate_updater.sh

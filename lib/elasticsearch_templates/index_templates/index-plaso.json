@@ -1,0 +1,14 @@
+{
+  "index_patterns": [
+    "plaso-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

@@ -15,7 +15,6 @@
     - logstash-filter-tld
     - logstash-filter-rest
     - logstash-filter-json_encode
-    - logstash-filter-cidr
   notify: restart logstash
   tags: sof-elk_logstash
 

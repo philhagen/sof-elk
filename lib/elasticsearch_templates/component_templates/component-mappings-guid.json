@@ -1,0 +1,23 @@
+{
+  "template": {
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "guid_fields": {
+            "mapping": {
+              "type": "keyword"
+            },
+            "match": "*_guid"
+          }
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "description": "GUID fields",
+    "provider": "SOF-ELK"
+  }
+}
+
+
+

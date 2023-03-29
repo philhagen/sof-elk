@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2022 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This script is used to take elasticsearch indices offline or back online again.
 # The resulting frozen index is not truly "hidden" from someone that knows Elasticsearch well, but will prevent casual browsing until the index is thawed.
@@ -83,12 +83,7 @@ def get_es_indices(es, full_listing=False):
     for raw_regex in system_index_rawregex:
         system_index_regex.append(re.compile(raw_regex))
 
-    # this little dance is needed to suppress an otherwise un-suppressable warning about accessing system indices
-    # this part may become unnecessary in the future when system indices are not returned for a wildcard search
-    original_stderr = sys.stderr
-    sys.stderr = NullDevice()
-    indices = list(es.indices.get('*'))
-    sys.stderr = original_stderr
+    indices = list(es.indices.get(index='*',expand_wildcards='open,closed'))
 
     index_dict = {}
     for index in indices:
