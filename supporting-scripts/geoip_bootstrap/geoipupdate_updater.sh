@@ -26,7 +26,7 @@ if [ -f /etc/GeoIP.conf.rpmsave ]; then
     echo "Your exisitng GeoIP update configuration has been renamed"
     echo "  \"/etc/GeoIP.conf.old_version\".  It will no longer work and you must"
     echo "  generate a NEW version of a GeoIP key, then run"
-    echo "  \"sudo geoip_bootstrap.sh\" again, supplying the new key."
+    echo "  \"sudo /usr/local/sbin/geoip_bootstrap.sh\" again, supplying the new key."
 fi
 
 cat /usr/local/sof-elk/ansible/roles/sof-elk_base/files/GeoIP.conf.default > /etc/GeoIP.conf.default
