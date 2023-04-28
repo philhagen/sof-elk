@@ -21,17 +21,17 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 ## Latest Distribution Vitals
 
 * Basic details on the distribution
-    * VM is a CentOS 7.7 base with all OS updates as of 2023-03-29
-    * Includes Elastic stack components v8.6.2
-    * Configuration files are from the "public/v20230329" branch of this Github repository
+    * VM is a CentOS 7.7 base with all OS updates as of 2023-04-19
+    * Includes Elastic stack components v8.7.0
+    * Configuration files are from the "public/v20230419" branch of this Github repository
 * Metadata
-    * Filename and size: `Public SOF-ELK v20230329.7z` (`2,207,950,892` bytes)
-    * MD5: `ba74b78fbbfb9217d6c17658741eaa7e`
-    * SHA256: `32fe29d7d5f144a5c05532991eab4fb74568369d542c5561350bb89e51f3d4da`
+    * Filename and size: `Public SOF-ELK v20230419.7z` (`2,211,813,170` bytes)
+    * MD5: `6795505cde87753eb06d0814a88d0efa`
+    * SHA256: `7c5aec42513140f6764f95c9857e595fa2189d224399b6aafbd700c0094b125a`
 
 ## General Information
 
-* The VM was created with VMware Fusion v12.1.2 and ships with virtual hardware v16.
+* The VM was created with VMware Fusion v13.0.1 and ships with virtual hardware v18.
     * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
     * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](https://www.vmware.com/products/converter) helpful.
 * The VM is deployed with the "NAT" network mode enabled
