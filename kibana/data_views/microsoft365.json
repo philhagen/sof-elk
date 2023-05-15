@@ -1,14 +1,11 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "microsoft365",
+    "name": "microsoft365-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "microsoft365-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "microsoft365",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

@@ -1,14 +1,11 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "aws",
+    "name": "aws-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "aws-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "aws",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

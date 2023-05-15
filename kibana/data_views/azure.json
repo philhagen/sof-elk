@@ -1,14 +1,11 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "azure",
+    "name": "azure-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "azure-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "azure",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

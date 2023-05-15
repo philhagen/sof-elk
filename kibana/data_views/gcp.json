@@ -1,14 +1,11 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "gcp",
+    "name": "gcp-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "gcp-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "gcp",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }
