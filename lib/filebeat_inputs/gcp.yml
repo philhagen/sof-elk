@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/gcp/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
@@ -20,7 +20,7 @@
   tags: [ 'json' ]
   multiline.type: pattern
   # match after the opening { of an object but also hit the ] of the end of the array so the final object is picked up
-  multiline.pattern: "(?:^  {|^])"
+  multiline.pattern: "(?:^ *{$|^]$)"
   multiline.negate: true
   multiline.match: after
   # exclude_lines takes place AFTER the multiline processing
