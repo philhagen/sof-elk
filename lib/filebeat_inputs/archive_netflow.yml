@@ -2,9 +2,13 @@
 # (C)2023 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
-
+/logstash/nfarch/*/*/*/*/*/*/*
 - type: log
   paths:
+    - /logstash/nfarch/*/*/*/*/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*/*/*
     - /logstash/nfarch/*/*/*/*/*
     - /logstash/nfarch/*/*/*/*
     - /logstash/nfarch/*/*/*
