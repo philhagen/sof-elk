@@ -6,7 +6,19 @@
       "message"
     ],
     "description": "",
+    "grid": {
+      "columns": {
+        "syslog_hostname": {
+          "width": 140
+        },
+        "syslog_program": {
+          "width": 140
+        }
+      }
+    },
+    "hideChart": false,
     "hits": 0,
+    "isTextBasedQuery": false,
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
@@ -16,10 +28,12 @@
         "desc"
       ]
     ],
+    "timeRestore": false,
     "title": "Syslog Discovery",
+    "usesAdHocDataView": false,
     "version": 1
   },
-  "coreMigrationVersion": "8.6.2",
+  "coreMigrationVersion": "8.7.0",
   "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
   "namespaces": [
     "default"

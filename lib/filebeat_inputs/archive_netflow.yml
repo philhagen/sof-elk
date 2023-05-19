@@ -1,10 +1,14 @@
 # SOF-ELK® Configuration File
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
 
 - type: log
   paths:
+    - /logstash/nfarch/*/*/*/*/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*/*/*/*
+    - /logstash/nfarch/*/*/*/*/*/*
     - /logstash/nfarch/*/*/*/*/*
     - /logstash/nfarch/*/*/*/*
     - /logstash/nfarch/*/*/*
@@ -31,7 +35,7 @@
   tags: [ 'json' ]
   multiline.type: pattern
   # match after the opening { of an object but also hit the ] of the end of the array so the final object is picked up
-  multiline.pattern: "(?:^  {|^])"
+  multiline.pattern: "(?:^ *{$|^]$)"
   multiline.negate: true
   multiline.match: after
   # exclude_lines takes place AFTER the multiline processing

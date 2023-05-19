@@ -1,14 +1,24 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "filesize_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      }
+    },
+    "id": "filesystem",
+    "name": "filesystem-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "filesystem-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "filesystem",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

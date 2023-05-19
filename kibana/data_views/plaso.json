@@ -1,14 +1,18 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      }
+    },
+    "id": "plaso",
+    "name": "plaso-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "plaso-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "plaso",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

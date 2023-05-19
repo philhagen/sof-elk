@@ -63,8 +63,9 @@ for dataviewfile in $( ls -1 ${kibana_file_dir}/data_views/*.json ); do
     DATAVIEWID=$( basename ${dataviewfile} | sed -e 's/\.json$//' )
     echo "Loading Data View: ${DATAVIEWID}"
 
-    # update the data_view object
-    curl -s -H 'kbn-xsrf: true' -H 'Content-Type; application/json' -X POST "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" -d@${dataviewfile} > /dev/null
+    # replace the data_view object
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X DELETE "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" > /dev/null
+    curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X POST "http://${kibana_host}:${kibana_port}/api/data_views/data_view" -d@${dataviewfile} > /dev/null
 done
 
 # insert/update dashboards, visualizations, maps, and searches

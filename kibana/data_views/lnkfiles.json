@@ -1,14 +1,11 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "lnkfiles",
+    "name": "lnkfiles-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "lnkfiles-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "lnkfiles",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

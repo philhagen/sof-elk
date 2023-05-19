@@ -1,14 +1,115 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "destination_geo.asnstr": {
+        "id": "string",
+        "params": {
+          "transform": "false"
+        }
+      },
+      "destination_port": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
+        }
+      },
+      "flow_end": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "flow_records_vis": {
+        "id": "number",
+        "params": {
+          "pattern": "0,0.[0]a"
+        }
+      },
+      "flow_start": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "in_bytes_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      },
+      "in_packets_vis": {
+        "id": "number",
+        "params": {
+          "pattern": "0,0.[0]a"
+        }
+      },
+      "missed_bytes_vis": {
+        "id": "number",
+        "params": {
+          "pattern": "0,0.[0]a"
+        }
+      },
+      "out_bytes_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      },
+      "out_packets_vis": {
+        "id": "number",
+        "params": {
+          "pattern": "0,0.[0]a"
+        }
+      },
+      "ports": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
+        }
+      },
+      "source_geo.asnstr": {
+        "id": "string",
+        "params": {
+          "transform": "false"
+        }
+      },
+      "source_port": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
+        }
+      },
+      "total_bytes": {
+        "id": "number"
+      },
+      "total_bytes_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      },
+      "total_packets": {
+        "id": "number"
+      },
+      "total_packets_vis": {
+        "id": "number",
+        "params": {
+          "pattern": "0,0.[0]a"
+        }
+      }
+    },
+    "id": "netflow",
+    "name": "netflow-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "netflow-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "netflow",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+    "title": "netflow-*",
+    "typeMeta": {}
+  }
 }

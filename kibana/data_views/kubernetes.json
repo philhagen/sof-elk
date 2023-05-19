@@ -1,17 +1,12 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
-    "runtimeFieldMap": "{}",
-    "sourceFilters": "[{\"value\":\"event.original*\",\"clientId\":1}]",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "kubernetes",
+    "name": "kubernetes-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "kubernetes-*",
-    "typeMeta": "{}"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "kubernetes",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+    "typeMeta": {}
+  }
 }

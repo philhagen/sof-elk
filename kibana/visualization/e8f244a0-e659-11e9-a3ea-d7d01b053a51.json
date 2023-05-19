@@ -10,7 +10,7 @@
     "version": 1,
     "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{\"customLabel\":\"Bytes\",\"field\":\"filesize_vis\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"params\":{\"addLegend\":false,\"addTooltip\":true,\"dimensions\":{\"metrics\":[{\"accessor\":0,\"format\":{\"id\":\"number\",\"params\":{}},\"type\":\"vis_dimension\"}]},\"metric\":{\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":10000,\"type\":\"range\"}],\"invertColors\":false,\"labels\":{\"show\":true},\"metricColorMode\":\"None\",\"percentageMode\":false,\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":30,\"labelColor\":false,\"subText\":\"\"},\"useRanges\":false},\"type\":\"metric\"},\"title\":\"Total File Size\",\"type\":\"metric\"}"
   },
-  "coreMigrationVersion": "8.6.2",
+  "coreMigrationVersion": "8.7.0",
   "id": "e8f244a0-e659-11e9-a3ea-d7d01b053a51",
   "namespaces": [
     "default"

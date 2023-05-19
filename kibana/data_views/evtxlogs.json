@@ -1,14 +1,18 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      }
+    },
+    "id": "evtxlogs",
+    "name": "evtxlogs-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "evtxlogs-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "evtxlogs",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }

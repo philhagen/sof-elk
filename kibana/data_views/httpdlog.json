@@ -1,14 +1,42 @@
 {
-  "attributes": {
-    "fieldAttrs": "{}",
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "destination_port": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
+        }
+      },
+      "ports": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
+        }
+      },
+      "source_geo.asnstr": {
+        "id": "string",
+        "params": {
+          "transform": "false"
+        }
+      },
+      "source_port": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
+        }
+      }
+    },
+    "id": "httpdlog",
+    "name": "httpdlog-*",
+    "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "httpdlog-*"
-  },
-  "coreMigrationVersion": "8.6.2",
-  "id": "httpdlog",
-  "namespaces": [
-    "default"
-  ],
-  "references": [],
-  "type": "index-pattern"
+  }
 }
