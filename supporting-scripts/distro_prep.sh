@@ -75,7 +75,9 @@ rm -rf ~elk_user/.config/htop
 rm -rf ~root/.config/gcloud/logs
 rm -rf ~elk_user/.config/gcloud/logs
 rm -rf ~root/.vim
+rm -rf ~root/.viminfo
 rm -rf ~elk_user/.vim
+rm -rf ~elk_user/.viminfo
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
 echo "cleaning temp directories"
