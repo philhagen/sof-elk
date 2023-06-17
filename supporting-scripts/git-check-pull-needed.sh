@@ -20,7 +20,7 @@ elif [ $LOCAL = $BASE ]; then
     echo "------------------------------"
     echo
     echo "There are upstream updates to the SOF-ELK® configuration files available"
-    echo " in the Github repository.  These are not required, but if desired,"
+    echo "in the Github repository. These are not required, but if desired,"
     echo "run the following command to retrieve and activate them:"
     echo
     echo "sudo sof-elk_update.sh"
