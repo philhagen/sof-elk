@@ -11,10 +11,15 @@ cd /usr/local/sof-elk/
 
 current_branch=$( git branch )
 
-if ! echo "${current_branch}" | grep -q "^\* public\/v[0-9]\{8\}$" ; then
-    # not on a public/community version
-    exit
-fi
+### FIXME: THIS SHORT CIRCUT IS IN PLACE TO FACILITATE TESTING ON THE develop BRANCH
+# overwrite with a bogus branch that WILL cause an update
+current_branch="* public/v20230101"
+# commented out:
+#if ! echo "${current_branch}" | grep -q "^\* public\/v[0-9]\{8\}$" ; then
+#    # not on a public/community version
+#    exit
+#fi
+# end commenting
 
 if [ -f ${vm_update_status_file} ]; then
     # already checked since boot, no need to do it again
