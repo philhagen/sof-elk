@@ -4,6 +4,8 @@
 #
 # This script displays a message to STDOUT if the origin has a newer version than the local checkout
 
+vm_update_status_file=/var/run/sof-elk_vm_update
+
 cd /usr/local/sof-elk/
 
 UPSTREAM=${1:-'@{u}'}
@@ -40,4 +42,14 @@ else
     echo "       try again later."
     exit 1
 
+fi
+
+if [ -f ${vm_update_status_file} ]; then
+    echo "A new version of the SOF-ELK VM is available!!!"
+    echo "-----------------------------------------------"
+    echo
+    echo "There is a new VM version available for download. Please see the release"
+    echo "information at https://for572.com/sof-elk-readme"
+    echo
+    exit 0
 fi
