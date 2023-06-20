@@ -79,6 +79,11 @@ for deadlink in $( ls -1 /etc/cron.d/* ); do
     fi
 done
 
+# create the atd sequence file, if not already there
+if [ ! -f /var/spool/at/.SEQ ]; then
+    touch /var/spool/at/.SEQ
+fi
+
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
 
