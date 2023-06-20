@@ -148,15 +148,6 @@
     line: 'compress'
   tags: sof-elk_base
 
-- name: Create geoip database directory
-  file:
-    path: '/usr/local/share/GeoIP'
-    owner: root
-    group: root
-    mode: 0755
-    state: directory
-  tags: sof-elk_base
-
 - name: Check out SOF-ELK repo
   git:
     repo: 'https://github.com/philhagen/sof-elk'
@@ -197,17 +188,6 @@
  #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
-- name: Install empty GeoIP databases
-  copy:
-    src: /usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty-GeoLite2-{{ item }}.mmdb
-    dest: /usr/local/share/GeoIP/GeoLite2-{{ item }}.mmdb
-    remote_src: yes
-  with_items:
-    - ASN
-    - City
-    - Country
-  tags: sof-elk_base
-
 - name: Install default GeoIP configuration
   copy:
     src: 'GeoIP.conf.default'
@@ -216,6 +196,69 @@
     group: root
     mode: 0644
   tags: sof-elk_base
+
+- name: Create geoip database directory
+  file:
+    path: '/usr/local/share/GeoIP'
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  tags: sof-elk_base
+
+- name: Create temporary directory to house GeoIP downloads
+  file:
+    path: /tmp/geoip_staging
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+  tags: sof-elk_base
+  when: geoip_accountid|length == 0
+
+- name: Download final version of old-license GeoIP ASN database
+  unarchive:
+    src: https://web.archive.org/web/20191222124805/https://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN.tar.gz
+    remote_src: yes
+    dest: /tmp/geoip_staging/
+  tags: sof-elk_base
+  when: geoip_accountid|length == 0
+
+- name: Download final version of old-license GeoIP City database
+  unarchive:
+    src: https://web.archive.org/web/20191222130401/https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz
+    remote_src: yes
+    dest: /tmp/geoip_staging/
+  tags: sof-elk_base
+  when: geoip_accountid|length == 0
+
+- name: Download final version of old-license GeoIP Country database
+  unarchive:
+    src: https://web.archive.org/web/20191222130401/https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz
+    dest: /tmp/geoip_staging/
+  tags: sof-elk_base
+  when: geoip_accountid|length == 0
+
+- name: Copy final versions of old-license GeoIP databases to proper location
+  copy:
+    src: /tmp/geoip_staging/GeoLite2-{{ item }}_20191217/GeoLite2-{{ item }}.mmdb
+    dest: /usr/local/share/GeoIP/GeoLite2-{{ item }}.mmdb
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - ASN
+    - City
+    - Country
+  tags: sof-elk_base
+  when: geoip_accountid|length == 0
+
+- name: Remove temporary directory used for GeoIP downloads
+  file:
+    path: /tmp/geoip_staging/
+    state: absent
+  tags: sof-elk_base
+  when: geoip_accountid|length == 0
 
 - name: Install templated GeoIP configuration to perform download
   template:
