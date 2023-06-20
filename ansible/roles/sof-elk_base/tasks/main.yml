@@ -206,59 +206,21 @@
     state: directory
   tags: sof-elk_base
 
-- name: Create temporary directory to house GeoIP downloads
-  file:
-    path: /tmp/geoip_staging
-    state: directory
-    mode: 0700
-    owner: root
-    group: root
-  tags: sof-elk_base
-  when: geoip_accountid|length == 0
-
-- name: Download final version of old-license GeoIP ASN database
-  unarchive:
-    src: https://web.archive.org/web/20191222124805/https://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN.tar.gz
-    remote_src: yes
-    dest: /tmp/geoip_staging/
-  tags: sof-elk_base
-  when: geoip_accountid|length == 0
-
-- name: Download final version of old-license GeoIP City database
-  unarchive:
-    src: https://web.archive.org/web/20191222130401/https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz
-    remote_src: yes
-    dest: /tmp/geoip_staging/
-  tags: sof-elk_base
-  when: geoip_accountid|length == 0
-
-- name: Download final version of old-license GeoIP Country database
-  unarchive:
-    src: https://web.archive.org/web/20191222130401/https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz
-    dest: /tmp/geoip_staging/
-  tags: sof-elk_base
-  when: geoip_accountid|length == 0
-
-- name: Copy final versions of old-license GeoIP databases to proper location
-  copy:
-    src: /tmp/geoip_staging/GeoLite2-{{ item }}_20191217/GeoLite2-{{ item }}.mmdb
-    dest: /usr/local/share/GeoIP/GeoLite2-{{ item }}.mmdb
+- name: Download final versions of old-licensed GeoIP databases
+  get_url:
+    url: https://lewestech.com/dist/GeoLite2-{{ item.name }}.mmdb
+    dest: /usr/local/share/GeoIP/GeoLite2-{{ item.name }}.mmdb
+    checksum: md5:{{ item.md5 }}
     owner: root
     group: root
     mode: 0644
   with_items:
-    - ASN
-    - City
-    - Country
+    - { name: 'ASN', md5: 'befb30808972a6d216d64b54f7c8a0a2' }
+    - { name: 'City', md5: '459efdf3163a7a335c870f6bf3301da9' }
+    - { name: 'Country', md5: 'cf92014fac700a6463282db77ca649cd' }
   tags: sof-elk_base
   when: geoip_accountid|length == 0
-
-- name: Remove temporary directory used for GeoIP downloads
-  file:
-    path: /tmp/geoip_staging/
-    state: absent
-  tags: sof-elk_base
-  when: geoip_accountid|length == 0
+  # note: these files were downloaded from https://web.archive.org/web/20191222130401/https://dev.maxmind.com/geoip/geoip2/geolite2/ on 2023-06-20
 
 - name: Install templated GeoIP configuration to perform download
   template:
