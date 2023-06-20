@@ -15,7 +15,6 @@ BASE=$(git merge-base @{0} "$UPSTREAM")
 
 if [ $LOCAL = $REMOTE ]; then
     # up to date, nothing to do
-    exit 0
 
 elif [ $LOCAL = $BASE ]; then
     echo "Upstream Updates Available!!!!"
@@ -27,21 +26,17 @@ elif [ $LOCAL = $BASE ]; then
     echo
     echo "sudo sof-elk_update.sh"
     echo
-    exit 0
 
 elif [ $REMOTE = $BASE ]; then
     # this should never happen - local copies won't push to origin
     echo "ERROR: You have local commits that are past the Github-based origin."
     echo "       Automatic updates not possible."
-    exit 1
 
 else
     # there should be no other case - this means some weird error occurred in gathering the SHA hashes
     echo "ERROR: Something very unexpected occurred when determining if there are any"
     echo "       upstream updates. Ensure you have internet connectivity and please"
     echo "       try again later."
-    exit 1
-
 fi
 
 if [ -f ${vm_update_status_file} ]; then
@@ -51,5 +46,4 @@ if [ -f ${vm_update_status_file} ]; then
     echo "There is a new VM version available for download. Please see the release"
     echo "information at https://for572.com/sof-elk-readme"
     echo
-    exit 0
 fi
