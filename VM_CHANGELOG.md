@@ -1,6 +1,12 @@
 SOF-ELK® Virtual Machine Changelog
 =======
 
+* Update: 2023-06-22: Upgraded to ES 8.8.1 components, ships with outdated but usable GeoIP database files
+    * Updated to all ES 8.8.1 components
+    * All CentOS 7 updates applied as of 2023-06-23
+    * Ships with the final version of MaxMind GeoIP database files from the old license structure that doesn't require an account #279 and #280
+    * Notify on login when a new public/community edition VM is released #159
+
 * MAJOR Update: 2023-03-29: Upgraded to ES 8.6.2 components, upstream parsers
     * Updated to all ES 8.6.2 components, including Ansible playbooks, configuration files, APIs, etc.
     * All CentOS 7 updates applied as of 2023-03-29
@@ -10,7 +16,6 @@ SOF-ELK® Virtual Machine Changelog
     * ELB log format from bedangSen #262
     * Initial parser for k8s logs with help from jamesjroddie #268
     * Updated geoipupdate to 4.10.0 due to old license key format deprecation
-
 * Update: 2022-10-25: Upgraded to ES 7.17.7 components, integrated upstream parsers
     * Updated all Elastic Stack components to 7.17.7
     * All CentOS 7 updates applied as of 2022-10-25

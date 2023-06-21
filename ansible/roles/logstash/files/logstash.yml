@@ -287,13 +287,6 @@ pipeline.ecs_compatibility: disabled
 #
 # dead_letter_queue.retain.age: 1d
 
-# If using dead_letter_queue.enable: true, defines the action to take when the dead_letter_queue.max_bytes is reached,
-# could be "drop_newer" or "drop_older".
-# With drop_newer, messages that were inserted most recently are dropped, logging an error line.
-# With drop_older setting, the oldest messages are dropped as new ones are inserted.
-# Default value is "drop_newer".
-# dead_letter_queue.storage_policy: drop_newer
-
 # If using dead_letter_queue.enable: true, the directory path where the data files will be stored.
 # Default is path.data/dead_letter_queue
 #
@@ -375,3 +368,4 @@ path.logs: /var/log/logstash
 # X-Pack GeoIP plugin
 # https://www.elastic.co/guide/en/logstash/current/plugins-filters-geoip.html#plugins-filters-geoip-manage_update
 #xpack.geoip.download.endpoint: "https://geoip.elastic.co/v1/database"
+#xpack.geoip.downloader.enabled: true
