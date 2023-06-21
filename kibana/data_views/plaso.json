@@ -13,6 +13,7 @@
     "name": "plaso-*",
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "plaso-*"
+    "title": "plaso-*",
+    "typeMeta": {}
   }
 }

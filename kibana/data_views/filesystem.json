@@ -19,6 +19,7 @@
     "name": "filesystem-*",
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "filesystem-*"
+    "title": "filesystem-*",
+    "typeMeta": {}
   }
 }
