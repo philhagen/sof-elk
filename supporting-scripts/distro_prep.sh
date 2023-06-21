@@ -83,7 +83,7 @@ rm -rf ~elk_user/.viminfo
 echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
-echo "Resetting GeoIP databases to empty."
+echo "Resetting GeoIP databases to distributed versions."
 for GEOIPDB in ASN City Country; do
     rm -f /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb
     curl -s -L -o /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb https://lewestech.com/dist/GeoLite2-${GEOIPDB}.mmdb
