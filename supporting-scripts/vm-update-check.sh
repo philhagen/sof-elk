@@ -22,7 +22,7 @@ if [ -f ${vm_update_status_file} ]; then
 fi
 
 current_release=$( echo "${current_branch}" | sed -e 's/^\* public\/v\([0-9]\{8\}\).*/\1/' )
-latest_release=$( curl -s --head https://for572.com/sof-elk-versioncheck | grep "^Location: " | sed -e 's/^Location: .*v\([0-9]\{8\}\).*/\1/' )
+latest_release=$( curl -s --head --referer "${current_release}" https://for572.com/sof-elk-versioncheck | grep "^Location: " | sed -e 's/^Location: .*v\([0-9]\{8\}\).*/\1/' )
 
 if [[ ${current_release} < ${latest_release} ]]; then
     # there is a new public version available
