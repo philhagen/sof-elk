@@ -215,9 +215,9 @@
     group: root
     mode: 0644
   with_items:
-    - { name: 'ASN', md5: 'befb30808972a6d216d64b54f7c8a0a2' }
-    - { name: 'City', md5: '459efdf3163a7a335c870f6bf3301da9' }
-    - { name: 'Country', md5: 'cf92014fac700a6463282db77ca649cd' }
+    - { name: 'ASN', md5: 'c20977100c0a6c0842583ba158e906ec' }
+    - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
+    - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
   tags: sof-elk_base
   when: geoip_accountid|length == 0
   # note: these files were downloaded from https://web.archive.org/web/20191222130401/https://dev.maxmind.com/geoip/geoip2/geolite2/ on 2023-06-20
