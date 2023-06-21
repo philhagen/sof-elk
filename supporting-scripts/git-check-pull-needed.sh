@@ -15,6 +15,7 @@ BASE=$(git merge-base @{0} "$UPSTREAM")
 
 if [ $LOCAL = $REMOTE ]; then
     # up to date, nothing to do
+    true
 
 elif [ $LOCAL = $BASE ]; then
     echo "Upstream Updates Available!!!!"
