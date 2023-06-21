@@ -1,7 +1,14 @@
 {
   "data_view": {
     "allowNoIndex": false,
-    "fieldFormats": {},
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      }
+    },
     "id": "kubernetes",
     "name": "kubernetes-*",
     "sourceFilters": [],

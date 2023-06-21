@@ -1,11 +1,19 @@
 {
   "data_view": {
     "allowNoIndex": false,
-    "fieldFormats": {},
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      }
+    },
     "id": "gcp",
     "name": "gcp-*",
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "gcp-*"
+    "title": "gcp-*",
+    "typeMeta": {}
   }
 }

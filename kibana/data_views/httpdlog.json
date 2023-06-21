@@ -37,6 +37,7 @@
     "name": "httpdlog-*",
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "httpdlog-*"
+    "title": "httpdlog-*",
+    "typeMeta": {}
   }
 }

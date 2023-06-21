@@ -13,7 +13,11 @@ LOCAL=$(git rev-parse @{0})
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @{0} "$UPSTREAM")
 
-if [ $LOCAL = $BASE ]; then
+if [ $LOCAL = $REMOTE ]; then
+    # up to date, nothing to do
+    true
+
+elif [ $LOCAL = $BASE ]; then
     echo "Upstream Updates Available!!!!"
     echo "------------------------------"
     echo
