@@ -33,8 +33,9 @@
     "usesAdHocDataView": false,
     "version": 1
   },
-  "coreMigrationVersion": "8.7.0",
+  "coreMigrationVersion": "8.8.0",
   "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
+  "managed": false,
   "namespaces": [
     "default"
   ],
@@ -45,5 +46,6 @@
       "type": "index-pattern"
     }
   ],
-  "type": "search"
+  "type": "search",
+  "typeMigrationVersion": "8.0.0"
 }

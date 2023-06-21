@@ -20,8 +20,9 @@
     "title": "Eventlog Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "8.7.0",
+  "coreMigrationVersion": "8.8.0",
   "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0",
+  "managed": false,
   "namespaces": [
     "default"
   ],
@@ -32,5 +33,6 @@
       "type": "index-pattern"
     }
   ],
-  "type": "search"
+  "type": "search",
+  "typeMigrationVersion": "8.0.0"
 }

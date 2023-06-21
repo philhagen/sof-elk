@@ -11,8 +11,9 @@
     "title": "HTTPD Log Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "8.7.0",
+  "coreMigrationVersion": "8.8.0",
   "id": "ba531340-2f17-11e8-9faf-f77fbc81a50d",
+  "managed": false,
   "namespaces": [
     "default"
   ],
@@ -58,5 +59,6 @@
       "type": "map"
     }
   ],
-  "type": "dashboard"
+  "type": "dashboard",
+  "typeMigrationVersion": "8.7.0"
 }

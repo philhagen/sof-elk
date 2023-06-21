@@ -20,8 +20,9 @@
     "title": "LNKfile Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "8.7.0",
+  "coreMigrationVersion": "8.8.0",
   "id": "8d421a80-7a76-11e9-92d0-dfa499d9fb15",
+  "managed": false,
   "namespaces": [
     "default"
   ],
@@ -32,5 +33,6 @@
       "type": "index-pattern"
     }
   ],
-  "type": "search"
+  "type": "search",
+  "typeMigrationVersion": "8.0.0"
 }

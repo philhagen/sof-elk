@@ -11,8 +11,9 @@
     "title": "LNK File Dashboard",
     "version": 1
   },
-  "coreMigrationVersion": "8.7.0",
+  "coreMigrationVersion": "8.8.0",
   "id": "52e0ec80-7a77-11e9-92d0-dfa499d9fb15",
+  "managed": false,
   "namespaces": [
     "default"
   ],
@@ -38,5 +39,6 @@
       "type": "visualization"
     }
   ],
-  "type": "dashboard"
+  "type": "dashboard",
+  "typeMigrationVersion": "8.7.0"
 }

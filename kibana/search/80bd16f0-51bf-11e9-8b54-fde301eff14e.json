@@ -19,8 +19,9 @@
     "title": "Filesystem Discovery",
     "version": 1
   },
-  "coreMigrationVersion": "8.7.0",
+  "coreMigrationVersion": "8.8.0",
   "id": "80bd16f0-51bf-11e9-8b54-fde301eff14e",
+  "managed": false,
   "namespaces": [
     "default"
   ],
@@ -31,5 +32,6 @@
       "type": "index-pattern"
     }
   ],
-  "type": "search"
+  "type": "search",
+  "typeMigrationVersion": "8.0.0"
 }
