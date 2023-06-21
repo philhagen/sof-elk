@@ -2,7 +2,7 @@
 - name: Add Elastic Repository
   yum_repository:
     file: '{{ elastic_repofile_path }}'
-    name: 'elastic-7.x'
+    name: 'elastic-8.x'
     description: 'Elastic repository for 8.x packages'
     baseurl: '{{ elastic_repo_baseurl }}'
     gpgcheck: yes
