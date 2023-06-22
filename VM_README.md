@@ -21,17 +21,17 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 ## Latest Distribution Vitals
 
 * Basic details on the distribution
-    * VM is a CentOS 7.7 base with all OS updates as of 2023-04-19
-    * Includes Elastic stack components v8.7.0
-    * Configuration files are from the "public/v20230419" branch of this Github repository
+    * VM is a CentOS 7.7 base with all OS updates as of 2023-06-22
+    * Includes Elastic stack components v8.8.1
+    * Configuration files are from the "public/v20230622" branch of this Github repository
 * Metadata
-    * Filename and size: `Public SOF-ELK v20230419.7z` (`2,211,813,170` bytes)
-    * MD5: `6795505cde87753eb06d0814a88d0efa`
-    * SHA256: `7c5aec42513140f6764f95c9857e595fa2189d224399b6aafbd700c0094b125a`
+    * Filename and size: `Public SOF-ELK v20230622.7z` (`2,310,106,101` bytes)
+    * MD5: `a96be2c3cda93a94bdb72b5d42a47bca`
+    * SHA256: `05da39545b07be023f5c5a2be3ec115fed29970c06356e0d0931f4bfd4b8b35f`
 
 ## General Information
 
-* The VM was created with VMware Fusion v13.0.1 and ships with virtual hardware v18.
+* The VM was created with VMware Fusion v13.0.2 and ships with virtual hardware v18.
     * If you're using an older version of VMware Workstation/Fusion/Player, you will likely need to convert the VM back to a previous version of the hardware.
     * Some VMware software provides this function via the GUI, or you may find the [free "VMware vCenter Converter" tool](https://www.vmware.com/products/converter) helpful.
 * The VM is deployed with the "NAT" network mode enabled
@@ -57,7 +57,7 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
     * `/usr/local/sbin/sof-elk_clear.py`: DESTROY contents of the Elasticsearch database.  Most frequently used with an index name base (e.g. `sof-elk_clear.py -i logstash` will delete all data from the Elasticsearch `logstash-*` indexes.  Other options detailed with the `-h` flag.
     * `/usr/local/sbin/sof-elk_update.sh`: Update the SOF-ELK® configuration files from the Github repository.  (Requires sudo.)
 * Files to be familiar with:
-    * `/etc/logstash/conf.d/*.conf`: Symlinks to github-based FOR572-specific configs that address several common log formats:
+    * `/etc/logstash/conf.d/*.conf`: Symlinks to github-based configuration files that address numerous common log formats:
         * syslog
         * DHCPD
         * BIND querylog
@@ -67,7 +67,7 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
         * Passivedns (<https://for572.com/passivedns>)
         * HTTPD Common/Combined/vhost+Combined/SSL Access Logs
         * Live NetFlow v5 and v9 and archived NetFlow records
-    * `/usr/local/sof-elk/*`: Clone of Github repository (<https://for572.com/sof-elk-git> - public/v20211006 branch)
+    * `/usr/local/sof-elk/*`: Clone of Github repository (<https://for572.com/sof-elk-git> - public/v*20211006* branch as indicated above)
 
 ## How to Use
 
@@ -120,9 +120,10 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 * Pierre Lidome: Microsoft 365 assistance and overall testing
 * Josh Lemon: GCP assistance
 * David Cowen: AWS assistance
+* Megan Roddie: Testing
 
 ## Administrative Notifications/Disclaimers/Legal/Boring Stuff
 
 * This virtual appliance is provided "as is" with no express or implied warranty for accuracy or accessibility.  No support for the functionality the VM provides is offered outside of this document.
-* This virtual appliance includes GeoLite2 data created by MaxMind, available from <https://www.maxmind.com> and subject to the [GeoLite2 EULA](https://www.maxmind.com/en/geolite2/eula).  Installation of GeoIP databases should be accomplished by the included `geoip_bootstrap.sh` script.  This also optionally enables scheduled automatic updates to the databases for Internet-connected systems.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).
+* This virtual appliance includes GeoLite2 data created by MaxMind, available from <https://www.maxmind.com> and subject to the [GeoLite2 EULA](https://www.maxmind.com/en/geolite2/eula).  The included GeoIP database files are from December 17, 2019 and are covered by the previous MaxMind license that permitted redistribution of these files without collecting user contact information.  Installation of updated GeoIP databases should be accomplished by the included `geoip_bootstrap.sh` script.  This script also optionally enables scheduled automatic updates to the databases for Internet-connected systems.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).
 * SOF-ELK® is a registered trademark of Lewes Technology Consulting, LLC.  Content is copyrighted by its respective contributors.  SOF-ELK logo is a wholly owned property of Lewes Technology Consulting, LLC and is used by permission.

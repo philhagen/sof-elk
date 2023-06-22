@@ -137,7 +137,7 @@ echo "clearing cron/at content"
 systemctl stop atd
 systemctl stop crond
 rm -f /var/spool/at/.SEQ
-rm -f /var/spool/at/*
+rm -rf /var/spool/at/*
 
 echo "clearing mail spools"
 systemctl stop postfix
