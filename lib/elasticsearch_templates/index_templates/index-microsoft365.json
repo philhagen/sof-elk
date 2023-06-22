@@ -24,20 +24,6 @@
           }
         }
       ],
-      "runtime": {
-        "source_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('source_geo.asn') && doc['source_geo.asn'].size() != 0 && doc.containsKey('source_geo.as_org.keyword') && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
-          }
-        },
-        "client_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('client_geo.asn') && doc['client_geo.asn'].size() != 0 && doc.containsKey('client_geo.as_org.keyword') && doc['client_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['client_geo.asn'].value + ': ' + doc['client_geo.as_org.keyword']; emit(m); }"
-          }
-        }
-      },
       "properties": {
         "actor": {
           "type": "object"

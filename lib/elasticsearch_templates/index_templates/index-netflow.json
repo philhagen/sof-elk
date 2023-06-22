@@ -14,12 +14,6 @@
   "template": {
     "mappings": {
       "runtime": {
-        "destination_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('destination_geo.asn') && doc['destination_geo.asn'].size() != 0 && doc.containsKey('destination_geo.as_org.keyword') && doc['destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword']; emit(m); }"
-          }
-        },
         "flow_records_vis": {
           "type": "long",
           "script": {
@@ -42,18 +36,6 @@
           "type": "long",
           "script": {
             "source": "emit(doc['missed_bytes'].value);"
-          }
-        },
-        "original_destination_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('original_destination_geo.asn') && doc['original_destination_geo.asn'].size() != 0 && doc.containsKey('original_destination_geo.as_org.keyword') && doc['original_destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['original_destination_geo.asn'].value + ': ' + doc['original_destination_geo.as_org.keyword']; emit(m); }"
-          }
-        },
-        "original_source_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('original_source_geo.asn') && doc['original_source_geo.asn'].size() != 0 && doc.containsKey('original_source_geo.as_org.keyword') && doc['original_source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['original_source_geo.asn'].value + ': ' + doc['original_source_geo.as_org.keyword']; emit(m); }"
           }
         },
         "out_bytes_vis": {
@@ -90,12 +72,6 @@
           "type": "long",
           "script": {
             "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"
-          }
-        },
-        "source_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('source_geo.asn') && doc['source_geo.asn'].size() != 0 && doc.containsKey('source_geo.as_org.keyword') && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
           }
         }
       },

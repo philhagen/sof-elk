@@ -8,18 +8,6 @@
     "mappings-string",
     "mappings-final"
   ],
-  "template": {
-    "mappings": {
-      "runtime": {
-        "remote_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('remote_geo.asn') && doc['remote_geo.asn'].size() != 0 && doc.containsKey('remote_geo.as_org.keyword') && doc['remote_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['remote_geo.asn'].value + ': ' + doc['remote_geo.as_org.keyword']; emit(m); }"
-          }
-        }
-      }
-    }
-  },
   "_meta": {
     "provider": "SOF-ELK"
   }

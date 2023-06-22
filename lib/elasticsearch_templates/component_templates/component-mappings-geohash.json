@@ -1,12 +1,73 @@
 {
   "template": {
     "mappings": {
+      "runtime": {
+        "answer_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('answer_geo.asn') && doc['answer_geo.asn'].size() != 0 && doc.containsKey('answer_geo.as_org.keyword') && doc['answer_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "backend_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('backend_geo.asn') && doc['backend_geo.asn'].size() != 0 && doc.containsKey('backend_geo.as_org.keyword') && doc['backend_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['backend_geo.asn'].value + ': ' + doc['backend_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "client_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('client_geo.asn') && doc['client_geo.asn'].size() != 0 && doc.containsKey('client_geo.as_org.keyword') && doc['client_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['client_geo.asn'].value + ': ' + doc['client_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "destination_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('destination_geo.asn') && doc['destination_geo.asn'].size() != 0 && doc.containsKey('destination_geo.as_org.keyword') && doc['destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "dhcp_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('dhcp_geo.asn') && doc['dhcp_geo.asn'].size() != 0 && doc.containsKey('dhcp_geo.as_org.keyword') && doc['dhcp_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['dhcp_geo.asn'].value + ': ' + doc['dhcp_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "original_destination_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('original_destination_geo.asn') && doc['original_destination_geo.asn'].size() != 0 && doc.containsKey('original_destination_geo.as_org.keyword') && doc['original_destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['original_destination_geo.asn'].value + ': ' + doc['original_destination_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "original_source_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('original_source_geo.asn') && doc['original_source_geo.asn'].size() != 0 && doc.containsKey('original_source_geo.as_org.keyword') && doc['original_source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['original_source_geo.asn'].value + ': ' + doc['original_source_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "remote_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('remote_geo.asn') && doc['remote_geo.asn'].size() != 0 && doc.containsKey('remote_geo.as_org.keyword') && doc['remote_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['remote_geo.asn'].value + ': ' + doc['remote_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "source_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('source_geo.asn') && doc['source_geo.asn'].size() != 0 && doc.containsKey('source_geo.as_org.keyword') && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
+          }
+        },
+        "xff_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('xff_geo.asn') && doc['xff_geo.asn'].size() != 0 && doc.containsKey('xff_geo.as_org.keyword') && doc['xff_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['xff_geo.asn'].value + ': ' + doc['xff_geo.as_org.keyword']; emit(m); }"
+          }
+        }
+      },
       "dynamic_templates": [
         {
           "geohash_fields": {
             "match": "*_geo",
             "mapping": {
-
               "dynamic": true,
               "properties": {
                 "location": {
@@ -33,6 +94,3 @@
     "provider": "SOF-ELK"
   }
 }
-
-
-

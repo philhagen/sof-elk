@@ -12,26 +12,6 @@
   ],
   "template": {
     "mappings": {
-      "runtime": {
-        "source_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('source_geo.asn') && doc['source_geo.asn'].size() != 0 && doc.containsKey('source_geo.as_org.keyword') && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
-          }
-        },
-        "backend_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('backend_geo.asn') && doc['backend_geo.asn'].size() != 0 && doc.containsKey('backend_geo.as_org.keyword') && doc['backend_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['backend_geo.asn'].value + ': ' + doc['backend_geo.as_org.keyword']; emit(m); }"
-          }
-        },
-        "xff_geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('xff_geo.asn') && doc['xff_geo.asn'].size() != 0 && doc.containsKey('xff_geo.as_org.keyword') && doc['xff_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['xff_geo.asn'].value + ': ' + doc['xff_geo.as_org.keyword']; emit(m); }"
-          }
-        }
-      },
       "properties": {
         "httpversion": {
           "type": "keyword"
