@@ -12,6 +12,14 @@
   ],
   "template": {
     "mappings": {
+      "runtime": {
+        "source_geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('source_geo.asn') && doc['source_geo.asn'].size() != 0 && doc.containsKey('source_geo.as_org.keyword') && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
+          }
+        }
+      },
       "properties": {
         "raw_request_parameters": {
           "type": "keyword"
