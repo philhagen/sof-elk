@@ -21,7 +21,7 @@ The latest version of the VM itself is available here: <https://for572.com/sof-e
 ## Latest Distribution Vitals
 
 * Basic details on the distribution
-    * VM is a CentOS 7.7 base with all OS updates as of 2023-06-22
+    * VM is a CentOS 7.9 base with all OS updates as of 2023-06-22
     * Includes Elastic stack components v8.8.1
     * Configuration files are from the "public/v20230622" branch of this Github repository
 * Metadata
