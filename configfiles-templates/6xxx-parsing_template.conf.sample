@@ -2,7 +2,7 @@
 # Author: Phil Hagen
 # Email: phil@lewestech.com
 #
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This is a VERY simple example configuration file that can be used inline with other SOF-ELK files
 # To use:
@@ -11,6 +11,10 @@
 # to the others.  Logstash basically just cat's all these to one giant configuration blob, so the digits
 # establish order of parsing.  These numbers have been generally assigned in groups - reach out via GitHub
 # if you'd like to have a number or group of numbers assigned.
+
+
+### NOTE NOTE NOTE: If you're outputting to elasticsearch, be sure to add a proper handler to the giant if-if else block in 1000-preprocess-all.conf.
+# Set the base name of the target ES index there so it'll be handled using the consolidated ES output function
 
 filter {
     # Be sure this file only applies to the necessary type(s).
