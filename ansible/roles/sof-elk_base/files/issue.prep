@@ -17,3 +17,4 @@ This VM is running the Logstash and Kibana applications.
 
 The VM will ingest log files placed into the "/logstash/*/"
 directories.  See the Kibana homepage (link above) for specific guidance.
+
