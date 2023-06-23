@@ -85,8 +85,8 @@ rm -rf ~elk_user/tmp/*
 
 echo "Resetting GeoIP databases to distributed versions."
 for GEOIPDB in ASN City Country; do
-    rm -f /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb
-    curl -s -L -o /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb https://lewestech.com/dist/GeoLite2-${GEOIPDB}.mmdb
+    rm -f /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
+    curl -s -L -o /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb https://lewestech.com/dist/GeoLite2-${GEOIPDB}.mmdb
 done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
