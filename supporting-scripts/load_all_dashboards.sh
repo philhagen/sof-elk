@@ -73,7 +73,7 @@ done
 TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
 for objecttype in visualization map search dashboard; do
     echo "Preparing objects: ${objecttype}"
-    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE} > /dev/null
+    cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
 done
 echo "Loading objects in bulk"
 curl -s -H 'kbn-xsrf: true' --form file=@${TMPNDJSONFILE} -X POST "http://${kibana_host}:${kibana_port}/api/saved_objects/_import?overwrite=true" > /dev/null
