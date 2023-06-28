@@ -33,14 +33,12 @@ done
 
 # re-insert all ES templates in case anything has changed
 # this will not change existing mappings, just new indexes as they are created
-# (And why-oh-why isn't this handled by "template_overwrite = true" in the logstash output section?!?!?!?!)
 for es_component_template_file in $( ls -1 ${sofelk_root_dir}lib/elasticsearch_templates/component_templates/*.json); do
     es_component_template=$( echo $es_component_template_file | sed -e s'/.*\/component-\(.*\)\.json$/\1/' )
     echo "Loading ES Component Template: ${es_component_template}"
 
     curl -s -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -X PUT http://${es_host}:${es_port}/_component_template/${es_component_template} -d @${es_component_template_file} > /dev/null
 done
-
 for es_index_template_file in $( ls -1 ${sofelk_root_dir}lib/elasticsearch_templates/index_templates/*.json ); do
     es_index_template=$( echo $es_index_template_file | sed 's/.*\/index-\(.*\)\.json/\1/' )
     echo "Loading ES Index Template: ${es_index_template}"
