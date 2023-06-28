@@ -19,7 +19,6 @@ if [ ! -f ${GEOIP_CONFIG} ]; then
     exit
 fi
 
-UPDATED=0
 # identify the database directory or use the standard default if not set
 DBDIR=$( grep ^DatabaseDirectory ${GEOIP_CONFIG} | awk '{$1=""; print}' |  sed -e 's/^[[:space:]]*//' )
 if [ -z ${DBDIR} ]; then
