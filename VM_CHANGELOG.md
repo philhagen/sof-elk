@@ -1,6 +1,9 @@
 SOF-ELK® Virtual Machine Changelog
 =======
 
+* Update: 2023-06-23: Fixed distribution of initial GeoIP database files
+    * Identified logic error during VM preparation
+
 * Update: 2023-06-22: Upgraded to ES 8.8.1 components, ships with outdated but usable GeoIP database files
     * Updated to all ES 8.8.1 components
     * All CentOS 7 updates applied as of 2023-06-23
