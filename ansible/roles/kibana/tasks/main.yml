@@ -22,7 +22,7 @@
     state: enabled
   notify: restart firewalld
   tags: sof-elk_kibana
-  when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
+  #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
 
 - name: Enable and start Kibana service
   systemd:
