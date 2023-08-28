@@ -43,7 +43,7 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
 7. `git clone https://github.com/philhagen/sof-elk /tmp/sof-elk` (as root or with sudo)
     * Change to the desired branch in the cloned repository, e.g.`git checkout public/v20200229`.  This branch will be the same as what is deployed in the completed installation.
 8. `ansible-playbook -i 127.0.0.1, --connection=local /tmp/sof-elk/ansible/sof-elk_single_vm.yml`
-    * You will need a free GeoIP account to download the City and ASN databases.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).
+    * The installation includes December 2022 MaxMind GeoIP databases, which have an appropriate license for distribution.  You will need a free GeoIP account and license key if you want the latest databases.  [You can learn more about the GeoLite2 databases, as well as sign up for a free MaxMind account by clicking here](https://dev.maxmind.com/geoip/geoip2/geolite2/).  To get the latest databases, run `sudo geoip_bootstrap.sh` after installation is complete.
 9. `rm -rf /tmp/sof-elk`
 10. Stage evidence as required.
     1. Classroom VM (evidence not distributed publicly)
