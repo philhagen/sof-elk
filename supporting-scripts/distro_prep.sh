@@ -75,19 +75,16 @@ rm -rf ~elk_user/.config/htop
 rm -rf ~root/.config/gcloud/logs
 rm -rf ~elk_user/.config/gcloud/logs
 rm -rf ~root/.vim
-rm -rf ~root/.viminfo
 rm -rf ~elk_user/.vim
-rm -rf ~elk_user/.viminfo
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
 echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
-echo "Resetting GeoIP databases to distributed versions."
+echo "Resetting GeoIP databases to empty."
 for GEOIPDB in ASN City Country; do
-    rm -f /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
-    curl -s -L -o /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb https://lewestech.com/dist/GeoLite2-${GEOIPDB}.mmdb
-    chmod 644 /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
+    rm -f /usr/local/share/GeoIP/GeoLite-${GEOIPDB}.mmdb
+    cp -a /usr/local/sof-elk/supporting-scripts/geoip_bootstrap/empty-GeoLite2-${GEOIPDB}.mmdb /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
 done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
@@ -138,7 +135,7 @@ echo "clearing cron/at content"
 systemctl stop atd
 systemctl stop crond
 rm -f /var/spool/at/.SEQ
-rm -rf /var/spool/at/*
+rm -f /var/spool/at/*
 
 echo "clearing mail spools"
 systemctl stop postfix
