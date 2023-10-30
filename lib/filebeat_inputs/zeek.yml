@@ -1,123 +1,91 @@
 # SOF-ELK® Configuration File
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This file creates filebeats prospector for Zeek source data from the SOF-ELK® VM itself
 
-- type: log
+- type: filestream
+  id: zeek-conn-01
   paths:
-    - /logstash/zeek/*/*/*/*/conn.*
-    - /logstash/zeek/*/*/*/conn.*
-    - /logstash/zeek/*/*/conn.*
-    - /logstash/zeek/*/conn.*
-    - /logstash/zeek/conn.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/conn.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_conn
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-dhcp-01
   paths:
-    - /logstash/zeek/*/*/*/*/dhcp.*
-    - /logstash/zeek/*/*/*/dhcp.*
-    - /logstash/zeek/*/*/dhcp.*
-    - /logstash/zeek/*/dhcp.*
-    - /logstash/zeek/dhcp.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/dhcp.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_dhcp
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-dns-01
   paths:
-    - /logstash/zeek/*/*/*/*/dns.*
-    - /logstash/zeek/*/*/*/dns.*
-    - /logstash/zeek/*/*/dns.*
-    - /logstash/zeek/*/dns.*
-    - /logstash/zeek/dns.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/dns.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_dns
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-dpd-01
   paths:
-    - /logstash/zeek/*/*/*/*/dpd.*
-    - /logstash/zeek/*/*/*/dpd.*
-    - /logstash/zeek/*/*/dpd.*
-    - /logstash/zeek/*/dpd.*
-    - /logstash/zeek/dpd.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/dpd.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_dpd
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-files-01
   paths:
-    - /logstash/zeek/*/*/*/*/files.*
-    - /logstash/zeek/*/*/*/files.*
-    - /logstash/zeek/*/*/files.*
-    - /logstash/zeek/*/files.*
-    - /logstash/zeek/files.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/files.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_files
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-ftp-01
   paths:
-    - /logstash/zeek/*/*/*/*/ftp.*
-    - /logstash/zeek/*/*/*/ftp.*
-    - /logstash/zeek/*/*/ftp.*
-    - /logstash/zeek/*/ftp.*
-    - /logstash/zeek/ftp.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/ftp.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_ftp
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-http-01
   paths:
-    - /logstash/zeek/*/*/*/*/http.*
-    - /logstash/zeek/*/*/*/http.*
-    - /logstash/zeek/*/*/http.*
-    - /logstash/zeek/*/http.*
-    - /logstash/zeek/http.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/http.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_http
   tags: [ 'zeek' ]
 
-- type: log
+- type: filestream
+  id: zeek-irc-01
   paths:
-    - /logstash/zeek/*/*/*/*/irc.*
-    - /logstash/zeek/*/*/*/irc.*
-    - /logstash/zeek/*/*/irc.*
-    - /logstash/zeek/*/irc.*
-    - /logstash/zeek/irc.*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  exclude_lines: [ '^#' ]
-  close_inactive: 5m
+    - /logstash/zeek/**/irc.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     type: zeek_irc

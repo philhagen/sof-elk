@@ -1,18 +1,15 @@
 # SOF-ELK® Configuration File
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/aws/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
-- type: log
+- type: filestream
+  id: aws-json
   paths:
-    - /logstash/aws/*/*/*/*/*.json
-    - /logstash/aws/*/*/*/*.json
-    - /logstash/aws/*/*/*.json
-    - /logstash/aws/*/*.json
-    - /logstash/aws/*.json
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
+    - /logstash/aws/**/*.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     # this is important - it's as the [type] field in Logstash
