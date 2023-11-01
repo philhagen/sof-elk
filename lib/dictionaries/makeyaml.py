@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 long = {}
 long[1] = 'FIN'
@@ -40,9 +40,9 @@ def convert(val, type='nfdump'):
         nfdumpflags = '0x%X' % val
 
     if type == 'long':
-        print '"0x%X": "%s"' % (val, longflags_string)
+        print('"0x%X": "%s"' % (val, longflags_string))
     elif type == 'nfdump':
-        print '"%d": "%s"' % (val, nfdumpflags)
+        print('"%d": "%s"' % (val, nfdumpflags))
 
 
 for i in range(0, 256):
