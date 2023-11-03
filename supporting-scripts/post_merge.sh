@@ -28,6 +28,15 @@ for deadlink in $( ls -1 /etc/logstash/conf.d/* ); do
     fi
 done
 
+### DEVELOP BRANCH ONLY: ADDED 2023-11-03
+### TODO: REMOVE BEFORE MERGING TO PUBLIC/MAIN BRANCHES
+tmpjvm=$( mktemp )
+grep -v ^-Xss /etc/logstash/jvm.options > ${tmpjvm}
+echo "-Xss4m" >> ${tmpjvm}
+cat ${tmpjvs} > /etc/logstash/jvm.options
+rm $tmpjvm
+### END DEVELOP BRANCH SPECIAL HANDLING
+
 # reload logstash
 systemctl restart logstash
 

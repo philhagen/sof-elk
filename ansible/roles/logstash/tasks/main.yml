@@ -21,8 +21,11 @@
 - name: Set Logstash JVM options
   lineinfile:
     dest: '/etc/logstash/jvm.options'
-    regexp: '^-Xms'
-    line: '-Xms750m'
+    regexp: "^{{ item.parameter | regex_escape() }}"
+    line: "{{ item.parameter }}{{ item.value }}"
+  with_items:
+    - { parameter: '-Xms', value: '750m' }
+    - { parameter: '-Xss', value: '4m' }
   notify: restart logstash
   tags: sof-elk_logstash
 
