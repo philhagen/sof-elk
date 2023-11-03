@@ -33,7 +33,7 @@ done
 tmpjvm=$( mktemp )
 grep -v ^-Xss /etc/logstash/jvm.options > ${tmpjvm}
 echo "-Xss4m" >> ${tmpjvm}
-cat ${tmpjvs} > /etc/logstash/jvm.options
+cat ${tmpjvm} > /etc/logstash/jvm.options
 rm $tmpjvm
 ### END DEVELOP BRANCH SPECIAL HANDLING
 
