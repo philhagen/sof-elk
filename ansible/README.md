@@ -25,7 +25,8 @@ These are the steps used to create a SOF-ELK instance as used in the FOR572 cour
     * Software selection: Minimal
     * Installation destination: ~500GB HDD, but select "I will configure partitions"
         * Click "Click here to create them automatically"
-        * Change `/home` to 200GB
+        * Remove `/home` so it will reside on `/`
+        * Change `/` to 250GB
         * Create `/var/lib/elasticsearch` partition and leave size blank - should auto-fill disk at ~256GB
     * Click "Begin installation"
     * Set a strong root password.  It is recommended to *disable* direct use of this account after the system is installed.  This is the default action during the Ansible installation process.
