@@ -16,6 +16,9 @@
           },
           "type": "object"
         },
+        "community_id": {
+          "type": "keyword"
+        },
         "path": {
           "type": "keyword"
         },
