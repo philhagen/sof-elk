@@ -15,17 +15,6 @@
   tags: [ 'zeek' ]
 
 - type: filestream
-  id: zeek-dhcp-01
-  paths:
-    - /logstash/zeek/**/dhcp.*
-  close.on_state_change.inactive: 5m
-  clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_dhcp
-  tags: [ 'zeek' ]
-
-- type: filestream
   id: zeek-dns-01
   paths:
     - /logstash/zeek/**/dns.*
@@ -34,6 +23,28 @@
   fields_under_root: true
   fields:
     type: zeek_dns
+  tags: [ 'zeek' ]
+
+- type: filestream
+  id: zeek-http-01
+  paths:
+    - /logstash/zeek/**/http.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  fields_under_root: true
+  fields:
+    type: zeek_http
+  tags: [ 'zeek' ]
+
+- type: filestream
+  id: zeek-dhcp-01
+  paths:
+    - /logstash/zeek/**/dhcp.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  fields_under_root: true
+  fields:
+    type: zeek_dhcp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -67,17 +78,6 @@
   fields_under_root: true
   fields:
     type: zeek_ftp
-  tags: [ 'zeek' ]
-
-- type: filestream
-  id: zeek-http-01
-  paths:
-    - /logstash/zeek/**/http.*
-  close.on_state_change.inactive: 5m
-  clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_http
   tags: [ 'zeek' ]
 
 - type: filestream
