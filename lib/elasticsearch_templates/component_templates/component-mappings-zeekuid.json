@@ -1,0 +1,20 @@
+{
+  "template": {
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "guid_fields": {
+            "mapping": {
+              "type": "keyword"
+            },
+            "match": "*uid"
+          }
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "description": "Zeek UID fields",
+    "provider": "SOF-ELK"
+  }
+}

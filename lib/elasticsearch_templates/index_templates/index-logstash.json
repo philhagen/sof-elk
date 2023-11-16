@@ -9,6 +9,7 @@
     "mappings-ip_address",
     "mappings-geohash",
     "mappings-port",
+    "mappings-zeekuid",
     "mappings-final"
   ],
   "template": {
