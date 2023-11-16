@@ -29,7 +29,8 @@ fi
 cd /usr/local/sof-elk/
 if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
     echo "ERROR: You have local changes to this repository - will not overwrite without '-force'."
-    echo "       Note that using '-force' will delete any modifications made in the /usr/local/sof-elk/ directory."
+    echo "       Run 'git status' from the /usr/local/sof-elk/ directory to identify the local changes."
+    echo "       Note that using '-force' will delete any modifications that have been made in this directory."
     exit 2
 fi
 
@@ -45,6 +46,7 @@ if [[ $LOCAL = $REMOTE ]]; then
 elif [[ $LOCAL = $BASE ]]; then
     # Need to pull
     git reset --hard > /dev/null
+    git clean -fdx > /dev/null
     git pull origin
 
     /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
