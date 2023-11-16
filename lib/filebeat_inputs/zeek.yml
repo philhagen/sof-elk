@@ -92,6 +92,17 @@
   tags: [ 'zeek' ]
 
 - type: filestream
+  id: zeek-weird-01
+  paths:
+    - /logstash/zeek/**/weird.*
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  fields_under_root: true
+  fields:
+    type: zeek_weird
+  tags: [ 'zeek' ]
+
+- type: filestream
   id: zeek-dhcp-01
   paths:
     - /logstash/zeek/**/dhcp.*
