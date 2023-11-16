@@ -1,0 +1,19 @@
+{
+  "data_view": {
+    "allowNoIndex": false,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      }
+    },
+    "id": "zeek",
+    "name": "zeek-*",
+    "sourceFilters": [],
+    "timeFieldName": "@timestamp",
+    "title": "zeek-*",
+    "typeMeta": {}
+  }
+}
