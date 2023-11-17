@@ -5,40 +5,10 @@
     state: present
   tags: sof-elk_elasticsearch
 
-- name: Create empty file for dynamic Elasticsearch startup parameters
-  copy:
-    content: ""
-    dest: '/etc/elasticsearch/jvm.options.d/sof-elk'
-    owner: elasticsearch
-    group: elasticsearch
-    mode: 0640
-  tags: sof-elk_elasticsearch
-
 - name: Enable Elasticsearch service
   systemd:
     name: elasticsearch
     enabled: yes
-  tags: sof-elk_elasticsearch
-
-- name: Automatically determine Elasticsearch JVM options
-  copy:
-    src: 'elasticsearch-systemd-pre-exec'
-    dest: '/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
-    owner: root
-    group: root
-    mode: 0755
-  notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
-
-- name: Modify Elasticsearch systemd startup
-  lineinfile:
-    dest: /etc/systemd/system/multi-user.target.wants/elasticsearch.service
-    regexp: 'ExecStartPre=/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
-    line: 'ExecStartPre=/usr/share/elasticsearch/bin/elasticsearch-systemd-pre-exec'
-    insertbefore: '^ExecStart='
-    firstmatch: yes
-    state: present
-  notify: systemd daemon-reload
   tags: sof-elk_elasticsearch
 
 - name: Create Elasticsearch systemd override directory

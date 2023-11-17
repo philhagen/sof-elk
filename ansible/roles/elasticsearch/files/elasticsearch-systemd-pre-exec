@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# dynamically update the heap size memory allocation based on RAM in the VM
-/usr/local/sof-elk/supporting-scripts/es_heapsize_calc.sh
