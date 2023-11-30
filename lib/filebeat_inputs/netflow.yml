@@ -1,7 +1,14 @@
 # SOF-ELK® Configuration File
 # (C)2023 Lewes Technology Consulting, LLC
 #
-# This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
+# This file creates filebeat shippers for live and archived NetFlow source data
+
+- type: netflow
+  host: "0.0.0.0:9995"
+  protocols: [ v5, v9, ipfix ]
+  fields_under_root: true
+  fields:
+    type: netflow
 
 - type: filestream
   id: nfarch-01

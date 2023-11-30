@@ -65,7 +65,7 @@
       },
       "dynamic_templates": [
         {
-          "geohash_fields": {
+          "geohash_fields_legacy": {
             "match": "*_geo",
             "mapping": {
               "dynamic": true,
@@ -82,6 +82,15 @@
                 "asn": {
                   "type": "integer"
                 }
+              }
+            }
+          },
+          "geohash_fields": {
+            "path_match": "*.geo",
+            "mapping": {
+              "dynamic": true,
+              "properties": {
+                "location": "geo_point"
               }
             }
           }
