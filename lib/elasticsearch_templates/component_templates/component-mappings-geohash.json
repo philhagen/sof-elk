@@ -66,7 +66,7 @@
       "dynamic_templates": [
         {
           "geohash_fields_legacy": {
-            "match": "*.geo",
+            "match": "*_geo",
             "mapping": {
               "dynamic": true,
               "properties": {
