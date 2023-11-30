@@ -84,14 +84,13 @@
                 }
               }
             }
-          },
+          }
+        },
+        {
           "geohash_fields": {
-            "path_match": "*.geo",
+            "path_match": "*.geo.location",
             "mapping": {
-              "dynamic": true,
-              "properties": {
-                "location": "geo_point"
-              }
+              "type": "geo_point"
             }
           }
         }
