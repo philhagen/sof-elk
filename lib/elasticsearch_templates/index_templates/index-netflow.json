@@ -42,7 +42,7 @@
         "source.bytes_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['source_bytes'].value);"
+            "source": "emit(doc['source.bytes'].value);"
           }
         },
         "source.packets_vis": {
