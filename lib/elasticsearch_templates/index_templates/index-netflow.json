@@ -77,7 +77,7 @@
         }
       },
       "properties": {
-        "exporter": {
+        "netflow.exporter.ip": {
           "type": "ip"
         }
       }
