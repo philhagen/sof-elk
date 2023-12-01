@@ -21,7 +21,7 @@
             "source": "emit(doc['flow_records'].value);"
           }
         },
-        "destination.bytes_visx]": {
+        "destination.bytes_vis": {
           "type": "long",
           "script": {
             "source": "emit(doc['destination.bytes'].value);"
@@ -77,8 +77,16 @@
         }
       },
       "properties": {
-        "netflow.exporter.ip": {
-          "type": "ip"
+        "netflow": {
+          "properties": {
+            "exporter": {
+              "properties": {
+                "ip": {
+                  "type": "ip"
+                }
+              }
+            }
+          }
         }
       }
     }

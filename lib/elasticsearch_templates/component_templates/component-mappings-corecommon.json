@@ -16,8 +16,15 @@
           },
           "type": "object"
         },
-        "community_id": {
-          "type": "keyword"
+        "network": {
+          "properties": {
+            "transport": {
+              "type": "keyword"
+            },
+            "community_id": {
+              "type": "keyword"
+            }
+          }
         },
         "md5": {
           "type": "keyword"

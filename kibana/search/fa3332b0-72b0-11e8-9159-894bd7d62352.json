@@ -1,7 +1,7 @@
 {
   "attributes": {
     "columns": [
-      "netflow.exporter.address",
+      "netflow.exporter.ip",
       "network.transport",
       "source.ip",
       "source.port",
