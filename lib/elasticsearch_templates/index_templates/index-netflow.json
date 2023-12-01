@@ -51,25 +51,25 @@
             "source": "emit(doc['out_packets'].value);"
           }
         },
-        "total_bytes": {
+        "network.bytes": {
           "type": "long",
           "script": {
             "source": "emit(doc['out_bytes'].value + doc['in_bytes'].value);"
           }
         },
-        "total_bytes_vis": {
+        "network.bytes_vis": {
           "type": "long",
           "script": {
             "source": "emit(doc['out_bytes'].value + doc['in_bytes'].value);"
           }
         },
-        "total_packets": {
+        "network.packets": {
           "type": "long",
           "script": {
             "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"
           }
         },
-        "total_packets_vis": {
+        "network.packets_vis": {
           "type": "long",
           "script": {
             "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"

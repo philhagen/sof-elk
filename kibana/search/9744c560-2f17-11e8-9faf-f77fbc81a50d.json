@@ -1,7 +1,7 @@
 {
   "attributes": {
     "columns": [
-      "source_ip",
+      "source.ip",
       "request_method",
       "hostname",
       "request",

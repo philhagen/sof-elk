@@ -14,7 +14,7 @@
           "transform": "false"
         }
       },
-      "destination_port": {
+      "destination.port": {
         "id": "number",
         "params": {
           "pattern": "00"
@@ -80,25 +80,25 @@
           "transform": "false"
         }
       },
-      "source_port": {
+      "source.port": {
         "id": "number",
         "params": {
           "pattern": "00"
         }
       },
-      "total_bytes": {
+      "network.bytes": {
         "id": "number"
       },
-      "total_bytes_vis": {
+      "network.bytes_vis": {
         "id": "bytes",
         "params": {
           "pattern": "0,0.[0]b"
         }
       },
-      "total_packets": {
+      "network.packets": {
         "id": "number"
       },
-      "total_packets_vis": {
+      "network.packets_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"

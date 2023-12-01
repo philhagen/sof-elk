@@ -8,7 +8,7 @@
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
         }
       },
-      "destination_port": {
+      "destination.port": {
         "id": "number",
         "params": {
           "pattern": "00"
@@ -26,7 +26,7 @@
           "transform": "false"
         }
       },
-      "source_port": {
+      "source.port": {
         "id": "number",
         "params": {
           "pattern": "00"
