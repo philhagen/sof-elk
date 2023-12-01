@@ -38,13 +38,13 @@
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
         }
       },
-      "in_bytes_vis": {
+      "destination.bytes_vis": {
         "id": "bytes",
         "params": {
           "pattern": "0,0.[0]b"
         }
       },
-      "in_packets_vis": {
+      "destination.packets_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"
@@ -56,13 +56,13 @@
           "pattern": "0,0.[0]a"
         }
       },
-      "out_bytes_vis": {
+      "source.bytes_vis": {
         "id": "bytes",
         "params": {
           "pattern": "0,0.[0]b"
         }
       },
-      "out_packets_vis": {
+      "source.packets_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"

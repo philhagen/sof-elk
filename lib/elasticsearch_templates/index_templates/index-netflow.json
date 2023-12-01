@@ -21,16 +21,16 @@
             "source": "emit(doc['flow_records'].value);"
           }
         },
-        "in_bytes_vis": {
+        "destination.bytes_visx]": {
           "type": "long",
           "script": {
-            "source": "emit(doc['in_bytes'].value);"
+            "source": "emit(doc['destination.bytes'].value);"
           }
         },
-        "in_packets_vis": {
+        "destination.packets_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['in_packets'].value);"
+            "source": "emit(doc['destination.packets'].value);"
           }
         },
         "missed_bytes_vis": {
@@ -39,40 +39,40 @@
             "source": "emit(doc['missed_bytes'].value);"
           }
         },
-        "out_bytes_vis": {
+        "source.bytes_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['out_bytes'].value);"
+            "source": "emit(doc['source_bytes'].value);"
           }
         },
-        "out_packets_vis": {
+        "source.packets_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['out_packets'].value);"
+            "source": "emit(doc['source.packets'].value);"
           }
         },
         "network.bytes": {
           "type": "long",
           "script": {
-            "source": "emit(doc['out_bytes'].value + doc['in_bytes'].value);"
+            "source": "emit(doc['source.bytes'].value + doc['destination.bytes'].value);"
           }
         },
         "network.bytes_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['out_bytes'].value + doc['in_bytes'].value);"
+            "source": "emit(doc['source.bytes'].value + doc['destination.bytes'].value);"
           }
         },
         "network.packets": {
           "type": "long",
           "script": {
-            "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"
+            "source": "emit(doc['source.packets'].value + doc['destination.packets'].value);"
           }
         },
         "network.packets_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['out_packets'].value + doc['in_packets'].value);"
+            "source": "emit(doc['source.packets'].value + doc['destination.packets'].value);"
           }
         }
       },
