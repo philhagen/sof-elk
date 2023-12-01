@@ -20,7 +20,7 @@
           "pattern": "00"
         }
       },
-      "source_geo.asnstr": {
+      "source.geo.asnstr": {
         "id": "string",
         "params": {
           "transform": "false"
