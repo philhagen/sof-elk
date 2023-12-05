@@ -11,6 +11,9 @@
     },
     "id": "gws",
     "name": "gws-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "gws-*",

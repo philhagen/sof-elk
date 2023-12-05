@@ -107,6 +107,9 @@
     },
     "id": "netflow",
     "name": "netflow-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "netflow-*",

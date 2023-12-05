@@ -11,6 +11,9 @@
     },
     "id": "azure",
     "name": "azure-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "azure-*",

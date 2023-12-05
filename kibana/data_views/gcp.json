@@ -11,6 +11,9 @@
     },
     "id": "gcp",
     "name": "gcp-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "gcp-*",

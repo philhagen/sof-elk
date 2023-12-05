@@ -11,6 +11,9 @@
     },
     "id": "aws",
     "name": "aws-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "aws-*",

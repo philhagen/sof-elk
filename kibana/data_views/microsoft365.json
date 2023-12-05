@@ -11,6 +11,9 @@
     },
     "id": "microsoft365",
     "name": "microsoft365-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "microsoft365-*",
