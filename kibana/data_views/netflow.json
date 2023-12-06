@@ -20,19 +20,19 @@
           "pattern": "00"
         }
       },
-      "flow_end": {
+      "netflow.flow_end": {
         "id": "date",
         "params": {
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
         }
       },
-      "flow_records_vis": {
+      "netflow.delta_flow_count_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"
         }
       },
-      "flow_start": {
+      "netflow.flow_start": {
         "id": "date",
         "params": {
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"

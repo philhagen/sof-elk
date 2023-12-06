@@ -1,5 +1,5 @@
 # SOF-ELK® Supporting script
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2023 Lewes Technology Consulting, LLC
 #
 # This script creates an array of TCP flags from an integer (or hex value)
 
@@ -7,6 +7,7 @@
 # in the logstash configuration
 def register(params)
     @source_field = params["source_field"]
+    @source_type = params["source_type"]
 end
 
 # the filter method receives an event and must return a list of events.
@@ -14,15 +15,13 @@ end
 # while creating new ones only requires you to add a new instance of
 # LogStash::Event to the returned array
 def filter(event)
-    type = event.get("type")
 
     # create empty array
     tcp_flags = Array.new()
-    tcp_flags_str = ""
-    tcp_flags_int = 0
 
-    if type == "netflow"
+    if @source_type == "int"
         tcp_flags_int = event.get(@source_field).to_i
+        tcp_flags_str = ""
 
         # Add to the array based on values in the bitmask
         tcp_flags.push("C") if (tcp_flags_int & 0x80 != 0)
@@ -34,14 +33,13 @@ def filter(event)
         tcp_flags.push("S") if (tcp_flags_int & 0x02 != 0)
         tcp_flags.push("F") if (tcp_flags_int & 0x01 != 0)
 
-        tcp_flags_str = tcp_flags.sort.join()
-
-    elsif type == "archive-netflow"
+    elsif @source_type == "str"
         # remove dots
+        tcp_flags_int = 0
         tcp_flags_str = event.get(@source_field).tr(".","")
 
         # split remaining characters to an array
-        tcp_flags = tcp_flags_str.chars
+        tcp_flags = tcp_flags_str.chars.sort
 
         # get the integer value
         tcp_flags_int += 1 if tcp_flags.include? "F"
@@ -54,9 +52,10 @@ def filter(event)
         tcp_flags_int += 128 if tcp_flags.include? "C"
     end
 
-    event.set("tcp_flags_str", tcp_flags_str.chars.sort.join)
-    event.set("tcp_flags_hex", "0x" + tcp_flags_int.to_s(16).upcase)
-    event.set(@source_field, tcp_flags)
+    event.set("netflow.tcp_control_bits", tcp_flags_int)
+    event.set("netflow.tcp_flags.array", tcp_flags)
+    event.set("netflow.tcp_flags.str", tcp_flags.sort.join())
+    event.set("netflow.tcp_flags.hex", "0x" + tcp_flags_int.to_s(16).upcase)
 
     return [event]
 end

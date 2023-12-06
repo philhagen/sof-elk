@@ -15,10 +15,10 @@
   "template": {
     "mappings": {
       "runtime": {
-        "flow_records_vis": {
+        "netflow.delta_flow_count_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['flow_records'].value);"
+            "source": "emit(doc['netflow.delta_flow_count'].value);"
           }
         },
         "destination.bytes_vis": {
