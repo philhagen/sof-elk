@@ -21,8 +21,7 @@ def filter(event)
 
     if @source_type == "int"
         tcp_flags_int = event.get(@source_field).to_i
-        tcp_flags_str = ""
-
+        
         # Add to the array based on values in the bitmask
         tcp_flags.push("C") if (tcp_flags_int & 0x80 != 0)
         tcp_flags.push("E") if (tcp_flags_int & 0x40 != 0)
@@ -52,10 +51,10 @@ def filter(event)
         tcp_flags_int += 128 if tcp_flags.include? "C"
     end
 
-    event.set("netflow.tcp_control_bits", tcp_flags_int)
     event.set("netflow.tcp_flags.array", tcp_flags)
-    event.set("netflow.tcp_flags.str", tcp_flags.sort.join())
     event.set("netflow.tcp_flags.hex", "0x" + tcp_flags_int.to_s(16).upcase)
+    event.set("netflow.tcp_flags.str", tcp_flags.sort.join())
+    event.set("netflow.tcp_control_bits", tcp_flags_int)
 
     return [event]
 end
