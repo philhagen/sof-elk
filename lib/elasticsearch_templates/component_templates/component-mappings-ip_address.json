@@ -10,12 +10,7 @@
             }
           }
         }
-      ],
-      "properties": {
-        "ips": {
-          "type": "ip"
-        }
-      }
+      ]
     }
   },
   "_meta": {

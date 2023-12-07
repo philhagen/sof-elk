@@ -10,12 +10,7 @@
             }
           }
         }
-      ],
-      "properties": {
-        "ports": {
-          "type": "integer"
-        }
-      }
+      ]
     }
   },
   "_meta": {
