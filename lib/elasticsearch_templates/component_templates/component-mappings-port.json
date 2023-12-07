@@ -4,7 +4,7 @@
       "dynamic_templates": [
         {
           "port_fields": {
-            "match": "*_port",
+            "path_match": "*.port",
             "mapping": {
               "type": "integer"
             }

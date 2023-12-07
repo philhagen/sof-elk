@@ -78,7 +78,7 @@ path.data: /var/lib/logstash
 # of ECS for the individual pipeline in its `pipelines.yml` definition. Setting
 # it here will set the default for _all_ pipelines, including new ones.
 #
-pipeline.ecs_compatibility: disabled
+pipeline.ecs_compatibility: v8
 #
 # ------------ Pipeline Configuration Settings --------------
 #

@@ -33,10 +33,10 @@
             "source": "emit(doc['destination.packets'].value);"
           }
         },
-        "missed_bytes_vis": {
+        "network.missed_bytes_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['missed_bytes'].value);"
+            "source": "emit(doc['network.missed_bytes'].value);"
           }
         },
         "source.bytes_vis": {
