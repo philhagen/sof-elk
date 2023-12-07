@@ -3,14 +3,6 @@
     "mappings": {
       "dynamic_templates": [
         {
-          "ip_address_fields_legacy": {
-            "match": "*_ip",
-            "mapping": {
-              "type": "ip"
-            }
-          }
-        },
-        {
           "ip_address_fields": {
             "path_match": "*.ip",
             "mapping": {

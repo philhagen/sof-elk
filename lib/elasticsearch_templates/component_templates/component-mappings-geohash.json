@@ -65,28 +65,6 @@
       },
       "dynamic_templates": [
         {
-          "geohash_fields_legacy": {
-            "match": "*_geo",
-            "mapping": {
-              "dynamic": true,
-              "properties": {
-                "location": {
-                  "type": "geo_point"
-                },
-                "latitude": {
-                  "type": "half_float"
-                },
-                "longitude": {
-                  "type": "half_float"
-                },
-                "asn": {
-                  "type": "integer"
-                }
-              }
-            }
-          }
-        },
-        {
           "geohash_fields": {
             "path_match": "*.geo.location",
             "mapping": {
