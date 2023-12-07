@@ -14,7 +14,7 @@
           "pattern": "00"
         }
       },
-      "ports": {
+      "related.port": {
         "id": "number",
         "params": {
           "pattern": "00"
