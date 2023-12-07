@@ -50,12 +50,13 @@ def filter(event)
         tcp_flags_int += 64 if tcp_flags.include? "E"
         tcp_flags_int += 128 if tcp_flags.include? "C"
 
-        event.set("netflow.tcp_control_bits", tcp_flags_int)
     end
 
     event.set("netflow.tcp_flags.array", tcp_flags)
     event.set("netflow.tcp_flags.hex", "0x" + tcp_flags_int.to_s(16).upcase)
     event.set("netflow.tcp_flags.str", tcp_flags.sort.join())
+    event.remove("[netflow][tcp_control_bits]")
+    event.set("netflow.tcp_control_bits", tcp_flags_int)
 
     return [event]
 end
