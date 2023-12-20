@@ -11,6 +11,9 @@
     },
     "id": "evtxlogs",
     "name": "evtxlogs-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "evtxlogs-*",

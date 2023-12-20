@@ -35,6 +35,9 @@
     },
     "id": "httpdlog",
     "name": "httpdlog-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "httpdlog-*",

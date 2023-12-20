@@ -35,6 +35,9 @@
     },
     "id": "logstash",
     "name": "logstash-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "logstash-*",

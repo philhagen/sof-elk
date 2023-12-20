@@ -11,6 +11,9 @@
     },
     "id": "zeek",
     "name": "zeek-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "zeek-*",

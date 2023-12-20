@@ -11,6 +11,9 @@
     },
     "id": "kubernetes",
     "name": "kubernetes-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "kubernetes-*",

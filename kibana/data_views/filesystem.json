@@ -17,6 +17,9 @@
     },
     "id": "filesystem",
     "name": "filesystem-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "filesystem-*",

@@ -11,6 +11,9 @@
     },
     "id": "plaso",
     "name": "plaso-*",
+    "namespaces": [
+      "default"
+    ],
     "sourceFilters": [],
     "timeFieldName": "@timestamp",
     "title": "plaso-*",

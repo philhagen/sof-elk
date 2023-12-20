@@ -15,9 +15,6 @@
   "template": {
     "mappings": {
       "properties": {
-        "syslog_pid": {
-          "type": "integer"
-        },
         "ttl": {
           "type": "integer"
         },

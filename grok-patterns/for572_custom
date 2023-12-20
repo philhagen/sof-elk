@@ -8,8 +8,8 @@ FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP:default_syslog_timestamp}|%{TIMESTAMP_ISO8
 
 # Grok patterns for iptables:
 ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
-NETFILTERMAC %{COMMONMAC:destination.mac}:%{COMMONMAC:source.mac}:%{ETHTYPE:eth_type}
-IPTABLES (?:%{GREEDYDATA:label}: )?(?:IN=(%{WORD:input_interface})? OUT=(%{WORD:output_interface})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:source.ip} DST=%{IP:destination.ip}.*TTL=%{INT:ttl}?.*PROTO=%{WORD:protocol}?.*SPT=%{INT:source.port}?.*DPT=%{INT:destination.port}?
+NETFILTERMAC %{COMMONMAC:destination.mac}:%{COMMONMAC:source.mac}:%{ETHTYPE:iptables.ether_type}
+IPTABLES (?:%{GREEDYDATA:iptables.label}: )?(?:IN=(%{WORD:observer.input.interface.name})? OUT=(%{WORD:observer.output.interface.name})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:source.ip} DST=%{IP:destination.ip}.*TTL=%{INT:iptables.ttl}?.*PROTO=%{WORD:network.transport}?.*SPT=%{INT:source.port}?.*DPT=%{INT:destination.port}?
 
 # Sendmail SMTP Queue IDs
 # version indicated is latest version where format is used. See the O'Reilly Sendmail "Bat Book" for QID makeup by version.
@@ -41,7 +41,7 @@ URIPATH_CUSTOM %{URIPATH}|\*
 
 # custom HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
 HTTPDUSER %{EMAILADDRESS}|%{WORD}[/\\]%{USER}|%{USER}
-COMMONAPACHELOG_CUSTOM %{IPORHOST:source.ip} %{HTTPDUSER:client.user.name} %{HTTPDUSER:server.user.name} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:http.request.method} (?:%{WORD:protocol}://)?(?:%{HOSTNAME:url.domain}(?::%{POSINT:destination.port})?)?(?:%{URIPATH_CUSTOM:url.path})?(?:\?%{NOTSPACE:url.query})?(?: HTTP/%{NUMBER:http.version})?|%{DATA:rawrequest})" %{NUMBER:http.response.status_code} (?:%{NUMBER:destination.bytes}|-)
+COMMONAPACHELOG_CUSTOM %{IPORHOST:source.ip} %{HTTPDUSER:client.user.name} %{HTTPDUSER:server.user.name} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:http.request.method} (?:%{WORD:url.scheme}://)?(?:%{HOSTNAME:url.domain}(?::%{POSINT:destination.port})?)?(?:%{URIPATH_CUSTOM:url.path})?(?:\?%{NOTSPACE:url.query})?(?: HTTP/%{NUMBER:http.version})?|%{DATA:sof-elk.rawrequest})" %{NUMBER:http.response.status_code} (?:%{NUMBER:destination.bytes}|-)
 COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:http.proxy.cache_status}:%{WORD:http.proxy.cache_hierarchy_status}
 COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:http.request.referrer} %{QS:user_agent.original}
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:http.proxy.cache_status}:%{WORD:http.proxy.cache_hierarchy_status}
