@@ -69,7 +69,7 @@ done
 # insert/update dashboards, visualizations, maps, and searches
 # ORDER MATTERS!!! dependencies in the "references" field will cause failure to insert if the references are not already present
 TMPNDJSONFILE=$( mktemp --suffix=.ndjson )
-for objecttype in visualization map search dashboard; do
+for objecttype in visualization lens map search dashboard; do
     echo "Preparing objects: ${objecttype}"
     cat ${kibana_file_dir}/${objecttype}/*.json | jq -c '.' >> ${TMPNDJSONFILE}
 done
