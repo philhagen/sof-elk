@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "6faa94be-c538-448e-9178-fafbf5edf9cc": {
               "columnOrder": [
@@ -67,14 +68,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -111,7 +121,7 @@
             "layerId": "6faa94be-c538-448e-9178-fafbf5edf9cc",
             "layerType": "data",
             "palette": {
-              "name": "kibana_palette",
+              "name": "default",
               "type": "palette"
             },
             "seriesType": "area",

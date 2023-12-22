@@ -110,27 +110,6 @@
         "layers": [
           {
             "categoryDisplay": "hide",
-            "colorMapping": {
-              "assignmentMode": "auto",
-              "assignments": [],
-              "colorMode": {
-                "type": "categorical"
-              },
-              "paletteId": "eui_amsterdam_color_blind",
-              "specialAssignments": [
-                {
-                  "color": {
-                    "colorIndex": 1,
-                    "paletteId": "neutral",
-                    "type": "categorical"
-                  },
-                  "rule": {
-                    "type": "other"
-                  },
-                  "touched": false
-                }
-              ]
-            },
             "emptySizeRatio": 0.3,
             "layerId": "da69ca6f-c5f7-49eb-8066-0d75f71e9594",
             "layerType": "data",
@@ -153,7 +132,7 @@
           }
         ],
         "palette": {
-          "name": "kibana_palette",
+          "name": "default",
           "type": "palette"
         },
         "shape": "donut"
