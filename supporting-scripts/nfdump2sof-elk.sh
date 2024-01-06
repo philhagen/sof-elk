@@ -6,6 +6,8 @@
 #   data and output in a format that SOF-ELK® can read with its NetFlow ingest
 #   feature
 
+NONSTANDARD_OUTPUT=0
+
 # bash functionality to get command-line parameters
 # source: http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 # Use -gt 1 to consume two arguments per pass in the loop (e.g. each
