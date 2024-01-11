@@ -9,7 +9,6 @@
 
 sudo /opt/logstash/bin/logstash-plugin install logstash-filter-translate
 sudo /opt/logstash/bin/logstash-plugin install logstash-filter-tld
-sudo /opt/logstash/bin/logstash-plugin install logstash-filter-rest
 sudo /opt/logstash/bin/logstash-plugin install logstash-filter-elasticsearch
 
 # Also follow the readmes for specific things you wish to setup such as frequency_analysis, alexa lookups,
