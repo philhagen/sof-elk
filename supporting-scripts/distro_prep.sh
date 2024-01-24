@@ -83,7 +83,7 @@ rm -rf ~elk_user/.viminfo
 echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
-echo "Resetting GeoIP databases to distributed versions."
+echo "Reseting GeoIP databases to distributed versions."
 for GEOIPDB in ASN City Country; do
     rm -f /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
     curl -s -L -o /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb https://lewestech.com/dist/GeoLite2-${GEOIPDB}.mmdb
@@ -91,6 +91,16 @@ for GEOIPDB in ASN City Country; do
 done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
+
+echo "stopping domain_stats"
+systemctl stop domain_stats
+echo "clearing domain_stats data"
+rm -rf /usr/local/share/domain_stats/[0-9][0-9][0-9]/
+rm -f /usr/local/share/domain_stats/domain_stats.log
+rm -rf /usr/local/share/domain_stats/memocache/
+rm -rf /usr/local/share/domain_stats/__pycache__/
+echo "reloading top 1m for domain_stats from scratch"
+domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain_stats/
 
 # echo "stopping elastalert"
 # systemctl stop elastalert
