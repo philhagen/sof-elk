@@ -1,27 +1,27 @@
 ---
-- name: Install domain_stats pip dependencies
+- name: Install domain-stats pip dependencies
   pip:
     name: python-whois
     executable: pip3
     state: present
   tags: sof-elk_domainstats
 
-- name: Install domain_stats
+- name: Install domain-stats
   pip:
     name: domain-stats
     executable: pip3
     state: present
   tags: sof-elk_domainstats
 
-- name: Install domain_stats configuration
+- name: Install domain-stats configuration
   copy:
     src: '{{ item }}'
-    dest: /usr/local/share/domain_stats/
+    dest: /usr/local/share/domain-stats/
     owner: root
     group: root
     mode: 0640
   with_items:
-    - 'domain_stats.yaml'
+    - 'domain-stats.yaml'
     - 'gunicorn_config.py'
   tags: sof-elk_domainstats
 
@@ -29,20 +29,20 @@
   copy:
     remote_src: yes
     src: /usr/local/lib/python3.6/site-packages/domain_stats/data/freqtable2018.freq
-    dest: /usr/local/share/domain_stats/
+    dest: /usr/local/share/domain-stats/
   tags: sof-elk_domainstats
 
 - name: Install Top 1M records
-  shell: domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain_stats/
+  shell: domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain-stats/
 
-- name: Enable domain_stats service
+- name: Enable domain-stats service
   systemd:
-    name: /usr/local/sof-elk/lib/systemd/domain_stats.service
+    name: /usr/local/sof-elk/lib/systemd/domain-stats.service
     enabled: yes
   tags: sof-elk_domainstats
 
-- name: Start domain_stats service
+- name: Start domain-stats service
   systemd:
-    name: domain_stats
+    name: domain-stats
     state: started
   tags: sof-elk_domainstats
