@@ -21,7 +21,7 @@
     group: root
     mode: 0640
   with_items:
-    - 'domain-stats.yaml'
+    - 'domain_stats.yaml'
     - 'gunicorn_config.py'
   tags: sof-elk_domainstats
 
