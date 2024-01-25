@@ -1,0 +1,173 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "adadb030-e23f-431e-b4de-8ca701eabe6f": {
+              "columnOrder": [
+                "dbae76a4-9686-4074-80c3-e0fdba26f9f6",
+                "86a6d978-de4c-43b7-b293-8e9cd9a163db",
+                "fd0558f6-e5fa-4985-b7bb-394e539a4472"
+              ],
+              "columns": {
+                "86a6d978-de4c-43b7-b293-8e9cd9a163db": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": true,
+                  "label": "http.response.status_code: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "fd0558f6-e5fa-4985-b7bb-394e539a4472",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "http.response.status_code"
+                },
+                "dbae76a4-9686-4074-80c3-e0fdba26f9f6": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "@timestamp",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "auto"
+                  },
+                  "scale": "interval",
+                  "sourceField": "@timestamp"
+                },
+                "fd0558f6-e5fa-4985-b7bb-394e539a4472": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "fd0558f6-e5fa-4985-b7bb-394e539a4472"
+            ],
+            "isHistogram": true,
+            "layerId": "adadb030-e23f-431e-b4de-8ca701eabe6f",
+            "layerType": "data",
+            "palette": {
+              "name": "kibana_palette",
+              "type": "palette"
+            },
+            "seriesType": "line",
+            "simpleView": false,
+            "splitAccessor": "86a6d978-de4c-43b7-b293-8e9cd9a163db",
+            "xAccessor": "dbae76a4-9686-4074-80c3-e0fdba26f9f6",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "fd0558f6-e5fa-4985-b7bb-394e539a4472"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": true,
+          "maxLines": 1,
+          "position": "right",
+          "shouldTruncate": true,
+          "showSingleSeries": true
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "valuesInLegend": false,
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "log",
+        "yRightScale": "linear",
+        "yTitle": "Count"
+      }
+    },
+    "title": "HTTPD Response Code Timeline",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "837e0ef9-e427-46e3-b0e9-04fcf2e0a46e",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-adadb030-e23f-431e-b4de-8ca701eabe6f",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

@@ -1,0 +1,182 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {
+            "8778c4ab-0cd5-45d2-bbf9-153c46c37b02": {
+              "columnOrder": [
+                "803c95db-10ca-47a8-ab8a-8258bbaa23c4",
+                "a79a2021-c5c9-4ed4-bf36-8ee86bcd05f9",
+                "d9f4da39-0731-4b03-8ab8-1f43f49250e1"
+              ],
+              "columns": {
+                "803c95db-10ca-47a8-ab8a-8258bbaa23c4": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top 3 values of http.request.method",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "d9f4da39-0731-4b03-8ab8-1f43f49250e1",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 3
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "http.request.method"
+                },
+                "a79a2021-c5c9-4ed4-bf36-8ee86bcd05f9": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "@timestamp",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "auto"
+                  },
+                  "scale": "interval",
+                  "sourceField": "@timestamp"
+                },
+                "d9f4da39-0731-4b03-8ab8-1f43f49250e1": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "indexPatternId": "httpdlog"
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "httpdlog",
+              "timeField": "@timestamp",
+              "title": "httpdlog-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "d9f4da39-0731-4b03-8ab8-1f43f49250e1"
+            ],
+            "isHistogram": true,
+            "layerId": "8778c4ab-0cd5-45d2-bbf9-153c46c37b02",
+            "layerType": "data",
+            "palette": {
+              "name": "kibana_palette",
+              "type": "palette"
+            },
+            "seriesType": "line",
+            "simpleView": false,
+            "splitAccessor": "803c95db-10ca-47a8-ab8a-8258bbaa23c4",
+            "xAccessor": "a79a2021-c5c9-4ed4-bf36-8ee86bcd05f9",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "d9f4da39-0731-4b03-8ab8-1f43f49250e1"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": true,
+          "maxLines": 1,
+          "position": "right",
+          "shouldTruncate": true,
+          "showSingleSeries": true
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "valuesInLegend": false,
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "log",
+        "yRightScale": "linear",
+        "yTitle": "Count"
+      }
+    },
+    "title": "HTTPD Timeline",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "7fdb47ea-c342-4b34-89c3-8ee38eb314e0",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-8778c4ab-0cd5-45d2-bbf9-153c46c37b02",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
