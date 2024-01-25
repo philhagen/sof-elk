@@ -53,13 +53,13 @@ for ingest_dir in ${ingest_dirs}; do
 done
 
 # activate all elastalert rules
-for file in /usr/local/sof-elk/lib/elastalert_rules/*.yaml ; do
-	if [ -h "/etc/elastalert_rules/$( basename "${file}" )" ]; then
-		rm -f "/etc/elastalert_rules/$( basebame "${file}" )"
-	fi
-
-	ln -s "${file}" "/etc/elastalert_rules/$( basename "${file}" )"
-done
+#for file in /usr/local/sof-elk/lib/elastalert_rules/*.yaml ; do
+#	if [ -h "/etc/elastalert_rules/$( basename "${file}" )" ]; then
+#		rm -f "/etc/elastalert_rules/$( basebame "${file}" )"
+#	fi
+#
+#	ln -s "${file}" "/etc/elastalert_rules/$( basename "${file}" )"
+#done
 # reload elastalert
 #/usr/bin/systemctl restart elastalert
 
