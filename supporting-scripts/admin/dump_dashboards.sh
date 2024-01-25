@@ -88,7 +88,7 @@ for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${k
 done
 
 # get a list of all data_views and their content
-for DATAVIEWID in $( curl -s -H 'kbn-xsrd: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views" | jq -cr '.data_view[] | .id' ); do
+for DATAVIEWID in $( curl -s -H 'kbn-xsrd: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views?per_page=10000" | jq -cr '.data_view[] | .id' ); do
     echo "Dumping Data View: ${DATAVIEWID}"
 
     curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" | jq -S 'del(.data_view.version,.data_view.fields,.data_view.fieldAttrs,.data_view.runtimeFieldMap)' > data_views/${DATAVIEWID}.json
