@@ -5,7 +5,6 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
-          "currentIndexPatternId": "netflow",
           "layers": {
             "ce85e80f-357a-4fd6-a722-d634ca320d9e": {
               "columnOrder": [
@@ -68,23 +67,14 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {},
-              "indexPatternId": "netflow"
+              "incompleteColumns": {}
             }
           }
         },
         "indexpattern": {
-          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
-          "indexPatternRefs": [
-            {
-              "id": "netflow",
-              "timeField": "@timestamp",
-              "title": "netflow-*"
-            }
-          ],
           "layers": {}
         }
       },

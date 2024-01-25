@@ -8,10 +8,10 @@
     "description": "",
     "grid": {
       "columns": {
-        "log.syslog.hostname": {
+        "log.syslog.appname": {
           "width": 140
         },
-        "log.syslog.appname": {
+        "log.syslog.hostname": {
           "width": 140
         }
       }
