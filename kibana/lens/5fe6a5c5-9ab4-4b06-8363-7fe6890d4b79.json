@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "httpdlog",
           "layers": {
             "d1e7f005-c126-4f21-8e84-5faf60227db7": {
               "columnOrder": [
@@ -52,14 +53,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "httpdlog"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "httpdlog",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "httpdlog",
+              "timeField": "@timestamp",
+              "title": "httpdlog-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -72,7 +82,7 @@
       "visualization": {
         "columns": [
           {
-            "alignment": "left",
+            "alignment": "right",
             "columnId": "0e4d4ea6-be6c-447d-9ec9-c8d608509612"
           },
           {
