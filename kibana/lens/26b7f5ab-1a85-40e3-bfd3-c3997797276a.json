@@ -1,0 +1,111 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "652d1b66-6442-463f-873e-f999e6a35ae2": {
+              "columnOrder": [
+                "abe83607-e100-4ea1-b7a1-ffccc08d71d9",
+                "6ef92468-ef3c-4514-912e-2741ea5aa787"
+              ],
+              "columns": {
+                "6ef92468-ef3c-4514-912e-2741ea5aa787": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "abe83607-e100-4ea1-b7a1-ffccc08d71d9": {
+                  "customLabel": true,
+                  "dataType": "ip",
+                  "isBucketed": true,
+                  "label": "DNS Answers",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "6ef92468-ef3c-4514-912e-2741ea5aa787",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "answer.ip"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "6ef92468-ef3c-4514-912e-2741ea5aa787"
+          },
+          {
+            "alignment": "left",
+            "columnId": "abe83607-e100-4ea1-b7a1-ffccc08d71d9"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "652d1b66-6442-463f-873e-f999e6a35ae2",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 10
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "DNS Answers",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "26b7f5ab-1a85-40e3-bfd3-c3997797276a",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-652d1b66-6442-463f-873e-f999e6a35ae2",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

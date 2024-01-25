@@ -1,0 +1,111 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "6c3e1aff-d447-49ea-92ae-d597980f5a20": {
+              "columnOrder": [
+                "646df6f0-a2aa-462e-9932-00c6932b048d",
+                "d321ad0e-6d8d-4b81-a36f-ab94162f91f5"
+              ],
+              "columns": {
+                "646df6f0-a2aa-462e-9932-00c6932b048d": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "DNS Query",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "d321ad0e-6d8d-4b81-a36f-ab94162f91f5",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "dns.question.name.keyword"
+                },
+                "d321ad0e-6d8d-4b81-a36f-ab94162f91f5": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "d321ad0e-6d8d-4b81-a36f-ab94162f91f5"
+          },
+          {
+            "alignment": "left",
+            "columnId": "646df6f0-a2aa-462e-9932-00c6932b048d"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "6c3e1aff-d447-49ea-92ae-d597980f5a20",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 10
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "DNS Queries",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "43ff4c20-4e61-48c3-a21c-5bcbd83cbcfe",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-6c3e1aff-d447-49ea-92ae-d597980f5a20",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
