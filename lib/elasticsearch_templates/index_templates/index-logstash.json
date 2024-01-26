@@ -17,7 +17,7 @@
       "properties": {
         "event": {
           "properties": {
-            "outcome": {
+            "auth_result": {
               "type": "keyword"
             }
           }
