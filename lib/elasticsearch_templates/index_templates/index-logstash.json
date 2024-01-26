@@ -15,6 +15,13 @@
   "template": {
     "mappings": {
       "properties": {
+        "event": {
+          "properties": {
+            "outcome": {
+              "type": "keyword"
+            }
+          }
+        },
         "ttl": {
           "type": "integer"
         },
