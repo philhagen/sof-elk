@@ -1,0 +1,139 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "3408c9ee-cc86-4976-920e-151b03f870c9": {
+              "columnOrder": [
+                "6da5d69b-6c9c-4743-bab4-67dbe3ef4207",
+                "f36daebf-6243-4fc2-9e35-9b5be3dce469",
+                "c151e0cd-42ae-499c-93f2-eb0f90021eaa",
+                "a71a162b-fd7b-4042-aabf-260555d4d700"
+              ],
+              "columns": {
+                "6da5d69b-6c9c-4743-bab4-67dbe3ef4207": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top Sources",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "a71a162b-fd7b-4042-aabf-260555d4d700",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 8
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "path"
+                },
+                "a71a162b-fd7b-4042-aabf-260555d4d700": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "c151e0cd-42ae-499c-93f2-eb0f90021eaa": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "End",
+                  "operationType": "max",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                },
+                "f36daebf-6243-4fc2-9e35-9b5be3dce469": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "Start",
+                  "operationType": "min",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "columnId": "6da5d69b-6c9c-4743-bab4-67dbe3ef4207"
+          },
+          {
+            "columnId": "a71a162b-fd7b-4042-aabf-260555d4d700"
+          },
+          {
+            "columnId": "f36daebf-6243-4fc2-9e35-9b5be3dce469",
+            "isMetric": true,
+            "isTransposed": false
+          },
+          {
+            "columnId": "c151e0cd-42ae-499c-93f2-eb0f90021eaa",
+            "isMetric": true,
+            "isTransposed": false
+          }
+        ],
+        "layerId": "3408c9ee-cc86-4976-920e-151b03f870c9",
+        "layerType": "data"
+      }
+    },
+    "title": "Syslog Collected",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "ccb7a8b1-7272-4653-b96a-bcbe03dbb8bc",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-3408c9ee-cc86-4976-920e-151b03f870c9",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
