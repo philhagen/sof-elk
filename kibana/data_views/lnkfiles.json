@@ -1,7 +1,7 @@
 {
   "data_view": {
     "allowHidden": false,
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -12,12 +12,7 @@
     },
     "id": "lnkfiles",
     "name": "lnkfiles-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "lnkfiles-*",
-    "typeMeta": {}
+    "title": "lnkfiles-*"
   }
 }

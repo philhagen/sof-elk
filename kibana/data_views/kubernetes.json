@@ -1,7 +1,7 @@
 {
   "data_view": {
     "allowHidden": false,
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -12,12 +12,7 @@
     },
     "id": "kubernetes",
     "name": "kubernetes-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "kubernetes-*",
-    "typeMeta": {}
+    "title": "kubernetes-*"
   }
 }

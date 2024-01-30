@@ -1,7 +1,7 @@
 {
   "data_view": {
     "allowHidden": false,
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -12,12 +12,7 @@
     },
     "id": "microsoft365",
     "name": "microsoft365-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "microsoft365-*",
-    "typeMeta": {}
+    "title": "microsoft365-*"
   }
 }
