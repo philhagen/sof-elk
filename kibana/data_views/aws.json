@@ -1,6 +1,6 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -11,12 +11,7 @@
     },
     "id": "aws",
     "name": "aws-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "aws-*",
-    "typeMeta": {}
+    "title": "aws-*"
   }
 }

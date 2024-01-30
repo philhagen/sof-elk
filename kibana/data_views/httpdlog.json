@@ -1,6 +1,6 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -35,12 +35,7 @@
     },
     "id": "httpdlog",
     "name": "httpdlog-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "httpdlog-*",
-    "typeMeta": {}
+    "title": "httpdlog-*"
   }
 }

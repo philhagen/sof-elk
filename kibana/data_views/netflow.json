@@ -1,6 +1,6 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -107,12 +107,7 @@
     },
     "id": "netflow",
     "name": "netflow-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "netflow-*",
-    "typeMeta": {}
+    "title": "netflow-*"
   }
 }

@@ -1,6 +1,6 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -11,12 +11,7 @@
     },
     "id": "gcp",
     "name": "gcp-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "gcp-*",
-    "typeMeta": {}
+    "title": "gcp-*"
   }
 }

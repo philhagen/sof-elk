@@ -1,6 +1,6 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -11,12 +11,7 @@
     },
     "id": "zeek",
     "name": "zeek-*",
-    "namespaces": [
-      "default"
-    ],
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "zeek-*",
-    "typeMeta": {}
+    "title": "zeek-*"
   }
 }
