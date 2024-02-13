@@ -61,7 +61,7 @@ def process_csv_to_json(csv_filename, json_filename, tags):
                 newrow = { normalize_field_name(k): convert_value(v) for k, v in row.items() }
                 newrow = remove_empty_fields(newrow)
 
-                if tags != []:
+                if tags != None:
                     if 'tags' in newrow:
                         # just split on spaces for now - will adjust in future if data requires it
                         newrow['tags'] = newrow['tags'].split(' ')
@@ -75,10 +75,10 @@ def process_csv_to_json(csv_filename, json_filename, tags):
                 jsonfile.write('\n')
 
     except FileNotFoundError:
-        sys.stderr.write(f"ERROR: File '{csv_filename}' not found.")
+        sys.stderr.write(f"ERROR: File '{csv_filename}' not found.\n")
         sys.exit(1)
     except Exception as e:
-        sys.stderr.write(f"ERROR: An unexpected error occurred: {e}")
+        sys.stderr.write(f"ERROR: An unexpected error occurred: {e}.\n")
         sys.exit(1)
 
 if __name__ == "__main__":
