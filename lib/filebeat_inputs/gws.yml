@@ -16,14 +16,14 @@
     type: gws
   tags: [ 'json' ]
 
-- type: filestream
-  id: gws-csv
-  paths:
-    - /logstash/gws/**/*.csv
-  close.on_state_change.inactive: 5m
-  clean_removed: true
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: gws
-  tags: [ 'gmail', 'csv' ]
+# - type: filestream
+#   id: gws-csv
+#   paths:
+#     - /logstash/gws/**/*.csv
+#   close.on_state_change.inactive: 5m
+#   clean_removed: true
+#   fields_under_root: true
+#   fields:
+#     # this is important - it's as the [type] field in Logstash
+#     type: gws
+#   tags: [ 'gmail', 'csv' ]
