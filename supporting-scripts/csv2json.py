@@ -78,7 +78,7 @@ def process_csv_to_json(csv_filename, json_filename, tags):
         sys.stderr.write(f"ERROR: File '{csv_filename}' not found.")
         sys.exit(1)
     except Exception as e:
-        sys.stderr,write(f"ERROR: An unexpected error occurred: {e}")
+        sys.stderr.write(f"ERROR: An unexpected error occurred: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
