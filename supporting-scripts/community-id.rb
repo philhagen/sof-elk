@@ -67,8 +67,8 @@ end
 
 def register(params)
   @comm_id_seed = params.fetch("community_id_seed", "0").to_i
-  @source_ip = params.fetch("source_ip_field", "[source][ip]]")
-  @source_port = params.fetch("source_port_field", "[source][port]]")
+  @source_ip = params.fetch("source_ip_field", "[source][ip]")
+  @source_port = params.fetch("source_port_field", "[source][port]")
   @dest_ip = params.fetch("dest_ip_field", "[destination][ip]")
   @dest_port = params.fetch("dest_port_field", "[destination][port]")
   @protocol = params.fetch("protocol_field", "[network][iana_number]")
