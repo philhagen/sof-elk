@@ -26,19 +26,10 @@
             }
           }
         },
-        "md5": {
-          "type": "keyword"
-        },
         "original_message": {
           "type": "keyword"
         },
         "path": {
-          "type": "keyword"
-        },
-        "sha1": {
-          "type": "keyword"
-        },
-        "sha256": {
           "type": "keyword"
         }
       }

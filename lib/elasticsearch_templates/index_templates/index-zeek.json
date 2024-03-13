@@ -12,8 +12,22 @@
       "mappings-zeekuid",
       "mappings-final"
     ],
+    "template": {
+      "mappings": {
+        "properties": {
+          "md5": {
+            "type": "keyword"
+          },
+          "sha1": {
+            "type": "keyword"
+          },
+          "sha256": {
+            "type": "keyword"
+            }
+        }
+      }
+    },
     "_meta": {
-      "provider": "SOF-ELK"
-    }
+    "provider": "SOF-ELK"
   }
-  
+}
