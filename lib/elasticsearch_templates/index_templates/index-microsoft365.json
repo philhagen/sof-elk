@@ -89,10 +89,10 @@
                 }
               }
             }
-          },
-          "type": {
-            "type": "keyword"
           }
+        },
+        "type": {
+          "type": "keyword"
         },
         "version": {
           "type": "integer"

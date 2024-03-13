@@ -15,7 +15,7 @@
       "dynamic_templates": [
         {
           "request_parameters_fields": {
-            "match_path": "request_parameters.*",
+            "path_match": "request_parameters.*",
             "mapping": {
               "type": "keyword"
             }
