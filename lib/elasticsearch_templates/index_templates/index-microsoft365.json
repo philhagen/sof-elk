@@ -54,6 +54,9 @@
                 "IsValid": {
                   "type": "boolean"
                 },
+                "ListBaseType": {
+                  "type": "string"
+                },
                 "ModifiedProperties": {
                   "type": "object"
                 },
@@ -75,9 +78,6 @@
                 "Target": {
                   "type": "object"
                 },
-                "type": {
-                  "type": "keyword"
-                },
                 "UserType": {
                   "type": "integer"
                 },
@@ -89,7 +89,13 @@
                 }
               }
             }
+          },
+          "type": {
+            "type": "keyword"
           }
+        },
+        "version": {
+          "type": "integer"
         }
       }
     }
