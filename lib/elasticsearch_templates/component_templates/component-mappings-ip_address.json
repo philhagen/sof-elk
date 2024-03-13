@@ -4,7 +4,7 @@
       "dynamic_templates": [
         {
           "ip_address_fields": {
-            "path_match": "*.ip",
+            "match": "ip",
             "mapping": {
               "type": "ip"
             }
