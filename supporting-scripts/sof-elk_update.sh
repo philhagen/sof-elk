@@ -3,7 +3,7 @@
 # (C)2024 Lewes Technology Consulting, LLC
 #
 # This script is used to update the repository from its git origin
-# It will not overwrite any local changes unless -force is specified
+# It will not overwrite any local changes unless -f (force) is specified
 
 FORCE=0
 
@@ -30,7 +30,7 @@ done
 
 cd /usr/local/sof-elk/ || exit 3
 if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
-  echoerr "ERROR: You have local changes to this repository - will not overwrite without '-force'."
+  echoerr "ERROR: You have local changes to this repository - will not overwrite without '-f' to force."
   echoerr "       Run 'git status' from the /usr/local/sof-elk/ directory to identify the local changes."
   echoerr "       Note that using '-f' will delete any modifications that have been made in this directory."
   exit 2
