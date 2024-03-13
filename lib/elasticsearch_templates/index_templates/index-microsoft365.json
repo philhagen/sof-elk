@@ -55,7 +55,7 @@
                   "type": "boolean"
                 },
                 "ListBaseType": {
-                  "type": "string"
+                  "type": "text"
                 },
                 "ModifiedProperties": {
                   "type": "object"
