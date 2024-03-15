@@ -23,6 +23,12 @@
             },
             "community_id": {
               "type": "keyword"
+            },
+            "tcp_flags": {
+              "type": "keyword"
+            },
+            "tcp_flags_hex": {
+              "type": "keyword"
             }
           }
         },
