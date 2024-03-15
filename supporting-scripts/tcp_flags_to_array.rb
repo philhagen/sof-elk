@@ -23,14 +23,14 @@ def filter(event)
         tcp_flags_int = event.get(@source_field).to_i
         
         # Add to the array based on values in the bitmask
-        tcp_flags.push("C") if (tcp_flags_int & 0x80 != 0)
-        tcp_flags.push("E") if (tcp_flags_int & 0x40 != 0)
-        tcp_flags.push("U") if (tcp_flags_int & 0x20 != 0)
-        tcp_flags.push("A") if (tcp_flags_int & 0x10 != 0)
-        tcp_flags.push("P") if (tcp_flags_int & 0x08 != 0)
-        tcp_flags.push("R") if (tcp_flags_int & 0x04 != 0)
-        tcp_flags.push("S") if (tcp_flags_int & 0x02 != 0)
-        tcp_flags.push("F") if (tcp_flags_int & 0x01 != 0)
+        tcp_flags.push("cwr") if (tcp_flags_int & 0x80 != 0)
+        tcp_flags.push("ece") if (tcp_flags_int & 0x40 != 0)
+        tcp_flags.push("urg") if (tcp_flags_int & 0x20 != 0)
+        tcp_flags.push("ack") if (tcp_flags_int & 0x10 != 0)
+        tcp_flags.push("psh") if (tcp_flags_int & 0x08 != 0)
+        tcp_flags.push("rst") if (tcp_flags_int & 0x04 != 0)
+        tcp_flags.push("syn") if (tcp_flags_int & 0x02 != 0)
+        tcp_flags.push("fin") if (tcp_flags_int & 0x01 != 0)
 
     elsif @source_type == "str"
         # remove dots
@@ -52,9 +52,9 @@ def filter(event)
 
     end
 
-    event.set("netflow.tcp_flags.array", tcp_flags)
-    event.set("netflow.tcp_flags.hex", "0x" + tcp_flags_int.to_s(16).upcase)
-    event.set("netflow.tcp_flags.str", tcp_flags.sort.join())
+    event.set("network.tcp_flags", tcp_flags)
+    event.set("network.tcp_flags_hex", "0x" + tcp_flags_int.to_s(16).upcase)
+    event.set("network.tcp_flags_str", tcp_flags.sort.join())
     event.remove("[netflow][tcp_control_bits]")
     event.set("netflow.tcp_control_bits", tcp_flags_int)
 
