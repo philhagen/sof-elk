@@ -1,6 +1,6 @@
 {
   "index_patterns": [
-    "filesystem-*"
+    "kape-*"
   ],
   "composed_of": [
     "settings-common",
