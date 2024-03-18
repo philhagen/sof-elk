@@ -11,50 +11,27 @@ end
 def filter(event)
     file_perms_orig = event.get(@source_field)
 
-    # set up the default fields
-    file_perms = {
-        "_rawvalue" => file_perms_orig,
-        "readonly" => false,
-        "hidden" => false,
-        "system" => false,
-        "archive" => false,
-        "device" => false,
-        "normal" => false,
-        "temporary" => false,
-        "sparsefile" => false,
-        "reparsepoint" => false,
-        "compressed" => false,
-        "offline" => false,
-        "notcontentindexed" => false,
-        "encrypted" => false,
-        "integritystream" => false,
-        "virtual" => false,
-        "noscrubdata" => false,
-        "hasea" => false,
-        "isdirectory" => false,
-        "isindexview" => false
-    }
-
-    # set true/false flags for each bit in the mask
-    file_perms["readonly"] = true if (file_perms_orig & 0x0001 != 0)
-    file_perms["hidden"] = true if (file_perms_orig & 0x0002 != 0)
-    file_perms["system"] = true if (file_perms_orig & 0x0004 != 0)
-    file_perms["archive"] = true if (file_perms_orig & 0x0020 != 0)
-    file_perms["device"] = true if (file_perms_orig & 0x0040 != 0)
-    file_perms["normal"] = true if (file_perms_orig & 0x0080 != 0)
-    file_perms["temporary"] = true if (file_perms_orig & 0x0100 != 0)
-    file_perms["sparsefile"] = true if (file_perms_orig & 0x0200 != 0)
-    file_perms["reparsepoint"] = true if (file_perms_orig & 0x0400 != 0)
-    file_perms["compressed"] = true if (file_perms_orig & 0x0800 != 0)
-    file_perms["offline"] = true if (file_perms_orig & 0x1000 != 0)
-    file_perms["notcontentindexed"] = true if (file_perms_orig & 0x2000 != 0)
-    file_perms["encrypted"] = true if (file_perms_orig & 0x4000 != 0)
-    file_perms["integritystream"] = true if (file_perms_orig & 0x8000 != 0)
-    file_perms["virtual"] = true if (file_perms_orig & 0x010000 != 0)
-    file_perms["noscrubdata"] = true if (file_perms_orig & 0x020000 != 0)
-    file_perms["hasea"] = true if (file_perms_orig & 0x040000 != 0)
-    file_perms["isdirectory"] = true if (file_perms_orig & 0x10000000 != 0)
-    file_perms["isindexview"] = true if (file_perms_orig & 0x20000000 != 0)
+    # create array of all flags that are present, as indicated by each bit in the mask
+    file_perms = Array.new()
+    file_perms.push("readonly") if (file_perms_orig & 0x0001 != 0)
+    file_perms.push("hidden") if (file_perms_orig & 0x0002 != 0)
+    file_perms.push("system") if (file_perms_orig & 0x0004 != 0)
+    file_perms.push("archive") if (file_perms_orig & 0x0020 != 0)
+    file_perms.push("device") if (file_perms_orig & 0x0040 != 0)
+    file_perms.push("normal") if (file_perms_orig & 0x0080 != 0)
+    file_perms.push("temporary") if (file_perms_orig & 0x0100 != 0)
+    file_perms.push("sparsefile") if (file_perms_orig & 0x0200 != 0)
+    file_perms.push("reparsepoint") if (file_perms_orig & 0x0400 != 0)
+    file_perms.push("compressed") if (file_perms_orig & 0x0800 != 0)
+    file_perms.push("offline") if (file_perms_orig & 0x1000 != 0)
+    file_perms.push("notcontentindexed") if (file_perms_orig & 0x2000 != 0)
+    file_perms.push("encrypted") if (file_perms_orig & 0x4000 != 0)
+    file_perms.push("integritystream") if (file_perms_orig & 0x8000 != 0)
+    file_perms.push("virtual") if (file_perms_orig & 0x010000 != 0)
+    file_perms.push("noscrubdata") if (file_perms_orig & 0x020000 != 0)
+    file_perms.push("hasea") if (file_perms_orig & 0x040000 != 0)
+    file_perms.push("directory") if (file_perms_orig & 0x10000000 != 0)
+    file_perms.push("indexview") if (file_perms_orig & 0x20000000 != 0)
 
     # set a tag if there are any extraneous flags not addressed above
     event.tag("_siflagsparsefailure") if (file_perms_orig & 0x3007FFE7 != file_perms_orig)
