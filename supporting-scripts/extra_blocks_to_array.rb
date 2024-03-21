@@ -65,6 +65,8 @@ def filter(event)
         extra_blocks["knownfolderdata"] = true if (extra_blocks_orig.include? "knownfolderdata")
         extra_blocks["vistaandaboveidlistdata"] = true if (extra_blocks_orig.include? "vistaandaboveidlistdata")
 
+    end
+
     event.set(@source_field, extra_blocks)
 
     return [event]
