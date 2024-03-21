@@ -24,7 +24,7 @@ def filter(event)
         "environmentvariabledata" => false,
         "consoledata" => false,
         "trackerdatabase" => false,
-]       "consolefedata" => false,
+        "consolefedata" => false,
         "specialfolderdata" => false,
         "darwindata" => false,
         "iconenvironmentdata" => false,
