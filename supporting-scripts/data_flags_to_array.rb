@@ -112,6 +112,8 @@ def filter(event)
         headerdata_perms["preferenvironmentpath"] = true if (headerdata_perms_orig.include? "preferenvironmentpath")
         headerdata_perms["keeplocalidlistforunctarget"] = true if (headerdata_perms_orig.include? "keeplocalidlistforunctarget")
 
+    end
+
     event.set(@source_field, headerdata_perms)
 
     return [event]
