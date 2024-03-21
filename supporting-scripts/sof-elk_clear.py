@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath
@@ -98,8 +98,7 @@ sourcedir_index_mapping = {
     'nfarch': 'netflow',
     'httpd': 'httpdlog',
     'kape': 'lnkfiles',
-    'kape': 'filesystem',
-    'kape': 'evtxfiles',
+    'kape': 'kape',
     'microsoft365': 'microsoft365',
     'kubernetes': 'kubernetes',
 }
