@@ -89,6 +89,8 @@ def filter(event)
         file_perms["directory"] = true if (file_perms_orig.include? "directory")
         file_perms["indexview"] = true if (file_perms_orig.include? "indexview")
 
+    end
+
     event.set(@source_field, file_perms)
 
     return [event]
