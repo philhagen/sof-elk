@@ -15,7 +15,6 @@
   "template": {
     "mappings": {
       "properties": {
-
         "http": {
           "properties": {
             "request": {

@@ -10,12 +10,12 @@
   ],
   "template": {
     "mappings": {
-      "runtime": {
-        "filesize_vis": {
-          "type": "long",
-          "script": {
-            "source": "emit(doc['file.size'].value);"
-          }
+      "properties": {
+        "type": {
+          "type": "keyword"
+        },
+        "version": {
+          "type": "integer"
         }
       }
     }

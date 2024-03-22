@@ -38,7 +38,17 @@
         "path": {
           "type": "keyword"
         }
-      }
+      },
+      "dynamic_templates": [
+        {
+          "rawvalue_fields": {
+            "match": "_rawvalue",
+            "mapping": {
+              "type": "text"
+            }
+          }
+        }
+      ]
     }
   },
   "_meta": {
