@@ -113,6 +113,12 @@ logging:
     appenders:
       - default
       - file
+#  policy:
+#    type: size-limit
+#    size: 256mb
+#  strategy:
+#    type: numeric
+#    max: 10
 #  layout:
 #    type: json
 
@@ -130,6 +136,10 @@ logging:
 #logging.loggers:
 #  - name: metrics.ops
 #    level: debug
+
+# Enables debug logging on the browser (dev console)
+#logging.browser.root:
+#  level: debug
 
 # =================== System: Other ===================
 # The path where Kibana stores persistent data not saved in Elasticsearch. Defaults to data
