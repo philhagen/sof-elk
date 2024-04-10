@@ -25,7 +25,7 @@ command -v $elasticsearchPlugin >/dev/null 2>&1 || { printf "\nERROR: elasticsea
 #ensure the es plugin dir exists
 if [ -d "$elasticsearchPluginDir" ]; then
     #get a list of current plugins and shove it into an array
-    installedPlugins=(`ls $elasticsearchPluginDir |grep -v preupgrade*`)
+    installedPlugins=$(ls $elasticsearchPluginDir | grep -v preupgrade*)
 else
     printf "\nERROR: elasticsearchPluginDir $elasticsearchPluginDir does not exist\n"
     exit 1
