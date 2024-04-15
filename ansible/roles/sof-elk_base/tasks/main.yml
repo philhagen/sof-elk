@@ -173,7 +173,7 @@
   with_items:
     - { src: '/usr/local/sof-elk/supporting-scripts/distro_prep.sh', dest: '/root/distro_prep.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/yum-post-transaction_sof-elk.action', dest: '/etc/yum/post-actions/yum-post-transaction_sof-elk.action' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/es_heapsize_calc.sh', dest: '/usr/local/sbin/es_heapsize_calc.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/csv2json.py', dest: '/usr/local/sbin/csv2json.py' }
     - { src: '/usr/local/sof-elk/supporting-scripts/fw_modify.sh', dest: '/usr/local/sbin/fw_modify.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/load_all_dashboards.sh', dest: '/usr/local/sbin/load_all_dashboards.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/nfdump2sof-elk.sh', dest: '/usr/local/sbin/nfdump2sof-elk.sh' }
