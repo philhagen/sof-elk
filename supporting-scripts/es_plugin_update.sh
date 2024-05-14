@@ -23,11 +23,7 @@ fi
 command -v "${elasticsearchPlugin}" >/dev/null 2>&1 || { printf "\nERROR: elasticsearch plugin command %s does not exist\n\n" ${elasticsearchPlugin}; exit 1; }
 
 #ensure the es plugin dir exists
-if [ -d "${elasticsearchPluginDir}" ]; then
-  #get a list of current plugins and shove it into an array
-  installedPlugins=$( "${elasticsearchPlugin}" list )
-
-else
+if [ ! -d "${elasticsearchPluginDir}" ]; then
   printf "\nERROR: elasticsearchPluginDir %s does not exist\n" ${elasticsearchPluginDir}
   exit 1
 fi
