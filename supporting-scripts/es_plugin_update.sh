@@ -25,7 +25,7 @@ command -v "${elasticsearchPlugin}" >/dev/null 2>&1 || { printf "\nERROR: elasti
 #ensure the es plugin dir exists
 if [ -d "${elasticsearchPluginDir}" ]; then
   #get a list of current plugins and shove it into an array
-  installedPlugins=( "${elasticsearchPluginDir}/*" )
+  installedPlugins=$( "${elasticsearchPlugin}" list )
 
 else
   printf "\nERROR: elasticsearchPluginDir %s does not exist\n" ${elasticsearchPluginDir}
@@ -33,7 +33,7 @@ else
 fi
 
 #look at each installed plugin and try to find its repo, then offer to update
-for currentInstalledPlugin in "${installedPlugins[@]}"; do
+for currentInstalledPlugin in $( "${elasticsearchPlugin}" list ); do
   if [[ "${currentInstalledPlugin}" == "preupgrade"* ]]; then
     continue
   fi
