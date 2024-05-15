@@ -2,12 +2,6 @@
   "template": {
     "mappings": {
       "runtime": {
-        "answer.geo.asnstr": {
-          "type": "keyword",
-          "script": {
-            "source": "if (doc.containsKey('answer.as.number') && doc['answer.as.number'].size() != 0 && doc.containsKey('answer.as.organization.name.keyword') && doc['answer.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['answer.as.number'].value + ': ' + doc['answer.as.organization.name.keyword']; emit(m); }"
-          }
-        },
         "backend.geo.asnstr": {
           "type": "keyword",
           "script": {
@@ -26,10 +20,10 @@
             "source": "if (doc.containsKey('destination.as.number') && doc['destination.as.number'].size() != 0 && doc.containsKey('destination.as.organization.name.keyword') && doc['destination.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['destination.as.number'].value + ': ' + doc['destination.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "dhcp.geo.asnstr": {
+        "dns.answers.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('dhcp.as.number') && doc['dhcp.as.number'].size() != 0 && doc.containsKey('dhcp.as.organization.name.keyword') && doc['dhcp.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['dhcp.as.number'].value + ': ' + doc['dhcp.as.organization.name.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('dns.answers.as.number') && doc['dns.answers.as.number'].size() != 0 && doc.containsKey('dns.answers.as.organization.name.keyword') && doc['dns.answers.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['dns.answers.as.number'].value + ': ' + doc['dns.answers.as.organization.name.keyword']; emit(m); }"
           }
         },
         "original_destination.geo.asnstr": {
@@ -60,6 +54,18 @@
           "type": "keyword",
           "script": {
             "source": "if (doc.containsKey('xff.as.number') && doc['xff.as.number'].size() != 0 && doc.containsKey('xff.as.organization.name.keyword') && doc['xff.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['xff.as.number'].value + ': ' + doc['xff.as.organization.name.keyword']; emit(m); }"
+          }
+        },
+        "zeek.ftp.data_channel.originating.geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('zeek.ftp.data_channel.originating.as.number') && doc['zeek.ftp.data_channel.originating.as.number'].size() != 0 && doc.containsKey('zeek.ftp.data_channel.originating.as.organization.name.keyword') && doc['zeek.ftp.data_channel.originating.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['zeek.ftp.data_channel.originating.as.number'].value + ': ' + doc['zeek.ftp.data_channel.originating.as.organization.name.keyword']; emit(m); }"
+          }
+        },
+        "zeek.ftp.data_channel.response.geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('zeek.ftp.data_channel.response.as.number') && doc['zeek.ftp.data_channel.response.as.number'].size() != 0 && doc.containsKey('zeek.ftp.data_channel.response.as.organization.name.keyword') && doc['zeek.ftp.data_channel.response.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['zeek.ftp.data_channel.response.as.number'].value + ': ' + doc['zeek.ftp.data_channel.response.as.organization.name.keyword']; emit(m); }"
           }
         }
       },
