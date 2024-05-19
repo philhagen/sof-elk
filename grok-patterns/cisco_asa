@@ -13,7 +13,7 @@ CISCO_REASON Duplicate TCP SYN|Failed to locate egress interface|Invalid transpo
 CISCO_DIRECTION Inbound|inbound|Outbound|outbound
 
 # ASA-6-106015
-CISCOFW106015 %{CISCO_ACTION:[cisco][asa][action]} %{WORD:[network][transport]} \(%{DATA:[cisco][asa][policy_id]}\) from %{IP:[source][ip]}/%{INT:[source][port]} to %{IP:[destination][ip]}/%{INT:[destination][port]} flags %{DATA:[network][tcp_flags]}  on interface %{GREEDYDATA:[observer][interface]}
+CISCOFW106015 %{CISCO_ACTION:[cisco][asa][action]} %{WORD:[network][transport]} \(%{DATA:[cisco][asa][policy_id]}\) from %{IP:[source][ip]}/%{INT:[source][port]} to %{IP:[destination][ip]}/%{INT:[destination][port]} flags %{DATA:[network][tcp_flags]}  on interface %{GREEDYDATA:[observer][interface][name]}
 
 # ASA-6-302013, ASA-6-302014, ASA-6-302015, ASA-6-302016
 CISCOFW302013_302014_302015_302016 %{CISCO_ACTION:[cisco][asa][action]}(?: %{CISCO_DIRECTION:[network][direction]})? %{WORD:[network][transport]} connection %{INT:[cisco][asa][connection_id]} for %{DATA:[source][interface]}:%{IP:[source][ip]}/%{INT:[source][port]}( \(%{IP:[cisco][asa][mapped_source][ip]}/%{INT:[cisco][asa][mapped_source][port]}\))?(\(%{DATA:[cisco][asa][source_username]}\))? to %{DATA:[destination][interface]}:%{IP:[destination][ip]}/%{INT:[destination][port]}( \(%{IP:[cisco][asa][mapped_destination][ip]}/%{INT:[cisco][asa][mapped_destination][port]}\))?(\(%{DATA:[cisco][asa][destination_username]}\))?( duration %{TIME:[event][duration]} bytes %{INT:[network][bytes]})?(?: %{CISCO_REASON:[cisco][asa][reason]})?( \(%{DATA:[cisco][asa][username]}\))?
