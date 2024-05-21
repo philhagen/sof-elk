@@ -14,7 +14,7 @@
     - add_labels:
       labels:
         type: azure
-    tags: [ 'csv' ]
+  tags: [ 'csv' ]
 
 - type: filestream
   id: azure-json
