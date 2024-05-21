@@ -11,6 +11,6 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: microsoft365
+       labels:
+          type: microsoft365
   tags: [ 'json' ]

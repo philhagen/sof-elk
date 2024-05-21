@@ -12,5 +12,5 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: kubernetes
+       labels:
+          type: kubernetes

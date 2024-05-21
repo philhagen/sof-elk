@@ -11,8 +11,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_conn
+       labels:
+          type: zeek_conn
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -23,8 +23,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_dns
+       labels:
+          type: zeek_dns
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -35,8 +35,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_http
+       labels:
+          type: zeek_http
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -47,8 +47,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_files
+       labels:
+          type: zeek_files
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -59,8 +59,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_ssl
+       labels:
+          type: zeek_ssl
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -71,8 +71,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_x509
+       labels:
+          type: zeek_x509
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -83,8 +83,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_ftp
+       labels:
+          type: zeek_ftp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -95,8 +95,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_notice
+       labels:
+          type: zeek_notice
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -107,8 +107,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_weird
+       labels:
+          type: zeek_weird
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -119,8 +119,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_dhcp
+       labels:
+          type: zeek_dhcp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -131,8 +131,8 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_dpd
+       labels:
+          type: zeek_dpd
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -143,6 +143,6 @@
   clean_removed: true
   processors:
     - add_labels:
-      labels:
-        type: zeek_irc
+       labels:
+          type: zeek_irc
   tags: [ 'zeek' ]
