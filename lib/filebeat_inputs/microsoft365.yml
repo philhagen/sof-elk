@@ -12,5 +12,5 @@
   processors:
     - add_labels:
        labels:
-         type: microsoft365
+          type: microsoft365
   tags: [ 'json' ]

@@ -13,5 +13,5 @@
   processors:
     - add_labels:
        labels:
-         type: gws
+          type: gws
   tags: [ 'json' ]

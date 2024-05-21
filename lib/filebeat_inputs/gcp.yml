@@ -22,5 +22,5 @@
   processors:
     - add_labels:
        labels:
-         type: gcp
+          type: gcp
   tags: [ 'json' ]
