@@ -12,8 +12,8 @@
   clean_removed: true
   processors:
     - add_labels:
-       labels:
-          type: azure
+      labels:
+        type: azure
     tags: [ 'csv' ]
 
 - type: filestream
@@ -23,8 +23,8 @@
   close.on_state_change.inactive: 5m
   processors:
     - add_labels:
-       labels:
-          type: azure
+      labels:
+        type: azure
   tags: [ 'json' ]
 
 - type: filestream
@@ -41,6 +41,6 @@
         match: after
   processors:
     - add_labels:
-       labels:
-          type: azure
+      labels:
+        type: azure
   tags: [ 'xml' ]

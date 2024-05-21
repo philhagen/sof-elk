@@ -21,6 +21,6 @@
   exclude_lines: [ "^\\[$", "^\\]$" ]
   processors:
     - add_labels:
-       labels:
-          type: gcp
+      labels:
+        type: gcp
   tags: [ 'json' ]

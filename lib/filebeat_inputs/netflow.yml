@@ -6,9 +6,10 @@
 - type: netflow
   host: "0.0.0.0:9995"
   protocols: [ v5, v9, ipfix ]
-  fields_under_root: true
-  fields:
-    type: netflow
+  processors:
+    - add_labels:
+      labels:
+        type: netflow
 
 - type: filestream
   id: nfarch-01
@@ -19,8 +20,8 @@
   clean_removed: true
   processors:
     - add_labels:
-       labels:
-          type: archive-netflow
+      labels:
+        type: archive-netflow
 
 - type: filestream
   id: nfarch-json
@@ -39,6 +40,6 @@
   exclude_lines: [ "^\\[$", "^\\]$" ]
   processors:
     - add_labels:
-       labels:
-          type: archive-netflow
+      labels:
+        type: archive-netflow
   tags: [ 'json' ]

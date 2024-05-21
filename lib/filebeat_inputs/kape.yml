@@ -11,8 +11,8 @@
   clean_removed: true
   processors:
     - add_labels:
-       labels:
-          type: kape_filesytstem
+      labels:
+        type: kape_filesytstem
   tags: [ 'json' ]
 
 - type: filestream
@@ -23,8 +23,8 @@
   clean_removed: true
   processors:
     - add_labels:
-       labels:
-          type: kape_lnkfiles
+      labels:
+        type: kape_lnkfiles
   tags: [ 'json' ]
 
 - type: filestream
@@ -35,6 +35,6 @@
   clean_removed: true
   processors:
     - add_labels:
-       labels:
-          type: kape_evtxlogs
+      labels:
+        type: kape_evtxlogs
   tags: [ 'json' ]
