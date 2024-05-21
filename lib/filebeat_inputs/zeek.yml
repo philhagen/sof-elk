@@ -12,7 +12,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_conn
+         type: zeek_conn
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -24,7 +24,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_dns
+         type: zeek_dns
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -36,7 +36,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_http
+         type: zeek_http
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -48,7 +48,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_files
+         type: zeek_files
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -60,7 +60,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_ssl
+         type: zeek_ssl
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -72,7 +72,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_x509
+         type: zeek_x509
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -84,7 +84,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_ftp
+         type: zeek_ftp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -96,7 +96,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_notice
+         type: zeek_notice
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -108,7 +108,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_weird
+         type: zeek_weird
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -120,7 +120,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_dhcp
+         type: zeek_dhcp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -132,7 +132,7 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_dpd
+         type: zeek_dpd
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -144,5 +144,5 @@
   processors:
     - add_labels:
        labels:
-          type: zeek_irc
+         type: zeek_irc
   tags: [ 'zeek' ]

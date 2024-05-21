@@ -13,7 +13,7 @@
   processors:
     - add_labels:
        labels:
-          type: azure
+         type: azure
     tags: [ 'csv' ]
 
 - type: filestream
@@ -24,7 +24,7 @@
   processors:
     - add_labels:
        labels:
-          type: azure
+         type: azure
   tags: [ 'json' ]
 
 - type: filestream
@@ -42,5 +42,5 @@
   processors:
     - add_labels:
        labels:
-          type: azure
+         type: azure
   tags: [ 'xml' ]

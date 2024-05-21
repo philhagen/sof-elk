@@ -13,4 +13,4 @@
   processors:
     - add_labels:
        labels:
-          type: kubernetes
+         type: kubernetes

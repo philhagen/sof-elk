@@ -13,5 +13,5 @@
   processors:
     - add_labels:
        labels:
-          type: aws
+         type: aws
   tags: [ 'json' ]

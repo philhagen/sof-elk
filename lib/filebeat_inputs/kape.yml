@@ -12,7 +12,7 @@
   processors:
     - add_labels:
        labels:
-          type: kape_filesytstem
+         type: kape_filesytstem
   tags: [ 'json' ]
 
 - type: filestream
@@ -24,7 +24,7 @@
   processors:
     - add_labels:
        labels:
-          type: kape_lnkfiles
+         type: kape_lnkfiles
   tags: [ 'json' ]
 
 - type: filestream
@@ -36,5 +36,5 @@
   processors:
     - add_labels:
        labels:
-          type: kape_evtxlogs
+         type: kape_evtxlogs
   tags: [ 'json' ]

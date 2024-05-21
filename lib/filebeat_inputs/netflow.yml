@@ -20,7 +20,7 @@
   processors:
     - add_labels:
        labels:
-          type: archive-netflow
+         type: archive-netflow
 
 - type: filestream
   id: nfarch-json
@@ -40,5 +40,5 @@
   processors:
     - add_labels:
        labels:
-          type: archive-netflow
+         type: archive-netflow
   tags: [ 'json' ]
