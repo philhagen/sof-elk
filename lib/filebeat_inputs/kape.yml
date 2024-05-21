@@ -9,10 +9,9 @@
     - /logstash/kape/**/*_MFTECmd*_Output.json
   close.on_state_change.inactive: 5m
   clean_removed: true
-  processors:
-    - add_labels:
-       labels:
-         type: kape_filesytstem
+  fields_under_root: true
+  fields:
+    type: kape_filesystem
   tags: [ 'json' ]
 
 - type: filestream
@@ -21,10 +20,9 @@
     - /logstash/kape/**/*_LECmd_Output.json
   close.on_state_change.inactive: 5m
   clean_removed: true
-  processors:
-    - add_labels:
-       labels:
-         type: kape_lnkfiles
+  fields_under_root: true
+  fields:
+    type: kape_lnkfiles
   tags: [ 'json' ]
 
 - type: filestream
@@ -33,8 +31,7 @@
     - /logstash/kape/**/*_EvtxECmd_Output.json
   close.on_state_change.inactive: 5m
   clean_removed: true
-  processors:
-    - add_labels:
-       labels:
-         type: kape_evtxlogs
+  fields_under_root: true
+  fields:
+    type: kape_evtxlogs
   tags: [ 'json' ]
