@@ -6,14 +6,10 @@
 - type: netflow
   host: "0.0.0.0:9995"
   protocols: [ v5, v9, ipfix ]
-  fields_under_root: true
-  fields:
-    labels.type: netflow
-# this doesn't work for some reason - causes golang errors
-  # processors:
-  #   - add_labels:
-  #     labels:
-  #       type: netflow
+  processors:
+    - add_labels:
+      labels:
+        type: netflow
 
 - type: filestream
   id: nfarch-01
