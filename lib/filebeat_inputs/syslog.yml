@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for syslog source data from the SOF-ELK® VM itself
 
@@ -10,6 +10,7 @@
   exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: syslog
+  processors:
+    - add_labels:
+       labels:
+         type: syslog
