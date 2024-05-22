@@ -13,3 +13,7 @@
   fields_under_root: true
   fields:
     type: httpdlog
+#  processors:
+#    - add_labels:
+#       labels:
+#         type: httpdlog
