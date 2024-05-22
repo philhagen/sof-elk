@@ -4,12 +4,10 @@
 # This is a sample Filebeat prospector file that looks into the /logstash/gws/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
-- type: filestream
-  id: gws-json
+- type: log
   paths:
     - /logstash/gws/**/*.json
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   fields:
     # this is important - it's as the [type] field in Logstash

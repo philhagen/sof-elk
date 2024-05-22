@@ -3,145 +3,121 @@
 #
 # This file creates filebeats prospector for Zeek source data from the SOF-ELK® VM itself
 
-- type: filestream
-  id: zeek-conn-01
+- type: log
   paths:
     - /logstash/zeek/**/conn.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_conn
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-dns-01
+- type: log
   paths:
     - /logstash/zeek/**/dns.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_dns
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-http-01
+- type: log
   paths:
     - /logstash/zeek/**/http.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_http
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-files-01
+- type: log
   paths:
     - /logstash/zeek/**/files.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_files
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-ssl-01
+- type: log
   paths:
     - /logstash/zeek/**/ssl.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_ssl
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-x509-01
+- type: log
   paths:
     - /logstash/zeek/**/x509.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_x509
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-ftp-01
+- type: log
   paths:
     - /logstash/zeek/**/ftp.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_ftp
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-notice-01
+- type: log
   paths:
     - /logstash/zeek/**/notice.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_notice
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-weird-01
+- type: log
   paths:
     - /logstash/zeek/**/weird.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_weird
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-dhcp-01
+- type: log
   paths:
     - /logstash/zeek/**/dhcp.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_dhcp
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-dpd-01
+- type: log
   paths:
     - /logstash/zeek/**/dpd.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_dpd
   tags: [ 'zeek' ]
 
-- type: filestream
-  id: zeek-irc-01
+- type: log
   paths:
     - /logstash/zeek/**/irc.*
-  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: zeek_irc

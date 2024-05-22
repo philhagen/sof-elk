@@ -3,12 +3,10 @@
 #
 # This file creates a filebeat prospector for Office 365 source data from the SOF-ELK® VM itself
 
-- type: filestream
-  id: microsoft365-json
+- type: log
   paths:
     - /logstash/microsoft365/**/*.json
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: microsoft365

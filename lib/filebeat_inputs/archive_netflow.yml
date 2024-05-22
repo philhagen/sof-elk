@@ -3,23 +3,20 @@
 #
 # This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
 
-- type: filestream
-  id: nfarch-01
+- type: log
   paths:
     - /logstash/nfarch/**
   prospector.scanner.exclude_files: [ 'readme.txt', \.gz$', '\.bz2$', '\.zip$', '\.json$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: archive-netflow
 
-- type: filestream
+- type: log
   id: nfarch-json
   paths:
     - /logstash/nfarch/**/*.json
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   parsers:
     - multiline:

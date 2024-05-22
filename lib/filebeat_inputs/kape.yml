@@ -3,34 +3,28 @@
 #
 # This file creates a filebeat prospector for source data from the KAPE forensic tool suite
 
-- type: filestream
-  id: kape-mftecmd-json
+- type: log
   paths:
     - /logstash/kape/**/*_MFTECmd.*_Output.json
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: kape_filesystem
   tags: [ 'json' ]
 
-- type: filestream
-  id: kape-lecmd-json
+- type: log
   paths:
     - /logstash/kape/**/*._LECmd_Output.json
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: kape_lnkfiles
   tags: [ 'json' ]
 
-- type: filestream
-  id: kape-evtxecmd-json
+- type: log
   paths:
     - /logstash/kape/**/*._EvtxECmd_Output.json
-  close.on_state_change.inactive: 5m
-  clean_removed: true
+  close_inactive: 5m
   fields_under_root: true
   fields:
     type: kape_evtxlogs
