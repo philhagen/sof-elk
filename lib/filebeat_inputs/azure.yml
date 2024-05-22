@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/azure/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.

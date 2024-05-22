@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for archived NetFlow source data from the SOF-ELK® VM itself
 
@@ -7,7 +7,7 @@
   id: nfarch-01
   paths:
     - /logstash/nfarch/**
-  exclude_files: [ 'readme.txt', \.gz$', '\.bz2$', '\.zip$', '\.json$' ]
+  prospector.scanner.exclude_files: [ 'readme.txt', \.gz$', '\.bz2$', '\.zip$', '\.json$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true

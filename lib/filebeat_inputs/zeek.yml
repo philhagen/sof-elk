@@ -7,6 +7,7 @@
   id: zeek-conn-01
   paths:
     - /logstash/zeek/**/conn.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -18,6 +19,7 @@
   id: zeek-dns-01
   paths:
     - /logstash/zeek/**/dns.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -29,6 +31,7 @@
   id: zeek-http-01
   paths:
     - /logstash/zeek/**/http.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -40,6 +43,7 @@
   id: zeek-files-01
   paths:
     - /logstash/zeek/**/files.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -51,6 +55,7 @@
   id: zeek-ssl-01
   paths:
     - /logstash/zeek/**/ssl.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -62,6 +67,7 @@
   id: zeek-x509-01
   paths:
     - /logstash/zeek/**/x509.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -73,6 +79,7 @@
   id: zeek-ftp-01
   paths:
     - /logstash/zeek/**/ftp.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -84,6 +91,7 @@
   id: zeek-notice-01
   paths:
     - /logstash/zeek/**/notice.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -95,6 +103,7 @@
   id: zeek-weird-01
   paths:
     - /logstash/zeek/**/weird.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -106,6 +115,7 @@
   id: zeek-dhcp-01
   paths:
     - /logstash/zeek/**/dhcp.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -117,6 +127,7 @@
   id: zeek-dpd-01
   paths:
     - /logstash/zeek/**/dpd.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
@@ -128,6 +139,7 @@
   id: zeek-irc-01
   paths:
     - /logstash/zeek/**/irc.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
