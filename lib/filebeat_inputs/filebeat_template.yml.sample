@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/logtype/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
@@ -13,7 +13,7 @@
     - /logstash/logtype/**/*.something
   # the two entries below are not needed if the extension is specified above
   # include_files: [ '\.json' ]
-  # exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  # prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   fields_under_root: true
