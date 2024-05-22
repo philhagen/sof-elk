@@ -4,10 +4,12 @@
 # This is a sample Filebeat prospector file that looks into the /logstash/gcp/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
-- type: log
+- type: filestream
+  id: gcp-json
   paths:
     - /logstash/gcp/**/*.json
-  close_inactive: 5m
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   parsers:
     - multiline:

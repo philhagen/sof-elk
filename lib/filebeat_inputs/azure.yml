@@ -4,30 +4,36 @@
 # This is a sample Filebeat prospector file that looks into the /logstash/azure/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
-- type: log
+- type: filestream
+  id: azure-csv
   paths:
     - /logstash/azure/**/*.csv
-  close_inactive: 5m
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     # this is important - it's as the [type] field in Logstash
     type: azure
   tags: [ 'csv' ]
 
-- type: log
+- type: filestream
+  id: azure-json
   paths:
     - /logstash/azure/**/*.json
-  close_inactive: 5m
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   fields:
     # this is important - it's as the [type] field in Logstash
     type: azure
   tags: [ 'json' ]
 
-- type: log
+- type: filestream
+  id: azure-xml
   paths:
     - /logstash/azure/**/*.xml
-  close_inactive: 5m
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   fields_under_root: true
   parsers:
     - multiline:
