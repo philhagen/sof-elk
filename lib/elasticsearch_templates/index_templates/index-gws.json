@@ -13,6 +13,16 @@
   "template": {
     "mappings": {
       "properties": {
+        "event_parameters": {
+          "properties": {
+            "OLD_VALUE": {
+              "type": "text"
+            },
+            "NEW_VALUE": {
+              "type": "text"
+            }
+          }
+        },
         "type": {
           "type": "keyword"
         },
