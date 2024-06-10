@@ -6,9 +6,10 @@
 - type: netflow
   host: "0.0.0.0:9995"
   protocols: [ v5, v9, ipfix ]
-  fields_under_root: true
-  fields:
-    type: netflow
+  processors:
+    - add_labels:
+       labels:
+         type: netflow
 
 - type: filestream
   id: nfarch-01
@@ -17,9 +18,10 @@
   prospector.scanner.exclude_files: [ 'readme.txt', \.gz$', '\.bz2$', '\.zip$', '\.json$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: archive-netflow
+  processors:
+    - add_labels:
+       labels:
+         type: archive-netflow
 
 - type: filestream
   id: nfarch-json
@@ -27,7 +29,6 @@
     - /logstash/nfarch/**/*.json
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
   parsers:
     - multiline:
         type: pattern
@@ -37,6 +38,8 @@
   # exclude_lines takes place AFTER the multiline processing
   # this line will drop the start/end of the array
   exclude_lines: [ "^\\[$", "^\\]$" ]
-  fields:
-    type: archive-netflow
+  processors:
+    - add_labels:
+       labels:
+         type: archive-netflow
   tags: [ 'json' ]

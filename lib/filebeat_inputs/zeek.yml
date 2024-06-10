@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates filebeats prospector for Zeek source data from the SOF-ELK® VM itself
 
@@ -10,9 +10,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_conn
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_conn
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -22,9 +23,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_dns
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_dns
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -34,9 +36,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_http
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_http
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -46,9 +49,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_files
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_files
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -58,9 +62,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_ssl
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_ssl
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -70,9 +75,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_x509
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_x509
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -82,9 +88,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_ftp
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_ftp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -94,9 +101,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_notice
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_notice
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -106,9 +114,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_weird
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_weird
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -118,9 +127,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_dhcp
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_dhcp
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -130,9 +140,10 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_dpd
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_dpd
   tags: [ 'zeek' ]
 
 - type: filestream
@@ -142,7 +153,8 @@
   prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    type: zeek_irc
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_irc
   tags: [ 'zeek' ]

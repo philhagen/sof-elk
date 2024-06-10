@@ -28,7 +28,7 @@ input {
 #    topic => "<%TOPIC_NAME%>"
 #    subscription => "<%SUBSCRIPTION_NAME%>"
 #    json_key_file => "/path/to/gcp-es-service-account.json"
-#    type => "gcp"
+#    add_field => { "[labels][type]" => "gcp" }
 #    tags => [ "json" ]
 #  }
 }
