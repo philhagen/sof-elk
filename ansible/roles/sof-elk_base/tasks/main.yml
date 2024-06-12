@@ -144,7 +144,9 @@
 - name: Compress rotated log files
   lineinfile:
     dest: '/etc/logrotate.conf'
-    regex: '^compress'
+    insertbefore: "^include"
+    firstmatch: true
+    regex: '^#? *compress'
     line: 'compress'
   tags: sof-elk_base
 
