@@ -77,7 +77,7 @@
                     "size": 8
                   },
                   "scale": "ordinal",
-                  "sourceField": "path"
+                  "sourceField": "sof-elk.path"
                 },
                 "47e17c68-ad0c-4554-acbc-231416200fd8": {
                   "customLabel": true,
