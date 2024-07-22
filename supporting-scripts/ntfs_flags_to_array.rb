@@ -45,8 +45,8 @@ def filter(event)
         "indexview" => false
     }
 
+    # create array of all flags, with boolean set as indicated in the original value
     if @source_type == "int"
-        # create array of all flags that are present, as indicated by each bit in the mask
         file_perms["readonly"] = true if (file_perms_orig & 0x0001 != 0)
         file_perms["hidden"] = true if (file_perms_orig & 0x0002 != 0)
         file_perms["system"] = true if (file_perms_orig & 0x0004 != 0)
@@ -71,7 +71,6 @@ def filter(event)
         event.tag("_siflagsparsefailure") if (file_perms_orig & 0x3007FFE7 != file_perms_orig)
 
     elsif @source_type == "str"
-        # create array of all flags that are present, as indicated by each bit in the mask
         file_perms["readonly"] = true if (file_perms_orig.include? "readonly")
         file_perms["hidden"] = true if (file_perms_orig.include? "hidden")
         file_perms["system"] = true if (file_perms_orig.include? "system")
