@@ -20,10 +20,12 @@ end
 # LogStash::Event to the returned array
 def filter(event)
     file_perms_orig = event.get(@source_field)
+    file_perms_type = event.get(@source_type)
 
     # set up the default fields
     file_perms = {
         "_rawvalue" => file_perms_orig,
+
         "readonly" => false,
         "hidden" => false,
         "system" => false,
@@ -46,7 +48,9 @@ def filter(event)
     }
 
     # create array of all flags, with boolean set as indicated in the original value
-    if @source_type == "int"
+    if file_perms_type == "int"
+        file_perms_orig = file_perms_orig.to_i
+
         file_perms["readonly"] = true if (file_perms_orig & 0x0001 != 0)
         file_perms["hidden"] = true if (file_perms_orig & 0x0002 != 0)
         file_perms["system"] = true if (file_perms_orig & 0x0004 != 0)
@@ -70,7 +74,7 @@ def filter(event)
         # set a tag if there are any extraneous flags not addressed above
         event.tag("_siflagsparsefailure") if (file_perms_orig & 0x3007FFE7 != file_perms_orig)
 
-    elsif @source_type == "str"
+    elsif file_perms_type == "str"
         file_perms["readonly"] = true if (file_perms_orig.include? "readonly")
         file_perms["hidden"] = true if (file_perms_orig.include? "hidden")
         file_perms["system"] = true if (file_perms_orig.include? "system")
