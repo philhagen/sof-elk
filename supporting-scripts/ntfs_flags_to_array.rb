@@ -1,3 +1,6 @@
+# SOF-ELK® Supporting script
+# (C)2024 Lewes Technology Consulting, LLC
+#
 # This script will convert an integer or CSV string representing NTFS file
 # attribute flags to array of boolean values - one per flag.
 #
