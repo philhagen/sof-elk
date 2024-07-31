@@ -39,9 +39,12 @@ EMAILADDRESS %{EMAILADDRESSLOCALPART}@%{HOSTNAME}
 # Custom URI path, to accommodate "OPTIONS * HTTP/1.0" requests
 URIPATH_CUSTOM %{URIPATH}|\*
 
+# Full URL
+FULL_URL (?:%{WORD:[url][scheme]}://)?(?:%{IPORHOST:[url][domain]}(?::%{POSINT:[destination][port]})?)?(?:%{URIPATH_CUSTOM:[url][path]})?(?:\?%{NOTSPACE:[url][query]})?
+
 # custom HTTPD common format (should flow to the combined format) to allow email address as the username, separate out query string from stub request
 HTTPDUSER %{EMAILADDRESS}|%{WORD}[/\\]%{USER}|%{USER}
-COMMONAPACHELOG_CUSTOM %{IPORHOST:[source][ip]} %{HTTPDUSER:[client][user][name]} %{HTTPDUSER:[server][user][name]} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:[http][request][method]} (?:%{WORD:[url][scheme]}://)?(?:%{IPORHOST:[url][domain]}(?::%{POSINT:[destination][port]})?)?(?:%{URIPATH_CUSTOM:[url][path]})?(?:\?%{NOTSPACE:[url][query]})?(?: HTTP/%{NUMBER:[http][version]})?|%{DATA:[sof-elk][rawrequest]})" %{NUMBER:[http][response][status_code]} (?:%{NUMBER:[destination][bytes]}|-)
+COMMONAPACHELOG_CUSTOM %{IPORHOST:[source][ip]} %{HTTPDUSER:[client][user][name]} %{HTTPDUSER:[server][user][name]} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:[http][request][method]} %{FULL_URL}(?: HTTP/%{NUMBER:[http][version]})?|%{DATA:[sof-elk][rawrequest]})" %{NUMBER:[http][response][status_code]} (?:%{NUMBER:[destination][bytes]}|-)
 COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:[http][proxy][cache_status]}:%{WORD:[http][proxy][cache_hierarchy_status]}
 COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:[http][request][referrer]} %{QS:[user_agent][original]}
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:[http][proxy][cache_status]}:%{WORD:[http][proxy][cache_hierarchy_status]}
@@ -59,7 +62,15 @@ NOTCOLON [^:]+
 NOTPIPE [^|]+
 
 # guid
-GUID [0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}
+GUID \{?[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\}?
 
 # S3 Bucket Name hash
 AWSACCOUNTID (?:[0-9a-fA-f]{64}|[0-9]{12}|arn:%{NOTSPACE}|-)
+
+# Windows SID
+WINSID S-1-(?:\d+-){1,14}\d+
+
+# Windows domain\user (with alternatative forward slash)
+WINDOMAIN [A-Za-z0-9 -]+
+WINUSER [A-Za-z0-9 -]+
+WINDOMAINUSER %{WINDOMAIN}[\\/]%{WINUSER}
