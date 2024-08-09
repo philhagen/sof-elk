@@ -37,6 +37,13 @@
         },
         "path": {
           "type": "keyword"
+        },
+        "sof-elk": {
+          "properties": {
+            "path": {
+              "type": "keyword"
+            }
+          }
         }
       },
       "dynamic_templates": [
