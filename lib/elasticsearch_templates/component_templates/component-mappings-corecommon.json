@@ -39,6 +39,7 @@
           "type": "keyword"
         },
         "sof-elk": {
+          "type": "object",
           "properties": {
             "path": {
               "type": "keyword"
