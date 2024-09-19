@@ -74,3 +74,6 @@ WINSID S-1-(?:\d+-){1,14}\d+
 WINDOMAIN [A-Za-z0-9 -]+
 WINUSER [A-Za-z0-9 -]+
 WINDOMAINUSER %{WINDOMAIN}[\\/]%{WINUSER}
+
+# XML structure found in Plaso log events
+XMLEVENTSTRING <Event.*/Event>-?
