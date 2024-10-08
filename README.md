@@ -38,6 +38,14 @@ All bugs and feature requests should be logged via the github issue tracker: <ht
 
 Please see the pull request submission guidelines before starting any development work - this is in the [](PULLREQUESTS.md) file.
 
+## Special Thanks
+
+This project continues in part due to the amazing support from a range of people from the security industry.  The valuable and vital contributions from those who have committed content, filed issues, and submitted pull requests are reflected in the GitHub interface for those respective functions.  In addition, the support from others is just as critical, including generating and/or providing sample data to test new features, documentation inputs, and more.  This is not an exhaustive list, but the efforts of the information security community is always an important factor in the success of any open source project.
+
+- Bedang Sen: Documentation regarding building new parsers.
+- Tony Knutson: Sample data for the KAPE, Snare, and Plaso parsers.
+- Pierre Lidome: Sample data for the M365 parser.
+
 ## Administrative Notifications/Disclaimers/Legal/Boring Stuff
 
 * Content of this repository are provided "as is" with no express or implied warranty for accuracy or accessibility.
