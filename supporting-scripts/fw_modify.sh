@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK® can read with its NetFlow ingest feature
 
@@ -34,7 +34,7 @@ while [[ $# -gt 1 ]]; do
     shift # past argument or value
 done
 
-if [[ $ACTION == "" || ( $ACTION != "open" && $ACTION != "close" ) ]]; then
+if [[ -z "${ACTION}" || ( "${ACTION}" != "open" && "${ACTION}" != "close" ) ]]; then
     echo
     echo "Please specify the firewall action to take with the '-a' option.  Options are 'open' or 'closed'."
     echo
@@ -43,7 +43,7 @@ if [[ $ACTION == "" || ( $ACTION != "open" && $ACTION != "close" ) ]]; then
     exit 2
 fi
 
-if [[ $PORT == "" ]]; then
+if [[ -z "${PORT}" ]]; then
     echo
     echo "Please specify the port to act on with the '-p' option."
     echo
@@ -53,14 +53,14 @@ if [[ $PORT == "" ]]; then
 fi
 
 re='^[0-9]+$'
-if ! [[ $PORT =~ $re ]] ; then
+if ! [[ "${PORT}" =~ ${re} ]] ; then
     echo
-    echo "Error - $PORT is not a number.  Exiting."
+    echo "Error - ${PORT} is not a number.  Exiting."
     echo
     exit 4
 fi
 
-if [[ $PROTOCOL == "" || ( $PROTOCOL != "tcp" && $PROTOCOL != "udp" ) ]]; then
+if [[ -z "${PROTOCOL}" || ( "${PROTOCOL}" != "tcp" && "${PROTOCOL}" != "udp" ) ]]; then
     echo
     echo "Please specify the protocol to act on with the '-r' option.  Options are 'tcp' or 'udp'."
     echo
@@ -69,5 +69,5 @@ if [[ $PROTOCOL == "" || ( $PROTOCOL != "tcp" && $PROTOCOL != "udp" ) ]]; then
     exit 2
 fi
 
-firewall-cmd --zone=public --add-port=${PORT}/${PROTOCOL} --permanent
+firewall-cmd --zone=public --add-port="${PORT}"/"${PROTOCOL}" --permanent
 firewall-cmd --reload

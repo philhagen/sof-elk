@@ -15,8 +15,12 @@
   "template": {
     "mappings": {
       "properties": {
-        "syslog_pid": {
-          "type": "integer"
+        "event": {
+          "properties": {
+            "auth_result": {
+              "type": "keyword"
+            }
+          }
         },
         "ttl": {
           "type": "integer"

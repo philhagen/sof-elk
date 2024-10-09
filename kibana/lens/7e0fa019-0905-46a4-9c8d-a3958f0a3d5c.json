@@ -1,0 +1,121 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {
+            "b2a2be02-3267-4305-b5a0-0bc5f08ded93": {
+              "columnOrder": [
+                "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c",
+                "b07d9748-214b-4375-8d30-cb0f548e4b45"
+              ],
+              "columns": {
+                "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "HTTP User Agent",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "b07d9748-214b-4375-8d30-cb0f548e4b45",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 20
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "user_agent.original.keyword"
+                },
+                "b07d9748-214b-4375-8d30-cb0f548e4b45": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "indexPatternId": "httpdlog"
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "httpdlog",
+              "timeField": "@timestamp",
+              "title": "httpdlog-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "b07d9748-214b-4375-8d30-cb0f548e4b45"
+          },
+          {
+            "alignment": "left",
+            "columnId": "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "b2a2be02-3267-4305-b5a0-0bc5f08ded93",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 7
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "HTTP User Agents",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "7e0fa019-0905-46a4-9c8d-a3958f0a3d5c",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-b2a2be02-3267-4305-b5a0-0bc5f08ded93",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

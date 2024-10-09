@@ -4,18 +4,13 @@
       "dynamic_templates": [
         {
           "port_fields": {
-            "match": "*_port",
+            "match": "port",
             "mapping": {
               "type": "integer"
             }
           }
         }
-      ],
-      "properties": {
-        "ports": {
-          "type": "integer"
-        }
-      }
+      ]
     }
   },
   "_meta": {

@@ -1,0 +1,121 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {
+            "d1e7f005-c126-4f21-8e84-5faf60227db7": {
+              "columnOrder": [
+                "1c508eb9-12b0-4c8a-8e00-3de390eb933c",
+                "0e4d4ea6-be6c-447d-9ec9-c8d608509612"
+              ],
+              "columns": {
+                "0e4d4ea6-be6c-447d-9ec9-c8d608509612": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "1c508eb9-12b0-4c8a-8e00-3de390eb933c": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Source ASN",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "0e4d4ea6-be6c-447d-9ec9-c8d608509612",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 12
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "source.geo.asnstr"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "indexPatternId": "httpdlog"
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "httpdlog",
+              "timeField": "@timestamp",
+              "title": "httpdlog-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "0e4d4ea6-be6c-447d-9ec9-c8d608509612"
+          },
+          {
+            "alignment": "left",
+            "columnId": "1c508eb9-12b0-4c8a-8e00-3de390eb933c"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "d1e7f005-c126-4f21-8e84-5faf60227db7",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 12
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "HTTPD Source ASNs",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "5fe6a5c5-9ab4-4b06-8363-7fe6890d4b79",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-d1e7f005-c126-4f21-8e84-5faf60227db7",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

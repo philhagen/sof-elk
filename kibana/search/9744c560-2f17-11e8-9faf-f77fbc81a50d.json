@@ -1,11 +1,11 @@
 {
   "attributes": {
     "columns": [
-      "source_ip",
-      "request_method",
-      "hostname",
-      "request",
-      "response_code"
+      "source.ip",
+      "http.request.method",
+      "url.domain",
+      "url.path",
+      "http.response.status_code"
     ],
     "description": "",
     "hits": 0,

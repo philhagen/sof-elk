@@ -1,0 +1,111 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "6e251fb7-b93a-49a6-8779-2342db21c1f9": {
+              "columnOrder": [
+                "2b4be590-3426-4a7e-b343-9374168f9725",
+                "438add8c-6472-441d-af4f-6058768604c0"
+              ],
+              "columns": {
+                "2b4be590-3426-4a7e-b343-9374168f9725": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Source ASN",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "438add8c-6472-441d-af4f-6058768604c0",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "source.geo.asnstr"
+                },
+                "438add8c-6472-441d-af4f-6058768604c0": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "438add8c-6472-441d-af4f-6058768604c0"
+          },
+          {
+            "alignment": "left",
+            "columnId": "2b4be590-3426-4a7e-b343-9374168f9725"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "6e251fb7-b93a-49a6-8779-2342db21c1f9",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 10
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "Source ASNs",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "f1f74ee3-49d6-4bab-b5df-72e60576ef39",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-6e251fb7-b93a-49a6-8779-2342db21c1f9",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

@@ -16,11 +16,21 @@
           },
           "type": "object"
         },
-        "community_id": {
-          "type": "keyword"
-        },
-        "md5": {
-          "type": "keyword"
+        "network": {
+          "properties": {
+            "transport": {
+              "type": "keyword"
+            },
+            "community_id": {
+              "type": "keyword"
+            },
+            "tcp_flags": {
+              "type": "keyword"
+            },
+            "tcp_flags_hex": {
+              "type": "keyword"
+            }
+          }
         },
         "original_message": {
           "type": "keyword"
@@ -28,13 +38,25 @@
         "path": {
           "type": "keyword"
         },
-        "sha1": {
-          "type": "keyword"
-        },
-        "sha256": {
-          "type": "keyword"
+        "sof-elk": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "keyword"
+            }
+          }
         }
-      }
+      },
+      "dynamic_templates": [
+        {
+          "rawvalue_fields": {
+            "match": "_rawvalue",
+            "mapping": {
+              "type": "text"
+            }
+          }
+        }
+      ]
     }
   },
   "_meta": {

@@ -1,0 +1,186 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "b3dede6e-4c3b-4d20-ae36-686e8f3b8e8c": {
+              "columnOrder": [
+                "a51ab18c-9d11-4b4a-858c-030f392a3d7b",
+                "64da9782-b020-46e0-bd1f-49b72777a3a2",
+                "a0b80b0b-48d9-4c2c-a55c-e36c60cb1a75"
+              ],
+              "columns": {
+                "64da9782-b020-46e0-bd1f-49b72777a3a2": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Filters",
+                  "operationType": "filters",
+                  "params": {
+                    "filters": [
+                      {
+                        "input": {
+                          "language": "lucenne",
+                          "query": "log.syslog.severity >= 0 and log.syslog.severity <= 2"
+                        },
+                        "label": "Emerg/Alert/Crit"
+                      },
+                      {
+                        "input": {
+                          "language": "kuery",
+                          "query": "log.syslog.severity:(3 or 4)"
+                        },
+                        "label": "Error/Warning"
+                      },
+                      {
+                        "input": {
+                          "language": "kuery",
+                          "query": "log.syslog.severity:(5 or 6)"
+                        },
+                        "label": "Notice/Info"
+                      },
+                      {
+                        "input": {
+                          "language": "kuery",
+                          "query": "log.syslog.severity < 0 or log.syslog.severity > 6 or not log.syslog.severity:*"
+                        },
+                        "label": "Unknown"
+                      }
+                    ]
+                  },
+                  "scale": "ordinal"
+                },
+                "a0b80b0b-48d9-4c2c-a55c-e36c60cb1a75": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "a51ab18c-9d11-4b4a-858c-030f392a3d7b": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "@timestamp",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "auto"
+                  },
+                  "scale": "interval",
+                  "sourceField": "@timestamp"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "a0b80b0b-48d9-4c2c-a55c-e36c60cb1a75"
+            ],
+            "isHistogram": true,
+            "layerId": "b3dede6e-4c3b-4d20-ae36-686e8f3b8e8c",
+            "layerType": "data",
+            "palette": {
+              "name": "default",
+              "type": "palette"
+            },
+            "seriesType": "line",
+            "simpleView": false,
+            "splitAccessor": "64da9782-b020-46e0-bd1f-49b72777a3a2",
+            "xAccessor": "a51ab18c-9d11-4b4a-858c-030f392a3d7b",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "a0b80b0b-48d9-4c2c-a55c-e36c60cb1a75"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": true,
+          "maxLines": 1,
+          "position": "right",
+          "shouldTruncate": true,
+          "showSingleSeries": true
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "valuesInLegend": false,
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "log",
+        "yRightScale": "linear",
+        "yTitle": "Count"
+      }
+    },
+    "title": "Event Timeline by Severity",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a7906280-a0e0-11ee-a0ee-f991cb8cedce",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-b3dede6e-4c3b-4d20-ae36-686e8f3b8e8c",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

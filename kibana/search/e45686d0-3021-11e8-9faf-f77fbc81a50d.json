@@ -1,17 +1,17 @@
 {
   "attributes": {
     "columns": [
-      "syslog_hostname",
-      "syslog_program",
+      "log.syslog.hostname",
+      "log.syslog.appname",
       "message"
     ],
     "description": "",
     "grid": {
       "columns": {
-        "syslog_hostname": {
+        "log.syslog.appname": {
           "width": 140
         },
-        "syslog_program": {
+        "log.syslog.hostname": {
           "width": 140
         }
       }

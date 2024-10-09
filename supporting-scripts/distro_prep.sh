@@ -37,7 +37,7 @@ fi
 echo "checking that we're on the correct SOF-ELK® branch"
 cd /usr/local/sof-elk/
 git branch
-echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*' or 'class/v*', with  all others removed.)"
+echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*', 'class/v*', or e.g. 'for123/v*' with  all others removed.)"
 read
 
 curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
@@ -92,15 +92,15 @@ done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
 
-echo "stopping domain_stats"
-systemctl stop domain_stats
-echo "clearing domain_stats data"
-rm -rf /usr/local/share/domain_stats/[0-9][0-9][0-9]/
-rm -f /usr/local/share/domain_stats/domain_stats.log
-rm -rf /usr/local/share/domain_stats/memocache/
-rm -rf /usr/local/share/domain_stats/__pycache__/
-echo "reloading top 1m for domain_stats from scratch"
-domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain_stats/
+echo "stopping domain-stats"
+systemctl stop domain-stats
+echo "clearing domain-stats data"
+rm -rf /usr/local/share/domain-stats/[0-9][0-9][0-9]/
+rm -f /usr/local/share/domain-stats/domain-stats.log
+rm -rf /usr/local/share/domain-stats/memocache/
+rm -rf /usr/local/share/domain-stats/__pycache__/
+echo "reloading top 1m for domain-stats from scratch"
+domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain-stats/
 
 # echo "stopping elastalert"
 # systemctl stop elastalert

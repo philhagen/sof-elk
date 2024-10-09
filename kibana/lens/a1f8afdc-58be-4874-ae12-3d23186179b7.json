@@ -1,0 +1,139 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "ab072b8e-1c59-46d3-a102-dff7da8256a8": {
+              "columnOrder": [
+                "14497f3d-b30d-4e3f-aa01-fe72d0153f86",
+                "23b33e80-862d-4270-a87b-fda7ca79f449",
+                "7dd4dfb6-d1aa-474d-950d-f3751cacc019",
+                "4da7f029-8221-4e2c-9cfa-39f50e589dfb"
+              ],
+              "columns": {
+                "14497f3d-b30d-4e3f-aa01-fe72d0153f86": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top Sources",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "4da7f029-8221-4e2c-9cfa-39f50e589dfb",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 8
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "sof-elk.path"
+                },
+                "23b33e80-862d-4270-a87b-fda7ca79f449": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "Start",
+                  "operationType": "min",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                },
+                "4da7f029-8221-4e2c-9cfa-39f50e589dfb": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "7dd4dfb6-d1aa-474d-950d-f3751cacc019": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "End",
+                  "operationType": "max",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "columnId": "14497f3d-b30d-4e3f-aa01-fe72d0153f86"
+          },
+          {
+            "columnId": "4da7f029-8221-4e2c-9cfa-39f50e589dfb"
+          },
+          {
+            "columnId": "23b33e80-862d-4270-a87b-fda7ca79f449",
+            "isMetric": true,
+            "isTransposed": false
+          },
+          {
+            "columnId": "7dd4dfb6-d1aa-474d-950d-f3751cacc019",
+            "isMetric": true,
+            "isTransposed": false
+          }
+        ],
+        "layerId": "ab072b8e-1c59-46d3-a102-dff7da8256a8",
+        "layerType": "data"
+      }
+    },
+    "title": "HTTPD Logs Collected",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a1f8afdc-58be-4874-ae12-3d23186179b7",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-ab072b8e-1c59-46d3-a102-dff7da8256a8",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

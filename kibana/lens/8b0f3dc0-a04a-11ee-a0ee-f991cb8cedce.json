@@ -1,0 +1,149 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "da69ca6f-c5f7-49eb-8066-0d75f71e9594": {
+              "columnOrder": [
+                "de2f32c6-2fe3-4601-b602-39115ba147b2",
+                "a0eee9c2-a6ef-4c9e-b578-91125e061cd5",
+                "c98d821a-46a0-422c-8c41-78d7144d747d"
+              ],
+              "columns": {
+                "a0eee9c2-a6ef-4c9e-b578-91125e061cd5": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": true,
+                  "label": "Source Port",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c98d821a-46a0-422c-8c41-78d7144d747d",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "source.port"
+                },
+                "c98d821a-46a0-422c-8c41-78d7144d747d": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Bytes Exchanged",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.bytes_vis"
+                },
+                "de2f32c6-2fe3-4601-b602-39115ba147b2": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Protocol",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c98d821a-46a0-422c-8c41-78d7144d747d",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "network.transport"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "da69ca6f-c5f7-49eb-8066-0d75f71e9594",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "metrics": [
+              "c98d821a-46a0-422c-8c41-78d7144d747d"
+            ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "de2f32c6-2fe3-4601-b602-39115ba147b2",
+              "a0eee9c2-a6ef-4c9e-b578-91125e061cd5"
+            ],
+            "secondaryGroups": [],
+            "showValuesInLegend": true,
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "default",
+          "type": "palette"
+        },
+        "shape": "donut"
+      }
+    },
+    "title": "NetFlow Volume by Source Port",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "8b0f3dc0-a04a-11ee-a0ee-f991cb8cedce",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-da69ca6f-c5f7-49eb-8066-0d75f71e9594",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

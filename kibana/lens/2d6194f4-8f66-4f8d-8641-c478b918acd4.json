@@ -1,0 +1,69 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "09b4a6c8-76b4-4d2c-b1bf-05299f0e5d2e": {
+              "columnOrder": [
+                "cfc42551-075f-4ef2-8630-76435f37b531"
+              ],
+              "columns": {
+                "cfc42551-075f-4ef2-8630-76435f37b531": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "NetFlow Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "09b4a6c8-76b4-4d2c-b1bf-05299f0e5d2e",
+        "layerType": "data",
+        "metricAccessor": "cfc42551-075f-4ef2-8630-76435f37b531"
+      }
+    },
+    "title": "NetFlow Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "2d6194f4-8f66-4f8d-8641-c478b918acd4",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-09b4a6c8-76b4-4d2c-b1bf-05299f0e5d2e",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

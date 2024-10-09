@@ -1,0 +1,121 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "05126753-42f7-40ff-b30a-23137e7977c1": {
+              "columnOrder": [
+                "8ea65f20-49ef-4065-b869-ef282f388cc5",
+                "c1ddc22c-2289-4d0b-9863-f07f4981be66"
+              ],
+              "columns": {
+                "8ea65f20-49ef-4065-b869-ef282f388cc5": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Login Result",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c1ddc22c-2289-4d0b-9863-f07f4981be66",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "event.auth_result"
+                },
+                "c1ddc22c-2289-4d0b-9863-f07f4981be66": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "inside",
+            "emptySizeRatio": 0.7,
+            "layerId": "05126753-42f7-40ff-b30a-23137e7977c1",
+            "layerType": "data",
+            "legendDisplay": "hide",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "metrics": [
+              "c1ddc22c-2289-4d0b-9863-f07f4981be66"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "8ea65f20-49ef-4065-b869-ef282f388cc5"
+            ],
+            "secondaryGroups": [],
+            "showValuesInLegend": true,
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "default",
+          "type": "palette"
+        },
+        "shape": "donut"
+      }
+    },
+    "title": "Login Results",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "688eaaa8-4fd4-429c-8dc5-dfc41244e68c",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-05126753-42f7-40ff-b30a-23137e7977c1",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

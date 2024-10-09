@@ -31,7 +31,7 @@ sortNestedJSON () {
     echo ${jsonMod}
 }
 
-mkdir dashboard visualization map search data_views
+mkdir dashboard lens visualization map search data_views
 nestedJSONKeys=".attributes.kibanaSavedObjectMeta.searchSourceJSON .attributes.optionsJSON .attributes.panelsJSON .attributes.uiStateJSON .attributes.visState"
 
 # get list of all dashboard IDs and their content
@@ -42,7 +42,16 @@ for DASHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kib
 
     jsonModString=$( sortNestedJSON "${nestedJSONKeys}" "${dashboardJSON}" )
 
-    echo ${dashboardJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}"  > dashboard/${DASHID}.json
+    echo ${dashboardJSON} | jq -S ".references? |= unique_by(.id) | ${jsonModString}" > dashboard/${DASHID}.json
+done
+
+# get a list of all lens IDs and their content
+for LENSID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/_find?type=lens&fields=id&per_page=10000" | jq -cr '.saved_objects[].id' ); do
+    lensJSON=$( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/saved_objects/lens/${LENSID}" | jq -cS "del(.version,.created_at,.updated_at,.migrationVersion)" )
+    lensName=$( echo ${lensJSON} | jq '.attributes.title' )
+    echo "Dumping Lens: ${lensName}"
+
+    echo ${lensJSON} | jq -S ".references? |= unique_by(.id)" > lens/${LENSID}.json
 done
 
 # get a list of all visualization IDs and their content
@@ -79,8 +88,8 @@ for SEARCHID in $( curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${k
 done
 
 # get a list of all data_views and their content
-for DATAVIEWID in $( curl -s -H 'kbn-xsrd: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views" | jq -cr '.data_view[] | .id' ); do
+for DATAVIEWID in $( curl -s -H 'kbn-xsrd: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views?per_page=10000" | jq -cr '.data_view[] | .id' ); do
     echo "Dumping Data View: ${DATAVIEWID}"
 
-    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" | jq -S 'del(.data_view.version,.data_view.fields,.data_view.fieldAttrs,.data_view.runtimeFieldMap)' > data_views/${DATAVIEWID}.json
+    curl -s -H 'kbn-xsrf: true' -X GET "http://${kibana_host}:${kibana_port}/api/data_views/data_view/${DATAVIEWID}" | jq -S 'del(.data_view.version,.data_view.fields,.data_view.fieldAttrs,.data_view.runtimeFieldMap,.data_view.namespaces,.data_view.sourceFilters,.data_view.typeMeta)' > data_views/${DATAVIEWID}.json
 done

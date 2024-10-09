@@ -67,13 +67,13 @@ def process_azure_vpc_flow(infile, outfh):
                         elif flowtuple['protocol'] == 'U':
                             inflight_flows[inflight_index]['protocol'] = 17
                         if flowtuple['traffic_flow'] == 'I':
-                            inflight_flows[inflight_index]['direction'] = 0
+                            inflight_flows[inflight_index]['direction'] = 'inbound'
                         elif flowtuple['traffic_flow'] == 'O':
-                            inflight_flows[inflight_index]['direction'] = 1
+                            inflight_flows[inflight_index]['direction'] = 'outbound'
                         if flowtuple['traffic_decision'] == 'A':
-                            inflight_flows[inflight_index]['traffic_decision'] = 'Allowed'
+                            inflight_flows[inflight_index]['traffic_decision'] = 'allowed'
                         elif flowtuple['traffic_decision'] == 'D':
-                            inflight_flows[inflight_index]['traffic_decision'] = 'Denied'
+                            inflight_flows[inflight_index]['traffic_decision'] = 'denied'
 
                         inflight_flows[inflight_index]['out_bytes'] = 0
                         inflight_flows[inflight_index]['out_packets'] = 0

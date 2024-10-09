@@ -11,12 +11,13 @@
   paths:
     - /logstash/logtype/**
     - /logstash/logtype/**/*.something
-  # the two entries below are not needed if the extension is specified above
-  # include_files: [ '\.json' ]
+  # the two entries below are probably not needed if the extension is specified above
+  # prospector.scanner.include_files: [ '\.json' ]
   # prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: logtype
+  # the [labels][type] field is used in logstash processing logic
+  processors:
+    - add_labels:
+       labels:
+         type: soemthing_unique_to_define_this_log_source

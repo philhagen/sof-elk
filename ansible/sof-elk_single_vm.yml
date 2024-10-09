@@ -46,7 +46,7 @@
     - kibana
 # disabling this until elastalert2 is usable
 #    - elastalert
-    - domain_stats
+    - domain-stats
     - aws-cli
     - azure-cli
     - gcp-cli

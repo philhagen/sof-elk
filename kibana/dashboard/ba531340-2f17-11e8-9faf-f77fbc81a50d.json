@@ -1,12 +1,11 @@
 {
   "attributes": {
     "description": "",
-    "hits": 0,
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":20,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":44},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"type\":\"search\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"8590ad07-de87-4c36-ade3-08016923c366\",\"w\":36,\"x\":0,\"y\":0},\"panelIndex\":\"8590ad07-de87-4c36-ade3-08016923c366\",\"panelRefName\":\"panel_8590ad07-de87-4c36-ade3-08016923c366\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":6,\"i\":\"1d8fff4a-5a3e-4494-ade9-c0250030296e\",\"w\":12,\"x\":36,\"y\":0},\"panelIndex\":\"1d8fff4a-5a3e-4494-ade9-c0250030296e\",\"panelRefName\":\"panel_1d8fff4a-5a3e-4494-ade9-c0250030296e\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"table\":null,\"vis\":{\"params\":{\"colWidth\":[{\"colIndex\":0,\"width\":235}],\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"gridData\":{\"h\":22,\"i\":\"26ec487f-6783-4cbe-acd2-b06b49a06ca1\",\"w\":12,\"x\":36,\"y\":6},\"panelIndex\":\"26ec487f-6783-4cbe-acd2-b06b49a06ca1\",\"panelRefName\":\"panel_26ec487f-6783-4cbe-acd2-b06b49a06ca1\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"d8160a7e-33a3-4168-aadf-334d6da6dd46\",\"w\":36,\"x\":0,\"y\":14},\"panelIndex\":\"d8160a7e-33a3-4168-aadf-334d6da6dd46\",\"panelRefName\":\"panel_d8160a7e-33a3-4168-aadf-334d6da6dd46\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":16,\"i\":\"3d82959b-fb0a-4d3b-ae9c-dd828142c3d6\",\"w\":16,\"x\":0,\"y\":28},\"panelIndex\":\"3d82959b-fb0a-4d3b-ae9c-dd828142c3d6\",\"panelRefName\":\"panel_3d82959b-fb0a-4d3b-ae9c-dd828142c3d6\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":0,\"lon\":0,\"zoom\":0.1},\"openTOCDetails\":[]},\"gridData\":{\"h\":16,\"i\":\"d3b81e3e-d109-44a9-b2cb-37a7cd154c8b\",\"w\":20,\"x\":16,\"y\":28},\"panelIndex\":\"d3b81e3e-d109-44a9-b2cb-37a7cd154c8b\",\"panelRefName\":\"panel_d3b81e3e-d109-44a9-b2cb-37a7cd154c8b\",\"type\":\"map\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"table\":null,\"vis\":{\"params\":{\"colWidth\":[{\"colIndex\":0,\"width\":250}],\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"gridData\":{\"h\":16,\"i\":\"311309a2-5b63-4c2e-b2f2-41531ed583df\",\"w\":12,\"x\":36,\"y\":28},\"panelIndex\":\"311309a2-5b63-4c2e-b2f2-41531ed583df\",\"panelRefName\":\"panel_311309a2-5b63-4c2e-b2f2-41531ed583df\",\"type\":\"visualization\",\"version\":\"7.11.1\"}]",
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":20,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":44},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"3fed235d-35b3-4923-907e-1138b23c364c\",\"w\":36,\"x\":0,\"y\":0},\"panelIndex\":\"3fed235d-35b3-4923-907e-1138b23c364c\",\"panelRefName\":\"panel_3fed235d-35b3-4923-907e-1138b23c364c\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":6,\"i\":\"8811faa3-bfc4-487b-8c9f-44ce0571c490\",\"w\":12,\"x\":36,\"y\":0},\"panelIndex\":\"8811faa3-bfc4-487b-8c9f-44ce0571c490\",\"panelRefName\":\"panel_8811faa3-bfc4-487b-8c9f-44ce0571c490\",\"type\":\"lens\"},{\"embeddableConfig\":{\"attributes\":{\"description\":\"\",\"references\":[{\"id\":\"httpdlog\",\"name\":\"indexpattern-datasource-layer-d1e7f005-c126-4f21-8e84-5faf60227db7\",\"type\":\"index-pattern\"}],\"state\":{\"adHocDataViews\":{},\"datasourceStates\":{\"formBased\":{\"currentIndexPatternId\":\"httpdlog\",\"layers\":{\"d1e7f005-c126-4f21-8e84-5faf60227db7\":{\"columnOrder\":[\"1c508eb9-12b0-4c8a-8e00-3de390eb933c\",\"0e4d4ea6-be6c-447d-9ec9-c8d608509612\"],\"columns\":{\"0e4d4ea6-be6c-447d-9ec9-c8d608509612\":{\"customLabel\":true,\"dataType\":\"number\",\"isBucketed\":false,\"label\":\"Records\",\"operationType\":\"count\",\"params\":{\"emptyAsNull\":true},\"scale\":\"ratio\",\"sourceField\":\"___records___\"},\"1c508eb9-12b0-4c8a-8e00-3de390eb933c\":{\"customLabel\":true,\"dataType\":\"string\",\"isBucketed\":true,\"label\":\"Source ASN\",\"operationType\":\"terms\",\"params\":{\"exclude\":[],\"excludeIsRegex\":false,\"include\":[],\"includeIsRegex\":false,\"missingBucket\":false,\"orderBy\":{\"columnId\":\"0e4d4ea6-be6c-447d-9ec9-c8d608509612\",\"type\":\"column\"},\"orderDirection\":\"desc\",\"otherBucket\":true,\"parentFormat\":{\"id\":\"terms\"},\"size\":12},\"scale\":\"ordinal\",\"sourceField\":\"source.geo.asnstr\"}},\"ignoreGlobalFilters\":false,\"incompleteColumns\":{},\"indexPatternId\":\"httpdlog\"}}},\"indexpattern\":{\"layers\":{}},\"textBased\":{\"layers\":{}}},\"filters\":[],\"internalReferences\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"visualization\":{\"columns\":[{\"alignment\":\"right\",\"columnId\":\"0e4d4ea6-be6c-447d-9ec9-c8d608509612\"},{\"alignment\":\"left\",\"columnId\":\"1c508eb9-12b0-4c8a-8e00-3de390eb933c\"}],\"headerRowHeight\":\"single\",\"layerId\":\"d1e7f005-c126-4f21-8e84-5faf60227db7\",\"layerType\":\"data\",\"paging\":{\"enabled\":true,\"size\":12},\"rowHeight\":\"single\"}},\"title\":\"HTTPD Source ASNs\",\"type\":\"lens\",\"visualizationType\":\"lnsDatatable\"},\"enhancements\":{}},\"gridData\":{\"h\":22,\"i\":\"76cca357-021e-4c3b-b3b2-7dbf26ba6a68\",\"w\":12,\"x\":36,\"y\":6},\"panelIndex\":\"76cca357-021e-4c3b-b3b2-7dbf26ba6a68\",\"panelRefName\":\"panel_76cca357-021e-4c3b-b3b2-7dbf26ba6a68\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"5a46e066-0cdf-43e7-ba8e-bdd2b7e5ca70\",\"w\":36,\"x\":0,\"y\":14},\"panelIndex\":\"5a46e066-0cdf-43e7-ba8e-bdd2b7e5ca70\",\"panelRefName\":\"panel_5a46e066-0cdf-43e7-ba8e-bdd2b7e5ca70\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":16,\"i\":\"9b675b88-f4bb-477d-b3fe-ed25bf05bc5e\",\"w\":16,\"x\":0,\"y\":28},\"panelIndex\":\"9b675b88-f4bb-477d-b3fe-ed25bf05bc5e\",\"panelRefName\":\"panel_9b675b88-f4bb-477d-b3fe-ed25bf05bc5e\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":0,\"lon\":0,\"zoom\":0.1},\"openTOCDetails\":[]},\"gridData\":{\"h\":16,\"i\":\"d3b81e3e-d109-44a9-b2cb-37a7cd154c8b\",\"w\":20,\"x\":16,\"y\":28},\"panelIndex\":\"d3b81e3e-d109-44a9-b2cb-37a7cd154c8b\",\"panelRefName\":\"panel_d3b81e3e-d109-44a9-b2cb-37a7cd154c8b\",\"type\":\"map\"},{\"embeddableConfig\":{\"attributes\":{\"description\":\"\",\"references\":[{\"id\":\"httpdlog\",\"name\":\"indexpattern-datasource-layer-b2a2be02-3267-4305-b5a0-0bc5f08ded93\",\"type\":\"index-pattern\"}],\"state\":{\"adHocDataViews\":{},\"datasourceStates\":{\"formBased\":{\"currentIndexPatternId\":\"httpdlog\",\"layers\":{\"b2a2be02-3267-4305-b5a0-0bc5f08ded93\":{\"columnOrder\":[\"2640c5e3-9a5c-4ffa-a3e9-c33643b2111c\",\"b07d9748-214b-4375-8d30-cb0f548e4b45\"],\"columns\":{\"2640c5e3-9a5c-4ffa-a3e9-c33643b2111c\":{\"customLabel\":true,\"dataType\":\"string\",\"isBucketed\":true,\"label\":\"HTTP User Agent\",\"operationType\":\"terms\",\"params\":{\"exclude\":[],\"excludeIsRegex\":false,\"include\":[],\"includeIsRegex\":false,\"missingBucket\":false,\"orderBy\":{\"columnId\":\"b07d9748-214b-4375-8d30-cb0f548e4b45\",\"type\":\"column\"},\"orderDirection\":\"desc\",\"otherBucket\":true,\"parentFormat\":{\"id\":\"terms\"},\"size\":20},\"scale\":\"ordinal\",\"sourceField\":\"user_agent.original.keyword\"},\"b07d9748-214b-4375-8d30-cb0f548e4b45\":{\"customLabel\":true,\"dataType\":\"number\",\"isBucketed\":false,\"label\":\"Records\",\"operationType\":\"count\",\"params\":{\"emptyAsNull\":true},\"scale\":\"ratio\",\"sourceField\":\"___records___\"}},\"ignoreGlobalFilters\":false,\"incompleteColumns\":{},\"indexPatternId\":\"httpdlog\"}}},\"indexpattern\":{\"layers\":{}},\"textBased\":{\"layers\":{}}},\"filters\":[],\"internalReferences\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"visualization\":{\"columns\":[{\"alignment\":\"right\",\"columnId\":\"b07d9748-214b-4375-8d30-cb0f548e4b45\"},{\"alignment\":\"left\",\"columnId\":\"2640c5e3-9a5c-4ffa-a3e9-c33643b2111c\"}],\"headerRowHeight\":\"single\",\"layerId\":\"b2a2be02-3267-4305-b5a0-0bc5f08ded93\",\"layerType\":\"data\",\"paging\":{\"enabled\":true,\"size\":7},\"rowHeight\":\"single\"}},\"title\":\"HTTP User Agents\",\"type\":\"lens\",\"visualizationType\":\"lnsDatatable\"},\"enhancements\":{}},\"gridData\":{\"h\":16,\"i\":\"f51e6bcc-bfb4-470e-8c43-38e24698ce7e\",\"w\":12,\"x\":36,\"y\":28},\"panelIndex\":\"f51e6bcc-bfb4-470e-8c43-38e24698ce7e\",\"panelRefName\":\"panel_f51e6bcc-bfb4-470e-8c43-38e24698ce7e\",\"type\":\"lens\"}]",
     "timeRestore": false,
     "title": "HTTPD Log Dashboard",
     "version": 1
@@ -19,24 +18,34 @@
   ],
   "references": [
     {
-      "id": "38e12750-e651-11e9-a3ea-d7d01b053a51",
-      "name": "8590ad07-de87-4c36-ade3-08016923c366:panel_8590ad07-de87-4c36-ade3-08016923c366",
-      "type": "visualization"
+      "id": "19298b28-0cd8-4a05-b017-ecbb5490fe7e",
+      "name": "8811faa3-bfc4-487b-8c9f-44ce0571c490:panel_8811faa3-bfc4-487b-8c9f-44ce0571c490",
+      "type": "lens"
     },
     {
-      "id": "4b881620-e651-11e9-a3ea-d7d01b053a51",
-      "name": "d8160a7e-33a3-4168-aadf-334d6da6dd46:panel_d8160a7e-33a3-4168-aadf-334d6da6dd46",
-      "type": "visualization"
+      "id": "2692cab2-0827-4109-87fc-b818de74d383",
+      "name": "9b675b88-f4bb-477d-b3fe-ed25bf05bc5e:panel_9b675b88-f4bb-477d-b3fe-ed25bf05bc5e",
+      "type": "lens"
     },
     {
-      "id": "7304d490-e5f7-11e9-a3ea-d7d01b053a51",
-      "name": "1d8fff4a-5a3e-4494-ade9-c0250030296e:panel_1d8fff4a-5a3e-4494-ade9-c0250030296e",
-      "type": "visualization"
+      "id": "5fe6a5c5-9ab4-4b06-8363-7fe6890d4b79",
+      "name": "76cca357-021e-4c3b-b3b2-7dbf26ba6a68:panel_76cca357-021e-4c3b-b3b2-7dbf26ba6a68",
+      "type": "lens"
     },
     {
-      "id": "7f59ecd0-e651-11e9-a3ea-d7d01b053a51",
-      "name": "3d82959b-fb0a-4d3b-ae9c-dd828142c3d6:panel_3d82959b-fb0a-4d3b-ae9c-dd828142c3d6",
-      "type": "visualization"
+      "id": "7e0fa019-0905-46a4-9c8d-a3958f0a3d5c",
+      "name": "f51e6bcc-bfb4-470e-8c43-38e24698ce7e:panel_f51e6bcc-bfb4-470e-8c43-38e24698ce7e",
+      "type": "lens"
+    },
+    {
+      "id": "7fdb47ea-c342-4b34-89c3-8ee38eb314e0",
+      "name": "3fed235d-35b3-4923-907e-1138b23c364c:panel_3fed235d-35b3-4923-907e-1138b23c364c",
+      "type": "lens"
+    },
+    {
+      "id": "837e0ef9-e427-46e3-b0e9-04fcf2e0a46e",
+      "name": "5a46e066-0cdf-43e7-ba8e-bdd2b7e5ca70:panel_5a46e066-0cdf-43e7-ba8e-bdd2b7e5ca70",
+      "type": "lens"
     },
     {
       "id": "9744c560-2f17-11e8-9faf-f77fbc81a50d",
@@ -44,19 +53,14 @@
       "type": "search"
     },
     {
-      "id": "b2d27890-e654-11e9-a3ea-d7d01b053a51",
-      "name": "311309a2-5b63-4c2e-b2f2-41531ed583df:panel_311309a2-5b63-4c2e-b2f2-41531ed583df",
-      "type": "visualization"
-    },
-    {
-      "id": "b3cae9b0-e651-11e9-a3ea-d7d01b053a51",
-      "name": "26ec487f-6783-4cbe-acd2-b06b49a06ca1:panel_26ec487f-6783-4cbe-acd2-b06b49a06ca1",
-      "type": "visualization"
-    },
-    {
       "id": "ec7313e0-76f2-11eb-9d54-294249e0048f",
       "name": "d3b81e3e-d109-44a9-b2cb-37a7cd154c8b:panel_d3b81e3e-d109-44a9-b2cb-37a7cd154c8b",
       "type": "map"
+    },
+    {
+      "id": "httpdlog",
+      "name": "76cca357-021e-4c3b-b3b2-7dbf26ba6a68:indexpattern-datasource-layer-d1e7f005-c126-4f21-8e84-5faf60227db7",
+      "type": "index-pattern"
     }
   ],
   "type": "dashboard",
