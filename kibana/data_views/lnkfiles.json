@@ -10,9 +10,9 @@
         }
       }
     },
-    "id": "gcp",
-    "name": "gcp-*",
+    "id": "lnkfiles",
+    "name": "lnkfiles-*",
     "timeFieldName": "@timestamp",
-    "title": "gcp-*"
+    "title": "lnkfiles-*"
   }
 }

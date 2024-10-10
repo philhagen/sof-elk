@@ -10,9 +10,9 @@
         }
       }
     },
-    "id": "gcp",
-    "name": "gcp-*",
+    "id": "evtxlogs",
+    "name": "evtxlogs-*",
     "timeFieldName": "@timestamp",
-    "title": "gcp-*"
+    "title": "evtxlogs-*"
   }
 }
