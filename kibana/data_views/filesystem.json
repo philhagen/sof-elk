@@ -8,11 +8,17 @@
         "params": {
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
         }
+      },
+      "filesize_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
       }
     },
-    "id": "lnkfiles",
-    "name": "lnkfiles-*",
+    "id": "filesystem",
+    "name": "filesystem-*",
     "timeFieldName": "@timestamp",
-    "title": "lnkfiles-*"
+    "title": "filesystem-*"
   }
 }

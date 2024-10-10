@@ -44,5 +44,5 @@
     }
   ],
   "type": "dashboard",
-  "typeMigrationVersion": "8.9.0"
+  "typeMigrationVersion": "10.2.0"
 }

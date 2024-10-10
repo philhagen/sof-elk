@@ -35,5 +35,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "8.0.0"
+  "typeMigrationVersion": "10.4.0"
 }
