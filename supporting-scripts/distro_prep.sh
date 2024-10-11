@@ -34,7 +34,7 @@ if [ -s ~/distro_prep.txt ]; then
     exit 2
 fi
 
-echo "checking that we're on the correct SOF-ELK® branch"
+echo "Checking that we're on the correct SOF-ELK® branch"
 cd /usr/local/sof-elk/
 git branch
 echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*', 'class/v*', or e.g. 'for123/v*' with  all others removed.)"
@@ -44,9 +44,13 @@ curl -s -XGET 'http://localhost:9200/_cat/indices/'|sort
 echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
 read
 
-echo "the following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
+echo "The following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
 find /logstash/ -type f -print
 find /logstash/ -mindepth 2 -type d
+read
+
+echo "The following contents are in ~elk_user/.ssh/.  Presss return if this is correct or Ctrl-C to quit."
+find ~elk_user/.ssh/ -print
 read
 
 echo "updating local git repo clones"
@@ -75,9 +79,17 @@ rm -rf ~elk_user/.config/htop
 rm -rf ~root/.config/gcloud/logs
 rm -rf ~elk_user/.config/gcloud/logs
 rm -rf ~root/.vim
-rm -rf ~root/.viminfo
 rm -rf ~elk_user/.vim
+rm -rf ~root/.viminfo
 rm -rf ~elk_user/.viminfo
+rm -rf ~root/.bundle
+rm -rf ~elk_user/.bundle
+rm -rf ~root/.ansible
+rm -rf ~elk_user/.ansible
+rm -rf ~root/.config
+rm -rf ~elk_user/.config
+rm -rf ~root/.vscode-server
+rm -rf ~elk_user/.vscode-server
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
 echo "cleaning temp directories"
