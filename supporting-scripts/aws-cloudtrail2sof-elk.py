@@ -5,10 +5,10 @@
 # This script will recursively read a file or directory tree of JSON AWS Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped and native JSON is supported.
 
 import argparse
-import sys
-import os
-import json
 import gzip
+import json
+import os
+import sys
 
 default_destdir = '/logstash/aws/'
 
