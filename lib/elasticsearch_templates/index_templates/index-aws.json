@@ -12,16 +12,17 @@
   ],
   "template": {
     "mappings": {
+      "dynamic_templates": [
+        {
+          "request_parameters_fields": {
+            "path_match": "request_parameters.*",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+      ],
       "properties": {
-        "raw_request_parameters": {
-          "type": "keyword"
-        },
-        "raw_response_parameters": {
-          "type": "keyword"
-        },
-        "raw_session_context": {
-          "type": "keyword"
-        },
         "type": {
           "type": "keyword"
         },

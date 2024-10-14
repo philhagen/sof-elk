@@ -1,0 +1,145 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "8f828ed2-4fcb-40ad-8aa9-d7e7ad670525": {
+              "columnOrder": [
+                "6215243b-d5f1-4899-a634-f7f727d83c2b",
+                "2989c0cd-2b54-4be7-a5e8-767447f34f71",
+                "ba090280-5bb7-4c43-81d4-b2dbc2b7e640",
+                "8260f088-14ea-4e42-971e-b33fa270d6df"
+              ],
+              "columns": {
+                "2989c0cd-2b54-4be7-a5e8-767447f34f71": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Volume",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.bytes_vis"
+                },
+                "6215243b-d5f1-4899-a634-f7f727d83c2b": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Destination AS",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "2989c0cd-2b54-4be7-a5e8-767447f34f71",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 7
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "destination.geo.asnstr"
+                },
+                "8260f088-14ea-4e42-971e-b33fa270d6df": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Flows",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "netflow.delta_flow_count"
+                },
+                "ba090280-5bb7-4c43-81d4-b2dbc2b7e640": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Packets",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.packets"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "2989c0cd-2b54-4be7-a5e8-767447f34f71"
+          },
+          {
+            "alignment": "right",
+            "columnId": "ba090280-5bb7-4c43-81d4-b2dbc2b7e640"
+          },
+          {
+            "alignment": "right",
+            "columnId": "8260f088-14ea-4e42-971e-b33fa270d6df"
+          },
+          {
+            "alignment": "left",
+            "columnId": "6215243b-d5f1-4899-a634-f7f727d83c2b"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "8f828ed2-4fcb-40ad-8aa9-d7e7ad670525",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 7
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "NetFlow Statistics by Destination AS",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c385bd50-a04a-11ee-a0ee-f991cb8cedce",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-8f828ed2-4fcb-40ad-8aa9-d7e7ad670525",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

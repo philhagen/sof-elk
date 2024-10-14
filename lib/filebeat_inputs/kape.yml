@@ -1,45 +1,40 @@
 # SOF-ELK® Configuration File
-# (C)2019 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for source data from the KAPE forensic tool suite
 
-- type: log
+- type: filestream
+  id: kape-mftecmd-json
   paths:
-    - /logstash/kape/*/*/*/*/*_MFTECmd*_Output.json
-    - /logstash/kape/*/*/*/*_MFTECmd*_Output.json
-    - /logstash/kape/*/*/*_MFTECmd*_Output.json
-    - /logstash/kape/*/*_MFTECmd*_Output.json
-    - /logstash/kape/*_MFTECmd*_Output.json
-  exclude_files: [ 'readme.txt' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: kape_filesystem
+    - /logstash/kape/**/*_MFTECmd*_Output.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: kape_filesystem
   tags: [ 'json' ]
 
-- type: log
+- type: filestream
+  id: kape-lecmd-json
   paths:
-    - /logstash/kape/*/*/*/*/*_LECmd_Output.json
-    - /logstash/kape/*/*/*/*_LECmd_Output.json
-    - /logstash/kape/*/*/*_LECmd_Output.json
-    - /logstash/kape/*/*_LECmd_Output.json
-    - /logstash/kape/*_LECmd_Output.json
-  exclude_files: [ 'readme.txt' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: kape_lnkfiles
+    - /logstash/kape/**/*_LECmd_Output.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: kape_lnkfiles
   tags: [ 'json' ]
 
-- type: log
+- type: filestream
+  id: kape-evtxecmd-json
   paths:
-    - /logstash/kape/*/*/*/*/*_EvtxECmd_Output.json
-    - /logstash/kape/*/*/*/*_EvtxECmd_Output.json
-    - /logstash/kape/*/*/*_EvtxECmd_Output.json
-    - /logstash/kape/*/*_EvtxECmd_Output.json
-    - /logstash/kape/*_EvtxECmd_Output.json
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: kape_evtxlogs
+    - /logstash/kape/**/*_EvtxECmd_Output.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: kape_evtxlogs
   tags: [ 'json' ]

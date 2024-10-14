@@ -1,0 +1,173 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "4f72fe8a-3608-4fad-8a53-5f0e3341120d": {
+              "columnOrder": [
+                "a83534fc-ea7e-47cd-b9e7-a8107695bddc",
+                "8bca12c7-ddf4-4113-807b-bfcb49163d40",
+                "a0ffd1c9-a6ac-454c-8a14-91da686fd1de"
+              ],
+              "columns": {
+                "8bca12c7-ddf4-4113-807b-bfcb49163d40": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Protocol",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "a0ffd1c9-a6ac-454c-8a14-91da686fd1de",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "network.transport"
+                },
+                "a0ffd1c9-a6ac-454c-8a14-91da686fd1de": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Bytes",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.packets_vis"
+                },
+                "a83534fc-ea7e-47cd-b9e7-a8107695bddc": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "@timestamp",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "auto"
+                  },
+                  "scale": "interval",
+                  "sourceField": "@timestamp"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "a0ffd1c9-a6ac-454c-8a14-91da686fd1de"
+            ],
+            "isHistogram": true,
+            "layerId": "4f72fe8a-3608-4fad-8a53-5f0e3341120d",
+            "layerType": "data",
+            "palette": {
+              "name": "default",
+              "type": "palette"
+            },
+            "seriesType": "area",
+            "simpleView": false,
+            "splitAccessor": "8bca12c7-ddf4-4113-807b-bfcb49163d40",
+            "xAccessor": "a83534fc-ea7e-47cd-b9e7-a8107695bddc",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "a0ffd1c9-a6ac-454c-8a14-91da686fd1de"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": true,
+          "maxLines": 1,
+          "position": "top",
+          "shouldTruncate": true,
+          "showSingleSeries": true
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "valuesInLegend": false,
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "linear",
+        "yRightScale": "linear",
+        "yTitle": "Bytes"
+      }
+    },
+    "title": "NetFlow Packets by Protocol",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "1eb0c770-a04a-11ee-a0ee-f991cb8cedce",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-4f72fe8a-3608-4fad-8a53-5f0e3341120d",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

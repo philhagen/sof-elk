@@ -1,0 +1,24 @@
+{
+  "data_view": {
+    "allowHidden": false,
+    "allowNoIndex": true,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "filesize_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      }
+    },
+    "id": "kape",
+    "name": "kape-*",
+    "timeFieldName": "@timestamp",
+    "title": "kape-*"
+  }
+}

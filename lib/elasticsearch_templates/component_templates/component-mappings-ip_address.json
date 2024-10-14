@@ -4,18 +4,13 @@
       "dynamic_templates": [
         {
           "ip_address_fields": {
-            "match": "*_ip",
+            "match": "ip",
             "mapping": {
               "type": "ip"
             }
           }
         }
-      ],
-      "properties": {
-        "ips": {
-          "type": "ip"
-        }
-      }
+      ]
     }
   },
   "_meta": {
@@ -23,6 +18,3 @@
     "provider": "SOF-ELK"
   }
 }
-
-
-

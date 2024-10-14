@@ -1,0 +1,15 @@
+cache_browse_limit: 100
+count_rdap_errors: false
+enable_freq_scores: true
+established_days_age: 730
+freq_avg_alert: 5.0
+freq_table: freqtable2018.freq
+freq_word_alert: 4.0
+ip_address: 127.0.0.1
+local_port: 5730
+log_detail: 0
+mode: rdap
+rdap_error_ttl_days: 7
+threads_per_worker: 12
+timezone_offset: 0
+workers: 9

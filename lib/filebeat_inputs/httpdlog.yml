@@ -1,17 +1,16 @@
 # SOF-ELK® Configuration File
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for httpd access log source data from the SOF-ELK® VM itself
 
-- type: log
+- type: filestream
+  id: httpd-01
   paths:
-    - /logstash/httpd/*/*/*/*/*
-    - /logstash/httpd/*/*/*/*
-    - /logstash/httpd/*/*/*
-    - /logstash/httpd/*/*
-    - /logstash/httpd/*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: httpdlog
+    - /logstash/httpd/**
+  prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: httpdlog

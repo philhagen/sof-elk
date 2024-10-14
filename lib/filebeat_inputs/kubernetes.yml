@@ -1,17 +1,16 @@
 # SOF-ELK® Configuration File
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for Kubernetes source data from the SOF-ELK® VM itself
 
-- type: log
+- type: filestream
+  id: kubernetes-01
   paths:
-    - /logstash/kubernetes/*/*/*/*/*
-    - /logstash/kubernetes/*/*/*/*
-    - /logstash/kubernetes/*/*/*
-    - /logstash/kubernetes/*/*
-    - /logstash/kubernetes/*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: kubernetes
+    - /logstash/kubernetes/**
+  prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: kubernetes

@@ -1,6 +1,7 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowHidden": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -17,9 +18,7 @@
     },
     "id": "filesystem",
     "name": "filesystem-*",
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "filesystem-*",
-    "typeMeta": {}
+    "title": "filesystem-*"
   }
 }

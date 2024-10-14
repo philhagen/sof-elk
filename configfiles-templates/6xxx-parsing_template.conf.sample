@@ -1,8 +1,5 @@
 # SOF-ELK® Configuration File
-# Author: Phil Hagen
-# Email: phil@lewestech.com
-#
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This is a VERY simple example configuration file that can be used inline with other SOF-ELK files
 # To use:
@@ -18,8 +15,8 @@
 
 filter {
     # Be sure this file only applies to the necessary type(s).
-    # This improves performance, and is not limited to the [type] field - any comparative logic can be used.
-    if ([type] == "logtype") {
+    # This improves performance, and is not limited to the [labels][type] field - any comparative logic can be used.
+    if ([labels][type] == "logtype") {
 
         # Drop what you don't want to handle.
         # The directive below drops comments (assuming comments are lines starting with a # character.)

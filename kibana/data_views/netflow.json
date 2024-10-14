@@ -1,6 +1,7 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowHidden": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -8,46 +9,28 @@
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
         }
       },
-      "destination_geo.asnstr": {
-        "id": "string",
-        "params": {
-          "transform": "false"
-        }
-      },
-      "destination_port": {
-        "id": "number",
-        "params": {
-          "pattern": "00"
-        }
-      },
-      "flow_end": {
-        "id": "date",
-        "params": {
-          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
-        }
-      },
-      "flow_records_vis": {
-        "id": "number",
-        "params": {
-          "pattern": "0,0.[0]a"
-        }
-      },
-      "flow_start": {
-        "id": "date",
-        "params": {
-          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
-        }
-      },
-      "in_bytes_vis": {
+      "destination.bytes_vis": {
         "id": "bytes",
         "params": {
           "pattern": "0,0.[0]b"
         }
       },
-      "in_packets_vis": {
+      "destination.geo.asnstr": {
+        "id": "string",
+        "params": {
+          "transform": "false"
+        }
+      },
+      "destination.packets_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"
+        }
+      },
+      "destination.port": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
         }
       },
       "missed_bytes_vis": {
@@ -56,60 +39,76 @@
           "pattern": "0,0.[0]a"
         }
       },
-      "out_bytes_vis": {
-        "id": "bytes",
-        "params": {
-          "pattern": "0,0.[0]b"
-        }
-      },
-      "out_packets_vis": {
+      "netflow.delta_flow_count_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"
         }
       },
-      "ports": {
+      "netflow.flow_end": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "netflow.flow_start": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "network.bytes": {
+        "id": "number"
+      },
+      "network.bytes_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      },
+      "network.packets": {
+        "id": "number"
+      },
+      "network.packets_vis": {
+        "id": "number",
+        "params": {
+          "pattern": "0,0.[0]a"
+        }
+      },
+      "related.port": {
         "id": "number",
         "params": {
           "pattern": "00"
         }
       },
-      "source_geo.asnstr": {
+      "source.bytes_vis": {
+        "id": "bytes",
+        "params": {
+          "pattern": "0,0.[0]b"
+        }
+      },
+      "source.geo.asnstr": {
         "id": "string",
         "params": {
           "transform": "false"
         }
       },
-      "source_port": {
-        "id": "number",
-        "params": {
-          "pattern": "00"
-        }
-      },
-      "total_bytes": {
-        "id": "number"
-      },
-      "total_bytes_vis": {
-        "id": "bytes",
-        "params": {
-          "pattern": "0,0.[0]b"
-        }
-      },
-      "total_packets": {
-        "id": "number"
-      },
-      "total_packets_vis": {
+      "source.packets_vis": {
         "id": "number",
         "params": {
           "pattern": "0,0.[0]a"
+        }
+      },
+      "source.port": {
+        "id": "number",
+        "params": {
+          "pattern": "00"
         }
       }
     },
     "id": "netflow",
     "name": "netflow-*",
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "netflow-*",
-    "typeMeta": {}
+    "title": "netflow-*"
   }
 }

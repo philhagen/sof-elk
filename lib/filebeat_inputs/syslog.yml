@@ -1,17 +1,16 @@
 # SOF-ELK® Configuration File
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for syslog source data from the SOF-ELK® VM itself
 
-- type: log
+- type: filestream
+  id: syslog-01
   paths:
-    - /logstash/syslog/*/*/*/*/*
-    - /logstash/syslog/*/*/*/*
-    - /logstash/syslog/*/*/*
-    - /logstash/syslog/*/*
-    - /logstash/syslog/*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    type: syslog
+    - /logstash/syslog/**
+  prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: syslog

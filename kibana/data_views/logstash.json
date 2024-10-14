@@ -1,6 +1,7 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowHidden": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -8,25 +9,25 @@
           "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
         }
       },
-      "destination_port": {
+      "destination.port": {
         "id": "number",
         "params": {
           "pattern": "00"
         }
       },
-      "ports": {
+      "related.port": {
         "id": "number",
         "params": {
           "pattern": "00"
         }
       },
-      "source_geo.asnstr": {
+      "source.geo.asnstr": {
         "id": "string",
         "params": {
           "transform": "false"
         }
       },
-      "source_port": {
+      "source.port": {
         "id": "number",
         "params": {
           "pattern": "00"
@@ -35,9 +36,7 @@
     },
     "id": "logstash",
     "name": "logstash-*",
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "logstash-*",
-    "typeMeta": {}
+    "title": "logstash-*"
   }
 }

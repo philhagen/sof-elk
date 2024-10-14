@@ -1,12 +1,11 @@
 {
   "attributes": {
     "description": "",
-    "hits": 0,
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "optionsJSON": "{\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{},\"legendOpen\":false,\"vis\":{\"legendOpen\":true}},\"gridData\":{\"h\":14,\"i\":\"8f15e251-9832-4681-8bb2-7623b6495f24\",\"w\":11,\"x\":0,\"y\":0},\"panelIndex\":\"8f15e251-9832-4681-8bb2-7623b6495f24\",\"panelRefName\":\"panel_8f15e251-9832-4681-8bb2-7623b6495f24\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"colors\":{\"≥ 86400 and < Infinity\":\"#2F575E\"},\"enhancements\":{},\"vis\":{\"colors\":{}}},\"gridData\":{\"h\":14,\"i\":\"e5852520-5038-469d-bdfd-af4a425cf61f\",\"w\":11,\"x\":11,\"y\":0},\"panelIndex\":\"e5852520-5038-469d-bdfd-af4a425cf61f\",\"panelRefName\":\"panel_e5852520-5038-469d-bdfd-af4a425cf61f\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"5e939a96-315d-4791-aa58-567ca7bb7403\",\"w\":14,\"x\":22,\"y\":0},\"panelIndex\":\"5e939a96-315d-4791-aa58-567ca7bb7403\",\"panelRefName\":\"panel_5e939a96-315d-4791-aa58-567ca7bb7403\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":5,\"i\":\"554353ff-06cc-4ace-b599-ad3e7f211ea9\",\"w\":12,\"x\":36,\"y\":0},\"panelIndex\":\"554353ff-06cc-4ace-b599-ad3e7f211ea9\",\"panelRefName\":\"panel_554353ff-06cc-4ace-b599-ad3e7f211ea9\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":9,\"i\":\"6fe475b9-9fae-4676-b35e-a6f9f19679bc\",\"w\":12,\"x\":36,\"y\":5},\"panelIndex\":\"6fe475b9-9fae-4676-b35e-a6f9f19679bc\",\"panelRefName\":\"panel_6fe475b9-9fae-4676-b35e-a6f9f19679bc\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"ca671972-77a0-4426-a380-4b92c24e3155\",\"w\":9,\"x\":0,\"y\":14},\"panelIndex\":\"ca671972-77a0-4426-a380-4b92c24e3155\",\"panelRefName\":\"panel_ca671972-77a0-4426-a380-4b92c24e3155\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"9cbccfea-7e1c-4e40-aa08-3d1c0a53937c\",\"w\":15,\"x\":9,\"y\":14},\"panelIndex\":\"9cbccfea-7e1c-4e40-aa08-3d1c0a53937c\",\"panelRefName\":\"panel_9cbccfea-7e1c-4e40-aa08-3d1c0a53937c\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":0,\"lon\":0,\"zoom\":0.1},\"openTOCDetails\":[]},\"gridData\":{\"h\":17,\"i\":\"5d5004bc-2c75-413e-9936-0d41289f884b\",\"w\":24,\"x\":24,\"y\":14},\"panelIndex\":\"5d5004bc-2c75-413e-9936-0d41289f884b\",\"panelRefName\":\"panel_5d5004bc-2c75-413e-9936-0d41289f884b\",\"type\":\"map\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3\",\"w\":9,\"x\":0,\"y\":31},\"panelIndex\":\"0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3\",\"panelRefName\":\"panel_0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"9e4d3533-779e-443a-91c5-792db27644af\",\"w\":15,\"x\":9,\"y\":31},\"panelIndex\":\"9e4d3533-779e-443a-91c5-792db27644af\",\"panelRefName\":\"panel_9e4d3533-779e-443a-91c5-792db27644af\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"2bf84863-6ca6-455d-82ec-dbf7ca0af70e\",\"w\":9,\"x\":0,\"y\":46},\"panelIndex\":\"2bf84863-6ca6-455d-82ec-dbf7ca0af70e\",\"panelRefName\":\"panel_2bf84863-6ca6-455d-82ec-dbf7ca0af70e\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"67939f6e-c23b-4376-9806-cf356924d98d\",\"w\":15,\"x\":9,\"y\":46},\"panelIndex\":\"67939f6e-c23b-4376-9806-cf356924d98d\",\"panelRefName\":\"panel_67939f6e-c23b-4376-9806-cf356924d98d\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":0,\"lon\":0,\"zoom\":0.1},\"openTOCDetails\":[]},\"gridData\":{\"h\":15,\"i\":\"cd815d8e-7d9c-43cd-a422-2bf85871df15\",\"w\":24,\"x\":24,\"y\":31},\"panelIndex\":\"cd815d8e-7d9c-43cd-a422-2bf85871df15\",\"panelRefName\":\"panel_cd815d8e-7d9c-43cd-a422-2bf85871df15\",\"type\":\"map\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"sort\":[\"@timestamp\",\"desc\",[\"@timestamp\",\"asc\"]]},\"gridData\":{\"h\":26,\"i\":\"5469976e-da6d-41fd-a682-c91464286910\",\"w\":48,\"x\":0,\"y\":61},\"panelIndex\":\"5469976e-da6d-41fd-a682-c91464286910\",\"panelRefName\":\"panel_5469976e-da6d-41fd-a682-c91464286910\",\"type\":\"search\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapCenter\":{\"lat\":0,\"lon\":0,\"zoom\":0.1},\"openTOCDetails\":[]},\"gridData\":{\"h\":15,\"i\":\"8a91a613-8d6c-4e91-a22a-33ca27052ec4\",\"w\":24,\"x\":24,\"y\":46},\"panelIndex\":\"8a91a613-8d6c-4e91-a22a-33ca27052ec4\",\"panelRefName\":\"panel_8a91a613-8d6c-4e91-a22a-33ca27052ec4\",\"type\":\"map\",\"version\":\"7.11.1\"}]",
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"8f15e251-9832-4681-8bb2-7623b6495f24\",\"w\":11,\"x\":0,\"y\":0},\"panelIndex\":\"8f15e251-9832-4681-8bb2-7623b6495f24\",\"panelRefName\":\"panel_8f15e251-9832-4681-8bb2-7623b6495f24\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"e5852520-5038-469d-bdfd-af4a425cf61f\",\"w\":11,\"x\":11,\"y\":0},\"panelIndex\":\"e5852520-5038-469d-bdfd-af4a425cf61f\",\"panelRefName\":\"panel_e5852520-5038-469d-bdfd-af4a425cf61f\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"5e939a96-315d-4791-aa58-567ca7bb7403\",\"w\":14,\"x\":22,\"y\":0},\"panelIndex\":\"5e939a96-315d-4791-aa58-567ca7bb7403\",\"panelRefName\":\"panel_5e939a96-315d-4791-aa58-567ca7bb7403\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":5,\"i\":\"e3ef5aa5-8d56-4735-b104-4f22092ece7a\",\"w\":12,\"x\":36,\"y\":0},\"panelIndex\":\"e3ef5aa5-8d56-4735-b104-4f22092ece7a\",\"panelRefName\":\"panel_e3ef5aa5-8d56-4735-b104-4f22092ece7a\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":9,\"i\":\"724f76f0-97e6-4138-806d-2e838605fbab\",\"w\":12,\"x\":36,\"y\":5},\"panelIndex\":\"724f76f0-97e6-4138-806d-2e838605fbab\",\"panelRefName\":\"panel_724f76f0-97e6-4138-806d-2e838605fbab\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"ca671972-77a0-4426-a380-4b92c24e3155\",\"w\":9,\"x\":0,\"y\":14},\"panelIndex\":\"ca671972-77a0-4426-a380-4b92c24e3155\",\"panelRefName\":\"panel_ca671972-77a0-4426-a380-4b92c24e3155\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"9cbccfea-7e1c-4e40-aa08-3d1c0a53937c\",\"w\":15,\"x\":9,\"y\":14},\"panelIndex\":\"9cbccfea-7e1c-4e40-aa08-3d1c0a53937c\",\"panelRefName\":\"panel_9cbccfea-7e1c-4e40-aa08-3d1c0a53937c\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapBuffer\":{\"maxLat\":85.05113,\"maxLon\":360,\"minLat\":-85.05113,\"minLon\":-360},\"mapCenter\":{\"lat\":33.16801,\"lon\":11.6526,\"zoom\":0.71},\"openTOCDetails\":[]},\"gridData\":{\"h\":17,\"i\":\"948ac897-c995-4430-9bd3-75ad067c3331\",\"w\":24,\"x\":24,\"y\":14},\"panelIndex\":\"948ac897-c995-4430-9bd3-75ad067c3331\",\"panelRefName\":\"panel_948ac897-c995-4430-9bd3-75ad067c3331\",\"type\":\"map\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3\",\"w\":9,\"x\":0,\"y\":31},\"panelIndex\":\"0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3\",\"panelRefName\":\"panel_0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"9e4d3533-779e-443a-91c5-792db27644af\",\"w\":15,\"x\":9,\"y\":31},\"panelIndex\":\"9e4d3533-779e-443a-91c5-792db27644af\",\"panelRefName\":\"panel_9e4d3533-779e-443a-91c5-792db27644af\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapBuffer\":{\"maxLat\":85.05113,\"maxLon\":360,\"minLat\":-85.05113,\"minLon\":-360},\"mapCenter\":{\"lat\":33.16801,\"lon\":11.6526,\"zoom\":0.71},\"openTOCDetails\":[]},\"gridData\":{\"h\":17,\"i\":\"c54c6a59-e605-4ab9-9725-2be97c708a50\",\"w\":24,\"x\":24,\"y\":31},\"panelIndex\":\"c54c6a59-e605-4ab9-9725-2be97c708a50\",\"panelRefName\":\"panel_c54c6a59-e605-4ab9-9725-2be97c708a50\",\"type\":\"map\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"2bf84863-6ca6-455d-82ec-dbf7ca0af70e\",\"w\":9,\"x\":0,\"y\":48},\"panelIndex\":\"2bf84863-6ca6-455d-82ec-dbf7ca0af70e\",\"panelRefName\":\"panel_2bf84863-6ca6-455d-82ec-dbf7ca0af70e\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":17,\"i\":\"67939f6e-c23b-4376-9806-cf356924d98d\",\"w\":15,\"x\":9,\"y\":48},\"panelIndex\":\"67939f6e-c23b-4376-9806-cf356924d98d\",\"panelRefName\":\"panel_67939f6e-c23b-4376-9806-cf356924d98d\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{},\"hiddenLayers\":[],\"isLayerTOCOpen\":false,\"mapBuffer\":{\"maxLat\":85.05113,\"maxLon\":180,\"minLat\":-85.05113,\"minLon\":-180},\"mapCenter\":{\"lat\":33.16801,\"lon\":11.6526,\"zoom\":0.71},\"openTOCDetails\":[]},\"gridData\":{\"h\":17,\"i\":\"bac0d45b-f5d3-4fd9-9aef-7bedf29a9fdf\",\"w\":24,\"x\":24,\"y\":48},\"panelIndex\":\"bac0d45b-f5d3-4fd9-9aef-7bedf29a9fdf\",\"panelRefName\":\"panel_bac0d45b-f5d3-4fd9-9aef-7bedf29a9fdf\",\"type\":\"map\"},{\"embeddableConfig\":{\"enhancements\":{},\"sort\":[\"@timestamp\",\"desc\",[\"@timestamp\",\"asc\"]]},\"gridData\":{\"h\":26,\"i\":\"5469976e-da6d-41fd-a682-c91464286910\",\"w\":48,\"x\":0,\"y\":65},\"panelIndex\":\"5469976e-da6d-41fd-a682-c91464286910\",\"panelRefName\":\"panel_5469976e-da6d-41fd-a682-c91464286910\",\"type\":\"search\"}]",
     "timeRestore": false,
     "title": "DNS Dashboard",
     "version": 1
@@ -19,69 +18,69 @@
   ],
   "references": [
     {
-      "id": "4c447f20-76f3-11eb-9d54-294249e0048f",
-      "name": "5d5004bc-2c75-413e-9936-0d41289f884b:panel_5d5004bc-2c75-413e-9936-0d41289f884b",
+      "id": "26b7f5ab-1a85-40e3-bfd3-c3997797276a",
+      "name": "2bf84863-6ca6-455d-82ec-dbf7ca0af70e:panel_2bf84863-6ca6-455d-82ec-dbf7ca0af70e",
+      "type": "lens"
+    },
+    {
+      "id": "43ff4c20-4e61-48c3-a21c-5bcbd83cbcfe",
+      "name": "5e939a96-315d-4791-aa58-567ca7bb7403:panel_5e939a96-315d-4791-aa58-567ca7bb7403",
+      "type": "lens"
+    },
+    {
+      "id": "4cd59887-d159-45a4-8bf9-8ddc64e16ddb",
+      "name": "0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3:panel_0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3",
+      "type": "lens"
+    },
+    {
+      "id": "4e9d18c6-5cba-4c0e-ade6-175c225e3db9",
+      "name": "9e4d3533-779e-443a-91c5-792db27644af:panel_9e4d3533-779e-443a-91c5-792db27644af",
+      "type": "lens"
+    },
+    {
+      "id": "519fd14a-7f5c-4b8c-85e0-3c83940f7caa",
+      "name": "8f15e251-9832-4681-8bb2-7623b6495f24:panel_8f15e251-9832-4681-8bb2-7623b6495f24",
+      "type": "lens"
+    },
+    {
+      "id": "5ee98b15-398b-4ae4-af73-7b74cc8c2c17",
+      "name": "bac0d45b-f5d3-4fd9-9aef-7bedf29a9fdf:panel_bac0d45b-f5d3-4fd9-9aef-7bedf29a9fdf",
       "type": "map"
     },
     {
-      "id": "50424370-e5fc-11e9-a3ea-d7d01b053a51",
-      "name": "6fe475b9-9fae-4676-b35e-a6f9f19679bc:panel_6fe475b9-9fae-4676-b35e-a6f9f19679bc",
-      "type": "visualization"
-    },
-    {
-      "id": "5133f520-d1ca-11ea-8c51-e9420681eaa9",
-      "name": "0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3:panel_0ad2c4e7-e7b7-4297-a294-c9a388b2ecf3",
-      "type": "visualization"
+      "id": "6331b5ef-b00b-4273-8def-be5e35b004d1",
+      "name": "67939f6e-c23b-4376-9806-cf356924d98d:panel_67939f6e-c23b-4376-9806-cf356924d98d",
+      "type": "lens"
     },
     {
       "id": "6d844e90-76f3-11eb-9d54-294249e0048f",
-      "name": "cd815d8e-7d9c-43cd-a422-2bf85871df15:panel_cd815d8e-7d9c-43cd-a422-2bf85871df15",
+      "name": "c54c6a59-e605-4ab9-9725-2be97c708a50:panel_c54c6a59-e605-4ab9-9725-2be97c708a50",
       "type": "map"
     },
     {
-      "id": "76fd2c00-d1c4-11ea-8c51-e9420681eaa9",
+      "id": "87f42dd5-44ab-47b0-8815-9cfe1d9cdffd",
       "name": "e5852520-5038-469d-bdfd-af4a425cf61f:panel_e5852520-5038-469d-bdfd-af4a425cf61f",
-      "type": "visualization"
+      "type": "lens"
     },
     {
-      "id": "7a26b880-d1c2-11ea-8c51-e9420681eaa9",
-      "name": "8f15e251-9832-4681-8bb2-7623b6495f24:panel_8f15e251-9832-4681-8bb2-7623b6495f24",
-      "type": "visualization"
+      "id": "ad7b4a77-3c3d-46d9-be87-3c0f2db68f38",
+      "name": "ca671972-77a0-4426-a380-4b92c24e3155:panel_ca671972-77a0-4426-a380-4b92c24e3155",
+      "type": "lens"
     },
     {
-      "id": "8ad7a190-76f3-11eb-9d54-294249e0048f",
-      "name": "8a91a613-8d6c-4e91-a22a-33ca27052ec4:panel_8a91a613-8d6c-4e91-a22a-33ca27052ec4",
+      "id": "b9fc4420-a0e0-11ee-a0ee-f991cb8cedce",
+      "name": "724f76f0-97e6-4138-806d-2e838605fbab:panel_724f76f0-97e6-4138-806d-2e838605fbab",
+      "type": "lens"
+    },
+    {
+      "id": "bf84499d-9bdf-4823-a416-bcc3661d5c9b",
+      "name": "948ac897-c995-4430-9bd3-75ad067c3331:panel_948ac897-c995-4430-9bd3-75ad067c3331",
       "type": "map"
     },
     {
-      "id": "972998c0-e0f0-11ea-8ee6-e9b3b5a10b22",
-      "name": "5e939a96-315d-4791-aa58-567ca7bb7403:panel_5e939a96-315d-4791-aa58-567ca7bb7403",
-      "type": "visualization"
-    },
-    {
-      "id": "b6b5a680-d1c2-11ea-8c51-e9420681eaa9",
-      "name": "ca671972-77a0-4426-a380-4b92c24e3155:panel_ca671972-77a0-4426-a380-4b92c24e3155",
-      "type": "visualization"
-    },
-    {
-      "id": "b77c26a0-d1c9-11ea-8c51-e9420681eaa9",
-      "name": "67939f6e-c23b-4376-9806-cf356924d98d:panel_67939f6e-c23b-4376-9806-cf356924d98d",
-      "type": "visualization"
-    },
-    {
-      "id": "bb663030-e5f7-11e9-a3ea-d7d01b053a51",
-      "name": "554353ff-06cc-4ace-b599-ad3e7f211ea9:panel_554353ff-06cc-4ace-b599-ad3e7f211ea9",
-      "type": "visualization"
-    },
-    {
-      "id": "c59cbc40-d1c4-11ea-8c51-e9420681eaa9",
-      "name": "9cbccfea-7e1c-4e40-aa08-3d1c0a53937c:panel_9cbccfea-7e1c-4e40-aa08-3d1c0a53937c",
-      "type": "visualization"
-    },
-    {
-      "id": "c7572430-d1c9-11ea-8c51-e9420681eaa9",
-      "name": "9e4d3533-779e-443a-91c5-792db27644af:panel_9e4d3533-779e-443a-91c5-792db27644af",
-      "type": "visualization"
+      "id": "e0a6cb90-a0e0-11ee-a0ee-f991cb8cedce",
+      "name": "e3ef5aa5-8d56-4735-b104-4f22092ece7a:panel_e3ef5aa5-8d56-4735-b104-4f22092ece7a",
+      "type": "lens"
     },
     {
       "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
@@ -89,11 +88,11 @@
       "type": "search"
     },
     {
-      "id": "f20ed3a0-d1c2-11ea-8c51-e9420681eaa9",
-      "name": "2bf84863-6ca6-455d-82ec-dbf7ca0af70e:panel_2bf84863-6ca6-455d-82ec-dbf7ca0af70e",
-      "type": "visualization"
+      "id": "f1f74ee3-49d6-4bab-b5df-72e60576ef39",
+      "name": "9cbccfea-7e1c-4e40-aa08-3d1c0a53937c:panel_9cbccfea-7e1c-4e40-aa08-3d1c0a53937c",
+      "type": "lens"
     }
   ],
   "type": "dashboard",
-  "typeMigrationVersion": "8.7.0"
+  "typeMigrationVersion": "10.2.0"
 }

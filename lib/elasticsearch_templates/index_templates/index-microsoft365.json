@@ -17,63 +17,85 @@
       "dynamic_templates": [
         {
           "sid_fields": {
+            "match": "*Sid",
             "mapping": {
               "type": "keyword"
-            },
-            "match": "*_sid"
+            }
+          }
+        },
+        {
+          "properties_fields": {
+            "match": [ "NewValue", "OldValue" ],
+            "mapping": {
+              "type": "text"
+            }
           }
         }
       ],
       "properties": {
-        "actor": {
-          "type": "object"
-        },
-        "folder": {
+        "o365": {
           "properties": {
-            "Id": {
-              "type": "keyword"
+            "audit": {
+              "properties": {
+                "Actor": {
+                  "type": "object"
+                },
+                "Folder": {
+                  "properties": {
+                    "Id": {
+                      "type": "keyword"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Folders": {
+                  "type": "object"
+                },
+                "IsValid": {
+                  "type": "boolean"
+                },
+                "ListBaseType": {
+                  "type": "text"
+                },
+                "ModifiedProperties": {
+                  "type": "object"
+                },
+                "Operation": {
+                  "type": "keyword"
+                },
+                "OperationProperties": {
+                  "type": "object"
+                },
+                "Operations": {
+                  "type": "keyword"
+                },
+                "PSShowComputerName": {
+                  "type": "boolean"
+                },
+                "ResultStatus": {
+                  "type": "keyword"
+                },
+                "Target": {
+                  "type": "object"
+                },
+                "UserType": {
+                  "type": "integer"
+                },
+                "Version": {
+                  "type": "integer"
+                },
+                "Workload": {
+                  "type": "keyword"
+                }
+              }
             }
-          },
-          "type": "object"
-        },
-        "folders": {
-          "type": "object"
-        },
-        "is_valid": {
-          "type": "boolean"
-        },
-        "modified_properties": {
-          "type": "object"
-        },
-        "operation": {
-          "type": "keyword"
-        },
-        "operation_properties": {
-          "type": "object"
-        },
-        "operations": {
-          "type": "keyword"
-        },
-        "ps_show_computer_name": {
-          "type": "boolean"
-        },
-        "result_status": {
-          "type": "keyword"
-        },
-        "target": {
-          "type": "object"
+          }
         },
         "type": {
           "type": "keyword"
         },
-        "user_type": {
-          "type": "integer"
-        },
         "version": {
           "type": "integer"
-        },
-        "workload": {
-          "type": "keyword"
         }
       }
     }

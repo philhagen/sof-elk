@@ -1,11 +1,11 @@
 {
   "attributes": {
     "columns": [
-      "source_ip",
-      "request_method",
-      "hostname",
-      "request",
-      "response_code"
+      "source.ip",
+      "http.request.method",
+      "url.domain",
+      "url.path",
+      "http.response.status_code"
     ],
     "description": "",
     "hits": 0,
@@ -35,5 +35,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "8.0.0"
+  "typeMigrationVersion": "10.4.0"
 }

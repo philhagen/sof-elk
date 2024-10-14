@@ -5,7 +5,6 @@ SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
          Logstash, and Kibana) Virtual machine
          Used in: SANS FOR572, Advanced Network Forensics and Analysis
                   SANS FOR509, Cloud Forensics and Incident Response
-                  SANS SEC501, Advanced Security Essentials-Enterprise Defender
                   SANS FOR577, Linux Incident Response & Analysis
 To learn more: http://for572.com/sof-elk-readme
 Revision: <%REVNO%>

@@ -1,0 +1,121 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "3c606d93-40d4-4161-83ad-a04f57e9b9d1": {
+              "columnOrder": [
+                "15103459-bc6b-4494-81f3-e28cede33c48",
+                "0be4cae4-f6b9-47f4-a069-1fe9a04a6893"
+              ],
+              "columns": {
+                "0be4cae4-f6b9-47f4-a069-1fe9a04a6893": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "15103459-bc6b-4494-81f3-e28cede33c48": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "log.syslog.hostname.keyword: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "0be4cae4-f6b9-47f4-a069-1fe9a04a6893",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "log.syslog.hostname.keyword"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "3c606d93-40d4-4161-83ad-a04f57e9b9d1",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "metrics": [
+              "0be4cae4-f6b9-47f4-a069-1fe9a04a6893"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "15103459-bc6b-4494-81f3-e28cede33c48"
+            ],
+            "secondaryGroups": [],
+            "showValuesInLegend": true,
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "default",
+          "type": "palette"
+        },
+        "shape": "pie"
+      }
+    },
+    "title": "Syslog Source Host",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b9fc4420-a0e0-11ee-a0ee-f991cb8cedce",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-3c606d93-40d4-4161-83ad-a04f57e9b9d1",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

@@ -1,0 +1,111 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "d633cf85-a0ea-49d7-8539-b1af1296e33f": {
+              "columnOrder": [
+                "039d20e2-9021-49ca-97a2-5d3b9ce0e17a",
+                "1319e92e-ad71-4e4c-912f-fdf5aaaec661"
+              ],
+              "columns": {
+                "039d20e2-9021-49ca-97a2-5d3b9ce0e17a": {
+                  "customLabel": true,
+                  "dataType": "ip",
+                  "isBucketed": true,
+                  "label": "Destination IP",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "1319e92e-ad71-4e4c-912f-fdf5aaaec661",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "destination.ip"
+                },
+                "1319e92e-ad71-4e4c-912f-fdf5aaaec661": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "1319e92e-ad71-4e4c-912f-fdf5aaaec661"
+          },
+          {
+            "alignment": "left",
+            "columnId": "039d20e2-9021-49ca-97a2-5d3b9ce0e17a"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "d633cf85-a0ea-49d7-8539-b1af1296e33f",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 10
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "Destination IP Addresses",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "4cd59887-d159-45a4-8bf9-8ddc64e16ddb",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-d633cf85-a0ea-49d7-8539-b1af1296e33f",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

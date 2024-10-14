@@ -1,0 +1,69 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "7b0ee61d-4ef1-4d6a-8c27-b173d54ee45e": {
+              "columnOrder": [
+                "4f670ea9-be9f-4f27-9587-e2be6db42a85"
+              ],
+              "columns": {
+                "4f670ea9-be9f-4f27-9587-e2be6db42a85": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "HTTPD Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "7b0ee61d-4ef1-4d6a-8c27-b173d54ee45e",
+        "layerType": "data",
+        "metricAccessor": "4f670ea9-be9f-4f27-9587-e2be6db42a85"
+      }
+    },
+    "title": "HTTPD Log Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "19298b28-0cd8-4a05-b017-ecbb5490fe7e",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-7b0ee61d-4ef1-4d6a-8c27-b173d54ee45e",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

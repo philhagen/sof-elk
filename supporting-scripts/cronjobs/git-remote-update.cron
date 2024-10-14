@@ -14,4 +14,4 @@ HOME=/
 # |  |  |  |  |
 # *  *  *  *  * user-name command to be executed
 10   15 *  *  * root  /usr/local/sof-elk/supporting-scripts/git-remote-update.sh
-0    0  *  *  * root echo '/usr/local/sof-elk/supporting-scripts/vm-update-check.sh > /dev/null' | at now + $(( RANDOM \% 1440 )) minutes
+0    0  *  *  * root echo '/usr/local/sof-elk/supporting-scripts/vm-update-check.sh > /dev/null' | at now + $(( RANDOM \% 1440 )) minutes 2> /dev/null

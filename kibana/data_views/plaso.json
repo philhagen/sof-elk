@@ -1,6 +1,7 @@
 {
   "data_view": {
-    "allowNoIndex": false,
+    "allowHidden": false,
+    "allowNoIndex": true,
     "fieldFormats": {
       "@timestamp": {
         "id": "date",
@@ -11,9 +12,7 @@
     },
     "id": "plaso",
     "name": "plaso-*",
-    "sourceFilters": [],
     "timeFieldName": "@timestamp",
-    "title": "plaso-*",
-    "typeMeta": {}
+    "title": "plaso-*"
   }
 }

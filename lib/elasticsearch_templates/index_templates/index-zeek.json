@@ -1,0 +1,33 @@
+{
+    "index_patterns": [
+      "zeek-*"
+    ],
+    "composed_of": [
+      "settings-common",
+      "mappings-corecommon",
+      "mappings-string",
+      "mappings-ip_address",
+      "mappings-geohash",
+      "mappings-port",
+      "mappings-zeekuid",
+      "mappings-final"
+    ],
+    "template": {
+      "mappings": {
+        "properties": {
+          "md5": {
+            "type": "keyword"
+          },
+          "sha1": {
+            "type": "keyword"
+          },
+          "sha256": {
+            "type": "keyword"
+            }
+        }
+      }
+    },
+    "_meta": {
+    "provider": "SOF-ELK"
+  }
+}

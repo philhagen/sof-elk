@@ -20,6 +20,7 @@ base_yum_packages:
   - mlocate
   - net-tools
   - nfdump
+  - nmap-ncat
   - open-vm-tools
   - p7zip
   - psmisc

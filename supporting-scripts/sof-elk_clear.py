@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2023 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath
@@ -77,7 +77,7 @@ signal.signal(signal.SIGINT, ctrlc_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
-    special_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*', '.apm*', '.async', '.ds' ]
+    special_index_rawregex = [ '\.elasticsearch', '\.kibana', '\.logstash', '\.tasks', 'elastalert_.*', '\.apm.*', '\.async', '\.ds' ]
     special_index_regex = []
     for raw_regex in special_index_rawregex:
         special_index_regex.append(re.compile(raw_regex))
@@ -85,8 +85,10 @@ def get_es_indices(es):
     index_dict = {}
     indices = list(es.indices.get_alias(index = '*', expand_wildcards='open'))
     for index in indices:
-        if not any(compiled_reg.match(index) for compiled_reg in special_index_regex):
-            baseindex = index.split('-')[0]
+        baseindex = index.split('-')[0]
+        if baseindex in index_dict:
+            pass
+        elif not any(compiled_reg.match(index) for compiled_reg in special_index_regex):
             index_dict[baseindex] = True
     return list(index_dict)
 
@@ -98,8 +100,7 @@ sourcedir_index_mapping = {
     'nfarch': 'netflow',
     'httpd': 'httpdlog',
     'kape': 'lnkfiles',
-    'kape': 'filesystem',
-    'kape': 'evtxfiles',
+    'kape': 'kape',
     'microsoft365': 'microsoft365',
     'kubernetes': 'kubernetes',
 }

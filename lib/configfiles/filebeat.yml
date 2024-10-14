@@ -46,9 +46,9 @@ output.logstash:
   #ssl.key: "/etc/pki/client/cert.key"
 
 # ================================= Processors =================================
-processors:
-  - add_host_metadata:
-      when.not.contains.tags: forwarded
-  - add_cloud_metadata: ~
-  - add_docker_metadata: ~
-  - add_kubernetes_metadata: ~
+# processors:
+#   - add_host_metadata:
+#       when.not.contains.tags: forwarded
+#   - add_cloud_metadata: ~
+#   - add_docker_metadata: ~
+#   - add_kubernetes_metadata: ~

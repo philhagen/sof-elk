@@ -1,14 +1,14 @@
 {
   "attributes": {
     "columns": [
-      "exporter",
-      "aprotocol",
-      "source_ip",
-      "source_port",
-      "destination_ip",
-      "destination_port",
-      "total_bytes",
-      "total_packets"
+      "netflow.exporter.ip",
+      "network.transport",
+      "source.ip",
+      "source.port",
+      "destination.ip",
+      "destination.port",
+      "network.bytes",
+      "network.packets"
     ],
     "description": "",
     "hits": 0,
@@ -38,5 +38,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "8.0.0"
+  "typeMigrationVersion": "10.4.0"
 }

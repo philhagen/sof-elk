@@ -1,0 +1,69 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "3a1fd463-866a-4801-90dd-d865d18a6034": {
+              "columnOrder": [
+                "3ea89aff-23ca-499b-9d5d-520472888775"
+              ],
+              "columns": {
+                "3ea89aff-23ca-499b-9d5d-520472888775": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Eventlog Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "3a1fd463-866a-4801-90dd-d865d18a6034",
+        "layerType": "data",
+        "metricAccessor": "3ea89aff-23ca-499b-9d5d-520472888775"
+      }
+    },
+    "title": "Eventlog Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "fe2e44b4-a5c4-41e8-97c0-c64c716d8d67",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "evtxlogs",
+      "name": "indexpattern-datasource-layer-3a1fd463-866a-4801-90dd-d865d18a6034",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

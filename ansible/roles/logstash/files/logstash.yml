@@ -78,7 +78,7 @@ path.data: /var/lib/logstash
 # of ECS for the individual pipeline in its `pipelines.yml` definition. Setting
 # it here will set the default for _all_ pipelines, including new ones.
 #
-pipeline.ecs_compatibility: disabled
+pipeline.ecs_compatibility: v8
 #
 # ------------ Pipeline Configuration Settings --------------
 #
@@ -100,7 +100,7 @@ pipeline.ecs_compatibility: disabled
 # config.reload.automatic: false
 #
 # How often to check if the pipeline configuration has changed (in seconds)
-# Note that the unit value (s) is required. Values without a qualifier (e.g. 60) 
+# Note that the unit value (s) is required. Values without a qualifier (e.g. 60)
 # are treated as nanoseconds.
 # Setting the interval this way is not recommended and might change in later versions.
 #
@@ -303,6 +303,14 @@ pipeline.ecs_compatibility: disabled
 #   * trace
 #
 # log.level: info
+#
+# Options for log.format:
+#   * plain (default)
+#   * json
+#
+# log.format: plain
+# log.format.json.fix_duplicate_message_fields: false
+#
 path.logs: /var/log/logstash
 #
 # ------------ Other Settings --------------
@@ -316,6 +324,10 @@ path.logs: /var/log/logstash
 # Flag to output log lines of each pipeline in its separate log file. Each log filename contains the pipeline.name
 # Default is false
 # pipeline.separate_logs: false
+#
+# Determine where to allocate memory buffers, for plugins that leverage them.
+# Default to direct, optionally can be switched to heap to select Java heap space.
+# pipeline.buffer.type: direct
 #
 # ------------ X-Pack Settings (not applicable for OSS build)--------------
 #

@@ -1,0 +1,69 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "eb6a1c32-a998-44dc-8603-f481ae7e35d0": {
+              "columnOrder": [
+                "888e2e0d-59eb-4195-852e-412ab1081fc3"
+              ],
+              "columns": {
+                "888e2e0d-59eb-4195-852e-412ab1081fc3": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Files",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "eb6a1c32-a998-44dc-8603-f481ae7e35d0",
+        "layerType": "data",
+        "metricAccessor": "888e2e0d-59eb-4195-852e-412ab1081fc3"
+      }
+    },
+    "title": "File Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e3e7b3e3-ac26-4a8c-be6b-6a3bdf97b1f5",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-eb6a1c32-a998-44dc-8603-f481ae7e35d0",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

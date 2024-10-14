@@ -1,0 +1,145 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "4bbeecd6-ebd9-4f1a-95db-9e0b2ad2bf06": {
+              "columnOrder": [
+                "29d1a6a1-a0a3-4049-9a9a-c92891e1c362",
+                "61414bc0-6b7a-4f63-bb41-11a9ca59219c",
+                "c4e28065-a108-4551-bdf4-f7babad037da",
+                "fa0dc086-4cce-48d9-8066-ff1632b5499a"
+              ],
+              "columns": {
+                "29d1a6a1-a0a3-4049-9a9a-c92891e1c362": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Source AS",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "61414bc0-6b7a-4f63-bb41-11a9ca59219c",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 7
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "source.geo.asnstr"
+                },
+                "61414bc0-6b7a-4f63-bb41-11a9ca59219c": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Volume",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.bytes_vis"
+                },
+                "c4e28065-a108-4551-bdf4-f7babad037da": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Packets",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.packets"
+                },
+                "fa0dc086-4cce-48d9-8066-ff1632b5499a": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Flows",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "netflow.delta_flow_count"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "columns": [
+          {
+            "alignment": "right",
+            "columnId": "61414bc0-6b7a-4f63-bb41-11a9ca59219c"
+          },
+          {
+            "alignment": "right",
+            "columnId": "c4e28065-a108-4551-bdf4-f7babad037da"
+          },
+          {
+            "alignment": "right",
+            "columnId": "fa0dc086-4cce-48d9-8066-ff1632b5499a"
+          },
+          {
+            "alignment": "left",
+            "columnId": "29d1a6a1-a0a3-4049-9a9a-c92891e1c362"
+          }
+        ],
+        "headerRowHeight": "single",
+        "layerId": "4bbeecd6-ebd9-4f1a-95db-9e0b2ad2bf06",
+        "layerType": "data",
+        "paging": {
+          "enabled": true,
+          "size": 7
+        },
+        "rowHeight": "single"
+      }
+    },
+    "title": "NetFlow Statistics by Source AS",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b7a67e70-a04a-11ee-a0ee-f991cb8cedce",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-4bbeecd6-ebd9-4f1a-95db-9e0b2ad2bf06",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

@@ -1,54 +1,47 @@
 # SOF-ELK® Configuration File
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/azure/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
-- type: log
+- type: filestream
+  id: azure-csv
   paths:
-    - /logstash/azure/*/*/*/*/*.csv
-    - /logstash/azure/*/*/*/*.csv
-    - /logstash/azure/*/*/*.csv
-    - /logstash/azure/*/*.csv
-    - /logstash/azure/*.csv
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: azure
+    - /logstash/azure/**/*.csv
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: azure
   tags: [ 'csv' ]
 
-- type: log
+- type: filestream
+  id: azure-json
   paths:
-    - /logstash/azure/*/*/*/*/*.json
-    - /logstash/azure/*/*/*/*.json
-    - /logstash/azure/*/*/*.json
-    - /logstash/azure/*/*.json
-    - /logstash/azure/*.json
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: azure
+    - /logstash/azure/**/*.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: azure
   tags: [ 'json' ]
 
-- type: log
+- type: filestream
+  id: azure-xml
   paths:
-    - /logstash/azure/*/*/*/*/*.xml
-    - /logstash/azure/*/*/*/*.xml
-    - /logstash/azure/*/*/*.xml
-    - /logstash/azure/*/*.xml
-    - /logstash/azure/*.xml
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: azure
+    - /logstash/azure/**/*.xml
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  parsers:
+    - multiline:
+        type: pattern
+        pattern: "^\"?<Event "
+        negate: true
+        match: after
+  processors:
+    - add_labels:
+       labels:
+         type: azure
   tags: [ 'xml' ]
-  multiline.type: pattern
-  multiline.pattern: "^\"?<Event "
-  multiline.negate: true
-  multiline.match: after

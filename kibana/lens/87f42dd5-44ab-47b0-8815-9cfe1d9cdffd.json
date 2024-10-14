@@ -1,0 +1,131 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "aaa14272-4034-47d2-a007-d79257856353": {
+              "columnOrder": [
+                "72655823-524e-48ca-abd9-44937d18f140",
+                "0210bd95-d705-459b-bf6c-efcaf6840b80"
+              ],
+              "columns": {
+                "0210bd95-d705-459b-bf6c-efcaf6840b80": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "72655823-524e-48ca-abd9-44937d18f140": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "DNS TTL",
+                  "operationType": "range",
+                  "params": {
+                    "includeEmptyRows": true,
+                    "maxBars": "auto",
+                    "ranges": [
+                      {
+                        "from": 0,
+                        "to": 60
+                      },
+                      {
+                        "from": 60,
+                        "to": 600
+                      },
+                      {
+                        "from": 600,
+                        "to": 3600
+                      },
+                      {
+                        "from": 3600,
+                        "to": 86400
+                      },
+                      {
+                        "from": 86400,
+                        "to": null
+                      }
+                    ],
+                    "type": "range"
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "dns.answers.ttl"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "aaa14272-4034-47d2-a007-d79257856353",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "metrics": [
+              "0210bd95-d705-459b-bf6c-efcaf6840b80"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "72655823-524e-48ca-abd9-44937d18f140"
+            ],
+            "secondaryGroups": [],
+            "showValuesInLegend": true,
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "default",
+          "type": "palette"
+        },
+        "shape": "donut"
+      }
+    },
+    "title": "DNS TTLs",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "87f42dd5-44ab-47b0-8815-9cfe1d9cdffd",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-aaa14272-4034-47d2-a007-d79257856353",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

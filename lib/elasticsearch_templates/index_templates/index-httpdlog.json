@@ -8,22 +8,46 @@
     "mappings-string",
     "mappings-ip_address",
     "mappings-geohash",
+    "mappings-port",
+    "mappings-zeekuid",
     "mappings-final"
   ],
   "template": {
     "mappings": {
       "properties": {
-        "httpversion": {
-          "type": "keyword"
+        "http": {
+          "properties": {
+            "request": {
+              "properties": {
+                "method": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "response": {
+              "properties": {
+                "status_code": {
+                  "type": "short",
+                  "ignore_malformed": false,
+                  "coerce": true
+                }
+              }
+            },
+            "version": {
+              "type": "keyword"
+            }
+          }
         },
-        "ident": {
-          "type": "keyword"
-        },
-        "response_code": {
-          "type": "short"
-        },
-        "request_method": {
-          "type": "keyword"
+        "client": {
+          "properties": {
+            "user": {
+              "properties": {
+                "name": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
         }
       }
     }

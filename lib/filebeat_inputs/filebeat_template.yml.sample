@@ -1,21 +1,23 @@
 # SOF-ELK® Configuration File
-# (C)2020 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/logtype/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 # To use this, make a copy, rename and remove the .sample extension and change "logtype" as needed.  Create the
 # parent directory in /logstash/ and chmod it to 1777.
 
-- type: log
+- type: filestream
+  id: this-must-be-unique
   paths:
-    - /logstash/logtype/*/*/*/*/*
-    - /logstash/logtype/*/*/*/*
-    - /logstash/logtype/*/*/*
-    - /logstash/logtype/*/*
-    - /logstash/logtype/*
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: logtype
+    - /logstash/logtype/**
+    - /logstash/logtype/**/*.something
+  # the two entries below are probably not needed if the extension is specified above
+  # prospector.scanner.include_files: [ '\.json' ]
+  # prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  # the [labels][type] field is used in logstash processing logic
+  processors:
+    - add_labels:
+       labels:
+         type: soemthing_unique_to_define_this_log_source

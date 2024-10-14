@@ -1,28 +1,26 @@
 # SOF-ELK® Configuration File
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This is a sample Filebeat prospector file that looks into the /logstash/gcp/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
 
-- type: log
+- type: filestream
+  id: gcp-json
   paths:
-    - /logstash/gcp/*/*/*/*/*.json
-    - /logstash/gcp/*/*/*/*.json
-    - /logstash/gcp/*/*/*.json
-    - /logstash/gcp/*/*.json
-    - /logstash/gcp/*.json
-  exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$' ]
-  close_inactive: 5m
-  fields_under_root: true
-  fields:
-    # this is important - it's as the [type] field in Logstash
-    type: gcp
-  tags: [ 'json' ]
-  multiline.type: pattern
-  # match after the opening { of an object but also hit the ] of the end of the array so the final object is picked up
-  multiline.pattern: "(?:^  {|^])"
-  multiline.negate: true
-  multiline.match: after
+    - /logstash/gcp/**/*.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  parsers:
+    - multiline:
+        type: pattern
+        pattern: "^(?:^  {|^])"
+        negate: true
+        match: after
   # exclude_lines takes place AFTER the multiline processing
   # this line will drop the start/end of the array
   exclude_lines: [ "^\\[$", "^\\]$" ]
+  processors:
+    - add_labels:
+       labels:
+         type: gcp
+  tags: [ 'json' ]

@@ -2,87 +2,79 @@
   "template": {
     "mappings": {
       "runtime": {
-        "answer_geo.asnstr": {
+        "backend.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('answer_geo.asn') && doc['answer_geo.asn'].size() != 0 && doc.containsKey('answer_geo.as_org.keyword') && doc['answer_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['answer_geo.asn'].value + ': ' + doc['answer_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('backend.as.number') && doc['backend.as.number'].size() != 0 && doc.containsKey('backend.as.organization.name.keyword') && doc['backend.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['backend.as.number'].value + ': ' + doc['backend.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "backend_geo.asnstr": {
+        "client.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('backend_geo.asn') && doc['backend_geo.asn'].size() != 0 && doc.containsKey('backend_geo.as_org.keyword') && doc['backend_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['backend_geo.asn'].value + ': ' + doc['backend_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('client.as.number') && doc['client.as.number'].size() != 0 && doc.containsKey('client.as.organization.name.keyword') && doc['client.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['client.as.number'].value + ': ' + doc['client.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "client_geo.asnstr": {
+        "destination.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('client_geo.asn') && doc['client_geo.asn'].size() != 0 && doc.containsKey('client_geo.as_org.keyword') && doc['client_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['client_geo.asn'].value + ': ' + doc['client_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('destination.as.number') && doc['destination.as.number'].size() != 0 && doc.containsKey('destination.as.organization.name.keyword') && doc['destination.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['destination.as.number'].value + ': ' + doc['destination.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "destination_geo.asnstr": {
+        "dns.answers.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('destination_geo.asn') && doc['destination_geo.asn'].size() != 0 && doc.containsKey('destination_geo.as_org.keyword') && doc['destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['destination_geo.asn'].value + ': ' + doc['destination_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('dns.answers.as.number') && doc['dns.answers.as.number'].size() != 0 && doc.containsKey('dns.answers.as.organization.name.keyword') && doc['dns.answers.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['dns.answers.as.number'].value + ': ' + doc['dns.answers.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "dhcp_geo.asnstr": {
+        "original_destination.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('dhcp_geo.asn') && doc['dhcp_geo.asn'].size() != 0 && doc.containsKey('dhcp_geo.as_org.keyword') && doc['dhcp_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['dhcp_geo.asn'].value + ': ' + doc['dhcp_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('original_destination.as.number') && doc['original_destination.as.number'].size() != 0 && doc.containsKey('original_destination.as.organization.name.keyword') && doc['original_destination.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['original_destination.as.number'].value + ': ' + doc['original_destination.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "original_destination_geo.asnstr": {
+        "original_source.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('original_destination_geo.asn') && doc['original_destination_geo.asn'].size() != 0 && doc.containsKey('original_destination_geo.as_org.keyword') && doc['original_destination_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['original_destination_geo.asn'].value + ': ' + doc['original_destination_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('original_source.as.number') && doc['original_source.as.number'].size() != 0 && doc.containsKey('original_source.as.organization.name.keyword') && doc['original_source.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['original_source.as.number'].value + ': ' + doc['original_source.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "original_source_geo.asnstr": {
+        "remote.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('original_source_geo.asn') && doc['original_source_geo.asn'].size() != 0 && doc.containsKey('original_source_geo.as_org.keyword') && doc['original_source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['original_source_geo.asn'].value + ': ' + doc['original_source_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('remote.as.number') && doc['remote.as.number'].size() != 0 && doc.containsKey('remote.as.organization.name.keyword') && doc['remote.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['remote.as.number'].value + ': ' + doc['remote.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "remote_geo.asnstr": {
+        "source.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('remote_geo.asn') && doc['remote_geo.asn'].size() != 0 && doc.containsKey('remote_geo.as_org.keyword') && doc['remote_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['remote_geo.asn'].value + ': ' + doc['remote_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('source.as.number') && doc['source.as.number'].size() != 0 && doc.containsKey('source.as.organization.name.keyword') && doc['source.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['source.as.number'].value + ': ' + doc['source.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "source_geo.asnstr": {
+        "xff.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('source_geo.asn') && doc['source_geo.asn'].size() != 0 && doc.containsKey('source_geo.as_org.keyword') && doc['source_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['source_geo.asn'].value + ': ' + doc['source_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('xff.as.number') && doc['xff.as.number'].size() != 0 && doc.containsKey('xff.as.organization.name.keyword') && doc['xff.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['xff.as.number'].value + ': ' + doc['xff.as.organization.name.keyword']; emit(m); }"
           }
         },
-        "xff_geo.asnstr": {
+        "zeek.ftp.data_channel.originating.geo.asnstr": {
           "type": "keyword",
           "script": {
-            "source": "if (doc.containsKey('xff_geo.asn') && doc['xff_geo.asn'].size() != 0 && doc.containsKey('xff_geo.as_org.keyword') && doc['xff_geo.as_org.keyword'].size() != 0) { String m = 'ASN' + doc['xff_geo.asn'].value + ': ' + doc['xff_geo.as_org.keyword']; emit(m); }"
+            "source": "if (doc.containsKey('zeek.ftp.data_channel.originating.as.number') && doc['zeek.ftp.data_channel.originating.as.number'].size() != 0 && doc.containsKey('zeek.ftp.data_channel.originating.as.organization.name.keyword') && doc['zeek.ftp.data_channel.originating.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['zeek.ftp.data_channel.originating.as.number'].value + ': ' + doc['zeek.ftp.data_channel.originating.as.organization.name.keyword']; emit(m); }"
+          }
+        },
+        "zeek.ftp.data_channel.response.geo.asnstr": {
+          "type": "keyword",
+          "script": {
+            "source": "if (doc.containsKey('zeek.ftp.data_channel.response.as.number') && doc['zeek.ftp.data_channel.response.as.number'].size() != 0 && doc.containsKey('zeek.ftp.data_channel.response.as.organization.name.keyword') && doc['zeek.ftp.data_channel.response.as.organization.name.keyword'].size() != 0) { String m = 'ASN' + doc['zeek.ftp.data_channel.response.as.number'].value + ': ' + doc['zeek.ftp.data_channel.response.as.organization.name.keyword']; emit(m); }"
           }
         }
       },
       "dynamic_templates": [
         {
           "geohash_fields": {
-            "match": "*_geo",
+            "path_match": "*.geo.location",
             "mapping": {
-              "dynamic": true,
-              "properties": {
-                "location": {
-                  "type": "geo_point"
-                },
-                "latitude": {
-                  "type": "half_float"
-                },
-                "longitude": {
-                  "type": "half_float"
-                },
-                "asn": {
-                  "type": "integer"
-                }
-              }
+              "type": "geo_point"
             }
           }
         }

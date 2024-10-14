@@ -1,0 +1,12 @@
+[Unit]
+Description=Domain Stats Service
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/local/share/domain-stats/
+ExecStart=/usr/local/bin/domain-stats /usr/local/share/domain-stats/
+PIDFile=/var/run/domain-stats.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,121 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "2fa837d3-540f-4880-a52c-8779130b4acc": {
+              "columnOrder": [
+                "a00f3a49-1d79-493f-904d-6ea66e0f3c66",
+                "8244963b-ed9d-49c7-9eca-c62e80fb8e62"
+              ],
+              "columns": {
+                "8244963b-ed9d-49c7-9eca-c62e80fb8e62": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "a00f3a49-1d79-493f-904d-6ea66e0f3c66": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "HTTP Hostname",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "8244963b-ed9d-49c7-9eca-c62e80fb8e62",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "url.domain.keyword"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "2fa837d3-540f-4880-a52c-8779130b4acc",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "metrics": [
+              "8244963b-ed9d-49c7-9eca-c62e80fb8e62"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "a00f3a49-1d79-493f-904d-6ea66e0f3c66"
+            ],
+            "secondaryGroups": [],
+            "showValuesInLegend": true,
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "kibana_palette",
+          "type": "palette"
+        },
+        "shape": "pie"
+      }
+    },
+    "title": "HTTP Host Pie Graph",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "2692cab2-0827-4109-87fc-b818de74d383",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-2fa837d3-540f-4880-a52c-8779130b4acc",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

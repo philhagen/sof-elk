@@ -37,6 +37,7 @@
     - epel_repo
     - rpmfusion_repo
     - elastic_repo
+    - ivs_repo
     - sof-elk_base
     - elasticsearch
     - cerebro
@@ -45,8 +46,7 @@
     - kibana
 # disabling this until elastalert2 is usable
 #    - elastalert
-    - domain_stats
-    - freq
+    - domain-stats
     - aws-cli
     - azure-cli
     - gcp-cli

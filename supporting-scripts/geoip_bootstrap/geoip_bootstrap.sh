@@ -1,5 +1,5 @@
 #!/bin/bash
-# (C)2021 Phil Hagen <phil@lewestech.com>
+# (C)2023 Phil Hagen <phil@lewestech.com>
 #
 # This script will configure a GeoIP.conf file and install the latest MaxMind GeoIP databases
 # It will optionally configure a cron job to do this periodically
@@ -44,6 +44,11 @@ else
     geoipupdateversion=$( geoipupdate -V 2>&1 | awk '{print $2}' )
 fi
 
+if [ $( echo ${geoipupdateversion:0:1} ) -lt 4 ]; then
+    echo "ERROR: Your version of the geoipupdate tool is too old.  Update to at least version 4.x and re-run the bootstrap script"
+    exit
+fi
+
 target_dir=$( dirname ${geoip_conf_target} )
 realpath=$( realpath $0 )
 if [ ! -w ${target_dir} ]; then
@@ -66,8 +71,6 @@ echo "If you do not already have a MaxMind account, sign up here:"
 echo "  https://www.maxmind.com/en/geolite2/signup"
 echo "Once signed in, generate a license key here:"
 echo "  https://www.maxmind.com/en/accounts/current/license-key"
-echo "You have geoipupdate ${geoipupdateversion}, so ensure you"
-echo "  create a license key for this version."
 echo
 
 read -p "Enter your MaxMind Account ID: " account_id
@@ -113,9 +116,9 @@ while [ ${SUCCESS} -eq 0 ]; do
 done
 
 echo "MaxMind GeoIP databases have been installed."
+echo
 echo "Restarting Logstash to pick up the new database files."
 systemctl restart logstash.service
-echo
 
 echo "Do you want to set a weekly cron job that will update the MaxMind GeoIP databases automatically?"
 read -p "Y/N: " install_cron_job
