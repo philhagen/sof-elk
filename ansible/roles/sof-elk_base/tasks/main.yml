@@ -88,7 +88,7 @@
     dest: '~{{ item[0] }}/.vimrc'
     regex: '^{{ item[1] }}'
     line: '{{ item[1] }}'
-  create: true
+    create: true
   with_nested:
     - [ 'root', 'elk_user' ]
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
@@ -178,7 +178,7 @@
   with_items:
     - { src: '/usr/local/sof-elk/supporting-scripts/distro_prep.sh', dest: '/root/distro_prep.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/ls_plugin_update.sh', dest: '/var/lib/dpkg/info/logstash:amd64.postinst' }
-    - { src: '/usr/local/sof-elk//usr/local/sbin/load_all_dashboards.sh', dest: '/var/lib/dpkg/info/kibana:amd64.postinst' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/load_all_dashboards.sh', dest: '/var/lib/dpkg/info/kibana:amd64.postinst' }
     - { src: '/usr/local/sof-elk/supporting-scripts/es_plugin_update.sh', dest: '/var/lib/dpkg/info/elasticsearch:amd64.postinst' }
     - { src: '/usr/local/sof-elk/supporting-scripts/csv2json.py', dest: '/usr/local/sbin/csv2json.py' }
     - { src: '/usr/local/sof-elk/supporting-scripts/fw_modify.sh', dest: '/usr/local/sbin/fw_modify.sh' }

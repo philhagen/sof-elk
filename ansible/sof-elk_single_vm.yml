@@ -62,5 +62,3 @@
     - gcp-cli
     - powershell
     - sof-elk_finalize
-
-#TODO: need to create a handler that runs apt-get update after a new source file is added??

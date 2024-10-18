@@ -36,6 +36,12 @@
     src: azure-cli.sources
     dest: /etc/apt/sources.list.d/azure-cli.sources
     mode: '0644'
+  register: azure_source
+  tags: azure-cli
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: azure_source.changed
   tags: azure-cli
 
 - name: Install Azure packages

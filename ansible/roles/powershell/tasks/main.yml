@@ -24,6 +24,12 @@
     path: /tmp/packages-microsoft-prod.deb
     state: absent
   when: msprod_source_package_downloaded.changed
+  register: msprod_source
+  tags: powershell
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: msprod_source.changed
   tags: powershell
 
 - name: Install Powershell packages

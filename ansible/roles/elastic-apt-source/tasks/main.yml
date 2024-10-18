@@ -50,6 +50,16 @@
     src: elastic-8.x.list
     dest: /etc/apt/sources.list.d/elastic-8.x.list
     mode: '0644'
+  register: es_source
+  tags:
+  - elasticsearch
+  - logstash
+  - kibana
+  - filebeat
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: es_source.changed
   tags:
   - elasticsearch
   - logstash

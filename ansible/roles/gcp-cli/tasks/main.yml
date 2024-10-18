@@ -31,6 +31,12 @@
     src: google-cloud-sdk.list
     dest: /etc/apt/sources.list.d/google-cloud-sdk.list
     mode: '0644'
+  register: gcp_source
+  tags: gcp-cli
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: gcp_source.changed
   tags: gcp-cli
 
 - name: Install Google Cloud packages
