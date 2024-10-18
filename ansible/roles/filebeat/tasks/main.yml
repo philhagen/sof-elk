@@ -1,12 +1,12 @@
 ---
 - name: Install Filebeat
-  yum:
-    name: filebeat
+  ansible.builtin.apt:
+    name: filebeat={{ elastic_stack_version }}
     state: present
   tags: sof-elk_filebeat
 
 - name: Configure filebeat
-  file:
+  ansible.builtin.file:
     src: '/usr/local/sof-elk/lib/configfiles/filebeat.yml'
     dest: '/etc/filebeat/filebeat.yml'
     state: link
@@ -15,7 +15,7 @@
   tags: sof-elk_filebeat
 
 - name: Create filebeat input base directory
-  file:
+  ansible.builtin.file:
     dest: '/logstash'
     state: directory
     owner: root
@@ -23,7 +23,7 @@
     mode: 0755
 
 - name: Create filebeat input directories
-  file:
+  ansible.builtin.file:
     dest: '/logstash/{{ item }}'
     state: directory
     owner: root
@@ -47,7 +47,7 @@
   tags: sof-elk_filebeat
 
 - name: Start and enable Filebeat service
-  systemd:
+  ansible.builtin.systemd:
     name: filebeat
     enabled: yes
     state: started

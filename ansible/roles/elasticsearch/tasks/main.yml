@@ -1,18 +1,27 @@
 ---
 - name: Install Elasticsearch
-  yum:
-    name: elasticsearch
+  ansible.builtin.apt:
+    name: elasticsearch={{ elastic_stack_version }}
     state: present
   tags: sof-elk_elasticsearch
 
+- name: Set permissions on Elasticsearch data directory
+  ansible.builtin.file:
+    path: /var/lib/elasticsearch
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0755
+  tags: sof-elk_elasticsearch
+
 - name: Enable Elasticsearch service
-  systemd:
+  ansible.builtin.systemd:
     name: elasticsearch
     enabled: yes
   tags: sof-elk_elasticsearch
 
 - name: Create Elasticsearch systemd override directory
-  file:
+  ansible.builtin.file:
     dest: '/etc/systemd/system/elasticsearch.service.d'
     state: directory
     owner: root
@@ -22,7 +31,7 @@
   tags: sof-elk_elasticsearch
 
 - name: Override Elasticsearch systemd limits
-  copy:
+  ansible.builtin.copy:
     src: 'systemd_override.conf'
     dest: '/etc/systemd/system/elasticsearch.service.d/override.conf'
     owner: root
@@ -32,7 +41,7 @@
   tags: sof-elk_elasticsearch
 
 - name: Configure Elasticsearch
-  copy:
+  ansible.builtin.copy:
     src: 'elasticsearch.yml'
     dest: '/etc/elasticsearch/elasticsearch.yml'
     owner: root
@@ -42,11 +51,11 @@
   tags: sof-elk_elasticsearch
 
 - name: Run daemon-reload so service can start
-  command: 'systemctl daemon-reload'
+  ansible.builtin.command: 'systemctl daemon-reload'
   tags: sof-elk_elasticsearch
 
 - name: Start and Enable Elasticsearch service
-  systemd:
+  ansible.builtin.systemd:
     name: elasticsearch
     enabled: yes
     state: started

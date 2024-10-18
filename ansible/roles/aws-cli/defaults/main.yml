@@ -1,3 +1,3 @@
 ---
-aws_cli_pip_modules:
-  - boto3
+aws_cli_dependencies:
+  - python3-boto3

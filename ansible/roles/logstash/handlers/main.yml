@@ -1,8 +1,8 @@
 ---
 - name: restart firewalld
-  command: firewall-cmd --reload
+  ansible.builtin.command: firewall-cmd --reload
 
 - name: restart logstash
-  systemd:
+  ansible.builtin.systemd:
     name: logstash
     state: restarted

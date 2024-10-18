@@ -1,24 +1,33 @@
 ---
-- name: Add Microsoft Prod Repository
-  yum_repository:
-    file: '{{ msprod_repofile_path }}'
-    name: 'microsoft-prod'
-    description: 'Microsoft Prod repository'
-    baseurl: '{{ msprod_repo_baseurl }}'
-    gpgcheck: yes
-    gpgkey: '{{ msprod_repo_gpg_key_url }}'
-    enabled: yes
-  register: yum_repo_installed
+- name: Determine if MSProd gpg keyring already exists
+  stat:
+    path: "{{ msprod_gpg_keyring }}"
+  register: msprod_gpg_keyring_file
   tags: powershell
 
-- name: Import Microsoft Prod GPG key
-  rpm_key:
-    key: '{{ msprod_repo_gpg_key_url }}'
-    state: present
+- name: Download MSProd source package
+  ansible.builtin.get_url:
+    url: "{{ https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb  }}"
+    dest: /tmp/packages-microsoft-prod.deb
+    mode: '0644'
+  when: not msprod_gpg_keyring_file.stat.exists
+  register: msprod_source_package_downloaded
   tags: powershell
 
-- name: Install Powershell RPMs
-  yum:
-    name: '{{ powershell_yum_packages }}'
+- name: Install MSProd source package
+  ansible.builtin.command: dpkg -i /tmp/packages-microsoft-prod.deb
+  when: msprod_source_package_downloaded.changed
+  tags: powershell
+
+- name: Remove MSProd source package
+  ansible.builtin.file:
+    path: /tmp/packages-microsoft-prod.deb
+    state: absent
+  when: msprod_source_package_downloaded.changed
+  tags: powershell
+
+- name: Install Powershell packages
+  ansible.builtin.apt:
+    name: '{{ powershell_apt_packages }}'
     state: present
   tags: powershell

@@ -1,4 +1,0 @@
-[ivs]
-name=identityVector
-baseurl=https://rpm.identityvector.com/centos$releasever/$basearch/
-gpgcheck=0

@@ -1,4 +1,0 @@
----
-rpmfusion_repo_url: 'https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
-rpmfusion_repo_gpg_key_file: '/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-el-7'
-rpmfusion_repofile_path: '/etc/yum.repos.d/rpmfusion-free-updates.repo'

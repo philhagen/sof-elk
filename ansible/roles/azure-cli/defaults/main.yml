@@ -1,10 +1,8 @@
 ---
-azure_pip_modules:
-  - azure-storage-blob
+azure_cli_dependencies:
+  - python3-azure-storage
 
-azure_repofile_path: 'azure'
-azure_repo_baseurl: 'https://packages.microsoft.com/yumrepos/azure-cli'
-azure_repo_gpg_key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
-
-azure_yum_packages:
+azure_apt_packages:
   - azure-cli
+
+azure_cli_gpg_keyring: /usr/share/keyrings/microsoft.gpg

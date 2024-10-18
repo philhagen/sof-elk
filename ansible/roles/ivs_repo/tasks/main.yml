@@ -1,7 +1,0 @@
-# roles/ivs_repo/tasks/main.yml
----
-
-- name: Install IVS Repo File
-  copy: src=ivs.repo
-        dest=/etc/yum.repos.d/
-        owner=root group=root mode=0644

@@ -1,31 +1,45 @@
 ---
-- name: Install pip packages
-  pip:
-    name: '{{ azure_pip_modules }}'
-    executable: pip3
+- name: Install Azure CLI dependencies
+  ansible.builtin.apt:
+    name: '{{ azure_cli_dependencies }}'
     state: present
   tags: azure-cli
 
-- name: Add Azure Repository
-  yum_repository:
-    file: '{{ azure_repofile_path }}'
-    name: 'azure-cli'
-    description: 'Azure CLI repository'
-    baseurl: '{{ azure_repo_baseurl }}'
-    gpgcheck: yes
-    gpgkey: '{{ azure_repo_gpg_key_url }}'
-    enabled: yes
-  register: yum_repo_installed
+- name: Determine if gpg keyring already exists
+  stat:
+    path: "{{ azure_cli_gpg_keyring }}"
+  register: ms_gpg_keyring_file
+
+- name: Download armored Microsoft GPG key
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /tmp/ms-keyring.asc
+    mode: '0644'
+  when: not ms_gpg_keyring_file.stat.exists
+  register: ms_armored_gpg_key_downloaded
   tags: azure-cli
 
-- name: Import Azure GPG key
-  rpm_key:
-    key: '{{ azure_repo_gpg_key_url }}'
-    state: present
+- name: Convert GPG key to binary form
+  ansible.builtin.command: gpg --dearmor -o {{ ms_gpg_keyring }} /tmp/ms-keyring.asc
+  when: ms_armored_gpg_key_downloaded.changed
   tags: azure-cli
 
-- name: Install Azure RPMs
-  yum:
-    name: '{{ azure_yum_packages }}'
+- name: Remove armored Microsoft GPG key
+  ansible.builtin.file:
+    path: /tmp/ms-keyring.asc
+    state: absent
+  when: ms_armored_gpg_key_downloaded.changed
+  tags: azure-cli
+
+- name: Install Microsoft Azure source definition file
+  ansible.builtin.copy:
+    src: azure-cli.sources
+    dest: /etc/apt/sources.list.d/azure-cli.sources
+    mode: '0644'
+  tags: azure-cli
+
+- name: Install Azure packages
+  ansible.builtin.apt:
+    name: '{{ azure_apt_packages }}'
     state: present
   tags: azure-cli

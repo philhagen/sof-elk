@@ -1,12 +1,12 @@
 ---
 - name: Install Logstash
-  yum:
-    name: logstash
+  ansible.builtin.apt:
+    name: logstash={{ elastic_stack_version }}
     state: present
   tags: sof-elk_logstash
 
 - name: Install Logstash Plugins
-  logstash_plugin:
+  community.general.logstash_plugin:
     name: '{{ item }}'
     state: present
   with_items:
@@ -19,7 +19,7 @@
   tags: sof-elk_logstash
 
 - name: Set Logstash JVM options
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: '/etc/logstash/jvm.options'
     regexp: "^{{ item.parameter | regex_escape() }}"
     line: "{{ item.parameter }}{{ item.value }}"
@@ -30,14 +30,14 @@
   tags: sof-elk_logstash
 
 - name: Get list of all configfiles
-  find:
+  ansible.builtin.find:
     paths: '/usr/local/sof-elk/configfiles/'
     file_type: file
   register: configfile_results
   tags: sof-elk_logstash
 
 - name: Set symlinks for pipeline configuration
-  file:
+  ansible.builtin.file:
     src: '/usr/local/sof-elk/configfiles/{{ item.path | basename }}'
     dest: '/etc/logstash/conf.d/{{ item.path | basename }}'
     state: link
@@ -47,7 +47,7 @@
   tags: sof-elk_logstash
 
 - name: Configure Logstash
-  copy:
+  ansible.builtin.copy:
     src: 'logstash.yml'
     dest: '/etc/logstash/logstash.yml'
     owner: root
@@ -57,7 +57,7 @@
   tags: sof-elk_logstash
 
 - name: Start and Enable Logstash service
-  systemd:
+  ansible.builtin.systemd:
     name: logstash
     enabled: yes
     state: started

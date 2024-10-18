@@ -1,7 +1,8 @@
 ---
-msprod_repofile_path: 'microsoft-com-prod'
-msprod_repo_baseurl: 'https://packages.microsoft.com/rhel/7/prod/'
-msprod_repo_gpg_key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
 
-powershell_yum_packages:
+msprod_gpg_keyring: /usr/share/keyrings/microsoft-prod.gpg
+
+msprod_source_package_url: https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb
+
+powershell_apt_packages:
   - powershell

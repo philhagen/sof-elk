@@ -1,12 +1,12 @@
 ---
 - name: Install Kibana
-  yum:
-    name: kibana
+  apt:
+    name: kibana={{ elastic_stack_version }}
     state: present
   tags: sof-elk_kibana
 
 - name: Configure Kibana
-  copy:
+  ansible.builtin.copy:
     src: 'kibana.yml'
     dest: '/etc/kibana/kibana.yml'
     owner: root
@@ -16,7 +16,7 @@
   tags: sof-elk_kibana
 
 - name: Open firewall ports
-  firewalld:
+  ansible.posix.firewalld:
     port: 5601/tcp
     permanent: yes
     state: enabled
@@ -25,7 +25,7 @@
   #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
 
 - name: Enable and start Kibana service
-  systemd:
+  ansible.builtin.systemd:
     name: kibana
     enabled: yes
     state: started

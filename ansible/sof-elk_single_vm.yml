@@ -1,21 +1,14 @@
 ---
 # This playbook configures a single-instance SOF-ELK(R) system
 
-- name: Run all preload steps required for a SOF-ELK system
+- name: Run all preload steps required for a SOF-ELK(R) system
   hosts: all
+  become: true
   become_method: sudo
   become_user: root
 
-  pre_tasks:
-    - name: "Get current git branch"
-      command: "git rev-parse --abbrev-ref HEAD"
-      args:
-        chdir: "{{ playbook_dir }}"
-      register: git_branch_result
-      check_mode: no
-      delegate_to: 127.0.0.1
-    - set_fact:
-        git_branch: "{{ git_branch_result.stdout }}"
+  vars:
+    - elastic_stack_version: 8.15.3
 
   vars_prompt:
     - name: disable_root
@@ -23,7 +16,7 @@
       default: yes
       private: no
     - name: geoip_accountid
-      prompt: "Enter GeoIP Account ID (leave this and next two blank to skip GeoIP installation)"
+      prompt: "Enter GeoIP Account ID (leave this and next two blank to skip installation of current GeoIP databases and use older versions permissible for distribution.)"
       private: no
     - name: geoip_licensekey
       prompt:  "Enter GeoIP License Key (new 3.x+ format)"
@@ -33,23 +26,41 @@
       default: no
       private: no
 
+  pre_tasks:
+  # TODO: this doesn't work - fixme
+    - name: Validate host operating system distribution
+      ansible.builtin.meta: end_host
+      when:
+      - ansible_distribution != "Ubuntu"
+      - ansible.distribution.version != "24.04"
+
+    - name: "Get current git branch"
+      command: "git rev-parse --abbrev-ref HEAD"
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: git_branch_result
+      check_mode: no
+      delegate_to: 127.0.0.1
+
+    - set_fact:
+        git_branch: "{{ git_branch_result.stdout }}"
+
   roles:
-    - epel_repo
-    - rpmfusion_repo
-    - elastic_repo
-    - ivs_repo
     - sof-elk_base
+    - elastic-apt-source
     - elasticsearch
-    - cerebro
+# disabling - may remove.  role not updated for ubuntu
+#    - cerebro
     - logstash
     - filebeat
     - kibana
 # disabling this until elastalert2 is usable
 #    - elastalert
-    - domain-stats
+# disabling for now    - domain-stats
     - aws-cli
     - azure-cli
     - gcp-cli
     - powershell
-
     - sof-elk_finalize
+
+#TODO: need to create a handler that runs apt-get update after a new source file is added??
