@@ -3,6 +3,7 @@
 # (C)2024 Lewes Technology Consulting, LLC
 
 gcp_gpg_keyring: /usr/share/keyrings/gcp-keyring.gpg
+gcp_armored_keyring: /tmp/gcp-keyring.asc
 
 gcp_apt_packages:
   - google-cloud-cli

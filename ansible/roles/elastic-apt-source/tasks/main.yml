@@ -46,8 +46,8 @@
   - filebeat
 
 - name: Install Elastic source definition file
-  ansible.builtin.copy:
-    src: elastic-8.x.list
+  ansible.builtin.template:
+    src: elastic-8.x.list.j2
     dest: /etc/apt/sources.list.d/elastic-8.x.list
     mode: '0644'
   register: es_source

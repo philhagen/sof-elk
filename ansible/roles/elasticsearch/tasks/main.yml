@@ -3,7 +3,7 @@
   ansible.builtin.apt:
     name: elasticsearch={{ elastic_stack_version }}
     state: present
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Set permissions on Elasticsearch data directory
   ansible.builtin.file:
@@ -12,13 +12,7 @@
     owner: elasticsearch
     group: elasticsearch
     mode: 0755
-  tags: sof-elk_elasticsearch
-
-- name: Enable Elasticsearch service
-  ansible.builtin.systemd:
-    name: elasticsearch
-    enabled: yes
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Create Elasticsearch systemd override directory
   ansible.builtin.file:
@@ -28,7 +22,7 @@
     group: root
     mode: 0755
   notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Override Elasticsearch systemd limits
   ansible.builtin.copy:
@@ -38,7 +32,7 @@
     group: root
     mode: 0644
   notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Configure Elasticsearch
   ansible.builtin.copy:
@@ -48,15 +42,15 @@
     group: elasticsearch
     mode: 0660
   notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Run daemon-reload so service can start
   ansible.builtin.command: 'systemctl daemon-reload'
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Start and Enable Elasticsearch service
   ansible.builtin.systemd:
     name: elasticsearch
     enabled: yes
     state: started
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch

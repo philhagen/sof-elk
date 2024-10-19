@@ -8,32 +8,33 @@
 - name: Determine if gpg keyring already exists
   stat:
     path: "{{ azure_cli_gpg_keyring }}"
-  register: ms_gpg_keyring_file
+  register: azure_gpg_keyring_file
+  tags: azure-cli
 
 - name: Download armored Microsoft GPG key
   ansible.builtin.get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
-    dest: /tmp/ms-keyring.asc
+    dest: "{{ azure_cli_armored_keyring }}"
     mode: '0644'
-  when: not ms_gpg_keyring_file.stat.exists
-  register: ms_armored_gpg_key_downloaded
+  when: not azure_gpg_keyring_file.stat.exists
+  register: azure_armored_gpg_key_downloaded
   tags: azure-cli
 
 - name: Convert GPG key to binary form
-  ansible.builtin.command: gpg --dearmor -o {{ ms_gpg_keyring }} /tmp/ms-keyring.asc
-  when: ms_armored_gpg_key_downloaded.changed
+  ansible.builtin.command: gpg --dearmor -o {{ azure_cli_gpg_keyring }} {{ azure_cli_armored_keyring }}
+  when: azure_armored_gpg_key_downloaded.changed
   tags: azure-cli
 
 - name: Remove armored Microsoft GPG key
   ansible.builtin.file:
-    path: /tmp/ms-keyring.asc
+    path: "{{ azure_cli_armored_keyring }}"
     state: absent
-  when: ms_armored_gpg_key_downloaded.changed
+  when: azure_armored_gpg_key_downloaded.changed
   tags: azure-cli
 
 - name: Install Microsoft Azure source definition file
-  ansible.builtin.copy:
-    src: azure-cli.sources
+  ansible.builtin.template:
+    src: azure-cli.sources.j2
     dest: /etc/apt/sources.list.d/azure-cli.sources
     mode: '0644'
   register: azure_source

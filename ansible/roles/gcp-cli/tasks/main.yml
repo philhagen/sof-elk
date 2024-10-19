@@ -8,27 +8,27 @@
 - name: Download armored GCP GPG key
   ansible.builtin.get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    dest: /tmp/gcp-keyring.asc
+    dest: "{{ gcp_armored_keyring }}"
     mode: '0644'
   when: not gcp_gpg_keyring_file.stat.exists
   register: armored_gcp_gpg_key_downloaded
   tags: gcp-cli
 
 - name: Convert GCP GPG key to binary form
-  ansible.builtin.command: gpg --dearmor -o {{ gcp_gpg_keyring }} /tmp/gcp-keyring.asc
+  ansible.builtin.command: gpg --dearmor -o {{ gcp_gpg_keyring }} {{ gcp_armored_keyring }}
   when: armored_gcp_gpg_key_downloaded.changed
   tags: gcp-cli
 
 - name: Remove armored GCP GPG key
   ansible.builtin.file:
-    path: /tmp/gcp-keyring.asc
+    path: "{{ gcp_armored_keyring }}"
     state: absent
   when: armored_gcp_gpg_key_downloaded.changed
   tags: gcp-cli
 
 - name: Install GCP source definition file
-  ansible.builtin.copy:
-    src: google-cloud-sdk.list
+  ansible.builtin.template:
+    src: google-cloud-sdk.list.j2
     dest: /etc/apt/sources.list.d/google-cloud-sdk.list
     mode: '0644'
   register: gcp_source

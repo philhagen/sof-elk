@@ -10,29 +10,28 @@
   vars:
     - elastic_stack_version: 8.15.3
 
+# TODO: test the full install before shipping
   vars_prompt:
     - name: disable_root
       prompt: "Disable root account from native login (default: yes)?"
       default: yes
       private: no
     - name: geoip_accountid
-      prompt: "Enter GeoIP Account ID (leave this and next two blank to skip installation of current GeoIP databases and use older versions permissible for distribution.)"
+      prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
       private: no
     - name: geoip_licensekey
-      prompt:  "Enter GeoIP License Key (new 3.x+ format)"
+      prompt:  "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
       private: no
     - name: geoip_config_persist
-      prompt: "Do you want GeoIP account/license data to persist after installation (default: no)?"
+      prompt: "Do you want GeoIP account/license data to persist after installation (default: no; leave blank to use legacy GeoIP databases)?"
       default: no
       private: no
 
   pre_tasks:
-  # TODO: this doesn't work - fixme
+# TODO: test this logic
     - name: Validate host operating system distribution
       ansible.builtin.meta: end_host
-      when:
-      - ansible_distribution != "Ubuntu"
-      - ansible.distribution.version != "24.04"
+      when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
 
     - name: "Get current git branch"
       command: "git rev-parse --abbrev-ref HEAD"
@@ -56,9 +55,11 @@
     - kibana
 # disabling this until elastalert2 is usable
 #    - elastalert
-# disabling for now    - domain-stats
+# disabling for now
+#    - domain-stats
     - aws-cli
     - azure-cli
     - gcp-cli
-    - powershell
+# disabled for now, because PS is not yet available for 24.04
+#    - powershell
     - sof-elk_finalize
