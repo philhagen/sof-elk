@@ -1,0 +1,11 @@
+{
+  "data_view": {
+    "allowHidden": false,
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "all-records",
+    "name": "all-records",
+    "timeFieldName": "@timestamp",
+    "title": "logstash-*,netflow-*,httpdlog-*"
+  }
+}

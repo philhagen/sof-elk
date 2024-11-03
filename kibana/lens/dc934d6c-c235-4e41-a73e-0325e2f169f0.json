@@ -6,53 +6,40 @@
       "datasourceStates": {
         "formBased": {
           "layers": {
-            "ab072b8e-1c59-46d3-a102-dff7da8256a8": {
+            "3408c9ee-cc86-4976-920e-151b03f870c9": {
               "columnOrder": [
-                "14497f3d-b30d-4e3f-aa01-fe72d0153f86",
-                "23b33e80-862d-4270-a87b-fda7ca79f449",
-                "7dd4dfb6-d1aa-474d-950d-f3751cacc019",
-                "4da7f029-8221-4e2c-9cfa-39f50e589dfb"
+                "6da5d69b-6c9c-4743-bab4-67dbe3ef4207",
+                "a71a162b-fd7b-4042-aabf-260555d4d700"
               ],
               "columns": {
-                "14497f3d-b30d-4e3f-aa01-fe72d0153f86": {
+                "6da5d69b-6c9c-4743-bab4-67dbe3ef4207": {
                   "customLabel": true,
                   "dataType": "string",
                   "isBucketed": true,
-                  "label": "Top Sources",
+                  "label": "Source",
                   "operationType": "terms",
                   "params": {
+                    "accuracyMode": false,
                     "exclude": [],
                     "excludeIsRegex": false,
                     "include": [],
                     "includeIsRegex": false,
                     "missingBucket": false,
                     "orderBy": {
-                      "columnId": "4da7f029-8221-4e2c-9cfa-39f50e589dfb",
+                      "columnId": "a71a162b-fd7b-4042-aabf-260555d4d700",
                       "type": "column"
                     },
                     "orderDirection": "desc",
-                    "otherBucket": true,
+                    "otherBucket": false,
                     "parentFormat": {
                       "id": "terms"
                     },
-                    "size": 8
+                    "size": 200
                   },
                   "scale": "ordinal",
                   "sourceField": "sof-elk.path"
                 },
-                "23b33e80-862d-4270-a87b-fda7ca79f449": {
-                  "customLabel": true,
-                  "dataType": "date",
-                  "isBucketed": false,
-                  "label": "Start",
-                  "operationType": "min",
-                  "params": {
-                    "emptyAsNull": true
-                  },
-                  "scale": "ratio",
-                  "sourceField": "@timestamp"
-                },
-                "4da7f029-8221-4e2c-9cfa-39f50e589dfb": {
+                "a71a162b-fd7b-4042-aabf-260555d4d700": {
                   "customLabel": true,
                   "dataType": "number",
                   "isBucketed": false,
@@ -63,18 +50,6 @@
                   },
                   "scale": "ratio",
                   "sourceField": "___records___"
-                },
-                "7dd4dfb6-d1aa-474d-950d-f3751cacc019": {
-                  "customLabel": true,
-                  "dataType": "date",
-                  "isBucketed": false,
-                  "label": "End",
-                  "operationType": "max",
-                  "params": {
-                    "emptyAsNull": true
-                  },
-                  "scale": "ratio",
-                  "sourceField": "@timestamp"
                 }
               },
               "incompleteColumns": {},
@@ -98,39 +73,39 @@
       "visualization": {
         "columns": [
           {
-            "columnId": "14497f3d-b30d-4e3f-aa01-fe72d0153f86"
+            "columnId": "6da5d69b-6c9c-4743-bab4-67dbe3ef4207"
           },
           {
-            "columnId": "4da7f029-8221-4e2c-9cfa-39f50e589dfb"
-          },
-          {
-            "columnId": "23b33e80-862d-4270-a87b-fda7ca79f449",
-            "isMetric": true,
-            "isTransposed": false
-          },
-          {
-            "columnId": "7dd4dfb6-d1aa-474d-950d-f3751cacc019",
+            "columnId": "a71a162b-fd7b-4042-aabf-260555d4d700",
             "isMetric": true,
             "isTransposed": false
           }
         ],
-        "layerId": "ab072b8e-1c59-46d3-a102-dff7da8256a8",
-        "layerType": "data"
+        "headerRowHeight": "single",
+        "headerRowHeightLines": 1,
+        "layerId": "3408c9ee-cc86-4976-920e-151b03f870c9",
+        "layerType": "data",
+        "paging": {
+          "enabled": false,
+          "size": 10
+        },
+        "rowHeight": "single",
+        "rowHeightLines": 1
       }
     },
-    "title": "HTTPD Logs Collected",
+    "title": "Record Summary - All Indices",
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "a1f8afdc-58be-4874-ae12-3d23186179b7",
+  "id": "dc934d6c-c235-4e41-a73e-0325e2f169f0",
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "httpdlog",
-      "name": "indexpattern-datasource-layer-ab072b8e-1c59-46d3-a102-dff7da8256a8",
+      "id": "all-records",
+      "name": "indexpattern-datasource-layer-3408c9ee-cc86-4976-920e-151b03f870c9",
       "type": "index-pattern"
     }
   ],
