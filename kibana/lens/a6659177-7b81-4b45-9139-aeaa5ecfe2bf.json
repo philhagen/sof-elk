@@ -1,0 +1,129 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "54fac45c-376e-4f6a-9d3e-557e6f360e79": {
+              "columnOrder": [
+                "f074eafb-d5ba-4cbe-ad95-67cbd93e71f7",
+                "c7cf411b-ca0a-4d5d-af58-f2810740c562"
+              ],
+              "columns": {
+                "c7cf411b-ca0a-4d5d-af58-f2810740c562": {
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count of records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "f074eafb-d5ba-4cbe-ad95-67cbd93e71f7": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Index Summary",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c7cf411b-ca0a-4d5d-af58-f2810740c562",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 20
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "_index"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "allowMultipleMetrics": false,
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": {
+                "type": "categorical"
+              },
+              "paletteId": "eui_amsterdam_color_blind",
+              "specialAssignments": [
+                {
+                  "color": {
+                    "type": "loop"
+                  },
+                  "rule": {
+                    "type": "other"
+                  },
+                  "touched": false
+                }
+              ]
+            },
+            "layerId": "54fac45c-376e-4f6a-9d3e-557e6f360e79",
+            "layerType": "data",
+            "legendDisplay": "default",
+            "metrics": [
+              "c7cf411b-ca0a-4d5d-af58-f2810740c562"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "primaryGroups": [
+              "f074eafb-d5ba-4cbe-ad95-67cbd93e71f7"
+            ],
+            "secondaryGroups": []
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "Index Summary",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a6659177-7b81-4b45-9139-aeaa5ecfe2bf",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "01b09d68-1aa7-4633-a2b1-b8ebcf2951ac",
+      "name": "indexpattern-datasource-layer-54fac45c-376e-4f6a-9d3e-557e6f360e79",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

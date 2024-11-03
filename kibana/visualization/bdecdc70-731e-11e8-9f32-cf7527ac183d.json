@@ -6,7 +6,8 @@
     },
     "title": "SOF-ELK® VM Intro",
     "uiStateJSON": "{}",
-    "visState": "{\"aggs\":[],\"params\":{\"fontSize\":11,\"markdown\":\"## Welcome to the SOF-ELK® (Security Operations and Forensics Elasticsearch/Logstash/Kibana) distribution\\n\\nThis VMware image was created with a fully functional ELK configuration. The VM will ingest various log formats, and includes several dashboards to present the data in useful formats. While the distribution and project were created for various SANS Courses, it is maintained as community resource.\\n\\nSee the blocks at the bottom of this page to learn more about which types of data the VM is preconfigured to ingest and how to feed it.\",\"openLinksInNewTab\":false},\"title\":\"SOF-ELK® VM Intro\",\"type\":\"markdown\"}"
+    "version": 1,
+    "visState": "{\"aggs\":[],\"params\":{\"fontSize\":11,\"markdown\":\"## Welcome to SOF-ELK®\\n\\nThis platform consists of a pre-configured, fully functional Elastic Stack configuration. It ingests various log formats and includes several dashboards to present the data in useful formats. While the platform and project were created for various SANS Courses, SOF-ELK is maintained as community resource.\\n\\nThis dashboard displays a summary of data that has been loaded. If you do not see summary information below, you either haven't loaded any data yet or you may need to adjust the time frame in scope with the time range selector above.\\n\\nWhen you're ready, [select a dashboard from the list](/app/dashboards#/list) to start exploring data.\",\"openLinksInNewTab\":false},\"title\":\"SOF-ELK® VM Intro\",\"type\":\"markdown\"}"
   },
   "coreMigrationVersion": "8.8.0",
   "id": "bdecdc70-731e-11e8-9f32-cf7527ac183d",
