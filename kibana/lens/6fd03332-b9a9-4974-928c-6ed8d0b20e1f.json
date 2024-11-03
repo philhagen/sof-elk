@@ -1,0 +1,86 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {
+            "dced2d11-6e56-4436-b548-9f2d20f368aa": {
+              "columnOrder": [
+                "6eb2a027-4ffc-47b7-8d87-4218c82991d5"
+              ],
+              "columns": {
+                "6eb2a027-4ffc-47b7-8d87-4218c82991d5": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": " ",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "decimals": 0
+                      }
+                    }
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "indexPatternId": "httpdlog",
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "httpdlog",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "httpdlog",
+              "timeField": "@timestamp",
+              "title": "httpdlog-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "dced2d11-6e56-4436-b548-9f2d20f368aa",
+        "layerType": "data",
+        "metricAccessor": "6eb2a027-4ffc-47b7-8d87-4218c82991d5"
+      }
+    },
+    "title": "HTTPD Record Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "6fd03332-b9a9-4974-928c-6ed8d0b20e1f",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "httpdlog",
+      "name": "indexpattern-datasource-layer-dced2d11-6e56-4436-b548-9f2d20f368aa",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

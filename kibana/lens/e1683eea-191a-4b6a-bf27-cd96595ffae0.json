@@ -1,0 +1,76 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "21d6e708-8466-49b2-8314-8f512b717bd6": {
+              "columnOrder": [
+                "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
+              ],
+              "columns": {
+                "3b851116-1a9d-43a7-9c7d-c0a68e85cf62": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": " ",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "decimals": 0
+                      }
+                    }
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "21d6e708-8466-49b2-8314-8f512b717bd6",
+        "layerType": "data",
+        "metricAccessor": "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
+      }
+    },
+    "title": "Syslog Record Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1683eea-191a-4b6a-bf27-cd96595ffae0",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "logstash",
+      "name": "indexpattern-datasource-layer-21d6e708-8466-49b2-8314-8f512b717bd6",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
