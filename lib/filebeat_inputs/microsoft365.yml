@@ -9,6 +9,7 @@
     - /logstash/microsoft365/**/*.json
   close.on_state_change.inactive: 5m
   clean_removed: true
+  parsers:
     - multiline:
         type: pattern
         pattern: "^(?:^  {|^])"
