@@ -1,0 +1,77 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "9f9da298-9b72-4070-b815-ea2b9382fd13": {
+              "columnOrder": [
+                "5cb9aa2b-366e-4d25-a5b8-e325b601c811"
+              ],
+              "columns": {
+                "5cb9aa2b-366e-4d25-a5b8-e325b601c811": {
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Sum of network.packets_vis",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
+                  },
+                  "scale": "ratio",
+                  "sourceField": "network.packets_vis"
+                }
+              },
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "9f9da298-9b72-4070-b815-ea2b9382fd13",
+        "layerType": "data",
+        "metricAccessor": "5cb9aa2b-366e-4d25-a5b8-e325b601c811",
+        "titlesTextAlign": "center",
+        "valueFontMode": "fit",
+        "valuesTextAlign": "center"
+      }
+    },
+    "title": "Total Packets",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9910b561-204c-4501-a47d-c84d1171084b",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-9f9da298-9b72-4070-b815-ea2b9382fd13",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

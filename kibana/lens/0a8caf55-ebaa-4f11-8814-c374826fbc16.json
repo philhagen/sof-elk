@@ -1,0 +1,79 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "76abbb23-cf2f-4a47-b5a2-902e3d4e74d7": {
+              "columnOrder": [
+                "662069a6-eb0d-46c6-8c19-0b06eaaac0fb"
+              ],
+              "columns": {
+                "662069a6-eb0d-46c6-8c19-0b06eaaac0fb": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Total Flows",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
+                  },
+                  "scale": "ratio",
+                  "sourceField": "netflow.delta_flow_count_vis"
+                }
+              },
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "76abbb23-cf2f-4a47-b5a2-902e3d4e74d7",
+        "layerType": "data",
+        "metricAccessor": "662069a6-eb0d-46c6-8c19-0b06eaaac0fb",
+        "subtitle": "",
+        "titlesTextAlign": "center",
+        "valueFontMode": "fit",
+        "valuesTextAlign": "center"
+      }
+    },
+    "title": "Total Flows",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "0a8caf55-ebaa-4f11-8814-c374826fbc16",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-76abbb23-cf2f-4a47-b5a2-902e3d4e74d7",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
