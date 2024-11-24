@@ -6,7 +6,7 @@
 #   is updated
 
 FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
-LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/asset"
+LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/assets/sof-elk.svg"
 
 # if a SKIP_HOOK variable is set to 1, don't do any of this
 # method from here: https://stackoverflow.com/a/33431504/1400064
