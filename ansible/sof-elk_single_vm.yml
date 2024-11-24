@@ -33,16 +33,19 @@
       ansible.builtin.meta: end_host
       when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
 
-    - name: "Get current git branch"
-      command: "git rev-parse --abbrev-ref HEAD"
-      args:
-        chdir: "{{ playbook_dir }}"
-      register: git_branch_result
-      check_mode: no
-      delegate_to: 127.0.0.1
+### DO NOT PUSH THIS COMMENT BLOCK - TESTING USE ONLY
+    # - name: "Get current git branch"
+    #   command: "git rev-parse --abbrev-ref HEAD"
+    #   args:
+    #     chdir: "{{ playbook_dir }}"
+    #   register: git_branch_result
+    #   check_mode: no
+    #   delegate_to: 127.0.0.1
 
     - set_fact:
-        git_branch: "{{ git_branch_result.stdout }}"
+### DO NOT PUSH THIS COMMENT BLOCK - TESTING USE ONLY
+        # git_branch: "{{ git_branch_result.stdout }}"
+        git_branch: "ubuntu-ansible"
 
   roles:
     - sof-elk_base
