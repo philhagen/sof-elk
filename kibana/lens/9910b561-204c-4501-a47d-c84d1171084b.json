@@ -14,7 +14,7 @@
                 "5cb9aa2b-366e-4d25-a5b8-e325b601c811": {
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "Sum of network.packets_vis",
+                  "label": "Total Packets",
                   "operationType": "sum",
                   "params": {
                     "emptyAsNull": true,
