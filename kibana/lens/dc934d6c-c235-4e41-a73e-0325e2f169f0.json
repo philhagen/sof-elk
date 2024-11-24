@@ -9,9 +9,23 @@
             "3408c9ee-cc86-4976-920e-151b03f870c9": {
               "columnOrder": [
                 "6da5d69b-6c9c-4743-bab4-67dbe3ef4207",
+                "026764ed-c35e-4736-8116-243d03183841",
+                "f01192c5-faa9-481e-995d-59e6c50be6e6",
                 "a71a162b-fd7b-4042-aabf-260555d4d700"
               ],
               "columns": {
+                "026764ed-c35e-4736-8116-243d03183841": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "Start",
+                  "operationType": "min",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                },
                 "6da5d69b-6c9c-4743-bab4-67dbe3ef4207": {
                   "customLabel": true,
                   "dataType": "string",
@@ -50,6 +64,18 @@
                   },
                   "scale": "ratio",
                   "sourceField": "___records___"
+                },
+                "f01192c5-faa9-481e-995d-59e6c50be6e6": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "End",
+                  "operationType": "max",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
                 }
               },
               "incompleteColumns": {},
@@ -77,6 +103,17 @@
           },
           {
             "columnId": "a71a162b-fd7b-4042-aabf-260555d4d700",
+            "isMetric": true,
+            "isTransposed": false
+          },
+          {
+            "columnId": "026764ed-c35e-4736-8116-243d03183841",
+            "hidden": false,
+            "isMetric": true,
+            "isTransposed": false
+          },
+          {
+            "columnId": "f01192c5-faa9-481e-995d-59e6c50be6e6",
             "isMetric": true,
             "isTransposed": false
           }
