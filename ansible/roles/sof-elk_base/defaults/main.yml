@@ -3,6 +3,7 @@ base_apt_packages:
   - at
   - bc
   - bind9-dnsutils
+  - btop
   - bzip2
   - cifs-utils
   - cron
@@ -27,6 +28,7 @@ base_apt_packages:
   - python3-dev
   - python3-elasticsearch
   - python3-pip
+  - rsync
   - tcpdump
   - unzip
   - vim

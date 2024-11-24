@@ -42,6 +42,13 @@
   notify: restart sshd
   tags: sof-elk_base
 
+- name: Disable nfcapd service
+  ansible.builtin.systemd:
+    name: nfdump
+    enabled: no
+    state: stopped
+  tags: sof-elk_base
+
 - name: Modify secure_path in /etc/sudoers
   ansible.builtin.lineinfile:
     dest: '/etc/sudoers'
@@ -56,20 +63,37 @@
     password: '$6$572forsofelk$BdARbzeCTR5w.I/Tcjy8S2MxFjU51xEuzv/V30oUuL1n8P.GtOC7sQ2ZIUkoGWITBXnfAZAXzOWDz5djiLLK.1'
     groups: sudo
     append: yes
+    shell: /bin/bash
+    skeleton: /etc/skel
     state: present
   tags: sof-elk_base
 
-- name: Set up elk_user's .bash_profile
+- name: Add to elk_user's .profile
   ansible.builtin.blockinfile:
-    path: '/home/elk_user/.bash_profile'
+    path: '/home/elk_user/.profile'
     owner: elk_user
     group: elk_user
     create: true
     block: |
+      # Run post-login script for sof-elk specific messages
       if [ -f /usr/local/sof-elk/supporting-scripts/elk_user_login.sh ]; then
           . /usr/local/sof-elk/supporting-scripts/elk_user_login.sh
       fi
   tags: sof-elk_base
+
+- Get list of default MOTD banners
+  ansible.builtin.find:
+    path: /etc/update-motd.d/
+    file_type: file
+    patterns: "*"
+  register: motd_files
+
+- Disable default MOTD banners
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: file
+    mode: "0775"
+  with_items: "{{ motd_files.files }}"
 
 - name: Create vim configs if they do not exist
   ansible.builtin.copy:
@@ -108,6 +132,12 @@
 
 - name: Customize login banner
   ansible.builtin.shell: cat /etc/issue.prep | sed -e "s/<%REVNO%>/*Ansible-built* on $( date +%Y-%m-%d )/" > /etc/issue
+  tags: sof-elk_base
+
+- name: Activate the new login banner
+  ansible.builtin.systemd:
+    name: getty@tty1
+    state: restarted
   tags: sof-elk_base
 
 - name: Set up sysctl configuration
