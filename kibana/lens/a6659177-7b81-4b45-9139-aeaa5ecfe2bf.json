@@ -119,7 +119,7 @@
   ],
   "references": [
     {
-      "id": "01b09d68-1aa7-4633-a2b1-b8ebcf2951ac",
+      "id": "title",
       "name": "indexpattern-datasource-layer-54fac45c-376e-4f6a-9d3e-557e6f360e79",
       "type": "index-pattern"
     }

@@ -5,7 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
-          "currentIndexPatternId": "01b09d68-1aa7-4633-a2b1-b8ebcf2951ac",
+          "currentIndexPatternId": "all-records",
           "layers": {
             "dc719770-e092-406d-9810-be793631b4ac": {
               "columnOrder": [
@@ -35,19 +35,19 @@
               },
               "ignoreGlobalFilters": false,
               "incompleteColumns": {},
-              "indexPatternId": "01b09d68-1aa7-4633-a2b1-b8ebcf2951ac",
+              "indexPatternId": "all-records",
               "sampling": 1
             }
           }
         },
         "indexpattern": {
-          "currentIndexPatternId": "01b09d68-1aa7-4633-a2b1-b8ebcf2951ac",
+          "currentIndexPatternId": "all-records",
           "layers": {}
         },
         "textBased": {
           "indexPatternRefs": [
             {
-              "id": "01b09d68-1aa7-4633-a2b1-b8ebcf2951ac",
+              "id": "all-records",
               "timeField": "@timestamp",
               "title": "logstash-*,netflow-*,httpdlog-*"
             }
