@@ -12,3 +12,21 @@
     name: kibana
     state: restarted
   tags: sof-elk_finalize
+
+# first change the current ssh user to the new user
+- name: user | switch current user to elk_user
+  ansible.builtin.set_fact:
+     original_user: "{{ ansible_user }}"
+     ansible_user: "elk_user"
+  tags: sof-elk_finalize
+
+# force remove original_user
+- name: user | remove current user ({{ original_user }}) if it's not "elk_user"
+  become: yes
+  ansible.builtin.user:
+    name: "{{ original_user }}"
+    state: absent
+    remove: yes
+    force: yes
+  when: "original_user != new_user"
+  tags: sof-elk_finalize
