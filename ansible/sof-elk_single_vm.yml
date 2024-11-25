@@ -12,10 +12,6 @@
 
 # TODO: test the full install before shipping
   vars_prompt:
-    - name: disable_root
-      prompt: "Disable root account from native login (default: yes)?"
-      default: yes
-      private: no
     - name: geoip_accountid
       prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
       private: no
