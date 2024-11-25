@@ -5,53 +5,40 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
-          "currentIndexPatternId": "all-records",
           "layers": {
-            "dc719770-e092-406d-9810-be793631b4ac": {
+            "76abbb23-cf2f-4a47-b5a2-902e3d4e74d7": {
               "columnOrder": [
-                "43fe586c-e955-4fef-b55a-76677e05cab8"
+                "662069a6-eb0d-46c6-8c19-0b06eaaac0fb"
               ],
               "columns": {
-                "43fe586c-e955-4fef-b55a-76677e05cab8": {
+                "662069a6-eb0d-46c6-8c19-0b06eaaac0fb": {
                   "customLabel": true,
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "Total Records",
-                  "operationType": "count",
+                  "label": "Total Flows",
+                  "operationType": "sum",
                   "params": {
                     "emptyAsNull": true,
                     "format": {
                       "id": "number",
                       "params": {
-                        "compact": false,
-                        "decimals": 0,
-                        "suffix": ""
+                        "compact": true,
+                        "decimals": 2
                       }
                     }
                   },
                   "scale": "ratio",
-                  "sourceField": "___records___"
+                  "sourceField": "netflow.delta_flow_count_vis"
                 }
               },
-              "ignoreGlobalFilters": false,
-              "incompleteColumns": {},
-              "indexPatternId": "all-records",
-              "sampling": 1
+              "incompleteColumns": {}
             }
           }
         },
         "indexpattern": {
-          "currentIndexPatternId": "all-records",
           "layers": {}
         },
         "textBased": {
-          "indexPatternRefs": [
-            {
-              "id": "all-records",
-              "timeField": "@timestamp",
-              "title": "logstash-*,netflow-*,httpdlog-*"
-            }
-          ],
           "layers": {}
         }
       },
@@ -62,24 +49,28 @@
         "query": ""
       },
       "visualization": {
-        "layerId": "dc719770-e092-406d-9810-be793631b4ac",
+        "layerId": "76abbb23-cf2f-4a47-b5a2-902e3d4e74d7",
         "layerType": "data",
-        "metricAccessor": "43fe586c-e955-4fef-b55a-76677e05cab8"
+        "metricAccessor": "662069a6-eb0d-46c6-8c19-0b06eaaac0fb",
+        "subtitle": "",
+        "titlesTextAlign": "center",
+        "valueFontMode": "fit",
+        "valuesTextAlign": "center"
       }
     },
-    "title": "Total Records",
+    "title": "Total Flows",
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "45a5fedc-2123-4ea6-90fd-7901f8bae75c",
+  "id": "0a8caf55-ebaa-4f11-8814-c374826fbc16",
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "all-records",
-      "name": "indexpattern-datasource-layer-dc719770-e092-406d-9810-be793631b4ac",
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-76abbb23-cf2f-4a47-b5a2-902e3d4e74d7",
       "type": "index-pattern"
     }
   ],

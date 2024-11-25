@@ -6,13 +6,39 @@
       "datasourceStates": {
         "formBased": {
           "layers": {
-            "54fac45c-376e-4f6a-9d3e-557e6f360e79": {
+            "69821b9b-1634-4959-a112-60af2a35fee5": {
               "columnOrder": [
-                "f074eafb-d5ba-4cbe-ad95-67cbd93e71f7",
-                "c7cf411b-ca0a-4d5d-af58-f2810740c562"
+                "4c76580b-c9aa-4c5b-9957-9f8874e70dbc",
+                "dc6046c8-07b8-4505-a84b-f2c30bf3d745"
               ],
               "columns": {
-                "c7cf411b-ca0a-4d5d-af58-f2810740c562": {
+                "4c76580b-c9aa-4c5b-9957-9f8874e70dbc": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Record Count by Index",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "dc6046c8-07b8-4505-a84b-f2c30bf3d745",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 25
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "_index"
+                },
+                "dc6046c8-07b8-4505-a84b-f2c30bf3d745": {
                   "dataType": "number",
                   "isBucketed": false,
                   "label": "Count of records",
@@ -22,32 +48,6 @@
                   },
                   "scale": "ratio",
                   "sourceField": "___records___"
-                },
-                "f074eafb-d5ba-4cbe-ad95-67cbd93e71f7": {
-                  "customLabel": true,
-                  "dataType": "string",
-                  "isBucketed": true,
-                  "label": "Index Summary",
-                  "operationType": "terms",
-                  "params": {
-                    "exclude": [],
-                    "excludeIsRegex": false,
-                    "include": [],
-                    "includeIsRegex": false,
-                    "missingBucket": false,
-                    "orderBy": {
-                      "columnId": "c7cf411b-ca0a-4d5d-af58-f2810740c562",
-                      "type": "column"
-                    },
-                    "orderDirection": "desc",
-                    "otherBucket": true,
-                    "parentFormat": {
-                      "id": "terms"
-                    },
-                    "size": 20
-                  },
-                  "scale": "ordinal",
-                  "sourceField": "_index"
                 }
               },
               "incompleteColumns": {},
@@ -91,16 +91,16 @@
                 }
               ]
             },
-            "layerId": "54fac45c-376e-4f6a-9d3e-557e6f360e79",
+            "layerId": "69821b9b-1634-4959-a112-60af2a35fee5",
             "layerType": "data",
             "legendDisplay": "default",
             "metrics": [
-              "c7cf411b-ca0a-4d5d-af58-f2810740c562"
+              "dc6046c8-07b8-4505-a84b-f2c30bf3d745"
             ],
             "nestedLegend": false,
             "numberDisplay": "percent",
             "primaryGroups": [
-              "f074eafb-d5ba-4cbe-ad95-67cbd93e71f7"
+              "4c76580b-c9aa-4c5b-9957-9f8874e70dbc"
             ],
             "secondaryGroups": []
           }
@@ -112,7 +112,7 @@
     "visualizationType": "lnsPie"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "a6659177-7b81-4b45-9139-aeaa5ecfe2bf",
+  "id": "c59132eb-c58f-4a91-b394-f62b7ec92b40",
   "managed": false,
   "namespaces": [
     "default"
@@ -120,7 +120,7 @@
   "references": [
     {
       "id": "all-records",
-      "name": "indexpattern-datasource-layer-54fac45c-376e-4f6a-9d3e-557e6f360e79",
+      "name": "indexpattern-datasource-layer-69821b9b-1634-4959-a112-60af2a35fee5",
       "type": "index-pattern"
     }
   ],
