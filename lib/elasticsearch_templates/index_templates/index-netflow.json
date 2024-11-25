@@ -74,6 +74,12 @@
           "script": {
             "source": "emit(doc['source.packets'].value + doc['destination.packets'].value);"
           }
+        },
+        "network.pcr": {
+          "type": "long",
+          "script": {
+            "source": "if (doc.containsKey('source.bytes') && doc.containsKey('destination.bytes')) { emit((doc['source.packets'].value - doc['destination.packets'].value) / (doc['source.packets'].value + doc['destination.packets'].value)); }"
+          }
         }
       },
       "properties": {
