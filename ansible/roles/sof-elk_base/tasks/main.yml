@@ -81,19 +81,21 @@
       fi
   tags: sof-elk_base
 
-- Get list of default MOTD banners
+- name: Get list of default MOTD banners
   ansible.builtin.find:
     path: /etc/update-motd.d/
     file_type: file
     patterns: "*"
   register: motd_files
+  tags: sof-elk_base
 
-- Disable default MOTD banners
+- name: Disable default MOTD banners
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: file
-    mode: "0775"
+    mode: "0644"
   with_items: "{{ motd_files.files }}"
+  tags: sof-elk_base
 
 - name: Create vim configs if they do not exist
   ansible.builtin.copy:
