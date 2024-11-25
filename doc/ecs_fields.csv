@@ -716,6 +716,8 @@ rule.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/curre
 server.user.name,,httpdlog,,6100-httpd.conf,,
 server.user.name,,zeek_http,,6201-zeek_http.conf,,
 service.name,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-service.html#field-service-name
+sof-elk.base_index,,all,,1000-preprocess-all.conf,SOF-ELK,
+sof-elk.base_index,,azure,,1809-preprocess-azure.conf,SOF-ELK,
 sof-elk.path,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
 sof-elk.path,,netflow,,2050-netflow.conf,SOF-ELK,
 sof-elk.path,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
