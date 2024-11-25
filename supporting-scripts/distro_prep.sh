@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2022 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
 
@@ -55,13 +55,13 @@ read
 
 echo "updating local git repo clones"
 cd /usr/local/sof-elk/
-git pull --all
+SKIP_HOOK=1 git pull --all
 
 echo "removing old kernels"
-package-cleanup -y --oldkernels --count=1
-echo "cleaning yum caches"
-yum clean all --enablerepo=elk-*
-rm -rf /var/cache/yum
+RUNNING_KERNEL=$( uname -r )
+apt --yes purge $( apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v ${RUNNING_KERNEL} | awk -F/ '{print $1}' )
+echo "cleaning apt caches"
+apt-get clean
 
 echo "cleaning user home directories"
 rm -f ~root/.bash_history
@@ -104,15 +104,15 @@ done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
 
-echo "stopping domain-stats"
-systemctl stop domain-stats
-echo "clearing domain-stats data"
-rm -rf /usr/local/share/domain-stats/[0-9][0-9][0-9]/
-rm -f /usr/local/share/domain-stats/domain-stats.log
-rm -rf /usr/local/share/domain-stats/memocache/
-rm -rf /usr/local/share/domain-stats/__pycache__/
-echo "reloading top 1m for domain-stats from scratch"
-domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain-stats/
+# echo "stopping domain-stats"
+# systemctl stop domain-stats
+# echo "clearing domain-stats data"
+# rm -rf /usr/local/share/domain-stats/[0-9][0-9][0-9]/
+# rm -f /usr/local/share/domain-stats/domain-stats.log
+# rm -rf /usr/local/share/domain-stats/memocache/
+# rm -rf /usr/local/share/domain-stats/__pycache__/
+# echo "reloading top 1m for domain-stats from scratch"
+# domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain-stats/
 
 # echo "stopping elastalert"
 # systemctl stop elastalert
@@ -147,11 +147,6 @@ systemctl stop elasticsearch
 echo "stopping logstash"
 systemctl stop logstash
 
-echo "stopping syslog"
-systemctl stop rsyslog
-echo "clearing existing log files"
-find /var/log -type f -exec rm -f {} \;
-
 echo "clearing SSH Host Keys"
 systemctl stop sshd
 rm -f /etc/ssh/*key*
@@ -159,11 +154,10 @@ rm -f /etc/ssh/*key*
 echo "clearing cron/at content"
 systemctl stop atd
 systemctl stop crond
-rm -f /var/spool/at/.SEQ
-rm -rf /var/spool/at/*
+rm -f /var/spool/cron/atjobs/.SEQ
+rm -rf /var/spool/cron/atjobs/*
 
 echo "clearing mail spools"
-systemctl stop postfix
 rm -f /var/spool/mail/root
 rm -f /var/spool/mail/elk_user
 
