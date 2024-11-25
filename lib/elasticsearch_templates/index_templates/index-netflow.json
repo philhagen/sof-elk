@@ -76,7 +76,7 @@
           }
         },
         "network.pcr": {
-          "type": "long",
+          "type": "double",
           "script": {
             "source": "if (doc.containsKey('source.bytes') && doc.containsKey('destination.bytes')) { emit((doc['source.packets'].value - doc['destination.packets'].value) / (doc['source.packets'].value + doc['destination.packets'].value)); }"
           }
@@ -89,6 +89,9 @@
               "properties": {
                 "ip": {
                   "type": "ip"
+                },
+                "flow_duration": {
+                  "type": "double"
                 }
               }
             }
