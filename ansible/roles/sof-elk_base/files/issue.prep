@@ -6,6 +6,7 @@ SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
          Used in: SANS FOR572: Advanced Network Forensics and Analysis
                   SANS FOR509: Cloud Forensics and Incident Response
                   SANS FOR589: Cybercrime Intelligence
+                  SANS Aviata: Cloud Solo Flight Challenge
 To learn more: http://for572.com/sof-elk-readme
 Revision: <%REVNO%>
 

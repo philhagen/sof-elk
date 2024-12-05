@@ -14,8 +14,6 @@ base_apt_packages:
   - geoipupdate
   - git
   - htop
-#FIXME: maybe not needed  - java-11-openjdk
-#FIXME: maybe not needed  - java-11-openjdk-devel
   - jq
 #FIXME: no idea what this was for  - libffi-devel
   - lsof
@@ -29,6 +27,7 @@ base_apt_packages:
   - python3-elasticsearch
   - python3-pip
   - rsync
+  - screen
   - tcpdump
   - unzip
   - vim
