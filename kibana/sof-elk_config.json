@@ -6,6 +6,7 @@
     "defaultIndex": "logstash",
     "defaultRoute": "/app/dashboards#/view/6d272a20-7319-11e8-9f32-cf7527ac183d",
     "securitySolution:enableNewsFeed": false,
+    "theme:darkMode": "system",
     "securitySolution:ipReputationLinks": "[{ \"name\": \"virustotal.com\", \"url_template\": \"https://www.virustotal.com/gui/search/{{ip}}\" }, { \"name\": \"talosIntelligence.com\", \"url_template\": \"https://talosintelligence.com/reputation_center/lookup?search={{ip}}\" }, { \"name\": \"SANS ISC\", \"url_template\": \"https://isc.sans.edu/ipinfo.html?ip={{ip}}\" }]",
     "discover:rowHeightOption": -1,
     "discover:sampleSize": 5000
