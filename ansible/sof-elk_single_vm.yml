@@ -10,24 +10,49 @@
   vars:
     elastic_stack_version: 8.16.1
 
-# TODO: test the full install before shipping
-  vars_prompt:
-    - name: geoip_accountid
-      prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
-      private: no
-    - name: geoip_licensekey
-      prompt:  "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
-      private: no
-    - name: geoip_config_persist
-      prompt: "Do you want GeoIP account/license data to persist after installation (default: no; leave blank to use legacy GeoIP databases)?"
-      default: no
-      private: no
-
   pre_tasks:
-# TODO: test this logic
+# TODO: test logic of the first pre_task
     - name: Validate host operating system distribution
       ansible.builtin.meta: end_host
       when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
+# TODO: test the full GeoIP install before shipping
+    - name: Determine if installing the latest GeoIP databases is requested
+      ansible.builtin.pause:
+        prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
+      register: latest_geoip
+      no_log: yes
+      run_once: yes
+    - name: Set GeoIP installation fact
+      ansible.builtin.set_fact:
+        install_geoip: "{{ latest_geoip.user_input | default('N') }}"
+      no_log: yes
+      run_once: yes
+    - name: Get GeoIP Account ID
+      ansible.builtin.pause:
+        prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
+      register: input_geoip_accountid
+      no_log: yes
+      run_once: yes
+      when: install_geoip == "Y"
+    - name: Set GeoIP Account ID fact
+      ansible.builtin.set_fact:
+        geoip_accountid: "{{ input_geoip_accountid.user_input }}"
+      no_log: yes
+      run_once: yes
+      when: install_geoip == "Y"
+    - name: Get GeoIP License Key
+      ansible.builtin.pause:
+        prompt: "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
+      register: input_geoip_licensekey
+      no_log: yes
+      run_once: yes
+      when: install_geoip == "Y"
+    - name: Set GeoIP License Key fact
+      ansible.builtin.set_fact:
+        geoip_licensekey: "{{ input_geoip_licensekey.user_input }}"
+      no_log: yes
+      run_once: yes
+      when: install_geoip == "Y"
 
     - name: "Get current git branch"
       command: "git rev-parse --abbrev-ref HEAD"

@@ -266,7 +266,7 @@
     - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
     - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
   tags: sof-elk_base
-  when: geoip_accountid|length == 0
+  when: install_geoip == "N"
   # note: these files were downloaded from https://web.archive.org/web/20191222130401/https://dev.maxmind.com/geoip/geoip2/geolite2/ on 2023-06-20
 
 - name: Install templated GeoIP configuration to perform download
@@ -277,15 +277,9 @@
     group: root
     mode: 0600
   tags: sof-elk_base
-  when: geoip_accountid|length > 0
+  when: install_geoip == "Y"
 
 - name: Install geoip data
   ansible.builtin.command: geoipupdate
   tags: sof-elk_base
-  when: geoip_accountid|length > 0
-
-- name: Remove GeoIP configuration
-  ansible.builtin.file:
-    path: /etc/GeoIP.conf
-    state: absent
-  when: not geoip_config_persist | bool and geoip_accountid|length > 0
+  when: install_geoip == "Y"
