@@ -24,7 +24,7 @@
       run_once: yes
     - name: Set GeoIP installation fact
       ansible.builtin.set_fact:
-        install_geoip: "{{ latest_geoip.user_input | default('N') }}"
+        install_geoip: "{{ latest_geoip.user_input | upper | default('N') }}"
       no_log: yes
       run_once: yes
     - name: Get GeoIP Account ID
