@@ -74,10 +74,6 @@ rm -rf ~root/.local
 rm -rf ~elk_user/.local
 rm -rf ~root/.cache
 rm -rf ~elk_user/.cache
-rm -rf ~root/.config/htop
-rm -rf ~elk_user/.config/htop
-rm -rf ~root/.config/gcloud/logs
-rm -rf ~elk_user/.config/gcloud/logs
 rm -rf ~root/.vim
 rm -rf ~elk_user/.vim
 rm -rf ~root/.viminfo

@@ -40,7 +40,7 @@
           }
         },
         "network.pcr": {
-          "type": "float",
+          "type": "double",
           "script": {
             "source": "if (doc.containsKey('source.bytes') && doc.containsKey('destination.bytes')) { long total_bytes = doc['source.bytes'].value + doc['destination.bytes'].value; if (total_bytes == 0) { emit(0); } else { emit( (float)(doc['source.bytes'].value - doc['destination.bytes'].value) / (float)total_bytes ); } }"
           }
