@@ -39,7 +39,14 @@
     dest: '/etc/ssh/sshd_config'
     regexp: '^UseDNS.*'
     line: 'UseDNS no'
-  notify: restart sshd
+  register: ssh_config
+  tags: sof-elk_base
+
+- name: Restart SSHD
+  ansible.builtin.systemd:
+    name: ssh
+    state: restarted
+  when: ssh_config.changed
   tags: sof-elk_base
 
 - name: Disable nfcapd service

@@ -4,5 +4,7 @@
     name: cerebro
     state: restarted
 
-- name: restart firewalld
-  command: firewall-cmd --reload
+- name: reload firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: reloaded

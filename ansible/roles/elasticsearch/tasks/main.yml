@@ -21,7 +21,6 @@
     owner: root
     group: root
     mode: 0755
-  notify: restart elasticsearch
   tags: elasticsearch
 
 - name: Override Elasticsearch systemd limits
@@ -31,7 +30,7 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart elasticsearch
+  register: elasticsearch_systemd_config
   tags: elasticsearch
 
 - name: Configure Elasticsearch
@@ -41,7 +40,7 @@
     owner: root
     group: elasticsearch
     mode: 0660
-  notify: restart elasticsearch
+  register: elasticsearch_config
   tags: elasticsearch
 
 - name: Run daemon-reload so service can start
@@ -53,4 +52,12 @@
     name: elasticsearch
     enabled: yes
     state: started
+  register: enablestart_elasticsearch
+  tags: elasticsearch
+
+- name: Restart Elasticsearch
+  ansible.builtin.systemd:
+    name: elasticsearch
+    state: restarted
+  when: (not enablestart_elasticsearch) and (elasticsearch_systemd_config.changed or elasticsearch-config.changed)
   tags: elasticsearch

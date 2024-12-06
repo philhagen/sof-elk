@@ -18,7 +18,7 @@
     - logstash-filter-tld
     - logstash-filter-rest
     - logstash-filter-json_encode
-  notify: restart logstash
+  register: logstash_plugins
   tags: sof-elk_logstash
 
 - name: Set Logstash JVM options
@@ -29,7 +29,7 @@
   with_items:
     - { parameter: '-Xms', value: '750m' }
     - { parameter: '-Xss', value: '4m' }
-  notify: restart logstash
+  register: logstash_jvm_config
   tags: sof-elk_logstash
 
 - name: Get list of all configfiles
@@ -46,7 +46,7 @@
     state: link
   with_items:
     - '{{ configfile_results.files }}'
-  notify: restart logstash
+  register: logstash_config_symlinks
   tags: sof-elk_logstash
 
 - name: Configure Logstash
@@ -56,7 +56,7 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart logstash
+  register: logstash_config
   tags: sof-elk_logstash
 
 - name: Start and Enable Logstash service
@@ -64,4 +64,12 @@
     name: logstash
     enabled: yes
     state: started
+  register: enablestart_logstash
+  tags: sof-elk_logstash
+
+- name: Restart Logstash
+  ansible.builtin.systemd:
+    name: logstash
+    state: restarted
+  when: (not enablestart_logstash) and (logstash_plugins.changed or logstash_jvm_config.changed or logstash_config_symlinks.changed or logstash_config.changed)
   tags: sof-elk_logstash

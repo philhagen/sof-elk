@@ -11,7 +11,7 @@
     dest: '/etc/filebeat/filebeat.yml'
     state: link
     force: yes
-  notify: restart filebeat
+  register: filebeat_config
   tags: sof-elk_filebeat
 
 - name: Create filebeat input base directory
@@ -43,7 +43,7 @@
     - gcp
     - gws
     - kubernetes
-  notify: restart filebeat
+  register: filebeat_input_directories
   tags: sof-elk_filebeat
 
 - name: Start and enable Filebeat service
@@ -51,4 +51,12 @@
     name: filebeat
     enabled: yes
     state: started
+  register: enablestart_filebeat
+  tags: sof-elk_filebeat
+
+- name: Restart Filebeat
+  ansible.builtin.systemd:
+    name: filebeat
+    state: restarted
+  when: (not enablestart_filebeat) and (filebeat_config.changed or filebeat_input_directories.changed)
   tags: sof-elk_filebeat

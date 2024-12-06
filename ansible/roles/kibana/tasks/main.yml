@@ -12,7 +12,14 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart kibana
+  register: kibana_config
+  tags: sof-elk_kibana
+
+- name: Restart Kibana
+  ansible.builtin.systemd:
+    name: kibana
+    state: restarted
+  when: kibana_config.changed
   tags: sof-elk_kibana
 
 - name: Open firewall ports
@@ -20,9 +27,16 @@
     port: 5601/tcp
     permanent: yes
     state: enabled
-  notify: restart firewalld
+  register: firewall_port
   tags: sof-elk_kibana
   #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
+
+- name: Restart firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: reloaded
+  when: firewall_port.changed
+  tags: sof-elk_kibana
 
 - name: Enable and start Kibana service
   ansible.builtin.systemd:

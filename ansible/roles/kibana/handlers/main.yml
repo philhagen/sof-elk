@@ -1,8 +1,0 @@
----
-- name: restart firewalld
-  ansible.builtin.command: firewall-cmd --reload
-
-- name: restart kibana
-  ansible.builtin.systemd:
-    name: kibana
-    state: restarted
