@@ -81,6 +81,5 @@
     - aws-cli
     - azure-cli
     - gcp-cli
-# disabled for now, because PS is not yet available for 24.04
-#    - powershell
+    - powershell
     - sof-elk_finalize
