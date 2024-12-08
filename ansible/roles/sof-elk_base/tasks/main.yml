@@ -101,6 +101,8 @@
     path: "{{ item.path }}"
     state: file
     mode: "0644"
+    owner: root
+    group: root
   with_items: "{{ motd_files.files }}"
   tags: sof-elk_base
 
@@ -186,10 +188,10 @@
 - name: Create elk_user's .gitconfig file
   ansible.builtin.file:
     path: /home/elk_user/.gitconfig
+    state: touch
+    mode: 0644
     owner: elk_user
     group: elk_user
-    mode: 0644
-    state: touch
   tags: sof-elk_base
 
 - name: Add SOF-ELK repo clone as a safe directory
@@ -211,9 +213,9 @@
 
 - name: Create required symlinks from git repo
   ansible.builtin.file:
+    state: link
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
-    state: link
   with_items:
     - { src: '/usr/local/sof-elk/supporting-scripts/distro_prep.sh', dest: '/root/distro_prep.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/ls_plugin_update.sh', dest: '/var/lib/dpkg/info/logstash:{{ ubuntu_architecture }}.postinst' }
@@ -247,10 +249,10 @@
 - name: Create geoip database directory
   ansible.builtin.file:
     path: '/usr/local/share/GeoIP'
+    state: directory
+    mode: 0755
     owner: root
     group: root
-    mode: 0755
-    state: directory
   tags: sof-elk_base
 
 - name: Download final versions of old-licensed GeoIP databases

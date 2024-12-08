@@ -41,9 +41,9 @@
 
 - name: Set symlinks for pipeline configuration
   ansible.builtin.file:
+    state: link
     src: '/usr/local/sof-elk/configfiles/{{ item.path | basename }}'
     dest: '/etc/logstash/conf.d/{{ item.path | basename }}'
-    state: link
   with_items:
     - '{{ configfile_results.files }}'
   register: logstash_config_symlinks

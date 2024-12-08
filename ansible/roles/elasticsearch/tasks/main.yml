@@ -9,18 +9,18 @@
   ansible.builtin.file:
     path: /var/lib/elasticsearch
     state: directory
+    mode: 0755
     owner: elasticsearch
     group: elasticsearch
-    mode: 0755
   tags: elasticsearch
 
 - name: Create Elasticsearch systemd override directory
   ansible.builtin.file:
     dest: '/etc/systemd/system/elasticsearch.service.d'
     state: directory
+    mode: 0755
     owner: root
     group: root
-    mode: 0755
   tags: elasticsearch
 
 - name: Override Elasticsearch systemd limits
