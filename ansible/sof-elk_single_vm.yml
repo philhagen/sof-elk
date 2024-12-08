@@ -15,6 +15,9 @@
     - name: Validate host operating system distribution
       ansible.builtin.meta: end_host
       when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
+    - name: Set Ubuntu architecture as needed
+      ansible.builtin.set_fact:
+        ubuntu_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 # TODO: test the full GeoIP install before shipping
     - name: Determine if installing the latest GeoIP databases is requested
       ansible.builtin.pause:
