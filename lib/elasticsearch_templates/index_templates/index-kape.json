@@ -9,6 +9,15 @@
     "mappings-final"
   ],
   "template": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "total_fields": {
+            "limit": 5000
+          }
+        }
+      }
+    },
     "mappings": {
       "properties": {
         "type": {
