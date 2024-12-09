@@ -9,6 +9,16 @@
     "mappings-final"
   ],
   "template": {
+    "settings": {
+      "index": {
+        "number_of_replicas": 0,
+        "mapping": {
+          "total_fields": {
+            "limit": 5000
+          }
+        }
+      }
+    },
     "mappings": {
       "properties": {
         "type": {

@@ -10,6 +10,16 @@
     "mappings-geohash-component_template"
   ],
   "template": {
+    "settings": {
+      "index": {
+        "number_of_replicas": 0,
+        "mapping": { /* only include this if absolutely needed - keep fields to default of 1000 if at all possible! */
+          "total_fields": {
+            "limit": 5000
+          }
+        }
+      }
+    },
     "mappings": {
       "properties": {
         /* place any required field type definitions here */

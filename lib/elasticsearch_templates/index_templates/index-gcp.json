@@ -11,6 +11,11 @@
     "mappings-final"
   ],
   "template": {
+    "settings": {
+      "index": {
+        "number_of_replicas": 0
+      }
+    },
     "mappings": {
       "properties": {
         "type": {

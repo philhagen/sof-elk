@@ -230,7 +230,6 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_update.sh', dest: '/usr/local/sbin/sof-elk_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/kick-aws-logs.sh', dest: '/usr/local/sbin/kick-aws-logs.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update.cron' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/es-index-settings.cron', dest: '/etc/cron.d/es-index-settings.cron' }
     - { src: '/usr/local/sof-elk/supporting-scripts/dhcp-renew-login-screen.sh', dest: '/etc/dhcp/dhclient-exit-hooks.d/dhcp-renew-login-screen.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
