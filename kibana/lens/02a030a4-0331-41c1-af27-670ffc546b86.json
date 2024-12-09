@@ -6,25 +6,24 @@
       "datasourceStates": {
         "formBased": {
           "layers": {
-            "da437122-689b-4dbb-a07d-ad26aa440dc5": {
+            "0ead8c18-9b3d-466c-9423-0f77749ea4ec": {
               "columnOrder": [
-                "37cf07b5-1ccd-4d99-b7b2-f86ee6e86887"
+                "8d00caaa-8c1f-4d09-aea6-b872f5e5fcd5"
               ],
               "columns": {
-                "37cf07b5-1ccd-4d99-b7b2-f86ee6e86887": {
+                "8d00caaa-8c1f-4d09-aea6-b872f5e5fcd5": {
                   "customLabel": true,
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "Syslog Records",
-                  "operationType": "count",
+                  "label": "Total Bytes",
+                  "operationType": "sum",
                   "params": {
                     "emptyAsNull": true
                   },
                   "scale": "ratio",
-                  "sourceField": "___records___"
+                  "sourceField": "network.bytes_vis"
                 }
               },
-              "ignoreGlobalFilters": false,
               "incompleteColumns": {}
             }
           }
@@ -43,24 +42,28 @@
         "query": ""
       },
       "visualization": {
-        "layerId": "da437122-689b-4dbb-a07d-ad26aa440dc5",
+        "layerId": "0ead8c18-9b3d-466c-9423-0f77749ea4ec",
         "layerType": "data",
-        "metricAccessor": "37cf07b5-1ccd-4d99-b7b2-f86ee6e86887"
+        "metricAccessor": "8d00caaa-8c1f-4d09-aea6-b872f5e5fcd5",
+        "subtitle": "",
+        "titlesTextAlign": "center",
+        "valueFontMode": "fit",
+        "valuesTextAlign": "center"
       }
     },
-    "title": "Syslog Count",
+    "title": "Total Bytes",
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "e0a6cb90-a0e0-11ee-a0ee-f991cb8cedce",
+  "id": "02a030a4-0331-41c1-af27-670ffc546b86",
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "logstash",
-      "name": "indexpattern-datasource-layer-da437122-689b-4dbb-a07d-ad26aa440dc5",
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-0ead8c18-9b3d-466c-9423-0f77749ea4ec",
       "type": "index-pattern"
     }
   ],

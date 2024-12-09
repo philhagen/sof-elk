@@ -5,19 +5,18 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
-          "currentIndexPatternId": "httpdlog",
           "layers": {
-            "b2a2be02-3267-4305-b5a0-0bc5f08ded93": {
+            "69821b9b-1634-4959-a112-60af2a35fee5": {
               "columnOrder": [
-                "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c",
-                "b07d9748-214b-4375-8d30-cb0f548e4b45"
+                "4c76580b-c9aa-4c5b-9957-9f8874e70dbc",
+                "dc6046c8-07b8-4505-a84b-f2c30bf3d745"
               ],
               "columns": {
-                "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c": {
+                "4c76580b-c9aa-4c5b-9957-9f8874e70dbc": {
                   "customLabel": true,
                   "dataType": "string",
                   "isBucketed": true,
-                  "label": "HTTP User Agent",
+                  "label": "Record Count by Index",
                   "operationType": "terms",
                   "params": {
                     "exclude": [],
@@ -26,7 +25,7 @@
                     "includeIsRegex": false,
                     "missingBucket": false,
                     "orderBy": {
-                      "columnId": "b07d9748-214b-4375-8d30-cb0f548e4b45",
+                      "columnId": "dc6046c8-07b8-4505-a84b-f2c30bf3d745",
                       "type": "column"
                     },
                     "orderDirection": "desc",
@@ -34,16 +33,15 @@
                     "parentFormat": {
                       "id": "terms"
                     },
-                    "size": 20
+                    "size": 25
                   },
                   "scale": "ordinal",
-                  "sourceField": "user_agent.original.keyword"
+                  "sourceField": "_index"
                 },
-                "b07d9748-214b-4375-8d30-cb0f548e4b45": {
-                  "customLabel": true,
+                "dc6046c8-07b8-4505-a84b-f2c30bf3d745": {
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "Records",
+                  "label": "Count of records",
                   "operationType": "count",
                   "params": {
                     "emptyAsNull": true
@@ -52,24 +50,15 @@
                   "sourceField": "___records___"
                 }
               },
-              "ignoreGlobalFilters": false,
               "incompleteColumns": {},
-              "indexPatternId": "httpdlog"
+              "sampling": 1
             }
           }
         },
         "indexpattern": {
-          "currentIndexPatternId": "httpdlog",
           "layers": {}
         },
         "textBased": {
-          "indexPatternRefs": [
-            {
-              "id": "httpdlog",
-              "timeField": "@timestamp",
-              "title": "httpdlog-*"
-            }
-          ],
           "layers": {}
         }
       },
@@ -80,39 +69,58 @@
         "query": ""
       },
       "visualization": {
-        "columns": [
+        "layers": [
           {
-            "alignment": "right",
-            "columnId": "b07d9748-214b-4375-8d30-cb0f548e4b45"
-          },
-          {
-            "alignment": "left",
-            "columnId": "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c"
+            "allowMultipleMetrics": false,
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": {
+                "type": "categorical"
+              },
+              "paletteId": "eui_amsterdam_color_blind",
+              "specialAssignments": [
+                {
+                  "color": {
+                    "type": "loop"
+                  },
+                  "rule": {
+                    "type": "other"
+                  },
+                  "touched": false
+                }
+              ]
+            },
+            "layerId": "69821b9b-1634-4959-a112-60af2a35fee5",
+            "layerType": "data",
+            "legendDisplay": "default",
+            "metrics": [
+              "dc6046c8-07b8-4505-a84b-f2c30bf3d745"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "primaryGroups": [
+              "4c76580b-c9aa-4c5b-9957-9f8874e70dbc"
+            ],
+            "secondaryGroups": []
           }
         ],
-        "headerRowHeight": "single",
-        "layerId": "b2a2be02-3267-4305-b5a0-0bc5f08ded93",
-        "layerType": "data",
-        "paging": {
-          "enabled": true,
-          "size": 7
-        },
-        "rowHeight": "single"
+        "shape": "donut"
       }
     },
-    "title": "HTTP User Agents",
-    "visualizationType": "lnsDatatable"
+    "title": "Index Summary",
+    "visualizationType": "lnsPie"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "7e0fa019-0905-46a4-9c8d-a3958f0a3d5c",
+  "id": "c59132eb-c58f-4a91-b394-f62b7ec92b40",
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "httpdlog",
-      "name": "indexpattern-datasource-layer-b2a2be02-3267-4305-b5a0-0bc5f08ded93",
+      "id": "all-records",
+      "name": "indexpattern-datasource-layer-69821b9b-1634-4959-a112-60af2a35fee5",
       "type": "index-pattern"
     }
   ],

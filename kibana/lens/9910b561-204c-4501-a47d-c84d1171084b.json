@@ -6,25 +6,31 @@
       "datasourceStates": {
         "formBased": {
           "layers": {
-            "3a1fd463-866a-4801-90dd-d865d18a6034": {
+            "9f9da298-9b72-4070-b815-ea2b9382fd13": {
               "columnOrder": [
-                "3ea89aff-23ca-499b-9d5d-520472888775"
+                "5cb9aa2b-366e-4d25-a5b8-e325b601c811"
               ],
               "columns": {
-                "3ea89aff-23ca-499b-9d5d-520472888775": {
+                "5cb9aa2b-366e-4d25-a5b8-e325b601c811": {
                   "customLabel": true,
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "Eventlog Records",
-                  "operationType": "count",
+                  "label": "Total Packets",
+                  "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "___records___"
+                  "sourceField": "network.packets_vis"
                 }
               },
-              "ignoreGlobalFilters": false,
               "incompleteColumns": {}
             }
           }
@@ -43,24 +49,27 @@
         "query": ""
       },
       "visualization": {
-        "layerId": "3a1fd463-866a-4801-90dd-d865d18a6034",
+        "layerId": "9f9da298-9b72-4070-b815-ea2b9382fd13",
         "layerType": "data",
-        "metricAccessor": "3ea89aff-23ca-499b-9d5d-520472888775"
+        "metricAccessor": "5cb9aa2b-366e-4d25-a5b8-e325b601c811",
+        "titlesTextAlign": "center",
+        "valueFontMode": "fit",
+        "valuesTextAlign": "center"
       }
     },
-    "title": "Eventlog Count",
+    "title": "Total Packets",
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "fe2e44b4-a5c4-41e8-97c0-c64c716d8d67",
+  "id": "9910b561-204c-4501-a47d-c84d1171084b",
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
-      "id": "evtxlogs",
-      "name": "indexpattern-datasource-layer-3a1fd463-866a-4801-90dd-d865d18a6034",
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-9f9da298-9b72-4070-b815-ea2b9382fd13",
       "type": "index-pattern"
     }
   ],

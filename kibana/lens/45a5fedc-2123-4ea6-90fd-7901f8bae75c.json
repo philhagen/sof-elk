@@ -1,0 +1,88 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "all-records",
+          "layers": {
+            "dc719770-e092-406d-9810-be793631b4ac": {
+              "columnOrder": [
+                "43fe586c-e955-4fef-b55a-76677e05cab8"
+              ],
+              "columns": {
+                "43fe586c-e955-4fef-b55a-76677e05cab8": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Total Records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": false,
+                        "decimals": 0,
+                        "suffix": ""
+                      }
+                    }
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "indexPatternId": "all-records",
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "all-records",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "all-records",
+              "timeField": "@timestamp",
+              "title": "logstash-*,netflow-*,httpdlog-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "dc719770-e092-406d-9810-be793631b4ac",
+        "layerType": "data",
+        "metricAccessor": "43fe586c-e955-4fef-b55a-76677e05cab8"
+      }
+    },
+    "title": "Total Records",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "45a5fedc-2123-4ea6-90fd-7901f8bae75c",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "all-records",
+      "name": "indexpattern-datasource-layer-dc719770-e092-406d-9810-be793631b4ac",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

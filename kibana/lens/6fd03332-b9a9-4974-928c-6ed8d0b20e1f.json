@@ -5,34 +5,51 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "httpdlog",
           "layers": {
-            "7b0ee61d-4ef1-4d6a-8c27-b173d54ee45e": {
+            "dced2d11-6e56-4436-b548-9f2d20f368aa": {
               "columnOrder": [
-                "4f670ea9-be9f-4f27-9587-e2be6db42a85"
+                "6eb2a027-4ffc-47b7-8d87-4218c82991d5"
               ],
               "columns": {
-                "4f670ea9-be9f-4f27-9587-e2be6db42a85": {
+                "6eb2a027-4ffc-47b7-8d87-4218c82991d5": {
                   "customLabel": true,
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "HTTPD Records",
+                  "label": " ",
                   "operationType": "count",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "decimals": 0
+                      }
+                    }
                   },
                   "scale": "ratio",
                   "sourceField": "___records___"
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "httpdlog",
+              "sampling": 1
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "httpdlog",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "httpdlog",
+              "timeField": "@timestamp",
+              "title": "httpdlog-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -43,16 +60,16 @@
         "query": ""
       },
       "visualization": {
-        "layerId": "7b0ee61d-4ef1-4d6a-8c27-b173d54ee45e",
+        "layerId": "dced2d11-6e56-4436-b548-9f2d20f368aa",
         "layerType": "data",
-        "metricAccessor": "4f670ea9-be9f-4f27-9587-e2be6db42a85"
+        "metricAccessor": "6eb2a027-4ffc-47b7-8d87-4218c82991d5"
       }
     },
-    "title": "HTTPD Log Count",
+    "title": "HTTPD Record Count",
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "19298b28-0cd8-4a05-b017-ecbb5490fe7e",
+  "id": "6fd03332-b9a9-4974-928c-6ed8d0b20e1f",
   "managed": false,
   "namespaces": [
     "default"
@@ -60,7 +77,7 @@
   "references": [
     {
       "id": "httpdlog",
-      "name": "indexpattern-datasource-layer-7b0ee61d-4ef1-4d6a-8c27-b173d54ee45e",
+      "name": "indexpattern-datasource-layer-dced2d11-6e56-4436-b548-9f2d20f368aa",
       "type": "index-pattern"
     }
   ],
