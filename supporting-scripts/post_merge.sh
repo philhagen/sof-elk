@@ -82,8 +82,8 @@ for deadlink in /etc/cron.d/* ; do
 done
 
 # create the atd sequence file, if not already there
-if [ ! -f /var/spool/at/.SEQ ]; then
-    touch /var/spool/at/.SEQ
+if [ ! -f /var/spool/cron/atjobs/.SEQ ]; then
+    touch /var/spool/cron/atjobs/.SEQ
 fi
 
 # reload all dashboards

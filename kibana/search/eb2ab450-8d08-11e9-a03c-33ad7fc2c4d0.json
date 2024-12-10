@@ -5,7 +5,7 @@
       "winlog.user.name",
       "winlog.event_id",
       "winlog.channel",
-      "winlog.payload_data.Operation"
+      "message"
     ],
     "description": "",
     "grid": {
