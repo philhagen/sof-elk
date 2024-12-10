@@ -1,0 +1,26 @@
+{
+  "index_patterns": [
+    "filesystem-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "mappings": {
+      "runtime": {
+        "filesize_vis": {
+          "type": "long",
+          "script": {
+            "source": "emit(doc['filesize'].value);"
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK"
+  }
+}
