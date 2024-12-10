@@ -8,15 +8,17 @@
       "mappings-string",
       "mappings-final"
     ],
-    "settings": {
-      "index": {
-        "mapping": {
-          "total_fields": {
-            "limit": 5000
+    "template": {
+      "settings": {
+        "index": {
+          "mapping": {
+            "total_fields": {
+              "limit": 5000
+            }
           }
         }
       }
-    },
+    },  
     "_meta": {
       "provider": "SOF-ELK"
     }
