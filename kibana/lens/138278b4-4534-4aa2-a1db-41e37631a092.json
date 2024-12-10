@@ -1,0 +1,69 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "765ebfc1-e38b-45f1-9038-e865463eda93": {
+              "columnOrder": [
+                "7e0e1d44-0118-46ef-a7b0-ceae171b6895"
+              ],
+              "columns": {
+                "7e0e1d44-0118-46ef-a7b0-ceae171b6895": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Bytes",
+                  "operationType": "sum",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "file.size_vis"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "765ebfc1-e38b-45f1-9038-e865463eda93",
+        "layerType": "data",
+        "metricAccessor": "7e0e1d44-0118-46ef-a7b0-ceae171b6895"
+      }
+    },
+    "title": "Total File Size",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "138278b4-4534-4aa2-a1db-41e37631a092",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-765ebfc1-e38b-45f1-9038-e865463eda93",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

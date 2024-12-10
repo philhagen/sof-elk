@@ -1,0 +1,123 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "f0d88dde-2224-44c4-908d-ace8edbf6b62": {
+              "columnOrder": [
+                "0f9c76f7-5e4d-45f9-960e-8e4ae1f6dd1b",
+                "d9dd6c01-8444-4570-816c-78b8cd7a2ede"
+              ],
+              "columns": {
+                "0f9c76f7-5e4d-45f9-960e-8e4ae1f6dd1b": {
+                  "customLabel": true,
+                  "dataType": "boolean",
+                  "isBucketed": true,
+                  "label": "kape.mft.timestomped: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "d9dd6c01-8444-4570-816c-78b8cd7a2ede",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "kape.mft.timestomped"
+                },
+                "d9dd6c01-8444-4570-816c-78b8cd7a2ede": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "f0d88dde-2224-44c4-908d-ace8edbf6b62",
+            "layerType": "data",
+            "legendDisplay": "hide",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
+            "metrics": [
+              "d9dd6c01-8444-4570-816c-78b8cd7a2ede"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "0f9c76f7-5e4d-45f9-960e-8e4ae1f6dd1b"
+            ],
+            "secondaryGroups": [],
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "kibana_palette",
+          "type": "palette"
+        },
+        "shape": "donut"
+      }
+    },
+    "title": "File Timestomping",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "1609e040-f2c5-4034-8d2f-306559dff160",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-f0d88dde-2224-44c4-908d-ace8edbf6b62",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

@@ -1,0 +1,150 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "e0b9e59f-7674-48f8-b65e-1bdfe917417b": {
+              "columnOrder": [
+                "01ac0a39-242f-4191-b91a-35cb2b5d5f0d",
+                "417072fb-6408-41cb-b909-75364019d781",
+                "996cd9cb-af13-4aee-adb2-985c16c1b1d5"
+              ],
+              "columns": {
+                "01ac0a39-242f-4191-b91a-35cb2b5d5f0d": {
+                  "dataType": "boolean",
+                  "isBucketed": true,
+                  "label": "Top 5 values of kape.mft.isads",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "996cd9cb-af13-4aee-adb2-985c16c1b1d5",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "kape.mft.isads"
+                },
+                "417072fb-6408-41cb-b909-75364019d781": {
+                  "customLabel": true,
+                  "dataType": "boolean",
+                  "isBucketed": true,
+                  "label": "kape.mft.hasads: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "996cd9cb-af13-4aee-adb2-985c16c1b1d5",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "kape.mft.hasads"
+                },
+                "996cd9cb-af13-4aee-adb2-985c16c1b1d5": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "e0b9e59f-7674-48f8-b65e-1bdfe917417b",
+            "layerType": "data",
+            "legendDisplay": "hide",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
+            "metrics": [
+              "996cd9cb-af13-4aee-adb2-985c16c1b1d5"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "01ac0a39-242f-4191-b91a-35cb2b5d5f0d",
+              "417072fb-6408-41cb-b909-75364019d781"
+            ],
+            "secondaryGroups": [],
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "kibana_palette",
+          "type": "palette"
+        },
+        "shape": "donut"
+      }
+    },
+    "title": "Alternate Data Streams",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "5666fb7c-3000-43d7-81c5-fad5d982410f",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-e0b9e59f-7674-48f8-b65e-1bdfe917417b",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

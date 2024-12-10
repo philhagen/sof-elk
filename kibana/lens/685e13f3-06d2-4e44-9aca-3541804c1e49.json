@@ -1,0 +1,151 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "598e9ec1-8b60-43a5-9aae-73973cb5833e": {
+              "columnOrder": [
+                "6e42f344-a27c-4461-b0c8-fb02497c650f",
+                "c781277f-ee9e-423b-b900-9bf00db029bc",
+                "9f3a4c77-e2ec-46f7-b0c9-43f43a86368a"
+              ],
+              "columns": {
+                "6e42f344-a27c-4461-b0c8-fb02497c650f": {
+                  "customLabel": true,
+                  "dataType": "boolean",
+                  "isBucketed": true,
+                  "label": "file.attributes.directory: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "9f3a4c77-e2ec-46f7-b0c9-43f43a86368a",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "file.attributes.directory"
+                },
+                "9f3a4c77-e2ec-46f7-b0c9-43f43a86368a": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "c781277f-ee9e-423b-b900-9bf00db029bc": {
+                  "customLabel": true,
+                  "dataType": "boolean",
+                  "isBucketed": true,
+                  "label": "file.attributes.hidden: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "9f3a4c77-e2ec-46f7-b0c9-43f43a86368a",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "file.attributes.hidden"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "598e9ec1-8b60-43a5-9aae-73973cb5833e",
+            "layerType": "data",
+            "legendDisplay": "hide",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
+            "metrics": [
+              "9f3a4c77-e2ec-46f7-b0c9-43f43a86368a"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "6e42f344-a27c-4461-b0c8-fb02497c650f",
+              "c781277f-ee9e-423b-b900-9bf00db029bc"
+            ],
+            "secondaryGroups": [],
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "kibana_palette",
+          "type": "palette"
+        },
+        "shape": "donut"
+      }
+    },
+    "title": "File Metadata",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "685e13f3-06d2-4e44-9aca-3541804c1e49",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-598e9ec1-8b60-43a5-9aae-73973cb5833e",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

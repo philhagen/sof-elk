@@ -1,0 +1,144 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "d0fa95e1-daee-4bfc-825b-a1d96eaa94b6": {
+              "columnOrder": [
+                "24917eb4-4021-4fb3-b7e9-f0976c35ff43",
+                "0be86119-5cf9-4c60-8512-ed8d8d5445e2"
+              ],
+              "columns": {
+                "0be86119-5cf9-4c60-8512-ed8d8d5445e2": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "24917eb4-4021-4fb3-b7e9-f0976c35ff43": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "File Metadata Modified",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "d"
+                  },
+                  "scale": "interval",
+                  "sourceField": "file.stdinfo.mtime"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "0be86119-5cf9-4c60-8512-ed8d8d5445e2"
+            ],
+            "isHistogram": true,
+            "layerId": "d0fa95e1-daee-4bfc-825b-a1d96eaa94b6",
+            "layerType": "data",
+            "palette": {
+              "name": "kibana_palette",
+              "type": "palette"
+            },
+            "seriesType": "line",
+            "simpleView": false,
+            "xAccessor": "24917eb4-4021-4fb3-b7e9-f0976c35ff43",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "0be86119-5cf9-4c60-8512-ed8d8d5445e2"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": false,
+          "maxLines": 1,
+          "position": "right",
+          "shouldTruncate": true,
+          "showSingleSeries": false
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "linear",
+        "yRightScale": "linear",
+        "yTitle": "Count"
+      }
+    },
+    "title": "File Metadata Modification Timeline",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "4b691cc6-ba10-4bbb-9f4e-dc432d194337",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-d0fa95e1-daee-4bfc-825b-a1d96eaa94b6",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
