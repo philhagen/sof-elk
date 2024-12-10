@@ -129,21 +129,28 @@
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
   tags: sof-elk_base
 
-- name: Set up login banner text files
-  ansible.builtin.copy:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
+- name: Set up login banner template
+  ansible.builtin.template:
+    src: 'issue.prep.j2'
+    dest: '/etc/issue.prep'
     owner: root
     group: root
     mode: 0644
-  with_items:
-    - { src: 'issue.prep', dest: '/etc/issue.prep' }
-  register: issue_banner
   tags: sof-elk_base
 
-- name: Customize login banner
-  ansible.builtin.shell: cat /etc/issue.prep | sed -e "s/<%REVNO%>/*Ansible-built* on $( date +%Y-%m-%d ) from branch {{ git_branch }}/" > /etc/issue
-  when: issue_banner.changed
+- name: Set new revision string
+  ansible.builtin.set_fact:
+    revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
+  tags: sof-elk_base
+
+- name: Set up custom login banner
+  ansible.builtin.template:
+    src: 'issue.prep.j2'
+    dest: '/etc/issue'
+    owner: root
+    group: root
+    mode: 0644
+  register: issue_banner
   tags: sof-elk_base
 
 - name: Activate the new login banner
