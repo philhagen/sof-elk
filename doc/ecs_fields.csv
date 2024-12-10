@@ -354,6 +354,7 @@ file.reference_counts,,kape_filesystem,,6501-kape_mftecmd.conf,,
 file.reparse.target,,kape_filesystem,,6501-kape_mftecmd.conf,,
 file.sequence_number,,kape_filesystem,,6501-kape_mftecmd.conf,,
 file.size,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-file.html#field-file-size
+file.size_vis,Runtime field created via Elasticsearch template,N/A,,index-filesystem.conf,SOF-ELK,
 file.size,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-file.html#field-file-size
 file.source_file,,plaso,,6601-plaso.conf,SOF-ELK,
 file.source_file,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,

@@ -11,7 +11,7 @@
   "template": {
     "mappings": {
       "runtime": {
-        "filesize_vis": {
+        "file.size_vis": {
           "type": "long",
           "script": {
             "source": "emit(doc['filesize'].value);"
