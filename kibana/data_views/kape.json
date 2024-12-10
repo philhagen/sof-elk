@@ -3,7 +3,7 @@
     "allowHidden": false,
     "allowNoIndex": false,
     "fieldFormats": {},
-    "id": "kape-*",
+    "id": "kape",
     "name": "kape-*",
     "timeFieldName": "@timestamp",
     "title": "filefolderaccess-*,filesystem-*,lnkfiles-*,evtxlogs-*"
