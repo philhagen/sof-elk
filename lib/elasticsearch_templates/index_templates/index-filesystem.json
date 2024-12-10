@@ -14,7 +14,7 @@
         "file.size_vis": {
           "type": "long",
           "script": {
-            "source": "emit(doc['filesize'].value);"
+            "source": "emit(doc['file.size'].value);"
           }
         }
       }
