@@ -1,0 +1,123 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "b7680481-9dfe-4549-a5f3-036ab3070f0c": {
+              "columnOrder": [
+                "c7775989-8311-454d-9463-1e90da441bd4",
+                "7f475a07-8e1b-4600-b48a-b690426b608f"
+              ],
+              "columns": {
+                "7f475a07-8e1b-4600-b48a-b690426b608f": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "c7775989-8311-454d-9463-1e90da441bd4": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "winlog.computer_name.keyword: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "7f475a07-8e1b-4600-b48a-b690426b608f",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "winlog.computer_name.keyword"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "b7680481-9dfe-4549-a5f3-036ab3070f0c",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
+            "metrics": [
+              "7f475a07-8e1b-4600-b48a-b690426b608f"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "c7775989-8311-454d-9463-1e90da441bd4"
+            ],
+            "secondaryGroups": [],
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "kibana_palette",
+          "type": "palette"
+        },
+        "shape": "pie"
+      }
+    },
+    "title": "Eventlog Computer",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "612ef7a6-e5ed-4b2d-a5db-d9f8cfaeffeb",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "evtxlogs",
+      "name": "indexpattern-datasource-layer-b7680481-9dfe-4549-a5f3-036ab3070f0c",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
