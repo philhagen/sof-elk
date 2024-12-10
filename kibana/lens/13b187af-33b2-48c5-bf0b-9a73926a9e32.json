@@ -7,25 +7,13 @@
         "formBased": {
           "currentIndexPatternId": "lnkfiles",
           "layers": {
-            "cb26bbd5-beb6-4ace-af88-efa22239f339": {
+            "aa980864-a893-402b-8301-dfba0ce89c14": {
               "columnOrder": [
-                "57069773-59c0-4099-9d87-f9b9d3c28355",
-                "4b350748-39e6-41d4-911d-a7192a34b6dd"
+                "015d0a11-0f3b-439c-826c-49474eb5768b",
+                "1839ba06-f6da-406a-b96d-36d83c3fb705"
               ],
               "columns": {
-                "4b350748-39e6-41d4-911d-a7192a34b6dd": {
-                  "customLabel": true,
-                  "dataType": "number",
-                  "isBucketed": false,
-                  "label": "Count",
-                  "operationType": "count",
-                  "params": {
-                    "emptyAsNull": true
-                  },
-                  "scale": "ratio",
-                  "sourceField": "___records___"
-                },
-                "57069773-59c0-4099-9d87-f9b9d3c28355": {
+                "015d0a11-0f3b-439c-826c-49474eb5768b": {
                   "customLabel": true,
                   "dataType": "date",
                   "isBucketed": true,
@@ -38,6 +26,18 @@
                   },
                   "scale": "interval",
                   "sourceField": "file.target.mtime"
+                },
+                "1839ba06-f6da-406a-b96d-36d83c3fb705": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
                 }
               },
               "ignoreGlobalFilters": false,
@@ -88,10 +88,10 @@
         "layers": [
           {
             "accessors": [
-              "4b350748-39e6-41d4-911d-a7192a34b6dd"
+              "1839ba06-f6da-406a-b96d-36d83c3fb705"
             ],
             "isHistogram": true,
-            "layerId": "cb26bbd5-beb6-4ace-af88-efa22239f339",
+            "layerId": "aa980864-a893-402b-8301-dfba0ce89c14",
             "layerType": "data",
             "palette": {
               "name": "kibana_palette",
@@ -99,12 +99,12 @@
             },
             "seriesType": "line",
             "simpleView": false,
-            "xAccessor": "57069773-59c0-4099-9d87-f9b9d3c28355",
+            "xAccessor": "015d0a11-0f3b-439c-826c-49474eb5768b",
             "xScaleType": "time",
             "yConfig": [
               {
                 "axisMode": "left",
-                "forAccessor": "4b350748-39e6-41d4-911d-a7192a34b6dd"
+                "forAccessor": "1839ba06-f6da-406a-b96d-36d83c3fb705"
               }
             ]
           }
@@ -137,7 +137,7 @@
     "visualizationType": "lnsXY"
   },
   "coreMigrationVersion": "8.8.0",
-  "id": "6cf8483f-cb17-45c6-995f-32e4538cd01b",
+  "id": "13b187af-33b2-48c5-bf0b-9a73926a9e32",
   "managed": false,
   "namespaces": [
     "default"
@@ -145,7 +145,7 @@
   "references": [
     {
       "id": "lnkfiles",
-      "name": "indexpattern-datasource-layer-cb26bbd5-beb6-4ace-af88-efa22239f339",
+      "name": "indexpattern-datasource-layer-aa980864-a893-402b-8301-dfba0ce89c14",
       "type": "index-pattern"
     }
   ],
