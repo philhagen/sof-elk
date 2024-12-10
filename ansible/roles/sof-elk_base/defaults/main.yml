@@ -15,7 +15,6 @@ base_apt_packages:
   - git
   - htop
   - jq
-#FIXME: no idea what this was for  - libffi-devel
   - lsof
   - locate
   - logrotate

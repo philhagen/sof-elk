@@ -138,17 +138,17 @@
     mode: 0644
   with_items:
     - { src: 'issue.prep', dest: '/etc/issue.prep' }
+  register: issue_banner
   tags: sof-elk_base
-  ### TODO: add a "register:" here and then "when:" it below
 
 - name: Customize login banner
-  ansible.builtin.shell: cat /etc/issue.prep | sed -e "s/<%REVNO%>/*Ansible-built* on $( date +%Y-%m-%d )/" > /etc/issue
+  ansible.builtin.shell: cat /etc/issue.prep | sed -e "s/<%REVNO%>/*Ansible-built* on $( date +%Y-%m-%d ) from branch {{ git_branch }}/" > /etc/issue
+  when: issue_banner.changed
   tags: sof-elk_base
 
 - name: Activate the new login banner
-  ansible.builtin.systemd:
-    name: getty@tty1
-    state: restarted
+  ansible.builtin.shell: /usr/sbin/agetty --reload
+  when: issue_banner.changed
   tags: sof-elk_base
 
 - name: Set up sysctl configuration
