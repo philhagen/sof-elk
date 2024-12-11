@@ -55,7 +55,7 @@ if [ ! -z ${ingest_dir} ]; then
 fi
 
 echo "The following users are defined in /etc/password.  Press return if this is correct or Ctrl-C to quit."
-awk -F: '$3>=1000 && $3<65000 {print "- "$1}'
+awk -F: '$3>=1000 && $3<65000 {print "- "$1}' /etc/passwd
 read
 
 if [ -d ~elk_user/.ssh/ ]; then
