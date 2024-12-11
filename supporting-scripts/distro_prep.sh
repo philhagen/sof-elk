@@ -40,22 +40,28 @@ git branch
 echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*', 'class/v*', or e.g. 'for123/v*' with  all others removed.)"
 read
 
-curl -s -XGET 'http://localhost:9200/_cat/indices/' | grep -v " \.internal\| \.kibana" | sort
-echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
-read
+indices=$( curl -s -XGET 'http://localhost:9200/_cat/indices/' | grep -v " \.internal\| \.kibana" | sort )
+if [ ! z "${indices}" ]; then
+    echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
+    read
+fi
 
-echo "The following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
-find /logstash/ -mindepth 2 -type d
-read
+ingest_dir=$( find /logstash/ -mindepth 2 -print )
+if [ ! -z ${ingest_dir} ]; then
+    echo "The following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
+    read
+fi
 
 echo "The following users are defined in /etc/password.  Press return if this is correct or Ctrl-C to quit."
 awk -F: '$3>=1000 && $3<65000 {print "- "$1}'
 read
 
 if [ -d ~elk_user/.ssh/ ]; then
-    echo "The following contents are in ~elk_user/.ssh/.  Press return if this is correct or Ctrl-C to quit."
-    find ~elk_user/.ssh/ -print
-    read
+    ssh_dir=$( find ~elk_user/.ssh/ -print )
+    if [ ! -z ${ssh_dir} ]; then
+        echo "The following contents are in ~elk_user/.ssh/.  Press return if this is correct or Ctrl-C to quit."
+        read
+    fi
 fi
 
 echo "updating local git repo clones"
