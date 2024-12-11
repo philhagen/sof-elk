@@ -41,7 +41,7 @@ echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*', 'cl
 read
 
 indices=$( curl -s -XGET 'http://localhost:9200/_cat/indices/' | grep -v " \.internal\| \.kibana" | sort )
-if [ ! z "${indices}" ]; then
+if [ ! -z "${indices}" ]; then
     echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
     read
 fi
