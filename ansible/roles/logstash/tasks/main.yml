@@ -1,9 +1,7 @@
 ---
-# TODO: for some reason this is not working right now
 - name: Install Logstash
   ansible.builtin.apt:
-#    name: logstash={{ elastic_stack_version }}
-    name: logstash
+    name: logstash={{ elastic_stack_version }}
     state: present
   tags: sof-elk_logstash
 

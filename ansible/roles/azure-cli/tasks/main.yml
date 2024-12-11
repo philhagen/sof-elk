@@ -47,6 +47,6 @@
 
 - name: Install Azure packages
   ansible.builtin.apt:
-    name: '{{ azure_apt_packages }}'
+    name: azure-cli
     state: present
   tags: azure-cli

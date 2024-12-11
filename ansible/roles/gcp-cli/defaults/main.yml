@@ -5,5 +5,5 @@
 gcp_gpg_keyring: /usr/share/keyrings/gcp-keyring.gpg
 gcp_armored_keyring: /tmp/gcp-keyring.asc
 
-gcp_apt_packages:
-  - google-cloud-cli
+# this is needed to avoid a python version dependency problem
+gcp_version: 502.0.0-0

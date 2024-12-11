@@ -41,6 +41,6 @@
 
 - name: Install Google Cloud packages
   ansible.builtin.apt:
-    name: '{{ gcp_apt_packages }}'
+    name: google-cloud-cli={{ gcp_version }}
     state: present
   tags: gcp-cli
