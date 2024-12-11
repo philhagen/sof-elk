@@ -6,7 +6,7 @@
   tags: azure-cli
 
 - name: Determine if gpg keyring already exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ azure_cli_gpg_keyring }}"
   register: azure_gpg_keyring_file
   tags: azure-cli

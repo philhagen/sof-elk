@@ -1,5 +1,4 @@
 ---
-
 msprod_gpg_keyring: /usr/share/keyrings/microsoft-prod.gpg
 #TODO: Move the key to a separate role (same key for azure-cli and powershell)
 
@@ -8,3 +7,8 @@ msprod_local_path: /tmp/packages-microsoft-prod.deb
 
 powershell_apt_packages:
   - powershell
+
+powershell_version: 7.4.6
+powershell_archive: powershell-{{ powershell_version }}-linux-arm64.tar.gz
+powershell_installation_directory: /opt/microsoft/powershell/7
+powershell_archive_url: https://github.com/PowerShell/PowerShell/releases/download/v{{ powershell_version }}/{{ powershell_archive }}
