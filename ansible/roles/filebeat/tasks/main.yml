@@ -3,7 +3,7 @@
   ansible.builtin.apt:
     name: filebeat={{ elastic_stack_version }}
     state: present
-  tags: sof-elk_filebeat
+  tags: filebeat
 
 - name: Configure filebeat
   ansible.builtin.file:
@@ -12,7 +12,7 @@
     state: link
     force: yes
   register: filebeat_config
-  tags: sof-elk_filebeat
+  tags: filebeat
 
 - name: Create filebeat input base directory
   ansible.builtin.file:
@@ -44,7 +44,7 @@
     - gws
     - kubernetes
   register: filebeat_input_directories
-  tags: sof-elk_filebeat
+  tags: filebeat
 
 - name: Start and enable Filebeat service
   ansible.builtin.systemd:
@@ -52,11 +52,11 @@
     enabled: yes
     state: started
   register: enablestart_filebeat
-  tags: sof-elk_filebeat
+  tags: filebeat
 
 - name: Restart Filebeat
   ansible.builtin.systemd:
     name: filebeat
     state: restarted
   when: (not enablestart_filebeat) and (filebeat_config.changed or filebeat_input_directories.changed)
-  tags: sof-elk_filebeat
+  tags: filebeat

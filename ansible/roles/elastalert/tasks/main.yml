@@ -3,28 +3,28 @@
   yum:
     name: python3-devel
     state: present
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Create elastalert user
   user:
     name: 'elastalert'
     system: yes
     state: present
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Upgrade pip
   pip:
     name: pip
     executable: pip3
     state: latest
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Install Elastalert and pip dependencies
   pip:
     name: '{{ elastalert_pip_modules }}'
     executable: pip3
     state: present
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Configure Elastalert
   copy:
@@ -33,20 +33,20 @@
     owner: root
     group: root
     mode: 0644
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Create Elastalert index
   command: 'elastalert-create-index --host 127.0.0.1 --port 9200 --no-ssl --no-auth --url-prefix "" --index "elastalert_status" --old-index "" --config /etc/sysconfig/elastalert_config.yml'
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Enable Elastalert service
   systemd:
     name: /usr/local/sof-elk/lib/systemd/elastalert.service
     enabled: yes
-  tags: sof-elk_elastalert
+  tags: elastalert
 
 - name: Start Elastalert service
   systemd:
     name: elastalert
     state: started
-  tags: sof-elk_elastalert
+  tags: elastalert

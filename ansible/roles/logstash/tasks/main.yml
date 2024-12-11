@@ -1,11 +1,10 @@
 ---
 - name: Install Logstash
   ansible.builtin.apt:
-    name: logstash={{ elastic_stack_version }}
+    name: logstash=1:{{ elastic_stack_version }}-1
     state: present
-  tags: sof-elk_logstash
+  tags: logstash
 
-# TODO: this may not be needed since we previously installed the dpkg trigger
 - name: Install Logstash Plugins
   community.general.logstash_plugin:
     name: '{{ item }}'
@@ -17,7 +16,7 @@
     - logstash-filter-rest
     - logstash-filter-json_encode
   register: logstash_plugins
-  tags: sof-elk_logstash
+  tags: logstash
 
 - name: Set Logstash JVM options
   ansible.builtin.lineinfile:
@@ -28,14 +27,14 @@
     - { parameter: '-Xms', value: '750m' }
     - { parameter: '-Xss', value: '4m' }
   register: logstash_jvm_config
-  tags: sof-elk_logstash
+  tags: logstash
 
 - name: Get list of all configfiles
   ansible.builtin.find:
     paths: '/usr/local/sof-elk/configfiles/'
     file_type: file
   register: configfile_results
-  tags: sof-elk_logstash
+  tags: logstash
 
 - name: Set symlinks for pipeline configuration
   ansible.builtin.file:
@@ -45,7 +44,7 @@
   with_items:
     - '{{ configfile_results.files }}'
   register: logstash_config_symlinks
-  tags: sof-elk_logstash
+  tags: logstash
 
 - name: Configure Logstash
   ansible.builtin.copy:
@@ -55,7 +54,7 @@
     group: root
     mode: 0644
   register: logstash_config
-  tags: sof-elk_logstash
+  tags: logstash
 
 - name: Start and Enable Logstash service
   ansible.builtin.systemd:
@@ -63,11 +62,11 @@
     enabled: yes
     state: started
   register: enablestart_logstash
-  tags: sof-elk_logstash
+  tags: logstash
 
 - name: Restart Logstash
   ansible.builtin.systemd:
     name: logstash
     state: restarted
   when: (not enablestart_logstash) and (logstash_plugins.changed or logstash_jvm_config.changed or logstash_config_symlinks.changed or logstash_config.changed)
-  tags: sof-elk_logstash
+  tags: logstash

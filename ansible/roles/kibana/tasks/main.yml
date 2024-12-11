@@ -3,7 +3,7 @@
   apt:
     name: kibana={{ elastic_stack_version }}
     state: present
-  tags: sof-elk_kibana
+  tags: kibana
 
 - name: Configure Kibana
   ansible.builtin.copy:
@@ -13,14 +13,14 @@
     group: root
     mode: 0644
   register: kibana_config
-  tags: sof-elk_kibana
+  tags: kibana
 
 - name: Restart Kibana
   ansible.builtin.systemd:
     name: kibana
     state: restarted
   when: kibana_config.changed
-  tags: sof-elk_kibana
+  tags: kibana
 
 - name: Open firewall ports
   ansible.posix.firewalld:
@@ -28,7 +28,7 @@
     permanent: yes
     state: enabled
   register: firewall_port
-  tags: sof-elk_kibana
+  tags: kibana
   #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
 
 - name: Restart firewalld
@@ -36,11 +36,11 @@
     name: firewalld
     state: reloaded
   when: firewall_port.changed
-  tags: sof-elk_kibana
+  tags: kibana
 
 - name: Enable and start Kibana service
   ansible.builtin.systemd:
     name: kibana
     enabled: yes
     state: started
-  tags: sof-elk_kibana
+  tags: kibana

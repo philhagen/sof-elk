@@ -4,14 +4,14 @@
     name: python-whois
     executable: pip3
     state: present
-  tags: sof-elk_domainstats
+  tags: domainstats
 
 - name: Install domain-stats
   pip:
     name: domain-stats
     executable: pip3
     state: present
-  tags: sof-elk_domainstats
+  tags: domainstats
 
 - name: Install domain-stats configuration
   copy:
@@ -23,14 +23,14 @@
   with_items:
     - 'domain_stats.yaml'
     - 'gunicorn_config.py'
-  tags: sof-elk_domainstats
+  tags: domainstats
 
 - name: Copy freq table to operational location
   copy:
     remote_src: yes
     src: /usr/local/lib/python3.6/site-packages/domain_stats/data/freqtable2018.freq
     dest: /usr/local/share/domain-stats/
-  tags: sof-elk_domainstats
+  tags: domainstats
 
 - name: Install Top 1M records
   shell: domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain-stats/
@@ -39,10 +39,10 @@
   systemd:
     name: /usr/local/sof-elk/lib/systemd/domain-stats.service
     enabled: yes
-  tags: sof-elk_domainstats
+  tags: domainstats
 
 - name: Start domain-stats service
   systemd:
     name: domain-stats
     state: started
-  tags: sof-elk_domainstats
+  tags: domainstats

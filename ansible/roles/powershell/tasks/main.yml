@@ -33,6 +33,6 @@
 
 - name: Install Powershell packages
   ansible.builtin.apt:
-    name: powershell
+    name: '{{ powershell_apt_packages }}'
     state: present
   tags: powershell
