@@ -43,12 +43,14 @@ read
 indices=$( curl -s -XGET 'http://localhost:9200/_cat/indices/' | grep -v " \.internal\| \.kibana" | sort )
 if [ ! -z "${indices}" ]; then
     echo "ACTION REQUIRED!  The data above is still stored in elasticsearch.  Press return if this is correct or Ctrl-C to quit."
+    echo ${indices}
     read
 fi
 
 ingest_dir=$( find /logstash/ -mindepth 2 -print )
 if [ ! -z ${ingest_dir} ]; then
     echo "The following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
+    echo ${ingest_dir}
     read
 fi
 
@@ -60,6 +62,7 @@ if [ -d ~elk_user/.ssh/ ]; then
     ssh_dir=$( find ~elk_user/.ssh/ -print )
     if [ ! -z ${ssh_dir} ]; then
         echo "The following contents are in ~elk_user/.ssh/.  Press return if this is correct or Ctrl-C to quit."
+        echo ${ssh_dir}
         read
     fi
 fi
