@@ -30,7 +30,7 @@
 after reboot:
 - apt install ansible git
 - git clone repo
-- ansible-playbook -i 127.0.0.1, --connection=local /tmp/sof-elk/ansible/sof-elk_single_vm.yml
+- ansible-playbook -K -i 127.0.0.1, --connection=local /tmp/sof-elk/ansible/sof-elk_single_vm.yml
 
 TODO:
 - elk_user homedir not created

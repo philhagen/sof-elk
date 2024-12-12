@@ -186,6 +186,8 @@ if [ $DISKSHRINK -eq 1 ]; then
     done
 fi
 
-echo "updating /etc/issue file for boot message"
-cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
-rm -f /etc/issue.stock
+read -p "Set the pre-login banner version for distribution? (Y/N)" set_distro_version
+if [ ${set_distro_version} == "Y" ]; then
+    echo "updating /etc/issue file for boot message"
+    cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+fi
