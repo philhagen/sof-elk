@@ -8,7 +8,7 @@
   become_user: root
 
   vars:
-    elastic_stack_version: 8.16.1
+    elastic_stack_version: 8.17.0
 
   pre_tasks:
     - name: Validate host operating system distribution
