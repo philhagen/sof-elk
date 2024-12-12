@@ -74,6 +74,10 @@ SKIP_HOOK=1 git pull --all
 echo "removing old kernels"
 RUNNING_KERNEL=$( uname -r )
 apt --yes purge $( apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v ${RUNNING_KERNEL} | awk -F/ '{print $1}' )
+
+echo "removing unnecessary packages"
+apt --yes autoremove
+
 echo "cleaning apt caches"
 apt-get clean
 
@@ -138,9 +142,6 @@ rm -rf /var/lib/filebeat
 
 echo "removing elasticsearch .tasks index"
 curl -s -XDELETE 'http://localhost:9200/.tasks' > /dev/null
-
-echo "stopping network"
-ifconfig ens33 down
 
 echo "stopping elasticsearch"
 systemctl stop elasticsearch

@@ -31,9 +31,9 @@
   ansible.builtin.apt:
     name: '{{ vmware_apt_packages }}'
     state: present
-  tags: sof-elk_base
   # NOTE: the ansible_system_vendor qualifier was added because the other two are "NA" when using VMware on Apple Silicon
-  when: (ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware") or ansible_system_vendor == "Vmware, Inc."
+  when: (ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware") or ansible_system_vendor == "VMware, Inc."
+  tags: sof-elk_base
 
 - name: Disable DNS resolution for SSHD
   ansible.builtin.lineinfile:
