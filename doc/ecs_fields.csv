@@ -78,6 +78,7 @@ azure.auditlogs.operation_name,,azure,,6801-azure.conf,filebeat,https://www.elas
 azure.auditlogs.operation_type,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.activity_display_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
+azure.auditlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result_reason,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.target_resources.*,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_target_resources
@@ -86,8 +87,7 @@ azure.auditlogs.properties.target_resources.modified_properties.*.OldValue,const
 azure.auditlogs.result_description,,azure,,6801-azure.conf,,
 azure.auditlogs.result_signature,,azure,,6801-azure.conf,,
 azure.channel,,azure,,6801-azure.conf,,
-azure.correlation_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html
-azure.correlation_id,,azure,,6801-azure.conf,,
+azure.correlation_id,Copy of azure.auditlogs.properties.correlation_id or azure.signinlogs.properties.correlation_id,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html
 azure.event_data.*,constructed by split_kv_to_fields.rb,azure,,6801-azure.conf,,
 azure.event_data.PrivilegeList,,azure,,6801-azure.conf,,
 azure.event_record_id,,azure,,6801-azure.conf,,
@@ -107,7 +107,7 @@ azure.provider_name,,azure,,6801-azure.conf,,
 azure.resource.id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_resource
 azure.role_location,,azure,,6801-azure.conf,,
 azure.signinlogs.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
-azure.signinlogs.correlation_id,,azure,,6801-azure.conf,,
+azure.signinlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.location,,azure,,6801-azure.conf,,
 azure.signinlogs.operation_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.app_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
