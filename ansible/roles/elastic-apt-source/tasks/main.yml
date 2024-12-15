@@ -15,7 +15,7 @@
 - name: Download armored Elastic GPG key
   ansible.builtin.get_url:
     url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-    dest: "{{ elastic_armored_keyring }}"
+    dest: "{{ elastic_temp_armored_keyring }}"
     mode: 0644
   when: not es_gpg_keyring_file.stat.exists
   register: elastic_armored_gpg_key_downloaded
@@ -26,7 +26,7 @@
     - filebeat
 
 - name: Convert Elastic GPG key to binary form
-  ansible.builtin.command: gpg --dearmor -o {{ elastic_gpg_keyring }} {{ elastic_armored_keyring }}
+  ansible.builtin.command: gpg --dearmor -o {{ elastic_gpg_keyring }} {{ elastic_temp_armored_keyring }}
   when: elastic_armored_gpg_key_downloaded.changed
   tags:
     - elasticsearch
@@ -36,7 +36,7 @@
 
 - name: Remove armored Elastic GPG key
   ansible.builtin.file:
-    path: "{{ elastic_armored_keyring }}"
+    path: "{{ elastic_temp_armored_keyring }}"
     state: absent
   when: elastic_armored_gpg_key_downloaded.changed
   tags:
