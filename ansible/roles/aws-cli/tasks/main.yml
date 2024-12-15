@@ -1,4 +1,7 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 # adapted from https://github.com/xchangebit/ansible-aws-cli
 - name: Install AWS CLI dependencies
   ansible.builtin.apt:

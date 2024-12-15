@@ -1,4 +1,7 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 base_apt_packages:
   - at
   - bc

@@ -1,3 +1,7 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 elastalert_version: '0.2.4'
 elastalert_pip_modules: 
   - setuptools

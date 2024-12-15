@@ -1,11 +1,14 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 - name: Update Timezone to Etc/UTC
   ansible.builtin.copy:
     content: "Etc/UTC\n"
     dest: /etc/timezone
     owner: root
     group: root
-    mode: '0644'
+    mode: 0644
   register: timezone
   tags: sof-elk_base
 
@@ -101,9 +104,9 @@
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: file
-    mode: "0644"
     owner: root
     group: root
+    mode: 0644
   with_items: "{{ motd_files.files }}"
   tags: sof-elk_base
 
@@ -241,7 +244,6 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/dhcp-renew-login-screen.sh', dest: '/etc/dhcp/dhclient-exit-hooks.d/dhcp-renew-login-screen.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
- #   - { src: 'xxx', dest: 'xxx' }
   tags: sof-elk_base
 
 - name: Install default GeoIP configuration
@@ -257,11 +259,12 @@
   ansible.builtin.file:
     path: '/usr/local/share/GeoIP'
     state: directory
-    mode: 0755
     owner: root
     group: root
+    mode: 0755
   tags: sof-elk_base
 
+# note: these files were downloaded from https://web.archive.org/web/20191222130401/https://dev.maxmind.com/geoip/geoip2/geolite2/ on 2023-06-20
 - name: Download final versions of old-licensed GeoIP databases
   ansible.builtin.get_url:
     url: https://lewestech.com/dist/GeoLite2-{{ item.name }}.mmdb
@@ -274,9 +277,8 @@
     - { name: 'ASN', md5: 'c20977100c0a6c0842583ba158e906ec' }
     - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
     - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
-  tags: sof-elk_base
   when: install_geoip == "N"
-  # note: these files were downloaded from https://web.archive.org/web/20191222130401/https://dev.maxmind.com/geoip/geoip2/geolite2/ on 2023-06-20
+  tags: sof-elk_base
 
 - name: Install templated GeoIP configuration to perform download
   ansible.builtin.template:
@@ -285,10 +287,10 @@
     owner: root
     group: root
     mode: 0600
-  tags: sof-elk_base
   when: install_geoip == "Y"
+  tags: sof-elk_base
 
 - name: Install geoip data
   ansible.builtin.command: geoipupdate
-  tags: sof-elk_base
   when: install_geoip == "Y"
+  tags: sof-elk_base

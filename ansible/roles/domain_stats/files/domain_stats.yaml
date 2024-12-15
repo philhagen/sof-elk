@@ -1,3 +1,7 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 cache_browse_limit: 100
 count_rdap_errors: false
 enable_freq_scores: true

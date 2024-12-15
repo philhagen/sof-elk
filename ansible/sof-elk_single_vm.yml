@@ -15,10 +15,12 @@
       ansible.builtin.meta: end_host
       when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
       tags: always
+
     - name: Set Ubuntu architecture as needed
       ansible.builtin.set_fact:
         ubuntu_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
       tags: always
+
     - name: Determine if installing the latest GeoIP databases is requested
       ansible.builtin.pause:
         prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
@@ -26,12 +28,14 @@
       no_log: yes
       run_once: yes
       tags: sof-elk_base
+
     - name: Set GeoIP installation fact
       ansible.builtin.set_fact:
         install_geoip: "{{ latest_geoip.user_input | upper | default('N') }}"
       no_log: yes
       run_once: yes
       tags: sof-elk_base
+
     - name: Get GeoIP Account ID
       ansible.builtin.pause:
         prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
@@ -40,6 +44,7 @@
       run_once: yes
       when: install_geoip == "Y"
       tags: sof-elk_base
+
     - name: Set GeoIP Account ID fact
       ansible.builtin.set_fact:
         geoip_accountid: "{{ input_geoip_accountid.user_input }}"
@@ -47,6 +52,7 @@
       run_once: yes
       when: install_geoip == "Y"
       tags: sof-elk_base
+
     - name: Get GeoIP License Key
       ansible.builtin.pause:
         prompt: "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
@@ -55,6 +61,7 @@
       run_once: yes
       when: install_geoip == "Y"
       tags: sof-elk_base
+
     - name: Set GeoIP License Key fact
       ansible.builtin.set_fact:
         geoip_licensekey: "{{ input_geoip_licensekey.user_input }}"
@@ -77,6 +84,7 @@
   roles:
     - sof-elk_base
     - elastic-apt-source
+    - microsoft-apt-source
     - elasticsearch
 # disabling - may remove.  role not updated for ubuntu
 #    - cerebro

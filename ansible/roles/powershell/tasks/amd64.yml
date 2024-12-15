@@ -26,6 +26,8 @@
   when: msprod_source_package_downloaded.changed
   register: msprod_source
   tags: powershell
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
 
 - name: Update apt sources
   ansible.builtin.command: apt-get update

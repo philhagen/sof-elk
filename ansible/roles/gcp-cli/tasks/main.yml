@@ -1,4 +1,7 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 - name: Determine if GCP gpg keyring already exists
   stat:
     path: "{{ gcp_gpg_keyring }}"
@@ -9,7 +12,7 @@
   ansible.builtin.get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     dest: "{{ gcp_armored_keyring }}"
-    mode: '0644'
+    mode: 0644
   when: not gcp_gpg_keyring_file.stat.exists
   register: armored_gcp_gpg_key_downloaded
   tags: gcp-cli
@@ -30,7 +33,7 @@
   ansible.builtin.template:
     src: google-cloud-sdk.list.j2
     dest: /etc/apt/sources.list.d/google-cloud-sdk.list
-    mode: '0644'
+    mode: 0644
   register: gcp_source
   tags: gcp-cli
 
