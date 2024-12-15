@@ -4,6 +4,3 @@
 
 azure_cli_dependencies:
   - python3-azure-storage
-
-azure_cli_gpg_keyring: /usr/share/keyrings/azure-cli.gpg
-azure_cli_armored_keyring: /tmp/azure-keyring.asc

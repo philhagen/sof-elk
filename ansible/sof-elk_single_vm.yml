@@ -84,6 +84,7 @@
   roles:
     - sof-elk_base
     - elastic-apt-source
+    - microsoft-apt-source
     - elasticsearch
 # disabling - may remove.  role not updated for ubuntu
 #    - cerebro

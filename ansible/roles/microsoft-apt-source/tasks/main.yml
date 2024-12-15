@@ -1,0 +1,45 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: auto
+  tags:
+    - azure-cli
+    - powershell
+
+- name: Download MSProd source package
+  ansible.builtin.get_url:
+    url: "{{ msprod_source_package_url }}"
+    dest: "{{ msprod_temp_local_path }}"
+    mode: 0644
+  when: "'packages-microsoft-prod' not in ansible_facts.packages"
+  register: msprod_source_package_downloaded
+  tags:
+    - azure-cli
+    - powershell
+
+- name: Install MSProd source package
+  ansible.builtin.command: dpkg -i {{ msprod_temp_local_path }}
+  when: msprod_source_package_downloaded.changed
+  tags:
+    - azure-cli
+    - powershell
+
+- name: Remove MSProd source package
+  ansible.builtin.file:
+    path: "{{ msprod_temp_local_path }}"
+    state: absent
+  when: msprod_source_package_downloaded.changed
+  register: msprod_source
+  tags:
+    - azure-cli
+    - powershell
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: msprod_source.changed
+  tags:
+    - azure-cli
+    - powershell
