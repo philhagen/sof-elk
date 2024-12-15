@@ -267,7 +267,7 @@
 # note: these files were downloaded from https://web.archive.org/web/20191222130401/https://dev.maxmind.com/geoip/geoip2/geolite2/ on 2023-06-20
 - name: Download final versions of old-licensed GeoIP databases
   ansible.builtin.get_url:
-    url: https://lewestech.com/dist/GeoLite2-{{ item.name }}.mmdb
+    url: https://sof-elk.com/dist/GeoLite2-{{ item.name }}.mmdb
     dest: /usr/local/share/GeoIP/GeoLite2-{{ item.name }}.mmdb
     checksum: md5:{{ item.md5 }}
     owner: root
