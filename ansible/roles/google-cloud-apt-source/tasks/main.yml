@@ -4,7 +4,7 @@
 
 - name: Determine if Google Cloud gpg keyring already exists
   stat:
-    path: "{{ cloud_gpg_keyring }}"
+    path: "{{ google-cloud_gpg_keyring }}"
   register: google-cloud_gpg_keyring_file
   tags: gcp-cli
 
@@ -18,7 +18,7 @@
   tags: gcp-cli
 
 - name: Convert Google Cloud GPG key to binary form
-  ansible.builtin.command: gpg --dearmor -o {{ cloud_gpg_keyring }} {{ cloud_temp_armored_keyring }}
+  ansible.builtin.command: gpg --dearmor -o {{ google-cloud_gpg_keyring }} {{ cloud_temp_armored_keyring }}
   when: armored_google-cloud_gpg_key_downloaded.changed
   tags: gcp-cli
 
