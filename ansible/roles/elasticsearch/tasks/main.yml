@@ -53,7 +53,7 @@
 - name: Start and Enable Elasticsearch service
   ansible.builtin.systemd:
     name: elasticsearch
-    enabled: yes
+    enabled: true
     state: started
   register: enablestart_elasticsearch
   tags: elasticsearch

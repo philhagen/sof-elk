@@ -28,7 +28,7 @@
 - name: Open firewall ports
   ansible.posix.firewalld:
     port: 5601/tcp
-    permanent: yes
+    permanent: true
     state: enabled
   register: firewall_port
   #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
@@ -44,6 +44,6 @@
 - name: Enable and start Kibana service
   ansible.builtin.systemd:
     name: kibana
-    enabled: yes
+    enabled: true
     state: started
   tags: kibana

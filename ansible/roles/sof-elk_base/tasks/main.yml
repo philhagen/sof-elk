@@ -19,7 +19,7 @@
 
 - name: Update all software packages
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
     name: '*'
     state: latest
   tags: sof-elk_base
@@ -56,7 +56,7 @@
 - name: Disable nfcapd service
   ansible.builtin.systemd:
     name: nfdump
-    enabled: no
+    enabled: false
     state: stopped
   tags: sof-elk_base
 
@@ -73,7 +73,7 @@
     comment: 'SOF-ELK User'
     password: '$6$572forsofelk$BdARbzeCTR5w.I/Tcjy8S2MxFjU51xEuzv/V30oUuL1n8P.GtOC7sQ2ZIUkoGWITBXnfAZAXzOWDz5djiLLK.1'
     groups: sudo
-    append: yes
+    append: true
     shell: /bin/bash
     skeleton: /etc/skel
     state: present
@@ -114,7 +114,7 @@
   ansible.builtin.copy:
     content: ''
     dest: '~{{ item }}/.vimrc'
-    force: no
+    force: false
     owner: '{{ item }}'
     group: '{{ item }}'
     mode: 0600
@@ -193,7 +193,7 @@
     repo: 'https://github.com/philhagen/sof-elk'
     dest: '/usr/local/sof-elk'
     version: "{{ git_branch }}"
-    update: yes
+    update: true
   tags: sof-elk_base
 
 - name: Create elk_user's .gitconfig file

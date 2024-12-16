@@ -24,7 +24,7 @@
   ansible.builtin.unarchive:
     src: "{{ powershell_archive_url }}"
     dest: "{{ powershell_installation_directory }}"
-    remote_src: yes
+    remote_src: true
   when: not powershell_symlink.stat.exists
   tags: powershell
 

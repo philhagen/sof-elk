@@ -25,31 +25,31 @@
       ansible.builtin.pause:
         prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
       register: latest_geoip
-      no_log: yes
-      run_once: yes
+      no_log: true
+      run_once: true
       tags: sof-elk_base
 
     - name: Set GeoIP installation fact
       ansible.builtin.set_fact:
         install_geoip: "{{ latest_geoip.user_input | upper | default('N') }}"
-      no_log: yes
-      run_once: yes
+      no_log: true
+      run_once: true
       tags: sof-elk_base
 
     - name: Get GeoIP Account ID
       ansible.builtin.pause:
         prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
       register: input_geoip_accountid
-      no_log: yes
-      run_once: yes
+      no_log: true
+      run_once: true
       when: install_geoip == "Y"
       tags: sof-elk_base
 
     - name: Set GeoIP Account ID fact
       ansible.builtin.set_fact:
         geoip_accountid: "{{ input_geoip_accountid.user_input }}"
-      no_log: yes
-      run_once: yes
+      no_log: true
+      run_once: true
       when: install_geoip == "Y"
       tags: sof-elk_base
 
@@ -57,25 +57,25 @@
       ansible.builtin.pause:
         prompt: "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
       register: input_geoip_licensekey
-      no_log: yes
-      run_once: yes
+      no_log: true
+      run_once: true
       when: install_geoip == "Y"
       tags: sof-elk_base
 
     - name: Set GeoIP License Key fact
       ansible.builtin.set_fact:
         geoip_licensekey: "{{ input_geoip_licensekey.user_input }}"
-      no_log: yes
-      run_once: yes
+      no_log: true
+      run_once: true
       when: install_geoip == "Y"
       tags: sof-elk_base
 
     - name: "Get current git branch"
-      command: "git rev-parse --abbrev-ref HEAD"
+      ansible.builtin.command: "git rev-parse --abbrev-ref HEAD"
       args:
         chdir: "{{ playbook_dir }}"
       register: git_branch_result
-      check_mode: no
+      check_mode: false
       delegate_to: 127.0.0.1
 
     - set_fact:

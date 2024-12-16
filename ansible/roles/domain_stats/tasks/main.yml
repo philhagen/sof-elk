@@ -30,7 +30,7 @@
 
 - name: Copy freq table to operational location
   copy:
-    remote_src: yes
+    remote_src: true
     src: /usr/local/lib/python3.6/site-packages/domain_stats/data/freqtable2018.freq
     dest: /usr/local/share/domain-stats/
   tags: domainstats
@@ -41,7 +41,7 @@
 - name: Enable domain-stats service
   systemd:
     name: /usr/local/sof-elk/lib/systemd/domain-stats.service
-    enabled: yes
+    enabled: true
   tags: domainstats
 
 - name: Start domain-stats service

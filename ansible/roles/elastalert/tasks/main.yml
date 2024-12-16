@@ -11,7 +11,7 @@
 - name: Create elastalert user
   user:
     name: 'elastalert'
-    system: yes
+    system: true
     state: present
   tags: elastalert
 
@@ -45,7 +45,7 @@
 - name: Enable Elastalert service
   systemd:
     name: /usr/local/sof-elk/lib/systemd/elastalert.service
-    enabled: yes
+    enabled: true
   tags: elastalert
 
 - name: Start Elastalert service

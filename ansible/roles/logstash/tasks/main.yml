@@ -57,7 +57,7 @@
 - name: Start and Enable Logstash service
   ansible.builtin.systemd:
     name: logstash
-    enabled: yes
+    enabled: true
     state: started
   register: enablestart_logstash
   tags: logstash

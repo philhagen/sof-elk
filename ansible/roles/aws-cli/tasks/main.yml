@@ -17,19 +17,19 @@
 
 - name: Download the awscli bundle
   ansible.builtin.get_url:
-    url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-    dest=/tmp/awscli-bundle.zip
-    force=yes
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: /tmp/awscli-bundle.zip
+    force: yes
   when: not aws_binary.stat.exists
   register: aws_cli_download_bundle
   tags: aws-cli
 
 - name: Unarchive the installer
   ansible.builtin.unarchive:
-    src=/tmp/awscli-bundle.zip
-    dest=/tmp
-    copy=no
-    creates=/tmp/aws
+    src: /tmp/awscli-bundle.zip
+    dest: /tmp
+    copy: false
+    creates: /tmp/aws
   when: aws_cli_download_bundle.changed
   register: aws_cli_unarchive_installer
   tags: aws-cli
