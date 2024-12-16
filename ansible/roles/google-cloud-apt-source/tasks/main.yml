@@ -4,8 +4,8 @@
 
 - name: Determine if Google Cloud gpg keyring already exists
   stat:
-    path: "{{ google-cloud_gpg_keyring }}"
-  register: google-cloud_gpg_keyring_file
+    path: "{{ googlecloud_gpg_keyring }}"
+  register: googlecloud_gpg_keyring_file
   tags: gcp-cli
 
 - name: Download armored Google Cloud GPG key
@@ -13,20 +13,20 @@
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     dest: "{{ cloud_temp_armored_keyring }}"
     mode: 0644
-  when: not google-cloud_gpg_keyring_file.stat.exists
-  register: armored_google-cloud_gpg_key_downloaded
+  when: not googlecloud_gpg_keyring_file.stat.exists
+  register: armored_googlecloud_gpg_key_downloaded
   tags: gcp-cli
 
 - name: Convert Google Cloud GPG key to binary form
-  ansible.builtin.command: gpg --dearmor -o {{ google-cloud_gpg_keyring }} {{ cloud_temp_armored_keyring }}
-  when: armored_google-cloud_gpg_key_downloaded.changed
+  ansible.builtin.command: gpg --dearmor -o {{ googlecloud_gpg_keyring }} {{ cloud_temp_armored_keyring }}
+  when: armored_googlecloud_gpg_key_downloaded.changed
   tags: gcp-cli
 
 - name: Remove armored Google Cloud GPG key
   ansible.builtin.file:
     path: "{{ cloud_temp_armored_keyring }}"
     state: absent
-  when: armored_google-cloud_gpg_key_downloaded.changed
+  when: armored_googlecloud_gpg_key_downloaded.changed
   tags: gcp-cli
 
 - name: Install Google Cloud source definition file
@@ -34,10 +34,10 @@
     src: google-cloud-sdk.list.j2
     dest: /etc/apt/sources.list.d/google-cloud-sdk.list
     mode: 0644
-  register: google-cloud_source
+  register: googlecloud_source
   tags: gcp-cli
 
 - name: Update apt sources
   ansible.builtin.command: apt-get update
-  when: google-cloud_source.changed
+  when: googlecloud_source.changed
   tags: gcp-cli
