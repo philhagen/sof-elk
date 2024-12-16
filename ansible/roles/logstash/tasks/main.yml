@@ -10,8 +10,9 @@
 
 - name: Install Logstash Plugins
   community.general.logstash_plugin:
-    name: '{{ logstash_plugins }}'
+    name: '{{ item }}'
     state: present
+  with_items: '{{ logstash_plugins }}'
   register: logstash_plugin_installation
   tags: logstash
 

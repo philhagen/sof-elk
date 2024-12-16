@@ -306,7 +306,7 @@
 
 - name: Install sample evidence files
   ansible.builtin.get_url:
-    url: https://sof-elk.com/dist/{{ item.name }}
+    url: https://sof-elk.com/dist/sample_evidence/{{ item.name }}
     dest: /home/elk_user/sample_evidence/{{ item.name }}
     checksum: md5:{{ item.md5 }}
     owner: elk_user
@@ -314,7 +314,7 @@
     mode: 0644
   with_items:
     - { name: 'lab-2.3_README.txt', md5: '08e7d0e43830edc67d57ad0952b4d37b' }
-    - { name: 'lab-2.3_source_evidence.txt', md5: 'cdb30018bd02639b9a1ab4f5bc10009e' }
+    - { name: 'lab-2.3_source_evidence.zip', md5: 'cdb30018bd02639b9a1ab4f5bc10009e' }
     - { name: 'lab-3.1_README.txt', md5: 'c274173fe8b96c9f2086475534fda364' }
-    - { name: 'lab-3.1_source_evidence.txt', md5: '3996469559f0791c135b8700606b49ff' }
+    - { name: 'lab-3.1_source_evidence.zip', md5: '3996469559f0791c135b8700606b49ff' }
   tags: sof-elk_base
