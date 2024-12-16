@@ -2,5 +2,5 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2024 Lewes Technology Consulting, LLC
 
-# this is needed to avoid a python version dependency problem
-gcp_version: 502.0.0-0
+dependencies:
+  - role: google-cloud-apt-source

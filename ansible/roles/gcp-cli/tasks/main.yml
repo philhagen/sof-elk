@@ -2,46 +2,6 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2024 Lewes Technology Consulting, LLC
 
-- name: Determine if GCP gpg keyring already exists
-  stat:
-    path: "{{ gcp_gpg_keyring }}"
-  register: gcp_gpg_keyring_file
-  tags: gcp-cli
-
-- name: Download armored GCP GPG key
-  ansible.builtin.get_url:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    dest: "{{ gcp_armored_keyring }}"
-    mode: 0644
-  when: not gcp_gpg_keyring_file.stat.exists
-  register: armored_gcp_gpg_key_downloaded
-  tags: gcp-cli
-
-- name: Convert GCP GPG key to binary form
-  ansible.builtin.command: gpg --dearmor -o {{ gcp_gpg_keyring }} {{ gcp_armored_keyring }}
-  when: armored_gcp_gpg_key_downloaded.changed
-  tags: gcp-cli
-
-- name: Remove armored GCP GPG key
-  ansible.builtin.file:
-    path: "{{ gcp_armored_keyring }}"
-    state: absent
-  when: armored_gcp_gpg_key_downloaded.changed
-  tags: gcp-cli
-
-- name: Install GCP source definition file
-  ansible.builtin.template:
-    src: google-cloud-sdk.list.j2
-    dest: /etc/apt/sources.list.d/google-cloud-sdk.list
-    mode: 0644
-  register: gcp_source
-  tags: gcp-cli
-
-- name: Update apt sources
-  ansible.builtin.command: apt-get update
-  when: gcp_source.changed
-  tags: gcp-cli
-
 - name: Install Google Cloud packages
   ansible.builtin.apt:
     name: google-cloud-cli={{ gcp_version }}
