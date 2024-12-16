@@ -4,4 +4,4 @@
 #
 # This runs scripts after a dhcp lease is secured or renewed
 
-kill -HUP $( pidof agetty ) > /dev/null 2>&1
+/usr/sbin/agetty --reload
