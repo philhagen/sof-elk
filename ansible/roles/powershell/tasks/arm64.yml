@@ -1,0 +1,44 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+# See https://learn.microsoft.com/en-us/powershell/scripting/install/install-other-linux?view=powershell-7.4
+
+- name: Determine if PowerShell is already installed
+  ansible.builtin.stat:
+    path: /usr/bin/pwsh
+  register: powershell_symlink
+  tags: powershell
+
+- name: Create PowerShell installation directory
+  ansible.builtin.file:
+    path: "{{ powershell_installation_directory }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  when: not powershell_symlink.stat.exists
+  tags: powershell
+
+- name: Extract PowerShell archive to installation directory
+  ansible.builtin.unarchive:
+    src: "{{ powershell_archive_url }}"
+    dest: "{{ powershell_installation_directory }}"
+    remote_src: true
+  when: not powershell_symlink.stat.exists
+  tags: powershell
+
+- name: Set PowerShell binary execute permissions
+  ansible.builtin.file:
+    path: /opt/microsoft/powershell/7/pwsh
+    mode: 0755
+  when: not powershell_symlink.stat.exists
+  tags: powershell
+
+- name: Create PowerShell symlink
+  ansible.builtin.file:
+    state: link
+    src: /opt/microsoft/powershell/7/pwsh
+    dest: /usr/bin/pwsh
+  when: not powershell_symlink.stat.exists
+  tags: powershell

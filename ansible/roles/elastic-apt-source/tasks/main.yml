@@ -1,0 +1,69 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+- name: Determine if gpg keyring already exists
+  stat:
+    path: "{{ elastic_gpg_keyring }}"
+  register: es_gpg_keyring_file
+  tags:
+    - elasticsearch
+    - logstash
+    - kibana
+    - filebeat
+
+- name: Download armored Elastic GPG key
+  ansible.builtin.get_url:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    dest: "{{ elastic_temp_armored_keyring }}"
+    mode: 0644
+  when: not es_gpg_keyring_file.stat.exists
+  register: elastic_armored_gpg_key_downloaded
+  tags:
+    - elasticsearch
+    - logstash
+    - kibana
+    - filebeat
+
+- name: Convert Elastic GPG key to binary form
+  ansible.builtin.command: gpg --dearmor -o {{ elastic_gpg_keyring }} {{ elastic_temp_armored_keyring }}
+  when: elastic_armored_gpg_key_downloaded.changed
+  tags:
+    - elasticsearch
+    - logstash
+    - kibana
+    - filebeat
+
+- name: Remove armored Elastic GPG key
+  ansible.builtin.file:
+    path: "{{ elastic_temp_armored_keyring }}"
+    state: absent
+  when: elastic_armored_gpg_key_downloaded.changed
+  tags:
+    - elasticsearch
+    - logstash
+    - kibana
+    - filebeat
+
+- name: Install Elastic source definition file
+  ansible.builtin.template:
+    src: elastic-8.x.list.j2
+    dest: /etc/apt/sources.list.d/elastic-8.x.list
+    owner: root
+    group: root
+    mode: 0644
+  register: es_source
+  tags:
+    - elasticsearch
+    - logstash
+    - kibana
+    - filebeat
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: es_source.changed
+  tags:
+    - elasticsearch
+    - logstash
+    - kibana
+    - filebeat

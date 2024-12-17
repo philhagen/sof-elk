@@ -1,0 +1,6 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+googlecloud_gpg_keyring: /usr/share/keyrings/gcp-keyring.gpg
+googlecloud_temp_armored_keyring: /tmp/gcp-keyring.asc

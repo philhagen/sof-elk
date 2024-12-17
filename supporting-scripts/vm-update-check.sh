@@ -9,7 +9,7 @@ VM_UPDATE_STATUS_FILE="/var/run/sof-elk_vm_update"
 
 cd /usr/local/sof-elk/ || exit 1
 
-current_branch=$( git branch )
+current_branch=$( git branch | grep ^\* | awk '{print $2}' )
 
 if ! echo "${current_branch}" | grep -q "^\* public\/v[0-9]\{8\}$" ; then
   # not on a public/community edition branch

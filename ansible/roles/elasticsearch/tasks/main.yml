@@ -1,53 +1,66 @@
 ---
-- name: Install Elasticsearch
-  yum:
-    name: elasticsearch
-    state: present
-  tags: sof-elk_elasticsearch
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
 
-- name: Enable Elasticsearch service
-  systemd:
-    name: elasticsearch
-    enabled: yes
-  tags: sof-elk_elasticsearch
+- name: Install Elasticsearch
+  ansible.builtin.apt:
+    name: elasticsearch={{ elastic_stack_version }}
+    state: present
+  tags: elasticsearch
+
+- name: Set permissions on Elasticsearch data directory
+  ansible.builtin.file:
+    path: /var/lib/elasticsearch
+    state: directory
+    mode: 0755
+    owner: elasticsearch
+    group: elasticsearch
+  tags: elasticsearch
 
 - name: Create Elasticsearch systemd override directory
-  file:
+  ansible.builtin.file:
     dest: '/etc/systemd/system/elasticsearch.service.d'
     state: directory
+    mode: 0755
     owner: root
     group: root
-    mode: 0755
-  notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
+  tags: elasticsearch
 
 - name: Override Elasticsearch systemd limits
-  copy:
+  ansible.builtin.copy:
     src: 'systemd_override.conf'
     dest: '/etc/systemd/system/elasticsearch.service.d/override.conf'
     owner: root
     group: root
     mode: 0644
-  notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
+  register: elasticsearch_systemd_config
+  tags: elasticsearch
 
 - name: Configure Elasticsearch
-  copy:
+  ansible.builtin.copy:
     src: 'elasticsearch.yml'
     dest: '/etc/elasticsearch/elasticsearch.yml'
     owner: root
     group: elasticsearch
     mode: 0660
-  notify: restart elasticsearch
-  tags: sof-elk_elasticsearch
+  register: elasticsearch_config
+  tags: elasticsearch
 
 - name: Run daemon-reload so service can start
-  command: 'systemctl daemon-reload'
-  tags: sof-elk_elasticsearch
+  ansible.builtin.command: 'systemctl daemon-reload'
+  tags: elasticsearch
 
 - name: Start and Enable Elasticsearch service
-  systemd:
+  ansible.builtin.systemd:
     name: elasticsearch
-    enabled: yes
+    enabled: true
     state: started
-  tags: sof-elk_elasticsearch
+  register: enablestart_elasticsearch
+  tags: elasticsearch
+
+- name: Restart Elasticsearch
+  ansible.builtin.systemd:
+    name: elasticsearch
+    state: restarted
+  when: (not enablestart_elasticsearch) and (elasticsearch_systemd_config.changed or elasticsearch-config.changed)
+  tags: elasticsearch

@@ -1,2 +1,5 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 cerebro_rpm_url: 'https://github.com/lmenezes/cerebro/releases/download/v0.8.3/cerebro-0.8.3-1.noarch.rpm'

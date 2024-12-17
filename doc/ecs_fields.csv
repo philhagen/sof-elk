@@ -78,6 +78,7 @@ azure.auditlogs.operation_name,,azure,,6801-azure.conf,filebeat,https://www.elas
 azure.auditlogs.operation_type,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.activity_display_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
+azure.auditlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result_reason,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.target_resources.*,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_target_resources
@@ -86,8 +87,7 @@ azure.auditlogs.properties.target_resources.modified_properties.*.OldValue,const
 azure.auditlogs.result_description,,azure,,6801-azure.conf,,
 azure.auditlogs.result_signature,,azure,,6801-azure.conf,,
 azure.channel,,azure,,6801-azure.conf,,
-azure.correlation_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html
-azure.correlation_id,,azure,,6801-azure.conf,,
+azure.correlation_id,Copy of azure.auditlogs.properties.correlation_id or azure.signinlogs.properties.correlation_id,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html
 azure.event_data.*,constructed by split_kv_to_fields.rb,azure,,6801-azure.conf,,
 azure.event_data.PrivilegeList,,azure,,6801-azure.conf,,
 azure.event_record_id,,azure,,6801-azure.conf,,
@@ -107,7 +107,7 @@ azure.provider_name,,azure,,6801-azure.conf,,
 azure.resource.id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_resource
 azure.role_location,,azure,,6801-azure.conf,,
 azure.signinlogs.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
-azure.signinlogs.correlation_id,,azure,,6801-azure.conf,,
+azure.signinlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.location,,azure,,6801-azure.conf,,
 azure.signinlogs.operation_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.app_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
@@ -193,7 +193,8 @@ destination.bytes,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en
 destination.bytes,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-bytes
 destination.bytes,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-bytes
 destination.bytes,,aws,,6901-aws.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-bytes
-destination.bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+destination.bytes_vis,Copy of destination_bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+destination.bytes_vis,Copy of destination_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 destination.domain,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-domain
 destination.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
 destination.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-geo.html#field-geo-city-name
@@ -228,7 +229,8 @@ destination.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/guide/en/
 destination.netmask,,netflow,,2050-netflow.conf,,
 destination.packets,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-packets
 destination.packets,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-packets
-destination.packets_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+destination.packets_vis,Copy of destination.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+destination.packets_vis,Copy of destination.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 destination.port,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-port
 destination.port,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-port
 destination.port,,syslog,,5016-sshd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-destination.html#field-destination-port
@@ -352,6 +354,7 @@ file.reference_counts,,kape_filesystem,,6501-kape_mftecmd.conf,,
 file.reparse.target,,kape_filesystem,,6501-kape_mftecmd.conf,,
 file.sequence_number,,kape_filesystem,,6501-kape_mftecmd.conf,,
 file.size,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-file.html#field-file-size
+file.size_vis,Runtime field created via Elasticsearch template,N/A,,index-filesystem.conf,SOF-ELK,
 file.size,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-file.html#field-file-size
 file.source_file,,plaso,,6601-plaso.conf,SOF-ELK,
 file.source_file,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
@@ -541,7 +544,8 @@ message,,all,,,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-base.html#fie
 netflow.connection_sum_duration_seconds,,netflow,,2050-netflow.conf,,
 netflow.delta_flow_count,,netflow,,2050-netflow.conf,,
 netflow.delta_flow_count,,zeek_conn,,2051-zeek_conn-netflow.conf,,
-netflow.delta_flow_count.vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 netflow.engine_id,,netflow,,2050-netflow.conf,,
 netflow.engine_type,,netflow,,2050-netflow.conf,,
 netflow.exporter.address,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-netflow.html
@@ -584,9 +588,10 @@ network.iana_number,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/guide/en/ecs/
 network.missed_bytes,,netflow,,2050-netflow.conf,,
 network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
-network.missed_bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+network.missed_bytes_vis,Copy of network.missed_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 network.packets,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.packets_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+network.pcr,Producer/consumer ratio; Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.subnetwork.id,,netflow,,2050-netflow.conf,,
 network.subnetwork.name,,netflow,,2050-netflow.conf,,
 network.tcp_flags,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,,
@@ -716,6 +721,8 @@ rule.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/curre
 server.user.name,,httpdlog,,6100-httpd.conf,,
 server.user.name,,zeek_http,,6201-zeek_http.conf,,
 service.name,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-service.html#field-service-name
+sof-elk.base_index,,all,,1000-preprocess-all.conf,SOF-ELK,
+sof-elk.base_index,,azure,,1809-preprocess-azure.conf,SOF-ELK,
 sof-elk.path,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
 sof-elk.path,,netflow,,2050-netflow.conf,SOF-ELK,
 sof-elk.path,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
@@ -734,7 +741,8 @@ source.bytes,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/guide/en/ecs
 source.bytes,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-bytes
 source.bytes,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-bytes
 source.bytes,,aws,,6901-aws.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-bytes
-source.bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+source.bytes_vis,Copy of source.bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+source.bytes_vis,Copy of source.bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 source.domain,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-domain
 source.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
 source.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-geo.html#field-geo-city-name
@@ -776,7 +784,8 @@ source.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/guide/en/ecs/c
 source.netmask,,netflow,,2050-netflow.conf,,
 source.packets,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-packets
 source.packets,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-packets
-source.packets_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+source.packets_vis,Copy of source.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+source.packets_vis,Copy of source.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 source.port,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-port
 source.port,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-port
 source.port,,syslog,,5016-sshd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-source.html#field-source-port

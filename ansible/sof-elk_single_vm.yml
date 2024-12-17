@@ -1,55 +1,100 @@
 ---
 # This playbook configures a single-instance SOF-ELK(R) system
 
-- name: Run all preload steps required for a SOF-ELK system
+- name: Run all preload steps required for a SOF-ELK(R) system
   hosts: all
+  become: true
   become_method: sudo
   become_user: root
 
+  vars:
+    elastic_stack_version: 8.17.0
+
   pre_tasks:
+    - name: Validate host operating system distribution
+      ansible.builtin.meta: end_host
+      when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
+      tags: always
+
+    - name: Set Ubuntu architecture as needed
+      ansible.builtin.set_fact:
+        ubuntu_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+      tags: always
+
+    - name: Determine if installing the latest GeoIP databases is requested
+      ansible.builtin.pause:
+        prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
+      register: latest_geoip
+      no_log: true
+      run_once: true
+      tags: sof-elk_base
+
+    - name: Set GeoIP installation fact
+      ansible.builtin.set_fact:
+        install_geoip: "{{ latest_geoip.user_input | upper | default('N') }}"
+      no_log: true
+      run_once: true
+      tags: sof-elk_base
+
+    - name: Get GeoIP Account ID
+      ansible.builtin.pause:
+        prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
+      register: input_geoip_accountid
+      no_log: true
+      run_once: true
+      when: install_geoip == "Y"
+      tags: sof-elk_base
+
+    - name: Set GeoIP Account ID fact
+      ansible.builtin.set_fact:
+        geoip_accountid: "{{ input_geoip_accountid.user_input }}"
+      no_log: true
+      run_once: true
+      when: install_geoip == "Y"
+      tags: sof-elk_base
+
+    - name: Get GeoIP License Key
+      ansible.builtin.pause:
+        prompt: "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
+      register: input_geoip_licensekey
+      no_log: true
+      run_once: true
+      when: install_geoip == "Y"
+      tags: sof-elk_base
+
+    - name: Set GeoIP License Key fact
+      ansible.builtin.set_fact:
+        geoip_licensekey: "{{ input_geoip_licensekey.user_input }}"
+      no_log: true
+      run_once: true
+      when: install_geoip == "Y"
+      tags: sof-elk_base
+
     - name: "Get current git branch"
-      command: "git rev-parse --abbrev-ref HEAD"
+      ansible.builtin.command: "git rev-parse --abbrev-ref HEAD"
       args:
         chdir: "{{ playbook_dir }}"
       register: git_branch_result
-      check_mode: no
+      check_mode: false
       delegate_to: 127.0.0.1
+
     - set_fact:
         git_branch: "{{ git_branch_result.stdout }}"
 
-  vars_prompt:
-    - name: disable_root
-      prompt: "Disable root account from native login (default: yes)?"
-      default: yes
-      private: no
-    - name: geoip_accountid
-      prompt: "Enter GeoIP Account ID (leave this and next two blank to skip GeoIP installation)"
-      private: no
-    - name: geoip_licensekey
-      prompt:  "Enter GeoIP License Key (new 3.x+ format)"
-      private: no
-    - name: geoip_config_persist
-      prompt: "Do you want GeoIP account/license data to persist after installation (default: no)?"
-      default: no
-      private: no
-
   roles:
-    - epel_repo
-    - rpmfusion_repo
-    - elastic_repo
-    - ivs_repo
     - sof-elk_base
     - elasticsearch
-    - cerebro
+# disabling - may remove.  role not updated for ubuntu
+#    - cerebro
     - logstash
     - filebeat
     - kibana
 # disabling this until elastalert2 is usable
 #    - elastalert
-    - domain-stats
+# disabling for now
+#    - domain-stats
     - aws-cli
-    - azure-cli
     - gcp-cli
+    - azure-cli
     - powershell
-
     - sof-elk_finalize

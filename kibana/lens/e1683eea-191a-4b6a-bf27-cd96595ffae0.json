@@ -6,6 +6,19 @@
       "datasourceStates": {
         "formBased": {
           "layers": {
+<<<<<<<< HEAD:kibana/lens/9910b561-204c-4501-a47d-c84d1171084b.json
+            "9f9da298-9b72-4070-b815-ea2b9382fd13": {
+              "columnOrder": [
+                "5cb9aa2b-366e-4d25-a5b8-e325b601c811"
+              ],
+              "columns": {
+                "5cb9aa2b-366e-4d25-a5b8-e325b601c811": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Total Packets",
+                  "operationType": "sum",
+========
             "21d6e708-8466-49b2-8314-8f512b717bd6": {
               "columnOrder": [
                 "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
@@ -17,22 +30,32 @@
                   "isBucketed": false,
                   "label": " ",
                   "operationType": "count",
+>>>>>>>> public/v20241217:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
                   "params": {
                     "emptyAsNull": true,
                     "format": {
                       "id": "number",
                       "params": {
+<<<<<<<< HEAD:kibana/lens/9910b561-204c-4501-a47d-c84d1171084b.json
+                        "compact": true,
+                        "decimals": 2
+========
                         "decimals": 0
+>>>>>>>> public/v20241217:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
                       }
                     }
                   },
                   "scale": "ratio",
-                  "sourceField": "___records___"
+                  "sourceField": "network.packets_vis"
                 }
               },
+<<<<<<<< HEAD:kibana/lens/9910b561-204c-4501-a47d-c84d1171084b.json
+              "incompleteColumns": {}
+========
               "ignoreGlobalFilters": false,
               "incompleteColumns": {},
               "sampling": 1
+>>>>>>>> public/v20241217:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
             }
           }
         },
@@ -50,6 +73,21 @@
         "query": ""
       },
       "visualization": {
+<<<<<<<< HEAD:kibana/lens/9910b561-204c-4501-a47d-c84d1171084b.json
+        "layerId": "9f9da298-9b72-4070-b815-ea2b9382fd13",
+        "layerType": "data",
+        "metricAccessor": "5cb9aa2b-366e-4d25-a5b8-e325b601c811",
+        "titlesTextAlign": "center",
+        "valueFontMode": "fit",
+        "valuesTextAlign": "center"
+      }
+    },
+    "title": "Total Packets",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9910b561-204c-4501-a47d-c84d1171084b",
+========
         "layerId": "21d6e708-8466-49b2-8314-8f512b717bd6",
         "layerType": "data",
         "metricAccessor": "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
@@ -60,14 +98,20 @@
   },
   "coreMigrationVersion": "8.8.0",
   "id": "e1683eea-191a-4b6a-bf27-cd96595ffae0",
+>>>>>>>> public/v20241217:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
+<<<<<<<< HEAD:kibana/lens/9910b561-204c-4501-a47d-c84d1171084b.json
+      "id": "netflow",
+      "name": "indexpattern-datasource-layer-9f9da298-9b72-4070-b815-ea2b9382fd13",
+========
       "id": "logstash",
       "name": "indexpattern-datasource-layer-21d6e708-8466-49b2-8314-8f512b717bd6",
+>>>>>>>> public/v20241217:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
       "type": "index-pattern"
     }
   ],

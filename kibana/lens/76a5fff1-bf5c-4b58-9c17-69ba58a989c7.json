@@ -1,0 +1,124 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "896a3579-86c9-4b83-8289-495d7cd233dc": {
+              "columnOrder": [
+                "55c804e9-b447-48dd-a6fb-b95a32c96d69",
+                "957574b4-15da-4d30-9378-42c0fdcdd23c"
+              ],
+              "columns": {
+                "55c804e9-b447-48dd-a6fb-b95a32c96d69": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "winlog.channel.keyword: Descending",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": true,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "957574b4-15da-4d30-9378-42c0fdcdd23c",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "winlog.channel.keyword"
+                },
+                "957574b4-15da-4d30-9378-42c0fdcdd23c": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "hide",
+            "emptySizeRatio": 0.3,
+            "layerId": "896a3579-86c9-4b83-8289-495d7cd233dc",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "legendMaxLines": 1,
+            "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
+            "metrics": [
+              "957574b4-15da-4d30-9378-42c0fdcdd23c"
+            ],
+            "nestedLegend": false,
+            "numberDisplay": "percent",
+            "percentDecimals": 2,
+            "primaryGroups": [
+              "55c804e9-b447-48dd-a6fb-b95a32c96d69"
+            ],
+            "secondaryGroups": [],
+            "truncateLegend": true
+          }
+        ],
+        "palette": {
+          "name": "kibana_palette",
+          "type": "palette"
+        },
+        "shape": "pie"
+      }
+    },
+    "title": "Eventlog Channel",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "76a5fff1-bf5c-4b58-9c17-69ba58a989c7",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "evtxlogs",
+      "name": "indexpattern-datasource-layer-896a3579-86c9-4b83-8289-495d7cd233dc",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

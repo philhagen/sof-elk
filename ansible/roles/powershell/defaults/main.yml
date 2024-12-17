@@ -1,7 +1,13 @@
 ---
-msprod_repofile_path: 'microsoft-com-prod'
-msprod_repo_baseurl: 'https://packages.microsoft.com/rhel/7/prod/'
-msprod_repo_gpg_key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
 
-powershell_yum_packages:
+# x86 uses apt install
+powershell_apt_packages:
   - powershell
+
+# arm uses .tar.gz install.  (related; WHY, MICROSOFT, WHY?!??!?!?)
+powershell_version: 7.4.6
+powershell_archive: powershell-{{ powershell_version }}-linux-arm64.tar.gz
+powershell_installation_directory: /opt/microsoft/powershell/7
+powershell_archive_url: https://github.com/PowerShell/PowerShell/releases/download/v{{ powershell_version }}/{{ powershell_archive }}

@@ -1,32 +1,9 @@
 ---
-- name: Install pip packages
-  pip:
-    name: '{{ gcp_pip_modules }}'
-    executable: pip3
-    state: present
-  tags: gcp-cli
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
 
-- name: Add Google Cloud Repository
-  yum_repository:
-    file: '{{ gcp_repofile_path }}'
-    name: 'gcp-cli'
-    description: 'Google Cloud repository'
-    baseurl: '{{ gcp_repo_baseurl }}'
-    gpgcheck: yes
-    gpgkey: '{{ gcp_repo_gpg_key_url }}'
-    enabled: yes
-  register: yum_repo_installed
-  tags: gcp-cli
-
-- name: Import Google Cloud GPG key
-  rpm_key:
-    key: '{{ item }}'
-    state: present
-  with_items: '{{ gcp_repo_gpg_key_url }}'
-  tags: gcp-cli
-
-- name: Install Google Cloud RPMs
-  yum:
-    name: '{{ gcp_yum_packages }}'
+- name: Install Google Cloud packages
+  ansible.builtin.apt:
+    name: google-cloud-cli={{ gcp_version }}
     state: present
   tags: gcp-cli

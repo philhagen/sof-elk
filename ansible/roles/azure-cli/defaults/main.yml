@@ -1,10 +1,6 @@
 ---
-azure_pip_modules:
-  - azure-storage-blob
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
 
-azure_repofile_path: 'azure'
-azure_repo_baseurl: 'https://packages.microsoft.com/yumrepos/azure-cli'
-azure_repo_gpg_key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
-
-azure_yum_packages:
-  - azure-cli
+azure_cli_dependencies:
+  - python3-azure-storage

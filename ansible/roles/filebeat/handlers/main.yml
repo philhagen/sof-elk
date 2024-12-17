@@ -1,5 +1,0 @@
----
-- name: restart filebeat
-  systemd:
-    name: filebeat
-    state: restarted

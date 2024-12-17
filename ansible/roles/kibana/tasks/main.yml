@@ -1,32 +1,49 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 - name: Install Kibana
-  yum:
-    name: kibana
+  apt:
+    name: kibana={{ elastic_stack_version }}
     state: present
-  tags: sof-elk_kibana
+  tags: kibana
 
 - name: Configure Kibana
-  copy:
+  ansible.builtin.copy:
     src: 'kibana.yml'
     dest: '/etc/kibana/kibana.yml'
     owner: root
     group: root
     mode: 0644
-  notify: restart kibana
-  tags: sof-elk_kibana
+  register: kibana_config
+  tags: kibana
+
+- name: Restart Kibana
+  ansible.builtin.systemd:
+    name: kibana
+    state: restarted
+  when: kibana_config.changed
+  tags: kibana
 
 - name: Open firewall ports
-  firewalld:
+  ansible.posix.firewalld:
     port: 5601/tcp
-    permanent: yes
+    permanent: true
     state: enabled
-  notify: restart firewalld
-  tags: sof-elk_kibana
+  register: firewall_port
   #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
+  tags: kibana
+
+- name: Restart firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: reloaded
+  when: firewall_port.changed
+  tags: kibana
 
 - name: Enable and start Kibana service
-  systemd:
+  ansible.builtin.systemd:
     name: kibana
-    enabled: yes
+    enabled: true
     state: started
-  tags: sof-elk_kibana
+  tags: kibana

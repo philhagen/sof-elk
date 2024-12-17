@@ -1,0 +1,6 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+msprod_source_package_url: https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb
+msprod_temp_local_path: /tmp/packages-microsoft-prod.deb

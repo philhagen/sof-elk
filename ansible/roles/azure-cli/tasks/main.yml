@@ -1,31 +1,28 @@
 ---
-- name: Install pip packages
-  pip:
-    name: '{{ azure_pip_modules }}'
-    executable: pip3
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+- name: Install Azure CLI dependencies
+  ansible.builtin.apt:
+    name: '{{ azure_cli_dependencies }}'
     state: present
   tags: azure-cli
 
-- name: Add Azure Repository
-  yum_repository:
-    file: '{{ azure_repofile_path }}'
-    name: 'azure-cli'
-    description: 'Azure CLI repository'
-    baseurl: '{{ azure_repo_baseurl }}'
-    gpgcheck: yes
-    gpgkey: '{{ azure_repo_gpg_key_url }}'
-    enabled: yes
-  register: yum_repo_installed
+- name: Install Microsoft Azure source definition file
+  ansible.builtin.template:
+    src: azure-cli.sources.j2
+    dest: /etc/apt/sources.list.d/azure-cli.sources
+    mode: 0644
+  register: azure_source
   tags: azure-cli
 
-- name: Import Azure GPG key
-  rpm_key:
-    key: '{{ azure_repo_gpg_key_url }}'
-    state: present
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: azure_source.changed
   tags: azure-cli
 
-- name: Install Azure RPMs
-  yum:
-    name: '{{ azure_yum_packages }}'
+- name: Install Azure packages
+  ansible.builtin.apt:
+    name: azure-cli
     state: present
   tags: azure-cli

@@ -1,0 +1,16 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+logstash_plugins:
+  - logstash-input-relp
+  - logstash-input-google_pubsub
+  - logstash-filter-tld
+  - logstash-filter-rest
+  - logstash-filter-json_encode
+
+gcp_gpg_keyring: /usr/share/keyrings/gcp-keyring.gpg
+gcp_armored_keyring: /tmp/gcp-keyring.asc
+
+# this is needed to avoid a python version dependency problem
+gcp_version: 502.0.0-0

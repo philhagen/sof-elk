@@ -1,0 +1,144 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "3e427a62-7f09-4e21-99c9-ba70778b2154": {
+              "columnOrder": [
+                "ba28bea5-4f76-4a27-b0c5-adf32adc2d99",
+                "7661ea9e-3366-4ee5-9498-1c2e4a815ce4"
+              ],
+              "columns": {
+                "7661ea9e-3366-4ee5-9498-1c2e4a815ce4": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "ba28bea5-4f76-4a27-b0c5-adf32adc2d99": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "@timestamp",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "auto"
+                  },
+                  "scale": "interval",
+                  "sourceField": "@timestamp"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {}
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "7661ea9e-3366-4ee5-9498-1c2e4a815ce4"
+            ],
+            "isHistogram": true,
+            "layerId": "3e427a62-7f09-4e21-99c9-ba70778b2154",
+            "layerType": "data",
+            "palette": {
+              "name": "kibana_palette",
+              "type": "palette"
+            },
+            "seriesType": "line",
+            "simpleView": false,
+            "xAccessor": "ba28bea5-4f76-4a27-b0c5-adf32adc2d99",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "7661ea9e-3366-4ee5-9498-1c2e4a815ce4"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": false,
+          "maxLines": 1,
+          "position": "right",
+          "shouldTruncate": true,
+          "showSingleSeries": false
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "linear",
+        "yRightScale": "linear",
+        "yTitle": "Count"
+      }
+    },
+    "title": "File Content Modification Timeline",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "933f2712-8ef9-4b6c-9e31-eb5a1234f225",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "filesystem",
+      "name": "indexpattern-datasource-layer-3e427a62-7f09-4e21-99c9-ba70778b2154",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
