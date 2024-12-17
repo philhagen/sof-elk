@@ -36,7 +36,7 @@
                     "size": 25
                   },
                   "scale": "ordinal",
-                  "sourceField": "_index"
+                  "sourceField": "sof-elk.base_index"
                 },
                 "dc6046c8-07b8-4505-a84b-f2c30bf3d745": {
                   "dataType": "number",

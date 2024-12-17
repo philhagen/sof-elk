@@ -1,9 +1,0 @@
-#!/bin/bash
-# SOF-ELK® Supporting script
-# (C)2021 Lewes Technology Consulting, LLC
-#
-# This runs scripts after a dhcp lease is secured or renewed
-
-if [ ${NM_DISPATCHER_ACTION} == "up" ]; then
-    kill -HUP $( pidof agetty ) > /dev/null 2>&1
-fi

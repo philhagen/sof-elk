@@ -1,14 +1,21 @@
 {
   "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}",
+      "panelsJSON": "{}",
+      "showApplySelections": false
+    },
     "description": "",
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":35,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":30},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"panelRefName\":\"panel_ff234412-5eae-4913-b905-f46529dcbadf\",\"type\":\"visualization\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"w\":16,\"x\":0,\"y\":15},\"panelIndex\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"panelRefName\":\"panel_bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"type\":\"visualization\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"w\":16,\"x\":16,\"y\":15},\"panelIndex\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"panelRefName\":\"panel_80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"type\":\"visualization\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":6,\"i\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"w\":16,\"x\":32,\"y\":15},\"panelIndex\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"panelRefName\":\"panel_88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"type\":\"lens\"}]",
+    "panelsJSON": "[{\"embeddableConfig\":{\"description\":\"\",\"enhancements\":{},\"grid\":{}},\"gridData\":{\"h\":35,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":30},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"title\":\"Eventlog Discovery\",\"type\":\"search\"},{\"embeddableConfig\":{\"description\":\"\",\"enhancements\":{\"dynamicActions\":{\"events\":[]}}},\"gridData\":{\"h\":15,\"i\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"ff234412-5eae-4913-b905-f46529dcbadf\",\"panelRefName\":\"panel_ff234412-5eae-4913-b905-f46529dcbadf\",\"title\":\"Eventlog Timeline by Level\",\"type\":\"visualization\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"w\":16,\"x\":0,\"y\":15},\"panelIndex\":\"bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"panelRefName\":\"panel_bbb006c6-d2f4-48b1-909a-7bdc4329ce3e\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":15,\"i\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"w\":16,\"x\":16,\"y\":15},\"panelIndex\":\"80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"panelRefName\":\"panel_80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424\",\"type\":\"lens\"},{\"embeddableConfig\":{\"attributes\":{\"description\":\"\",\"references\":[{\"id\":\"evtxlogs\",\"name\":\"indexpattern-datasource-layer-3a1fd463-866a-4801-90dd-d865d18a6034\",\"type\":\"index-pattern\"}],\"state\":{\"adHocDataViews\":{},\"datasourceStates\":{\"formBased\":{\"currentIndexPatternId\":\"evtxlogs\",\"layers\":{\"3a1fd463-866a-4801-90dd-d865d18a6034\":{\"columnOrder\":[\"3ea89aff-23ca-499b-9d5d-520472888775\"],\"columns\":{\"3ea89aff-23ca-499b-9d5d-520472888775\":{\"customLabel\":true,\"dataType\":\"number\",\"isBucketed\":false,\"label\":\"Eventlog Records\",\"operationType\":\"count\",\"params\":{\"emptyAsNull\":true},\"scale\":\"ratio\",\"sourceField\":\"___records___\"}},\"ignoreGlobalFilters\":false,\"incompleteColumns\":{},\"indexPatternId\":\"evtxlogs\"}}},\"indexpattern\":{\"layers\":{}},\"textBased\":{\"layers\":{}}},\"filters\":[],\"internalReferences\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"visualization\":{\"layerId\":\"3a1fd463-866a-4801-90dd-d865d18a6034\",\"layerType\":\"data\",\"metricAccessor\":\"3ea89aff-23ca-499b-9d5d-520472888775\"}},\"title\":\"Eventlog Count\",\"type\":\"lens\",\"visualizationType\":\"lnsMetric\"},\"description\":\"\",\"enhancements\":{},\"hidePanelTitles\":true},\"gridData\":{\"h\":6,\"i\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"w\":16,\"x\":32,\"y\":15},\"panelIndex\":\"88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"panelRefName\":\"panel_88e6d6f0-0d3b-46ad-afca-f7ed1bf27110\",\"title\":\"Eventlog Count\",\"type\":\"lens\"}]",
     "timeRestore": false,
     "title": "Eventlog Dashboard",
-    "version": 1
+    "version": 2
   },
   "coreMigrationVersion": "8.8.0",
   "id": "11f462e0-8d11-11e9-a03c-33ad7fc2c4d0",
@@ -23,19 +30,24 @@
       "type": "visualization"
     },
     {
-      "id": "82a7a940-e6f6-11e9-a3ea-d7d01b053a51",
+      "id": "612ef7a6-e5ed-4b2d-a5db-d9f8cfaeffeb",
       "name": "bbb006c6-d2f4-48b1-909a-7bdc4329ce3e:panel_bbb006c6-d2f4-48b1-909a-7bdc4329ce3e",
-      "type": "visualization"
+      "type": "lens"
     },
     {
-      "id": "968913e0-e6f6-11e9-a3ea-d7d01b053a51",
+      "id": "76a5fff1-bf5c-4b58-9c17-69ba58a989c7",
       "name": "80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424:panel_80d7b1b9-6a8c-47ee-b6b8-4d3cbe694424",
-      "type": "visualization"
+      "type": "lens"
     },
     {
       "id": "eb2ab450-8d08-11e9-a03c-33ad7fc2c4d0",
       "name": "1:panel_1",
       "type": "search"
+    },
+    {
+      "id": "evtxlogs",
+      "name": "88e6d6f0-0d3b-46ad-afca-f7ed1bf27110:indexpattern-datasource-layer-3a1fd463-866a-4801-90dd-d865d18a6034",
+      "type": "index-pattern"
     },
     {
       "id": "fe2e44b4-a5c4-41e8-97c0-c64c716d8d67",

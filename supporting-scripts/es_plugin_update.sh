@@ -2,9 +2,11 @@
 # SOF-ELK® Supporting script
 # (C)2024 Lewes Technology Consulting, LLC
 #
-# This script is run after the elasticsearch updates via yum
+# This script is run after an elasticsearch update
 
 # core concepts/syntax from: https://github.com/jjfalling/update-elasticsearch-plugins
+
+set -e
 
 elasticsearchPluginDir='/usr/share/elasticsearch/plugins'
 elasticsearchPlugin='/usr/share/elasticsearch/bin/elasticsearch-plugin'

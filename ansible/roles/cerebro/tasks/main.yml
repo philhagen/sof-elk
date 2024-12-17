@@ -1,4 +1,7 @@
 ---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
 - name: Install Cerebro RPM
   yum:
     name: '{{ cerebro_rpm_url }}'
@@ -8,7 +11,7 @@
 - name: Set Cerebro directory permissions
   file:
     dest: '/usr/share/cerebro'
-    recurse: yes
+    recurse: true
     owner: cerebro
     group: cerebro
   tags: sof-elk_cerebro
@@ -16,14 +19,14 @@
 - name: Open firewall ports
   firewalld:
     port: 9000/tcp
-    permanent: yes
+    permanent: true
     state: enabled
-  notify: restart firewalld
+  notify: reload firewalld
   tags: sof-elk_cerebro
 
 - name: Enable and start Cerebro service
   systemd:
     name: cerebro
-    enabled: yes
+    enabled: true
     state: started
   tags: sof-elk_cerebro

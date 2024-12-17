@@ -1,0 +1,6 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+elastic_gpg_keyring: /usr/share/keyrings/elastic-keyring.gpg
+elastic_temp_armored_keyring: /tmp/elastic-keyring.asc

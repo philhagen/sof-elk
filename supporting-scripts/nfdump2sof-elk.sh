@@ -6,6 +6,39 @@
 #   data and output in a format that SOF-ELK® can read with its NetFlow ingest
 #   feature
 
+#!/bin/bash
+
+function is_valid_ipv4() {
+  local ip=$1
+  local octets=(${ip//./ })
+  if [ ${#octets[@]} -ne 4 ]; then
+    return 1
+  fi
+  for octet in "${octets[@]}"; do
+    if ! [[ "$octet" =~ ^[0-9]+$ ]] || [ "$octet" -lt 0 ] || [ "$octet" -gt 255 ]; then
+      return 1
+    fi
+  done
+  return 0
+}
+
+function is_valid_ipv6() {
+  local ip=$1
+  if [[ "$ip" =~ ^(::)?[0-9a-fA-F]{1,4}(::?[0-9a-fA-F]{1,4}){1,7}(::)?$ ]]; then
+    return 0
+  fi
+  return 1
+}
+
+function is_valid_ip() {
+  local ip=$1
+  if is_valid_ipv4 "$ip" || is_valid_ipv6 "$ip"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 NONSTANDARD_OUTPUT=0
 
 # bash function to echo to STDERR instead of STDOUT
@@ -49,7 +82,7 @@ fi
 NFDUMP2SOFELK_FMT="%das %dmk %eng %ts %fl 0 %byt %pkt %in %da %nh %sa %dp %sp %te %out %pr 0 0 %sas %smk %stos %flg 0"
 
 # make sure nfdump is available
-if ! which nfdump; then
+if ! which nfdump > /dev/null; then
   echoerr "ERROR: nfdump not found - exiting."
   exit 3
 fi
@@ -109,7 +142,7 @@ if [[ -z "${EXPORTER_IP}" ]]; then
   EXPORTER_IP="0.0.0.0"
 fi
 
-if ! ( ipcalc -cs4 "${EXPORTER_IP}" || ipcalc -cs6 "${EXPORTER_IP}" ); then
+if ! is_valid_ip "${EXPORTER_IP}"; then
   echoerr ""
   echoerr "ERROR: Invalid Exporter IP address provided - exiting."
   exit 6

@@ -1,0 +1,13 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+# See https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.4
+# Note the GPG key is aleady installed from the microsoft-apt-source role (even
+# though the ARM version does not install with apt)
+
+- name: Install Powershell packages
+  ansible.builtin.apt:
+    name: '{{ powershell_apt_packages }}'
+    state: present
+  tags: powershell

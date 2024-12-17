@@ -1,13 +1,16 @@
 {
   "attributes": {
     "columns": [
-      "origin.filename",
-      "origin.modified",
-      "target.absolutepath",
-      "target.modified"
+      "file.path",
+      "file.mtime",
+      "file.target.absolute_path",
+      "file.target.mtime"
     ],
     "description": "",
+    "grid": {},
+    "hideChart": false,
     "hits": 0,
+    "isTextBasedQuery": false,
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
     },
@@ -17,6 +20,7 @@
         "desc"
       ]
     ],
+    "timeRestore": false,
     "title": "LNKfile Discovery",
     "version": 1
   },

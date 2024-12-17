@@ -9,7 +9,7 @@ FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP:default_syslog_timestamp}|%{TIMESTAMP_ISO8
 # Grok patterns for iptables:
 ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
 NETFILTERMAC %{COMMONMAC:[destination][mac]}:%{COMMONMAC:[source][mac]}:%{ETHTYPE:[iptables][ether_type]}
-IPTABLES (?:%{GREEDYDATA:[iptables][label]}: )?(?:IN=(%{WORD:[observer][ingress][interface][name]})? OUT=(%{WORD:[observer][egress][interface][name]})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:[source][ip]} DST=%{IP:[destination][ip]}.*TTL=%{INT:[iptables][ttl]}?.*PROTO=%{WORD:[network][transport]}?.*SPT=%{INT:[source][port]}?.*DPT=%{INT:[destination][port]}?.*LEN=%{INT:[source][bytes]}?
+IPTABLES (?:%{GREEDYDATA:[iptables][label]}: )?(?:IN=(%{WORD:[observer][ingress][interface][name]})? OUT=(%{WORD:[observer][egress][interface][name]})?) (?:MAC=(?:%{NETFILTERMAC})? )?SRC=%{IP:[source][ip]} DST=%{IP:[destination][ip]}.*TTL=%{INT:[iptables][ttl]}?.*PROTO=%{WORD:[network][transport]}?.*SPT=%{INT:[source][port]}?.*DPT=%{INT:[destination][port]}?.*(?:LEN=%{INT:[source][bytes]})?
 
 # Sendmail SMTP Queue IDs
 # version indicated is latest version where format is used. See the O'Reilly Sendmail "Bat Book" for QID makeup by version.
@@ -73,7 +73,7 @@ WINSID S-1-(?:\d+-){1,14}\d+
 
 # Windows domain\user (with alternatative forward slash)
 WINDOMAIN [A-Za-z0-9 -]+
-WINUSER [A-Za-z0-9 -]+
+WINUSER [A-Za-z0-9 -]+\$?
 WINDOMAINUSER %{WINDOMAIN}[\\/]%{WINUSER}
 
 # XML structure found in Plaso log events

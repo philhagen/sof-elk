@@ -1,0 +1,154 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "lnkfiles",
+          "layers": {
+            "aa980864-a893-402b-8301-dfba0ce89c14": {
+              "columnOrder": [
+                "015d0a11-0f3b-439c-826c-49474eb5768b",
+                "1839ba06-f6da-406a-b96d-36d83c3fb705"
+              ],
+              "columns": {
+                "015d0a11-0f3b-439c-826c-49474eb5768b": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": true,
+                  "label": "LNK Target File Content Modified",
+                  "operationType": "date_histogram",
+                  "params": {
+                    "dropPartials": false,
+                    "includeEmptyRows": false,
+                    "interval": "d"
+                  },
+                  "scale": "interval",
+                  "sourceField": "file.target.mtime"
+                },
+                "1839ba06-f6da-406a-b96d-36d83c3fb705": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "indexPatternId": "lnkfiles"
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "lnkfiles",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "lnkfiles",
+              "timeField": "@timestamp",
+              "title": "lnkfiles-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "axisTitlesVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "curveType": "LINEAR",
+        "fittingFunction": "Linear",
+        "gridlinesVisibilitySettings": {
+          "x": false,
+          "yLeft": false,
+          "yRight": true
+        },
+        "labelsOrientation": {
+          "x": 0,
+          "yLeft": 0,
+          "yRight": -90
+        },
+        "layers": [
+          {
+            "accessors": [
+              "1839ba06-f6da-406a-b96d-36d83c3fb705"
+            ],
+            "isHistogram": true,
+            "layerId": "aa980864-a893-402b-8301-dfba0ce89c14",
+            "layerType": "data",
+            "palette": {
+              "name": "kibana_palette",
+              "type": "palette"
+            },
+            "seriesType": "line",
+            "simpleView": false,
+            "xAccessor": "015d0a11-0f3b-439c-826c-49474eb5768b",
+            "xScaleType": "time",
+            "yConfig": [
+              {
+                "axisMode": "left",
+                "forAccessor": "1839ba06-f6da-406a-b96d-36d83c3fb705"
+              }
+            ]
+          }
+        ],
+        "legend": {
+          "isVisible": false,
+          "maxLines": 1,
+          "position": "right",
+          "shouldTruncate": true,
+          "showSingleSeries": false
+        },
+        "preferredSeriesType": "bar_stacked",
+        "showCurrentTimeMarker": false,
+        "tickLabelsVisibilitySettings": {
+          "x": true,
+          "yLeft": true,
+          "yRight": true
+        },
+        "valueLabels": "hide",
+        "yLeftExtent": {
+          "enforce": true,
+          "mode": "full"
+        },
+        "yLeftScale": "linear",
+        "yRightScale": "linear",
+        "yTitle": "Count"
+      }
+    },
+    "title": "LNK Target File Content Modification Timeline",
+    "visualizationType": "lnsXY"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "13b187af-33b2-48c5-bf0b-9a73926a9e32",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "lnkfiles",
+      "name": "indexpattern-datasource-layer-aa980864-a893-402b-8301-dfba0ce89c14",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

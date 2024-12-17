@@ -1,15 +1,21 @@
 {
   "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}",
+      "panelsJSON": "{}",
+      "showApplySelections": false
+    },
     "description": "",
-    "hits": 0,
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
-    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
-    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":38,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":10},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"type\":\"search\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"w\":16,\"x\":0,\"y\":0},\"panelIndex\":\"5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"panelRefName\":\"panel_5d578338-7cc0-4ef9-9de0-39b51f6b0ddd\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"w\":16,\"x\":16,\"y\":0},\"panelIndex\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"panelRefName\":\"panel_bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"type\":\"visualization\",\"version\":\"7.11.1\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"w\":16,\"x\":32,\"y\":0},\"panelIndex\":\"e9495c14-1879-4b57-a681-ba597fb576f8\",\"panelRefName\":\"panel_e9495c14-1879-4b57-a681-ba597fb576f8\",\"type\":\"visualization\",\"version\":\"7.11.1\"}]",
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"description\":\"\",\"enhancements\":{}},\"gridData\":{\"h\":38,\"i\":\"1\",\"w\":48,\"x\":0,\"y\":10},\"panelIndex\":\"1\",\"panelRefName\":\"panel_1\",\"title\":\"LNKfile Discovery\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"3def4406-ce68-4c7f-9b11-a1e0e2f6e09a\",\"w\":16,\"x\":0,\"y\":0},\"panelIndex\":\"3def4406-ce68-4c7f-9b11-a1e0e2f6e09a\",\"panelRefName\":\"panel_3def4406-ce68-4c7f-9b11-a1e0e2f6e09a\",\"type\":\"lens\"},{\"embeddableConfig\":{\"attributes\":{\"description\":\"\",\"references\":[{\"id\":\"lnkfiles\",\"name\":\"indexpattern-datasource-layer-aa980864-a893-402b-8301-dfba0ce89c14\",\"type\":\"index-pattern\"}],\"state\":{\"adHocDataViews\":{},\"datasourceStates\":{\"formBased\":{\"currentIndexPatternId\":\"lnkfiles\",\"layers\":{\"aa980864-a893-402b-8301-dfba0ce89c14\":{\"columnOrder\":[\"015d0a11-0f3b-439c-826c-49474eb5768b\",\"1839ba06-f6da-406a-b96d-36d83c3fb705\"],\"columns\":{\"015d0a11-0f3b-439c-826c-49474eb5768b\":{\"customLabel\":true,\"dataType\":\"date\",\"isBucketed\":true,\"label\":\"LNK Target File Content Modified\",\"operationType\":\"date_histogram\",\"params\":{\"dropPartials\":false,\"includeEmptyRows\":false,\"interval\":\"d\"},\"scale\":\"interval\",\"sourceField\":\"file.target.mtime\"},\"1839ba06-f6da-406a-b96d-36d83c3fb705\":{\"customLabel\":true,\"dataType\":\"number\",\"isBucketed\":false,\"label\":\"Count\",\"operationType\":\"count\",\"params\":{\"emptyAsNull\":true},\"scale\":\"ratio\",\"sourceField\":\"___records___\"}},\"ignoreGlobalFilters\":false,\"incompleteColumns\":{},\"indexPatternId\":\"lnkfiles\"}}},\"indexpattern\":{\"layers\":{}},\"textBased\":{\"layers\":{}}},\"filters\":[],\"internalReferences\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"visualization\":{\"axisTitlesVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"curveType\":\"LINEAR\",\"fittingFunction\":\"Linear\",\"gridlinesVisibilitySettings\":{\"x\":false,\"yLeft\":false,\"yRight\":true},\"labelsOrientation\":{\"x\":0,\"yLeft\":0,\"yRight\":-90},\"layers\":[{\"accessors\":[\"1839ba06-f6da-406a-b96d-36d83c3fb705\"],\"isHistogram\":true,\"layerId\":\"aa980864-a893-402b-8301-dfba0ce89c14\",\"layerType\":\"data\",\"palette\":{\"name\":\"kibana_palette\",\"type\":\"palette\"},\"seriesType\":\"line\",\"simpleView\":false,\"xAccessor\":\"015d0a11-0f3b-439c-826c-49474eb5768b\",\"xScaleType\":\"time\",\"yConfig\":[{\"axisMode\":\"left\",\"forAccessor\":\"1839ba06-f6da-406a-b96d-36d83c3fb705\"}]}],\"legend\":{\"isVisible\":false,\"maxLines\":1,\"position\":\"right\",\"shouldTruncate\":true,\"showSingleSeries\":false},\"preferredSeriesType\":\"bar_stacked\",\"showCurrentTimeMarker\":false,\"tickLabelsVisibilitySettings\":{\"x\":true,\"yLeft\":true,\"yRight\":true},\"valueLabels\":\"hide\",\"yLeftExtent\":{\"enforce\":true,\"mode\":\"full\"},\"yLeftScale\":\"linear\",\"yRightScale\":\"linear\",\"yTitle\":\"Count\"}},\"title\":\"LNK Target File Content Modification Timeline\",\"type\":\"lens\",\"visualizationType\":\"lnsXY\"},\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"w\":16,\"x\":32,\"y\":0},\"panelIndex\":\"bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"panelRefName\":\"panel_bd4d4e00-246f-4b26-9b22-6223ebfb18e3\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":10,\"i\":\"b635094e-7084-46b3-9e1a-228686b59ca9\",\"w\":16,\"x\":16,\"y\":0},\"panelIndex\":\"b635094e-7084-46b3-9e1a-228686b59ca9\",\"panelRefName\":\"panel_b635094e-7084-46b3-9e1a-228686b59ca9\",\"type\":\"lens\"}]",
     "timeRestore": false,
     "title": "LNK File Dashboard",
-    "version": 1
+    "version": 2
   },
   "coreMigrationVersion": "8.8.0",
   "id": "52e0ec80-7a77-11e9-92d0-dfa499d9fb15",
@@ -19,24 +25,29 @@
   ],
   "references": [
     {
+      "id": "13b187af-33b2-48c5-bf0b-9a73926a9e32",
+      "name": "bd4d4e00-246f-4b26-9b22-6223ebfb18e3:panel_bd4d4e00-246f-4b26-9b22-6223ebfb18e3",
+      "type": "lens"
+    },
+    {
+      "id": "2cc7b8a8-248b-44d5-9840-1d3558eec280",
+      "name": "3def4406-ce68-4c7f-9b11-a1e0e2f6e09a:panel_3def4406-ce68-4c7f-9b11-a1e0e2f6e09a",
+      "type": "lens"
+    },
+    {
+      "id": "59f54d4e-c7c3-4f50-94a1-9539dbce8f60",
+      "name": "b635094e-7084-46b3-9e1a-228686b59ca9:panel_b635094e-7084-46b3-9e1a-228686b59ca9",
+      "type": "lens"
+    },
+    {
       "id": "8d421a80-7a76-11e9-92d0-dfa499d9fb15",
       "name": "1:panel_1",
       "type": "search"
     },
     {
-      "id": "ab54d000-e65d-11e9-a3ea-d7d01b053a51",
-      "name": "5d578338-7cc0-4ef9-9de0-39b51f6b0ddd:panel_5d578338-7cc0-4ef9-9de0-39b51f6b0ddd",
-      "type": "visualization"
-    },
-    {
-      "id": "c3cd7600-e65d-11e9-a3ea-d7d01b053a51",
-      "name": "bd4d4e00-246f-4b26-9b22-6223ebfb18e3:panel_bd4d4e00-246f-4b26-9b22-6223ebfb18e3",
-      "type": "visualization"
-    },
-    {
-      "id": "da395c10-e65d-11e9-a3ea-d7d01b053a51",
-      "name": "e9495c14-1879-4b57-a681-ba597fb576f8:panel_e9495c14-1879-4b57-a681-ba597fb576f8",
-      "type": "visualization"
+      "id": "lnkfiles",
+      "name": "bd4d4e00-246f-4b26-9b22-6223ebfb18e3:indexpattern-datasource-layer-aa980864-a893-402b-8301-dfba0ce89c14",
+      "type": "index-pattern"
     }
   ],
   "type": "dashboard",

@@ -41,6 +41,9 @@
         "sof-elk": {
           "type": "object",
           "properties": {
+            "base_index": {
+              "type": "keyword"
+            },
             "path": {
               "type": "keyword"
             }

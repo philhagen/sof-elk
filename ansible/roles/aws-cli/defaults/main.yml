@@ -1,3 +1,6 @@
 ---
-aws_cli_pip_modules:
-  - boto3
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2024 Lewes Technology Consulting, LLC
+
+aws_cli_dependencies:
+  - python3-boto3

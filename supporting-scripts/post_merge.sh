@@ -6,7 +6,7 @@
 #   is updated
 
 FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
-LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/asset"
+LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/assets/sof-elk.svg"
 
 # if a SKIP_HOOK variable is set to 1, don't do any of this
 # method from here: https://stackoverflow.com/a/33431504/1400064
@@ -82,12 +82,9 @@ for deadlink in /etc/cron.d/* ; do
 done
 
 # create the atd sequence file, if not already there
-if [ ! -f /var/spool/at/.SEQ ]; then
-    touch /var/spool/at/.SEQ
+if [ ! -f /var/spool/cron/atjobs/.SEQ ]; then
+    touch /var/spool/cron/atjobs/.SEQ
 fi
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
-
-# run the geoip updater script
-/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoipupdate_updater.sh

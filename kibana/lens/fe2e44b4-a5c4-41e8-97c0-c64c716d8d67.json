@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "evtxlogs",
           "layers": {
             "3a1fd463-866a-4801-90dd-d865d18a6034": {
               "columnOrder": [
@@ -25,14 +26,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "evtxlogs"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "evtxlogs",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "evtxlogs",
+              "timeField": "@timestamp",
+              "title": "evtxlogs-*"
+            }
+          ],
           "layers": {}
         }
       },

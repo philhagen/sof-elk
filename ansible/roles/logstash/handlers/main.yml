@@ -1,8 +1,0 @@
----
-- name: restart firewalld
-  command: firewall-cmd --reload
-
-- name: restart logstash
-  systemd:
-    name: logstash
-    state: restarted
