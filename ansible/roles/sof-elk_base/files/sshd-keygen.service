@@ -17,4 +17,4 @@ Type=oneshot
 RemainAfterExit=yes
 
 [Install]
-WantedBy=multi-user.service
+WantedBy=multi-user.target

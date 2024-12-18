@@ -71,7 +71,7 @@
   register: ssh_systemd_service
   tags: sof-elk_base
 
-- name: Enable SSHD
+- name: Start and enable SSHD
   ansible.builtin.systemd_service:
     daemon_reload: true
     name: ssh
