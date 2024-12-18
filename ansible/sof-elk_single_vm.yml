@@ -27,14 +27,14 @@
       register: latest_geoip
       no_log: true
       run_once: true
-      tags: sof-elk_base
+      tags: always
 
     - name: Set GeoIP installation fact
       ansible.builtin.set_fact:
         install_geoip: "{{ latest_geoip.user_input | upper | default('N') }}"
       no_log: true
       run_once: true
-      tags: sof-elk_base
+      tags: always
 
     - name: Get GeoIP Account ID
       ansible.builtin.pause:
@@ -43,7 +43,7 @@
       no_log: true
       run_once: true
       when: install_geoip == "Y"
-      tags: sof-elk_base
+      tags: always
 
     - name: Set GeoIP Account ID fact
       ansible.builtin.set_fact:
@@ -51,7 +51,7 @@
       no_log: true
       run_once: true
       when: install_geoip == "Y"
-      tags: sof-elk_base
+      tags: always
 
     - name: Get GeoIP License Key
       ansible.builtin.pause:
@@ -60,7 +60,7 @@
       no_log: true
       run_once: true
       when: install_geoip == "Y"
-      tags: sof-elk_base
+      tags: always
 
     - name: Set GeoIP License Key fact
       ansible.builtin.set_fact:
@@ -68,7 +68,7 @@
       no_log: true
       run_once: true
       when: install_geoip == "Y"
-      tags: sof-elk_base
+      tags: always
 
     - name: "Get current git branch"
       ansible.builtin.command: "git rev-parse --abbrev-ref HEAD"
@@ -77,13 +77,16 @@
       register: git_branch_result
       check_mode: false
       delegate_to: 127.0.0.1
+      no_log: true
+      run_once: true
+      tags: always
 
     - name: Set Ansible branch name fact
       ansible.builtin.set_fact:
         git_branch: "{{ git_branch_result.stdout }}"
       no_log: true
       run_once: true
-      tags: sof-elk_base
+      tags: always
 
   roles:
     - sof-elk_base
