@@ -46,12 +46,9 @@
   register: elasticsearch_config
   tags: elasticsearch
 
-- name: Run daemon-reload so service can start
-  ansible.builtin.command: 'systemctl daemon-reload'
-  tags: elasticsearch
-
 - name: Start and Enable Elasticsearch service
   ansible.builtin.systemd_service:
+    daemon_reload: true
     name: elasticsearch
     enabled: true
     state: started

@@ -18,13 +18,6 @@
   register: kibana_config
   tags: kibana
 
-- name: Restart Kibana
-  ansible.builtin.systemd:
-    name: kibana
-    state: restarted
-  when: kibana_config.changed
-  tags: kibana
-
 - name: Open firewall ports
   ansible.posix.firewalld:
     port: 5601/tcp
@@ -43,7 +36,17 @@
 
 - name: Enable and start Kibana service
   ansible.builtin.systemd_service:
+    daemon_reload: true
     name: kibana
     enabled: true
     state: started
+  register: enablestart_kibana
+  tags: kibana
+
+- name: Restart Kibana
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: kibana
+    state: restarted
+  when: (not enablestart_kibana.changed) and (kibana_config.changed)
   tags: kibana
