@@ -1,4 +1,4 @@
-# Taken from: https://github.com/Dlackware/systemd/blob/master/openssh/sshd-keygen.service
+# Adapted from https://github.com/Dlackware/systemd/blob/master/openssh/sshd-keygen.service
 
 [Unit]
 Description=SSH Key Generation
@@ -15,3 +15,6 @@ ConditionPathExists=|!/etc/ssh/ssh_host_rsa_key.pub
 ExecStart=/usr/bin/ssh-keygen -A
 Type=oneshot
 RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.service
