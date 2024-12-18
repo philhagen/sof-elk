@@ -71,12 +71,22 @@
   register: ssh_systemd_service
   tags: sof-elk_base
 
+- name: Enable SSHD
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: ssh
+    enabled: true
+    state: started
+  register: enablestart_sshd
+  tags: sof-elk_base
+
 - name: Restart SSHD
   ansible.builtin.systemd_service:
     daemon_reload: true
     name: ssh
+    enabled: true
     state: restarted
-  when: ssh_config.changed or ssh_systemd_service.changed
+  when: (not enablestart_sshd.changed) and (ssh_config.changed or ssh_systemd_service.changed)
   tags: sof-elk_base
 
 - name: Disable nfcapd service
