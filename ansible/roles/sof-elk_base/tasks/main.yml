@@ -55,17 +55,18 @@
     mode: 0644
   tags: sof-elk_base
 
-- name: Enable SSHD host key generation service
+- name: Start and enable SSHD host key generation service
   ansible.builtin.systemd_service:
     daemon_reload: true
     name: sshd-keygen
     enabled: true
+    state: started
   tags: sof-elk_base
 
 - name: Set SSHD host key generation service order
   ansible.builtin.lineinfile:
     dest: /usr/lib/systemd/system/ssh.service
-    regexp: '^After:'
+    regexp: '^After:.*'
     line: 'After=network.target sshd-keygen.service auditd.service'
   register: ssh_systemd_service
   tags: sof-elk_base
