@@ -40,17 +40,42 @@
 
 - name: Disable DNS resolution for SSHD
   ansible.builtin.lineinfile:
-    dest: '/etc/ssh/sshd_config'
+    dest: /etc/ssh/sshd_config
     regexp: '^UseDNS.*'
     line: 'UseDNS no'
   register: ssh_config
   tags: sof-elk_base
 
+- name: Create SSHD host key generation service
+  ansible.builtin.copy:
+    src: ssh-keygen.service
+    dest: /usr/lib/systemd/system/ssh-keygen.service
+    owner: root
+    group: root
+    mode: 0644
+  tags: sof-elk_base
+
+- name: Enable SSHD host key generation service
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: ssh-keygen
+    enabled: true
+  tags: sof-elk_base
+
+- name: Set SSHD host key generation service order
+  ansible.builtin.lineinfile:
+    dest: /usr/lib/systemd/system/ssh.service
+    regexp: '^After:'
+    line: 'After=network.target sshd-keygen.service auditd.service'
+  register: ssh_systemd_service
+  tags: sof-elk_base
+
 - name: Restart SSHD
   ansible.builtin.systemd_service:
+    daemon_reload: true
     name: ssh
     state: restarted
-  when: ssh_config.changed
+  when: ssh_config.changed or ssh_systemd_service.changed
   tags: sof-elk_base
 
 - name: Disable nfcapd service
