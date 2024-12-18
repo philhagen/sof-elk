@@ -78,8 +78,12 @@
       check_mode: false
       delegate_to: 127.0.0.1
 
-    - set_fact:
+    - name: Set Ansible branch name fact
+      ansible.builtin.set_fact:
         git_branch: "{{ git_branch_result.stdout }}"
+      no_log: true
+      run_once: true
+      tags: sof-elk_base
 
   roles:
     - sof-elk_base

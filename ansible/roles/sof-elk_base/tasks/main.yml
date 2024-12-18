@@ -48,8 +48,8 @@
 
 - name: Create SSHD host key generation service
   ansible.builtin.copy:
-    src: ssh-keygen.service
-    dest: /usr/lib/systemd/system/ssh-keygen.service
+    src: sshd-keygen.service
+    dest: /usr/lib/systemd/system/sshd-keygen.service
     owner: root
     group: root
     mode: 0644
@@ -58,7 +58,7 @@
 - name: Enable SSHD host key generation service
   ansible.builtin.systemd_service:
     daemon_reload: true
-    name: ssh-keygen
+    name: sshd-keygen
     enabled: true
   tags: sof-elk_base
 
