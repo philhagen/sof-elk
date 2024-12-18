@@ -51,7 +51,7 @@
   tags: elasticsearch
 
 - name: Start and Enable Elasticsearch service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: elasticsearch
     enabled: true
     state: started
@@ -59,7 +59,7 @@
   tags: elasticsearch
 
 - name: Restart Elasticsearch
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: elasticsearch
     state: restarted
   when: (not enablestart_elasticsearch) and (elasticsearch_systemd_config.changed or elasticsearch-config.changed)

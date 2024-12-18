@@ -47,14 +47,14 @@
   tags: sof-elk_base
 
 - name: Restart SSHD
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: ssh
     state: restarted
   when: ssh_config.changed
   tags: sof-elk_base
 
 - name: Disable nfcapd service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: nfdump
     enabled: false
     state: stopped

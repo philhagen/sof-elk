@@ -55,7 +55,7 @@
   tags: logstash
 
 - name: Start and Enable Logstash service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: logstash
     enabled: true
     state: started
@@ -63,7 +63,7 @@
   tags: logstash
 
 - name: Restart Logstash
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: logstash
     state: restarted
   when: (not enablestart_logstash) and (logstash_plugin_installation.changed or logstash_jvm_config.changed or logstash_config_symlinks.changed or logstash_config.changed)

@@ -3,11 +3,11 @@
 # (C)2024 Lewes Technology Consulting, LLC
 
 - name: restart cerebro
-  systemd:
+  ansible.builtin.systemd_service:
     name: cerebro
     state: restarted
 
 - name: reload firewalld
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: firewalld
     state: reloaded

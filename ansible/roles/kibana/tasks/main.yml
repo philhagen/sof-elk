@@ -35,14 +35,14 @@
   tags: kibana
 
 - name: Restart firewalld
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: firewalld
     state: reloaded
   when: firewall_port.changed
   tags: kibana
 
 - name: Enable and start Kibana service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: kibana
     enabled: true
     state: started

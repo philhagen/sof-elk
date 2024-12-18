@@ -25,7 +25,7 @@
   tags: sof-elk_cerebro
 
 - name: Enable and start Cerebro service
-  systemd:
+  ansible.builtin.systemd_service:
     name: cerebro
     enabled: true
     state: started
