@@ -88,3 +88,18 @@ fi
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
+
+# fix the missing SSH host keys in v20241217
+fix_ssh=0
+for keytype in ecdsa ed25519 rsa; do
+    privkey="ssh_host_${keytype}_key"
+    pubkey="${privkey}.pub"
+    if [[ ! -f /etc/ssh/${privkey} || ! -f /etc/ssh/${pubkey} ]]; then
+        fix_ssh=1
+    fi
+done
+if [ ${fix_ssh} == "1" ]; then
+    ssh-keygen -A > /dev/null 2>&1
+    systemctl enable ssh.service > /dev/null 2>&1
+    systemctl restart ssh.service > /dev/null 2>&1
+fi
