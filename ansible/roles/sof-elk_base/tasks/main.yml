@@ -237,8 +237,6 @@
     path: /home/elk_user/.gitconfig
     state: touch
     mode: 0644
-    owner: elk_user
-    group: elk_user
   tags: sof-elk_base
 
 - name: Add SOF-ELK repo clone as a safe directory
@@ -247,6 +245,14 @@
     file: /home/elk_user/.gitconfig
     name: safe.directory
     value: /usr/local/sof-elk
+  tags: sof-elk_base
+
+- name: Change onwership of elk_user's .gitconfig file
+  ansible.builtin.file:
+    path: /home/elk_user/.gitconfig
+    mode: 0644
+    owner: elk_user
+    group: elk_user
   tags: sof-elk_base
 
 - name: Set SOF-ELK repo clone post-merge hook
