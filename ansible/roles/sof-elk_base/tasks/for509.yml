@@ -59,13 +59,22 @@
   tags: sof-elk_base
 
 - name: Restart apache2
-  ansible_builtin.systemd_service:
+  ansible.builtin.systemd_service:
     name: apache2
     state: restarted
   when: (not enablestart_apache2) and (install_apache2_config.changed or enable_apache2_config.changed)
   tags: sof-elk_base
 
 # TODO: should probably determine if the keys exist already and use as a conditional
+- name: Create elk_user's .ssh directory
+  ansible.builtin.file:
+    path: /home/elk_user/.ssh
+    state: directory
+    owner: elk_user
+    group: elk_user
+    mode: 0700
+  tags: sof-elk_base
+
 - name: Create ssh keys
   community.crypto.openssh_keypair:
     path: "/home/elk_user/.ssh/{{ course_id | upper }}_workbook_id_ed25519"
