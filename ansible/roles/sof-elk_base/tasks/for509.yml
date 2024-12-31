@@ -86,7 +86,7 @@
 
 - name: Install ssh configuration files
   ansible.builtin.copy:
-    src: "{{ item }}"
+    src: "user_ssh_{{ item }}"
     dest: "/home/elk_user/.ssh/{{ item }}"
     owner: elk_user
     group: elk_user
