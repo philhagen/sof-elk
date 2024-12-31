@@ -41,7 +41,7 @@
         course_version: "{{ input_course_version.user_input | upper }}"
       run_once: true
       when: course_id != "public"
-      tag: always
+      tags: always
 
     - name: Determine if installing the latest GeoIP databases is requested
       ansible.builtin.pause:
