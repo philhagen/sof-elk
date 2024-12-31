@@ -36,7 +36,7 @@
 
 - name: Open firewall ports
   ansible.posix.firewalld:
-    port: 80/tcp
+    service: http
     permanent: true
     state: enabled
   register: apache2_firewall_port
