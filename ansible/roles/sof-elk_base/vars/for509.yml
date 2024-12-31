@@ -4,6 +4,7 @@
 
 course_apt_packages:
   - apache2
+  - netcat-traditional
 
 apache2_confs:
   - no-cache
