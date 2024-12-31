@@ -34,7 +34,7 @@
       register: input_course_version
       run_once: true
       when: course_id != "public"
-      tag: always
+      tags: always
     
     - name: Set version string fact
       ansible.builtin.set_fact:
