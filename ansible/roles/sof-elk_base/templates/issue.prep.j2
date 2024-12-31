@@ -3,14 +3,26 @@ Kernel \r on an \m
 
 SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
          Logstash, and Kibana) Virtual machine
+{% if course_id == "for509" %}
+         Used in: SANS FOR509: Cloud Forensics and Incident Response
+                  SANS FOR572: Advanced Network Forensics and Analysis
+                  SANS FOR589: Cybercrime Intelligence
+                  SANS Aviata: Cloud Solo Flight Challenge
+{% else %}
          Used in: SANS FOR572: Advanced Network Forensics and Analysis
                   SANS FOR509: Cloud Forensics and Incident Response
                   SANS FOR589: Cybercrime Intelligence
                   SANS Aviata: Cloud Solo Flight Challenge
+{% endif %}
 To learn more: http://for572.com/sof-elk-readme
 Revision: {{ revision_string }}
 
 -------------------------------------------------------------------------------
+{%if course_id == "for509" %}
+This VM is hosting the FOR509 Electronic Workbook.
+- You can access it with a browser at http://\4
+
+{% endif %}
 This VM is running the Logstash and Kibana applications.
 - You can access Kibana at http://\4:5601
 - You can SSH to this system at IP address \4

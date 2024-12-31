@@ -1,0 +1,3 @@
+Host github.com
+    User git
+    IdentityFile ~/.ssh/{{ course_id }}_id_rsa
