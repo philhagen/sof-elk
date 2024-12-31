@@ -18,7 +18,7 @@
 - name: Install apache2 configuration files
   ansible.builtin.copy:
     src: "{{ item }}.conf"
-    dest: "/etc/apache2/conf-available/"
+    dest: "/etc/apache2/conf-available/{{ item }}.conf"
     owner: root
     group: root
     mode: 0644
