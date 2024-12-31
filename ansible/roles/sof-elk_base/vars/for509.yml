@@ -9,6 +9,11 @@ apache2_confs:
   - no-cache
   - workbook-redirect
 
+apache2_mods:
+  - rewrite
+  - expires
+  - headers
+
 ssh_confs:
   - known_hosts
   - config

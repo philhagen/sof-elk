@@ -31,7 +31,15 @@
   args:
     creates: "/etc/apache2/conf-enabled/{{ item }}.conf"
   with_items: "{{ apache2_confs }}"
-  register: enable_apache2_config
+  register: enable_apache2_configs
+  tags: sof-elk_base
+
+- name: Enable apache2 modules
+  community.general.apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apache2_mods }}"
+  register: enable_apache2_mods
   tags: sof-elk_base
 
 - name: Open firewall ports
@@ -62,7 +70,7 @@
   ansible.builtin.systemd_service:
     name: apache2
     state: restarted
-  when: (not enablestart_apache2) and (install_apache2_config.changed or enable_apache2_config.changed)
+  when: (not enablestart_apache2) and (install_apache2_configs.changed or enable_apache2_config.changed or enable_apache2_mods.changed)
   tags: sof-elk_base
 
 # TODO: should probably determine if the keys exist already and use as a conditional
