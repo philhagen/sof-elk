@@ -43,13 +43,13 @@
   tags: elastalert
 
 - name: Enable Elastalert service
-  systemd:
+  ansible.builtin.systemd_service:
     name: /usr/local/sof-elk/lib/systemd/elastalert.service
     enabled: true
   tags: elastalert
 
 - name: Start Elastalert service
-  systemd:
+  ansible.builtin.systemd_service:
     name: elastalert
     state: started
   tags: elastalert

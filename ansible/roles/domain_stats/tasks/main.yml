@@ -39,13 +39,13 @@
   shell: domain-stats-utils -i /usr/local/lib/python3.6/site-packages/domain_stats/data/top1m.import -nx /usr/local/share/domain-stats/
 
 - name: Enable domain-stats service
-  systemd:
+  ansible.builtin.systemd_service:
     name: /usr/local/sof-elk/lib/systemd/domain-stats.service
     enabled: true
   tags: domainstats
 
 - name: Start domain-stats service
-  systemd:
+  ansible.builtin.systemd_service:
     name: domain-stats
     state: started
   tags: domainstats

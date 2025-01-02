@@ -13,17 +13,18 @@ base_apt_packages:
   - eject
   - exfat-fuse
   - file
+  - firewalld
   - gcc
   - geoip-bin
   - geoipupdate
   - git
   - htop
   - jq
-  - lsof
   - locate
   - logrotate
+  - lsof
   - net-tools
-  - nfdump #TODO: check on newer version - apt installs 1.7.3
+  - nfdump
   - p7zip
   - psmisc
   - python3-dev
@@ -32,11 +33,10 @@ base_apt_packages:
   - rsync
   - screen
   - tcpdump
+  - tree
   - unzip
   - vim
   - whois
-  - firewalld
-  - tree
 
 vmware_apt_packages:
   - open-vm-tools

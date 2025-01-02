@@ -1,0 +1,103 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2025 Lewes Technology Consulting, LLC
+
+- name: Include course-specific variables
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: "{{ course_id }}.yml"
+  tags: sof-elk_base
+
+- name: Install course-specific packages
+  ansible.builtin.apt:
+    name: "{{ course_apt_packages }}"
+    state: present
+  when: course_apt_packages is defined
+  tags: sof-elk_base
+
+- name: Install apache2 configuration files
+  ansible.builtin.copy:
+    src: "{{ item }}.conf"
+    dest: "/etc/apache2/conf-available/{{ item }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ apache2_confs }}"
+  register: install_apache2_config
+  tags: sof-elk_base
+
+- name: Enable apache2 configuration files
+  ansible.builtin.command: a2enconf {{ item }}
+  args:
+    creates: "/etc/apache2/conf-enabled/{{ item }}.conf"
+  with_items: "{{ apache2_confs }}"
+  register: enable_apache2_configs
+  tags: sof-elk_base
+
+- name: Enable apache2 modules
+  community.general.apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apache2_mods }}"
+  register: enable_apache2_mods
+  tags: sof-elk_base
+
+- name: Open firewall ports
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    state: enabled
+  register: apache2_firewall_port
+  tags: sof-elk_base
+
+- name: Restart firewalld
+  ansible.builtin.systemd_service:
+    name: firewalld
+    state: reloaded
+  when: apache2_firewall_port.changed
+  tags: sof-elk_base
+
+- name: Start and Enable apache2 service
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: apache2
+    enabled: true
+    state: started
+  register: enablestart_apache2
+  tags: sof-elk_base
+
+- name: Restart apache2
+  ansible.builtin.systemd_service:
+    name: apache2
+    state: restarted
+  when: (not enablestart_apache2) and (install_apache2_configs.changed or enable_apache2_config.changed or enable_apache2_mods.changed)
+  tags: sof-elk_base
+
+# TODO: should probably determine if the keys exist already and use as a conditional
+- name: Create elk_user's .ssh directory
+  ansible.builtin.file:
+    path: /home/elk_user/.ssh
+    state: directory
+    owner: elk_user
+    group: elk_user
+    mode: 0700
+  tags: sof-elk_base
+
+- name: Create ssh keys
+  community.crypto.openssh_keypair:
+    path: "/home/elk_user/.ssh/{{ course_id | upper }}_workbook_id_ed25519"
+    type: ed25519
+    owner: elk_user
+    group: elk_user
+    comment: "elk_user@{{ course_id }}_sof-elk_{{ course_version | upper }}"
+  tags: sof-elk_base
+
+- name: Install templated ssh configuration files
+  ansible.builtin.template:
+    src: "user_ssh_{{ item }}.j2"
+    dest: "/home/elk_user/.ssh/{{ item }}"
+    owner: elk_user
+    group: elk_user
+    mode: 0600
+  with_items: "{{ ssh_confs }}"
+  tags: sof-elk_base
