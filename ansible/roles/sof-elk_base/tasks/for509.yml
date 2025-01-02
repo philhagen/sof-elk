@@ -92,9 +92,9 @@
     comment: "elk_user@{{ course_id }}_sof-elk_{{ course_version | upper }}"
   tags: sof-elk_base
 
-- name: Install ssh configuration files
-  ansible.builtin.copy:
-    src: "user_ssh_{{ item }}"
+- name: Install templated ssh configuration files
+  ansible.builtin.template:
+    src: "user_ssh_{{ item }}.j2"
     dest: "/home/elk_user/.ssh/{{ item }}"
     owner: elk_user
     group: elk_user
