@@ -338,6 +338,7 @@
     owner: elk_user
     group: elk_user
     mode: 0755
+  when: course_id == public
   tags: sof-elk_base
 
 - name: Install sample evidence files
@@ -353,6 +354,7 @@
     - { name: 'lab-2.3_source_evidence.zip', md5: 'cdb30018bd02639b9a1ab4f5bc10009e' }
     - { name: 'lab-3.1_README.txt', md5: 'c274173fe8b96c9f2086475534fda364' }
     - { name: 'lab-3.1_source_evidence.zip', md5: '3996469559f0791c135b8700606b49ff' }
+  when: course_id == public
   tags: sof-elk_base
 
 - name: Include course-specific tasks, if present
