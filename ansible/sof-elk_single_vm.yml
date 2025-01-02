@@ -1,5 +1,6 @@
 ---
 # This playbook configures a single-instance SOF-ELK(R) system
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Run all preload steps required for a SOF-ELK(R) system
   hosts: all
