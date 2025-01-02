@@ -18,4 +18,3 @@ apache2_mods:
 ssh_confs:
   - known_hosts
   - config
-  
