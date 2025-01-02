@@ -181,7 +181,6 @@ if [ $DISKSHRINK -eq 1 ]; then
     echo "remove any snapshots that already exist and press Return"
     read
 
-    # we don't use swap any more
     echo "zeroize swap:"
     swapoff -a
     for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do

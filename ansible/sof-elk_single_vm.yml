@@ -16,14 +16,6 @@
       when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
       tags: always
 
-    - name: Determine if installing the latest GeoIP databases is requested
-      ansible.builtin.pause:
-        prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
-      register: latest_geoip
-      run_once: true
-      when: course_id == "public"
-      tags: always
-
     - name: "Get current git branch"
       ansible.builtin.command: "git rev-parse --abbrev-ref HEAD"
       args:
@@ -39,13 +31,25 @@
       ansible.builtin.set_fact:
         ubuntu_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
         course_id: "{{ course_build | default('public', true) | lower }}"
-        install_geoip: "{{ latest_geoip.user_input | default('N') | upper }}"
         git_branch: "{{ git_branch_result.stdout }}"
       tags: always
 
     - name: Validate that a course_version has been specified if needed
       ansible.builtin.meta: end_host
       when: (course_id is defined and course_id != 'public') and course_version is not defined
+      tags: always
+
+    - name: Determine if installing the latest GeoIP databases is requested
+      ansible.builtin.pause:
+        prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
+      register: latest_geoip
+      run_once: true
+      when: course_id == "public"
+      tags: always
+
+    - name: Set GeoIP facts
+      ansible.builtin.set_fact:
+        install_geoip: "{{ latest_geoip.user_input | default('N') | upper }}"
       tags: always
 
     - name: Get GeoIP Account ID
