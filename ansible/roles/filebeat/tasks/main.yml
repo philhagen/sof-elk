@@ -50,7 +50,7 @@
   tags: filebeat
 
 - name: Start and enable Filebeat service
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: filebeat
     enabled: true
     state: started
@@ -58,7 +58,8 @@
   tags: filebeat
 
 - name: Restart Filebeat
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
+    daemon_reload: true
     name: filebeat
     state: restarted
   when: (not enablestart_filebeat) and (filebeat_config.changed or filebeat_input_directories.changed)

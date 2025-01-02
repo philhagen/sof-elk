@@ -11,7 +11,7 @@
   tags: sof-elk_finalize
 
 - name: Restart Kibana
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: kibana
     state: restarted
   tags: sof-elk_finalize

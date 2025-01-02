@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
 
@@ -101,10 +101,20 @@ echo "cleaning temp directories"
 rm -rf ~elk_user/tmp/*
 
 echo "Resetting GeoIP databases to distributed versions."
+declare -A md5values
+md5values["ASN"]="c20977100c0a6c0842583ba158e906ec"
+md5values["City"]="4c60b3acf2e6782d48ce2b42979f7b98"
+md5values["Country"]="849e7667913e375bb3873f8778e8fb17"
 for GEOIPDB in ASN City Country; do
-    rm -f /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
-    curl -s -L -o /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb https://sof-elk.com/dist/GeoLite2-${GEOIPDB}.mmdb
-    chmod 644 /usr/local/share/GeoIP/GeoLite2-${GEOIPDB}.mmdb
+    file=GeoLite2-${GEOIPDB}.mmdb
+    local_path=/usr/local/share/GeoIP/${file}
+    md5=$( md5sum ${local_path} | awk '{print $1}' )
+    if [ ${md5} != ${md5values[${GEOIPDB}]} ]; then
+        echo "- ${local_path}"
+        rm -f ${local_path}
+        curl -s -L -o ${local_path} https://sof-elk.com/dist/${file}
+        chmod 644 ${local_path}
+    fi
 done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
@@ -171,7 +181,6 @@ if [ $DISKSHRINK -eq 1 ]; then
     echo "remove any snapshots that already exist and press Return"
     read
 
-    # we don't use swap any more
     echo "zeroize swap:"
     swapoff -a
     for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
