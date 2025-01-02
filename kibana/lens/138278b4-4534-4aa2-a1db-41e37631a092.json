@@ -6,19 +6,6 @@
       "datasourceStates": {
         "formBased": {
           "layers": {
-<<<<<<<< HEAD:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
-            "21d6e708-8466-49b2-8314-8f512b717bd6": {
-              "columnOrder": [
-                "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
-              ],
-              "columns": {
-                "3b851116-1a9d-43a7-9c7d-c0a68e85cf62": {
-                  "customLabel": true,
-                  "dataType": "number",
-                  "isBucketed": false,
-                  "label": " ",
-                  "operationType": "count",
-========
             "765ebfc1-e38b-45f1-9038-e865463eda93": {
               "columnOrder": [
                 "7e0e1d44-0118-46ef-a7b0-ceae171b6895"
@@ -30,23 +17,15 @@
                   "isBucketed": false,
                   "label": "Bytes",
                   "operationType": "sum",
->>>>>>>> public/v20241217:kibana/lens/138278b4-4534-4aa2-a1db-41e37631a092.json
                   "params": {
-                    "emptyAsNull": true,
-                    "format": {
-                      "id": "number",
-                      "params": {
-                        "decimals": 0
-                      }
-                    }
+                    "emptyAsNull": true
                   },
                   "scale": "ratio",
                   "sourceField": "file.size_vis"
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {},
-              "sampling": 1
+              "incompleteColumns": {}
             }
           }
         },
@@ -64,18 +43,6 @@
         "query": ""
       },
       "visualization": {
-<<<<<<<< HEAD:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
-        "layerId": "21d6e708-8466-49b2-8314-8f512b717bd6",
-        "layerType": "data",
-        "metricAccessor": "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
-      }
-    },
-    "title": "Syslog Record Count",
-    "visualizationType": "lnsMetric"
-  },
-  "coreMigrationVersion": "8.8.0",
-  "id": "e1683eea-191a-4b6a-bf27-cd96595ffae0",
-========
         "layerId": "765ebfc1-e38b-45f1-9038-e865463eda93",
         "layerType": "data",
         "metricAccessor": "7e0e1d44-0118-46ef-a7b0-ceae171b6895"
@@ -86,20 +53,14 @@
   },
   "coreMigrationVersion": "8.8.0",
   "id": "138278b4-4534-4aa2-a1db-41e37631a092",
->>>>>>>> public/v20241217:kibana/lens/138278b4-4534-4aa2-a1db-41e37631a092.json
   "managed": false,
   "namespaces": [
     "default"
   ],
   "references": [
     {
-<<<<<<<< HEAD:kibana/lens/e1683eea-191a-4b6a-bf27-cd96595ffae0.json
-      "id": "logstash",
-      "name": "indexpattern-datasource-layer-21d6e708-8466-49b2-8314-8f512b717bd6",
-========
       "id": "filesystem",
       "name": "indexpattern-datasource-layer-765ebfc1-e38b-45f1-9038-e865463eda93",
->>>>>>>> public/v20241217:kibana/lens/138278b4-4534-4aa2-a1db-41e37631a092.json
       "type": "index-pattern"
     }
   ],
