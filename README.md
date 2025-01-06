@@ -24,7 +24,7 @@ These files are only recommended to be used in the SOF-ELK VM distribution at th
 
 ## Contents by directory
 
-* `/configfiles/`: These files conatain parsing/tagging/formatting/etc logic for individual file types as well as output configuration.
+* `/configfiles/`: These files contain parsing/tagging/formatting/etc logic for individual file types as well as output configuration.
 * `/configfiles-UNSUPPORTED/`: These configuration files are either not ready for operational use, in testing, or otherwise staged/stashed.
 * `/doc/`: Documentation.  Always a work in progress.
 * `/grok-patterns/`: Custom parsing patterns used by the files in the `/configfiles/` directory.
