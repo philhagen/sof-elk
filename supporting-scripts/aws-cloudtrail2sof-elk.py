@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK® Supporting script
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This script will recursively read a file or directory tree of JSON AWS Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped and native JSON is supported.
 
@@ -10,90 +10,136 @@ import json
 import os
 import sys
 
-default_destdir = '/logstash/aws/'
 
-def process_cloudtrail_file(infile, outfh):
-    # determine if this is a gzip file first
-    input_file = gzip.open(infile, 'r')
+from datetime import datetime
+from collections import defaultdict
+
+
+default_destdir = "/logstash/aws/"
+
+
+def extract_date_from_filename(filepath):
+    """
+    Extract the date portion (YYYY-MM-DDT) from the full file path.
+    Assumes the filename contains a date in the format YYYYMMDD, such as
+    123456789012_CloudTrail_us-east-1_20250110T0805Z_Ba3uiALBNRSB1c4v.json.gz.
+    """
+    base_name = os.path.basename(filepath)
     try:
-        input_file.read()
-        is_gzip = True
-        input_file.seek(0)
+        # Look for the YYYYMMDD pattern in the filename
+        for part in base_name.split("_"):
+            if "T" in part and part[:8].isdigit():
+                date_part = part[:8]  # Extract YYYYMMDD
+                date_object = datetime.strptime(date_part, "%Y%m%d")
+                return date_object.strftime("%Y-%m-%dT")
+    except ValueError:
+        sys.stderr.write(
+            f"- ERROR: Could not extract date from filename {filepath}. Skipping file.\n"
+        )
+    return None
 
-    # py3.8+: except gzip.BadGzipFile:
+
+def process_cloudtrail_file(infile):
+    """
+    Process a CloudTrail log file and return its records.
+    """
+    records = []
+
+    # Determine if this is a gzip file
+    try:
+        with gzip.open(infile, "rt") as input_file:
+            rawjson = json.load(input_file)
     except OSError:
-        # not a gzip file
-        is_gzip = False
-        input_file = open(infile, 'r')
-
-    try:
-        rawjson = json.load(input_file)
-
+        with open(infile, "r") as input_file:
+            rawjson = json.load(input_file)
     except json.decoder.JSONDecodeError:
-        sys.stderr.write('- ERROR: Could not process JSON from %s. Skipping file.\n' % (infile))
-        return
+        sys.stderr.write(
+            f"- ERROR: Could not process JSON from {infile}. Skipping file.\n"
+        )
+        return records
 
-    if not 'Records' in rawjson.keys():
-        sys.stderr.write('- ERROR: Input file %s does not appear to contain AWS Cloudtrail records. Skipping file.\n' % (infile))
-        return
+    if "Records" not in rawjson:
+        sys.stderr.write(
+            f"- ERROR: Input file {infile} does not appear to contain AWS CloudTrail records. Skipping file.\n"
+        )
+        return records
 
-    for record in rawjson['Records']:
-        outfh.write('%s\n' % (json.dumps(record)))
+    return rawjson["Records"]
 
-parser = argparse.ArgumentParser(description='Process AWS Cloudtrail logs into a format that SOF-ELK(R) can read, in ndjson form.')
-parser.add_argument('-r', '--read', dest='infile', help='AWS Cloudtrail log file to read, or a directory containing AWS Cloudtrail log files.  Files can be in native JSON or gzipped JSON.')
-parser.add_argument('-w', '--write', dest='outfile', help='File to create containing processed AWS Cloudtrail data.')
-parser.add_argument('-f', '--force', dest='force_outfile', help='Force creating an output file in a location other than the default SOF-ELK ingest location, %s' % (default_destdir), default=False, action='store_true')
-parser.add_argument('-a', '--append', dest='append', help='Append to the output file if it exists.', default=False, action='store_true')
-parser.add_argument('-v', '--verbose', dest='verbose', help='Display progress and related status information while parsing input files.', default=False, action='store_true')
+
+def derive_output_dir(input_dir, infile):
+    """
+    Derive the output directory path based on the input directory structure.
+    """
+    daily_path = os.path.dirname(infile)
+    relative_path = os.path.relpath(os.path.dirname(daily_path), input_dir)
+    return os.path.join("processed-logs-json", relative_path)
+
+
+parser = argparse.ArgumentParser(
+    description="Process AWS CloudTrail logs into daily-based output files."
+)
+parser.add_argument(
+    "-r",
+    "--read",
+    dest="infile",
+    required=True,
+    help="AWS CloudTrail log file or directory to read.",
+)
+parser.add_argument(
+    "-o",
+    "--output",
+    dest="outdir",
+    help='Base directory to store processed daily output files (default: "processed-logs-json").',
+)
+parser.add_argument(
+    "-v",
+    "--verbose",
+    dest="verbose",
+    action="store_true",
+    help="Display progress and status information.",
+)
 args = parser.parse_args()
 
-if args.infile == None:
-    sys.stderr.write('ERROR: No input file or root directory specified.\n')
-    sys.exit(2)
 
-if args.outfile == None:
-    sys.stderr.write('ERROR: No output file specified.\n')
-    sys.exit(2)
-elif not args.outfile.startswith(default_destdir) and not args.force_outfile:
-    sys.stderr.write('ERROR: Output file is not in %s, which is the SOF-ELK ingest location. Use "-f" to force creating a file in this location.\n' % (default_destdir))
-    sys.exit(2)
-elif not args.outfile.endswith('.json'):
-    sys.stderr.write('ERROR: Output file does not end with ".json".  SOF-ELK requires this extension to process these logs.  Exiting.\n')
-    sys.exit(2)
-
-input_files= []
+input_files = []
 if os.path.isfile(args.infile):
     input_files.append(args.infile)
 elif os.path.isdir(args.infile):
-    for root, dirs, files in os.walk(args.infile):
+    for root, _, files in os.walk(args.infile):
         for name in files:
             input_files.append(os.path.join(root, name))
 else:
-    sys.stderr.write('No input files could be processed.  Exiting.\n')
+    sys.stderr.write("No input files could be processed. Exiting.\n")
     sys.exit(4)
 
 if args.verbose:
-    print('Found %d files to parse.' % (len(input_files)))
-    print()
+    print(f"Found {len(input_files)} files to parse.")
 
-if os.path.isfile(args.outfile) and args.append == True:
-    outfh = open(args.outfile, 'a')
-if os.path.isfile(args.outfile) and args.append == False:
-    sys.stderr.write('ERROR: Output file %s already exists. Use "-a" to append to the file at this location or specify a different filename.\n' % (args.outfile))
-    sys.exit(3)
-else:
-    outfh = open(args.outfile, 'w')
-
-fileno = 0
-for infile in input_files:
-    fileno = fileno + 1
+for idx, infile in enumerate(input_files, 1):
     if args.verbose:
-        print('- Parsing file: %s (%d of %d)' % (infile, fileno, len(input_files)))
-    process_cloudtrail_file(infile, outfh)
+        print(f"- Parsing file: {infile} ({idx} of {len(input_files)})")
 
-print('Output complete.')
-if not args.outfile.startswith(default_destdir):
-    print('You must move/copy the generated file to the %s directory before SOF-ELK can process it.' % (default_destdir))
-else:
-    print('SOF-ELK should now be processing the generated file - check system load and the Kibana interface to confirm.')
+    date_key = extract_date_from_filename(infile)
+    if not date_key:
+        continue
+
+    records = process_cloudtrail_file(infile)
+
+    output_dir = derive_output_dir(args.infile, infile)
+
+    if args.outdir == None:
+        output_dir = os.path.join(default_destdir, output_dir)
+    else:
+        output_dir = os.path.join(args.outdir, output_dir)
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    output_file = os.path.join(output_dir, f"cloudtrail_{date_key}.json")
+    with open(output_file, "w") as outfh:
+        for record in records:
+            outfh.write(f"{json.dumps(record)}\n")
+
+if args.verbose:
+    print("Output complete. Daily JSON files have been created in the specified directory.")
