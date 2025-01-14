@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script will recursively read a file or directory tree of JSON AWS Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped and native JSON is supported.
 
