@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # SOF-ELK® Supporting script
 # (C)2025 Lewes Technology Consulting, LLC
+# Updated Jan 2025 by GH @za to refactor into a date-hashed directory tree
 #
 # This script will recursively read a file or directory tree of JSON AWS Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped and native JSON is supported.
 
@@ -142,4 +143,6 @@ for idx, infile in enumerate(input_files, 1):
             outfh.write(f"{json.dumps(record)}\n")
 
 if args.verbose:
-    print("Output complete. Daily JSON files have been created in the specified directory.")
+    print(
+        "Output complete. Daily JSON files have been created in the specified directory."
+    )
