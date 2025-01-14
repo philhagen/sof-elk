@@ -133,7 +133,11 @@ if not args.outdir.startswith(default_destdir) and not args.force_outfile:
     )
     sys.exit(2)
 
-if os.path.exists(args.outdir) and not (args.outdir == default_destdir) and not args.append:
+if (
+    os.path.exists(args.outdir)
+    and not (args.outdir == default_destdir)
+    and not args.append
+):
     sys.stderr.write(
         f'ERROR: Output directory {args.outdir} already exists.  Use "-a" to append to any existing output in this location.\n'
     )
