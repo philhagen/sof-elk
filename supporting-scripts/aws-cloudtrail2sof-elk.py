@@ -3,13 +3,19 @@
 # (C)2025 Lewes Technology Consulting, LLC
 # Updated Jan 2025 by GH user @za to refactor into a date-hashed directory tree
 #
-# This script will recursively read a file or directory tree of JSON AWS Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped and native JSON is supported.
+# This script will recursively read a file or directory tree of JSON AWS
+# Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped
+# and native JSON is supported.
+# Assumes the filename contains a date in the format YYYYMMDD, such as:
+#  123456789012_CloudTrail_us-east-1_20250110T0805Z_Ba3uiALBNRSB1c4v.json.gz
 
 import argparse
 import gzip
 import json
 import os
+import re
 import sys
+import pdb
 
 
 from datetime import datetime
@@ -18,31 +24,13 @@ from collections import defaultdict
 
 default_destdir = "/logstash/aws/"
 
-
-def extract_date_from_filename(filepath):
-    """
-    Extract the date portion (YYYY-MM-DDT) from the full file path.
-    Assumes the filename contains a date in the format YYYYMMDD, such as
-    123456789012_CloudTrail_us-east-1_20250110T0805Z_Ba3uiALBNRSB1c4v.json.gz.
-    """
-    base_name = os.path.basename(filepath)
-    try:
-        # Look for the YYYYMMDD pattern in the filename
-        for part in base_name.split("_"):
-            if "T" in part and part[:8].isdigit():
-                date_part = part[:8]  # Extract YYYYMMDD
-                date_object = datetime.strptime(date_part, "%Y%m%d")
-                return date_object.strftime("%Y-%m-%dT")
-    except ValueError:
-        sys.stderr.write(
-            f"- ERROR: Could not extract date from filename {filepath}. Skipping file.\n"
-        )
-    return None
+filename_regex_string = "(?P<account_id>\d{12})_CloudTrail_(?P<region_name>[A-Za-z0-9-]+)_(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})T(?P<time>\d{4})Z_.*"
+filename_regex = re.compile(filename_regex_string)
 
 
 def process_cloudtrail_file(infile):
     """
-    Process a CloudTrail log file and return its records.
+    Process a single CloudTrail log file and return its records.
     """
     records = []
 
@@ -68,13 +56,33 @@ def process_cloudtrail_file(infile):
     return rawjson["Records"]
 
 
-def derive_output_dir(input_dir, infile):
+def derive_output_file(infile):
     """
     Derive the output directory path based on the input directory structure.
     """
-    daily_path = os.path.dirname(infile)
-    relative_path = os.path.relpath(os.path.dirname(daily_path), input_dir)
-    return os.path.join("processed-logs-json", relative_path)
+
+    filename = os.path.basename(infile)
+    filename_match = filename_regex.match(filename)
+
+    if filename_match:
+        filename_parts = filename_match.groupdict()
+
+        output_file = os.path.join(
+            "processed-logs-json",
+            filename_parts["account_id"],
+            filename_parts["region_name"],
+            filename_parts["year"],
+            filename_parts["month"],
+            f"cloudtrail_{filename_parts['year']}-{filename_parts['month']}-{filename_parts['day']}.json",
+        )
+
+    else:
+        sys.stderr.write(
+            f"WARNING: {infile} does not have a standard file naming structure. Placing records into undated output file.\n"
+        )
+        output_file = os.path.join("processed-logs-json", "cloudtrail_undated.json")
+
+    return output_file
 
 
 parser = argparse.ArgumentParser(
@@ -102,6 +110,14 @@ parser.add_argument(
     action="store_true",
 )
 parser.add_argument(
+    "-a",
+    "--append",
+    dest="append",
+    help="Append to the output file if it exists.",
+    default=False,
+    action="store_true",
+)
+parser.add_argument(
     "-v",
     "--verbose",
     dest="verbose",
@@ -117,6 +133,12 @@ if not args.outdir.startswith(default_destdir) and not args.force_outfile:
     )
     sys.exit(2)
 
+
+if os.path.exists(args.outdir) and not args.append:
+    sys.stderr.write(
+        f'ERROR: Output directory {args.outdir} already exists.  Use "-a" to append to any existing output in this location.\n'
+    )
+    sys.exit(3)
 
 input_files = []
 if os.path.isfile(args.input):
@@ -136,28 +158,29 @@ for idx, infile in enumerate(input_files, 1):
     if args.verbose:
         print(f"- Parsing file: {infile} ({idx} of {len(input_files)})")
 
-    date_key = extract_date_from_filename(infile)
-    if not date_key:
-        continue
-
     records = process_cloudtrail_file(infile)
 
-    output_dir = derive_output_dir(args.infile, infile)
+    output_file = derive_output_file(infile)
 
     if args.outdir == None:
-        output_dir = os.path.join(default_destdir, output_dir)
+        output_path = os.path.join(default_destdir, output_file)
     else:
-        output_dir = os.path.join(args.outdir, output_dir)
+        output_path = os.path.join(args.outdir, output_file)
+
+    output_dir = os.path.dirname(output_path)
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    output_file = os.path.join(output_dir, f"cloudtrail_{date_key}.json")
-    with open(output_file, "w") as outfh:
+    with open(output_path, "a") as outfh:
         for record in records:
             outfh.write(f"{json.dumps(record)}\n")
 
-if args.verbose:
+if not args.outdir.startswith(default_destdir):
     print(
-        "Output complete. Daily JSON files have been created in the specified directory."
+        f"Output complete.  You must move/copy the generated file to the {default_destdir} directory before SOF-ELK can process it."
+    )
+else:
+    print(
+        "SOF-ELK should now be processing the generated file - check system load and the Kibana interface to confirm."
     )
