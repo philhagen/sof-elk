@@ -94,6 +94,14 @@ parser.add_argument(
     help='Base directory to store processed daily output files (default: "processed-logs-json").',
 )
 parser.add_argument(
+    "-f",
+    "--force",
+    dest="force_outfile",
+    help=f"Force creating an output file in a location other than the default SOF-ELK ingest location, {default_destdir}",
+    default=False,
+    action="store_true",
+)
+parser.add_argument(
     "-v",
     "--verbose",
     dest="verbose",
@@ -101,6 +109,13 @@ parser.add_argument(
     help="Display progress and status information.",
 )
 args = parser.parse_args()
+
+
+if not args.outdir.startswith(default_destdir) and not args.force_outfile:
+    sys.stderr.write(
+        f'ERROR: Output location is not in {default_destdir}, which is the SOF-ELK ingest location. Use "-f" to force creating a file in this location.\n'
+    )
+    sys.exit(2)
 
 
 input_files = []
