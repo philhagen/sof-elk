@@ -15,7 +15,6 @@ import json
 import os
 import re
 import sys
-import pdb
 
 
 from datetime import datetime
