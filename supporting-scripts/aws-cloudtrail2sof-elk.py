@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SOF-ELK® Supporting script
 # (C)2025 Lewes Technology Consulting, LLC
-# Updated Jan 2025 by GH @za to refactor into a date-hashed directory tree
+# Updated Jan 2025 by GH user @za to refactor into a date-hashed directory tree
 #
 # This script will recursively read a file or directory tree of JSON AWS Cloudtrail logs and output in a format that SOF-ELK® can read.  Both gzipped and native JSON is supported.
 
@@ -83,7 +83,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "-r",
     "--read",
-    dest="infile",
+    dest="input",
     required=True,
     help="AWS CloudTrail log file or directory to read.",
 )
@@ -119,10 +119,10 @@ if not args.outdir.startswith(default_destdir) and not args.force_outfile:
 
 
 input_files = []
-if os.path.isfile(args.infile):
-    input_files.append(args.infile)
-elif os.path.isdir(args.infile):
-    for root, _, files in os.walk(args.infile):
+if os.path.isfile(args.input):
+    input_files.append(args.input)
+elif os.path.isdir(args.input):
+    for root, _, files in os.walk(args.input):
         for name in files:
             input_files.append(os.path.join(root, name))
 else:
