@@ -401,7 +401,7 @@ gcp.audit.response.account_id,,gcp,,6950-gcp.conf,,
 gcp.audit.service_nanme,,gcp,,6950-gcp.conf,,
 gcp.audit.status.message,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_status
 gcp.audit.type,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_audit_3
-gcp.computer_resource_name,,gcp,,6950-gcp.conf,,
+gcp.compute_resource_name,,gcp,,6950-gcp.conf,,
 gcp.destination.instance.project_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_destination_instance
 gcp.destination.instance.project_id,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_destination_instance
 gcp.destination.instance.region,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_destination_instance
@@ -425,6 +425,7 @@ gcp.firewall.rule_details.reference,,gcp,,6950-gcp.conf,filebeat,https://www.ela
 gcp.firewall.rule_details.source_range,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_rule_details
 gcp.firewall.rule_details.source_tag,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_rule_details
 gcp.firewall.rule_details.target_tag,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-gcp.html#_rule_details
+gcp.instance.project_id,,gcp,,6950-gcp.conf,,
 gcp.log_message,,gcp,,6950-gcp.conf,,
 gcp.log_name,,netflow,,2050-netflow.conf,SOF-ELK,
 gcp.log_name,,gcp,,6950-gcp.conf,SOF-ELK,
