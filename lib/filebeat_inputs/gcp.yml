@@ -13,7 +13,7 @@
   parsers:
     - multiline:
         type: pattern
-        pattern: "^(?:^  {|^])"
+        pattern: "^(?:  {|])"
         negate: true
         match: after
   # exclude_lines takes place AFTER the multiline processing
