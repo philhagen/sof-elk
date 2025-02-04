@@ -28,7 +28,7 @@ done
 
 if [[ -z "${SOURCE_LOCATION}" ]]; then
   echoerr ""
-  echoerr "Please supply a source nfcapd filename or parent directory containing VPC Flow"
+  echoerr "Please supply a source filename or parent directory containing VPC Flow"
   echoerr "  data to be parsed for SOF-ELK."
   echoerr ""
   echoerr "Example:"

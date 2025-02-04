@@ -46,6 +46,7 @@ aws.s3access.version_id,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.
 aws.vpcflow.account_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-aws.html#_vpcflow
 aws.vpcflow.action,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-aws.html#_vpcflow
 aws.vpcflow.destination_service,,netflow,,2050-netflow.conf,,
+aws.vpcflow.file.name,,netflow,,2050-netflow.conf,SOF-ELK,
 aws.vpcflow.instance_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-aws.html#_vpcflow
 aws.vpcflow.interface_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-aws.html#_vpcflow
 aws.vpcflow.log_status,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-aws.html#_vpcflow
