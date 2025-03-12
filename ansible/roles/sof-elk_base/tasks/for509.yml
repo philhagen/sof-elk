@@ -85,8 +85,8 @@
 
 - name: Create ssh keys
   community.crypto.openssh_keypair:
-    path: "/home/elk_user/.ssh/{{ course_id | upper }}_workbook_id_ed25519"
-    type: ed25519
+    path: "/home/elk_user/.ssh/{{ course_id | lower }}_workbook_id_{{ ssh_keytype }}"
+    type: "{{ ssh_keytype }}"
     owner: elk_user
     group: elk_user
     comment: "elk_user@{{ course_id }}_sof-elk_{{ course_version | upper }}"
