@@ -1,6 +1,6 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 course_apt_packages:
   - apache2
@@ -18,3 +18,5 @@ apache2_mods:
 ssh_confs:
   - known_hosts
   - config
+
+ssh_keytype: ed25519

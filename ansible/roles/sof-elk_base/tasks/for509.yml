@@ -73,7 +73,17 @@
   when: (not enablestart_apache2) and (install_apache2_configs.changed or enable_apache2_config.changed or enable_apache2_mods.changed)
   tags: sof-elk_base
 
-# TODO: should probably determine if the keys exist already and use as a conditional
+- name: Create elk_user's bash alias for EWB update
+  ansible.builtin.lineinfile:
+    dest: /home/elk_user/.bash_aliases
+    regexp: '^alias workbook-update.*'
+    line: "alias workbook-update='/bin/bash /var/www/html/workbook/resources/workbook-update.sh'"
+    owner: elk_user
+    group: elk_user
+    mode: 0600
+  tags: sof-elk_base
+ 
+# TODO: should probably determine if the keys already exist and use as a conditional
 - name: Create elk_user's .ssh directory
   ansible.builtin.file:
     path: /home/elk_user/.ssh
@@ -85,8 +95,8 @@
 
 - name: Create ssh keys
   community.crypto.openssh_keypair:
-    path: "/home/elk_user/.ssh/{{ course_id | upper }}_workbook_id_ed25519"
-    type: ed25519
+    path: "/home/elk_user/.ssh/{{ course_id | lower }}_workbook_id_{{ ssh_keytype }}"
+    type: "{{ ssh_keytype }}"
     owner: elk_user
     group: elk_user
     comment: "elk_user@{{ course_id }}_sof-elk_{{ course_version | upper }}"
@@ -101,3 +111,9 @@
     mode: 0600
   with_items: "{{ ssh_confs }}"
   tags: sof-elk_base
+
+### NOTE: TO ADD CRON JOB AFTER CLONING EWB:
+# as elk_user: crontab /var/www/html/workbook/resources/ewb-update.cron
+
+### NOTE: TO ADD EWB UPDATE SERVICE (AT REBOOT) AFTER CLONING EWB:
+# as elk_user: sudo systemctl enable /ar/www/html/workbook/resources/ewb-update.service
