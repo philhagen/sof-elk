@@ -6,14 +6,18 @@
   ansible.builtin.include_vars:
     dir: vars
     files_matching: "{{ course_id }}.yml"
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Install course-specific packages
   ansible.builtin.apt:
     name: "{{ course_apt_packages }}"
     state: present
   when: course_apt_packages is defined
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Install apache2 configuration files
   ansible.builtin.copy:
@@ -24,7 +28,9 @@
     mode: 0644
   with_items: "{{ apache2_confs }}"
   register: install_apache2_config
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Enable apache2 configuration files
   ansible.builtin.command: a2enconf {{ item }}
@@ -32,7 +38,9 @@
     creates: "/etc/apache2/conf-enabled/{{ item }}.conf"
   with_items: "{{ apache2_confs }}"
   register: enable_apache2_configs
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Enable apache2 modules
   community.general.apache2_module:
@@ -40,7 +48,9 @@
     state: present
   with_items: "{{ apache2_mods }}"
   register: enable_apache2_mods
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Open firewall ports
   ansible.posix.firewalld:
@@ -48,14 +58,18 @@
     permanent: true
     state: enabled
   register: apache2_firewall_port
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Restart firewalld
   ansible.builtin.systemd_service:
     name: firewalld
     state: reloaded
   when: apache2_firewall_port.changed
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Start and Enable apache2 service
   ansible.builtin.systemd_service:
@@ -64,14 +78,18 @@
     enabled: true
     state: started
   register: enablestart_apache2
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Restart apache2
   ansible.builtin.systemd_service:
     name: apache2
     state: restarted
   when: (not enablestart_apache2) and (install_apache2_configs.changed or enable_apache2_config.changed or enable_apache2_mods.changed)
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Create elk_user's bash alias for EWB update
   ansible.builtin.lineinfile:
@@ -81,7 +99,9 @@
     owner: elk_user
     group: elk_user
     mode: 0600
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
  
 # TODO: should probably determine if the keys already exist and use as a conditional
 - name: Create elk_user's .ssh directory
@@ -91,7 +111,9 @@
     owner: elk_user
     group: elk_user
     mode: 0700
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Create ssh keys
   community.crypto.openssh_keypair:
@@ -100,7 +122,9 @@
     owner: elk_user
     group: elk_user
     comment: "elk_user@{{ course_id }}_sof-elk_{{ course_version | upper }}"
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Install templated ssh configuration files
   ansible.builtin.template:
@@ -110,7 +134,9 @@
     group: elk_user
     mode: 0600
   with_items: "{{ ssh_confs }}"
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 ### NOTE: TO ADD CRON JOB AFTER CLONING EWB:
 # as elk_user: crontab /var/www/html/workbook/resources/ewb-update.cron
