@@ -10,6 +10,15 @@
   - sof-elk_base
   - pub2course
 
+- name: Remove sample evidence directory (for course-specific builds only)
+  ansible.builtin.file:
+    path: /home/elk_user/sample_evidence
+    state: absent
+  when: course_id != "public"
+  tags:
+  - sof-elk_base
+  - pub2course
+
 - name: Install course-specific packages
   ansible.builtin.apt:
     name: "{{ course_apt_packages }}"
