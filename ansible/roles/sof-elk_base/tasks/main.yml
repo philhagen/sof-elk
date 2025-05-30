@@ -11,7 +11,7 @@
     mode: 0644
   register: timezone
   tags: sof-elk_base
-
+  
 - name: Reconfigure Timezone Data
   ansible.builtin.shell: dpkg-reconfigure -f noninteractive tzdata
   when: timezone.changed
@@ -53,7 +53,9 @@
     owner: root
     group: root
     mode: 0644
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Start and enable SSHD host key generation service
   ansible.builtin.systemd_service:
@@ -61,7 +63,9 @@
     name: sshd-keygen
     enabled: true
     state: started
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Set SSHD host key generation service order
   ansible.builtin.lineinfile:
@@ -69,7 +73,9 @@
     regexp: '^After=.*'
     line: 'After=network.target sshd-keygen.service auditd.service'
   register: ssh_systemd_service
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Start and enable SSHD
   ansible.builtin.systemd_service:
@@ -78,7 +84,9 @@
     enabled: true
     state: started
   register: enablestart_sshd
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Restart SSHD
   ansible.builtin.systemd_service:
@@ -87,7 +95,9 @@
     enabled: true
     state: restarted
   when: (not enablestart_sshd.changed) and (ssh_config.changed or ssh_systemd_service.changed)
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Disable nfcapd service
   ansible.builtin.systemd_service:
@@ -176,12 +186,16 @@
     owner: root
     group: root
     mode: 0644
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Set new revision string
   ansible.builtin.set_fact:
     revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Set up custom login banner
   ansible.builtin.template:
@@ -191,12 +205,16 @@
     group: root
     mode: 0644
   register: issue_banner
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Activate the new login banner
   ansible.builtin.shell: /usr/sbin/agetty --reload
   when: issue_banner.changed
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Set up sysctl configuration
   ansible.builtin.copy:
@@ -230,7 +248,9 @@
     dest: '/usr/local/sof-elk'
     version: "{{ git_branch }}"
     update: true
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course
 
 - name: Create elk_user's .gitconfig file
   ansible.builtin.file:
@@ -362,4 +382,6 @@
   when: course_tasks_file != ""
   vars:
     course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore' ) }}"
-  tags: sof-elk_base
+  tags:
+  - sof-elk_base
+  - pub2course

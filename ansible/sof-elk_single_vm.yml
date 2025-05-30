@@ -2,6 +2,14 @@
 # This playbook configures a single-instance SOF-ELK(R) system
 # (C)2025 Lewes Technology Consulting, LLC
 
+#
+# To build a course version, use the following command line:
+# $ ansible-playbook -K -i /tmp/sof-elk/ansible/local_build.yml -e "course_build=aaa123 course_version=Z99" /tmp/sof-elk/ansible/sof-elk_single_vm.yml
+#
+# To modify a public build to a course build, use the following command line:
+# $ ansible-playbook -K -i /tmp/sof-elk/ansible/local_build.yml -e "course_build=aaa123 course_version=Z99" -t pub2course /tmp/sof-elk/ansible/sof-elk_single_vm.yml
+#
+
 - name: Run all preload steps required for a SOF-ELK(R) system
   hosts: all
   become: true

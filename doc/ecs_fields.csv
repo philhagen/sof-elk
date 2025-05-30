@@ -82,6 +82,7 @@ azure.auditlogs.properties.category,,azure,,6801-azure.conf,filebeat,https://www
 azure.auditlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result_reason,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
+azure.auditlogs.properties.servicePrincipalId,,azure,,6801-azure.conf,,
 azure.auditlogs.properties.target_resources.*,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_target_resources
 azure.auditlogs.properties.target_resources.modified_properties.*.NewValue,constructed by split_kv_multi_to_fields.rb with parent as field name,azure,,6801-azure.conf,,
 azure.auditlogs.properties.target_resources.modified_properties.*.OldValue,constructed by split_kv_multi_to_fields.rb with parent as field name,azure,,6801-azure.conf,,
@@ -92,9 +93,12 @@ azure.correlation_id,Copy of azure.auditlogs.properties.correlation_id or azure.
 azure.event_data.*,constructed by split_kv_to_fields.rb,azure,,6801-azure.conf,,
 azure.event_data.PrivilegeList,,azure,,6801-azure.conf,,
 azure.event_record_id,,azure,,6801-azure.conf,,
+azure.flow_encrypted,,netflow,boolean,2050-netflow.conf,SOF-ELK,
+azure.flow_non_encrypted_reason,,netflow,,2050-netflow.conf,SOF-ELK,
 azure.flow_rule,,netflow,,2050-netflow.conf,,
 azure.flow_source_file,,netflow,,2050-netflow.conf,,
 azure.flow_state,,netflow,,2050-netflow.conf,,
+azure.flow_version,,netflow,,2050-netflow.conf,SOF-ELK,
 azure.graphlogs.category,,azure,,6801-azure.conf,,
 azure.graphlogs.correlation_guid,,azure,,6801-azure.conf,,
 azure.graphlogs.operation_name,,azure,,6801-azure.conf,,
@@ -116,6 +120,7 @@ azure.signinlogs.properties.authentication_details.*,,azure,,6801-azure.conf,fil
 azure.signinlogs.properties.authentication_details.authenticationStepDateTime,,azure,date,6801-azure.conf,,
 azure.signinlogs.properties.client_app_used,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.failure_reason,,azure,,6801-azure.conf,,
+azure.signinlogs.properties.service_principal_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_signinlogs
 azure.signinlogs.properties.status.error_code,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.user_display_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.user_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
