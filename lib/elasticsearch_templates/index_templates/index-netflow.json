@@ -58,7 +58,10 @@
             },
             "flow_duration": {
               "type": "double"
-            }  
+            },
+            "flow_encrypted": {
+              "type": "boolean"
+            }
           }
         }
       }
