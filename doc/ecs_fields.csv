@@ -82,6 +82,7 @@ azure.auditlogs.properties.category,,azure,,6801-azure.conf,filebeat,https://www
 azure.auditlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
 azure.auditlogs.properties.result_reason,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_properties
+azure.auditlogs.properties.servicePrincipalId,,azure,,6801-azure.conf,,
 azure.auditlogs.properties.target_resources.*,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_target_resources
 azure.auditlogs.properties.target_resources.modified_properties.*.NewValue,constructed by split_kv_multi_to_fields.rb with parent as field name,azure,,6801-azure.conf,,
 azure.auditlogs.properties.target_resources.modified_properties.*.OldValue,constructed by split_kv_multi_to_fields.rb with parent as field name,azure,,6801-azure.conf,,
