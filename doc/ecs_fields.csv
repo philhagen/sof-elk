@@ -120,6 +120,7 @@ azure.signinlogs.properties.authentication_details.*,,azure,,6801-azure.conf,fil
 azure.signinlogs.properties.authentication_details.authenticationStepDateTime,,azure,date,6801-azure.conf,,
 azure.signinlogs.properties.client_app_used,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.failure_reason,,azure,,6801-azure.conf,,
+azure.signinlogs.properties.service_principal_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_signinlogs
 azure.signinlogs.properties.status.error_code,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.user_display_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
 azure.signinlogs.properties.user_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/current/exported-fields-azure.html#_signinlogs
