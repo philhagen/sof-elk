@@ -171,6 +171,13 @@ def process_azure_flow(infile, outfh):
             )
             return
 
+        if not "records" in rawjson:
+            sys.stderr.write(
+                "- ERROR: JSON did not contain a 'records' field in %s, line %d. Skipping line.\n"
+                % (infile, input_linenum)
+            )
+            return
+
         for record in rawjson["records"]:
             # this is a new vnet flow format
             if record["category"] == "FlowLogFlowEvent":
