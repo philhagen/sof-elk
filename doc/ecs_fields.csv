@@ -537,6 +537,11 @@ kape.mft.inuse,,kape_filesystem,,6501-kape_mftecmd.conf,,
 kape.mft.isads,,kape_filesystem,,6501-kape_mftecmd.conf,,
 kape.mft.name_type,,kape_filesystem,,6501-kape_mftecmd.conf,,
 kape.mft.timestomped,,kape_filesystem,,6501-kape_mftecmd.conf,,
+kubernetes.container.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.namespace,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.node.hostname,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.pod.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.pod.uid,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
 labels.type,Assigned by fileabeat inputs' processors,all,,N/A - assigned by filebeat,ECS,https://www.elastic.co/guide/en/ecs/8.11/ecs-base.html#field-labels
 log.level,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-log.html
 log.syslog.appname,replaced by sysmon.EventData.Image,syslog,,6050-sysmon.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-log.html#field-log-syslog-appname
