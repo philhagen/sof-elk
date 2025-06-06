@@ -43,8 +43,12 @@
           "properties": {
             "file": {
               "properties": {
-                "inode": "unsigned_long",
-                "device_id": "unsigned_long"
+                "inode": {
+                  "type": "unsigned_long"
+                },
+                "device_id": {
+                  "type": "unsigned_long"
+                }
               }
             }
           }
