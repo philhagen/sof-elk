@@ -176,6 +176,10 @@ rm -f /var/spool/mail/elk_user
 echo "clearing /tmp/"
 rm -rf /tmp/*
 
+echo "resetting machine-id and random-seed"
+echo "uninitialized" > /etc/machine-id
+rm -f /var/lib/systemd/random-seed
+
 if [ $DISKSHRINK -eq 1 ]; then
     echo "ACTION REQUIRED!"
     echo "remove any snapshots that already exist and press Return"
