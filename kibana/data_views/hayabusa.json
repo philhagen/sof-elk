@@ -1,0 +1,18 @@
+{
+  "data_view": {
+    "allowHidden": false,
+    "allowNoIndex": true,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      }
+    },
+    "id": "hayabusa",
+    "name": "hayabusa-*",
+    "timeFieldName": "@timestamp",
+    "title": "hayabusa-*"
+  }
+}
