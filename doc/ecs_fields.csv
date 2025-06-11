@@ -689,45 +689,61 @@ passivedns.cache_hits,,archive-passivedns,,6014-passivedns.conf,,
 plaso.datasource,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.datasourcetype,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.eventtype,,plaso,,6601-plaso.conf,SOF-ELK,
+process.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
+process.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.entity_id,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
+process.executable,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-executable
 process.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-executable
 process.executable,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-executable
 process.exit_code,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-exit-code
 process.exit_code,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-exit-code
+process.hash.md5,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-hash.html#field-hash-md5
 process.hash.md5,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-hash.html#field-hash-md5
 process.hash.md5,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-hash.html#field-hash-md5
+process.hash.sha256,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-hash.html#field-hash-sha256
 process.hash.sha256,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-hash.html#field-hash-sha256
 process.hash.sha256,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-hash.html#field-hash-sha256
+process.parent.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.parent.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
+process.parent.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.parent.entity_id,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.parent.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
+process.parent.executable,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.parent.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
+process.parent.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.parent.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.parent.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
+process.pe.company,copy of winlog.event_data.Company,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-company
 process.pe.company,copy of winlog.event_data.Company,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-company
 process.pe.description,copy of winlog.event_data.Description,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-description
 process.pe.file_version,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-file-version
 process.pe.file_version,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-file-version
+process.pe.imphash,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-imphash
 process.pe.imphash,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-imphash
 process.pe.imphash,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-imphash
 process.pe.original_file_name,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-original-file-name
 process.pe.original_file_name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-original-file-name
+process.pe.product,copy of winlog.event_data.Product,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-product
 process.pe.product,copy of winlog.event_data.Product,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-product
 process.pid,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
+process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
 process.source.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.source.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
+process.working_directory,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-working-directory
 process.working_directory,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-working-directory
 process.working_directory,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-working-directory
+related.hash,,hayabusa,,6605-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-hash
 related.hash,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-hash
 related.hash,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-hash
 related.ip,,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-ip
 related.mac,,all,,8053-postprocess-mac.conf,,
 related.port,,all,,8051-postprocess_ports.conf,,
+related.user,,hayabusa,,6605-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-user
 related.user,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-user
 related.user,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-related.html#field-related-user
 remote.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-as.html#field-as-number
@@ -744,6 +760,8 @@ remote.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresse
 remote.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-geo.html#field-geo-timezone
 remote.ip,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
 remote.port,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
+rule.id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
+rule.name,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 rule.name,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 rule.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 server.user.name,,httpdlog,,6100-httpd.conf,,
@@ -923,10 +941,12 @@ user.password,,zeek_ftp,,6205-zeek_ftp.conf,,
 vlan.id,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-vlan.html
 volume.serial_number,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://github.com/elastic/ecs/blob/4b2c7c6c4596b8d4acdd420907952a04e20c8c23/generated/beats/fields.ecs.yml#L13523-L13530
 volume.serial_number,,plaso,,6601-plaso.conf,ECS,https://github.com/elastic/ecs/blob/4b2c7c6c4596b8d4acdd420907952a04e20c8c23/generated/beats/fields.ecs.yml#L13523-L13530
+winlog.channel,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.channel,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.channel,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.channel,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.channel,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
+winlog.computer_name,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.computer_name,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.computer_name,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.computer_name,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
@@ -937,18 +957,23 @@ winlog.event_data.Content.HostUrl,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.Content.ReferrerUrl,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.Content.ZoneId,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.Contents,,syslog,,6010-snare.conf,SOF-ELK,
+winlog.event_data.CreationUtcTime,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.CreationUtcTime,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.CreationUtcTime,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.event_data.Description,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Description,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Description,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Detail,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.EnginePid,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
 winlog.event_data.EventType,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.InstanceId,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
+winlog.event_data.IntegrityLevel,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.IntegrityLevel,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.IntegrityLevel,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.event_data.LogonGuid,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonGuid,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonGuid,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.event_data.LogonId,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonId,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonId,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonId,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
@@ -958,6 +983,7 @@ winlog.event_data.ParentUser,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.Path,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Priority,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
 winlog.event_data.ProcessId,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.event_data.Product,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Product,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Product,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.QueuedTaskInstanceId,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
@@ -985,6 +1011,7 @@ winlog.event_data.TargetProcessId,,syslog,,6010-snare.conf,winlogbeat,https://ww
 winlog.event_data.TargetUserName,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TaskInstanceId,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
 winlog.event_data.TaskName,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
+winlog.event_data.TerminalSessionId,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TerminalSessionId,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TerminalSessionId,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.UserContext,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
@@ -1013,6 +1040,7 @@ winlog.provider_guid,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/g
 winlog.provider_name,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.provider_name,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.provider_name,copty of event.provider,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
+winlog.record_id,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.record_id,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.record_id,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.recovered,,plaso,boolean,6601-plaso.conf,,
@@ -1027,10 +1055,12 @@ winlog.task,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/
 winlog.task,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.time_created,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.user.account,,syslog,,6010-snare.conf,SOF-ELK,
+winlog.user.domain,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.domain,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.domain,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.identifier,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.identifier,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
+winlog.user.name,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.name,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.name,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.name,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
