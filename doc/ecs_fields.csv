@@ -719,11 +719,13 @@ process.parent.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/
 process.pe.company,copy of winlog.event_data.Company,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-company
 process.pe.company,copy of winlog.event_data.Company,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-company
 process.pe.description,copy of winlog.event_data.Description,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-description
+process.pe.file_version,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-file-version
 process.pe.file_version,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-file-version
 process.pe.file_version,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-file-version
 process.pe.imphash,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-imphash
 process.pe.imphash,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-imphash
 process.pe.imphash,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-imphash
+process.pe.original_file_name,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-original-file-name
 process.pe.original_file_name,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-original-file-name
 process.pe.original_file_name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-original-file-name
 process.pe.product,copy of winlog.event_data.Product,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-pe.html#field-pe-product
@@ -977,11 +979,13 @@ winlog.event_data.LogonId,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.e
 winlog.event_data.LogonId,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonId,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.LogonId,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.event_data.MemberName,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Name,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.ParentUser,,plaso,,6601-plaso.conf,SOF-ELK,
 winlog.event_data.ParentUser,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.Path,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Priority,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
+winlog.event_data.PrivilegeList,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.event_data.ProcessId,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Product,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.Product,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
@@ -1002,10 +1006,17 @@ winlog.event_data.StartAddress,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.StartFunction,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.StartModule,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.State,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.event_data.StartType,,hayabusa,,6650-hayabusa.conf,,
+winlog.event_data.ServiceType,,hayabusa,,6650-hayabusa.conf,,
+winlog.event_data.SubjectDomainName,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
+winlog.event_data.SubjectUserName,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
+winlog.event_data.SubjectUserSid,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
+winlog.event_data.TargetDomainName,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.event_data.TargetFilename,,plaso,,6601-plaso.conf,SOF-ELK,
 winlog.event_data.TargetFilename,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_data.TargetImage,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TargetObject,,syslog,,6010-snare.conf,SOF-ELK,
+winlog.event_data.TargetProcessGuid,"Note: spec defines ""GUID"" but this is inconsistent with all other ""*Guid"" fields so the mixed case version is used here for consistency",hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TargetProcessGuid,"Note: spec defines ""GUID"" but this is inconsistent with all other ""*Guid"" fields so the mixed case version is used here for consistency",syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TargetProcessId,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
 winlog.event_data.TargetUserName,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
