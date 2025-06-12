@@ -22,15 +22,13 @@
     - /logstash/hayabusa/**/*.json
   close.on_state_change.inactive: 5m
   clean_removed: true
-  # this is untested - needs to be tested against both expanded JSON and NDJSON
-  ## TODO: this fails on the last entry and drops it
   parsers:
     - multiline:
         type: pattern
         pattern: "^{"
         negate: true
         match: after
-        flush_pattern: "^}"
+        # flush_pattern: "^}"
   processors:
     - add_labels:
        labels:

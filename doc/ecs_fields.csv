@@ -689,6 +689,9 @@ passivedns.cache_hits,,archive-passivedns,,6014-passivedns.conf,,
 plaso.datasource,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.datasourcetype,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.eventtype,,plaso,,6601-plaso.conf,SOF-ELK,
+process.BackupPath,,hayabusa,,6650-hayabusa.conf,,
+process.client.pid,,hayabusa,,6650-hayabusa.conf,,
+process.client.StartKey,,hayabusa,,6650-hayabusa.conf,,
 process.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-command-line
@@ -734,6 +737,7 @@ process.pid,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/ecs/curr
 process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
+process.source.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.source.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-entity-id
 process.source.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-pid
 process.working_directory,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-process.html#field-process-working-directory
@@ -763,11 +767,13 @@ remote.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.c
 remote.ip,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
 remote.port,,kape_evtxlogs,,6504-kape_evtxecmd.conf,,
 rule.id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
+rule.level,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 rule.name,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 rule.name,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 rule.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-rule.html#field-rule-name
 server.user.name,,httpdlog,,6100-httpd.conf,,
 server.user.name,,zeek_http,,6201-zeek_http.conf,,
+service.name,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-service.html#field-service-name
 service.name,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/current/ecs-service.html#field-service-name
 sof-elk.base_index,,all,,1000-preprocess-all.conf,SOF-ELK,
 sof-elk.base_index,,azure,,1809-preprocess-azure.conf,SOF-ELK,
@@ -1065,6 +1071,7 @@ winlog.snare.system_timestamp,Local time on system where event log entry was gen
 winlog.task,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.task,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.time_created,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_event_data
+winlog.user.account,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 winlog.user.account,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.user.domain,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
 winlog.user.domain,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/current/exported-fields-winlog.html#_winlog
