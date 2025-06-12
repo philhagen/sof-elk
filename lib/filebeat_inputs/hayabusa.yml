@@ -27,9 +27,10 @@
   parsers:
     - multiline:
         type: pattern
-        pattern: "^(?:{)"
+        pattern: "^{"
         negate: true
         match: after
+        flush_pattern: "^}"
   processors:
     - add_labels:
        labels:
