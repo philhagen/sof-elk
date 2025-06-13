@@ -74,7 +74,7 @@ AWSACCOUNTID (?:[0-9a-fA-f]{64}|[0-9]{12}|arn:%{NOTSPACE}|-)
 # Windows SID
 WINSID S-1-(?:\d+-){1,14}\d+
 
-# Windows domain\user (with alternatative forward slash)
+# Windows domain\user (with alternative forward slash)
 WINDOMAIN [A-Za-z0-9 -]+
 WINUSER [A-Za-z0-9 -]+\$?
 WINDOMAINUSER %{WINDOMAIN}[\\/]%{WINUSER}
