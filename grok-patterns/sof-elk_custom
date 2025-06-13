@@ -62,6 +62,9 @@ NOTCOLON [^:]+
 # anything but a pipe
 NOTPIPE [^|]+
 
+# anything but a double quote
+NOTQUOTE [^"]+
+
 # guid
 GUID \{?[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\}?
 
@@ -71,7 +74,7 @@ AWSACCOUNTID (?:[0-9a-fA-f]{64}|[0-9]{12}|arn:%{NOTSPACE}|-)
 # Windows SID
 WINSID S-1-(?:\d+-){1,14}\d+
 
-# Windows domain\user (with alternatative forward slash)
+# Windows domain\user (with alternative forward slash)
 WINDOMAIN [A-Za-z0-9 -]+
 WINUSER [A-Za-z0-9 -]+\$?
 WINDOMAINUSER %{WINDOMAIN}[\\/]%{WINUSER}

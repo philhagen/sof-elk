@@ -38,6 +38,21 @@
         "path": {
           "type": "keyword"
         },
+        "log": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "properties": {
+                "inode": {
+                  "type": "unsigned_long"
+                },
+                "device_id": {
+                  "type": "unsigned_long"
+                }
+              }
+            }
+          }
+        },
         "sof-elk": {
           "type": "object",
           "properties": {
