@@ -20,6 +20,7 @@
   id: hayabusa-json
   paths:
     - /logstash/hayabusa/**/*.json
+    - /logstash/hayabusa/**/*.jsonl
   close.on_state_change.inactive: 5m
   clean_removed: true
   parsers:
