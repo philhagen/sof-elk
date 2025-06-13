@@ -20,7 +20,6 @@
   id: hayabusa-json
   paths:
     - /logstash/hayabusa/**/*.json
-    - /logstash/hayabusa/**/*.jsonl
   close.on_state_change.inactive: 5m
   clean_removed: true
   parsers:
@@ -30,6 +29,18 @@
         negate: true
         match: after
         # flush_pattern: "^}"
+  processors:
+    - add_labels:
+       labels:
+         type: hayabusa
+  tags: [ 'json' ]
+
+- type: filestream
+  id: hayabusa-jsonl
+  paths:
+    - /logstash/hayabusa/**/*.jsonl
+  close.on_state_change.inactive: 5m
+  clean_removed: true
   processors:
     - add_labels:
        labels:
