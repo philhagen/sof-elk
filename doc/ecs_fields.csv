@@ -1015,6 +1015,7 @@ winlog.event_data.PreviousCreationUtcTime,,hayabusa,,6650-hayabusa.conf,winlogbe
 winlog.event_data.PreviousCreationUtcTime,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/exported-fields-winlog.html#_event_data
 winlog.event_data.Priority,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 winlog.event_data.PrivilegeList,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
+winlog.event_data.ProcessId,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/exported-fields-winlog.html#_event_data
 winlog.event_data.ProcessId,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/exported-fields-winlog.html#_event_data
 winlog.event_data.ProcessName,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/exported-fields-winlog.html#_event_data
 winlog.event_data.Product,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/guide/en/beats/winlogbeat/exported-fields-winlog.html#_event_data
