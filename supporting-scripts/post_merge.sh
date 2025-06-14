@@ -36,7 +36,7 @@ done
 systemctl restart logstash
 
 # create necessary ingest directories
-ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape microsoft365 azure aws gcp gws kubernetes"
 for ingest_dir in ${ingest_dirs}; do
   if [ ! -d "/logstash/${ingest_dir}" ]; then
     mkdir -m 1777 "/logstash/${ingest_dir}"
