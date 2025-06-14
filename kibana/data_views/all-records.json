@@ -6,6 +6,6 @@
     "id": "all-records",
     "name": "all-records",
     "timeFieldName": "@timestamp",
-    "title": "logstash-*,netflow-*,httpdlog-*,aws-*,azure-*,gws-*,evtxlogs-*,filesystem-*,lnkfiles-*,kubernetes-*,microsoft365-*,plaso-*,zeek-*"
+    "title": "logstash-*,netflow-*,httpdlog-*,aws-*,azure-*,gws-*,evtxlogs-*,filesystem-*,lnkfiles-*,kubernetes-*,microsoft365-*,zeek-*"
   }
 }
