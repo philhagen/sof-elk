@@ -23,7 +23,7 @@ from collections import defaultdict
 
 default_destdir = os.path.join(os.sep, "logstash", "aws")
 
-filename_regex_string = "(?P<account_id>\d{12})_CloudTrail_(?P<region_name>[A-Za-z0-9-]+)_(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})T(?P<time>\d{4})Z_.*"
+filename_regex_string = "(?P<account_id>\\d{12})_CloudTrail_(?P<region_name>[A-Za-z0-9-]+)_(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T(?P<time>\\d{4})Z_.*"
 filename_regex = re.compile(filename_regex_string)
 
 
