@@ -83,6 +83,7 @@ azure.activitylogs.properties,,azure,,6801-azure.conf,filebeat,https://www.elast
 azure.activitylogs.result_signature,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-azure.html#_evidence
 azure.activitylogs.result_type,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-azure.html#_evidence
 azure.auditlogs.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-azure.html#_auditlogs
+azure.auditlogs.claims,,azure,,6801-azure.conf,sof-elk,
 azure.auditlogs.identity,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-azure.html#_auditlogs
 azure.auditlogs.initiated_by.app.servicePrincipalId,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-azure.html#_app
 azure.auditlogs.initiated_by.user.displayName,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-azure.html#_user
