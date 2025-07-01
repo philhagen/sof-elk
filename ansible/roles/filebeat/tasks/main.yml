@@ -1,11 +1,17 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Install Filebeat
   ansible.builtin.apt:
     name: filebeat={{ elastic_stack_version }}
     state: present
+  tags: filebeat
+
+- name: Hold Filebeat
+  ansible.builtin.dpkg_selections:
+    name: filebeat
+    selection: hold
   tags: filebeat
 
 - name: Configure filebeat

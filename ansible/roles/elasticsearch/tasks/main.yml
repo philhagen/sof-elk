@@ -1,11 +1,17 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Install Elasticsearch
   ansible.builtin.apt:
     name: elasticsearch={{ elastic_stack_version }}
     state: present
+  tags: elasticsearch
+
+- name: Hold Elasticsearch
+  ansible.buildin.dpkg_selection:
+    name: elasticsearch
+    selection: hold
   tags: elasticsearch
 
 - name: Set permissions on Elasticsearch data directory
