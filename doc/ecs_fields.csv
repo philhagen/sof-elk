@@ -782,12 +782,8 @@ server.user.name,,zeek_http,,6201-zeek_http.conf,SOF-ELK,
 service.name,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-service.html#field-service-name
 sof-elk.base_index,,all,,1000-preprocess-all.conf,SOF-ELK,
 sof-elk.base_index,,azure,,1809-preprocess-azure.conf,SOF-ELK,
-sof-elk.path,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
-sof-elk.path,,httpdlog,,6100-httpd.conf,SOF-ELK,
+sof-elk.path,,all,,1000-preprocess-all.conf,SOF-ELK,
 sof-elk.path,,netflow,,2050-netflow.conf,SOF-ELK,
-sof-elk.path,,plaso,,6601-plaso.conf,SOF-ELK,
-sof-elk.path,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
-sof-elk.path,,zeek_*,,8000-postprocess-zeek.conf,SOF-ELK,
 sof-elk.processing_time,,all,,8999-postprocess-all.conf,SOF-ELK,
 sof-elk.rawrequest,,httpdlog,,6100-httpd.conf,SOF-ELK,
 source.address,,aws,,6901-aws.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-source.html#field-source-address
