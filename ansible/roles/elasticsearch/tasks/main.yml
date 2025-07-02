@@ -9,7 +9,7 @@
   tags: elasticsearch
 
 - name: Hold Elasticsearch
-  ansible.buildin.dpkg_selection:
+  ansible.buildin.dpkg_selections:
     name: elasticsearch
     selection: hold
   tags: elasticsearch
