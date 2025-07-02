@@ -47,8 +47,8 @@
 
 - name: Install Elastic source definition file
   ansible.builtin.template:
-    src: elastic-8.x.list.j2
-    dest: /etc/apt/sources.list.d/elastic-8.x.list
+    src: elastic-9.x.list.j2
+    dest: /etc/apt/sources.list.d/elastic-9.x.list
     owner: root
     group: root
     mode: 0644
