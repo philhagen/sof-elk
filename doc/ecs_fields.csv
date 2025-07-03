@@ -598,7 +598,6 @@ netflow.flow_start_seconds,,netflow,,2050-netflow.conf,filebeat,https://www.elas
 netflow.flow_start,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.flow_start,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 netflow.tcp_control_bits,,netflow,,2050-netflow.conf,SOF-ELK,
-netflow.tcp_flags_str,,netflow,,2050-netflow.conf,SOF-ELK,
 network.bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.bytes,,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-bytes
 network.bytes,,syslog,copy of source.bytes,6017-iptables.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-bytes
@@ -627,11 +626,11 @@ network.packets,Runtime field created via Elasticsearch template,N/A,,index-netf
 network.pcr,Producer/consumer ratio; Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.subnetwork.id,,netflow,,2050-netflow.conf,SOF-ELK,
 network.subnetwork.name,,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags_hex,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags_hex,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
+network.tcp_flags_hex,created by tcp_flags_expand.rb,netflow,,2050-netflow.conf,SOF-ELK,
+network.tcp_flags_hex,created by tcp_flags_expand.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.tcp_flags,,syslog,,6018-cisco_asa.conf,SOF-ELK,
-network.tcp_flags,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
+network.tcp_flags,created by tcp_flags_expand.rb,netflow,,2050-netflow.conf,SOF-ELK,
+network.tcp_flags,created by tcp_flags_expand.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.transport,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-transport
 network.transport,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-transport
 network.transport,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-transport
