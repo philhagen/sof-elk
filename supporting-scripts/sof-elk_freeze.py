@@ -167,7 +167,7 @@ def freeze_index(es, source_index_spec, delete_source, newindex=False, tag=False
 
         ## close and "hide" the clone (however "hide" just prevents the index from being shown as a result of wildcard searches)
         print("- Closing index: %s" % (frozen_index))
-        es.indices.close(index=frozen_index, wait_for_active_shards="index-setting")
+        es.indices.close(index=frozen_index)
 
         print("- Hiding index: %s" % (frozen_index))
         es.indices.put_settings(index=frozen_index, body='{ "hidden": true }')
@@ -199,7 +199,7 @@ parser.add_argument(
     "-e", "--host", dest="host", default="127.0.0.1", help="Elasticsearch IP address"
 )
 parser.add_argument(
-    "-p", "--port", dest="port", default="9200", help="Elasticsearch port"
+    "-p", "--port", dest="port", default=9200, help="Elasticsearch port"
 )
 parser.add_argument(
     "-a",
