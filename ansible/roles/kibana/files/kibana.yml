@@ -187,5 +187,4 @@ pid.file: /run/kibana/kibana.pid
 #unifiedSearch.autocomplete.valueSuggestions.terminateAfter: 100000
 telemetry.optIn: false
 telemetry.allowChangingOptInStatus: false
-xpack.reporting.roles.enabled: false
 xpack.security.showInsecureClusterWarning: false
