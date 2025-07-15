@@ -39,19 +39,20 @@
     group: root
     mode: 01777
   with_items:
-    - syslog
-    - nfarch
-    - httpd
-    - passivedns
-    - zeek
-    - kape
-    - plaso
-    - microsoft365
-    - azure
     - aws
+    - azure
     - gcp
     - gws
+    - hayabusa
+    - httpd
+    - kape
     - kubernetes
+    - microsoft365
+    - nfarch
+    - passivedns
+    - plaso
+    - syslog
+    - zeek
   register: filebeat_input_directories
   tags: filebeat
 
