@@ -18,7 +18,7 @@ import re
 import sys
 
 # regex for SOF-ELK's index patterns, which split documents by month
-date_index_re = re.compile("(.*)-([0-9]{4}\.[0-9]{2})")
+date_index_re = re.compile("(.*)-([0-9]{4}\\.[0-9]{2})")
 
 # settings applied to each newly cloned index prior to freezing
 clone_settings = '{ "settings": { "index.number_of_shards": 1 } }'
@@ -84,7 +84,7 @@ class NullDevice:
 
 # get a list of indices *other than* system indices and specified ignored indices
 def get_es_indices(es, full_listing=False):
-    system_index_rawregex = ["\..*", "elastalert_.*"]
+    system_index_rawregex = ["\\..*", "elastalert_.*"]
     system_index_regex = []
     for raw_regex in system_index_rawregex:
         system_index_regex.append(re.compile(raw_regex))
@@ -196,18 +196,18 @@ parser = argparse.ArgumentParser(
     description="Disable or re-enable Elasticsearch indices, optionally renaming the frozen index."
 )
 parser.add_argument(
+    "-a",
+    "--action",
+    dest="action",
+    choices=["freeze", "thaw", "list"],
+    help="Action to take. (Required)",
+    required=True,
+)
+parser.add_argument(
     "-e", "--host", dest="host", default="127.0.0.1", help="Elasticsearch IP address"
 )
 parser.add_argument(
     "-p", "--port", dest="port", default=9200, help="Elasticsearch port"
-)
-parser.add_argument(
-    "-a",
-    "--action",
-    dest="action",
-    help="Action to take.",
-    choices=["freeze", "thaw", "list"],
-    required=True,
 )
 parser.add_argument("-i", "--index", dest="index", help="Index to act on.")
 parser.add_argument(
