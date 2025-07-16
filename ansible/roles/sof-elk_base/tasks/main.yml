@@ -256,17 +256,27 @@
   ansible.builtin.file:
     path: /home/elk_user/.gitconfig
     state: touch
-    mode: 0644
+    mode: 0640
     owner: elk_user
     group: elk_user
   tags: sof-elk_base
 
+# TODO: The 'git config' command running with sudo reverts file ownership to root:root
 - name: Add SOF-ELK repo clone as a safe directory
   community.general.git_config:
     scope: file
     file: /home/elk_user/.gitconfig
     name: safe.directory
     value: /usr/local/sof-elk
+  tags: sof-elk_base
+
+# this is needed due to issue noted in previous block
+- name: Reset ownership on elk_user's .gitconfig file
+  ansible.builtin.file:
+    path: /home/elk_user/.gitconfig
+    state: file
+    owner: elk_user
+    group: elk_user
   tags: sof-elk_base
 
 - name: Set SOF-ELK repo clone post-merge hook
