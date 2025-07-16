@@ -24,7 +24,7 @@
                     "excludeIsRegex": false,
                     "include": [],
                     "includeIsRegex": false,
-                    "missingBucket": false,
+                    "missingBucket": true,
                     "orderBy": {
                       "columnId": "b07d9748-214b-4375-8d30-cb0f548e4b45",
                       "type": "column"
