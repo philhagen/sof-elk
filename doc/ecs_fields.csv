@@ -904,6 +904,7 @@ tls.cipher,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/ec
 tls.cipher,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-cipher
 tls.client.hash.sha256,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-client-hash-sha256
 tls.client.issuer,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-client-issuer
+tls.client.ja3,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-tls.html#field-tls-client-ja3
 tls.client.server_name,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-client-server-name
 tls.client.subject,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-client-subject
 tls.curve,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-curve
@@ -912,6 +913,7 @@ tls.protocol,,httpdlog,,6100-httpd.conf,SOF-ELK,
 tls.resumed,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-resumed
 tls.server.certificate_chain,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-server-certificate-chain
 tls.server.issuer,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-server-issuer
+tls.server.ja3s,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-tls.html#field-tls-server-ja3s
 tls.server.subject,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-server-subject
 tls.ssl_sni_matches_cert,,zeek_ssl,,6203-zeek_ssl.conf,SOF-ELK,
 tls.version,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-tls.html#field-tls-version
