@@ -339,6 +339,7 @@ email.target.attachments.malware_family,,gws,,6951-gws.conf,SOF-ELK,
 email.target.link_url,,gws,,6951-gws.conf,SOF-ELK,
 email.traffic_source,,gws,,6951-gws.conf,SOF-ELK,
 error.code,from sof-elk grok patterns,httpdplog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-error.html#field-error-code
+error.message,from sof-elk grok patterns,httpdplog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-error.html#field-error-message
 event.action,copy of event.task,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-action
 event.auth_result,copy of ssh.auth_result,syslog,,5016-sshd.conf,SOF-ELK,
 event.code,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-code
