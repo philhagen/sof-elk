@@ -1,4 +1,8 @@
+Field Name,Description,labels.type,Field Type,Configuration File Where Mapped,ECS Field Source,ECS Reference
 @timestamp,,all,,N/A,ECS,https://www.elastic.co/guide/en/ecs/ecs-base.html#field-timestamp
+apache.error.module,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-apache
+apache.proxy.error.code,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,SOF-ELK,
+apache.proxy.error.message,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,SOF-ELK,
 aws.cloudtrail.error_code,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-aws.html#_session_issuer
 aws.cloudtrail.error_message,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/guide/en/beats/filebeat/exported-fields-aws.html#_session_issuer
 aws.cloudtrail.event_name,,aws,,6901-aws.conf,SOF-ELK,
@@ -334,6 +338,8 @@ email.target.attachments.file.name,,gws,,6951-gws.conf,SOF-ELK,
 email.target.attachments.malware_family,,gws,,6951-gws.conf,SOF-ELK,
 email.target.link_url,,gws,,6951-gws.conf,SOF-ELK,
 email.traffic_source,,gws,,6951-gws.conf,SOF-ELK,
+error.code,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-error.html#field-error-code
+error.message,from sof-elk grok patterns,httpdplog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-error.html#field-error-message
 event.action,copy of event.task,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-event.html#field-event-action
 event.auth_result,copy of ssh.auth_result,syslog,,5016-sshd.conf,SOF-ELK,
 event.code,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-event.html#field-event-code
@@ -346,7 +352,6 @@ event.type,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/e
 event.type,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-event.html#field-event-type
 exporter.guid,,netflow,,2050-netflow.conf,SOF-ELK,
 exporter.mac,,netflow,,2050-netflow.conf,SOF-ELK,
-Field Name,Description,labels.type,Field Type,Configuration File Where Mapped,ECS Field Source,ECS Reference
 file.accessed,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-file.html#field-file-accessed
 file.attributes,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-file.html#field-file-attributes
 file.attributes,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-file.html#field-file-attributes
@@ -548,6 +553,7 @@ kubernetes.pod.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elast
 kubernetes.pod.uid,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
 labels.type,Assigned by fileabeat inputs' processors,all,,N/A - assigned by filebeat,ECS,https://www.elastic.co/guide/en/ecs/8.11/ecs-base.html#field-labels
 log.level,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-log.html
+log.level,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
 log.syslog.appname,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-log.html#field-log-syslog-appname
 log.syslog.appname,,azure (overwritten with syslog),,1801-preprocess-azure.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-log.html#field-log-syslog-appname
 log.syslog.appname,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-log.html#field-log-syslog-appname
@@ -598,7 +604,6 @@ netflow.flow_start_seconds,,netflow,,2050-netflow.conf,filebeat,https://www.elas
 netflow.flow_start,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.flow_start,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 netflow.tcp_control_bits,,netflow,,2050-netflow.conf,SOF-ELK,
-netflow.tcp_flags_str,,netflow,,2050-netflow.conf,SOF-ELK,
 network.bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.bytes,,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-bytes
 network.bytes,,syslog,copy of source.bytes,6017-iptables.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-bytes
@@ -627,11 +632,11 @@ network.packets,Runtime field created via Elasticsearch template,N/A,,index-netf
 network.pcr,Producer/consumer ratio; Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.subnetwork.id,,netflow,,2050-netflow.conf,SOF-ELK,
 network.subnetwork.name,,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags_hex,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags_hex,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
+network.tcp_flags_hex,created by tcp_flags_expand.rb,netflow,,2050-netflow.conf,SOF-ELK,
+network.tcp_flags_hex,created by tcp_flags_expand.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.tcp_flags,,syslog,,6018-cisco_asa.conf,SOF-ELK,
-network.tcp_flags,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
+network.tcp_flags,created by tcp_flags_expand.rb,netflow,,2050-netflow.conf,SOF-ELK,
+network.tcp_flags,created by tcp_flags_expand.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.transport,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-transport
 network.transport,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-transport
 network.transport,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-network.html#field-network-transport
@@ -741,11 +746,13 @@ process.pe.product,copy of winlog.event_data.Product,hayabusa,,6650-hayabusa.con
 process.pe.product,copy of winlog.event_data.Product,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-pe.html#field-pe-product
 process.pid,,azure,,6801-azure.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-pid
 process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-pid
+process.pid,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-pid
 process.source.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-entity-id
 process.source.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-entity-id
 process.source.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-pid
+process.thread.id,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
 process.working_directory,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-working-directory
 process.working_directory,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-working-directory
 process.working_directory,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-process.html#field-process-working-directory
@@ -782,12 +789,8 @@ server.user.name,,zeek_http,,6201-zeek_http.conf,SOF-ELK,
 service.name,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-service.html#field-service-name
 sof-elk.base_index,,all,,1000-preprocess-all.conf,SOF-ELK,
 sof-elk.base_index,,azure,,1809-preprocess-azure.conf,SOF-ELK,
-sof-elk.path,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
-sof-elk.path,,httpdlog,,6100-httpd.conf,SOF-ELK,
+sof-elk.path,,all,,1000-preprocess-all.conf,SOF-ELK,
 sof-elk.path,,netflow,,2050-netflow.conf,SOF-ELK,
-sof-elk.path,,plaso,,6601-plaso.conf,SOF-ELK,
-sof-elk.path,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
-sof-elk.path,,zeek_*,,8000-postprocess-zeek.conf,SOF-ELK,
 sof-elk.processing_time,,all,,8999-postprocess-all.conf,SOF-ELK,
 sof-elk.rawrequest,,httpdlog,,6100-httpd.conf,SOF-ELK,
 source.address,,aws,,6901-aws.conf,ECS,https://www.elastic.co/guide/en/ecs/ecs-source.html#field-source-address
