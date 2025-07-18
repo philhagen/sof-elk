@@ -50,8 +50,8 @@ COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:[http][proxy][cache_statu
 COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:[http][request][referrer]} %{QS:[user_agent][original]}
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:[http][proxy][cache_status]}:%{WORD:[http][proxy][cache_hierarchy_status]}
 
-# customized HTTPD24_ERRORLOG with ECS field names
-HTTPD24_ERRORLOG_CUSTOM \[%{HTTPDERROR_DATE:timestamp}\] \[(?:%{WORD:[apache][error][module]})?:%{LOGLEVEL:[log][level]}\] \[pid %{POSINT:[process][pid]:int}(:tid %{INT:[process][thread][id]:int})?\](?: \(%{POSINT:[apache][proxy][error][code]?}\)%{DATA:[apache][proxy][error][message]}:)?(?: \[client %{IPORHOST:[source][ip]}(?::%{POSINT:[source][port]:int})?\])?(?: %{DATA:[error][code]}:)? %{GREEDYDATA:message}
+# custom HTTPD24_ERRORLOG using ECS field names
+HTTPD24_ERRORLOG_CUSTOM \[%{HTTPDERROR_DATE:timestamp}\] \[(?:%{WORD:[apache][error][module]})?:%{LOGLEVEL:[log][level]}\] \[pid %{POSINT:[process][pid]:int}(:tid %{INT:[process][thread][id]:int})?\](?: \(%{POSINT:[apache][proxy][error][code]?}\)%{DATA:[apache][proxy][error][message]}:)?(?: \[client %{IPORHOST:[source][ip]}(?::%{POSINT:[source][port]:int})?\])?(?: %{DATA:[error][code]}:)? +%{GREEDYDATA:[error][message]}
 
 # hours:minutes:seconds, to allow any number of hours
 HMS (?:[0-9]+):%{MINUTE}(?::%{SECOND})(?![0-9])
