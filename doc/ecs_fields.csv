@@ -1,8 +1,8 @@
 Field Name,Description,labels.type,Field Type,Configuration File Where Mapped,ECS Field Source,ECS Reference
 @timestamp,,all,,N/A,ECS,https://www.elastic.co/docs/reference/ecs/ecs-base#field-timestamp
-apache.error.module,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-apache
-apache.proxy.error.code,,httpdlog,,6100-httpd.conf,SOF-ELK,
-apache.proxy.error.message,,httpdlog,,6100-httpd.conf,SOF-ELK,
+apache.error.module,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-apache
+apache.proxy.error.code,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,SOF-ELK,
+apache.proxy.error.message,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,SOF-ELK,
 aws.cloudtrail.error_code,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_session_issuer
 aws.cloudtrail.error_message,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_session_issuer
 aws.cloudtrail.event_name,,aws,,6901-aws.conf,SOF-ELK,
@@ -338,7 +338,7 @@ email.target.attachments.file.name,,gws,,6951-gws.conf,SOF-ELK,
 email.target.attachments.malware_family,,gws,,6951-gws.conf,SOF-ELK,
 email.target.link_url,,gws,,6951-gws.conf,SOF-ELK,
 email.traffic_source,,gws,,6951-gws.conf,SOF-ELK,
-error.code,,httpdplog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-error.html#field-error-code
+error.code,from sof-elk grok patterns,httpdplog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-error.html#field-error-code
 event.action,copy of event.task,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-action
 event.auth_result,copy of ssh.auth_result,syslog,,5016-sshd.conf,SOF-ELK,
 event.code,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-code
@@ -552,7 +552,7 @@ kubernetes.pod.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elast
 kubernetes.pod.uid,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
 labels.type,Assigned by fileabeat inputs' processors,all,,N/A - assigned by filebeat,ECS,https://www.elastic.co/docs/reference/ecs/ecs-base#field-labels
 log.level,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
-log.level,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
+log.level,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
 log.syslog.appname,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log#field-log-syslog-appname
 log.syslog.appname,,azure (overwritten with syslog),,1801-preprocess-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log#field-log-syslog-appname
 log.syslog.appname,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log#field-log-syslog-appname
@@ -746,13 +746,13 @@ process.pe.product,copy of winlog.event_data.Product,hayabusa,,6650-hayabusa.con
 process.pe.product,copy of winlog.event_data.Product,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-product
 process.pid,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
-process.pid,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.pid,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.source.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.source.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.source.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
-process.thread.id,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
+process.thread.id,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
 process.working_directory,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
 process.working_directory,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
 process.working_directory,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
