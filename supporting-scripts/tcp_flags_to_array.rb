@@ -59,15 +59,15 @@ def filter(event)
 
     # set the field for the array
     event.remove("[network][tcp_flags]")
-    event.set("network.tcp_flags", tcp_flags)
+    event.set("[network][tcp_flags]", tcp_flags)
 
     # set the field for the integer
     event.remove("[netflow][tcp_control_bits]")
-    event.set("netflow.tcp_control_bits", tcp_flags_int)
+    event.set("[netflow][tcp_control_bits]", tcp_flags_int)
 
     # set the field for the hex version
-    event.remove("[network.tcp_flags_hex]")
-    event.set("network.tcp_flags_hex", "0x" + tcp_flags_int.to_s(16).upcase)
+    event.remove("[network][tcp_flags_hex]")
+    event.set("[network][tcp_flags_hex]", "0x" + tcp_flags_int.to_s(16).upcase)
 
     return [event]
 end
