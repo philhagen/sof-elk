@@ -15,6 +15,10 @@ end
 # while creating new ones only requires you to add a new instance of
 # LogStash::Event to the returned array
 def filter(event)
+    if event.get(@source_field) == nil
+        return [event]
+    end
+
     if @source_type == "int"
         tcp_flags_int = event.get(@source_field).to_i
 
@@ -70,4 +74,91 @@ def filter(event)
     event.set("[network][tcp_flags_hex]", "0x" + tcp_flags_int.to_s(16).upcase)
 
     return [event]
+end
+
+## Validation tests
+
+test "no flags in string" do
+    parameters {{ "source_field" => "flags", "source_type" => "str" }}
+    in_event {{ "flags" => "........" }}
+    expect("empty output array and zeros for integer and hex string") { |events| events.first.get("[network][tcp_flags]") == [] && events.first.get("[netflow][tcp_control_bits]") == 0 && events.first.get("[network][tcp_flags_hex]") == "0x0" }
+end
+
+test "no flags in integer" do
+    parameters {{ "source_field" => "flags", "source_type" => "int" }}
+    in_event {{ "flags" => 0 }}
+    expect("empty output array and zeros for integer and hex string") { |events| events.first.get("[network][tcp_flags]") == [] && events.first.get("[netflow][tcp_control_bits]") == 0 && events.first.get("[network][tcp_flags_hex]") == "0x0" }
+end
+
+test "no flags in array" do
+    parameters {{ "source_field" => "flags", "source_type" => "arr" }}
+    in_event {{ "flags" => [] }}
+    expect("empty output array and zeros for integer and hex string") { |events| events.first.get("[network][tcp_flags]") == [] && events.first.get("[netflow][tcp_control_bits]") == 0 && events.first.get("[network][tcp_flags_hex]") == "0x0" }
+end
+
+test "all flags in string" do
+    parameters {{ "source_field" => "flags", "source_type" => "str" }}
+    in_event {{ "flags" => "CEUAPRSF" }}
+    expect("full output array, 255 for integer, and 0xFF for hex string") { |events|)
+        events.first.get("[network][tcp_flags]").sort() == [ "ack", "cwr", "ece", "fin", "psh", "rst", "syn", "urg" ] && events.first.get("[netflow][tcp_control_bits]") == 255 &&
+        events.first.get("[network][tcp_flags_hex]") == "0xFF"
+    }
+end
+
+test "all flags in integer" do
+    parameters {{ "source_field" => "flags", "source_type" => "int" }}
+    in_event {{ "flags" => 255 }}
+    expect("full output array, 255 for integer, and 0xFF for hex string") { |events|
+        events.first.get("[network][tcp_flags]").sort() == [ "ack", "cwr", "ece", "fin", "psh", "rst", "syn", "urg" ] && events.first.get("[netflow][tcp_control_bits]") == 255 &&
+        events.first.get("[network][tcp_flags_hex]") == "0xFF"
+    }
+end
+
+test "all flags in array" do
+    parameters {{ "source_field" => "flags", "source_type" => "arr" }}
+    in_event {{ "flags" => ["C","E","U","A","P","R","S","F"] }}
+    expect("full output array, 255 for integer, and 0xFF for hex string") { |events|
+        events.first.get("[network][tcp_flags]").sort() == [ "ack", "cwr", "ece", "fin", "psh", "rst", "syn", "urg" ] && events.first.get("[netflow][tcp_control_bits]") == 255 &&
+        events.first.get("[network][tcp_flags_hex]") == "0xFF"
+    }
+end
+
+test "some flags in string" do
+    parameters {{ "source_field" => "flags", "source_type" => "str" }}
+    in_event {{ "flags" => "...AP.SF" }}
+    expect("proper output array, 27 for integer, and 0x1B for hex string") { |events|
+        events.first.get("[network][tcp_flags]").sort() == [ "ack", "fin", "psh", "syn" ] && events.first.get("[netflow][tcp_control_bits]") == 27 &&
+        events.first.get("[network][tcp_flags_hex]") == "0x1B"
+    }
+end
+
+test "some flags in integer" do
+    parameters {{ "source_field" => "flags", "source_type" => "int" }}
+    in_event {{ "flags" => 197 }}
+    expect("proper output array, 197 for integer, and 0xC5 for hex string") { |events|
+        events.first.get("[network][tcp_flags]").sort() == [ "cwr", "ece", "fin", "rst" ] &&
+        events.first.get("[netflow][tcp_control_bits]") == 197 &&
+        events.first.get("[network][tcp_flags_hex]") == "0xC5"
+    }
+end
+
+test "some flags in array" do
+    parameters {{ "source_field" => "flags", "source_type" => "arr" }}
+    in_event {{ "flags" => ["E","A","R","S"] }}
+    expect("proper output array, 86 for integer, and 0x56 for hex string") { |events|
+        events.first.get("[network][tcp_flags]").sort() == [ "ack", "ece", "rst", "syn" ] &&
+        events.first.get("[netflow][tcp_control_bits]") == 86 &&
+        events.first.get("[network][tcp_flags_hex]") == "0x56"
+    }
+end
+
+test "nonexistent source field" do
+    parameters {{ "source_field" => "flags", "source_type" => "str" }}
+    in_event {{ "flags2" => "......S." }}
+    expect("the event should be returned unchanged") { |events|
+        events.first.get("flags2") == "......S." &&
+        events.first.get("[network][tcp_flags]") == nil &&
+        events.first.get("[netflow][tcp_control_bits]") == nil &&
+        events.first.get("[network][tcp_flags_hex]") == nil
+    }
 end

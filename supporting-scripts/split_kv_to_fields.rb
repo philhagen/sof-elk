@@ -1,5 +1,5 @@
 # SOF-ELK® Supporting script
-# (C)2022 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script takes an array of "name: x, value: y" pairs and creates "x: y" fields
 # for example:
@@ -50,4 +50,39 @@ def filter(event)
     event.set(@destination_field, output)
 
     return [event]
+end
+
+## Validation tests
+
+test "single entry in source (hash)" do
+    parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
+    in_event {{ "source" => { "name": "identity", "value": "jvandyne" } }}
+    expect ("the source element is restructured") { |events|
+        events.first.get("[dest][identity]") == "jvandyne"
+    }
+end
+
+test "single entry in source (array)" do
+    parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
+    in_event {{ "source" => [{ "name": "identity", "value": "jvandyne" }] }}
+    expect ("the source element is restructured") { |events|
+        events.first.get("[dest][identity]") == "jvandyne"
+    }
+end
+
+test "multiple entries in source (array)" do
+    parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
+    in_event {{ "source" => [{ "name": "identity", "value": "jvandyne" }, { "name": "color", "value": "red" }] }}
+    expect ("the source element is restructured") { |events|
+        events.first.get("[dest][identity]") == "jvandyne" &&
+        events.first.get("[dest][color]") == "red"
+    }
+end
+
+test "nonexistent source field" do
+    parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
+    in_event {{ "source2" => [{ "name": "identity", "value": "jvandyne" }] }}
+    expect ("the event is tagged"){ |events|
+        events.first.get("tags")&.include?("source_not_found")
+    }
 end
