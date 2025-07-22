@@ -361,7 +361,7 @@ file.created,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/doc
 file.directory,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-directory
 file.extension,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-extension
 file.extension,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-extension
-file.extra_blocks,replaced with array by extra_blocks_to_array.rb,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
+file.extra_blocks,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.filename.accessed,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 file.filename.created,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 file.filename.ctime,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
