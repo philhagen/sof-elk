@@ -168,7 +168,7 @@ end
 test "when proto is tcpv4" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "dst_ip" => "66.35.250.204", "src_ip" => "128.232.110.120", "dst_port" => 80, "src_port" => 34855, "protocol" => 6 }}
-  expect("the hash is computed") {|events|
+  expect("the hash is computed") { |events|
     events.first.get("community_id") == "1:LQU9qZlK+B5F3KDmev6m5PMibrg="
   }
 end
@@ -176,7 +176,7 @@ end
 test "when proto is udpv4" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "dst_ip" => "8.8.8.8", "src_ip" => "192.168.1.52", "dst_port" => 53, "src_port" => 54585, "protocol" => 17 }}
-  expect("the hash is computed") {|events|
+  expect("the hash is computed") { |events|
     events.first.get("community_id") == "1:d/FP5EW3wiY1vCndhwleRRKHowQ="
   }
 end
@@ -184,7 +184,7 @@ end
 test "when proto is ipv6" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "dst_ip" => "2607:f8b0:400c:c03::1a", "src_ip" => "2001:470:e5bf:dead:4957:2174:e82c:4887", "dst_port" => 25, "src_port" => 63943, "protocol" => 6 }}
-  expect("the hash is computed") {|events|
+  expect("the hash is computed") { |events|
     events.first.get("community_id") == "1:/qFaeAR+gFe1KYjMzVDsMv+wgU4="
   }
 end
@@ -200,7 +200,7 @@ end
 test "when proto is sctp reverse" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "src_ip" => "192.168.170.56", "dst_ip" => "192.168.170.8", "src_port" => 80, "dst_port" => 7, "protocol" => 132 }}
-  expect("the hash is computed") {|events|
+  expect("the hash is computed") { |events|
     events.first.get("community_id") == "1:jQgCxbku+pNGw8WPbEc/TS/uTpQ="
   }
 end
@@ -208,7 +208,7 @@ end
 test "when proto is icmpv4" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "dst_ip" => "192.168.0.1", "src_ip" => "192.168.0.89", "dst_port" => 0, "src_port" => 8, "protocol" => 1 }}
-  expect("the hash is computed") {|events|
+  expect("the hash is computed") { |events|
     events.first.get("community_id") == "1:X0snYXpgwiv9TZtqg64sgzUn6Dk="
   }
 end
@@ -216,7 +216,7 @@ end
 test "when proto is icmpv6" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "dst_ip" => "3ffe:507:0:1:200:86ff:fe05:80da", "src_ip" => "3ffe:501:0:1802:260:97ff:feb6:7ff0", "dst_port" => 0, "src_port" => 3, "protocol" => 58 }}
-  expect("the hash is computed") {|events|
+  expect("the hash is computed") { |events|
     events.first.get("community_id") == "1:bnQKq8A2r//dWnkRW2EYcMhShjc="
   }
 end
@@ -224,7 +224,7 @@ end
 test "when field doesn't exist" do
   parameters { {"source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" } }
   in_event {{ "dst_ip" => "8.8.8.8", "source_ip" => "192.168.1.52", "dst_port" => 53, "src_port" => 54585, "protocol" => 17 }}
-  expect("tags as not found") {|events|
+  expect("tags as not found") { |events|
     events.first.get("tags").include?("src_ip_not_found")
   }
 end
