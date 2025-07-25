@@ -46,6 +46,7 @@
   with_items:
     - { regex: '^UseDNS.*', line: 'UseDNS no' }
     - { regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
+    - { regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
   register: ssh_config
   tags: sof-elk_base
 
