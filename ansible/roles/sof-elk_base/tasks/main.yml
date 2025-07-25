@@ -38,11 +38,14 @@
   when: (ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware") or ansible_system_vendor == "VMware, Inc."
   tags: sof-elk_base
 
-- name: Disable DNS resolution for SSHD
+- name: Set SSHD configuration options
   ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: '^UseDNS.*'
-    line: 'UseDNS no'
+    regexp: '{{ item.regex }}'
+    line: '{{ item.line }}'
+  with_items:
+    - { regex: '^UseDNS.*', line: 'UseDNS no' }
+    - { regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
   register: ssh_config
   tags: sof-elk_base
 
