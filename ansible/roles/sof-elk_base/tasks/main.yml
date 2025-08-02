@@ -22,6 +22,8 @@
     update_cache: true
     name: '*'
     state: latest
+  environment:
+    APT_OPTIONS: "-o APT::Get::Always-Include-Phased-Updates=true"
   tags: sof-elk_base
 
 - name: Install core software set via apt
