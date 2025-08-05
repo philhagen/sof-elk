@@ -119,7 +119,14 @@
     line: 'Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/usr/local/sof-elk/supporting-scripts"'
   tags: sof-elk_base
 
-- name: Create elk_user account
+- name: Get list of local user accounts
+  ansible.builtin.getent:
+    database: passwd
+    key: elk_user
+    fail_key: false
+  tags: sof-elk_base
+
+- name: Create elk_user account if needed
   ansible.builtin.user:
     name: 'elk_user'
     comment: 'SOF-ELK User'
@@ -129,6 +136,7 @@
     shell: /bin/bash
     skeleton: /etc/skel
     state: present
+  when: getent_passwd['elk_user'] == none
   tags: sof-elk_base
 
 - name: Add to elk_user's .profile
