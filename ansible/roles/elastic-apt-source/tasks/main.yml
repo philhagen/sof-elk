@@ -1,6 +1,6 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Determine if gpg keyring already exists
   stat:
@@ -47,8 +47,8 @@
 
 - name: Install Elastic source definition file
   ansible.builtin.template:
-    src: elastic-8.x.list.j2
-    dest: /etc/apt/sources.list.d/elastic-8.x.list
+    src: elastic-9.x.list.j2
+    dest: /etc/apt/sources.list.d/elastic-9.x.list
     owner: root
     group: root
     mode: 0644

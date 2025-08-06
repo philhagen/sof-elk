@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository
 #   is updated
@@ -35,7 +35,7 @@ done
 # reload logstash
 systemctl restart logstash
 
-# create necessary ingest directories
+# create necessary ingest directories (don't forget to add new ones to ansible's filebeat role)
 ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa"
 for ingest_dir in ${ingest_dirs}; do
   if [ ! -d "/logstash/${ingest_dir}" ]; then

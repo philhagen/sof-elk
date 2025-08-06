@@ -1,11 +1,17 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Install Kibana
-  apt:
+  ansible.builtin.apt:
     name: kibana={{ elastic_stack_version }}
     state: present
+  tags: kibana
+
+- name: Hold Kibana
+  ansible.builtin.dpkg_selections:
+    name: kibana
+    selection: hold
   tags: kibana
 
 - name: Configure Kibana

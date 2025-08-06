@@ -3,6 +3,11 @@
 # (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
+# Command line options:
+#   -nodisk: do not shrink disks (useful for testing purposes to save time when
+#            compaction is not needed)
+#   -cloud: Used to prepare cloud instances for cloning/replication - skips steps
+#           not relevant to cloud environments (also forces -nodisk)
 
 if [[ -n $SSH_CONNECTION ]]; then
     echo "ERROR: This script must be run locally - Exiting."
@@ -10,11 +15,16 @@ if [[ -n $SSH_CONNECTION ]]; then
 fi
 
 DISKSHRINK=1
+CLOUDPREP=0
 # parse any command line arguments
 if [ $# -gt 0 ]; then
     while true; do
         if [ "$1" ]; then
             if [ "$1" == '-nodisk' ]; then
+                DISKSHRINK=0
+            fi
+            if [ "$1" == '-cloud' ]; then
+                CLOUDPREP=1
                 DISKSHRINK=0
             fi
             shift
@@ -176,10 +186,6 @@ rm -f /var/spool/mail/elk_user
 echo "clearing /tmp/"
 rm -rf /tmp/*
 
-echo "resetting machine-id and random-seed"
-echo "uninitialized" > /etc/machine-id
-rm -f /var/lib/systemd/random-seed
-
 if [ $DISKSHRINK -eq 1 ]; then
     echo "ACTION REQUIRED!"
     echo "remove any snapshots that already exist and press Return"
@@ -199,8 +205,14 @@ if [ $DISKSHRINK -eq 1 ]; then
     done
 fi
 
-read -p "Set the pre-login banner version for distribution? (Y/N)" set_distro_version
-if [ ${set_distro_version} == "Y" ]; then
-    echo "updating /etc/issue file for boot message"
-    cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+if [ $CLOUDPREP -eq 0 ]; then
+    read -p "Set the pre-login banner version for distribution? (Y/N)" set_distro_version
+    if [ ${set_distro_version} == "Y" ]; then
+        echo "updating /etc/issue file for boot message"
+        cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+    fi
 fi
+
+echo "preparing for new auto-generated machine id and random seed"
+truncate -s 0 /etc/machine-id /var/lib/dbus/machine-id
+rm -f /var/lib/systemd/random-seed

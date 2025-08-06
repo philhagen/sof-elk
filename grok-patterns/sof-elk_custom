@@ -47,7 +47,7 @@ FULL_URL (?:%{WORD:[url][scheme]}://)?(?:%{IPORHOST:[url][domain]}(?::%{POSINT:[
 HTTPDUSER %{EMAILADDRESS}|%{WORD}(\.%{WORD})?[/\\]%{USER}|%{USER}
 COMMONAPACHELOG_CUSTOM %{IPORHOST:[source][ip]} %{HTTPDUSER:[client][user][name]} %{HTTPDUSER:[server][user][name]} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:[http][request][method]} %{FULL_URL}(?: HTTP/%{NUMBER:[http][version]})?|%{DATA:[sof-elk][rawrequest]})" %{NUMBER:[http][response][status_code]} (?:%{NUMBER:[destination][bytes]}|-)
 COMMONPROXYLOG_CUSTOM %{COMMONAPACHELOG_CUSTOM} %{WORD:[http][proxy][cache_status]}:%{WORD:[http][proxy][cache_hierarchy_status]}
-COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) %{QS:[http][request][referrer]} %{QS:[user_agent][original]}
+COMBINEDAPACHELOG_CUSTOM (?:%{COMMONAPACHELOG_CUSTOM}) (?:"-"|%{QS:[http][request][referrer]}) (?:"-"|%{QS:[user_agent][original]})
 COMBINEDPROXYLOG_CUSTOM %{COMBINEDAPACHELOG_CUSTOM} %{WORD:[http][proxy][cache_status]}:%{WORD:[http][proxy][cache_hierarchy_status]}
 
 # custom HTTPD24_ERRORLOG using ECS field names

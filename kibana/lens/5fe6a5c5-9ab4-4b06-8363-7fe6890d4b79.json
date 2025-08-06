@@ -36,7 +36,7 @@
                     "excludeIsRegex": false,
                     "include": [],
                     "includeIsRegex": false,
-                    "missingBucket": false,
+                    "missingBucket": true,
                     "orderBy": {
                       "columnId": "0e4d4ea6-be6c-447d-9ec9-c8d608509612",
                       "type": "column"
