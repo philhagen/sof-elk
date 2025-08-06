@@ -176,10 +176,6 @@ rm -f /var/spool/mail/elk_user
 echo "clearing /tmp/"
 rm -rf /tmp/*
 
-echo "resetting machine-id and random-seed"
-echo "uninitialized" > /etc/machine-id
-rm -f /var/lib/systemd/random-seed
-
 if [ $DISKSHRINK -eq 1 ]; then
     echo "ACTION REQUIRED!"
     echo "remove any snapshots that already exist and press Return"
@@ -204,3 +200,7 @@ if [ ${set_distro_version} == "Y" ]; then
     echo "updating /etc/issue file for boot message"
     cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
 fi
+
+echo "preparing for new auto-generated machine id and random seed"
+truncate -s 0 /etc/machine-id /var/lib/dbus/machine-id
+rm -f /var/lib/systemd/random-seed
