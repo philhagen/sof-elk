@@ -3,6 +3,11 @@
 # (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
+# Command line options:
+#   -nodisk: do not shrink disks (useful for testing purposes to save time when
+#            compaction is not needed)
+#   -cloud: Used to prepare cloud instances for cloning/replication - skips steps
+#           not relevant to cloud environments (also forces -nodisk)
 
 if [[ -n $SSH_CONNECTION ]]; then
     echo "ERROR: This script must be run locally - Exiting."
