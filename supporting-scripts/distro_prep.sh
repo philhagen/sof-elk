@@ -10,11 +10,16 @@ if [[ -n $SSH_CONNECTION ]]; then
 fi
 
 DISKSHRINK=1
+CLOUDPREP=0
 # parse any command line arguments
 if [ $# -gt 0 ]; then
     while true; do
         if [ "$1" ]; then
             if [ "$1" == '-nodisk' ]; then
+                DISKSHRINK=0
+            fi
+            if [ "$1" == '-cloud' ]; then
+                CLOUDPREP=1
                 DISKSHRINK=0
             fi
             shift
@@ -195,10 +200,12 @@ if [ $DISKSHRINK -eq 1 ]; then
     done
 fi
 
-read -p "Set the pre-login banner version for distribution? (Y/N)" set_distro_version
-if [ ${set_distro_version} == "Y" ]; then
-    echo "updating /etc/issue file for boot message"
-    cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+if [ $CLOUDPREP -eq 0 ]; then
+    read -p "Set the pre-login banner version for distribution? (Y/N)" set_distro_version
+    if [ ${set_distro_version} == "Y" ]; then
+        echo "updating /etc/issue file for boot message"
+        cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+    fi
 fi
 
 echo "preparing for new auto-generated machine id and random seed"
