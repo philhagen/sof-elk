@@ -1,11 +1,16 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script creates a file if a new version of the SOF-ELK VM is available
 # This is ONLY run for public/community versions
 
 VM_UPDATE_STATUS_FILE="/var/run/sof-elk_vm_update"
+
+if [ -f "${VM_UPDATE_STATUS_FILE}" ]; then
+  # already checked since boot, no need to do it again
+  exit
+fi
 
 cd /usr/local/sof-elk/ || exit 1
 
@@ -13,11 +18,6 @@ current_branch=$( git branch | grep ^\* | awk '{print $2}' )
 
 if ! echo "${current_branch}" | grep -q "^public\/v[0-9]\{8\}$" ; then
   # not on a public/community edition branch
-  exit
-fi
-
-if [ -f "${VM_UPDATE_STATUS_FILE}" ]; then
-  # already checked since boot, no need to do it again
   exit
 fi
 

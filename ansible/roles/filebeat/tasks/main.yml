@@ -1,11 +1,17 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Install Filebeat
   ansible.builtin.apt:
     name: filebeat={{ elastic_stack_version }}
     state: present
+  tags: filebeat
+
+- name: Hold Filebeat
+  ansible.builtin.dpkg_selections:
+    name: filebeat
+    selection: hold
   tags: filebeat
 
 - name: Configure filebeat
@@ -25,6 +31,7 @@
     group: root
     mode: 0755
 
+# don't forget to add new ones to post_merge.sh
 - name: Create filebeat input directories
   ansible.builtin.file:
     dest: '/logstash/{{ item }}'
@@ -33,19 +40,20 @@
     group: root
     mode: 01777
   with_items:
-    - syslog
-    - nfarch
-    - httpd
-    - passivedns
-    - zeek
-    - kape
-    - plaso
-    - microsoft365
-    - azure
     - aws
+    - azure
     - gcp
     - gws
+    - hayabusa
+    - httpd
+    - kape
     - kubernetes
+    - microsoft365
+    - nfarch
+    - passivedns
+    - plaso
+    - syslog
+    - zeek
   register: filebeat_input_directories
   tags: filebeat
 

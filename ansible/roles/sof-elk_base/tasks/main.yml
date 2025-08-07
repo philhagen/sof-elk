@@ -22,6 +22,8 @@
     update_cache: true
     name: '*'
     state: latest
+  environment:
+    APT_OPTIONS: "-o APT::Get::Always-Include-Phased-Updates=true"
   tags: sof-elk_base
 
 - name: Install core software set via apt
@@ -38,11 +40,15 @@
   when: (ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware") or ansible_system_vendor == "VMware, Inc."
   tags: sof-elk_base
 
-- name: Disable DNS resolution for SSHD
+- name: Set SSHD configuration options
   ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: '^UseDNS.*'
-    line: 'UseDNS no'
+    regexp: '{{ item.regex }}'
+    line: '{{ item.line }}'
+  with_items:
+    - { regex: '^UseDNS.*', line: 'UseDNS no' }
+    - { regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
+    - { regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
   register: ssh_config
   tags: sof-elk_base
 
@@ -113,7 +119,14 @@
     line: 'Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/usr/local/sof-elk/supporting-scripts"'
   tags: sof-elk_base
 
-- name: Create elk_user account
+- name: Get list of local user accounts
+  ansible.builtin.getent:
+    database: passwd
+    key: elk_user
+    fail_key: false
+  tags: sof-elk_base
+
+- name: Create elk_user account if needed
   ansible.builtin.user:
     name: 'elk_user'
     comment: 'SOF-ELK User'
@@ -123,6 +136,7 @@
     shell: /bin/bash
     skeleton: /etc/skel
     state: present
+  when: getent_passwd['elk_user'] == none
   tags: sof-elk_base
 
 - name: Add to elk_user's .profile
@@ -256,17 +270,27 @@
   ansible.builtin.file:
     path: /home/elk_user/.gitconfig
     state: touch
-    mode: 0644
+    mode: 0640
     owner: elk_user
     group: elk_user
   tags: sof-elk_base
 
+# the 'git config' command running with sudo reverts file ownership to root:root
 - name: Add SOF-ELK repo clone as a safe directory
   community.general.git_config:
     scope: file
     file: /home/elk_user/.gitconfig
     name: safe.directory
     value: /usr/local/sof-elk
+  tags: sof-elk_base
+
+# this is needed due to issue noted in previous block
+- name: Reset ownership on elk_user's .gitconfig file
+  ansible.builtin.file:
+    path: /home/elk_user/.gitconfig
+    state: file
+    owner: elk_user
+    group: elk_user
   tags: sof-elk_base
 
 - name: Set SOF-ELK repo clone post-merge hook

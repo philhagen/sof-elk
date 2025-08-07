@@ -93,6 +93,8 @@ def get_es_indices(es):
         ".async",
         ".ds",
         ".internal.alerts",
+        ".internal.cases",
+        ".monitoring",
     ]
     special_index_regex = []
     for raw_regex in special_index_rawregex:

@@ -1,11 +1,17 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
 - name: Install Logstash
   ansible.builtin.apt:
     name: logstash=1:{{ elastic_stack_version }}-1
     state: present
+  tags: logstash
+
+- name: Hold Logstash
+  ansible.builtin.dpkg_selections:
+    name: logstash
+    selection: hold
   tags: logstash
 
 - name: Install Logstash Plugins
