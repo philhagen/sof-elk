@@ -88,3 +88,8 @@ fi
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
+
+# specifically needed for fielded VMs, versions 20241217 and 202550806
+if [ -f /etc/cron.d/git-remote-update.cron ]; then
+  mv /etc/cron.d/git-remote-update.cron /etc/cron.d/git-remote-update
+fi
