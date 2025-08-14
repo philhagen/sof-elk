@@ -103,3 +103,8 @@ if [ ${fix_ssh} == "1" ]; then
     systemctl enable ssh.service > /dev/null 2>&1
     systemctl restart ssh.service > /dev/null 2>&1
 fi
+
+# specifically needed for fielded VMs, versions 20241217 and 202550806
+if [ -f /etc/cron.d/git-remote-update.cron ]; then
+  mv /etc/cron.d/git-remote-update.cron /etc/cron.d/git-remote-update
+fi
