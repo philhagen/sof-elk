@@ -1,15 +1,13 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script will read a file or directory tree of JSON VPC Flow logs and
 # output in a format that SOF-ELK® can read with its NetFlow ingest feature
 
-# bash function to echo to STDERR instead of STDOUT
-# source: https://stackoverflow.com/a/2990533/1400064
-echoerr() {
-  echo "$@" 1>&2;
-}
+if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
+    . /usr/local/sof-elk/supporting_scripts/functions.sh
+fi
 
 while getopts ":r:w:" opt; do
   case "${opt}" in
