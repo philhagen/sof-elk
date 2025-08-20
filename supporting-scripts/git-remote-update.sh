@@ -1,10 +1,15 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to update the origin for the SOF-ELK® repository files
 
+if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
+    . /usr/local/sof-elk/supporting_scripts/functions.sh
+fi
+
 RUNNOW=0
+require_root
 
 # parse any command line arguments
 if [ $# -gt 0 ]; then
@@ -18,11 +23,6 @@ if [ $# -gt 0 ]; then
             break
         fi
     done
-fi
-
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root.  Exiting."
-    exit 1
 fi
 
 if [ $RUNNOW -eq 0 ]; then

@@ -1,51 +1,16 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script will read a file or directory tree of nfcapd-compatible netflow
 #   data and output in a format that SOF-ELK® can read with its NetFlow ingest
 #   feature
 
-#!/bin/bash
-
-function is_valid_ipv4() {
-  local ip=$1
-  local octets=(${ip//./ })
-  if [ ${#octets[@]} -ne 4 ]; then
-    return 1
-  fi
-  for octet in "${octets[@]}"; do
-    if ! [[ "$octet" =~ ^[0-9]+$ ]] || [ "$octet" -lt 0 ] || [ "$octet" -gt 255 ]; then
-      return 1
-    fi
-  done
-  return 0
-}
-
-function is_valid_ipv6() {
-  local ip=$1
-  if [[ "$ip" =~ ^(::)?[0-9a-fA-F]{1,4}(::?[0-9a-fA-F]{1,4}){1,7}(::)?$ ]]; then
-    return 0
-  fi
-  return 1
-}
-
-function is_valid_ip() {
-  local ip=$1
-  if is_valid_ipv4 "$ip" || is_valid_ipv6 "$ip"; then
-    return 0
-  else
-    return 1
-  fi
-}
+if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
+    . /usr/local/sof-elk/supporting_scripts/functions.sh
+fi
 
 NONSTANDARD_OUTPUT=0
-
-# bash function to echo to STDERR instead of STDOUT
-# source: https://stackoverflow.com/a/2990533/1400064
-echoerr() {
-  echo "$@" 1>&2;
-}
 
 while getopts ":e:r:w:" opt; do
   case "${opt}" in

@@ -1,22 +1,16 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to update the repository from its git origin
 # It will not overwrite any local changes unless -f (force) is specified
 
-FORCE=0
-
-# bash function to echo to STDERR instead of STDOUT
-# source: https://stackoverflow.com/a/2990533/1400064
-echoerr() {
-  echo "$@" 1>&2;
-}
-
-if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root.  Exiting."
-  exit 1
+if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
+    . /usr/local/sof-elk/supporting_scripts/functions.sh
 fi
+
+FORCE=0
+require_root
 
 while getopts ":f" opt; do
   case "${opt}" in

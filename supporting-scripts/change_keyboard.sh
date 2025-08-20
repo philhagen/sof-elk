@@ -1,19 +1,21 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
+# (C)2025 Lewes Technology Consulting, LLC
 # (C)2018 505 Forensics
 #
-# This script will assist in making temporary and permanent changes to the keyboard layout in SOF-ELK to facilitate international keyboards.
+# This script will assist in making temporary and permanent changes to the
+# keyboard layout in SOF-ELK to facilitate international keyboards.
 # Usage:
 # sudo change_keyboard.sh <country_code>
 
 # Keyboard country codes are typically two-letters (IT, DE, JP, etc.)
 # The script will error out if an incorrect code is provided.
 
-# First, let's verify they are running as root
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
+if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
+    . /usr/local/sof-elk/supporting_scripts/functions.sh
 fi
+
+require_root
 
 # Temporary keymap change
 loadkeys $1 > /dev/null
