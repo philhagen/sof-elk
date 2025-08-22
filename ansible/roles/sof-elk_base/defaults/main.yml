@@ -10,6 +10,7 @@ base_apt_packages:
   - bzip2
   - chrony
   - cifs-utils
+  - console-data
   - cron
   - eject
   - exfat-fuse
@@ -37,6 +38,7 @@ base_apt_packages:
   - tree
   - unzip
   - vim
+  - virt-what
   - whois
 
 vmware_apt_packages:

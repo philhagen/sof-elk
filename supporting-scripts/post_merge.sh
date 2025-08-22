@@ -93,3 +93,5 @@ fi
 if [ -f /etc/cron.d/git-remote-update.cron ]; then
     mv /etc/cron.d/git-remote-update.cron /etc/cron.d/git-remote-update
 fi
+
+apt -y install console-data virt-what > /dev/null 2>&1
