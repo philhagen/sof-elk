@@ -11,17 +11,28 @@
 # Keyboard country codes are typically two-letters (IT, DE, JP, etc.)
 # The script will error out if an incorrect code is provided.
 
-if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
-    . /usr/local/sof-elk/supporting_scripts/functions.sh
+# include common functions
+functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
+if [ -f ${functions_include} ]; then
+    . ${functions_include}
+else
+    echo "${functions_include} not present.  Exiting " 1>&2
+    exit 1
 fi
 
+MAPNAME=${1,,}
+if [ -z ${MAPNAME} ]; then
+    echoerr "ERROR: No language provided.  Run change_keyboard.sh <%COUNTRY_CODE%>"
+    exit 2
+fi
+
+# quit if not running with admin privs
 require_root
 
-# Temporary keymap change
-loadkeys $1 > /dev/null
-echo "Changed keymap for this session to ${1}"
+# Change keymap for current session
+loadkeys ${MAPNAME} > /dev/null
+echo "Changed keymap for this session to ${MAPNAME}"
 
-# Permanent keymap change
-sed -i 's/^keymap=/keymap=$1/g' /etc/default/grub
-grub2-mkconfig -o /boot/grub2/grub.cfg > /dev/null 2>/dev/null
-echo "Changed keymap persistently to ${1}"
+# Change keymap for future sessions
+sed -i 's/^XKBLAYOUT=.*/XKBLAYOUT=\"'${MAPNAME}'\"/g' /etc/default/keyboard
+echo "Changed keymap persistently to ${MAPNAME}"

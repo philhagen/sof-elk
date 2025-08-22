@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)20124 Lewes Technology Consulting, LLC
+# (C)2024 Lewes Technology Consulting, LLC
 #
 # This script is read at login time (local and remote) for the elk_user user account
 # it's designed to display useful stuff for the user/student
