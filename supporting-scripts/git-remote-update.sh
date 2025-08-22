@@ -1,9 +1,18 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2017 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script is used to update the origin for the SOF-ELK® repository files
 
+functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
+if [ -f ${functions_include} ]; then
+    . ${functions_include}
+else
+    echo "${functions_include} not present.  Exiting " 1>&2
+    exit 1
+fi
+
+# set default values
 RUNNOW=0
 
 # parse any command line arguments
@@ -20,10 +29,8 @@ if [ $# -gt 0 ]; then
     done
 fi
 
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root.  Exiting."
-    exit 1
-fi
+# quit if not running with admin privs
+require_root
 
 if [ $RUNNOW -eq 0 ]; then
     # wait up to 20min to start, so all these VMs don't hit the server at the same exact time

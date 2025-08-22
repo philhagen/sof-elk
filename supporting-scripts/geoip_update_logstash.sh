@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2021 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
 # This script will update GeoIP databases using an existing GeoIP.conf file
 # If any of the databases have changed, it will restart the Logstash service
@@ -22,7 +22,7 @@ fi
 # identify the database directory or use the standard default if not set
 DBDIR=$( grep ^DatabaseDirectory "${GEOIP_CONFIG}" | awk '{$1=""; print}' |  sed -e 's/^[[:space:]]*//' )
 if [ -z "${DBDIR}" ]; then
-  DBDIR=/usr/local/share/GeoIP/
+    DBDIR=/usr/local/share/GeoIP/
 fi
 
 # identify the configured databases
@@ -30,28 +30,28 @@ DATABASES=$( grep ^EditionIDs "${GEOIP_CONFIG}" | awk '{$1=""; print}' | sed -e 
 
 # if there are no databases, there's no need to update anything!
 if [ -n "${DATABASES}" ]; then
-  # default/empty variables
-  UPDATES=0
-  declare -A md5=()
-  declare -A md5_check=()
+    # default/empty variables
+    UPDATES=0
+    declare -A md5=()
+    declare -A md5_check=()
 
-  for DATABASE in ${DATABASES}; do
-    md5["${DATABASE}"]=$( md5sum -b "${DBDIR}"/"${DATABASE}".mmdb | awk '{print $1}' )
-  done
+    for DATABASE in ${DATABASES}; do
+        md5["${DATABASE}"]=$( md5sum -b "${DBDIR}"/"${DATABASE}".mmdb | awk '{print $1}' )
+    done
 
-  # run the updater
-  geoipupdate -f ${GEOIP_CONFIG}
+    # run the updater
+    geoipupdate -f ${GEOIP_CONFIG}
 
-  # compare md5s of what was there before the update to what is there now
-  for DATABASE in ${DATABASES}; do
-    md5_check[${DATABASE}]=$( md5sum -b "${DBDIR}"/"${DATABASE}".mmdb | awk '{print $1}' )
-    if [ "${md5["${DATABASE}"]}" != "${md5_check["${DATABASE}"]}" ]; then
-      UPDATES=1
+    # compare md5s of what was there before the update to what is there now
+    for DATABASE in ${DATABASES}; do
+        md5_check[${DATABASE}]=$( md5sum -b "${DBDIR}"/"${DATABASE}".mmdb | awk '{print $1}' )
+        if [ "${md5["${DATABASE}"]}" != "${md5_check["${DATABASE}"]}" ]; then
+        UPDATES=1
+        fi
+    done
+
+    # if there were any updates, run the expensive Logstash restart
+    if [ ${UPDATES} == 1 ]; then
+        systemctl restart logstash.service
     fi
-  done
-
-  # if there were any updates, run the expensive Logstash restart
-  if [ ${UPDATES} == 1 ]; then
-    systemctl restart logstash.service
-  fi
 fi
