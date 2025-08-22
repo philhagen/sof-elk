@@ -9,6 +9,7 @@ base_apt_packages:
   - btop
   - bzip2
   - cifs-utils
+  - console-data
   - cron
   - eject
   - exfat-fuse
@@ -36,6 +37,7 @@ base_apt_packages:
   - tree
   - unzip
   - vim
+  - virt-what
   - whois
 
 vmware_apt_packages:
