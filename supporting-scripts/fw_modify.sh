@@ -1,73 +1,75 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 #
-# This script will read a file or directory tree of nfcapd-compatible netflow data and output in a format that SOF-ELK® can read with its NetFlow ingest feature
+# This script modifies the local firewall using the firewall-cmd utility
 
-# bash functionality to get command-line parameters
-# source: http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
-# Use -gt 1 to consume two arguments per pass in the loop (e.g. each
-# argument has a corresponding value to go with it).
-# Use -gt 0 to consume one or more arguments per pass in the loop (e.g.
-# some arguments don't have a corresponding value to go with it such
-# as in the --default example).
-while [[ $# -gt 1 ]]; do
-    key="$1"
-
-    case $key in
-        -a|--action)
-        ACTION="$2"
-        shift # past argument
-        ;;
-        -p|--port)
-        PORT="$2"
-        shift # past argument
-        ;;
-        -r|--protocol)
-        PROTOCOL="$2"
-        shift # past argument
-        ;;
-        *)
-        # unknown option
-        ;;
-    esac
-    shift # past argument or value
-done
-
-if [[ -z "${ACTION}" || ( "${ACTION}" != "open" && "${ACTION}" != "close" ) ]]; then
-    echo
-    echo "Please specify the firewall action to take with the '-a' option.  Options are 'open' or 'closed'."
-    echo
-    echo "Example: $0 -a open -p 5514 -r tcp"
-    echo
+# include common functions
+functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
+if [ -f ${functions_include} ]; then
+    . ${functions_include}
+else
+    echo "${functions_include} not present.  Exiting " 1>&2
     exit 2
 fi
 
-if [[ -z "${PORT}" ]]; then
+# set local functions
+usage() {
+    echo "Usage: $0 [-h] -a (open|close) -p <%PORT_NUMBER%> -r (tcp|udp)"
+    exit 3
+}
+
+# parse options
+while getopts ":a:p:r:h" opt; do
+  case "${opt}" in
+    a) ACTION=${OPTARG} ;;
+    p) PORT=${OPTARG} ;;
+    r) PROTOCOL=${OPTARG} ;;
+    h) usage ;;
+    \?)
+        echoerr "ERROR: Invalid option: -${OPTARG}"
+        exit 4
+        ;;
+  esac
+done
+
+# quit if not running with admin privs
+require_root
+
+# handle missing or empty options
+if [[ -z "${ACTION}" || ( "${ACTION}" != "open" && "${ACTION}" != "close" ) ]]; then
+    echo "Please specify the firewall action to take with the '-a' option.  Options are 'open' or 'closed'."
     echo
+    echo "Example: $0 -a open -p 5514 -r tcp"
+    exit 5
+fi
+
+if [[ -z "${PORT}" ]]; then
     echo "Please specify the port to act on with the '-p' option."
     echo
     echo "Example: $0 -a open -p 5514 -r tcp"
-    echo
-    exit 3
+    exit 6
 fi
 
 re='^[0-9]+$'
 if ! [[ "${PORT}" =~ ${re} ]] ; then
-    echo
     echo "Error - ${PORT} is not a number.  Exiting."
-    echo
-    exit 4
+    exit 7
 fi
 
 if [[ -z "${PROTOCOL}" || ( "${PROTOCOL}" != "tcp" && "${PROTOCOL}" != "udp" ) ]]; then
-    echo
     echo "Please specify the protocol to act on with the '-r' option.  Options are 'tcp' or 'udp'."
     echo
     echo "Example: $0 -a open -p 5514 -r tcp"
-    echo
-    exit 2
+    exit 8
 fi
 
-firewall-cmd --zone=public --add-port="${PORT}"/"${PROTOCOL}" --permanent
-firewall-cmd --reload
+# take the required firewall-cmd action and reload
+if [[] ${ACTION} == "open" ]]; then
+    FWCMDARG="--add-port"
+else
+    FWCMDARG="--remove-port"
+fi
+
+firewall-cmd --zone=public ${FWCMDARG}="${PORT}"/"${PROTOCOL}" --permanent > /dev/null
+firewall-cmd --reload > /dev/null

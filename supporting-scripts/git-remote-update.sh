@@ -4,12 +4,16 @@
 #
 # This script is used to update the origin for the SOF-ELK® repository files
 
-if [ -f /usr/local/sof-elk/supporting_scripts/functions.sh ]; then
-    . /usr/local/sof-elk/supporting_scripts/functions.sh
+functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
+if [ -f ${functions_include} ]; then
+    . ${functions_include}
+else
+    echo "${functions_include} not present.  Exiting " 1>&2
+    exit 1
 fi
 
+# set default values
 RUNNOW=0
-require_root
 
 # parse any command line arguments
 if [ $# -gt 0 ]; then
@@ -24,6 +28,9 @@ if [ $# -gt 0 ]; then
         fi
     done
 fi
+
+# quit if not running with admin privs
+require_root
 
 if [ $RUNNOW -eq 0 ]; then
     # wait up to 20min to start, so all these VMs don't hit the server at the same exact time
