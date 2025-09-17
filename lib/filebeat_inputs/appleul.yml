@@ -8,6 +8,7 @@
   id: appleul-json
   paths:
     - /logstash/appleul/**/*.json
+    - /logstash/appleul/**/*.jsonl
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:
