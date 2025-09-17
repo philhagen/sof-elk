@@ -10,9 +10,9 @@
         }
       }
     },
-    "id": "hayabusa",
-    "name": "hayabusa-*",
+    "id": "appleul",
+    "name": "appleul-*",
     "timeFieldName": "@timestamp",
-    "title": "hayabusa-*"
+    "title": "appleul-*"
   }
 }

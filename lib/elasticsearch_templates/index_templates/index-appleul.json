@@ -1,6 +1,6 @@
 {
   "index_patterns": [
-    "hayabusa-*"
+    "appleul-*"
   ],
   "composed_of": [
     "settings-common",
