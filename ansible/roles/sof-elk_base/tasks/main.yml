@@ -11,7 +11,7 @@
     mode: 0644
   register: timezone
   tags: sof-elk_base
-  
+
 - name: Reconfigure Timezone Data
   ansible.builtin.shell: dpkg-reconfigure -f noninteractive tzdata
   when: timezone.changed
@@ -193,7 +193,7 @@
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
   tags: sof-elk_base
 
-- name: Set up login banner template
+- name: Set up pre-login banner template
   ansible.builtin.template:
     src: 'issue.prep.j2'
     dest: '/etc/issue.prep'
@@ -204,14 +204,14 @@
   - sof-elk_base
   - pub2course
 
-- name: Set new revision string
+- name: Set new revision string in pre-login banner
   ansible.builtin.set_fact:
     revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
   tags:
   - sof-elk_base
   - pub2course
 
-- name: Set up custom login banner
+- name: Set up custom pre-login banner
   ansible.builtin.template:
     src: 'issue.prep.j2'
     dest: '/etc/issue'
@@ -223,7 +223,7 @@
   - sof-elk_base
   - pub2course
 
-- name: Activate the new login banner
+- name: Activate the new pre-login banner
   ansible.builtin.shell: /usr/sbin/agetty --reload
   when: issue_banner.changed
   tags:
@@ -321,7 +321,6 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_update.sh', dest: '/usr/local/sbin/sof-elk_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/kick-aws-logs.sh', dest: '/usr/local/sbin/kick-aws-logs.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/dhcp-renew-login-screen.sh', dest: '/etc/dhcp/dhclient-exit-hooks.d/dhcp-renew-login-screen.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
   tags: sof-elk_base
