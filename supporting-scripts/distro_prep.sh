@@ -104,6 +104,7 @@ for userclean in root elk_user; do
     rm -rf ~${userclean}/.ansible
     rm -rf ~${userclean}/.config
     rm -rf ~${userclean}/.vscode-server
+    rm -rf ~${userclean}/.sudo_as_admin_successful
 done
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
