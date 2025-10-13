@@ -92,19 +92,21 @@ echo "cleaning apt caches"
 apt-get clean
 
 echo "cleaning user home directories"
-for userclean in root elk_user; do
-    rm -f ~${userclean}/.bash_history
-    rm -f ~${userclean}/.python_history
-    rm -f ~${userclean}/.lesshst
-    rm -rf ~${userclean}/.local
-    rm -rf ~${userclean}/.cache
-    rm -rf ~${userclean}/.vim
-    rm -rf ~${userclean}/.viminfo
-    rm -rf ~${userclean}/.bundle
-    rm -rf ~${userclean}/.ansible
-    rm -rf ~${userclean}/.config
-    rm -rf ~${userclean}/.vscode-server
-    rm -rf ~${userclean}/.sudo_as_admin_successful
+for userclean in /root /home/elk_user; do
+    homedir = $( eval echo "~${userclean}" )
+    echo "${userclean} -> ${homedir}"
+    rm -f ${homedir}/.bash_history
+    rm -f ${homedir}/.python_history
+    rm -f ${homedir}/.lesshst
+    rm -rf ${homedir}/.local
+    rm -rf ${homedir}/.cache
+    rm -rf ${homedir}/.vim
+    rm -rf ${homedir}/.viminfo
+    rm -rf ${homedir}/.bundle
+    rm -rf ${homedir}/.ansible
+    rm -rf ${homedir}/.config
+    rm -rf ${homedir}/.vscode-server
+    rm -rf ${homedir}/.sudo_as_admin_successful
 done
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
