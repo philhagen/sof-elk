@@ -93,7 +93,7 @@ apt-get clean
 
 echo "cleaning user home directories"
 for userclean in root elk_user; do
-    homedir = $( eval echo "~${userclean}" )
+    homedir=$( eval echo "~${userclean}" )
     echo "${userclean} -> ${homedir}"
     rm -rf ${homedir}/.ansible
     rm -rf ${homedir}/.bash_history
