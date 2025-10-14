@@ -152,24 +152,6 @@
       fi
   tags: sof-elk_base
 
-- name: Get list of default MOTD banners
-  ansible.builtin.find:
-    path: /etc/update-motd.d/
-    file_type: file
-    patterns: "*"
-  register: motd_files
-  tags: sof-elk_base
-
-- name: Disable default MOTD banners
-  ansible.builtin.file:
-    path: "{{ item.path }}"
-    state: file
-    owner: root
-    group: root
-    mode: 0644
-  with_items: "{{ motd_files.files }}"
-  tags: sof-elk_base
-
 - name: Create vim configs if they do not exist
   ansible.builtin.copy:
     content: ''
@@ -192,6 +174,15 @@
     - [ 'root', 'elk_user' ]
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
   tags: sof-elk_base
+
+- name: Set elk_user to hushed logins
+  ansible.builtin.file:
+    path: /home/elk_user/.hushlogin
+    state: touch
+    mode: 0640
+    owner: elk_user
+    group: elk_user
+    tags: sof-elk_base
 
 - name: Set up pre-login banner template
   ansible.builtin.template:
