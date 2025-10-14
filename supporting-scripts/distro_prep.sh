@@ -181,6 +181,8 @@ systemctl stop atd
 systemctl stop cron
 rm -rf /var/spool/cron/atjobs/*
 echo "0" > /var/spool/cron/atjobs/.SEQ
+chmod 0600 /var/spool/cron/atjobs/.SEQ
+chown daemon:daemon /var/spool/cron/atjobs/.SEQ
 
 echo "clearing mail spools"
 rm -f /var/spool/mail/root
