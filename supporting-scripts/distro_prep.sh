@@ -186,6 +186,12 @@ echo "clearing mail spools"
 rm -f /var/spool/mail/root
 rm -f /var/spool/mail/elk_user
 
+echo "clearing systemd journal and regular log files"
+systemctl stop systemd-journald.service
+systemctl stop systemd-journald.socket
+rm -rf /var/log/journal/*
+find /var/log/ -type f -exec rm -rf {} \;
+
 echo "clearing /tmp/"
 rm -rf /tmp/*
 
