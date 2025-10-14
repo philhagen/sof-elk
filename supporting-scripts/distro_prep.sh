@@ -93,17 +93,20 @@ apt-get clean
 
 echo "cleaning user home directories"
 for userclean in root elk_user; do
-    rm -f ~${userclean}/.bash_history
-    rm -f ~${userclean}/.python_history
-    rm -f ~${userclean}/.lesshst
-    rm -rf ~${userclean}/.local
-    rm -rf ~${userclean}/.cache
-    rm -rf ~${userclean}/.vim
-    rm -rf ~${userclean}/.viminfo
-    rm -rf ~${userclean}/.bundle
-    rm -rf ~${userclean}/.ansible
-    rm -rf ~${userclean}/.config
-    rm -rf ~${userclean}/.vscode-server
+    homedir=$( eval echo "~${userclean}" )
+    echo "${userclean} -> ${homedir}"
+    rm -rf ${homedir}/.ansible
+    rm -rf ${homedir}/.bash_history
+    rm -rf ${homedir}/.bundle
+    rm -rf ${homedir}/.cache
+    rm -rf ${homedir}/.config
+    rm -rf ${homedir}/.lesshst
+    rm -rf ${homedir}/.local
+    rm -rf ${homedir}/.python_history
+    rm -rf ${homedir}/.sudo_as_admin_successful
+    rm -rf ${homedir}/.vim
+    rm -rf ${homedir}/.viminfo
+    rm -rf ${homedir}/.vscode-server
 done
 #cat /dev/null > ~/.bash_history; history -c ; history -w; exit
 
@@ -176,12 +179,20 @@ rm -f /etc/ssh/*key*
 echo "clearing cron/at content"
 systemctl stop atd
 systemctl stop cron
-rm -f /var/spool/cron/atjobs/.SEQ
 rm -rf /var/spool/cron/atjobs/*
+echo "0" > /var/spool/cron/atjobs/.SEQ
+chmod 0600 /var/spool/cron/atjobs/.SEQ
+chown daemon:daemon /var/spool/cron/atjobs/.SEQ
 
 echo "clearing mail spools"
 rm -f /var/spool/mail/root
 rm -f /var/spool/mail/elk_user
+
+echo "clearing systemd journal and regular log files"
+systemctl stop systemd-journald.service
+systemctl stop systemd-journald.socket
+rm -rf /var/log/journal/*
+find /var/log/ -type f -exec rm -rf {} \;
 
 echo "clearing /tmp/"
 rm -rf /tmp/*
