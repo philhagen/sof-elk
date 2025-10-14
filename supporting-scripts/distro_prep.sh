@@ -179,8 +179,8 @@ rm -f /etc/ssh/*key*
 echo "clearing cron/at content"
 systemctl stop atd
 systemctl stop cron
-rm -f /var/spool/cron/atjobs/.SEQ
 rm -rf /var/spool/cron/atjobs/*
+echo "0" > /var/spool/cron/atjobs/.SEQ
 
 echo "clearing mail spools"
 rm -f /var/spool/mail/root
