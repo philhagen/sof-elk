@@ -120,6 +120,61 @@
          type: zeek_weird
   tags: [ 'zeek' ]
 
+# using modbus_detailed.* because those contain response values
+- type: filestream
+  id: zeek-modbus-01
+  paths:
+    - /logstash/zeek/**/modbus_detailed.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_modbus_detailed
+  tags: [ 'zeek' ]
+
+# using omron_fins_detail.* because it contains a superset of fields from omron_fins_general
+- type: filestream
+  id: zeek-omron-fins-01
+  paths:
+    - /logstash/zeek/**/omron_fins_detail.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_omron_fins_detail
+  tags: [ 'zeek' ]
+
+- type: filestream
+  id: zeek-enip-01
+  paths:
+    - /logstash/zeek/**/enip.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_enip
+  tags: [ 'zeek' ]
+
+- type: filestream
+  id: zeek-cip-01
+  paths:
+    - /logstash/zeek/**/cip.*
+  prospector.scanner.exclude_files: [ '\.gz$', '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_cip
+  tags: [ 'zeek' ]
+
+### TODO: I dont think any of the following types are being handled at all
 - type: filestream
   id: zeek-dhcp-01
   paths:

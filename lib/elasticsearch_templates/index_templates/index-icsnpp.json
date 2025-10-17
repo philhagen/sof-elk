@@ -1,0 +1,18 @@
+{
+    "index_patterns": [
+      "icsnpp-*"
+    ],
+    "composed_of": [
+      "settings-common",
+      "mappings-corecommon",
+      "mappings-string",
+      "mappings-ip_address",
+      "mappings-geohash",
+      "mappings-port",
+      "mappings-zeekuid",
+      "mappings-final"
+    ],
+    "_meta": {
+    "provider": "SOF-ELK"
+  }
+}
