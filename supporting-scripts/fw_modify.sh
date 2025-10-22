@@ -65,7 +65,7 @@ if [[ -z "${PROTOCOL}" || ( "${PROTOCOL}" != "tcp" && "${PROTOCOL}" != "udp" ) ]
 fi
 
 # take the required firewall-cmd action and reload
-if [[] ${ACTION} == "open" ]]; then
+if [[ ${ACTION} == "open" ]]; then
     FWCMDARG="--add-port"
 else
     FWCMDARG="--remove-port"
