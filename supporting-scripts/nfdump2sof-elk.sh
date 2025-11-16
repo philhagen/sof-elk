@@ -122,7 +122,7 @@ if [ ${REAL_RUN} != 0 ]; then
     exit 7
 else
     echoerr "Text file creation complete."
-    if [ ${NONSTANDARD_OUTPUT} ]; then
+    if [ ${NONSTANDARD_OUTPUT} -eq 1 ]; then
         echoerr "You must move/copy the generated file to the /logstash/nfarch/ directory before"
         echoerr "  SOF-ELK can process it."
     else
