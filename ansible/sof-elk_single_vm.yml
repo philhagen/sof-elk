@@ -23,8 +23,8 @@
     - name: Validate host operating system distribution
       ansible.builtin.assert:
         that:
-          - (ansible_distribution == 'Ubuntu' and ansible_distribution_version is version('22.04', '>='))
-            (ansible_distribution == 'Debian' and ansible_distribution_version is version('12', '>=')) or
+          - (ansible_distribution == 'Ubuntu' and ansible_distribution_version is version('22.04', '>=')) or
+            (ansible_distribution == 'Debian' and ansible_distribution_version is version('12', '>='))
         fail_msg: "SOF-ELK requires Ubuntu >= 22.04 or Debian >= 12"
         success_msg: "Supported OS version detected: {{ ansible_distribution }} {{ ansible_distribution_version }}"
       tags: always
