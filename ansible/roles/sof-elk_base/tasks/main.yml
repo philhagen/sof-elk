@@ -17,15 +17,15 @@
   when: timezone.changed
   tags: sof-elk_base
 
-- name: Ensure Debian 13 Trixie repositories are present
+- name: Ensure Debian >= 12 repositories are present
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present') }}"
-    filename: "{{ item.filename | default('debian-trixie') }}"
+    filename: "{{ item.filename | default('debian-' ~ ansible_distribution_release) }}"
   loop: "{{ debian_sources }}"
   when:
     - ansible_distribution == "Debian"
-    - ansible_distribution_major_version == "13"
+    - ansible_distribution_major_version is version('12', '>=')
 
 - name: Update all software packages
   ansible.builtin.apt:
@@ -405,7 +405,10 @@
   stat:
     path: "{{ role_path }}/tasks/{{ course_id }}.yml"
   register: course_tasks_stat
-
+  tags:
+    - sof-elk_base
+    -pub2course
+    
 - name: Include course-specific tasks, if present
   ansible.builtin.include_tasks: "{{ role_path }}/tasks/{{ course_id }}.yml"
   when:
