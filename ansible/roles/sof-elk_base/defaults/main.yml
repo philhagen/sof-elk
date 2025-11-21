@@ -49,14 +49,10 @@ revision_string: "<%REVNO%>"
 
 debian_sources:
   - repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} main contrib non-free non-free-firmware"
-    state: present
     filename: "debian-{{ ansible_distribution_release }}"
   - repo: "deb-src http://deb.debian.org/debian/ {{ ansible_distribution_release }} main contrib non-free non-free-firmware"
-    state: present
     filename: "debian-{{ ansible_distribution_release }}"
   - repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware"
-    state: present
     filename: "debian-{{ ansible_distribution_release }}-updates"
   - repo: "deb-src http://deb.debian.org/debian/ {{ ansible_distribution_release }}-updates main contrib non-free non-free-firmware"
-    state: present
     filename: "debian-{{ ansible_distribution_release }}-updates"

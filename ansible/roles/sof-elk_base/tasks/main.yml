@@ -20,7 +20,7 @@
 - name: Ensure Debian >= 12 repositories are present
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
-    state: "{{ item.state | default('present') }}"
+    state: present
     filename: "{{ item.filename | default('debian-' ~ ansible_distribution_release) }}"
   loop: "{{ debian_sources }}"
   when:
