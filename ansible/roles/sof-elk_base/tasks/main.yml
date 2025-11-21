@@ -22,7 +22,6 @@
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present') }}"
     filename: "{{ item.filename | default('debian-trixie') }}"
-  become: true
   loop: "{{ debian_sources }}"
   when:
     - ansible_distribution == "Debian"
@@ -408,7 +407,7 @@
   register: course_tasks_stat
 
 - name: Include course-specific tasks, if present
-  include_tasks: "{{ role_path }}/tasks/{{ course_id }}.yml"
+  ansible.builtin.include_tasks: "{{ role_path }}/tasks/{{ course_id }}.yml"
   when:
     - course_id is defined
     - course_tasks_stat.stat.exists
