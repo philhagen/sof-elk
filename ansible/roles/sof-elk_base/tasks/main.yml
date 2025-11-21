@@ -20,8 +20,8 @@
 - name: Ensure Debian >= 12 repositories are present
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
-    state: present
     filename: "{{ item.filename | default('debian-' ~ ansible_distribution_release) }}"
+    state: present
   loop: "{{ debian_sources }}"
   when:
     - ansible_distribution == "Debian"
@@ -401,20 +401,11 @@
   when: course_id == "public"
   tags: sof-elk_base
 
-- name: Check for course-specific tasks file
-  stat:
-    path: "{{ role_path }}/tasks/{{ course_id }}.yml"
-  register: course_tasks_stat
-  tags:
-    - sof-elk_base
-    -pub2course
-    
 - name: Include course-specific tasks, if present
-  ansible.builtin.include_tasks: "{{ role_path }}/tasks/{{ course_id }}.yml"
-  when:
-    - course_id is defined
-    - course_tasks_stat.stat.exists
-    - course_tasks_stat.stat.size > 0
+  ansible.builtin.include_tasks: "{{ course_tasks_file }}"
+  when: course_tasks_file != ""
+  vars:
+    course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore' ) }}"
   tags:
     - sof-elk_base
     - pub2course
