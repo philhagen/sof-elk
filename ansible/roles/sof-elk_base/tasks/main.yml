@@ -17,6 +17,17 @@
   when: timezone.changed
   tags: sof-elk_base
 
+- name: Ensure Debian 13 Trixie repositories are present
+  ansible.builtin.apt_repository:
+    repo: "{{ item.repo }}"
+    state: "{{ item.state | default('present') }}"
+    filename: "{{ item.filename | default('debian-trixie') }}"
+  become: true
+  loop: "{{ debian_sources }}"
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "13"
+
 - name: Update all software packages
   ansible.builtin.apt:
     update_cache: true
@@ -60,8 +71,8 @@
     group: root
     mode: 0644
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Start and enable SSHD host key generation service
   ansible.builtin.systemd_service:
@@ -70,8 +81,8 @@
     enabled: true
     state: started
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set SSHD host key generation service order
   ansible.builtin.lineinfile:
@@ -80,8 +91,8 @@
     line: 'After=network.target sshd-keygen.service auditd.service'
   register: ssh_systemd_service
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Start and enable SSHD
   ansible.builtin.systemd_service:
@@ -91,8 +102,8 @@
     state: started
   register: enablestart_sshd
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Restart SSHD
   ansible.builtin.systemd_service:
@@ -102,8 +113,8 @@
     state: restarted
   when: (not enablestart_sshd.changed) and (ssh_config.changed or ssh_systemd_service.changed)
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Disable nfcapd service
   ansible.builtin.systemd_service:
@@ -182,7 +193,7 @@
     mode: 0640
     owner: elk_user
     group: elk_user
-    tags: sof-elk_base
+  tags: sof-elk_base
 
 - name: Set up pre-login banner template
   ansible.builtin.template:
@@ -192,15 +203,15 @@
     group: root
     mode: 0644
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set new revision string in pre-login banner
   ansible.builtin.set_fact:
     revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set up custom pre-login banner
   ansible.builtin.template:
@@ -211,15 +222,15 @@
     mode: 0644
   register: issue_banner
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Activate the new pre-login banner
   ansible.builtin.shell: /usr/sbin/agetty --reload
   when: issue_banner.changed
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set up sysctl configuration
   ansible.builtin.copy:
@@ -254,8 +265,8 @@
     version: "{{ git_branch }}"
     update: true
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Create elk_user's .gitconfig file
   ansible.builtin.file:
@@ -391,11 +402,17 @@
   when: course_id == "public"
   tags: sof-elk_base
 
+- name: Check for course-specific tasks file
+  stat:
+    path: "{{ role_path }}/tasks/{{ course_id }}.yml"
+  register: course_tasks_stat
+
 - name: Include course-specific tasks, if present
-  ansible.builtin.include_tasks: "{{ course_tasks_file }}"
-  when: course_tasks_file != ""
-  vars:
-    course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore' ) }}"
+  include_tasks: "{{ role_path }}/tasks/{{ course_id }}.yml"
+  when:
+    - course_id is defined
+    - course_tasks_stat.stat.exists
+    - course_tasks_stat.stat.size > 0
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course

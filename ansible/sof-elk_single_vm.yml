@@ -21,8 +21,12 @@
 
   pre_tasks:
     - name: Validate host operating system distribution
-      ansible.builtin.meta: end_host
-      when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
+      ansible.builtin.assert:
+        that:
+          - ansible_distribution in ["Debian", "Ubuntu"]
+          - ansible_distribution_version is version('12', '>=') # Support Debian 12, 13, Ubuntu 22.04+
+        fail_msg: "SOF-ELK requires Debian >= 12 or Ubuntu >= 22.04"
+        success_msg: "Supported OS version detected: {{ ansible_distribution }} {{ansible_distribution_version }}"
       tags: always
 
     - name: "Get current git branch"
@@ -39,6 +43,7 @@
     - name: Set facts needed downstream
       ansible.builtin.set_fact:
         ubuntu_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+        debian_architecture: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
         course_id: "{{ course_build | default('public', true) | lower }}"
         git_branch: "{{ git_branch_result.stdout }}"
       tags: always
