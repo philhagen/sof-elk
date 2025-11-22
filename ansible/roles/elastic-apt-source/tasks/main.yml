@@ -60,7 +60,8 @@
     - filebeat
 
 - name: Update apt sources
-  ansible.builtin.command: apt-get update
+  ansible.builtin.apt:
+    update_cache: yes
   when: es_source.changed
   tags:
     - elasticsearch

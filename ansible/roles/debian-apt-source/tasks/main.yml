@@ -16,6 +16,7 @@
   tags: sof-elk_base
 
 - name: Update apt sources
-  ansible.builtin.command: apt-get update
+  ansible.builtin.apt:
+    update_cache: yes
   when: debian_source.changed
   tags: sof-elk_base

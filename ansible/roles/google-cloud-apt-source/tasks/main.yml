@@ -38,6 +38,7 @@
   tags: gcp-cli
 
 - name: Update apt sources
-  ansible.builtin.command: apt-get update
+  ansible.builtin.apt:
+    update_cache: yes
   when: googlecloud_source.changed
   tags: gcp-cli

@@ -38,7 +38,8 @@
     - powershell
 
 - name: Update apt sources
-  ansible.builtin.command: apt-get update
+  ansible.builtin.apt:
+    update_cache: yes
   when: msprod_source.changed
   tags:
     - azure-cli
