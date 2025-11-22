@@ -1,0 +1,21 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2025 Lewes Technology Consulting, LLC
+
+- name: Install Debian source definition files
+  ansible.builtin.template:
+    src: debian-{{ item }}.list.j2
+    dest: /etc/apt/sources.list.d/debian-{{ item }}-{{ ansible_distribution_release }}.list
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - main
+    - updates
+  register: debian_source
+  tags: sof-elk_base
+
+- name: Update apt sources
+  ansible.builtin.command: apt-get update
+  when: debian_source.changed
+  tags: sof-elk_base

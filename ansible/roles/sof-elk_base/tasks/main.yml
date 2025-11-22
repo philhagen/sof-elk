@@ -17,16 +17,6 @@
   when: timezone.changed
   tags: sof-elk_base
 
-- name: Ensure Debian >= 12 repositories are present
-  ansible.builtin.apt_repository:
-    repo: "{{ item.repo }}"
-    filename: "{{ item.filename | default('debian-' ~ ansible_distribution_release) }}"
-    state: present
-  loop: "{{ debian_sources }}"
-  when:
-    - ansible_distribution == "Debian"
-    - ansible_distribution_major_version is version('12', '>=')
-
 - name: Update all software packages
   ansible.builtin.apt:
     update_cache: true
