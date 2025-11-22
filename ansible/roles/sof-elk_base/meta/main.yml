@@ -5,5 +5,4 @@
 dependencies:
   - role: debian-apt-source
     when: 
-      - ansible_distribution == "Debian" and
-        ansible_distribution_major_version is version('12', '>=')
+      - ansible_distribution == "Debian" and ansible_distribution_major_version is version('12', '>=')
