@@ -21,6 +21,7 @@ base_apt_packages:
   - geoip-bin
   - geoipupdate
   - git
+  - gpg
   - htop
   - jq
   - locate
