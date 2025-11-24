@@ -347,7 +347,7 @@
     - { name: 'ASN', md5: 'c20977100c0a6c0842583ba158e906ec' }
     - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
     - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
-  when: install_geoip == "N"
+  when: geoip_account is not defined
   tags: sof-elk_base
 
 - name: Install templated GeoIP configuration to perform download
@@ -357,12 +357,12 @@
     owner: root
     group: root
     mode: 0600
-  when: install_geoip == "Y"
+  when: geoip_account is defined
   tags: sof-elk_base
 
 - name: Install geoip data
   ansible.builtin.command: geoipupdate
-  when: install_geoip == "Y"
+  when: geoip_account is defined
   tags: sof-elk_base
 
 - name: Create sample evidence directory
