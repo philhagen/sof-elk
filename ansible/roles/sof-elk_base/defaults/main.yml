@@ -12,6 +12,7 @@ base_apt_packages:
   - cifs-utils
   - console-data
   - cron
+  - curl
   - eject
   - exfat-fuse
   - file
