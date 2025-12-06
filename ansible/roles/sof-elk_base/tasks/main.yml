@@ -24,7 +24,7 @@
 
 - name: Reconfigure Timezone Data
   ansible.builtin.shell: dpkg-reconfigure -f noninteractive tzdata
-  when: utc_localtime.changed or timezone.changed
+  when: utc_localtime.changed or utc_timezone.changed
   tags: sof-elk_base
 
 - name: Update all software packages
