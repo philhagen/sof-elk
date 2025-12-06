@@ -9,8 +9,9 @@ debian_powershell_apt_dependencies:
 powershell_apt_packages:
   - powershell
 
+powershell_installation_directory: /opt/microsoft/powershell/7
+
 # These are only needed for the manual install on arm64
 powershell_version: 7.6.0-preview.5
 powershell_archive: powershell-{{ powershell_version }}-linux-{{ arch_common_name[ansible_architecture] }}.tar.gz
-powershell_installation_directory: /opt/microsoft/powershell/7
 powershell_archive_url: https://github.com/PowerShell/PowerShell/releases/download/v{{ powershell_version }}/{{ powershell_archive }}
