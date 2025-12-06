@@ -392,10 +392,10 @@
   tags: sof-elk_base
 
 - name: Include course-specific tasks, if present
-  vars:
-    course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore', skip=True ) }}"
   ansible.builtin.include_tasks:
     file: "{{ course_tasks_file }}"
+  vars:
+    course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore', skip=True ) }}"
   when: course_tasks_file | length > 0
   tags:
     - sof-elk_base
