@@ -14,8 +14,8 @@
     url: "{{ msprod_source_package_url }}"
     dest: "{{ msprod_temp_local_path }}"
     mode: 0644
-  when: "'packages-microsoft-prod' not in ansible_facts.packages"
   register: msprod_source_package_downloaded
+  when: "'packages-microsoft-prod' not in ansible_facts.packages"
   tags:
     - azure-cli
     - powershell

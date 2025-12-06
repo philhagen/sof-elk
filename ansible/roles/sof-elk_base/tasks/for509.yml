@@ -36,7 +36,7 @@
     group: root
     mode: 0644
   with_items: "{{ apache2_confs }}"
-  register: install_apache2_config
+  register: install_apache2_configs
   tags:
     - sof-elk_base
     - pub2course
@@ -47,6 +47,7 @@
     creates: "/etc/apache2/conf-enabled/{{ item }}.conf"
   with_items: "{{ apache2_confs }}"
   register: enable_apache2_configs
+  changed_when: '"already enabled" not in enable_apache2_configs.stdout'
   tags:
     - sof-elk_base
     - pub2course
@@ -95,7 +96,7 @@
   ansible.builtin.systemd_service:
     name: apache2
     state: restarted
-  when: (not enablestart_apache2) and (install_apache2_configs.changed or enable_apache2_config.changed or enable_apache2_mods.changed)
+  when: (not enablestart_apache2) and (install_apache2_configs.changed or enable_apache2_configs.changed or enable_apache2_mods.changed)
   tags:
     - sof-elk_base
     - pub2course
