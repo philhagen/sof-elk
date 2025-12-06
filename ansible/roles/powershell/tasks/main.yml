@@ -1,6 +1,13 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
+
+# At this time, PowerShell v7.5.4 is installed via apt on x86 hosts.
+#   However, due to dependency issues, v7.6.0-preview.5 is installed on arm64
+#   hosts via .tar.gz file.
+# This will be streamlined to all hosts and architectures with version 7.6.0
+#   installed via apt in the future, when that version is available in the
+#   necessary upstream repositories.
 
 - name: Install {{ arch_common_name[ansible_architecture] }} PowerShell
   ansible.builtin.include_tasks:
