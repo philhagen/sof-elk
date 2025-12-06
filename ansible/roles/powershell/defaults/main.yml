@@ -1,13 +1,18 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
+
+powershell_apt_dependencies:
+  - libicu76
 
 # x86 uses apt install
 powershell_apt_packages:
   - powershell
 
+# TODO: looks like PS is in apt for arm now, but can't be installed right now due to the libicu dependency problem
 # arm uses .tar.gz install.  (related; WHY, MICROSOFT, WHY?!??!?!?)
-powershell_version: 7.4.6
-powershell_archive: powershell-{{ powershell_version }}-linux-arm64.tar.gz
+powershell_version: 7.6.0-preview.5
+# TODO: this wont work b/c ubuntu_architecture is amd64 and the PS URL/filename is x86
+powershell_archive: powershell-{{ powershell_version }}-linux-{{ arch_common_name[ansible_architecture] }}.tar.gz
 powershell_installation_directory: /opt/microsoft/powershell/7
 powershell_archive_url: https://github.com/PowerShell/PowerShell/releases/download/v{{ powershell_version }}/{{ powershell_archive }}

@@ -2,7 +2,7 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2024 Lewes Technology Consulting, LLC
 
-- name: Install {{ ubuntu_architecture }} PowerShell
+- name: Install {{ arch_common_name[ansible_architecture] }} PowerShell
   ansible.builtin.include_tasks:
-    file: "{{ ubuntu_architecture }}.yml"
+    file: "{{ arch_common_name[ansible_architecture] }}.yml"
   tags: powershell
