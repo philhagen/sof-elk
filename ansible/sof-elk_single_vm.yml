@@ -49,13 +49,15 @@
       tags: always
 
     - name: Validate that a course_version has been specified if needed
-      ansible.builtin.meta: end_host
+      ansible.builtin.fail:
+        msg: "Course ID was provided without a version.  Both are required for course-specific build."
       when: (course_id is defined and course_id != 'public') and course_version is not defined
       tags: always
 
     # install user-based GeoIP databases by running ansible-playbook with "-e 'geoip_account=xxxxx geoip_key=xxxxxxx'" (must have both)
     - name: Fail if GeoIP account is provided without a key
-      ansible.builtin.meta: end_host
+      ansible.builtin.fail:
+        msg: "GeoIP account was provided without a key.  Both are required to install your own GeoIP databases."
       when: geoip_account is defined and geoip_key is not defined
       tags: always
 
