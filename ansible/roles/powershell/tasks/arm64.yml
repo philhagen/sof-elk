@@ -6,7 +6,7 @@
 
 - name: Install Debian PowerShell dependencies
   ansible.builtin.apt:
-    name: '{{ debian_powershell_apt_dependencies: }}'
+    name: '{{ debian_powershell_apt_dependencies }}'
     state: present
   when: ansible_distribution == "Debian"
   tags: powershell

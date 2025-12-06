@@ -53,7 +53,7 @@
       tags: always
 
     # install user-based GeoIP databases by running ansible-playbook with "-e 'geoip_account=xxxxx geoip_key=xxxxxxx'" (must have both)
-    - name: Validate that GeoIP key is provided if an account ID has been set
+    - name: Fail if GeoIP account is provided without a key
       ansible.builtin.meta: end_host
       when: geoip_account is defined and geoip_key is not defined
       tags: always
