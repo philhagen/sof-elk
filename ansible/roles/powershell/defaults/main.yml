@@ -2,7 +2,7 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2025 Lewes Technology Consulting, LLC
 
-powershell_apt_dependencies:
+debian_powershell_apt_dependencies:
   - libicu76
 
 # x86 uses apt install
