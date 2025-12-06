@@ -2,19 +2,29 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2025 Lewes Technology Consulting, LLC
 
-- name: Update Timezone to Etc/UTC
+- name: Update localtime symlink to Etc/UTC
+  ansible.builtin.file:
+    src: /usr/share/zoneinfo/Etc/UTC
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link
+  register: utc_localtime
+  tags: sof-elk_base
+
+- name: Update timezone file to Etc/UTC
   ansible.builtin.copy:
     content: "Etc/UTC\n"
     dest: /etc/timezone
     owner: root
     group: root
     mode: 0644
-  register: timezone
+  register: utc_timezone
   tags: sof-elk_base
 
 - name: Reconfigure Timezone Data
   ansible.builtin.shell: dpkg-reconfigure -f noninteractive tzdata
-  when: timezone.changed
+  when: utc_localtime.changed or timezone.changed
   tags: sof-elk_base
 
 - name: Update all software packages
