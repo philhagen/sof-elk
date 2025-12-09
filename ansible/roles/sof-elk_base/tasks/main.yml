@@ -182,7 +182,7 @@
     mode: 0640
     owner: elk_user
     group: elk_user
-    tags: sof-elk_base
+  tags: sof-elk_base
 
 - name: Set up pre-login banner template
   ansible.builtin.template:
