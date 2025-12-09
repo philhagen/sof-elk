@@ -1,0 +1,153 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "faecb071-b859-4dcb-b37e-c6920e111946": {
+              "columnOrder": [
+                "18c717f8-d53f-427a-872b-f6bd05dde653",
+                "f3c0c404-db62-4a17-aa30-be6175dd979a",
+                "3c70b45d-c45c-4fe5-9b1f-3e64274cca2b"
+              ],
+              "columns": {
+                "18c717f8-d53f-427a-872b-f6bd05dde653": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top 20 values of enip.status_code.keyword",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "3c70b45d-c45c-4fe5-9b1f-3e64274cca2b",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 20
+                  },
+                  "sourceField": "enip.status_code.keyword"
+                },
+                "3c70b45d-c45c-4fe5-9b1f-3e64274cca2b": {
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count of records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "sourceField": "___records___"
+                },
+                "f3c0c404-db62-4a17-aa30-be6175dd979a": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top 20 values of enip.command_name.keyword",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "3c70b45d-c45c-4fe5-9b1f-3e64274cca2b",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 20
+                  },
+                  "sourceField": "enip.command_name.keyword"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": {
+                "type": "categorical"
+              },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": {
+                    "type": "loop"
+                  },
+                  "rules": [
+                    {
+                      "type": "other"
+                    }
+                  ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "faecb071-b859-4dcb-b37e-c6920e111946",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [
+              "3c70b45d-c45c-4fe5-9b1f-3e64274cca2b"
+            ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [
+              "18c717f8-d53f-427a-872b-f6bd05dde653",
+              "f3c0c404-db62-4a17-aa30-be6175dd979a"
+            ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "ENIP Commands",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c4504402-de0d-4d28-84c0-9de77b81f419",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "icsnpp",
+      "name": "indexpattern-datasource-layer-faecb071-b859-4dcb-b37e-c6920e111946",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
