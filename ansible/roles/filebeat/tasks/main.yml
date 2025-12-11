@@ -30,6 +30,7 @@
     owner: root
     group: root
     mode: 0755
+  tags: filebeat
 
 # don't forget to add new ones to post_merge.sh
 - name: Create filebeat input directories

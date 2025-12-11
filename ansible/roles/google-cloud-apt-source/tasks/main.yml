@@ -22,13 +22,6 @@
   when: armored_googlecloud_gpg_key_downloaded.changed
   tags: gcp-cli
 
-- name: Remove armored Google Cloud GPG key
-  ansible.builtin.file:
-    path: "{{ googlecloud_temp_armored_keyring }}"
-    state: absent
-  when: armored_googlecloud_gpg_key_downloaded.changed
-  tags: gcp-cli
-
 - name: Install Google Cloud source definition file
   ansible.builtin.template:
     src: google-cloud-sdk.list.j2
@@ -38,6 +31,7 @@
   tags: gcp-cli
 
 - name: Update apt sources
-  ansible.builtin.command: apt-get update
+  ansible.builtin.apt:
+    update_cache: yes
   when: googlecloud_source.changed
   tags: gcp-cli

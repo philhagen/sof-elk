@@ -1,8 +1,15 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2025 Lewes Technology Consulting, LLC
 
-# See https://learn.microsoft.com/en-us/powershell/scripting/install/install-other-linux?view=powershell-7.4
+# See https://learn.microsoft.com/en-us/powershell/scripting/install/install-other-linux
+
+- name: Install Debian PowerShell dependencies
+  ansible.builtin.apt:
+    name: '{{ debian_powershell_apt_dependencies }}'
+    state: present
+  when: ansible_distribution == "Debian"
+  tags: powershell
 
 - name: Determine if PowerShell is already installed
   ansible.builtin.stat:

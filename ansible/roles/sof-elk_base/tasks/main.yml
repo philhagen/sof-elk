@@ -2,19 +2,29 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2025 Lewes Technology Consulting, LLC
 
-- name: Update Timezone to Etc/UTC
+- name: Update localtime symlink to Etc/UTC
+  ansible.builtin.file:
+    src: /usr/share/zoneinfo/Etc/UTC
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link
+  register: utc_localtime
+  tags: sof-elk_base
+
+- name: Update timezone file to Etc/UTC
   ansible.builtin.copy:
     content: "Etc/UTC\n"
     dest: /etc/timezone
     owner: root
     group: root
     mode: 0644
-  register: timezone
+  register: utc_timezone
   tags: sof-elk_base
 
 - name: Reconfigure Timezone Data
   ansible.builtin.shell: dpkg-reconfigure -f noninteractive tzdata
-  when: timezone.changed
+  when: utc_localtime.changed or utc_timezone.changed
   tags: sof-elk_base
 
 - name: Update all software packages
@@ -60,8 +70,8 @@
     group: root
     mode: 0644
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Start and enable SSHD host key generation service
   ansible.builtin.systemd_service:
@@ -70,8 +80,8 @@
     enabled: true
     state: started
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set SSHD host key generation service order
   ansible.builtin.lineinfile:
@@ -80,8 +90,8 @@
     line: 'After=network.target sshd-keygen.service auditd.service'
   register: ssh_systemd_service
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Start and enable SSHD
   ansible.builtin.systemd_service:
@@ -91,8 +101,8 @@
     state: started
   register: enablestart_sshd
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Restart SSHD
   ansible.builtin.systemd_service:
@@ -102,8 +112,8 @@
     state: restarted
   when: (not enablestart_sshd.changed) and (ssh_config.changed or ssh_systemd_service.changed)
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Disable nfcapd service
   ansible.builtin.systemd_service:
@@ -192,15 +202,15 @@
     group: root
     mode: 0644
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set new revision string in pre-login banner
   ansible.builtin.set_fact:
     revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set up custom pre-login banner
   ansible.builtin.template:
@@ -211,15 +221,15 @@
     mode: 0644
   register: issue_banner
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Activate the new pre-login banner
   ansible.builtin.shell: /usr/sbin/agetty --reload
   when: issue_banner.changed
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Set up sysctl configuration
   ansible.builtin.copy:
@@ -254,8 +264,8 @@
     version: "{{ git_branch }}"
     update: true
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
 
 - name: Create elk_user's .gitconfig file
   ansible.builtin.file:
@@ -347,7 +357,7 @@
     - { name: 'ASN', md5: 'c20977100c0a6c0842583ba158e906ec' }
     - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
     - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
-  when: install_geoip == "N"
+  when: geoip_account is not defined
   tags: sof-elk_base
 
 - name: Install templated GeoIP configuration to perform download
@@ -357,12 +367,12 @@
     owner: root
     group: root
     mode: 0600
-  when: install_geoip == "Y"
+  when: geoip_account is defined
   tags: sof-elk_base
 
 - name: Install geoip data
   ansible.builtin.command: geoipupdate
-  when: install_geoip == "Y"
+  when: geoip_account is defined
   tags: sof-elk_base
 
 - name: Create sample evidence directory
@@ -392,10 +402,11 @@
   tags: sof-elk_base
 
 - name: Include course-specific tasks, if present
-  ansible.builtin.include_tasks: "{{ course_tasks_file }}"
-  when: course_tasks_file != ""
+  ansible.builtin.include_tasks:
+    file: "{{ course_tasks_file }}"
   vars:
-    course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore' ) }}"
+    course_tasks_file: "{{ lookup('ansible.builtin.first_found', files='{{course_id}}.yml', errors='ignore', skip=True ) }}"
+  when: course_tasks_file | length > 0
   tags:
-  - sof-elk_base
-  - pub2course
+    - sof-elk_base
+    - pub2course
