@@ -12,6 +12,7 @@ base_apt_packages:
   - cifs-utils
   - console-data
   - cron
+  - curl
   - eject
   - exfat-fuse
   - file
@@ -20,6 +21,7 @@ base_apt_packages:
   - geoip-bin
   - geoipupdate
   - git
+  - gpg
   - htop
   - jq
   - locate
@@ -45,3 +47,7 @@ vmware_apt_packages:
   - open-vm-tools
 
 revision_string: "<%REVNO%>"
+
+arch_common_name:
+  aarch64: "arm64"
+  x86_64: "x64"

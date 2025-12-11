@@ -21,8 +21,12 @@
 
   pre_tasks:
     - name: Validate host operating system distribution
-      ansible.builtin.meta: end_host
-      when: not (ansible_distribution == "Ubuntu" or ansible.distribution.version == "24.04")
+      ansible.builtin.assert:
+        that:
+          - (ansible_distribution == 'Ubuntu' and ansible_distribution_version is version('22.04', '>=')) or
+            (ansible_distribution == 'Debian' and ansible_distribution_version is version('12', '>='))
+        fail_msg: "SOF-ELK requires Ubuntu >= 22.04 or Debian >= 12"
+        success_msg: "Supported OS version detected: {{ ansible_distribution }} {{ ansible_distribution_version }}"
       tags: always
 
     - name: "Get current git branch"
@@ -33,6 +37,7 @@
       check_mode: false
       delegate_to: 127.0.0.1
       run_once: true
+      changed_when: false
       tags: always
 
     # perform a course build by running ansible-playbook with "-e 'course_build=xxx123 course_version=Z99'" (must have both)
@@ -44,45 +49,16 @@
       tags: always
 
     - name: Validate that a course_version has been specified if needed
-      ansible.builtin.meta: end_host
+      ansible.builtin.fail:
+        msg: "Course ID was provided without a version.  Both are required for course-specific build."
       when: (course_id is defined and course_id != 'public') and course_version is not defined
       tags: always
 
-    - name: Determine if installing the latest GeoIP databases is requested
-      ansible.builtin.pause:
-        prompt: "Do you want to install the latest GeoIP databases using your own MaxMind account or license key? (Y/N, default N)"
-      register: latest_geoip
-      run_once: true
-      when: course_id == "public"
-      tags: always
-
-    - name: Set GeoIP facts
-      ansible.builtin.set_fact:
-        install_geoip: "{{ latest_geoip.user_input | default('N') | upper }}"
-      tags: always
-
-    - name: Get GeoIP Account ID
-      ansible.builtin.pause:
-        prompt: "Enter GeoIP Account ID (leave blank to skip installation of current GeoIP databases and use legacy versions permissible for distribution.)"
-      register: input_geoip_accountid
-      run_once: true
-      when: install_geoip == "Y"
-      tags: always
-
-    - name: Get GeoIP License Key
-      ansible.builtin.pause:
-        prompt: "Enter GeoIP License Key (leave blank to use legacy GeoIP databases)"
-      register: input_geoip_licensekey
-      run_once: true
-      when: install_geoip == "Y"
-      tags: always
-
-    - name: Set GeoIP Account facts
-      ansible.builtin.set_fact:
-        geoip_accountid: "{{ input_geoip_accountid.user_input }}"
-        geoip_licensekey: "{{ input_geoip_licensekey.user_input }}"
-      run_once: true
-      when: install_geoip == "Y"
+    # install user-based GeoIP databases by running ansible-playbook with "-e 'geoip_account=xxxxx geoip_key=xxxxxxx'" (must have both)
+    - name: Fail if GeoIP account is provided without a key
+      ansible.builtin.fail:
+        msg: "GeoIP account was provided without a key.  Both are required to install your own GeoIP databases."
+      when: geoip_account is defined and geoip_key is not defined
       tags: always
 
   roles:

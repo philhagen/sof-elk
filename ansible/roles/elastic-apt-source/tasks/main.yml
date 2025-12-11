@@ -34,17 +34,6 @@
     - kibana
     - filebeat
 
-- name: Remove armored Elastic GPG key
-  ansible.builtin.file:
-    path: "{{ elastic_temp_armored_keyring }}"
-    state: absent
-  when: elastic_armored_gpg_key_downloaded.changed
-  tags:
-    - elasticsearch
-    - logstash
-    - kibana
-    - filebeat
-
 - name: Install Elastic source definition file
   ansible.builtin.template:
     src: elastic-9.x.list.j2
@@ -60,7 +49,8 @@
     - filebeat
 
 - name: Update apt sources
-  ansible.builtin.command: apt-get update
+  ansible.builtin.apt:
+    update_cache: yes
   when: es_source.changed
   tags:
     - elasticsearch
