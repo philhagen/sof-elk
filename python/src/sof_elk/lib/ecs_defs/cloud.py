@@ -1,0 +1,51 @@
+from sof_elk.lib.ecs import ECSField
+
+FIELDS = [
+    ECSField(
+        name="cloud.availability_zone",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-availability-zone",
+    ),
+    ECSField(
+        name="cloud.project.id",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-project-id",
+    ),
+    ECSField(
+        name="cloud.region",
+        labels_type="archive-passivedns",
+        config_mapped="6014-passivedns.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-region",
+    ),
+    ECSField(
+        name="cloud.region",
+        labels_type="aws",
+        config_mapped="6901-aws.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-region",
+    ),
+    ECSField(
+        name="cloud.region",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-region",
+    ),
+    ECSField(
+        name="cloud.resource.location",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="SOF-ELK",
+    ),
+    ECSField(
+        name="cloud.resource.type",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="SOF-ELK",
+    ),
+]

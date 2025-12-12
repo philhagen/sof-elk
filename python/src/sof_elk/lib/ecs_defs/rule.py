@@ -1,0 +1,39 @@
+from sof_elk.lib.ecs import ECSField
+
+FIELDS = [
+    ECSField(
+        name="rule.id",
+        labels_type="hayabusa",
+        config_mapped="6650-hayabusa.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name",
+    ),
+    ECSField(
+        name="rule.level",
+        labels_type="hayabusa",
+        config_mapped="6650-hayabusa.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name",
+    ),
+    ECSField(
+        name="rule.name",
+        labels_type="hayabusa",
+        config_mapped="6650-hayabusa.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name",
+    ),
+    ECSField(
+        name="rule.name",
+        labels_type="plaso",
+        config_mapped="6601-plaso.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name",
+    ),
+    ECSField(
+        name="rule.name",
+        labels_type="syslog",
+        config_mapped="6010-snare.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name",
+    ),
+]

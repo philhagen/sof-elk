@@ -1,0 +1,39 @@
+from sof_elk.lib.ecs import ECSField
+
+FIELDS = [
+    ECSField(
+        name="observer.egress.interface.id",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-observer",
+    ),
+    ECSField(
+        name="observer.egress.interface.name",
+        labels_type="syslog",
+        config_mapped="6017-iptables.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-observer",
+    ),
+    ECSField(
+        name="observer.ingress.interface.id",
+        labels_type="netflow",
+        config_mapped="2050-netflow.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-observer",
+    ),
+    ECSField(
+        name="observer.ingress.interface.name",
+        labels_type="syslog",
+        config_mapped="6017-iptables.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-observer",
+    ),
+    ECSField(
+        name="observer.interface.name",
+        labels_type="syslog",
+        config_mapped="6018-cisco_asa.conf",
+        ecs_source="ECS",
+        ecs_reference="https://www.elastic.co/docs/reference/ecs/ecs-observer",
+    ),
+]
