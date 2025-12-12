@@ -3,6 +3,7 @@ from .git import run_branch, run_update, run_check_pull, run_remote_update
 from .kibana import run_load_dashboards
 from .logstash import run_plugin_update as run_ls_plugin_update
 from .vm import run_vm_check
+from .distro import DistroManager
 from typing import Any
 
 """
@@ -74,3 +75,12 @@ def register_subcommand(subparsers: Any) -> None:
     remote_update_parser = sub_subparsers.add_parser("remote_update", help="Update git remote")
     remote_update_parser.add_argument("-now", dest="now", action="store_true", help="Run immediately")
     remote_update_parser.set_defaults(func=run_remote_update)
+
+    # Distro
+    distro_parser = sub_subparsers.add_parser("distro_prep", help="Prepare VM for distribution")
+    distro_parser.add_argument("-nodisk", dest="nodisk", action="store_true", help="Do not shrink disks")
+    distro_parser.add_argument("-cloud", dest="cloud", action="store_true", help="Prepare cloud instance")
+    distro_parser.set_defaults(func=lambda args: DistroManager.prep_for_distribution(args.nodisk, args.cloud))
+
+    post_merge_parser = sub_subparsers.add_parser("post_merge", help="Run post-merge steps")
+    post_merge_parser.set_defaults(func=lambda args: DistroManager.post_merge())

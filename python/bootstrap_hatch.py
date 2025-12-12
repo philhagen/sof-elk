@@ -86,6 +86,7 @@ def main():
     run_step("Create Environment", ["hatch", "env", "create"], hatch_path)
     run_step("Build Project", ["hatch", "build"], hatch_path)
     run_step("Generate ECS Fields", ["hatch", "run", "gen-ecs"], hatch_path)
+    run_step("Run Tests", ["hatch", "run", "test", "tests/unit/test_refactored_scripts.py"], hatch_path)
 
 if __name__ == "__main__":
     main()
