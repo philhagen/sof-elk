@@ -8,6 +8,7 @@ aws.cloudtrail.error_message,,aws,,6901-aws.conf,filebeat,https://www.elastic.co
 aws.cloudtrail.event_name,,aws,,6901-aws.conf,SOF-ELK,
 aws.cloudtrail.event_source,,aws,,6901-aws.conf,SOF-ELK,
 aws.cloudtrail.event_type,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_session_issuer
+aws.cloudtrail.event_version,The version of the log event format.,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_cloudtrail
 aws.cloudtrail.flattened.additional_eventdata,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_flattened
 aws.cloudtrail.flattened.request_parameters,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_flattened
 aws.cloudtrail.flattened.response_elements,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_flattened
@@ -23,59 +24,81 @@ aws.cloudtrail.user_identity.access_key_id,,aws,,6901-aws.conf,filebeat,https://
 aws.cloudtrail.user_identity.arn,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_user_identity
 aws.cloudtrail.user_identity.session_context,,aws,,6901-aws.conf,SOF-ELK,
 aws.cloudtrail.user_identity.type,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_user_identity
-aws.elb.action_executed,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.backend_processing_time.sec,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.backend.http.response.status_code,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.chosen_cert_arn,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.classification_reason,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.classification,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.cloudwatch.ingestion_time,The time the event was ingested in AWS CloudWatch.,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws-cloudwatch#_aws.cloudwatch
+aws.cloudwatch.log_group,The name of the log group to which this event belongs.,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws-cloudwatch#_aws.cloudwatch
+aws.cloudwatch.log_stream,The name of the log stream to which this event belongs.,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws-cloudwatch#_aws.cloudwatch
+aws.cloudwatch.message,CloudWatch log message.,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws-cloudwatch#_cloudwatch
+aws.ec2.ip_address,The internet address of the requester.,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_ec2
+aws.elb.action_executed,"The action executed when processing the request (forward, fixed-response, authenticate...). It can contain several values.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.backend.http.response.status_code,The status code from the backend (status code sent to the client from ELB is stored in http.response.status_code,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.backend.ip,The IP address of the backend processing this connection.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.backend.port,The port in the backend processing this connection.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.backend_processing_time.sec,The total time in seconds since the connection is sent to the backend till the backend starts responding.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.chosen_cert_arn,The ARN of the chosen certificate presented to the client in TLS/SSL connections.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.classification,The classification for desync mitigation.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.classification_reason,The classification reason code.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
 aws.elb.conn_trace_id,,httpdlog,,6100-httpd.conf,SOF-ELK,
 aws.elb.domain_name,,httpdlog,,6100-httpd.conf,SOF-ELK,
-aws.elb.error.reason,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.matched_rule_priority,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.name,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.redirect_url,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.error.reason,The error reason if the executed action failed.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.matched_rule_priority,"The priority value of the rule that matched the request, if a rule matched.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.name,The name of the load balancer.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.redirect_url,The URL used if a redirection action was executed.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
 aws.elb.request_creation_time,,httpdlog,,6100-httpd.conf,SOF-ELK,
-aws.elb.request_processing_time.sec,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.response_processing_time.sec,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.target_group.arn,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.target_port,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.target_status_code,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
-aws.elb.trace_id,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.request_processing_time.sec,The total time in seconds since the connection or request is received until it is sent to a registered backend.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.response_processing_time.sec,The total time in seconds since the response is received from the backend till it is sent to the client.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.target_group.arn,The ARN of the target group handling the request.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.target_port,List of IP addresses and ports for the targets that processed this request.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.target_status_code,List of status codes from the responses of the targets.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
+aws.elb.trace_id,The contents of the X-Amzn-Trace-Id header.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_elb
 aws.route53.account_id,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 aws.route53.instance,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 aws.route53.resolver_instance,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 aws.route53.resolver_network_instance,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 aws.route53.vpc_id,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 aws.s3access.arn,,httpdlog,,6100-httpd.conf,SOF-ELK,
-aws.s3access.authentication_type,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.bucket_owner,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.bucket,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.error_code,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.host_id,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.key,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.object_size,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.operation,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.request_id,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.signature_version,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.turn_around_time,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.s3access.version_id,,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
-aws.vpcflow.account_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
-aws.vpcflow.action,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.s3access.authentication_type,"The type of request authentication used, AuthHeader for authentication headers, QueryString for query string (pre-signed URL) or a - for unauthenticated requests.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.bucket,The name of the bucket that the request was processed against.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.bucket_owner,The canonical user ID of the owner of the source bucket.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.bytes_sent,"The number of response bytes sent, excluding HTTP protocol overhead, or ""-"" if zero.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.cipher_suite,The Secure Sockets Layer (SSL) cipher that was negotiated for HTTPS request or a - for HTTP.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.error_code,"The Amazon S3 Error Code, or ""-"" if no error occurred.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.host_header,The endpoint used to connect to Amazon S3.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.host_id,The x-amz-id-2 or Amazon S3 extended request ID.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.http_status,The numeric HTTP status code of the response.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.key,"The ""key"" part of the request, URL encoded, or ""-"" if the operation does not take a key parameter.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.object_size,The total size of the object in question.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.operation,"The operation listed here is declared as SOAP.operation, REST.HTTP_method.resource_type, WEBSITE.HTTP_method.resource_type, or BATCH.DELETE.OBJECT.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.referrer,"The value of the HTTP Referrer header, if present.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.remote_ip,The apparent internet address of the requester.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.request_id,A string generated by Amazon S3 to uniquely identify each request.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.request_uri,The Request-URI part of the HTTP request message.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.requester,"The canonical user ID of the requester, or a - for unauthenticated requests.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.signature_version,"The signature version, SigV2 or SigV4, that was used to authenticate the request or a - for unauthenticated requests.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.tls_version,The Transport Layer Security (TLS) version negotiated by the client.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.total_time,The number of milliseconds the request was in flight from the server's perspective.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.turn_around_time,The number of milliseconds that Amazon S3 spent processing your request.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.user_agent,The value of the HTTP User-Agent header.,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.s3access.version_id,"The version ID in the request, or ""-"" if the operation does not take a versionId parameter.",httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_s3access
+aws.vpcflow.account_id,The AWS account ID for the flow log.,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.action,"The action that is associated with the traffic, ACCEPT or REJECT.",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
 aws.vpcflow.destination_service,,netflow,,2050-netflow.conf,SOF-ELK,
 aws.vpcflow.file.name,,netflow,,2050-netflow.conf,SOF-ELK,
-aws.vpcflow.instance_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
-aws.vpcflow.interface_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
-aws.vpcflow.log_status,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.instance_id,"The ID of the instance that's associated with network interface for which the traffic is recorded, if the instance is owned by you.",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.interface_id,The ID of the network interface for which the traffic is recorded.,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.log_status,"The logging status of the flow log, OK, NODATA or SKIPDATA.",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.pkt_dstaddr,The packet-level (original) destination IP address for the traffic.,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.pkt_srcaddr,The packet-level (original) source IP address of the traffic.,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
 aws.vpcflow.reason,,netflow,,2050-netflow.conf,SOF-ELK,
 aws.vpcflow.source.service,,netflow,,2050-netflow.conf,SOF-ELK,
 aws.vpcflow.sublocation.id,,netflow,,2050-netflow.conf,SOF-ELK,
 aws.vpcflow.sublocation.type,,netflow,,2050-netflow.conf,SOF-ELK,
-aws.vpcflow.subnet_id,,netflow,,2050-netflow.conf,SOF-ELK,
+aws.vpcflow.subnet_id,The ID of the subnet that contains the network interface for which the traffic is recorded.,netflow,,2050-netflow.conf,SOF-ELK,
+aws.vpcflow.tcp_flags,"The bitmask value for the following TCP flags: 2=SYN,18=SYN-ACK,1=FIN,4=RST",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.tcp_flags_array,"List of TCP flags: 'fin, syn, rst, psh, ack, urg'",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
 aws.vpcflow.traffic_path,,netflow,,2050-netflow.conf,SOF-ELK,
-aws.vpcflow.type,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
-aws.vpcflow.version,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
-aws.vpcflow.vpc_id,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.type,"The type of traffic: IPv4, IPv6, or EFA.",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.version,"The VPC Flow Logs version. If you use the default format, the version is 2. If you specify a custom format, the version is 3.",netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
+aws.vpcflow.vpc_id,The ID of the VPC that contains the network interface for which the traffic is recorded.,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_vpcflow
 azure.activitylogs.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_activitylogs
 azure.activitylogs.correlation_guid,,azure,,6801-azure.conf,SOF-ELK,
 azure.activitylogs.identity.authorization.action,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_authorization
@@ -99,8 +122,8 @@ azure.auditlogs.operation_type,,azure,,6801-azure.conf,filebeat,https://www.elas
 azure.auditlogs.properties.activity_display_name,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_properties
 azure.auditlogs.properties.category,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_properties
 azure.auditlogs.properties.correlation_id,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_properties
-azure.auditlogs.properties.result_reason,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_properties
 azure.auditlogs.properties.result,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_properties
+azure.auditlogs.properties.result_reason,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_properties
 azure.auditlogs.properties.servicePrincipalId,,azure,,6801-azure.conf,SOF-ELK,
 azure.auditlogs.properties.target_resources.*,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_target_resources
 azure.auditlogs.properties.target_resources.modified_properties.*.NewValue,constructed by split_kv_multi_to_fields.rb with parent as field name,azure,,6801-azure.conf,SOF-ELK,
@@ -127,6 +150,21 @@ azure.graphlogs.properties.roles,,azure,,6801-azure.conf,SOF-ELK,
 azure.graphlogs.properties.service_principal_guid,,azure,,6801-azure.conf,SOF-ELK,
 azure.graphlogs.properties.token_issued,,azure,date,6801-azure.conf,SOF-ELK,
 azure.graphlogs.result_signature,,azure,,6801-azure.conf,SOF-ELK,
+azure.platformlogs.ActivityId,ActivityId,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.Caller,Caller,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.Cloud,Cloud,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.Environment,Environment,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.EventTimeString,EventTimeString,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.ScaleUnit,ScaleUnit,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.category,Category,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.ccpNamespace,ccpNamespace,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.event_category,Event Category,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.identity_name,Identity name,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.operation_name,Operation name,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.properties,Event inner properties,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.result_signature,Result signature,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.result_type,Result type,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
+azure.platformlogs.status,Status,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_platformlogs
 azure.provider_name,,azure,,6801-azure.conf,SOF-ELK,
 azure.resource.id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_resource
 azure.role_location,,azure,,6801-azure.conf,SOF-ELK,
@@ -212,14 +250,14 @@ cloud.resource.type,,netflow,,2050-netflow.conf,SOF-ELK,
 destination.as.number,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 destination.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 destination.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
-destination.bytes_vis,Copy of destination_bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-destination.bytes_vis,Copy of destination_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 destination.bytes,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
+destination.bytes_vis,Copy of destination_bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+destination.bytes_vis,Copy of destination_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 destination.domain,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-domain
 destination.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
 destination.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
@@ -233,7 +271,6 @@ destination.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_add
 destination.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 destination.host,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 destination.interface,,syslog,,6018-cisco_asa.conf,SOF-ELK,
-destination.ip_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 destination.ip,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
@@ -251,13 +288,14 @@ destination.ip,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/r
 destination.ip,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
+destination.ip_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 destination.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-mac
 destination.mac,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source
 destination.netmask,,netflow,,2050-netflow.conf,SOF-ELK,
-destination.packets_vis,Copy of destination.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-destination.packets_vis,Copy of destination.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 destination.packets,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-packets
 destination.packets,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-packets
+destination.packets_vis,Copy of destination.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+destination.packets_vis,Copy of destination.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 destination.port,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
@@ -330,8 +368,8 @@ email.link_domain,,gws,,6951-gws.conf,SOF-ELK,
 email.message_id,,gws,,6951-gws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-email#field-email-message-id
 email.owner,,gws,,6951-gws.conf,SOF-ELK,
 email.sender.address,,gws,,6951-gws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-email#field-email-sender-address
-email.spam_classification_reason,,gws,,6951-gws.conf,SOF-ELK,
 email.spam_classification,,gws,,6951-gws.conf,SOF-ELK,
+email.spam_classification_reason,,gws,,6951-gws.conf,SOF-ELK,
 email.subject,,gws,,6951-gws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-email#field-email-subject
 email.target.attachments.file.hash,,gws,,6951-gws.conf,SOF-ELK,
 email.target.attachments.file.name,,gws,,6951-gws.conf,SOF-ELK,
@@ -385,9 +423,9 @@ file.path,constructed from file.directory and file.name,kape_filesystem,,6501-ka
 file.reference_counts,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 file.reparse.target,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 file.sequence_number,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
-file.size_vis,Runtime field created via Elasticsearch template,N/A,,index-filesystem.conf,SOF-ELK,
 file.size,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-size
 file.size,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-size
+file.size_vis,Runtime field created via Elasticsearch template,N/A,,index-filesystem.conf,SOF-ELK,
 file.source_file,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 file.source_file,,plaso,,6601-plaso.conf,SOF-ELK,
 file.stdinfo.accessed,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
@@ -415,8 +453,8 @@ file.target.sequence_number,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.target.volume.label,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.target.working_directory,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.tracker.creation,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
-file.tracker.mac_vendor,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.tracker.mac,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
+file.tracker.mac_vendor,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.tracker.machine_id,,kape_lnkfiles,,6503-kape_lecmd.conf,SOF-ELK,
 file.type,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-type
 file.uid,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-uid
@@ -428,10 +466,22 @@ gcp.audit.policy_deltas,,gcp,,6950-gcp.conf,SOF-ELK,
 gcp.audit.request.resource_name,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_request
 gcp.audit.request.service_account.description,,gcp,,6950-gcp.conf,SOF-ELK,
 gcp.audit.request.service_account.name,,gcp,,6950-gcp.conf,SOF-ELK,
+gcp.audit.request_metadata.caller_ip,The IP address of the caller.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_request_metadata
+gcp.audit.request_metadata.caller_supplied_user_agent,The user agent of the caller. This information is not authenticated and should be treated accordingly.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_request_metadata
+gcp.audit.resource_location.current_locations,Current locations of the resource.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_resource_location
+gcp.audit.resource_name,"The resource or collection that is the target of the operation. The name is a scheme-less URI, not including the API service name. For example, 'shelves/SHELF_ID/books'.",gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_details
 gcp.audit.response.account_email,,gcp,,6950-gcp.conf,SOF-ELK,
 gcp.audit.response.account_id,,gcp,,6950-gcp.conf,SOF-ELK,
+gcp.audit.response.details.group,The name of the group.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_details
+gcp.audit.response.details.kind,The kind of the response details.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_details
+gcp.audit.response.details.name,The name of the response details.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_details
+gcp.audit.response.details.uid,The uid of the response details.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_details
+gcp.audit.response.proto_name,Type property of the response.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_response
+gcp.audit.response.status,Status of the response.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_details
+gcp.audit.service_name,"The name of the API service performing the operation. For example, datastore.googleapis.com.",gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_resource_location
 gcp.audit.service_nanme,,gcp,,6950-gcp.conf,SOF-ELK,
-gcp.audit.status.message,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_status
+gcp.audit.status.code,"The status code, which should be an enum value of google.rpc.Code.",gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_status
+gcp.audit.status.message,"A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_status
 gcp.audit.type,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_audit_3
 gcp.compute_resource_name,,gcp,,6950-gcp.conf,SOF-ELK,
 gcp.destination.instance.project_id,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_destination_instance
@@ -455,7 +505,9 @@ gcp.firewall.rule_details.ip_port_info,,gcp,,6950-gcp.conf,filebeat,https://www.
 gcp.firewall.rule_details.priority,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
 gcp.firewall.rule_details.reference,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
 gcp.firewall.rule_details.source_range,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
+gcp.firewall.rule_details.source_service_account,List of all the source service accounts that the firewall rule applies to.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
 gcp.firewall.rule_details.source_tag,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
+gcp.firewall.rule_details.target_service_account,List of all the target service accounts that the firewall rule applies to.,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
 gcp.firewall.rule_details.target_tag,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_rule_details
 gcp.instance.project_id,,gcp,,6950-gcp.conf,SOF-ELK,
 gcp.log_message,,gcp,,6950-gcp.conf,SOF-ELK,
@@ -481,11 +533,35 @@ gcp.source.vpc.vpc_name,,gcp,,6950-gcp.conf,filebeat,https://www.elastic.co/docs
 gcp.source.vpc.vpc_name,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_source_vpc
 gcp.storage.bucket,,httpdlog,,6100-httpd.conf,SOF-ELK,
 gcp.storage.operation,,httpdlog,,6100-httpd.conf,SOF-ELK,
-gcp.storage.request_id,,httpdlog,,6100-httpd.conf,SOF-ELK,
 gcp.storage.request.object,,httpdlog,,6100-httpd.conf,SOF-ELK,
+gcp.storage.request_id,,httpdlog,,6100-httpd.conf,SOF-ELK,
 gcp.text_payload,,gcp,,6950-gcp.conf,SOF-ELK,
 gcp.vpcflow.reporter,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-gcp#_vpcflow_2
+google_workspace.actor.key,Only present when actor.type is KEY. Can be the consumer_key of the requestor for OAuth 2LO API requests or an identifier for robot accounts.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.actor.type,The type of actor. Values can be: USER: Another user in the same domain. EXTERNAL_USER: A user outside the domain. KEY: A non-human actor.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.asp_id,The application specific password ID.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.edition,The Google Workspace edition.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.enabled,The enabled application.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.id,The application ID.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.licences_order_number,Order number used to redeem licenses.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.licences_purchased,Number of licences purchased.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.name,The application's name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.application.package_id,The mobile application package ID.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.domain.alias,The domain alias.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.domain.name,The primary domain name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.domain.secondary_name,The secondary domain name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
 google_workspace.admin.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
+google_workspace.admin.group.email,The group's primary email address.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.group.priorities,Group priorities.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.managed_configuration,The name of the managed configuration.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.new_value,The new value for the setting.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.non_featured_services_selection,Non-featured services selection. For a list of possible values refer to https://developers.google.com/admin-sdk/reports/v1/appendix/activity/admin-application-settings#FLASHLIGHT_EDU_NON_FEATURED_SERVICES_SELECTED,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.old_value,The old value for the setting.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.org_unit.full,The org unit full path including the root org unit name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.org_unit.name,The organizational unit name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.setting.description,The setting name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.setting.name,The setting name.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
+google_workspace.admin.user_defined_setting.name,The name of the user-defined setting.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
 google_workspace.chat.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
 google_workspace.drive.destination_folder_id,,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
 google_workspace.drive.destination_folder_title,,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
@@ -498,8 +574,10 @@ google_workspace.event.name,,gws,,6951-gws.conf,SOF-ELK,
 google_workspace.event.type,,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
 google_workspace.groups.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
 google_workspace.id.application.name,,gws,,6951-gws.conf,SOF-ELK,
+google_workspace.kind,"The type of API resource, mapped from kind in the original payload. More details can be found at https://developers.google.com/admin-sdk/reports/v1/reference/activities/list",gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
 google_workspace.login.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
 google_workspace.mobile.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
+google_workspace.organization.domain,The domain that is affected by the report's event.,gws,,6951-gws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-google_workspace#_google_workspace
 google_workspace.token.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
 google_workspace.user_accounts.event_parameters,created by split_kv_to_fields.rb,gws,,6951-gws.conf,SOF-ELK,
 host.boot.id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-host#field-host-boot-id
@@ -550,11 +628,19 @@ kape.mft.inuse,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 kape.mft.isads,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 kape.mft.name_type,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
 kape.mft.timestomped,,kape_filesystem,,6501-kape_mftecmd.conf,SOF-ELK,
-kubernetes.container.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
-kubernetes.namespace,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
-kubernetes.node.hostname,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
-kubernetes.pod.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
-kubernetes.pod.uid,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.annotations.*,Kubernetes annotations map,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.container.name,Kubernetes container name (different than the name from the runtime),kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.deployment.name,Kubernetes deployment name,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.labels.*,Kubernetes labels map,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.namespace,Kubernetes namespace,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.node.hostname,Kubernetes hostname as reported by the node’s kernel,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.node.name,Kubernetes node name,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.pod.ip,Kubernetes Pod IP,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.pod.name,Kubernetes pod name,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.pod.uid,Kubernetes Pod UID,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
+kubernetes.replicaset.name,Kubernetes replicaset name,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.selectors.*,Kubernetes selectors map,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
+kubernetes.statefulset.name,Kubernetes statefulset name,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor#_kubernetes_fields
 labels.type,Assigned by fileabeat inputs' processors,all,,N/A - assigned by filebeat,ECS,https://www.elastic.co/docs/reference/ecs/ecs-base#field-labels
 log.level,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log#field-log-level
 log.level,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
@@ -584,10 +670,10 @@ log.syslog.severity.name,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.el
 logsource,,httpdlog,,6100-httpd.conf,SOF-ELK,
 message,,all,,,ECS,https://www.elastic.co/docs/reference/ecs/ecs-base#field-message
 netflow.connection_sum_duration_seconds,,netflow,,2050-netflow.conf,SOF-ELK,
-netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 netflow.delta_flow_count,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.delta_flow_count,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
+netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 netflow.engine_id,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.engine_type,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.exporter.address,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
@@ -596,24 +682,24 @@ netflow.exporter.ip,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www
 netflow.exporter.version,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_duration,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.flow_duration,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
+netflow.flow_end,,netflow,,2050-netflow.conf,SOF-ELK,
+netflow.flow_end,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 netflow.flow_end_microseconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_end_milliseconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_end_nanoseconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_end_seconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
-netflow.flow_end,,netflow,,2050-netflow.conf,SOF-ELK,
-netflow.flow_end,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
+netflow.flow_start,,netflow,,2050-netflow.conf,SOF-ELK,
+netflow.flow_start,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 netflow.flow_start_microseconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_start_milliseconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_start_nanoseconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
 netflow.flow_start_seconds,,netflow,,2050-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-netflow
-netflow.flow_start,,netflow,,2050-netflow.conf,SOF-ELK,
-netflow.flow_start,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 netflow.tcp_control_bits,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.tcp_flags_str,,netflow,,2050-netflow.conf,SOF-ELK,
-network.bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.bytes,,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-bytes
 network.bytes,,syslog,copy of source.bytes,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-bytes
 network.bytes,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+network.bytes_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.community_id,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-community-id
 network.community_id,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-community-id
 network.community_id,created by community-id.rb,all,,8052-community-id.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-community-id
@@ -629,20 +715,20 @@ network.iana_number,lookup from ip_proto_name2int.yaml,syslog,,6018-cisco_asa.co
 network.iana_number,lookup from ip_proto_name2int.yaml,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-iana-number
 network.iana_number,lookup from ip_proto_name2int.yaml,zeek_dns,,6200-zeek_dns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-iana-number
 network.iana_number,lookup from ip_proto_name2int.yaml,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-iana-number
-network.missed_bytes_vis,Copy of network.missed_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 network.missed_bytes,,netflow,,2050-netflow.conf,SOF-ELK,
 network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
-network.packets_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+network.missed_bytes_vis,Copy of network.missed_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 network.packets,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+network.packets_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.pcr,Producer/consumer ratio; Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.subnetwork.id,,netflow,,2050-netflow.conf,SOF-ELK,
 network.subnetwork.name,,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags_hex,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
-network.tcp_flags_hex,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.tcp_flags,,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.tcp_flags,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
 network.tcp_flags,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
+network.tcp_flags_hex,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
+network.tcp_flags_hex,created by tcp_flags_to_array.rb,syslog,,6018-cisco_asa.conf,SOF-ELK,
 network.transport,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
@@ -655,18 +741,123 @@ network.transport,,zeek_dns,,6200-zeek_dns.conf,ECS,https://www.elastic.co/docs/
 network.transport,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 next_hop.ip,,netflow,,2050-netflow.conf,SOF-ELK,
 o365.audit.*,entire original log is repopulated here,microsoft365,,6701-microsoft365.conf,SOF-ELK,
-o365.audit.ActorIPAddress,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AADGroupId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Activity,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Actor,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ActorContextId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ActorIpAddress,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ActorUserId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ActorYammerUserId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AlertEntityId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AlertId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AlertLinks,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AlertType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AppId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ApplicationDisplayName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ApplicationId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.AzureActiveDirectoryEventType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Category,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ClientAppId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.ClientIP,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.ClientIPAddress,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ClientInfoString,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Comments,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.CommunicationType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.CorrelationId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.CreationTime,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.CustomUniqueId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Data,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.DataType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.DeviceProperties.*,constructed by split_kv_to_fields.rb,microsoft365,,6701-microsoft365.conf,SOF-ELK,
+o365.audit.DoNotDistributeEvent,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.EntityType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ErrorNumber,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.EventData,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.EventSource,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ExceptionInfo.*,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ExchangeMetaData.*,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Experience,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.ExtendedProperties.*,constructed by split_kv_to_fields.rb,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ExternalAccess,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.FromApp,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.GroupName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Id,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ImplicitShare,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.IncidentId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.InterSystemsId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.InternalLogonType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.IntraSystemId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.IsDocLib,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Item.*,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ItemCount,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ItemName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ItemType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListBaseTemplateType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListBaseType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListColor,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListIcon,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListItemUniqueId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ListTitle,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.LogonError,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.LogonType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.LogonUserSid,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.MailboxGuid,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.MailboxOwnerMasterAccountSid,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.MailboxOwnerSid,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.MailboxOwnerUPN,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Members,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Members.*,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.ModifiedProperties.*,constructed by split_kv_to_fields.rb,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.ModifiedProperties.flag,,microsoft365,,6701-microsoft365.conf,SOF-ELK,
+o365.audit.Name,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ObjectDisplayName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ObjectId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ObjectType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Operation,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.OperationId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.OperationProperties.*,constructed by split_kv_to_fields.rb,microsoft365,,6701-microsoft365.conf,SOF-ELK,
+o365.audit.OrganizationId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.OrganizationName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.OriginatingServer,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.Parameters.*,constructed by split_kv_to_fields.rb,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.Parameters.flag,,microsoft365,,6701-microsoft365.conf,SOF-ELK,
+o365.audit.PolicyDetails,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.PolicyId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.RecordType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.RequestId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.ResultStatus,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SensitiveInfoDetectionIsIncluded,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SessionId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Severity,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SharePointMetaData.*,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Site,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SiteUrl,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Source,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SourceFileExtension,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SourceFileName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SourceRelativeUrl,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Status,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.SupportTicketId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Target,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.TargetContextId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.TargetUserOrGroupName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.TargetUserOrGroupType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.TeamGuid,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.TeamName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.TemplateTypeId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Timestamp,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.UniqueSharingId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 o365.audit.UserAgent,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.UserId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.UserKey,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.UserType,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Version,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.WebId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.Workload,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.WorkspaceId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.WorkspaceName,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
+o365.audit.YammerNetworkId,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
 observer.egress.interface.id,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-observer
 observer.egress.interface.name,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-observer
 observer.ingress.interface.id,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-observer
@@ -707,8 +898,8 @@ plaso.datasource,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.datasourcetype,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.eventtype,,plaso,,6601-plaso.conf,SOF-ELK,
 process.BackupPath,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
-process.client.pid,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 process.client.StartKey,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
+process.client.pid,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 process.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
@@ -728,8 +919,8 @@ process.hash.md5,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/refere
 process.hash.sha256,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-sha256
 process.hash.sha256,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-sha256
 process.hash.sha256,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-sha256
-process.library.name,,appleul,,6060-appleul.conf,SOF-ELK,
 process.library.entity_id,,appleul,,6060-appleul.conf,SOF-ELK,
+process.library.name,,appleul,,6060-appleul.conf,SOF-ELK,
 process.parent.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -814,14 +1005,14 @@ source.address,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs
 source.as.number,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 source.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 source.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
-source.bytes_vis,Copy of source.bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-source.bytes_vis,Copy of source.bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 source.bytes,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
+source.bytes_vis,Copy of source.bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+source.bytes_vis,Copy of source.bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 source.domain,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-domain
 source.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
 source.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
@@ -835,7 +1026,6 @@ source.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresse
 source.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 source.host,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 source.interface,,syslog,,6018-cisco_asa.conf,SOF-ELK,
-source.ip_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 source.ip,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
@@ -860,13 +1050,14 @@ source.ip,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/refere
 source.ip,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
+source.ip_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 source.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-mac
 source.mac,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source
 source.netmask,,netflow,,2050-netflow.conf,SOF-ELK,
-source.packets_vis,Copy of source.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-source.packets_vis,Copy of source.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 source.packets,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-packets
 source.packets,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-packets
+source.packets_vis,Copy of source.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
+source.packets_vis,Copy of source.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
 source.port,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
@@ -947,6 +1138,22 @@ url.path,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/refer
 url.path,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-url#field-url-path
 url.query,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-url#field-url-query
 url.scheme,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-url#field-url-scheme
+user.domain,,syslog,,6010-snare.conf,filebeat,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-domain
+user.domain,copy of winlog.user.domain,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-domain
+user.id,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
+user.id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
+user.id,,syslog,,6016-pam.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
+user.id_type,,syslog,,6010-snare.conf,SOF-ELK,
+user.name,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,gws,,6951-gws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,syslog,,5016-sshd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,syslog,,6016-pam.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,,zeek_ftp,,6205-zeek_ftp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.name,copy of winlog.user.name,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
+user.password,,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
 user_agent.device.name,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-device-name
 user_agent.name,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-name
 user_agent.original,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
@@ -960,22 +1167,6 @@ user_agent.os.full,created by useragent filter,all,,8060-postprocess-useragent.c
 user_agent.os.name,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-name
 user_agent.os.version,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-version
 user_agent.version,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-version
-user.domain,,syslog,,6010-snare.conf,filebeat,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-domain
-user.domain,copy of winlog.user.domain,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-domain
-user.id_type,,syslog,,6010-snare.conf,SOF-ELK,
-user.id,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
-user.id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
-user.id,,syslog,,6016-pam.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
-user.name,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,gws,,6951-gws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,syslog,,5016-sshd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,syslog,,6016-pam.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,,zeek_ftp,,6205-zeek_ftp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.name,copy of winlog.user.name,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-name
-user.password,,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
 vlan.id,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-vlan
 volume.serial_number,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://github.com/elastic/ecs/blob/4b2c7c6c4596b8d4acdd420907952a04e20c8c23/generated/beats/fields.ecs.yml#L13523-L13530
 volume.serial_number,,plaso,,6601-plaso.conf,ECS,https://github.com/elastic/ecs/blob/4b2c7c6c4596b8d4acdd420907952a04e20c8c23/generated/beats/fields.ecs.yml#L13523-L13530
@@ -1004,10 +1195,6 @@ winlog.event_data.Description,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://w
 winlog.event_data.Description,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.event_data.Description,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.event_data.Detail,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
-winlog.event_data.dpapi.FailureReason,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
-winlog.event_data.dpapi.MasterKeyId,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
-winlog.event_data.dpapi.RecoveryKeyId,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
-winlog.event_data.dpapi.RecoveryServer,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 winlog.event_data.EnginePid,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 winlog.event_data.EventType,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.event_data.EventType,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
@@ -1102,6 +1289,10 @@ winlog.event_data.UserContext,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 winlog.event_data.UserName,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 winlog.event_data.UserSid,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 winlog.event_data.Version,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
+winlog.event_data.dpapi.FailureReason,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
+winlog.event_data.dpapi.MasterKeyId,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
+winlog.event_data.dpapi.RecoveryKeyId,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
+winlog.event_data.dpapi.RecoveryServer,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 winlog.event_id,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.event_id,,syslog,,6010-snare.conf,SOF-ELK,
 winlog.event_id,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
@@ -1169,16 +1360,16 @@ zeek.connection.history,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https:/
 zeek.connection.local_orig,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.local_resp,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.service,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
-zeek.connection.state_message,lookup from zeek_connection_state2desc.yaml,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.state,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
+zeek.connection.state_message,lookup from zeek_connection_state2desc.yaml,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.tunnel_parents,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 zeek.files.analyzers,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.depth,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.duration,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.entropy,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
+zeek.files.extracted,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.extracted_cutoff,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.extracted_size,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
-zeek.files.extracted,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.filename,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.fuid,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.is_orig,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
@@ -1197,7 +1388,6 @@ zeek.ftp.cmdarg.arg,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.c
 zeek.ftp.cmdarg.cmd,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_cmdarg
 zeek.ftp.cmdarg.seq,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_cmdarg
 zeek.ftp.cwd,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
-zeek.ftp.data_channel.originating_host,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.originating.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 zeek.ftp.data_channel.originating.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 zeek.ftp.data_channel.originating.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
@@ -1211,10 +1401,9 @@ zeek.ftp.data_channel.originating.geo.region_iso_code,created by geoip filter,al
 zeek.ftp.data_channel.originating.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
 zeek.ftp.data_channel.originating.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 zeek.ftp.data_channel.originating.ip,Copy of zeek.ftp.data_channel.originating_host,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
+zeek.ftp.data_channel.originating_host,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.passive,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.reponse.port,Copy of zeek.ftp.data_channel.response_port,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
-zeek.ftp.data_channel.response_ip,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
-zeek.ftp.data_channel.response_port,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.response.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 zeek.ftp.data_channel.response.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 zeek.ftp.data_channel.response.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
@@ -1228,6 +1417,8 @@ zeek.ftp.data_channel.response.geo.region_iso_code,created by geoip filter,all,,
 zeek.ftp.data_channel.response.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
 zeek.ftp.data_channel.response.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 zeek.ftp.data_channel.response.ip,Copy of zeek.ftp.data_channel.response_ip,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
+zeek.ftp.data_channel.response_ip,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
+zeek.ftp.data_channel.response_port,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.file.fuid,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_ftp
 zeek.ftp.file.mime_type,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_ftp
 zeek.ftp.file.size,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_ftp

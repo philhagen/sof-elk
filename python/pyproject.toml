@@ -41,6 +41,7 @@ dependencies = [
 test = "pytest {args:tests}"
 test-cov = "pytest --cov=sof_elk --cov-report=term-missing {args:tests}"
 cov = "test-cov"
+build = "hatch build"
 gen-ecs = "python -m sof_elk.cli ecs-gen -o ../doc/ecs_fields.csv"
 
 [tool.hatch.envs.lint]

@@ -76,3 +76,53 @@ python3 -m sof_elk.cli management update
 ## Development
 
 All Python code is located in `src/`. The package follows a modular structure where `cli.py` dynamically loads available components.
+
+## Getting Started (Development)
+
+This project uses [Hatch](https://hatch.pypa.io/latest/) for dependency management and packaging.
+
+### 1. Prerequisites
+- Python 3.12 or higher
+
+### 2. Bootstrap Environment
+To get started quickly, run the included bootstrap script. This script will install `hatch` (if missing) and set up the virtual environment.
+
+**Windows (PowerShell):**
+```powershell
+cd python
+python bootstrap_hatch.py
+```
+
+**Linux / macOS:**
+```bash
+cd python
+python3 bootstrap_hatch.py
+```
+
+### 3. Common Commands
+
+| Task | Command |
+|------|---------|
+| **Run Tests** | `hatch run test` |
+| **Run Tests (with coverage)** | `hatch run cov` |
+| **Build Package** | `hatch build` |
+| **Lint & Format** | `hatch run lint:all` |
+| **Generate ECS CSV** | `hatch run gen-ecs` |
+
+## Troubleshooting
+
+### "hatch: command not found" or "The term 'hatch' is not recognized"
+This usually means `hatch` was installed but its location is not in your system's `PATH`.
+
+1.  **Run the bootstrap script**: `python bootstrap_hatch.py`. The script attempts to auto-detect the `hatch` executable even if it's not in your PATH.
+2.  **Add to PATH**:
+    *   **Windows**: Add `%APPDATA%\Python\Python3xx\Scripts` (e.g., `Python312\Scripts`) to your User PATH variable.
+    *   **Linux/macOS**: Add `~/.local/bin` to your PATH in `.bashrc` or `.zshrc`.
+
+### Environment Creation Fails
+If `hatch env create` fails:
+*   Ensure you have a compatible Python version installed (3.12+).
+*   Try removing the `python/.venv` directory (if configured for in-project venv) or run `hatch env prune`.
+
+### ECS Generation Errors
+If `hatch run gen-ecs` fails, ensure you are running it from the `python/` directory so that relative paths to `doc/` are resolved correctly.
