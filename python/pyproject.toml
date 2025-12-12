@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sof-elk"
+version = "0.0.1"
+description = "SOF-ELK Python Utilities"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+  { name = "Lewes Technology Consulting, LLC" },
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+    "PyYAML",
+    "requests",
+    "elasticsearch",
+    "urllib3",
+]
+
+[project.scripts]
+sof-elk = "sof_elk.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sof_elk"]
+
+[tool.hatch.envs.default]
+type = "virtual"
+path = ".venv"
+dependencies = [
+  "pytest",
+  "pytest-cov",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "pytest --cov=sof_elk --cov-report=term-missing {args:tests}"
+cov = "test-cov"
+gen-ecs = "python -m sof_elk.cli ecs-gen -o ../doc/ecs_fields.csv"
+
+[tool.hatch.envs.lint]
+dependencies = [
+  "ruff",
+  "pyright",
+  "mypy",
+  "types-requests",
+  "types-PyYAML",
+  "types-urllib3",
+  "types-setuptools",
+]
+
+[tool.hatch.envs.lint.scripts]
+lint = "ruff check {args:src/sof_elk}"
+fmt = "ruff format {args:src/sof_elk}"
+check = "ruff check --fix {args:src/sof_elk}"
+type-check = "pyright {args:src/sof_elk}"
+all = [
+  "lint",
+  "type-check",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = []
+
+[tool.pyright]
+include = ["src"]
+reportMissingImports = true
+pythonVersion = "3.12"
