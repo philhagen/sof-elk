@@ -24,6 +24,16 @@ python3 -m sof_elk.cli [subcommand] [arguments]
 
 ### Available Modules
 
+### Available Modules
+
+#### Management (`sof_elk.management`)
+Core administrative tools for maintaining the SOF-ELK appliance.
+*   **elasticsearch**: Index management (freeze, thaw, clear, list) and comprehensive cluster maintenance.
+*   **kibana**: Dashboard loading, object management, and configuration application.
+*   **git**: Repository updates, branch switching, and upstream verification.
+*   **logstash**: Plugin management and updates.
+*   **vm**: Version checking and update notification.
+
 #### Utils (`sof_elk.utils`)
 *   **csv**: Convert CSV files to JSON.
 *   **firewall**: Manage system firewall rules (wrapper around `firewall-cmd`).
@@ -35,6 +45,34 @@ python3 -m sof_elk.cli [subcommand] [arguments]
 *   **dictionaries**: Manage and query YAML-based dictionaries for protocol and service lookups.
 *   **ecs**: Definitions for Elastic Common Schema (ECS) fields.
 
+#### API (`sof_elk.api`)
+Low-level clients for interacting with backend services.
+*   **client**: Resilient HTTP client factory.
+*   **elasticsearch**: `ElasticsearchManagement` class for tasks like force merging and template management.
+*   **kibana**: `KibanaClient` for saved object manipulation and data view management.
+
+## Usage Examples
+
+### Management Commands
+
+**Clear Index Data**
+```bash
+# Clear all data from the syslog index
+python3 -m sof_elk.cli management clear --index syslog
+```
+
+**Freeze an Index**
+```bash
+# Freeze an index, delete the source, and rename it
+python3 -m sof_elk.cli management freeze --action freeze --index "syslog-2023.01" --delete --newindex "syslog-frozen-2023.01"
+```
+
+**Update Repository**
+```bash
+# Check for updates and pull if available
+python3 -m sof_elk.cli management update
+```
+
 ## Development
 
-All Python code is located in `src/`.
+All Python code is located in `src/`. The package follows a modular structure where `cli.py` dynamically loads available components.
