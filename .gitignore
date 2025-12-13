@@ -1,1 +1,14 @@
 samples/
+
+# Python
+__pycache__/
+*.pyc
+
+# Distribution / Build
+dist/
+python/dist/
+build/
+*.egg-info/
+
+# Testing
+.pytest_cache/

@@ -1,0 +1,174 @@
+# SOF-ELK Python Package
+
+This package provides Python-based support utilities and management tools for the SOF-ELK® appliance. It is designed to replace and extend legacy shell and Ruby scripts, offering a more robust and maintainable codebase.
+
+## Directory Structure
+
+*   `src/sof_elk/`: The main package source code.
+    *   `lib/`: Core libraries and data structures (e.g., dictionary lookups, ECS definitions).
+    *   `utils/`: Utility modules for specific tasks (e.g., firewall management, CSV conversion, system configuration).
+    *   `management/`: Management modules (e.g., git updates, elasticsearch maintenance).
+    *   `cli.py`: The main command-line interface entry point.
+
+## Usage
+
+The package exposes a command-line interface (CLI) to interact with various system components.
+
+### Running the CLI
+
+You can run the CLI using the package entry point:
+
+```bash
+python3 -m sof_elk [subcommand] [arguments]
+```
+
+Or, if installed in your environment:
+
+```bash
+sof-elk [subcommand] [arguments]
+```
+
+### Available Modules
+
+#### Management (`sof_elk.management`)
+Core administrative tools for maintaining the SOF-ELK appliance.
+*   **elasticsearch**: Index management (freeze, thaw, clear, list) and comprehensive cluster maintenance.
+*   **kibana**: Dashboard loading, object management, and configuration application.
+*   **git**: Repository updates, branch switching, and upstream verification.
+*   **logstash**: Plugin management and updates.
+*   **vm**: Version checking and update notification.
+*   **distro**: Distribution preparation and post-merge operations.
+
+#### Utils (`sof_elk.utils`)
+*   **csv**: Convert CSV files to JSON.
+*   **firewall**: Manage system firewall rules (wrapper around `firewall-cmd`).
+*   **login**: Display the SOF-ELK welcome message and check for updates.
+*   **nfdump**: Process Netflow data using `nfdump`.
+*   **system**: Manage system configurations like keyboard layout.
+
+#### Library (`sof_elk.lib`)
+*   **dictionaries**: Manage and query YAML-based dictionaries for protocol and service lookups.
+*   **ecs**: Definitions for Elastic Common Schema (ECS) fields.
+
+#### API (`sof_elk.api`)
+Low-level clients for interacting with backend services.
+*   **client**: Resilient HTTP client factory.
+*   **elasticsearch**: `ElasticsearchManagement` class for tasks like force merging and template management.
+*   **kibana**: `KibanaClient` for saved object manipulation and data view management.
+
+#### AWS (`sof_elk.aws`)
+*   **cloudtrail**: Process CloudTrail logs.
+*   **vpcflow**: Process VPC Flow logs.
+
+#### Azure (`sof_elk.azure`)
+*   **flow**: Process Azure NSG flow logs.
+
+#### GCP (`sof_elk.gcp`)
+*   **cli**: Google Cloud Platform integration entry point.
+
+#### GeoIP (`sof_elk.geoip`)
+*   **update**: Update GeoIP databases.
+
+#### Processors (`sof_elk.processors`)
+*   **community_id**: Calculate Community ID flow hashes.
+*   **ntfs**: NTFS file attribute flag expansion.
+*   **transform**: General hex and data transformation utilities.
+*   **transport**: TCP flag expansion.
+
+## Usage Examples
+
+### Management Commands
+
+**Clear Index Data**
+```bash
+# Clear all data from the syslog index
+python3 -m sof_elk management clear --index syslog
+```
+
+**Freeze an Index**
+```bash
+# Freeze an index, delete the source, and rename it
+python3 -m sof_elk management freeze --action freeze --index "syslog-2023.01" --delete --newindex "syslog-frozen-2023.01"
+```
+
+**Update Repository**
+```bash
+# Check for updates and pull if available
+python3 -m sof_elk management update
+```
+
+## Development
+
+All Python code is located in `src/`. The package follows a modular structure where `cli.py` dynamically loads available components.
+
+## Getting Started (Development)
+
+This project uses [Hatch](https://hatch.pypa.io/latest/) for dependency management and packaging.
+
+### 1. Prerequisites
+- Python 3.12 or higher
+
+### 2. Bootstrap Environment
+To get started quickly, run the included bootstrap script. This script will:
+1.  Install `hatch` (if missing).
+2.  Set up the virtual environment.
+3.  Generate a local `hatch` bash alias in the project root for easy execution.
+
+**Windows (PowerShell):**
+```powershell
+cd python
+python bootstrap_hatch.py
+```
+
+**Linux / macOS:**
+```bash
+cd python
+python3 bootstrap_hatch.py
+```
+
+### 3. Usage with Local Alias
+
+After bootstrapping, a `hatch` script is created in the `python/` directory. You can use this to run commands without adding hatch to your global PATH or worrying about virtual environments.
+
+```bash
+# General Hatch commands
+./hatch run test
+./hatch build
+
+# Run SOF-ELK CLI
+./hatch run sof-elk --help
+```
+
+Alternatively, use the `sof-elk.sh` wrapper which automatically uses the local alias if present:
+
+```bash
+./sof-elk.sh management check_pull
+```
+
+### 4. Common Commands
+
+| Task | Command |
+|------|---------|
+| **Run Tests** | `hatch run test` |
+| **Run Tests (with coverage)** | `hatch run cov` |
+| **Build Package** | `hatch build` |
+| **Lint & Format** | `hatch run all` |
+| **Generate ECS CSV** | `hatch run gen-ecs` |
+
+## Troubleshooting
+
+### "hatch: command not found" or "The term 'hatch' is not recognized"
+This usually means `hatch` was installed but its location is not in your system's `PATH`.
+
+1.  **Run the bootstrap script**: `python bootstrap_hatch.py`. The script attempts to auto-detect the `hatch` executable even if it's not in your PATH.
+2.  **Add to PATH**:
+    *   **Windows**: Add `%APPDATA%\Python\Python3xx\Scripts` (e.g., `Python312\Scripts`) to your User PATH variable.
+    *   **Linux/macOS**: Add `~/.local/bin` to your PATH in `.bashrc` or `.zshrc`.
+
+### Environment Creation Fails
+If `hatch env create` fails:
+*   Ensure you have a compatible Python version installed (3.12+).
+*   Try removing the `python/.venv` directory (if configured for in-project venv) or run `hatch env prune`.
+
+### ECS Generation Errors
+If `hatch run gen-ecs` fails, ensure you are running it from the `python/` directory so that relative paths to `doc/` are resolved correctly.
