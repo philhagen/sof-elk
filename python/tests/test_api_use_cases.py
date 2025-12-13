@@ -50,7 +50,7 @@ class TestAPIUseCases(unittest.TestCase):
         mgmt = ElasticsearchManagement(es_client=es_mock)
         
         mgmt.force_merge("logstash-*", only_expunge_deletes=True)
-        es_mock.indices.forcemerge.assert_called_with(index="logstash-*", params={'only_expunge_deletes': 'true'})
+        es_mock.indices.forcemerge.assert_called_with(index="logstash-*", only_expunge_deletes=True)
 
     @patch('elasticsearch.client.CatClient.indices')
     def test_case_3_cat_indices(self, mock_cat):

@@ -24,8 +24,6 @@ python3 -m sof_elk.cli [subcommand] [arguments]
 
 ### Available Modules
 
-### Available Modules
-
 #### Management (`sof_elk.management`)
 Core administrative tools for maintaining the SOF-ELK appliance.
 *   **elasticsearch**: Index management (freeze, thaw, clear, list) and comprehensive cluster maintenance.
@@ -33,6 +31,7 @@ Core administrative tools for maintaining the SOF-ELK appliance.
 *   **git**: Repository updates, branch switching, and upstream verification.
 *   **logstash**: Plugin management and updates.
 *   **vm**: Version checking and update notification.
+*   **distro**: Distribution preparation and post-merge operations.
 
 #### Utils (`sof_elk.utils`)
 *   **csv**: Convert CSV files to JSON.
@@ -50,6 +49,25 @@ Low-level clients for interacting with backend services.
 *   **client**: Resilient HTTP client factory.
 *   **elasticsearch**: `ElasticsearchManagement` class for tasks like force merging and template management.
 *   **kibana**: `KibanaClient` for saved object manipulation and data view management.
+
+#### AWS (`sof_elk.aws`)
+*   **cloudtrail**: Process CloudTrail logs.
+*   **vpcflow**: Process VPC Flow logs.
+
+#### Azure (`sof_elk.azure`)
+*   **flow**: Process Azure NSG flow logs.
+
+#### GCP (`sof_elk.gcp`)
+*   **cli**: Google Cloud Platform integration entry point.
+
+#### GeoIP (`sof_elk.geoip`)
+*   **update**: Update GeoIP databases.
+
+#### Processors (`sof_elk.processors`)
+*   **community_id**: Calculate Community ID flow hashes.
+*   **ntfs**: NTFS file attribute flag expansion.
+*   **transform**: General hex and data transformation utilities.
+*   **transport**: TCP flag expansion.
 
 ## Usage Examples
 

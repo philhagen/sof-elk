@@ -44,7 +44,7 @@ class TestElasticsearchManager(unittest.TestCase):
             self.mgr.thaw_index("frozen-index")
         
         self.mock_es_instance.indices.open.assert_called_with(index="frozen-index")
-        self.mock_es_instance.indices.put_settings.assert_called_with(index="frozen-index", body='{ "hidden": null }')
+        self.mock_es_instance.indices.put_settings.assert_called_with(index="frozen-index", body={"hidden": None})
 
     def test_clear_cli_nukeitall(self):
         self.mock_es_instance.indices.get_alias.return_value = {"logstash-2023.01.01": {}}
@@ -95,7 +95,7 @@ class TestElasticsearchManager(unittest.TestCase):
              with patch("builtins.print"):
                  self.mgr.clear_cli(index="netflow")
         
-        self.mock_es_instance.indices.delete.assert_called_with(index="netflow-*", ignore=[400, 404])
+        self.mock_es_instance.indices.delete.assert_called_with(index="netflow-*")
 
     def test_clear_cli_filepath(self):
         self.mock_es_instance.count.return_value = {"count": 100}

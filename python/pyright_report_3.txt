@@ -1,9 +1,0 @@
-d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\client.py
-  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\client.py:3:8 - warning: Import "requests" could not be resolved from source (reportMissingModuleSource)
-  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\client.py:4:6 - warning: Import "requests.adapters" could not be resolved from source (reportMissingModuleSource)
-d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py
-  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py:134:59 - error: "generate_csv" is not a known attribute of "None" (reportOptionalMemberAccess)
-d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py
-  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:360:75 - error: No parameter named "ignore" (reportCallIssue)
-  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:362:60 - error: No parameter named "ignore" (reportCallIssue)
-3 errors, 2 warnings, 0 informations
