@@ -55,10 +55,11 @@ def install_hatch():
 def run_step(description, cmd, hatch_path):
     print(f"Running step: {description}")
     try:
+        # Use python -m hatch to ensure we use the installed module without PATH issues
         if cmd[0] == "hatch":
-            cmd[0] = hatch_path
+            cmd = [sys.executable, "-m", "hatch"] + cmd[1:]
         
-        # Ensure Scripts dir is in PATH
+        # We don't need to manipulate PATH for scripts dir if we use -m hatch
         env = os.environ.copy()
         scripts_dir = os.path.dirname(hatch_path)
         if scripts_dir not in env["PATH"]:

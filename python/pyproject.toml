@@ -43,6 +43,14 @@ test-cov = "pytest --cov=sof_elk --cov-report=term-missing {args:tests}"
 cov = "test-cov"
 build = "hatch build"
 gen-ecs = "python -m sof_elk.cli ecs-gen -o ../doc/ecs_fields.csv"
+sof-elk = "python -m sof_elk.cli {args}"
+clean = "python -c \"import shutil,pathlib; shutil.rmtree('dist', ignore_errors=True); [shutil.rmtree(p) for p in pathlib.Path('.').rglob('__pycache__')]\""
+release = [
+  "clean",
+  "cov",
+  "hatch run lint:all",
+  "build",
+]
 
 [tool.hatch.envs.lint]
 dependencies = [
