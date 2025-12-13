@@ -1,8 +1,8 @@
+import hashlib
+import logging
 import os
 import subprocess
-import hashlib
-import sys
-import logging
+
 
 class GeoIPUpdater:
     def __init__(self, config_file="/etc/GeoIP.conf", db_dir_default="/usr/local/share/GeoIP/"):
@@ -22,7 +22,7 @@ class GeoIPUpdater:
             return False
 
         try:
-            with open(self.config_file, 'r') as f:
+            with open(self.config_file) as f:
                 for line in f:
                     line = line.strip()
                     if line.startswith("DatabaseDirectory"):
@@ -37,7 +37,7 @@ class GeoIPUpdater:
         except Exception as e:
             self.logger.error(f"Error reading config file: {e}")
             return False
-        
+
         return True
 
     def _get_md5(self, filepath):
@@ -78,7 +78,7 @@ class GeoIPUpdater:
             return False
         except subprocess.CalledProcessError as e:
             self.logger.error(f"geoipupdate failed: {e}")
-            print(f"Error: geoipupdate failed.")
+            print("Error: geoipupdate failed.")
             return False
 
         # Calculate new hashes and check for changes
@@ -97,9 +97,9 @@ class GeoIPUpdater:
                 subprocess.run(["systemctl", "restart", "logstash.service"], check=True)
                 print("Logstash restarted successfully.")
             except FileNotFoundError:
-                 # Likely not on a system with systemctl (e.g. dev environment)
-                 self.logger.warning("systemctl not found, cannot restart logstash.")
-                 print("Warning: systemctl not found, cannot restart logstash.")
+                # Likely not on a system with systemctl (e.g. dev environment)
+                self.logger.warning("systemctl not found, cannot restart logstash.")
+                print("Warning: systemctl not found, cannot restart logstash.")
             except subprocess.CalledProcessError as e:
                 self.logger.error(f"Failed to restart logstash: {e}")
                 print("Error: Failed to restart logstash.")
@@ -109,10 +109,12 @@ class GeoIPUpdater:
 
         return True
 
+
 def main():
     logging.basicConfig(level=logging.INFO)
     updater = GeoIPUpdater()
     updater.update()
+
 
 if __name__ == "__main__":
     main()

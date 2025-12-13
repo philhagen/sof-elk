@@ -1,20 +1,22 @@
 import os
 import re
 import sys
+from typing import Any
+
 from .common import AWSCommon
-from typing import List, Any, Optional
+
 
 class CloudTrailProcessor(AWSCommon):
     """
     Process AWS CloudTrail logs.
     """
-    
+
     FILENAME_REGEX = re.compile(
         r"(?P<account_id>\d{12})_CloudTrail_(?P<region_name>[A-Za-z0-9-]+)_(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})T(?P<time>\d{4})Z_.*"
     )
 
     @classmethod
-    def process_file(cls, infile: str, reduce_noise: bool = False) -> List[Any]:
+    def process_file(cls, infile: str, reduce_noise: bool = False) -> list[Any]:
         """
         Process a single CloudTrail log file and return its records.
         """
@@ -22,46 +24,46 @@ class CloudTrailProcessor(AWSCommon):
         if raw_json is None:
             return []
 
-        if "Records" not in raw_json: # type: ignore
+        if "Records" not in raw_json:  # type: ignore
             sys.stderr.write(
                 f"- ERROR: Input file {infile} does not appear to contain AWS CloudTrail records. Skipping file.\n"
             )
             return []
 
-        records: List[Any] = raw_json["Records"] # type: ignore
+        records: list[Any] = raw_json["Records"]  # type: ignore
         if reduce_noise:
             return cls.remove_noise(records)
-        
+
         return records
 
     @staticmethod
-    def remove_noise(records: List[Any]) -> List[Any]:
+    def remove_noise(records: list[Any]) -> list[Any]:
         """
         Filter out noisy records (e.g. for509trails bucket usage) matching cloudtrail-reduce.sh behavior.
         """
-        filtered: List[Any] = []
+        filtered: list[Any] = []
         for record in records:
             # Logic: .requestParameters.bucketName == null or != "for509trails"
             # In Python: keep if bucketName is None OR bucketName != "for509trails"
-            
+
             rp: Any = record.get("requestParameters")
             if rp is None:
                 filtered.append(record)
                 continue
-            
+
             # If rp is not None, check bucketName
             # Note: requestParameters can be a dict or potentially other types in malformed logs, but usually dict.
             if isinstance(rp, dict):
-                bucket_name: Optional[Any] = rp.get("bucketName")
+                bucket_name: Any | None = rp.get("bucketName")
                 if bucket_name != "for509trails":
                     filtered.append(record)
             else:
-                # If structure is weird, keep it to be safe? Or drop? 
+                # If structure is weird, keep it to be safe? Or drop?
                 # jq 'select(.rp.bn == null)' would match if rp is null OR rp.bn is null.
-                # If rp exists but isn't a dict, get("bucketName") fails. 
+                # If rp exists but isn't a dict, get("bucketName") fails.
                 # Let's assume standard behavior: if we can't find the specific noise signal, keep existing.
                 filtered.append(record)
-                
+
         return filtered
 
     @classmethod

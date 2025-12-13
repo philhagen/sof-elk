@@ -1,7 +1,8 @@
-
 import os
-from sof_elk.api.client import SOFElkSession, SOFElkHTTPClient
-from typing import Optional, List, Any, Dict
+from typing import Any
+
+from sof_elk.api.client import SOFElkHTTPClient, SOFElkSession
+
 
 class KibanaClient:
     def __init__(self, host: str = "localhost", port: int = 5601, protocol: str = "http") -> None:
@@ -13,7 +14,7 @@ class KibanaClient:
     def _get_url(self, endpoint: str) -> str:
         return f"{self.base_url}{endpoint}"
 
-    def find_objects(self, obj_type: str, fields: Optional[List[str]] = None, per_page: int = 10000) -> Any:
+    def find_objects(self, obj_type: str, fields: list[str] | None = None, per_page: int = 10000) -> Any:
         """
         Find saved objects of a specific type.
 
@@ -25,10 +26,7 @@ class KibanaClient:
         Returns:
             Any: The JSON response containing the found objects.
         """
-        params: Dict[str, Any] = {
-            "type": obj_type,
-            "per_page": per_page
-        }
+        params: dict[str, Any] = {"type": obj_type, "per_page": per_page}
         if fields:
             # multiple fields can be passed as list but requests params handles lists?
             # Kibana API expects repeated keys: fields=id&fields=title
@@ -81,9 +79,9 @@ class KibanaClient:
         """
         url = self._get_url("/api/saved_objects/_import")
         params = {"overwrite": str(overwrite).lower()}
-        
-        with open(file_path, 'rb') as f:
-            files = {'file': (os.path.basename(file_path), f, 'application/ndjson')}
+
+        with open(file_path, "rb") as f:
+            files = {"file": (os.path.basename(file_path), f, "application/ndjson")}
             response = self.client.post(url, files=files, params=params)
         return response.json()
 
@@ -94,7 +92,7 @@ class KibanaClient:
         Returns:
             Any: The JSON response containing all data views.
         """
-        url = self._get_url("/api/data_views") # Check endpoint version/compatibility?
+        url = self._get_url("/api/data_views")  # Check endpoint version/compatibility?
         # The script used /api/data_views?per_page=10000
         response = self.client.get(url, params={"per_page": 10000})
         return response.json()

@@ -1,10 +1,10 @@
+import argparse
 import csv
 import json
-import os
 import re
 import sys
-import argparse
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
+
 
 class CSVConverter:
     """
@@ -19,7 +19,7 @@ class CSVConverter:
         return fieldname.lower()
 
     @staticmethod
-    def convert_value(value: Optional[str]) -> Any:
+    def convert_value(value: str | None) -> Any:
         """Convert string value to appropriate data type."""
         if value is None:
             return None
@@ -44,28 +44,22 @@ class CSVConverter:
     def remove_empty_fields(cls, obj: Any) -> Any:
         """Recursively traverse a JSON object and remove fields equal to an empty string."""
         if isinstance(obj, dict):
-            return {
-                key: cls.remove_empty_fields(value) for key, value in obj.items() if value != ""
-            }
+            return {key: cls.remove_empty_fields(value) for key, value in obj.items() if value != ""}
         elif isinstance(obj, list):
-            return [
-                cls.remove_empty_fields(item) for item in obj if item is not None and item != ""
-            ]
+            return [cls.remove_empty_fields(item) for item in obj if item is not None and item != ""]
         else:
             return obj
 
     @classmethod
-    def process_csv_to_json(cls, csv_filename: str, json_filename: str, tags: Optional[Union[str, List[str]]] = None) -> bool:
+    def process_csv_to_json(cls, csv_filename: str, json_filename: str, tags: str | list[str] | None = None) -> bool:
         """Convert CSV file to JSON."""
         try:
-            with open(csv_filename, "r") as csvfile, open(json_filename, "w") as jsonfile:
+            with open(csv_filename) as csvfile, open(json_filename, "w") as jsonfile:
                 # field_name_translate = str.maketrans({"(": None, ")": None, " ": "_"}) # Unused in original script logic actually, though defined
 
                 reader = csv.DictReader(csvfile)
                 for row in reader:
-                    newrow = {
-                        cls.normalize_field_name(k): cls.convert_value(v) for k, v in row.items()
-                    }
+                    newrow = {cls.normalize_field_name(k): cls.convert_value(v) for k, v in row.items()}
                     newrow = cls.remove_empty_fields(newrow)
 
                     if tags:
@@ -79,7 +73,7 @@ class CSVConverter:
                             for tag in tags:
                                 newrow["tags"].append(tag)
                         else:
-                             newrow["tags"].append(tags)
+                            newrow["tags"].append(tags)
 
                     json.dump(newrow, jsonfile)
                     jsonfile.write("\n")
@@ -95,22 +89,20 @@ class CSVConverter:
             # sys.exit(1)
 
 
-def main(args: Optional[argparse.Namespace] = None) -> None:
+def main(args: argparse.Namespace | None = None) -> None:
     """
     Main entry point for the CSV to JSON conversion utility.
-    
+
     Args:
         args: Optional pre-parsed arguments. If None, arguments are parsed from sys.argv.
     """
     if args is None:
         parser = argparse.ArgumentParser(description="Convert CSV file to JSON.")
-        parser.add_argument(
-            "-r", "--read", dest="infile", help="CSV input file to process", required=True
-        )
+        parser.add_argument("-r", "--read", dest="infile", help="CSV input file to process", required=True)
         parser.add_argument(
             "-w",
             "--write",
-            "--output", # added alias
+            "--output",  # added alias
             dest="outfile",
             help="JSON output file to create",
             required=True,
@@ -127,6 +119,7 @@ def main(args: Optional[argparse.Namespace] = None) -> None:
         parsed_args = args
 
     CSVConverter.process_csv_to_json(parsed_args.infile, parsed_args.outfile, parsed_args.tags)
+
 
 if __name__ == "__main__":
     main()

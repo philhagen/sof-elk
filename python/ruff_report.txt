@@ -1,0 +1,609 @@
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+  --> src\sof_elk\api\client.py:90:17
+   |
+88 |                   response.raise_for_status()
+89 |               except requests.exceptions.HTTPError as e:
+90 | /                 raise SOFElkResponseError(
+91 | |                     f"HTTP Error: {e}", status_code=response.status_code, response_body=response.text
+92 | |                 )
+   | |_________________^
+93 |               return response
+94 |           except requests.exceptions.Timeout:
+   |
+
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+  --> src\sof_elk\api\client.py:95:13
+   |
+93 |             return response
+94 |         except requests.exceptions.Timeout:
+95 |             raise SOFElkTimeOutError(f"Request timed out contacting {url}")
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+96 |         except requests.exceptions.ConnectionError:
+97 |             raise SOFElkConnectionError(f"Failed to connect to {url}")
+   |
+
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+  --> src\sof_elk\api\client.py:97:13
+   |
+95 |             raise SOFElkTimeOutError(f"Request timed out contacting {url}")
+96 |         except requests.exceptions.ConnectionError:
+97 |             raise SOFElkConnectionError(f"Failed to connect to {url}")
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+98 |         except requests.exceptions.RequestException as e:
+99 |             raise SOFElkResponseError(f"An unexpected error occurred: {e}")
+   |
+
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+   --> src\sof_elk\api\client.py:99:13
+    |
+ 97 |             raise SOFElkConnectionError(f"Failed to connect to {url}")
+ 98 |         except requests.exceptions.RequestException as e:
+ 99 |             raise SOFElkResponseError(f"An unexpected error occurred: {e}")
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+100 |
+101 |     def get(self, url: str, **kwargs: Any) -> requests.Response:
+    |
+
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+   --> src\sof_elk\api\client.py:148:13
+    |
+146 |         except Exception as e:
+147 |             # Wrap in our exception or re-raise
+148 |             raise SOFElkResponseError(f"Failed to download {url}: {e}")
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+
+E501 Line too long (128 > 120)
+  --> src\sof_elk\aws\cloudtrail.py:89:121
+   |
+87 |         else:
+88 |             sys.stderr.write(
+89 |                 f"WARNING: {infile} does not have a standard file naming structure. Placing records into undated output file.\n"
+   |                                                                                                                         ^^^^^^^^
+90 |             )
+91 |             output_file = os.path.join(output_base, "cloudtrail_undated.json")
+   |
+
+E501 Line too long (126 > 120)
+  --> src\sof_elk\aws\vpcflow.py:24:121
+   |
+22 |         if "events" not in raw_json:  # type: ignore
+23 |             sys.stderr.write(
+24 |                 f"- ERROR: Input file {infile} does not appear to contain VPC Flow Logs (CloudWatch format). Skipping file.\n"
+   |                                                                                                                         ^^^^^^
+25 |             )
+26 |             return []
+   |
+
+E501 Line too long (130 > 120)
+   --> src\sof_elk\azure\flow.py:246:121
+    |
+244 |                     if "records" not in rawjson:
+245 |                         sys.stderr.write(
+246 |                             f"- ERROR: JSON did not contain a 'records' field in {infile}, line {input_linenum}. Skipping line.\n"
+    |                                                                                                                         ^^^^^^^^^^
+247 |                         )
+248 |                         continue
+    |
+
+E501 Line too long (130 > 120)
+   --> src\sof_elk\azure\flow.py:278:121
+    |
+277 |     def run(self) -> bool:
+278 |         # outfile is required by CLI and typed as str, so meaningful check is empty string checks if needed, but keeping it simple
+    |                                                                                                                         ^^^^^^^^^^
+279 |         pass
+    |
+
+E501 Line too long (130 > 120)
+   --> src\sof_elk\azure\flow.py:283:121
+    |
+281 |         if not self.outfile.startswith(self.DEFAULT_DESTDIR) and not self.force:
+282 |             sys.stderr.write(
+283 |                 f'ERROR: Output file is not in {self.DEFAULT_DESTDIR}, which is the SOF-ELK ingest location. Use "-f" to force.\n'
+    |                                                                                                                         ^^^^^^^^^^
+284 |             )
+285 |             return False
+    |
+
+E501 Line too long (131 > 120)
+   --> src\sof_elk\azure\flow.py:318:121
+    |
+316 |             if not self.outfile.startswith(self.DEFAULT_DESTDIR):
+317 |                 print(
+318 |                     f"You must move/copy the generated file to the {self.DEFAULT_DESTDIR} directory before SOF-ELK can process it."
+    |                                                                                                                         ^^^^^^^^^^^
+319 |                 )
+320 |             else:
+    |
+
+E501 Line too long (130 > 120)
+   --> src\sof_elk\azure\flow.py:322:121
+    |
+320 |             else:
+321 |                 print(
+322 |                     "SOF-ELK should now be processing the generated file - check system load and the Kibana interface to confirm."
+    |                                                                                                                         ^^^^^^^^^^
+323 |                 )
+    |
+
+F841 Local variable `gcp_sub` is assigned to but never used
+  --> src\sof_elk\gcp\cli.py:9:5
+   |
+ 7 |     """
+ 8 |     gcp_parser = parser.add_parser("gcp", help="GCP Utilities")
+ 9 |     gcp_sub = gcp_parser.add_subparsers(dest="gcp_command", required=True)
+   |     ^^^^^^^
+10 |
+11 |     # Placeholder for actual functionality
+   |
+help: Remove assignment to unused variable `gcp_sub`
+
+B028 No explicit `stacklevel` keyword argument found
+  --> src\sof_elk\lib\dictionaries.py:52:17
+   |
+50 |                     self._cache[filename] = yaml.safe_load(f)
+51 |             except Exception as e:
+52 |                 warnings.warn(f"Failed to load dictionary {filename}: {e}")
+   |                 ^^^^^^^^^^^^^
+53 |                 self._cache[filename] = {}
+54 |         return self._cache[filename]
+   |
+help: Set `stacklevel=2`
+
+E501 Line too long (145 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:187:121
+    |
+185 | ΓÇª
+186 | ΓÇª
+187 | ΓÇªt (forward, fixed-response, authenticate...). It can contain several values.",
+    |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+188 | ΓÇª
+189 | ΓÇª
+    |
+
+E501 Line too long (135 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:195:121
+    |
+193 | ΓÇª
+194 | ΓÇª
+195 | ΓÇªcode sent to the client from ELB is stored in http.response.status_code",
+    |                                                            ^^^^^^^^^^^^^^^
+196 | ΓÇª
+197 | ΓÇª
+    |
+
+E501 Line too long (128 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:219:121
+    |
+217 |     ECSField(
+218 |         name="aws.elb.backend_processing_time.sec",
+219 |         description="The total time in seconds since the connection is sent to the backend till the backend starts responding.",
+    |                                                                                                                         ^^^^^^^^
+220 |         labels_type="httpdlog",
+221 |         config_mapped="6100-httpd.conf",
+    |
+
+E501 Line too long (134 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:301:121
+    |
+299 |     ECSField(
+300 |         name="aws.elb.request_processing_time.sec",
+301 |         description="The total time in seconds since the connection or request is received until it is sent to a registered backend.",
+    |                                                                                                                         ^^^^^^^^^^^^^^
+302 |         labels_type="httpdlog",
+303 |         config_mapped="6100-httpd.conf",
+    |
+
+E501 Line too long (127 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:309:121
+    |
+307 |     ECSField(
+308 |         name="aws.elb.response_processing_time.sec",
+309 |         description="The total time in seconds since the response is received from the backend till it is sent to the client.",
+    |                                                                                                                         ^^^^^^^
+310 |         labels_type="httpdlog",
+311 |         config_mapped="6100-httpd.conf",
+    |
+
+E501 Line too long (185 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:385:121
+    |
+383 | ΓÇª
+384 | ΓÇª
+385 | ΓÇªtion headers, QueryString for query string (pre-signed URL) or a - for unauthenticated requests.",
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+386 | ΓÇª
+387 | ΓÇª
+    |
+
+E501 Line too long (121 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:457:121
+    |
+455 |     ECSField(
+456 |         name="aws.s3access.key",
+457 |         description='The "key" part of the request, URL encoded, or "-" if the operation does not take a key parameter.',
+    |                                                                                                                         ^
+458 |         labels_type="httpdlog",
+459 |         config_mapped="6100-httpd.conf",
+    |
+
+E501 Line too long (170 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:473:121
+    |
+471 | ΓÇª
+472 | ΓÇª
+473 | ΓÇªEST.HTTP_method.resource_type, WEBSITE.HTTP_method.resource_type, or BATCH.DELETE.OBJECT.",
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474 | ΓÇª
+475 | ΓÇª
+    |
+
+E501 Line too long (140 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:521:121
+    |
+519 | ΓÇª
+520 | ΓÇª
+521 | ΓÇª was used to authenticate the request or a - for unauthenticated requests.",
+    |                                                          ^^^^^^^^^^^^^^^^^^^^
+522 | ΓÇª
+523 | ΓÇª
+    |
+
+E501 Line too long (154 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:597:121
+    |
+595 | ΓÇª
+596 | ΓÇª
+597 | ΓÇªork interface for which the traffic is recorded, if the instance is owned by you.",
+    |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+598 | ΓÇª
+599 | ΓÇª
+    |
+
+E501 Line too long (148 > 120)
+   --> src\sof_elk\lib\ecs_defs\aws.py:698:121
+    |
+696 | ΓÇª
+697 | ΓÇª
+698 | ΓÇªlt format, the version is 2. If you specify a custom format, the version is 3.",
+    |                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+699 | ΓÇª
+700 | ΓÇª
+    |
+
+E501 Line too long (125 > 120)
+  --> src\sof_elk\lib\ecs_defs\gcp.py:60:121
+   |
+58 |     ECSField(
+59 |         name="gcp.audit.request_metadata.caller_supplied_user_agent",
+60 |         description="The user agent of the caller. This information is not authenticated and should be treated accordingly.",
+   |                                                                                                                         ^^^^^
+61 |         labels_type="gcp",
+62 |         config_mapped="6950-gcp.conf",
+   |
+
+E501 Line too long (192 > 120)
+  --> src\sof_elk\lib\ecs_defs\gcp.py:76:121
+   |
+74 | ΓÇª
+75 | ΓÇª
+76 | ΓÇªame is a scheme-less URI, not including the API service name. For example, 'shelves/SHELF_ID/books'.",
+   |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+77 | ΓÇª
+78 | ΓÇª
+   |
+
+E501 Line too long (211 > 120)
+   --> src\sof_elk\lib\ecs_defs\gcp.py:166:121
+    |
+164 | ΓÇª
+165 | ΓÇª
+166 | ΓÇªrror message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+167 | ΓÇª
+168 | ΓÇª
+    |
+
+E501 Line too long (164 > 120)
+ --> src\sof_elk\lib\ecs_defs\google_workspace.py:6:121
+  |
+4 | ΓÇª
+5 | ΓÇª
+6 | ΓÇªer_key of the requestor for OAuth 2LO API requests or an identifier for robot accounts.",
+  |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+7 | ΓÇª
+8 | ΓÇª
+  |
+
+E501 Line too long (161 > 120)
+  --> src\sof_elk\lib\ecs_defs\google_workspace.py:14:121
+   |
+12 | ΓÇª
+13 | ΓÇª
+14 | ΓÇªin the same domain. EXTERNAL_USER: A user outside the domain. KEY: A non-human actor.",
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+15 | ΓÇª
+16 | ΓÇª
+   |
+
+E501 Line too long (158 > 120)
+   --> src\sof_elk\lib\ecs_defs\winlog.py:693:121
+    |
+691 | ΓÇª
+692 | ΓÇª
+693 | ΓÇªith all other "*Guid" fields so the mixed case version is used here for consistency',
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+694 | ΓÇª
+695 | ΓÇª
+    |
+
+E501 Line too long (158 > 120)
+   --> src\sof_elk\lib\ecs_defs\winlog.py:701:121
+    |
+699 | ΓÇª
+700 | ΓÇª
+701 | ΓÇªith all other "*Guid" fields so the mixed case version is used here for consistency',
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+702 | ΓÇª
+703 | ΓÇª
+    |
+
+E501 Line too long (153 > 120)
+  --> src\sof_elk\management\distro.py:66:121
+   |
+64 | ΓÇª
+65 | ΓÇª
+66 | ΓÇªpublic/v*' or 'class/for123/v*' with all others removed.) Press Enter to continue."
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+67 | ΓÇª
+   |
+
+E501 Line too long (138 > 120)
+  --> src\sof_elk\management\distro.py:77:121
+   |
+75 | ΓÇª
+76 | ΓÇª
+77 | ΓÇªtored in elasticsearch. Press return if this is correct or Ctrl-C to quit."
+   |                                                           ^^^^^^^^^^^^^^^^^^
+78 | ΓÇª
+79 | ΓÇª
+   |
+
+F841 Local variable `ingest_files` is assigned to but never used
+  --> src\sof_elk\management\distro.py:86:9
+   |
+85 |         # Check ingest dir
+86 |         ingest_files = glob.glob("/logstash/**/*", recursive=True)
+   |         ^^^^^^^^^^^^
+87 |         # Filter out top level dirs themselves if needed, but find -mindepth 2 implies files inside subdirs
+88 |         # Python glob is different. Let's just check if any files exist in subdirs.
+   |
+help: Remove assignment to unused variable `ingest_files`
+
+B007 Loop control variable `dirs` not used within loop body
+  --> src\sof_elk\management\distro.py:90:19
+   |
+88 |         # Python glob is different. Let's just check if any files exist in subdirs.
+89 |         found_ingest = False
+90 |         for root, dirs, files in os.walk("/logstash/"):
+   |                   ^^^^
+91 |             if root == "/logstash/":
+92 |                 continue
+   |
+help: Rename unused `dirs` to `_dirs`
+
+F841 Local variable `running_kernel` is assigned to but never used
+   --> src\sof_elk\management\distro.py:124:9
+    |
+123 |         print("removing old kernels")
+124 |         running_kernel = subprocess.check_output(["uname", "-r"], text=True).strip()
+    |         ^^^^^^^^^^^^^^
+125 |         # Complex awk logic in python:
+126 |         # apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v ${RUNNING_KERNEL} | awk -F/ '{print $1}'
+    |
+help: Remove assignment to unused variable `running_kernel`
+
+E501 Line too long (134 > 120)
+   --> src\sof_elk\management\distro.py:126:121
+    |
+124 |         running_kernel = subprocess.check_output(["uname", "-r"], text=True).strip()
+125 |         # Complex awk logic in python:
+126 |         # apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v ${RUNNING_KERNEL} | awk -F/ '{print $1}'
+    |                                                                                                                         ^^^^^^^^^^^^^^
+127 |         # Simplified:
+128 |         # We can try to rely on apt autoremove --purge? No, that removes deps.
+    |
+
+B007 Loop control variable `dirs` not used within loop body
+   --> src\sof_elk\management\distro.py:268:19
+    |
+267 |         # find /var/log/ -type f -exec rm -rf {} \;
+268 |         for root, dirs, files in os.walk("/var/log"):
+    |                   ^^^^
+269 |             for file in files:
+270 |                 try:
+    |
+help: Rename unused `dirs` to `_dirs`
+
+E722 Do not use bare `except`
+   --> src\sof_elk\management\distro.py:272:17
+    |
+270 |                 try:
+271 |                     os.remove(os.path.join(root, file))
+272 |                 except:
+    |                 ^^^^^^
+273 |                     pass
+    |
+
+E722 Do not use bare `except`
+   --> src\sof_elk\management\distro.py:283:13
+    |
+281 |                 else:
+282 |                     os.remove(path)
+283 |             except:
+    |             ^^^^^^
+284 |                 pass
+    |
+
+E501 Line too long (188 > 120)
+   --> src\sof_elk\management\distro.py:294:121
+    |
+292 | ΓÇª
+293 | ΓÇª
+294 | ΓÇªrint $2}' | sed -e 's/:$//' ); do dd if=/dev/zero of=$swappart; mkswap $swappart; done", shell=True)
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+295 | ΓÇª
+296 | ΓÇª
+    |
+
+E501 Line too long (147 > 120)
+   --> src\sof_elk\management\distro.py:297:121
+    |
+296 | ΓÇª
+297 | ΓÇªisk list ); do vmware-toolbox-cmd disk shrink ${shrinkpart}; done", shell=True)
+    |                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+298 | ΓÇª
+299 | ΓÇª
+    |
+
+E501 Line too long (137 > 120)
+   --> src\sof_elk\management\distro.py:341:121
+    |
+340 | ΓÇª
+341 | ΓÇª plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul".split()
+    |                                                           ^^^^^^^^^^^^^^^^^
+342 | ΓÇª
+343 | ΓÇª
+    |
+
+E501 Line too long (138 > 120)
+   --> src\sof_elk\management\distro.py:359:121
+    |
+357 | ΓÇª
+358 | ΓÇª
+359 | ΓÇª-elk.svg"), cls.LOGO_PATH) # Logic in script seems to symlink file to path?
+    |                                                           ^^^^^^^^^^^^^^^^^^
+360 | ΓÇªLOGO_PATH}"
+361 | ΓÇª
+    |
+
+F841 Local variable `f` is assigned to but never used
+   --> src\sof_elk\management\distro.py:377:62
+    |
+375 |         # ATD SEQ
+376 |         if not os.path.exists("/var/spool/cron/atjobs/.SEQ"):
+377 |             with open("/var/spool/cron/atjobs/.SEQ", "w") as f:
+    |                                                              ^
+378 |                 pass  # touch
+    |
+help: Remove assignment to unused variable `f`
+
+E501 Line too long (149 > 120)
+  --> src\sof_elk\management\elasticsearch.py:77:121
+   |
+76 | ΓÇª
+77 | ΓÇªIf False, returns unique base index names (e.g., 'syslog' from 'syslog-2023.01').
+   |                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+78 | ΓÇª
+79 | ΓÇª
+   |
+
+E501 Line too long (123 > 120)
+   --> src\sof_elk\management\elasticsearch.py:383:121
+    |
+381 |                 # netflow -> nfarch
+382 |                 # This is ambiguous.
+383 |                 # The original script probably used the filepath if provided, or maybe just supported reload with filepath?
+    |                                                                                                                         ^^^
+384 |                 # But clear_cli is called with index OR filepath.
+385 |                 # If called with index, we can't easily guess the source path unless we hardcode the inverse.
+    |
+
+E722 Do not use bare `except`
+  --> src\sof_elk\management\kibana.py:33:13
+   |
+31 |                 self.es.cluster.health()
+32 |                 return True
+33 |             except:
+   |             ^^^^^^
+34 |                 time.sleep(interval)
+35 |                 wait_step += interval
+   |
+
+E501 Line too long (122 > 120)
+  --> src\sof_elk\management\kibana.py:65:121
+   |
+63 |     def load_all(self) -> None:
+64 |         """
+65 |         Load all core Kibana objects, including templates, config defaults, priority settings, data views, and dashboards.
+   |                                                                                                                         ^^
+66 |
+67 |         Steps:
+   |
+
+E722 Do not use bare `except`
+   --> src\sof_elk\management\kibana.py:100:9
+    |
+ 98 |                 pkg = json.load(f)
+ 99 |                 kibana_version = pkg.get("version", kibana_version)
+100 |         except:
+    |         ^^^^^^
+101 |             pass
+    |
+
+E722 Do not use bare `except`
+   --> src\sof_elk\management\kibana.py:130:9
+    |
+128 |         try:
+129 |             self.es.indices.put_settings(index=".kibana", body={"index": {"priority": 100}})
+130 |         except:
+    |         ^^^^^^
+131 |             pass
+    |
+
+E722 Do not use bare `except`
+   --> src\sof_elk\management\kibana.py:143:21
+    |
+141 |                     try:
+142 |                         k_client.client.delete(k_client._get_url(f"/api/data_views/data_view/{dvid}"))
+143 |                     except:
+    |                     ^^^^^^
+144 |                         pass
+    |
+
+F841 Local variable `direction_independent` is assigned to but never used
+   --> src\sof_elk\processors\community_id.py:111:13
+    |
+109 |             # Logic: if not one-way, sort by (IP, Port) to ensure direction independence
+110 |             # Compare IPs as bytes
+111 |             direction_independent = True
+    |             ^^^^^^^^^^^^^^^^^^^^^
+112 |
+113 |             # Comparison logic from Ruby:
+    |
+help: Remove assignment to unused variable `direction_independent`
+
+E501 Line too long (147 > 120)
+  --> src\sof_elk\utils\csv.py:58:121
+   |
+56 | ΓÇª
+57 | ΓÇª "w") as jsonfile:
+58 | ΓÇª")": None, " ": "_"}) # Unused in original script logic actually, though defined
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+59 | ΓÇª
+60 | ΓÇª
+   |
+
+E501 Line too long (129 > 120)
+  --> src\sof_elk\utils\nfdump.py:67:121
+   |
+66 |         # Command construction
+67 |         # nfdump "${READFLAG}" "${SOURCE_LOCATION}" -6 -q -N -o "fmt:${EXPORTER_IP} ${NFDUMP2SOFELK_FMT}" > "${DESTINATION_FILE}"
+   |                                                                                                                         ^^^^^^^^^
+68 |
+69 |         fmt_string = f"fmt:{exporter_ip} {NfdumpManager.NFDUMP_FMT}"
+   |
+
+Found 56 errors.
+No fixes available (8 hidden fixes can be enabled with the `--unsafe-fixes` option).

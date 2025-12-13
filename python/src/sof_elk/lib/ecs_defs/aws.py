@@ -406,7 +406,7 @@ FIELDS = [
     ),
     ECSField(
         name="aws.s3access.bytes_sent",
-        description="The number of response bytes sent, excluding HTTP protocol overhead, or \"-\" if zero.",
+        description='The number of response bytes sent, excluding HTTP protocol overhead, or "-" if zero.',
         labels_type="httpdlog",
         config_mapped="6100-httpd.conf",
         ecs_source="filebeat",
@@ -422,7 +422,7 @@ FIELDS = [
     ),
     ECSField(
         name="aws.s3access.error_code",
-        description="The Amazon S3 Error Code, or \"-\" if no error occurred.",
+        description='The Amazon S3 Error Code, or "-" if no error occurred.',
         labels_type="httpdlog",
         config_mapped="6100-httpd.conf",
         ecs_source="filebeat",
@@ -454,7 +454,7 @@ FIELDS = [
     ),
     ECSField(
         name="aws.s3access.key",
-        description="The \"key\" part of the request, URL encoded, or \"-\" if the operation does not take a key parameter.",
+        description='The "key" part of the request, URL encoded, or "-" if the operation does not take a key parameter.',
         labels_type="httpdlog",
         config_mapped="6100-httpd.conf",
         ecs_source="filebeat",
@@ -558,7 +558,7 @@ FIELDS = [
     ),
     ECSField(
         name="aws.s3access.version_id",
-        description="The version ID in the request, or \"-\" if the operation does not take a versionId parameter.",
+        description='The version ID in the request, or "-" if the operation does not take a versionId parameter.',
         labels_type="httpdlog",
         config_mapped="6100-httpd.conf",
         ecs_source="filebeat",

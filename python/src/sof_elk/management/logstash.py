@@ -1,9 +1,9 @@
-import subprocess
-import os
-import sys
-import shutil
 import argparse
-from typing import Any
+import os
+import shutil
+import subprocess
+import sys
+
 
 class LogstashManager:
     LOGSTASH_PLUGIN_BIN = "/usr/share/logstash/bin/logstash-plugin"
@@ -28,20 +28,20 @@ class LogstashManager:
         "logstash-input-tcp",
         "logstash-input-beats",
         "logstash-input-syslog",
-        "logstash-output-elasticsearch"
+        "logstash-output-elasticsearch",
     ]
 
     @staticmethod
     def update_plugins() -> None:
         """
         Check for and install/update required Logstash plugins.
-        
+
         Iterates through the defined `PLUGINS` list and uses `logstash-plugin install`
         to ensure they are present and up to date.
-        
+
         Requires root privileges.
         """
-        if os.geteuid() != 0:
+        if os.geteuid() != 0:  # type: ignore
             print("This script must be run as root. Exiting.")
             sys.exit(1)
 
@@ -66,8 +66,6 @@ class LogstashManager:
             except Exception as e:
                 print(f"Error: {e}")
 
+
 def run_plugin_update(args: argparse.Namespace) -> None:
     LogstashManager.update_plugins()
-
-def register_subcommand(subparsers: Any) -> None:
-    pass

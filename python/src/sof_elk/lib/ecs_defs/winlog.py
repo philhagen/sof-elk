@@ -690,7 +690,7 @@ FIELDS = [
     ),
     ECSField(
         name="winlog.event_data.TargetProcessGuid",
-        description="Note: spec defines \"GUID\" but this is inconsistent with all other \"*Guid\" fields so the mixed case version is used here for consistency",
+        description='Note: spec defines "GUID" but this is inconsistent with all other "*Guid" fields so the mixed case version is used here for consistency',
         labels_type="hayabusa",
         config_mapped="6650-hayabusa.conf",
         ecs_source="winlogbeat",
@@ -698,7 +698,7 @@ FIELDS = [
     ),
     ECSField(
         name="winlog.event_data.TargetProcessGuid",
-        description="Note: spec defines \"GUID\" but this is inconsistent with all other \"*Guid\" fields so the mixed case version is used here for consistency",
+        description='Note: spec defines "GUID" but this is inconsistent with all other "*Guid" fields so the mixed case version is used here for consistency',
         labels_type="syslog",
         config_mapped="6010-snare.conf",
         ecs_source="winlogbeat",

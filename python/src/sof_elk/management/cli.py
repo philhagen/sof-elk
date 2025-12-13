@@ -1,10 +1,12 @@
-from .elasticsearch import run_clear, run_freeze, run_plugin_update as run_es_plugin_update, run_wait
-from .git import run_branch, run_update, run_check_pull, run_remote_update
+from typing import Any
+
+from .distro import DistroManager
+from .elasticsearch import run_clear, run_freeze, run_wait
+from .elasticsearch import run_plugin_update as run_es_plugin_update
+from .git import run_branch, run_check_pull, run_remote_update, run_update
 from .kibana import run_load_dashboards
 from .logstash import run_plugin_update as run_ls_plugin_update
 from .vm import run_vm_check
-from .distro import DistroManager
-from typing import Any
 
 """
 Management Subcommands
@@ -13,6 +15,7 @@ Management Subcommands
 This module registers the `management` subcommand and its various children (elasticsearch,
 kibana, git, logstash, vm) with the main CLI parser.
 """
+
 
 def register_subcommand(subparsers: Any) -> None:
     parser = subparsers.add_parser("management", help="Core management utilities")
@@ -41,7 +44,7 @@ def register_subcommand(subparsers: Any) -> None:
 
     wait_parser = sub_subparsers.add_parser("wait_for_es", help="Wait for ES service")
     wait_parser.set_defaults(func=run_wait)
-    
+
     # Kibana
     kb_parser = sub_subparsers.add_parser("load_dashboards", help="Load Kibana dashboards and objects")
     kb_parser.add_argument("--es-host", dest="es_host", default="localhost", help="Elasticsearch Host")
@@ -49,7 +52,7 @@ def register_subcommand(subparsers: Any) -> None:
     kb_parser.add_argument("--kibana-host", dest="kibana_host", default="localhost", help="Kibana Host")
     kb_parser.add_argument("--kibana-port", dest="kibana_port", default=5601, type=int, help="Kibana Port")
     kb_parser.set_defaults(func=run_load_dashboards)
-    
+
     # Logstash
     ls_parser = sub_subparsers.add_parser("ls_plugin_update", help="Update Logstash plugins")
     ls_parser.set_defaults(func=run_ls_plugin_update)

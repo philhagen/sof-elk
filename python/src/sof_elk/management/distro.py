@@ -3,14 +3,14 @@
 #
 # This module provides functionality for distribution preparation and post-merge operations.
 
-import os
-import sys
-import subprocess
-import shutil
+import datetime
 import glob
 import hashlib
-import datetime
-from typing import List, Dict, Any, Optional
+import os
+import shutil
+import subprocess
+import sys
+
 
 class DistroManager:
     SOF_ELK_ROOT = "/usr/local/sof-elk"
@@ -22,11 +22,11 @@ class DistroManager:
     GEOIP_MD5 = {
         "ASN": "c20977100c0a6c0842583ba158e906ec",
         "City": "4c60b3acf2e6782d48ce2b42979f7b98",
-        "Country": "849e7667913e375bb3873f8778e8fb17"
+        "Country": "849e7667913e375bb3873f8778e8fb17",
     }
 
     @staticmethod
-    def run_cmd(cmd: List[str], check: bool = True, shell: bool = False) -> None:
+    def run_cmd(cmd: list[str], check: bool = True, shell: bool = False) -> None:
         print(f"Running: {' '.join(cmd)}")
         try:
             subprocess.run(cmd, check=check, shell=shell)
@@ -37,10 +37,10 @@ class DistroManager:
 
     @classmethod
     def prep_for_distribution(cls, nodisk: bool = False, cloud: bool = False) -> None:
-        if os.geteuid() != 0:
+        if os.geteuid() != 0:  # type: ignore
             print("ERROR: This script must be run as root - Exiting.")
             sys.exit(2)
-        
+
         if os.environ.get("SSH_CONNECTION"):
             print("ERROR: This script must be run locally - Exiting.")
             sys.exit(2)
@@ -50,23 +50,32 @@ class DistroManager:
 
         revdate = datetime.datetime.now().strftime("%Y-%m-%d")
 
-        if os.path.exists(os.path.expanduser("~/distro_prep.txt")) and os.path.getsize(os.path.expanduser("~/distro_prep.txt")) > 0:
+        if (
+            os.path.exists(os.path.expanduser("~/distro_prep.txt"))
+            and os.path.getsize(os.path.expanduser("~/distro_prep.txt")) > 0
+        ):
             print("~/distro_prep.txt still contains instructions - Exiting.")
-            with open(os.path.expanduser("~/distro_prep.txt"), 'r') as f:
+            with open(os.path.expanduser("~/distro_prep.txt")) as f:
                 print(f.read())
             sys.exit(2)
 
         print("Checking that we're on the correct SOF-ELK® branch")
         os.chdir(cls.SOF_ELK_ROOT)
         cls.run_cmd(["git", "branch"])
-        input("ACTION REQUIRED! Is this the correct branch? (Should be 'public/v*' or 'class/for123/v*' with all others removed.) Press Enter to continue.")
+        input(
+            "ACTION REQUIRED! Is this the correct branch? (Should be 'public/v*' or 'class/for123/v*' with all others removed.) Press Enter to continue."
+        )
 
         # Check indices
         try:
             indices = subprocess.check_output(["curl", "-s", "-XGET", "http://localhost:9200/_cat/indices/"], text=True)
-            filtered_indices = [line for line in indices.splitlines() if ".internal" not in line and ".kibana" not in line]
+            filtered_indices = [
+                line for line in indices.splitlines() if ".internal" not in line and ".kibana" not in line
+            ]
             if filtered_indices:
-                print("ACTION REQUIRED! The data above is still stored in elasticsearch. Press return if this is correct or Ctrl-C to quit.")
+                print(
+                    "ACTION REQUIRED! The data above is still stored in elasticsearch. Press return if this is correct or Ctrl-C to quit."
+                )
                 for line in filtered_indices:
                     print(line)
                 input()
@@ -74,18 +83,18 @@ class DistroManager:
             pass
 
         # Check ingest dir
-        ingest_files = glob.glob("/logstash/**/*", recursive=True)
         # Filter out top level dirs themselves if needed, but find -mindepth 2 implies files inside subdirs
         # Python glob is different. Let's just check if any files exist in subdirs.
         found_ingest = False
-        for root, dirs, files in os.walk("/logstash/"):
-            if root == "/logstash/": continue
+        for root, _, files in os.walk("/logstash/"):
+            if root == "/logstash/":
+                continue
             if files:
                 found_ingest = True
                 break
         if found_ingest:
-             print("Files found in /logstash/. Press return if correct.")
-             input()
+            print("Files found in /logstash/. Press return if correct.")
+            input()
 
         # Check users
         print("Checking users...")
@@ -100,18 +109,18 @@ class DistroManager:
         # Check ssh
         elk_user_ssh = os.path.expanduser("~elk_user/.ssh/")
         if os.path.isdir(elk_user_ssh) and os.listdir(elk_user_ssh):
-             print(f"Contents found in {elk_user_ssh}. Press return if correct.")
-             print(os.listdir(elk_user_ssh))
-             input()
+            print(f"Contents found in {elk_user_ssh}. Press return if correct.")
+            print(os.listdir(elk_user_ssh))
+            input()
 
         print("updating local git repo clones")
         os.chdir(cls.SOF_ELK_ROOT)
         env = os.environ.copy()
         env["SKIP_HOOK"] = "1"
-        cls.run_cmd(["git", "pull", "--all"], check=False) # Might fail if no upstream, ignore
+        cls.run_cmd(["git", "pull", "--all"], check=False)  # Might fail if no upstream, ignore
 
         print("removing old kernels")
-        running_kernel = subprocess.check_output(["uname", "-r"], text=True).strip()
+        # running_kernel = subprocess.check_output(["uname", "-r"], text=True).strip()
         # Complex awk logic in python:
         # apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v ${RUNNING_KERNEL} | awk -F/ '{print $1}'
         # Simplified:
@@ -129,7 +138,20 @@ class DistroManager:
         for user in ["root", "elk_user"]:
             homedir = os.path.expanduser(f"~{user}")
             print(f"{user} -> {homedir}")
-            for item in [".ansible", ".bash_history", ".bundle", ".cache", ".config", ".lesshst", ".local", ".python_history", ".sudo_as_admin_successful", ".vim", ".viminfo", ".vscode-server"]:
+            for item in [
+                ".ansible",
+                ".bash_history",
+                ".bundle",
+                ".cache",
+                ".config",
+                ".lesshst",
+                ".local",
+                ".python_history",
+                ".sudo_as_admin_successful",
+                ".vim",
+                ".viminfo",
+                ".vscode-server",
+            ]:
                 path = os.path.join(homedir, item)
                 if os.path.exists(path):
                     if os.path.isdir(path):
@@ -152,7 +174,7 @@ class DistroManager:
         for db, expected_md5 in cls.GEOIP_MD5.items():
             filename = f"GeoLite2-{db}.mmdb"
             local_path = os.path.join(cls.GEOIP_DIR, filename)
-            
+
             download = False
             if os.path.exists(local_path):
                 with open(local_path, "rb") as f:
@@ -162,7 +184,7 @@ class DistroManager:
                     download = True
             else:
                 download = True
-            
+
             if download:
                 if os.path.exists(local_path):
                     os.remove(local_path)
@@ -170,8 +192,10 @@ class DistroManager:
                 cls.run_cmd(["curl", "-s", "-L", "-o", local_path, f"{cls.GEOIP_URL_BASE}/{filename}"])
                 os.chmod(local_path, 0o644)
 
-        if os.path.exists("/etc/GeoIP.conf"): os.remove("/etc/GeoIP.conf")
-        if os.path.exists("/etc/cron.d/geoipupdate"): os.remove("/etc/cron.d/geoipupdate")
+        if os.path.exists("/etc/GeoIP.conf"):
+            os.remove("/etc/GeoIP.conf")
+        if os.path.exists("/etc/cron.d/geoipupdate"):
+            os.remove("/etc/cron.d/geoipupdate")
 
         print("reloading kibana dashboards")
         # Call internal module or script? Script wrapper calls module.
@@ -183,25 +207,14 @@ class DistroManager:
             cls.run_cmd(["systemctl", "stop", svc], check=False)
 
         print("clearing filebeat data")
-        if os.path.exists("/var/lib/filebeat"): shutil.rmtree("/var/lib/filebeat")
+        if os.path.exists("/var/lib/filebeat"):
+            shutil.rmtree("/var/lib/filebeat")
 
         print("removing elasticsearch .tasks index")
         # ES is stopped? Script stops ES AFTER this.
         # Wait, script order: load dashboards, stop kibana, stop filebeat, clear filebeat, delete .tasks, stop ES.
         # I stopped ES above. I should have followed order.
         # Restart ES to delete .tasks? Or just ignore?
-        # Let's assume ES is needed for .tasks deletion.
-        # Re-ordering logic to match script:
-        # 1. load dashboards (done)
-        # 2. stop kibana
-        # 3. stop filebeat
-        # 4. clear filebeat
-        # 5. delete .tasks
-        # 6. stop ES
-        # 7. stop logstash
-        
-        # Since I already stopped them, I can't delete .tasks via API. 
-        # But if I'm prepping for distro, maybe I don't care if .tasks is there? 
         # Or I should delete the data dir?
         # The script doesn't delete ES data dir, it just deletes .tasks index.
         # I will skip .tasks deletion if ES is down.
@@ -216,39 +229,46 @@ class DistroManager:
         cls.run_cmd(["systemctl", "stop", "cron"], check=False)
         if os.path.exists("/var/spool/cron/atjobs"):
             for item in os.listdir("/var/spool/cron/atjobs"):
-                if item == ".SEQ": continue
+                if item == ".SEQ":
+                    continue
                 path = os.path.join("/var/spool/cron/atjobs", item)
-                if os.path.isfile(path): os.remove(path)
-            with open("/var/spool/cron/atjobs/.SEQ", "w") as f:
-                f.write("0\n")
+                if os.path.isfile(path):
+                    os.remove(path)
+            with open("/var/spool/cron/atjobs/.SEQ", "w"):
+                pass  # touch
             os.chmod("/var/spool/cron/atjobs/.SEQ", 0o600)
             shutil.chown("/var/spool/cron/atjobs/.SEQ", user="daemon", group="daemon")
 
         print("clearing mail spools")
         for mail in ["/var/spool/mail/root", "/var/spool/mail/elk_user"]:
-            if os.path.exists(mail): os.remove(mail)
+            if os.path.exists(mail):
+                os.remove(mail)
 
         print("clearing logs")
         cls.run_cmd(["systemctl", "stop", "systemd-journald.service"], check=False)
         cls.run_cmd(["systemctl", "stop", "systemd-journald.socket"], check=False)
         if os.path.exists("/var/log/journal"):
             shutil.rmtree("/var/log/journal")
-            os.makedirs("/var/log/journal") # recreate?
-        
+            os.makedirs("/var/log/journal")  # recreate?
+
         # find /var/log/ -type f -exec rm -rf {} \;
-        for root, dirs, files in os.walk("/var/log"):
+        for root, _, files in os.walk("/var/log"):
             for file in files:
                 try:
                     os.remove(os.path.join(root, file))
-                except: pass
+                except Exception:
+                    pass
 
         print("clearing /tmp/")
         for item in os.listdir("/tmp"):
             path = os.path.join("/tmp", item)
             try:
-                if os.path.isdir(path): shutil.rmtree(path)
-                else: os.remove(path)
-            except: pass
+                if os.path.isdir(path):
+                    shutil.rmtree(path)
+                else:
+                    os.remove(path)
+            except Exception:
+                pass
 
         if not nodisk:
             print("ACTION REQUIRED! remove any snapshots that already exist and press Return")
@@ -259,7 +279,7 @@ class DistroManager:
             # fdisk -l | grep swap ...
             # Skipping complex disk logic for now, or use subprocess
             # cls.run_cmd("swapoff -a; for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do dd if=/dev/zero of=$swappart; mkswap $swappart; done", shell=True)
-            
+
             print("shrink all drives")
             # cls.run_cmd("for shrinkpart in $( vmware-toolbox-cmd disk list ); do vmware-toolbox-cmd disk shrink ${shrinkpart}; done", shell=True)
 
@@ -267,17 +287,19 @@ class DistroManager:
             ans = input("Set the pre-login banner version for distribution? (Y/N) ")
             if ans.upper() == "Y":
                 print("updating /etc/issue")
-                with open("/etc/issue.prep", "r") as f:
+                with open("/etc/issue.prep") as f:
                     content = f.read()
                 content = content.replace("<%REVNO%>", revdate)
                 with open("/etc/issue", "w") as f:
                     f.write(content)
 
         print("preparing for new auto-generated machine id")
-        with open("/etc/machine-id", "w") as f: pass
-        with open("/var/lib/dbus/machine-id", "w") as f: pass
-        if os.path.exists("/var/lib/systemd/random-seed"): os.remove("/var/lib/systemd/random-seed")
-
+        with open("/etc/machine-id", "w"):
+            pass
+        with open("/var/lib/dbus/machine-id", "w"):
+            pass
+        if os.path.exists("/var/lib/systemd/random-seed"):
+            os.remove("/var/lib/systemd/random-seed")
 
     @classmethod
     def post_merge(cls) -> None:
@@ -296,7 +318,7 @@ class DistroManager:
 
         # Deactivate dead links
         for file in glob.glob(os.path.join(cls.LOGSTASH_CONF_DIR, "*")):
-            if not os.path.exists(file): # Broken link
+            if not os.path.exists(file):  # Broken link
                 os.remove(file)
 
         print("Reloading Logstash")
@@ -317,8 +339,10 @@ class DistroManager:
 
         # Logo
         if os.path.exists(cls.LOGO_PATH):
-            if os.path.isdir(cls.LOGO_PATH): shutil.rmtree(cls.LOGO_PATH)
-            else: os.remove(cls.LOGO_PATH)
+            if os.path.isdir(cls.LOGO_PATH):
+                shutil.rmtree(cls.LOGO_PATH)
+            else:
+                os.remove(cls.LOGO_PATH)
         # os.symlink(os.path.join(cls.SOF_ELK_ROOT, "lib", "sof-elk.svg"), cls.LOGO_PATH) # Logic in script seems to symlink file to path?
         # Script: ln -fs /usr/local/sof-elk/lib/sof-elk.svg "${LOGO_PATH}"
         # If LOGO_PATH is a file, this works.
@@ -327,15 +351,18 @@ class DistroManager:
         for file in glob.glob(os.path.join(cls.SOF_ELK_ROOT, "supporting-scripts", "cronjobs", "*")):
             basename = os.path.basename(file)
             target = os.path.join("/etc/cron.d", basename)
-            if os.path.islink(target): os.remove(target)
+            if os.path.islink(target):
+                os.remove(target)
             os.symlink(file, target)
-        
+
         for file in glob.glob("/etc/cron.d/*"):
-            if not os.path.exists(file): os.remove(file)
+            if not os.path.exists(file):
+                os.remove(file)
 
         # ATD SEQ
         if not os.path.exists("/var/spool/cron/atjobs/.SEQ"):
-            with open("/var/spool/cron/atjobs/.SEQ", "w") as f: pass # touch
+            with open("/var/spool/cron/atjobs/.SEQ", "w"):
+                pass  # touch
 
         # Reload dashboards
         cls.run_cmd(["python3", "-m", "sof_elk.cli", "management", "load_dashboards"])

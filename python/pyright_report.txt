@@ -1,0 +1,61 @@
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\client.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\client.py:3:8 - warning: Import "requests" could not be resolved from source (reportMissingModuleSource)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\client.py:4:6 - warning: Import "requests.adapters" could not be resolved from source (reportMissingModuleSource)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\elasticsearch.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\elasticsearch.py:18:58 - error: No parameter named "timeout" (reportCallIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\elasticsearch.py:44:56 - error: No parameter named "params" (reportCallIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\elasticsearch.py:53:52 - error: No parameter named "ignore" (reportCallIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\api\elasticsearch.py:75:59 - error: No parameter named "ignore" (reportCallIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py:134:59 - error: "generate_csv" is not a known attribute of "None" (reportOptionalMemberAccess)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py:155:44 - error: "utils_sub" is possibly unbound (reportPossiblyUnboundVariable)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py:158:42 - error: "utils_sub" is possibly unbound (reportPossiblyUnboundVariable)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py:161:42 - error: "utils_sub" is possibly unbound (reportPossiblyUnboundVariable)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\cli.py:164:41 - error: "utils_sub" is possibly unbound (reportPossiblyUnboundVariable)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\gcp\cli.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\gcp\cli.py:8:25 - error: Cannot access attribute "add_parser" for class "ArgumentParser"
+  ┬á┬áAttribute "add_parser" is unknown (reportAttributeAccessIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\distro.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\distro.py:40:15 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:158:60 - error: Argument of type "Literal['{ "index": { "blocks.read_only": true } }']" cannot be assigned to parameter "body" of type "Mapping[str, Any] | None" in function "put_settings"
+  ┬á┬áType "Literal['{ "index": { "blocks.read_only": true } }']" is not assignable to type "Mapping[str, Any] | None"
+  ┬á┬á┬á┬á"Literal['{ "index": { "blocks.read_only": true } }']" is not assignable to "Mapping[str, Any]"
+  ┬á┬á┬á┬á"Literal['{ "index": { "blocks.read_only": true } }']" is not assignable to "None" (reportArgumentType)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:161:74 - error: Argument of type "Literal['{ "settings": { "index.number_of_shards": 1 } }']" cannot be assigned to parameter "body" of type "Dict[str, Any] | None" in function "clone"
+  ┬á┬áType "Literal['{ "settings": { "index.number_of_shards": 1 } }']" is not assignable to type "Dict[str, Any] | None"
+  ┬á┬á┬á┬á"Literal['{ "settings": { "index.number_of_shards": 1 } }']" is not assignable to "Dict[str, Any]"
+  ┬á┬á┬á┬á"Literal['{ "settings": { "index.number_of_shards": 1 } }']" is not assignable to "None" (reportArgumentType)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:164:60 - error: Argument of type "Literal['{ "index": { "blocks.read_only": null } }']" cannot be assigned to parameter "body" of type "Mapping[str, Any] | None" in function "put_settings"
+  ┬á┬áType "Literal['{ "index": { "blocks.read_only": null } }']" is not assignable to type "Mapping[str, Any] | None"
+  ┬á┬á┬á┬á"Literal['{ "index": { "blocks.read_only": null } }']" is not assignable to "Mapping[str, Any]"
+  ┬á┬á┬á┬á"Literal['{ "index": { "blocks.read_only": null } }']" is not assignable to "None" (reportArgumentType)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:167:67 - error: Argument of type "Literal['{ "index": { "blocks.read_only": null } }']" cannot be assigned to parameter "body" of type "Mapping[str, Any] | None" in function "put_settings"
+  ┬á┬áType "Literal['{ "index": { "blocks.read_only": null } }']" is not assignable to type "Mapping[str, Any] | None"
+  ┬á┬á┬á┬á"Literal['{ "index": { "blocks.read_only": null } }']" is not assignable to "Mapping[str, Any]"
+  ┬á┬á┬á┬á"Literal['{ "index": { "blocks.read_only": null } }']" is not assignable to "None" (reportArgumentType)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:177:67 - error: Argument of type "Literal['{ "hidden": true }']" cannot be assigned to parameter "body" of type "Mapping[str, Any] | None" in function "put_settings"
+  ┬á┬áType "Literal['{ "hidden": true }']" is not assignable to type "Mapping[str, Any] | None"
+  ┬á┬á┬á┬á"Literal['{ "hidden": true }']" is not assignable to "Mapping[str, Any]"
+  ┬á┬á┬á┬á"Literal['{ "hidden": true }']" is not assignable to "None" (reportArgumentType)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:189:63 - error: Argument of type "Literal['{ "hidden": null }']" cannot be assigned to parameter "body" of type "Mapping[str, Any] | None" in function "put_settings"
+  ┬á┬áType "Literal['{ "hidden": null }']" is not assignable to type "Mapping[str, Any] | None"
+  ┬á┬á┬á┬á"Literal['{ "hidden": null }']" is not assignable to "Mapping[str, Any]"
+  ┬á┬á┬á┬á"Literal['{ "hidden": null }']" is not assignable to "None" (reportArgumentType)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:223:15 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:360:75 - error: No parameter named "ignore" (reportCallIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:362:60 - error: No parameter named "ignore" (reportCallIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:367:46 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\elasticsearch.py:396:15 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\git.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\git.py:26:42 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\kibana.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\kibana.py:39:17 - error: Expected "("
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\kibana.py:39:17 - error: Unexpected token at end of expression
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\logstash.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\management\logstash.py:44:15 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\utils\firewall.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\utils\firewall.py:30:15 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\utils\system.py
+  d:\anfd-dev\Projects\sof-elk\sof-elk\python\src\sof_elk\utils\system.py:32:15 - error: "geteuid" is not a known attribute of module "os" (reportAttributeAccessIssue)
+28 errors, 2 warnings, 0 informations

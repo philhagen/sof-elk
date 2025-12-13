@@ -106,7 +106,7 @@ python3 bootstrap_hatch.py
 | **Run Tests** | `hatch run test` |
 | **Run Tests (with coverage)** | `hatch run cov` |
 | **Build Package** | `hatch build` |
-| **Lint & Format** | `hatch run lint:all` |
+| **Lint & Format** | `hatch run all` |
 | **Generate ECS CSV** | `hatch run gen-ecs` |
 
 ## Troubleshooting

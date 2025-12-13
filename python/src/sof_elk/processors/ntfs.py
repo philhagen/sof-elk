@@ -3,7 +3,6 @@
 #
 # Ported from ntfs_flags_to_array.rb and data_flags_to_array.rb
 
-from typing import Dict, Union
 
 class NTFS:
     # See https://github.com/libyal/liblnk/blob/main/documentation/Windows%20Shortcut%20File%20(LNK)%20format.asciidoc#21-data-flags
@@ -31,10 +30,10 @@ class NTFS:
         "disablelinkpathtracking": 0x100000,
         "disableknownfoldertracking": 0x200000,
         "disableknownfolderalias": 0x400000,
-        "allowlinktolink": 0x04000000, # Note: Ruby script had 0x8000000? Let's verify.
-        "unaliasonsave": 0x08000000,   # Note: Ruby script had 0x10000000?
-        "preferenvironmentpath": 0x10000000, # Ruby had 0x20000000
-        "keeplocalidlistforunctarget": 0x20000000 # Ruby had 0x40000000
+        "allowlinktolink": 0x04000000,  # Note: Ruby script had 0x8000000? Let's verify.
+        "unaliasonsave": 0x08000000,  # Note: Ruby script had 0x10000000?
+        "preferenvironmentpath": 0x10000000,  # Ruby had 0x20000000
+        "keeplocalidlistforunctarget": 0x20000000,  # Ruby had 0x40000000
     }
     # Wait, let me double check the Ruby script content from history step 14 to be safe.
     # Ruby script said:
@@ -71,7 +70,7 @@ class NTFS:
         "allowlinktolink": 0x08000000,
         "unaliasonsave": 0x10000000,
         "preferenvironmentpath": 0x20000000,
-        "keeplocalidlistforunctarget": 0x40000000
+        "keeplocalidlistforunctarget": 0x40000000,
     }
 
     FILE_ATTRS_MAP = {
@@ -93,56 +92,57 @@ class NTFS:
         "noscrubdata": 0x020000,
         "hasea": 0x040000,
         "directory": 0x10000000,
-        "indexview": 0x20000000
+        "indexview": 0x20000000,
     }
 
     @staticmethod
-    def parse_data_flags(value: Union[int, str], source_type: str = 'int') -> Dict[str, bool]:
+    def parse_data_flags(value: int | str, source_type: str = "int") -> dict[str, bool]:
         """
         Parse NTFS data flags.
-        
+
         Args:
             value: Integer or String representation of flags.
             source_type (str): 'int' or 'str'
-            
+
         Returns:
             dict: {flag_name: boolean}
         """
         result = {k: False for k in NTFS.DATA_FLAGS_MAP_CORRECTED.keys()}
-        
-        if source_type == 'int':
+
+        if source_type == "int":
             try:
                 int_val = int(value)
                 for k, mask in NTFS.DATA_FLAGS_MAP_CORRECTED.items():
                     if (int_val & mask) != 0:
                         result[k] = True
             except ValueError:
-                pass # Return all false
-                
-        elif source_type == 'str':
-            if not value: return result
+                pass  # Return all false
+
+        elif source_type == "str":
+            if not value:
+                return result
             val_str = str(value).lower()
             for k in NTFS.DATA_FLAGS_MAP_CORRECTED.keys():
                 if k in val_str:
                     result[k] = True
-                    
+
         return result
 
     @staticmethod
-    def parse_file_attributes(value: Union[int, str], source_type: str = 'int') -> Dict[str, bool]:
+    def parse_file_attributes(value: int | str, source_type: str = "int") -> dict[str, bool]:
         """
         Parse NTFS file attribute flags.
-        
+
         Args:
             value: Integer or String representation of flags.
             source_type (str): 'int' or 'str'
-            
+
         Returns:
             dict: {flag_name: boolean}
         """
         result = {k: False for k in NTFS.FILE_ATTRS_MAP.keys()}
-        
-        if source_type == 'int':
+
+        if source_type == "int":
             try:
                 int_val = int(value)
                 for k, mask in NTFS.FILE_ATTRS_MAP.items():
@@ -150,9 +150,10 @@ class NTFS:
                         result[k] = True
             except ValueError:
                 pass
-                
-        elif source_type == 'str':
-            if not value: return result
+
+        elif source_type == "str":
+            if not value:
+                return result
             val_str = str(value).lower()
             for k in NTFS.FILE_ATTRS_MAP.keys():
                 if k in val_str:

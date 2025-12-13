@@ -35,6 +35,13 @@ path = ".venv"
 dependencies = [
   "pytest",
   "pytest-cov",
+  "ruff",
+  "pyright",
+  "mypy",
+  "types-requests",
+  "types-PyYAML",
+  "types-urllib3",
+  "types-setuptools",
 ]
 
 [tool.hatch.envs.default.scripts]
@@ -45,25 +52,6 @@ build = "hatch build"
 gen-ecs = "python -m sof_elk.cli ecs-gen -o ../doc/ecs_fields.csv"
 sof-elk = "python -m sof_elk.cli {args}"
 clean = "python -c \"import shutil,pathlib; shutil.rmtree('dist', ignore_errors=True); [shutil.rmtree(p) for p in pathlib.Path('.').rglob('__pycache__')]\""
-release = [
-  "clean",
-  "cov",
-  "hatch run lint:all",
-  "build",
-]
-
-[tool.hatch.envs.lint]
-dependencies = [
-  "ruff",
-  "pyright",
-  "mypy",
-  "types-requests",
-  "types-PyYAML",
-  "types-urllib3",
-  "types-setuptools",
-]
-
-[tool.hatch.envs.lint.scripts]
 lint = "ruff check {args:src/sof_elk}"
 fmt = "ruff format {args:src/sof_elk}"
 check = "ruff check --fix {args:src/sof_elk}"
@@ -72,6 +60,12 @@ all = [
   "lint",
   "type-check",
 ]
+release = [
+  "clean",
+  "cov",
+  "all",
+  "build",
+]
 
 [tool.ruff]
 line-length = 120
@@ -79,7 +73,7 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B"]
-ignore = []
+ignore = ["E501"]
 
 [tool.pyright]
 include = ["src"]

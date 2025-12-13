@@ -1,7 +1,8 @@
 import argparse
+from typing import Any
 
 from .flow import AzureFlowProcessor
-from typing import Any
+
 
 def register_subcommand(subparsers: Any) -> None:
     parser = subparsers.add_parser("azure", help="Azure log processing utilities")
@@ -15,12 +16,9 @@ def register_subcommand(subparsers: Any) -> None:
     flow_parser.add_argument("-v", "--verbose", dest="verbose", action="store_true", help="Verbose output")
     flow_parser.set_defaults(func=flow_command)
 
+
 def flow_command(args: argparse.Namespace) -> None:
     processor = AzureFlowProcessor(
-        infile=args.infile,
-        outfile=args.outfile,
-        append=args.append,
-        force=args.force,
-        verbose=args.verbose
+        infile=args.infile, outfile=args.outfile, append=args.append, force=args.force, verbose=args.verbose
     )
     processor.run()

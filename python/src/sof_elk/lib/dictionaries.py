@@ -2,36 +2,41 @@
 # (C)2025 Lewes Technology Consulting, LLC
 
 import os
-import yaml
 import warnings
-from typing import Dict, Any, Optional, Union
+from typing import Any
+
+import yaml
+
 
 class DictionaryManager:
     """
     Manages loading and querying of various dictionary files (YAML format) used for lookups.
-    
-    This class employs a singleton-like pattern via `get_instance` and lazy-loading of 
+
+    This class employs a singleton-like pattern via `get_instance` and lazy-loading of
     dictionary files to optimize performance.
     """
-    _instances: Dict[Optional[str], 'DictionaryManager'] = {}
-    
+
+    _instances: dict[str | None, "DictionaryManager"] = {}
+
     # Defaults relative to this file
     # ../../../core/lib/dictionaries from sofelk/source/sof_elk/lib
     DEFAULT_DICT_PATH = os.path.join(
         os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))),
-        "core", "lib", "dictionaries"
+        "core",
+        "lib",
+        "dictionaries",
     )
 
-    def __init__(self, dict_path: Optional[str] = None) -> None:
+    def __init__(self, dict_path: str | None = None) -> None:
         self.dict_path = dict_path if dict_path else self.DEFAULT_DICT_PATH
-        self._cache: Dict[str, Any] = {}
+        self._cache: dict[str, Any] = {}
 
     @classmethod
-    def get_instance(cls, dict_path: Optional[str] = None) -> 'DictionaryManager':
+    def get_instance(cls, dict_path: str | None = None) -> "DictionaryManager":
         if dict_path not in cls._instances:
             cls._instances[dict_path] = cls(dict_path)
         return cls._instances[dict_path]
-    
+
     def _load(self, filename: str) -> Any:
         """Lazy load a dictionary file."""
         if filename not in self._cache:
@@ -40,15 +45,15 @@ class DictionaryManager:
                 # Fallback or error?
                 return {}
             try:
-                with open(full_path, 'r') as f:
+                with open(full_path) as f:
                     # Use safe_load for security
                     self._cache[filename] = yaml.safe_load(f)
             except Exception as e:
-                warnings.warn(f"Failed to load dictionary {filename}: {e}")
+                warnings.warn(f"Failed to load dictionary {filename}: {e}", stacklevel=2)
                 self._cache[filename] = {}
         return self._cache[filename]
 
-    def lookup_syslog_facility(self, facility_name: str) -> Optional[int]:
+    def lookup_syslog_facility(self, facility_name: str) -> int | None:
         """
         Looks up the integer code for a given syslog facility name.
 
@@ -62,7 +67,7 @@ class DictionaryManager:
         # Direct lookup (file is name: int)
         return d.get(facility_name)
 
-    def lookup_dns_type(self, code: Union[int, str]) -> Optional[str]:
+    def lookup_dns_type(self, code: int | str) -> str | None:
         """
         Looks up the DNS record type name for a given integer code.
 
@@ -76,7 +81,7 @@ class DictionaryManager:
         # Keys in yaml are strings "1": "A"
         return d.get(str(code))
 
-    def lookup_ip_proto(self, proto: Union[int, str], reverse: bool = False) -> Optional[Union[str, int]]:
+    def lookup_ip_proto(self, proto: int | str, reverse: bool = False) -> str | int | None:
         """
         Looks up IP protocol mappings.
 
@@ -95,7 +100,7 @@ class DictionaryManager:
             d = self._load("ip_proto_int2name.yaml")
             return d.get(str(proto))
 
-    def lookup_port(self, port: Union[int, str], proto: str = "tcp") -> Optional[str]:
+    def lookup_port(self, port: int | str, proto: str = "tcp") -> str | None:
         """
         Looks up the IANA service name for a given port.
 
