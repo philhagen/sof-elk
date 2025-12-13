@@ -19,7 +19,13 @@ The package exposes a command-line interface (CLI) to interact with various syst
 You can run the CLI using the package entry point:
 
 ```bash
-python3 -m sof_elk.cli [subcommand] [arguments]
+python3 -m sof_elk [subcommand] [arguments]
+```
+
+Or, if installed in your environment:
+
+```bash
+sof-elk [subcommand] [arguments]
 ```
 
 ### Available Modules
@@ -76,19 +82,19 @@ Low-level clients for interacting with backend services.
 **Clear Index Data**
 ```bash
 # Clear all data from the syslog index
-python3 -m sof_elk.cli management clear --index syslog
+python3 -m sof_elk management clear --index syslog
 ```
 
 **Freeze an Index**
 ```bash
 # Freeze an index, delete the source, and rename it
-python3 -m sof_elk.cli management freeze --action freeze --index "syslog-2023.01" --delete --newindex "syslog-frozen-2023.01"
+python3 -m sof_elk management freeze --action freeze --index "syslog-2023.01" --delete --newindex "syslog-frozen-2023.01"
 ```
 
 **Update Repository**
 ```bash
 # Check for updates and pull if available
-python3 -m sof_elk.cli management update
+python3 -m sof_elk management update
 ```
 
 ## Development
@@ -103,7 +109,10 @@ This project uses [Hatch](https://hatch.pypa.io/latest/) for dependency manageme
 - Python 3.12 or higher
 
 ### 2. Bootstrap Environment
-To get started quickly, run the included bootstrap script. This script will install `hatch` (if missing) and set up the virtual environment.
+To get started quickly, run the included bootstrap script. This script will:
+1.  Install `hatch` (if missing).
+2.  Set up the virtual environment.
+3.  Generate a local `hatch` bash alias in the project root for easy execution.
 
 **Windows (PowerShell):**
 ```powershell
@@ -117,7 +126,26 @@ cd python
 python3 bootstrap_hatch.py
 ```
 
-### 3. Common Commands
+### 3. Usage with Local Alias
+
+After bootstrapping, a `hatch` script is created in the `python/` directory. You can use this to run commands without adding hatch to your global PATH or worrying about virtual environments.
+
+```bash
+# General Hatch commands
+./hatch run test
+./hatch build
+
+# Run SOF-ELK CLI
+./hatch run sof-elk --help
+```
+
+Alternatively, use the `sof-elk.sh` wrapper which automatically uses the local alias if present:
+
+```bash
+./sof-elk.sh management check_pull
+```
+
+### 4. Common Commands
 
 | Task | Command |
 |------|---------|
