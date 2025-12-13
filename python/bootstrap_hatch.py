@@ -85,6 +85,27 @@ def main():
     print(f"Using hatch at: {hatch_path}")
     
     run_step("Create Environment", ["hatch", "env", "create"], hatch_path)
+
+    # Generate local 'hatch' bash script alias
+    alias_path = os.path.join(os.getcwd(), "hatch")
+    with open(alias_path, "w") as f:
+        f.write("#!/bin/bash\n")
+        f.write("# Generated alias for hatch\n")
+        # Use python from the same environment as this script
+        # Escape spaces in executable path just in case, though usually not needed in shebang/bash context if quoted
+        python_exe = sys.executable.replace("\\", "/") 
+        f.write(f'"{python_exe}" -m hatch "$@"\n')
+    
+    # Make executable on POSIX (no-op on Windows purely, but good practice if in git bash)
+    try:
+        import stat
+        st = os.stat(alias_path)
+        os.chmod(alias_path, st.st_mode | stat.S_IEXEC)
+    except:
+        pass
+        
+    print(f"Created local hatch alias at: {alias_path}")
+
     run_step("Build Project", ["hatch", "build"], hatch_path)
     run_step("Generate ECS Fields", ["hatch", "run", "gen-ecs"], hatch_path)
     run_step("Run Tests", ["hatch", "run", "test", "tests/unit/test_refactored_scripts.py"], hatch_path)

@@ -23,40 +23,16 @@ import sys
 from types import ModuleType
 
 # Ensure the local package is actionable
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# if current_dir not in sys.path:
+#     sys.path.insert(0, current_dir)
 
 # Import submodules
-aws_cli: ModuleType | None
-try:
-    from .aws import cli as aws_cli
-except ImportError:
-    aws_cli = None
-
-mgmt_cli: ModuleType | None
-try:
-    from .management import cli as mgmt_cli
-except ImportError:
-    mgmt_cli = None
-
-azure_cli: ModuleType | None
-try:
-    from .azure import cli as azure_cli
-except ImportError:
-    azure_cli = None
-
-geoip_cli: ModuleType | None
-try:
-    from .geoip import cli as geoip_cli
-except ImportError:
-    geoip_cli = None
-
-gcp_cli: ModuleType | None
-try:
-    from .gcp import cli as gcp_cli
-except ImportError:
-    gcp_cli = None
+from .aws import cli as aws_cli
+from .management import cli as mgmt_cli
+from .azure import cli as azure_cli
+from .geoip import cli as geoip_cli
+from .gcp import cli as gcp_cli
 
 utils_csv: ModuleType | None
 try:
@@ -107,25 +83,20 @@ def main() -> None:
     subparsers.required = True
 
     # Register AWS commands
-    if aws_cli:
-        aws_parser = subparsers.add_parser("aws", help="AWS Utilities")
-        aws_cli.register_subcommand(aws_parser)
+    aws_parser = subparsers.add_parser("aws", help="AWS Utilities")
+    aws_cli.register_subcommand(aws_parser)
 
     # Register Management commands
-    if mgmt_cli:
-        mgmt_cli.register_subcommand(subparsers)
+    mgmt_cli.register_subcommand(subparsers)
 
     # Register Azure commands
-    if azure_cli:
-        azure_cli.register_subcommand(subparsers)
+    azure_cli.register_subcommand(subparsers)
 
     # Register GeoIP commands
-    if geoip_cli:
-        geoip_cli.register_subcommand(subparsers)
+    geoip_cli.register_subcommand(subparsers)
 
     # Register GCP commands
-    if gcp_cli:
-        gcp_cli.register_subcommand(subparsers)
+    gcp_cli.register_subcommand(subparsers)
 
     # Register ECS Generation command
     if ecs_lib:

@@ -24,7 +24,7 @@ dependencies = [
 ]
 
 [project.scripts]
-sof-elk = "sof_elk.cli:main"
+sof-elk = "sof_elk:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/sof_elk"]

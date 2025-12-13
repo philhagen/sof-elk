@@ -41,6 +41,12 @@ if ! check_hatch_module; then
 fi
 
 # Execute the command
-# We use 'python -m hatch run sof-elk' to ensure we use the installed module
-echo "Executing: $PYTHON_CMD -m hatch run sof-elk $@"
-"$PYTHON_CMD" -m hatch run sof-elk "$@"
+# Use local 'hatch' alias if available, otherwise fallback to python -m hatch
+if [ -f "./hatch" ]; then
+    HATCH_CMD="./hatch"
+else
+    HATCH_CMD="$PYTHON_CMD -m hatch"
+fi
+
+echo "Executing: $HATCH_CMD run sof-elk $@"
+$HATCH_CMD run sof-elk "$@"
