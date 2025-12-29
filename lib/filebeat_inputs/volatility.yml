@@ -1,0 +1,21 @@
+# SOF-ELK® Configuration File
+# (C)2025 Lewes Technology Consulting, LLC
+#
+# This file contains inputs for monitoring Volatility3 memory forensics output
+
+- type: filestream
+  id: volatility-01
+  paths:
+    - /logstash/volatility/**/*.json
+  prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$', '\.bak$', '\.old$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  parsers:
+    - ndjson:
+        target: ""
+        overwrite_keys: true
+        add_error_key: true
+  processors:
+    - add_labels:
+        labels:
+          type: volatility
