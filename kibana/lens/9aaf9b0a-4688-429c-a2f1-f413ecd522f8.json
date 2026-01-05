@@ -1,0 +1,73 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "21d6e708-8466-49b2-8314-8f512b717bd6": {
+              "columnOrder": [
+                "3b851116-1a9d-43a7-9c7d-c0a68e85cf62"
+              ],
+              "columns": {
+                "3b851116-1a9d-43a7-9c7d-c0a68e85cf62": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": " ",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "decimals": 0
+                      }
+                    }
+                  },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "ignoreGlobalFilters": false,
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layerId": "21d6e708-8466-49b2-8314-8f512b717bd6",
+        "layerType": "data",
+        "metricAccessor": "3b851116-1a9d-43a7-9c7d-c0a68e85cf62",
+        "secondaryTrend": {
+          "type": "none"
+        }
+      }
+    },
+    "title": "ICSNPP Record Count",
+    "visualizationType": "lnsMetric"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9aaf9b0a-4688-429c-a2f1-f413ecd522f8",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "icsnpp",
+      "name": "indexpattern-datasource-layer-21d6e708-8466-49b2-8314-8f512b717bd6",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

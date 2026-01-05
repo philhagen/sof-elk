@@ -1,0 +1,153 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "71558183-8e0c-4a7d-bb0b-dd0117347f1b": {
+              "columnOrder": [
+                "b461a5b5-c68e-4a8d-970e-16e9ec5467bb",
+                "80d5c1bf-e202-4e54-a098-328faae69ae2",
+                "7d204bc2-38d6-465a-a932-f51b9608eb55"
+              ],
+              "columns": {
+                "7d204bc2-38d6-465a-a932-f51b9608eb55": {
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count of records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "sourceField": "___records___"
+                },
+                "80d5c1bf-e202-4e54-a098-328faae69ae2": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top 5 values of omron_fins.command_name.keyword",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "7d204bc2-38d6-465a-a932-f51b9608eb55",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
+                  },
+                  "sourceField": "omron_fins.command_name.keyword"
+                },
+                "b461a5b5-c68e-4a8d-970e-16e9ec5467bb": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top 3 values of omron_fins.response_string.keyword",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "7d204bc2-38d6-465a-a932-f51b9608eb55",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 3
+                  },
+                  "sourceField": "omron_fins.response_string.keyword"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "layers": {}
+        },
+        "textBased": {
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": {
+                "type": "categorical"
+              },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": {
+                    "type": "loop"
+                  },
+                  "rules": [
+                    {
+                      "type": "other"
+                    }
+                  ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "71558183-8e0c-4a7d-bb0b-dd0117347f1b",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [
+              "7d204bc2-38d6-465a-a932-f51b9608eb55"
+            ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [
+              "80d5c1bf-e202-4e54-a098-328faae69ae2",
+              "b461a5b5-c68e-4a8d-970e-16e9ec5467bb"
+            ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "OMRON FINS Commands",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "48d75891-384f-4314-8083-43d7fbc9f271",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "icsnpp",
+      "name": "indexpattern-datasource-layer-71558183-8e0c-4a7d-bb0b-dd0117347f1b",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
