@@ -1,0 +1,163 @@
+{
+  "attributes": {
+    "description": "",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "currentIndexPatternId": "icsnpp",
+          "layers": {
+            "99085029-dacf-4ece-92cd-9e9fcd053c74": {
+              "columnOrder": [
+                "5d310f88-ac99-41c5-9bde-c84f0336e3fc",
+                "62cb3ca9-a15a-4c6b-adbb-3a0f7ad0749c",
+                "c1bc5cc2-0469-4502-8d32-664249eb0d14"
+              ],
+              "columns": {
+                "5d310f88-ac99-41c5-9bde-c84f0336e3fc": {
+                  "dataType": "boolean",
+                  "isBucketed": true,
+                  "label": "Top 20 values of modbus.matched",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c1bc5cc2-0469-4502-8d32-664249eb0d14",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 20
+                  },
+                  "sourceField": "modbus.matched"
+                },
+                "62cb3ca9-a15a-4c6b-adbb-3a0f7ad0749c": {
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Top 20 values of modbus.function_code.keyword",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c1bc5cc2-0469-4502-8d32-664249eb0d14",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 20
+                  },
+                  "sourceField": "modbus.function_code.keyword"
+                },
+                "c1bc5cc2-0469-4502-8d32-664249eb0d14": {
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Count of records",
+                  "operationType": "count",
+                  "params": {
+                    "emptyAsNull": true
+                  },
+                  "sourceField": "___records___"
+                }
+              },
+              "incompleteColumns": {},
+              "indexPatternId": "icsnpp",
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": {
+          "currentIndexPatternId": "icsnpp",
+          "layers": {}
+        },
+        "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "icsnpp",
+              "timeField": "@timestamp",
+              "title": "icsnpp-*"
+            }
+          ],
+          "layers": {}
+        }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": {
+        "language": "kuery",
+        "query": ""
+      },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": {
+                "type": "categorical"
+              },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": {
+                    "type": "loop"
+                  },
+                  "rules": [
+                    {
+                      "type": "other"
+                    }
+                  ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "99085029-dacf-4ece-92cd-9e9fcd053c74",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [
+              "c1bc5cc2-0469-4502-8d32-664249eb0d14"
+            ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [
+              "5d310f88-ac99-41c5-9bde-c84f0336e3fc",
+              "62cb3ca9-a15a-4c6b-adbb-3a0f7ad0749c"
+            ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "Modbus Functions",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b0a0a4a4-1576-4d57-88a5-5a19e64b0eee",
+  "managed": false,
+  "namespaces": [
+    "default"
+  ],
+  "references": [
+    {
+      "id": "icsnpp",
+      "name": "indexpattern-datasource-layer-99085029-dacf-4ece-92cd-9e9fcd053c74",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}
