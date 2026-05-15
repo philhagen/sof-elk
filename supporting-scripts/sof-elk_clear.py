@@ -103,7 +103,7 @@ def get_es_indices(es):
     index_dict = {}
     indices = list(es.indices.get_alias(index="*", expand_wildcards="open"))
     for index in indices:
-        baseindex = index.split("-")[0]
+        baseindex = "-".join(index.split("-")[:-1])
         if baseindex in index_dict:
             pass
         elif not any(compiled_reg.match(index) for compiled_reg in special_index_regex):
@@ -122,6 +122,7 @@ sourcedir_index_mapping = {
     "kape": "kape",
     "microsoft365": "microsoft365",
     "kubernetes": "kubernetes",
+    "volatility": "volatility"
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
@@ -271,7 +272,6 @@ if args.reload:
     print("will re-load the following files:")
     for match in matches:
         print("- %s" % (match))
-    print
 
     if not confirm(prompt="Reload these files?", resp=False):
         print("Will NOT reload from files.  Exiting.")

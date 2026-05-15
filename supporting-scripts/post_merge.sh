@@ -36,10 +36,10 @@ done
 systemctl restart logstash
 
 # create necessary ingest directories (don't forget to add new ones to ansible's filebeat role)
-ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility/pslist"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d "/logstash/${ingest_dir}" ]; then
-        mkdir -m 1777 "/logstash/${ingest_dir}"
+        mkdir -m 1777 -p "/logstash/${ingest_dir}"
     fi
 done
 
