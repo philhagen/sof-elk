@@ -755,6 +755,7 @@ process.client.StartKey,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 process.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
+process.end,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-end
 process.entity_id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.entity_id,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -763,8 +764,11 @@ process.executable,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/r
 process.executable,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.executable,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
+process.executable,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.exit_code,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-exit-code
 process.exit_code,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-exit-code
+process.file_output,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.handle.count,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
 process.hash.md5,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-md5
 process.hash.md5,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-md5
 process.hash.md5,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-md5
@@ -773,6 +777,7 @@ process.hash.sha256,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/refe
 process.hash.sha256,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-sha256
 process.library.entity_id,,appleul,,6060-appleul.conf,SOF-ELK,
 process.library.name,,appleul,,6060-appleul.conf,SOF-ELK,
+process.offset,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
 process.parent.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -783,6 +788,7 @@ process.parent.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/doc
 process.parent.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.parent.pid,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pe.company,copy of winlog.event_data.Company,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-company
 process.pe.company,copy of winlog.event_data.Company,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-company
 process.pe.description,copy of winlog.event_data.Description,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-description
@@ -802,16 +808,22 @@ process.pid,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ec
 process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.pid,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.session_id,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
 process.source.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.source.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.source.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.start,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-start
+process.status,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.thread.count,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
 process.thread.id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
 process.thread.id,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
 process.user.id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
 process.working_directory,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
 process.working_directory,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
 process.working_directory,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
+process.wow64,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
 related.hash,,hayabusa,,6605-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
 related.hash,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
 related.hash,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
