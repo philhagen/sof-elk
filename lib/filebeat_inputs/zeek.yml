@@ -26,6 +26,7 @@
   processors:
     - add_labels:
        labels:
+#TODO: we are ingesting zeek_dns type here but i dont think this is in the preprocess_all file (maybe others???)
          type: zeek_dns
   tags: [ 'zeek' ]
 
