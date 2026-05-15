@@ -76,7 +76,7 @@ for file in csv2json.py fw_modify.sh geoip_bootstrap.sh geoip_update_logstash.sh
 
     ln -s "${filepath}" "/usr/local/sbin/${file}"
 done
-for deadlink in /etc/cron.d/* ; do
+for deadlink in /usr/local/sbin/* ; do
     if [ ! -e "${deadlink}" ] ; then
         rm -f "${deadlink}"
     fi
