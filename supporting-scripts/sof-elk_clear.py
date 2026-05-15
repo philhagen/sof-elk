@@ -122,7 +122,7 @@ sourcedir_index_mapping = {
     "kape": "kape",
     "microsoft365": "microsoft365",
     "kubernetes": "kubernetes",
-    "volatility": "volatility"
+    "volatility/pslist": "volatility-pslist"
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
