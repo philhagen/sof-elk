@@ -583,6 +583,8 @@ kubernetes.node.hostname,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.
 kubernetes.pod.name,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
 kubernetes.pod.uid,,kubernetes,,6952-kubernetes.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-kubernetes-processor
 labels.type,Assigned by fileabeat inputs' processors,all,,N/A - assigned by filebeat,ECS,https://www.elastic.co/docs/reference/ecs/ecs-base#field-labels
+local.ip,,volatility,,6620-volatility-common.conf,SOF-ELK,
+local.port,,volatility,,6620-volatility-common.conf,SOF-ELK,
 log.level,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log#field-log-level
 log.level,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
 log.level,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-log
@@ -671,6 +673,7 @@ network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 network.packets_vis,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.packets,Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
 network.pcr,Producer/consumer ratio; Runtime field created via Elasticsearch template,N/A,,index-netflow.json,SOF-ELK,
+network.state,,volatility,,6620-volatility-common.conf,SOF-ELK,
 network.subnetwork.id,,netflow,,2050-netflow.conf,SOF-ELK,
 network.subnetwork.name,,netflow,,2050-netflow.conf,SOF-ELK,
 network.tcp_flags_hex,created by tcp_flags_to_array.rb,netflow,,2050-netflow.conf,SOF-ELK,
@@ -684,10 +687,12 @@ network.transport,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/re
 network.transport,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
+network.transport,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_dns,,6200-zeek_dns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
+network.type,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-type
 next_hop.ip,,netflow,,2050-netflow.conf,SOF-ELK,
 o365.audit.*,entire original log is repopulated here,microsoft365,,6701-microsoft365.conf,SOF-ELK,
 o365.audit.ActorIPAddress,,microsoft365,,6701-microsoft365.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-o365#_o365_audit
@@ -755,7 +760,7 @@ process.client.StartKey,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 process.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
-process.end,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-end
+process.end,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-end
 process.entity_id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.entity_id,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -764,11 +769,11 @@ process.executable,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/r
 process.executable,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.executable,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
-process.executable,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
+process.executable,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.exit_code,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-exit-code
 process.exit_code,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-exit-code
-process.file_output,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
-process.handle.count,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.file_output,,volatility,,6620-volatility-common.conf,SOF-ELK,
+process.handle.count,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.hash.md5,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-md5
 process.hash.md5,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-md5
 process.hash.md5,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-md5
@@ -777,7 +782,7 @@ process.hash.sha256,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/refe
 process.hash.sha256,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-sha256
 process.library.entity_id,,appleul,,6060-appleul.conf,SOF-ELK,
 process.library.name,,appleul,,6060-appleul.conf,SOF-ELK,
-process.offset,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.offset_v,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.parent.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -788,7 +793,7 @@ process.parent.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/doc
 process.parent.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
-process.parent.pid,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.parent.pid,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pe.company,copy of winlog.event_data.Company,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-company
 process.pe.company,copy of winlog.event_data.Company,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-company
 process.pe.description,copy of winlog.event_data.Description,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-pe#field-pe-description
@@ -808,22 +813,22 @@ process.pid,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ec
 process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
-process.pid,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.pid,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
-process.session_id,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.session_id,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.source.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.source.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.source.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
-process.start,,volatility,,6621-volatility-pslist.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-start
-process.status,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
-process.thread.count,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.start,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-start
+process.status,,volatility,,6620-volatility-common.conf,SOF-ELK,
+process.thread.count,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.thread.id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
 process.thread.id,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/guide/en/ecs/1.12/ecs-process.html#field-process-thread-id
 process.user.id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-id
 process.working_directory,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
 process.working_directory,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
 process.working_directory,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-working-directory
-process.wow64,,volatility,,6621-volatility-pslist.conf,SOF-ELK,
+process.wow64,,volatility,,6620-volatility-common.conf,SOF-ELK,
 related.hash,,hayabusa,,6605-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
 related.hash,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
 related.hash,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
@@ -846,7 +851,9 @@ remote.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addr
 remote.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
 remote.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 remote.ip,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
+remote.ip,,volatility,,6620-volatility-common.conf,SOF-ELK,
 remote.port,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
+remote.port,,volatility,,6620-volatility-common.conf,SOF-ELK,
 rule.id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
 rule.level,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
 rule.name,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name

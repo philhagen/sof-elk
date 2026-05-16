@@ -122,7 +122,12 @@ sourcedir_index_mapping = {
     "kape": "kape",
     "microsoft365": "microsoft365",
     "kubernetes": "kubernetes",
-    "volatility/pslist": "volatility-pslist"
+    "volatility/pslist": "volatility",
+    "volatility/pstree": "volatility",
+    "volatility/psscan": "volatility",
+    "volatility/netscan": "volatility",
+    "volatility/cmdline": "volatility",
+    "volatility/netstat": "volatility"
 }
 # automatically create the reverse dictionary
 index_sourcedir_mapping = {}
