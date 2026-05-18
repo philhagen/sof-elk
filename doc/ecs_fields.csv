@@ -754,12 +754,16 @@ passivedns.cache_hits,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 plaso.datasource,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.datasourcetype,,plaso,,6601-plaso.conf,SOF-ELK,
 plaso.eventtype,,plaso,,6601-plaso.conf,SOF-ELK,
+process.audit,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.BackupPath,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
+process.child_count,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.client.pid,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 process.client.StartKey,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 process.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
+process.command_line,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
+process.depth,,volatility,,6620-volatility-common.conf,SOF-ELK,,
 process.end,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-end
 process.entity_id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -782,6 +786,7 @@ process.hash.sha256,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/refe
 process.hash.sha256,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-hash#field-hash-sha256
 process.library.entity_id,,appleul,,6060-appleul.conf,SOF-ELK,
 process.library.name,,appleul,,6060-appleul.conf,SOF-ELK,
+process.name,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-name
 process.offset_v,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.parent.command_line,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
