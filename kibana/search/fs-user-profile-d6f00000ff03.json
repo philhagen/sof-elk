@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "file.path",
+      "file.size",
+      "file.extension",
+      "file.stdinfo.created",
+      "file.stdinfo.mtime",
+      "kape.mft.inuse"
+    ],
+    "description": "Everything under C:\\Users\\<user>\\... EXCEPT the noisy Microsoft/AppData/SystemData paths. Focused on the directories where users actually keep things: Desktop, Documents, Pictures, Videos, plus any new top-level folder a user created in their profile. Filter further by user (user.name) when investigating one actor.",
+    "grid": {
+      "columns": {
+        "file.path":            { "width": 520 },
+        "file.size":            { "width": 100 },
+        "file.extension":       { "width": 80  },
+        "file.stdinfo.created": { "width": 200 },
+        "file.stdinfo.mtime":   { "width": 200 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.path : *\\\\\\\\Users\\\\\\\\* and not file.path : *\\\\\\\\AppData\\\\\\\\* and not file.path : *\\\\\\\\Microsoft\\\\\\\\* and not file.path : *NTUSER* and not file.path : *UsrClass*\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Filesystem: User Profile (Desktop/Documents/Pictures — non-AppData)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "filesystem", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

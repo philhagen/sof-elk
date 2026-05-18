@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "host.name",
+      "shellbag.absolute_path",
+      "shellbag.first_interacted",
+      "shellbag.last_interacted",
+      "shellbag.source_hive"
+    ],
+    "description": "Only shellbag entries where HasExplored = true — i.e. the user actually opened the folder in Explorer (vs. paths inferred from child bags). This eliminates a major source of false positives in shellbag analysis and is what you usually want to show in court or in an HR finding.",
+    "grid": {
+      "columns": {
+        "shellbag.absolute_path": { "width": 480 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"shellbag.has_explored : true\"},\"version\":true}"
+    },
+    "sort": [["shellbag.last_interacted","desc"]],
+    "timeRestore": false,
+    "title": "Shellbags: Confirmed User-Explored Folders",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "shellbags", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

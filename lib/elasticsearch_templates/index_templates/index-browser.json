@@ -1,0 +1,70 @@
+{
+  "index_patterns": [
+    "browser-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "total_fields": {
+            "limit": 2000
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "browser": {
+          "properties": {
+            "record_type":      { "type": "keyword" },
+            "timestamp_utc":    { "type": "keyword" },
+            "url":              { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "title":            { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 4096 },
+            "data":             { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "interpretation":   { "type": "text" },
+            "profile_path":     { "type": "keyword" },
+            "profile_user":     { "type": "keyword" },
+            "profile_name":     { "type": "keyword" },
+            "family":           { "type": "keyword" },
+            "source":           { "type": "keyword" },
+            "visit": {
+              "properties": {
+                "id":          { "type": "keyword" },
+                "from_id":     { "type": "keyword" },
+                "duration":    { "type": "long" },
+                "count":       { "type": "integer" },
+                "typed_count": { "type": "integer" },
+                "url_hidden":  { "type": "keyword" },
+                "transition":  { "type": "keyword" }
+              }
+            },
+            "download": {
+              "properties": {
+                "interrupt_reason": { "type": "keyword" },
+                "danger_type":      { "type": "keyword" },
+                "opened":           { "type": "keyword" }
+              }
+            },
+            "cache": {
+              "properties": {
+                "etag":          { "type": "keyword" },
+                "last_modified": { "type": "keyword" },
+                "http_headers":  { "type": "text" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK",
+    "purpose": "Chromium-browser internet history parsed by Hindsight (obsidianforensics). Covers Edge, Chrome, Brave, Opera, Vivaldi. Record types: download, url, autofill, site setting (modified/engagement), preference (session). Primary insider-threat focus is downloads (with danger_type + opened? + file extension classification) plus URL categorization (file-sharing, personal cloud storage, webmail, job search, AI assistants, canary tokens)."
+  }
+}

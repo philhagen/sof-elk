@@ -1,0 +1,39 @@
+{
+  "attributes": {
+    "columns": [
+      "_index",
+      "user.name",
+      "host.name",
+      "message"
+    ],
+    "description": "Everything everywhere all at once — every record from every artifact (shellbags, prefetch, registry, browser, MFT, LNK, EVTX) sorted by @timestamp. Walk the user's day chronologically without switching dashboards. Use the _index column to see which artifact each row came from.",
+    "grid": {
+      "columns": {
+        "_index":      { "width": 180 },
+        "user.name":   { "width": 110 },
+        "host.name":   { "width": 140 },
+        "message":     { "width": 720 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Insider Threat: Unified Timeline (every artifact)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "insider-threat", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

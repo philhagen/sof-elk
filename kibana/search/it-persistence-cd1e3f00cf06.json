@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "_index",
+      "user.name",
+      "host.name",
+      "tags",
+      "winlog.event_id",
+      "message"
+    ],
+    "description": "Persistence + threat-hunting findings across registry and EVTX. Registry-side: Run keys, RunOnce, services, scheduled tasks, IFEO debugger hijacks, AppInit_DLLs, startup folder, plus the curated 'Threat Hunting' batch category. EVTX-side: service installs (7045), service status changes (7036), scheduled task created/modified/deleted/enabled (4697/4698/4699/4700/4701/4702). If something installed itself to outlive a reboot, it should appear here.",
+    "grid": {
+      "columns": {
+        "_index":           { "width": 180 },
+        "user.name":        { "width": 110 },
+        "tags":             { "width": 280 },
+        "winlog.event_id":  { "width": 100 },
+        "message":          { "width": 640 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"(_index : registry-* and tags : (registry_autorun_or_persistence or registry_threat_hunting)) or (_index : evtxlogs-* and winlog.event_id : (7045 or 7036 or 4697 or 4698 or 4699 or 4700 or 4701 or 4702))\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Insider Threat: Persistence & Autoruns (registry + EVTX)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf06",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "insider-threat", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

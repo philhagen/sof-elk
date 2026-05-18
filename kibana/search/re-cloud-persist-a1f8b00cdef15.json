@@ -1,0 +1,39 @@
+{
+  "attributes": {
+    "columns": [
+      "registry.description",
+      "registry.category",
+      "registry.value_name",
+      "registry.value_data",
+      "registry.key_path",
+      "host.name"
+    ],
+    "description": "Two high-signal categories combined: (1) Cloud Storage sync paths — OneDrive / Dropbox / Google Drive / Box / iCloud configuration revealing what was synced offsite; (2) Autoruns / persistence — Run keys, scheduled tasks, services, IFEO debugger hijacks, AppInit_DLLs, startup folders. Also includes the curated 'Threat Hunting' bucket from the batch file.",
+    "grid": {
+      "columns": {
+        "registry.description":  { "width": 220 },
+        "registry.value_data":   { "width": 380 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : (registry_cloud_storage or registry_autorun_or_persistence or registry_threat_hunting)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Registry: Cloud Sync + Persistence + Threat Hunting",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a1f8b00c-def0-11ef-b0a2-1e0b97a5af15",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "registry", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

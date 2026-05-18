@@ -1,0 +1,39 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "host.name",
+      "shellbag.absolute_path",
+      "shellbag.shell_item.created",
+      "shellbag.shell_item.mtime",
+      "shellbag.last_interacted",
+      "shellbag.miscellaneous"
+    ],
+    "description": "NTFS-backed shellbag entries with no resolvable MFT entry — the folder existed (shellbag retains the navigation evidence) but isn't currently present in the live filesystem. Possible deletion / anti-forensics. Confirm against MFT and $J before concluding.",
+    "grid": {
+      "columns": {
+        "shellbag.absolute_path": { "width": 480 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : shellbag_possibly_deleted\"},\"version\":true}"
+    },
+    "sort": [["shellbag.last_interacted","desc"]],
+    "timeRestore": false,
+    "title": "Shellbags: Possibly Deleted Folders",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "shellbags", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,12 +1,26 @@
 #!/usr/bin/env python3
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
-# This script will read a CSV file, use the first line as headers, then convert each row of data
-#   to JSON and add the JSON object to an output file.  Field types (null, boolean, integer, float,
-#   and string) are preserved, and fields consisting of empty strings will be removed from the JSON.
-#   Field names will be normalized by lowercasing them, replacing spaces with underscores, and
-#   removing any characters except [a-z1-9_-]
+# This script reads a CSV file, uses the first line as headers, then converts
+# each row of data to JSON and writes one JSON object per line to an output
+# file. Field types (null, boolean, integer, float, and string) are preserved;
+# fields with empty strings are removed; field names are normalized by
+# lowercasing them, replacing spaces with underscores, and removing any
+# characters except [a-z0-9_-].
+#
+# Eric Zimmerman ("EZ") forensic tools support (Kape modules + standalone):
+#   - UTF-8 with BOM (RECmd batch output, RegistryExplorer exports)
+#   - UTF-16 LE/BE (PowerShell-redirected output: "RECmd ... > out.csv")
+#   - Plain UTF-8 (most tools: PECmd, SBECmd, LECmd, MFTECmd, EvtxECmd,
+#     JLECmd, AmcacheParser, AppCompatCacheParser, ...)
+#   - Embedded NUL bytes from RegBinary values, $FILE_NAME bytes, and other
+#     binary-derived fields (these break Python's stdlib csv reader otherwise)
+#   - Very large single fields (PECmd FilesLoaded, RECmd ValueData on big
+#     registry values) — csv.field_size_limit is raised to 10 MB.
+#
+# Usage:
+#   csv2json.py -r INPUT.csv -w OUTPUT.json [-t TAG ...] [-e ENCODING]
 
 import csv
 import json
@@ -14,16 +28,57 @@ import argparse
 import re
 import sys
 
+# EZ Tools sometimes pack 50+ KB into a single CSV field (PECmd FilesLoaded,
+# RECmd ValueData on large registry values). Python's default field_size_limit
+# is 128 KB on some platforms — raise to 10 MB for headroom.
+csv.field_size_limit(10 * 1024 * 1024)
 
-def normalize_field_name(name):
-    """Normalize field name by removing special characters, replacing spaces with underscores, and lowercasing."""
+
+def detect_encoding(filename):
+    """Sniff the first bytes of the file to determine encoding.
+
+    Returns one of: 'utf-8-sig', 'utf-16', or 'utf-8'. The 'utf-16' codec
+    handles both BE (FE FF) and LE (FF FE) BOMs.
+    """
+    with open(filename, "rb") as f:
+        head = f.read(4)
+    if head.startswith(b"\xef\xbb\xbf"):
+        return "utf-8-sig"
+    if head.startswith(b"\xff\xfe") or head.startswith(b"\xfe\xff"):
+        return "utf-16"
+    return "utf-8"
+
+
+def strip_nuls(line_iterator):
+    """Strip NUL bytes from each line.
+
+    Embedded NUL bytes occur in RECmd RegBinary value content, MFTECmd
+    $FILE_NAME raw bytes, and other binary-derived columns. Python's csv
+    reader raises `_csv.Error: line contains NUL` on the first one.
+    """
+    for line in line_iterator:
+        # Fast path: no NUL → yield as-is. Most lines won't have any.
+        yield line.replace("\x00", "") if "\x00" in line else line
+
+
+def normalize_field_name(name, preserve_case=False):
+    """Normalize field name: spaces -> underscores, drop non-[a-zA-Z0-9_-]; lowercase by default.
+
+    When preserve_case=True, keep the original casing. This is the right mode
+    for feeding the existing SOF-ELK KAPE parsers (6501/6503/6504) which were
+    built around EZ Tools' native PascalCase JSON output (BagPath, FileName,
+    TimeCreated, etc.) — csv2json'd output needs to match that schema or the
+    upstream rename blocks won't fire.
+    """
+    if not name:
+        return ""
     fieldname = name.replace(" ", "_")
     fieldname = re.sub(r"[^a-zA-Z0-9\-_]", "", fieldname)
-    return fieldname.lower()
+    return fieldname if preserve_case else fieldname.lower()
 
 
 def convert_value(value):
-    """Convert string value to appropriate data type."""
+    """Convert string value to appropriate data type (null, bool, int, float, str)."""
     if value is None:
         return None
     elif value.lower() == "false":
@@ -58,23 +113,35 @@ def remove_empty_fields(obj):
         return obj
 
 
-def process_csv_to_json(csv_filename, json_filename, tags):
+def process_csv_to_json(csv_filename, json_filename, tags, encoding=None, preserve_case=False):
     """Convert CSV file to JSON."""
-    try:
-        with open(csv_filename, "r") as csvfile, open(json_filename, "w") as jsonfile:
-            field_name_translate = str.maketrans({"(": None, ")": None, " ": "_"})
+    if encoding is None:
+        encoding = detect_encoding(csv_filename)
 
-            reader = csv.DictReader(csvfile)
+    try:
+        # errors="replace" is a safety net so a single mangled byte in a
+        # 100 MB forensic CSV doesn't abort the whole conversion. The bad
+        # bytes become U+FFFD and the rest of the row still ingests.
+        with open(csv_filename, "r", encoding=encoding, errors="replace") as csvfile, \
+             open(json_filename, "w") as jsonfile:
+
+            cleaned = strip_nuls(csvfile)
+            reader = csv.DictReader(cleaned)
+            row_count = 0
+
             for row in reader:
+                # Guard against None keys (which can happen when EZ Tools
+                # writes a trailing comma producing an extra unnamed column)
                 newrow = {
-                    normalize_field_name(k): convert_value(v) for k, v in row.items()
+                    normalize_field_name(k, preserve_case): convert_value(v)
+                    for k, v in row.items() if k
                 }
                 newrow = remove_empty_fields(newrow)
 
-                if tags != None:
+                if tags is not None:
                     if "tags" in newrow:
                         # just split on spaces for now - will adjust in future if data requires it
-                        newrow["tags"] = newrow["tags"].split(" ")
+                        newrow["tags"] = newrow["tags"].split(" ") if isinstance(newrow["tags"], str) else list(newrow["tags"])
                     else:
                         newrow["tags"] = []
 
@@ -83,6 +150,12 @@ def process_csv_to_json(csv_filename, json_filename, tags):
 
                 json.dump(newrow, jsonfile)
                 jsonfile.write("\n")
+                row_count += 1
+
+            # Brief stderr summary so batch-conversion scripts can log progress
+            sys.stderr.write(
+                f"csv2json: {row_count} rows  {csv_filename} -> {json_filename}  (encoding={encoding})\n"
+            )
 
     except FileNotFoundError:
         sys.stderr.write(f"ERROR: File '{csv_filename}' not found.\n")
@@ -93,7 +166,9 @@ def process_csv_to_json(csv_filename, json_filename, tags):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convert CSV file to JSON.")
+    parser = argparse.ArgumentParser(
+        description="Convert a CSV file (Eric Zimmerman forensic tools, etc.) to one-JSON-per-line."
+    )
     parser.add_argument(
         "-r", "--read", dest="infile", help="CSV input file to process", required=True
     )
@@ -111,6 +186,25 @@ if __name__ == "__main__":
         help='Optional string to add to "tags" field - can be used multiple times',
         action="append",
     )
+    parser.add_argument(
+        "-e",
+        "--encoding",
+        dest="encoding",
+        help="Force input encoding (e.g., utf-8, utf-8-sig, utf-16, latin-1). "
+             "Auto-detected from BOM by default; specify only if auto-detection fails.",
+    )
+    parser.add_argument(
+        "-p",
+        "--preserve-case",
+        dest="preserve_case",
+        action="store_true",
+        help="Keep original field-name casing instead of lowercasing. "
+             "Use this when feeding the upstream SOF-ELK KAPE parsers "
+             "(6501-kape_mftecmd, 6503-kape_lecmd, 6504-kape_evtxecmd) which "
+             "expect EZ Tools' native PascalCase keys (BagPath, FileName, "
+             "TimeCreated, etc.). Default is lowercase for the newer "
+             "shellbags/prefetch/registry/browser parsers.",
+    )
     args = parser.parse_args()
 
-    process_csv_to_json(args.infile, args.outfile, args.tags)
+    process_csv_to_json(args.infile, args.outfile, args.tags, args.encoding, args.preserve_case)

@@ -17,9 +17,25 @@
           }
         }
       }
+    },
+    "mappings": {
+      "properties": {
+        "winlog": {
+          "properties": {
+            "payload": {
+              "properties": {
+                "event_data":    { "type": "flattened" },
+                "user_data":     { "type": "flattened" },
+                "payload_data":  { "type": "flattened" }
+              }
+            }
+          }
+        }
+      }
     }
-  },  
+  },
   "_meta": {
-    "provider": "SOF-ELK"
+    "provider": "SOF-ELK",
+    "note": "winlog.payload.{event_data,user_data,payload_data} are mapped as flattened so they tolerate arbitrary heterogeneous nested fields from EVTX events (e.g., Security 4624 vs SMBServer Security 1006 have completely different EventData/UserData schemas). Without this, ES dynamically maps the first occurrence as text and rejects every subsequent event whose same field happens to be a structured object."
   }
 }

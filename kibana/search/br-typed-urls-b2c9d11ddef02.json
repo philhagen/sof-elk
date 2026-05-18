@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.visit.typed_count",
+      "browser.url",
+      "browser.title",
+      "browser.visit.count"
+    ],
+    "description": "URLs the user TYPED into the address bar (typed_count > 0). Distinguishes 'I typed mega.nz' from 'I clicked a link that went to mega.nz'. Strong intent signal — typed URLs almost always reflect deliberate navigation.",
+    "grid": {
+      "columns": {
+        "user.name":                  { "width": 110 },
+        "browser.family":             { "width": 90  },
+        "browser.visit.typed_count":  { "width": 80  },
+        "browser.url":                { "width": 480 },
+        "browser.title":              { "width": 280 },
+        "browser.visit.count":        { "width": 80  }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : browser_url_typed\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Browser: Typed URLs (typed_count > 0)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b2c9d11d-def0-11ef-b0a2-1e0b97a5bf02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

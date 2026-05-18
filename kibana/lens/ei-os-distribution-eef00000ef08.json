@@ -1,0 +1,104 @@
+{
+  "attributes": {
+    "description": "OS distribution across all hosts whose registry hives have been ingested. Sourced from RECmd batch output of HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProductName (extracted into host.os.name by the 6507 parser).",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "ei-osdist-layer-08": {
+              "columnOrder": [
+                "ei-col-osname",
+                "ei-col-count"
+              ],
+              "columns": {
+                "ei-col-osname": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "OS",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "ei-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": { "id": "terms" },
+                    "size": 20
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "host.os.name.keyword"
+                },
+                "ei-col-count": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": { "layers": {} },
+        "textBased": { "layers": {} }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": { "language": "kuery", "query": "host.os.name:*" },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": { "type": "categorical" },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": { "type": "loop" },
+                  "rules": [ { "type": "other" } ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "ei-osdist-layer-08",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [ "ei-col-count" ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [ "ei-col-osname" ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "OS Distribution (from Registry)",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf08",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    {
+      "id": "registry",
+      "name": "indexpattern-datasource-layer-ei-osdist-layer-08",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

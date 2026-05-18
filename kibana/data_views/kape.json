@@ -6,6 +6,6 @@
     "id": "kape",
     "name": "kape-*",
     "timeFieldName": "@timestamp",
-    "title": "filefolderaccess-*,filesystem-*,lnkfiles-*,evtxlogs-*"
+    "title": "filefolderaccess-*,filesystem-*,lnkfiles-*,evtxlogs-*,shellbags-*,prefetch-*,registry-*"
   }
 }

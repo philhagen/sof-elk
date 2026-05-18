@@ -1,0 +1,30 @@
+{
+  "attributes": {
+    "description": "Evidence Inventory dashboard — what evidence do we have, when does it cover, and what kind of host did it come from? Top strip shows OS distribution (from Registry ProductName) and host roles (DC / File Server / Endpoint, combined from Registry ProductType + EVTX event-source signals). Below that, one row per artifact index showing every ingested source file with record count and first/last event timestamps. Use this as the first stop in any insider-threat investigation: answers 'do I have what I need, and what's the time window?' before you dive into the per-artifact dashboards.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"ei-p1\",\"w\":24,\"x\":0,\"y\":0},\"panelIndex\":\"ei-p1\",\"panelRefName\":\"panel_ei-p1\",\"title\":\"OS Distribution — from Registry HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\ProductName\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"ei-p2\",\"w\":24,\"x\":24,\"y\":0},\"panelIndex\":\"ei-p2\",\"panelRefName\":\"panel_ei-p2\",\"title\":\"Host Roles — combined from Registry ProductType + EVTX event-source signals\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p3\",\"w\":24,\"x\":0,\"y\":14},\"panelIndex\":\"ei-p3\",\"panelRefName\":\"panel_ei-p3\",\"title\":\"Shellbags — files ingested, line counts, first/last @timestamp per file\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p4\",\"w\":24,\"x\":24,\"y\":14},\"panelIndex\":\"ei-p4\",\"panelRefName\":\"panel_ei-p4\",\"title\":\"Prefetch — files ingested, line counts, first/last @timestamp per file (counts reflect post-explode events, not original CSV rows)\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p5\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"ei-p5\",\"panelRefName\":\"panel_ei-p5\",\"title\":\"Registry — files ingested, line counts, first/last @timestamp per file\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p6\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"ei-p6\",\"panelRefName\":\"panel_ei-p6\",\"title\":\"Browser History — files ingested, line counts, first/last @timestamp per file\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p7\",\"w\":24,\"x\":0,\"y\":38},\"panelIndex\":\"ei-p7\",\"panelRefName\":\"panel_ei-p7\",\"title\":\"LNK Files — files ingested, line counts, first/last @timestamp per file\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p8\",\"w\":24,\"x\":24,\"y\":38},\"panelIndex\":\"ei-p8\",\"panelRefName\":\"panel_ei-p8\",\"title\":\"Event Logs — files ingested, line counts, first/last @timestamp per file\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ei-p9\",\"w\":48,\"x\":0,\"y\":50},\"panelIndex\":\"ei-p9\",\"panelRefName\":\"panel_ei-p9\",\"title\":\"Filesystem ($MFT / $J) — files ingested, line counts, first/last @timestamp per file\",\"type\":\"lens\"}]",
+    "timeRestore": false,
+    "title": "Evidence Inventory — Insider Threat",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf08", "name": "ei-p1:panel_ei-p1", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf09", "name": "ei-p2:panel_ei-p2", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf01", "name": "ei-p3:panel_ei-p3", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf02", "name": "ei-p4:panel_ei-p4", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf03", "name": "ei-p5:panel_ei-p5", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf04", "name": "ei-p6:panel_ei-p6", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf05", "name": "ei-p7:panel_ei-p7", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf06", "name": "ei-p8:panel_ei-p8", "type": "lens" },
+    { "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf07", "name": "ei-p9:panel_ei-p9", "type": "lens" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

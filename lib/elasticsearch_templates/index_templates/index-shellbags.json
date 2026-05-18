@@ -1,0 +1,52 @@
+{
+  "index_patterns": [
+    "shellbags-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "mappings": {
+      "properties": {
+        "shellbag": {
+          "properties": {
+            "bag_path":              { "type": "keyword" },
+            "slot":                  { "type": "integer" },
+            "node_slot":             { "type": "integer" },
+            "mru_position":          { "type": "integer" },
+            "absolute_path":         { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "shell_type":            { "type": "keyword" },
+            "value":                 { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "child_bag_count":       { "type": "integer" },
+            "extension_block_count": { "type": "integer" },
+            "has_explored":          { "type": "boolean" },
+            "miscellaneous":         { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "source_user":           { "type": "keyword" },
+            "source_hive":           { "type": "keyword" },
+            "first_interacted":      { "type": "date" },
+            "last_interacted":       { "type": "date" },
+            "shell_item": {
+              "properties": {
+                "created":  { "type": "date" },
+                "mtime":    { "type": "date" },
+                "accessed": { "type": "date" }
+              }
+            },
+            "registry": {
+              "properties": {
+                "last_write": { "type": "date" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK",
+    "purpose": "Windows Explorer ShellBags parsed by SBECmd (Eric Zimmerman) via KAPE. Folder-navigation evidence keyed on first/last interaction times — primary use case is insider-threat and unauthorized-access investigations."
+  }
+}

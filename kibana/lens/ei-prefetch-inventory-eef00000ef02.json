@@ -1,0 +1,113 @@
+{
+  "attributes": {
+    "description": "Evidence inventory for the prefetch-* index: one row per ingested source file, with record count, first event @timestamp, and last event @timestamp. NOTE: PECmd parser explodes each prefetch record into LastRun + up to 7 PreviousRuns docs — the Records column reflects exploded events, not original CSV lines.",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "ei-prefetch-layer-02": {
+              "columnOrder": [
+                "ei-col-source",
+                "ei-col-count",
+                "ei-col-first",
+                "ei-col-last"
+              ],
+              "columns": {
+                "ei-col-source": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Source File",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "ei-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": { "id": "terms" },
+                    "size": 200
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "sof-elk.path"
+                },
+                "ei-col-count": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records (post-explode)",
+                  "operationType": "count",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                },
+                "ei-col-first": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "First Event",
+                  "operationType": "min",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                },
+                "ei-col-last": {
+                  "customLabel": true,
+                  "dataType": "date",
+                  "isBucketed": false,
+                  "label": "Last Event",
+                  "operationType": "max",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "@timestamp"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": { "layers": {} },
+        "textBased": { "layers": {} }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": { "language": "kuery", "query": "" },
+      "visualization": {
+        "columns": [
+          { "columnId": "ei-col-source" },
+          { "columnId": "ei-col-count",  "isMetric": true, "isTransposed": false },
+          { "columnId": "ei-col-first",  "isMetric": true, "isTransposed": false },
+          { "columnId": "ei-col-last",   "isMetric": true, "isTransposed": false }
+        ],
+        "headerRowHeight": "single",
+        "headerRowHeightLines": 1,
+        "layerId": "ei-prefetch-layer-02",
+        "layerType": "data",
+        "paging": { "enabled": true, "size": 20 },
+        "rowHeight": "single",
+        "rowHeightLines": 1
+      }
+    },
+    "title": "Prefetch — Evidence Inventory",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    {
+      "id": "prefetch",
+      "name": "indexpattern-datasource-layer-ei-prefetch-layer-02",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

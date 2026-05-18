@@ -1,0 +1,36 @@
+{
+  "attributes": {
+    "columns": [
+      "prefetch.executable_name",
+      "prefetch.executable_path",
+      "prefetch.run_count",
+      "host.name"
+    ],
+    "description": "Executables with RunCount = 1 (filtered to the canonical LastRun event so you see one row per binary). Single-run binaries are interesting because legitimate user-installed software is typically run repeatedly; one-shot executions often correspond to scripts/tools brought in for a specific task.",
+    "grid": {
+      "columns": {
+        "prefetch.executable_path": { "width": 440 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : prefetch_single_run and prefetch.run_kind : last\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Prefetch: Single-Run Executables",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "prefetch", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

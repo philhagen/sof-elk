@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "file.path",
+      "file.extension",
+      "file.size",
+      "file.update_reasons",
+      "file.update_sequence_number"
+    ],
+    "description": "USN $J file_delete events filtered to file extensions that are forensically interesting when DELETED — scripts (ps1/psm1/psd1/bat/cmd/sh/bash/py/vbs/js/hta/wsf/pl/rb) plus executables and archives (exe/zip/7z/rar/tar/gz/gzip/tgz). Classic insider / attacker cleanup pattern: drop a tool, run it, then delete it to hide the trail. A series of these in quick succession after a sensitive period (Friday afternoon before a Monday resignation, e.g.) is high signal. Cross-reference with the Prefetch dashboard — if the deleted .exe also has a prefetch entry, you've got hard evidence the binary actually ran before being scrubbed.",
+    "grid": {
+      "columns": {
+        "file.path":                  { "width": 540 },
+        "file.extension":             { "width": 90  },
+        "file.size":                  { "width": 110 },
+        "file.update_reasons":        { "width": 240 },
+        "file.update_sequence_number":{ "width": 140 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : filesystem_j and file.update_reasons : file_delete and file.extension : (ps1 or psm1 or psd1 or ps1xml or bat or cmd or sh or bash or zsh or py or pyw or py3 or vbs or vbe or js or jse or hta or wsf or wsh or pl or rb or exe or zip or 7z or rar or tar or gz or gzip or tgz)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Filesystem: USN $J — Scripts/Executables/Archives DELETED (cleanup signal)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "filesystem", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

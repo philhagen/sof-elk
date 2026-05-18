@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "file.target.path",
+      "file.target.drivetype",
+      "file.target.volume.label",
+      "volume.serial_number",
+      "file.target.absolute_path"
+    ],
+    "description": "LNK files whose target lives on REMOVABLE media. The drivetype is recorded inside the LNK at the moment the file was first opened — so this evidence survives even after the USB stick is yanked. The volume serial + label persist forever, perfect for proving 'on Oct 11 at 10:42pm, ITSupport opened budget_2026.xlsx from USB stick with serial 9888BE7C labeled BACKUP'.",
+    "grid": {
+      "columns": {
+        "file.target.path":         { "width": 440 },
+        "file.target.drivetype":    { "width": 110 },
+        "file.target.volume.label": { "width": 160 },
+        "volume.serial_number":     { "width": 160 },
+        "file.target.absolute_path":{ "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.target.drivetype : Removable\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "LNK Files: Opened from Removable Media",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "lnkfiles", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

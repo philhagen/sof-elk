@@ -1,0 +1,40 @@
+{
+  "attributes": {
+    "columns": [
+      "file.target.path",
+      "file.target.drivetype",
+      "file.target.network_path",
+      "file.target.created",
+      "file.target.mtime"
+    ],
+    "description": "LNK files pointing at Office documents, PDFs, and text-heavy data files (doc/docx/xls/xlsx/ppt/pptx/pdf/rtf/odt/ods/odp/csv/txt/zip/7z). For IP-theft cases, this is THE list to walk: every document the user actually opened. Cross-reference with the Browser dashboard's download list to find docs the user pulled to disk and then opened.",
+    "grid": {
+      "columns": {
+        "file.target.path":         { "width": 520 },
+        "file.target.drivetype":    { "width": 100 },
+        "file.target.network_path": { "width": 320 },
+        "file.target.mtime":        { "width": 200 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.target.path : (*.doc or *.docx or *.xls or *.xlsx or *.ppt or *.pptx or *.pdf or *.rtf or *.odt or *.ods or *.odp or *.csv or *.txt or *.zip or *.7z)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "LNK Files: Office Documents, PDFs, Archives Opened",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "lnkfiles", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

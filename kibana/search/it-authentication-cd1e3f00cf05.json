@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "columns": [
+      "winlog.event_id",
+      "winlog.channel",
+      "user.name",
+      "winlog.user.name",
+      "winlog.computer_name",
+      "winlog.remote_host",
+      "message"
+    ],
+    "description": "Authentication & session events from EVTX. Successful logon (4624), failed logon (4625), logoff (4634/4647), explicit logon (4648), special-privilege logon (4672), inbound RDP (4778/4779), account created/added/removed (4720/4732/4724). Cross-reference with the execution and exfil panels: a 2am 4624 followed by a 3am file-sharing visit tells a story.",
+    "grid": {
+      "columns": {
+        "winlog.event_id":       { "width": 100 },
+        "winlog.channel":        { "width": 140 },
+        "user.name":             { "width": 110 },
+        "winlog.user.name":      { "width": 140 },
+        "winlog.computer_name":  { "width": 140 },
+        "winlog.remote_host":    { "width": 140 },
+        "message":               { "width": 480 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"_index : evtxlogs-* and winlog.event_id : (4624 or 4625 or 4634 or 4647 or 4648 or 4672 or 4720 or 4724 or 4732 or 4738 or 4740 or 4767 or 4778 or 4779)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Insider Threat: Authentication & Session (EVTX logon family)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "insider-threat", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "winlog.computer_name",
+      "winlog.channel",
+      "winlog.event_id",
+      "winlog.provider_name",
+      "winlog.user.name",
+      "message"
+    ],
+    "description": "Every parsed Windows Event Log record across every channel. Use as a baseline timeline — drill in with KQL like `winlog.channel : Security` or `winlog.event_id : 4624` to slice. Look at the per-channel and per-event-id facets in the histogram to spot anomalous spikes.",
+    "grid": {
+      "columns": {
+        "winlog.computer_name": { "width": 140 },
+        "winlog.channel":       { "width": 200 },
+        "winlog.event_id":      { "width": 90  },
+        "winlog.provider_name": { "width": 200 },
+        "winlog.user.name":     { "width": 140 },
+        "message":              { "width": 460 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Event Log: All Activity (Timeline)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d5f00000-def0-11ef-b0a2-1e0b97a5ef01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "evtxlogs", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "file.path",
+      "file.extension",
+      "file.size",
+      "file.stdinfo.created",
+      "file.stdinfo.mtime"
+    ],
+    "description": "Every script file on the host — ANY location. Includes PowerShell (ps1/psm1/psd1/ps1xml), batch (bat/cmd), Linux/WSL shells (sh/bash/zsh), Python (py/pyw/py3), VBScript/JScript (vbs/vbe/js/jse), HTA, WSH, Perl, Ruby. Sort by file.stdinfo.created desc to see the newest scripts at the top. Scripts in user-writable locations (\\Users\\, \\Temp\\, \\ProgramData\\) are the most interesting — they're frequently dropped by attackers / insiders for staging or LOLBin-style execution. Confirm against the Prefetch dashboard whether each script actually ran.",
+    "grid": {
+      "columns": {
+        "file.path":            { "width": 560 },
+        "file.extension":       { "width": 80  },
+        "file.size":            { "width": 100 },
+        "file.stdinfo.created": { "width": 200 },
+        "file.stdinfo.mtime":   { "width": 200 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.extension : (ps1 or psm1 or psd1 or ps1xml or bat or cmd or sh or bash or zsh or py or pyw or py3 or vbs or vbe or js or jse or hta or wsf or wsh or pl or rb)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Filesystem: Recently Created Scripts (ps1/bat/sh/py/vbs/js/hta/...)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "filesystem", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

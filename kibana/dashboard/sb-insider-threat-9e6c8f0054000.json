@@ -1,0 +1,26 @@
+{
+  "attributes": {
+    "description": "Insider-threat-focused view of Windows Explorer ShellBags parsed by SBECmd. Surfaces network-share browsing, removable / non-primary drive access, possibly deleted folders, and confirmed user-explored navigation. Use alongside the LNK, MFT, and EVTX KAPE dashboards for a full timeline.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{},\"sort\":[[\"shellbag.last_interacted\",\"desc\"]]},\"gridData\":{\"h\":12,\"i\":\"sb-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"sb-p1\",\"panelRefName\":\"panel_sb-p1\",\"title\":\"Confirmed User-Explored Folders (has_explored=true)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"sb-p2\",\"panelRefName\":\"panel_sb-p2\",\"title\":\"Likely Removable Media (D–K drive letters)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"sb-p3\",\"panelRefName\":\"panel_sb-p3\",\"title\":\"Network Resource Navigation (UNC, IP, Mapped W–Z)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"sb-p4\",\"panelRefName\":\"panel_sb-p4\",\"title\":\"Possibly Deleted Folders (NTFS, no live MFT entry)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"sb-p5\",\"panelRefName\":\"panel_sb-p5\",\"title\":\"All Shellbag Activity (timeline)\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "Shellbags — Insider Threat",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac05", "name": "sb-p1:panel_sb-p1", "type": "search" },
+    { "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac03", "name": "sb-p2:panel_sb-p2", "type": "search" },
+    { "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac02", "name": "sb-p3:panel_sb-p3", "type": "search" },
+    { "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac04", "name": "sb-p4:panel_sb-p4", "type": "search" },
+    { "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac01", "name": "sb-p5:panel_sb-p5", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

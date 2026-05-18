@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "file.path",
+      "file.update_reasons",
+      "file.size",
+      "file.extension",
+      "kape.mft.inuse"
+    ],
+    "description": "Recent USN $J file changes in non-system paths — i.e., what actually happened on this host that wasn't Windows / Microsoft / WinSxS / system AppData churn. This is the noise-reduced timeline that lets you walk the user's day without scrolling past 100,000 driver-update rows. Sort by @timestamp desc and use file.update_reasons to see what kind of change each row represents (file_create, data_extend, file_delete, rename_*, etc.). For the full unfiltered $J operations log, see Panel 5.",
+    "grid": {
+      "columns": {
+        "file.path":            { "width": 520 },
+        "file.update_reasons":  { "width": 280 },
+        "file.size":            { "width": 100 },
+        "file.extension":       { "width": 90  },
+        "kape.mft.inuse":       { "width": 90  }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : filesystem_j and not file.path : (*\\\\\\\\Windows\\\\\\\\* or *\\\\\\\\WinSxS\\\\\\\\* or *\\\\\\\\Microsoft\\\\\\\\* or *\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Microsoft\\\\\\\\* or *\\\\\\\\Program*Files\\\\\\\\Windows*) and file.update_reasons : (file_create or data_extend or data_overwrite or file_delete or rename_old_name or rename_new_name)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Filesystem: Recent Changes in Non-System Paths (noise-reduced timeline)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "filesystem", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

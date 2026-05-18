@@ -1,0 +1,39 @@
+{
+  "attributes": {
+    "columns": [
+      "file.target.network_path",
+      "file.target.path",
+      "file.target.common_path",
+      "file.target.absolute_path"
+    ],
+    "description": "LNK files whose target lives on a network share. file.target.network_path holds the UNC path (\\\\server\\share\\folder\\file). High-value evidence — even if the share is no longer mounted or the file has been removed, the LNK proves the user opened that exact path on that exact share at that exact time.",
+    "grid": {
+      "columns": {
+        "file.target.network_path": { "width": 480 },
+        "file.target.path":         { "width": 360 },
+        "file.target.common_path":  { "width": 240 },
+        "file.target.absolute_path":{ "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.target.network_path : * or file.target.drivetype : Network\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "LNK Files: Opened from Network Share (UNC)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "lnkfiles", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

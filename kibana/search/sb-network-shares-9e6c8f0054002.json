@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "host.name",
+      "shellbag.absolute_path",
+      "shellbag.value",
+      "shellbag.first_interacted",
+      "shellbag.last_interacted"
+    ],
+    "description": "Network resource navigation captured in shellbags. Covers (1) explicit UNC paths like \\\\server\\share, (2) IP-addressed paths like \\\\10.x.x.x\\share, (3) legacy My Network Places navigation, and (4) mapped network drives (drive letters W–Z by IT convention). Strong insider-threat signal when paths reference file servers, document repositories, or admin shares the user shouldn't be browsing.",
+    "grid": {
+      "columns": {
+        "shellbag.absolute_path": { "width": 480 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : (shellbag_unc_or_network_browse or shellbag_ip_in_path or shellbag_likely_mapped_network)\"},\"version\":true}"
+    },
+    "sort": [["shellbag.last_interacted","desc"]],
+    "timeRestore": false,
+    "title": "Shellbags: Network Resource Navigation (UNC, IP, Mapped Drives W–Z)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "shellbags", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

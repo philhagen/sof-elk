@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "file.size",
+      "file.path",
+      "file.extension",
+      "file.stdinfo.created",
+      "file.stdinfo.mtime"
+    ],
+    "description": "Files >= 100 MB sitting in user-writable / non-system locations (Users, Temp, ProgramData, root of secondary drives). At this size threshold the noise drops off sharply — what remains is the shortlist of files genuinely worth stealing: full database exports, VM disk images, big archives of source code or PII, video captures, etc. Cross-reference with the Browser dashboard's downloads, the LNK dashboard's opened-files panel, and the Shellbags removable-media panel to figure out where each one came from and where it went.",
+    "grid": {
+      "columns": {
+        "file.size":            { "width": 120 },
+        "file.path":            { "width": 540 },
+        "file.extension":       { "width": 90  },
+        "file.stdinfo.created": { "width": 200 },
+        "file.stdinfo.mtime":   { "width": 200 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.size >= 104857600 and file.path : (*\\\\\\\\Users\\\\\\\\* or *\\\\\\\\Temp\\\\\\\\* or *\\\\\\\\ProgramData\\\\\\\\* or *\\\\\\\\Intel\\\\\\\\* or *\\\\\\\\PerfLogs\\\\\\\\*) and not file.path : (*\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Microsoft\\\\\\\\* or *\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\* or *\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Packages\\\\\\\\* or *\\\\\\\\WindowsApps\\\\\\\\*)\"},\"version\":true}"
+    },
+    "sort": [["file.size","desc"]],
+    "timeRestore": false,
+    "title": "Filesystem: Large Files (>= 100 MB) in User-Writable Locations",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "filesystem", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

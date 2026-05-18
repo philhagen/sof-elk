@@ -1,0 +1,44 @@
+{
+  "attributes": {
+    "columns": [
+      "_index",
+      "user.name",
+      "host.name",
+      "tags",
+      "browser.url",
+      "file.path",
+      "message"
+    ],
+    "description": "Every signal that data may have left the host or been positioned to leave: (1) browser downloads (especially dangerous + opened), file-sharing visits, personal cloud storage, personal webmail, AI assistants, canary tokens; (2) shellbag navigation to mapped network drives (W:-Z:) or removable media (D:-K:); (3) registry evidence of USB devices or cloud-storage configuration. This is THE panel for an exfil-focused investigation.",
+    "grid": {
+      "columns": {
+        "_index":      { "width": 180 },
+        "user.name":   { "width": 110 },
+        "tags":        { "width": 280 },
+        "browser.url": { "width": 400 },
+        "file.path":   { "width": 340 },
+        "message":     { "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"(_index : browser-* and tags : (browser_download or browser_download_dangerous or browser_download_opened or browser_file_sharing or browser_cloud_storage or browser_webmail_personal or browser_ai_assistant or browser_canary_token)) or (_index : shellbags-* and tags : (shellbag_likely_mapped_network or shellbag_likely_removable_media or shellbag_unc_or_network_browse)) or (_index : registry-* and tags : (registry_usb_or_mounted_device or registry_cloud_storage or registry_network_or_share))\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Insider Threat: Exfil & Data-Out Channels (browser + shellbags + registry)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "insider-threat", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

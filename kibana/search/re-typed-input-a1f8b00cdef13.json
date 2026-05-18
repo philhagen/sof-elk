@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "columns": [
+      "registry.description",
+      "registry.value_name",
+      "registry.value_data",
+      "registry.key_path",
+      "host.name"
+    ],
+    "description": "Things the user TYPED — RunMRU (Run dialog history), TypedPaths (Explorer address bar), TypedURLs (IE/Edge URL bar), WordWheelQuery (Explorer search box), RecentDocs, OpenSavePidlMRU, Office RecentFiles. Strongest intent signal in the registry — distinguishes 'user clicked a link' from 'user typed \\\\\\\\fileserver\\\\confidential and hit Enter'.",
+    "grid": {
+      "columns": {
+        "registry.description": { "width": 200 },
+        "registry.value_data":  { "width": 480 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : registry_typed_or_mru_input\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Registry: Typed / MRU User Input",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a1f8b00c-def0-11ef-b0a2-1e0b97a5af13",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "registry", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "host.name",
+      "shellbag.absolute_path",
+      "shellbag.shell_type",
+      "shellbag.has_explored",
+      "shellbag.first_interacted",
+      "shellbag.last_interacted",
+      "shellbag.source_hive"
+    ],
+    "description": "All shellbag entries across hosts and users, sorted by most recent interaction. Baseline view for an investigation.",
+    "grid": {
+      "columns": {
+        "shellbag.absolute_path": { "width": 420 },
+        "shellbag.shell_type":    { "width": 140 },
+        "user.name":              { "width": 120 },
+        "host.name":              { "width": 140 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Shellbags: All Activity (Timeline)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "shellbags", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

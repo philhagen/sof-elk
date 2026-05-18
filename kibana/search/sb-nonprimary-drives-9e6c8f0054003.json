@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "host.name",
+      "shellbag.absolute_path",
+      "shellbag.value",
+      "shellbag.miscellaneous",
+      "shellbag.last_interacted"
+    ],
+    "description": "Folders the user browsed on drive letters D–K — by forensic convention, almost always removable media (USB sticks, external HDDs, optical). Strong exfiltration / unauthorized-data-handling indicator. Cross-reference with USB EVT 2003/20001/20003 and USBSTOR registry keys.",
+    "grid": {
+      "columns": {
+        "shellbag.absolute_path": { "width": 460 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : shellbag_likely_removable_media\"},\"version\":true}"
+    },
+    "sort": [["shellbag.last_interacted","desc"]],
+    "timeRestore": false,
+    "title": "Shellbags: Likely Removable Media (D–K)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9e6c8f00-5400-11ef-b0a2-1e0b97a5ac03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "shellbags", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

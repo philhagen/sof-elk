@@ -1,0 +1,39 @@
+{
+  "attributes": {
+    "columns": [
+      "registry.description",
+      "registry.value_name",
+      "registry.value_data",
+      "registry.value_data2",
+      "registry.key_path",
+      "host.name"
+    ],
+    "description": "USB / mounted-device history AND network shares / mapped drives / VPN profiles / WiFi history. Use this panel to answer: 'what removable devices did this person plug in, and what network resources did they touch?' Cross-reference USB serial numbers here against the shellbags dashboard's removable-media panel.",
+    "grid": {
+      "columns": {
+        "registry.description":  { "width": 220 },
+        "registry.value_data":   { "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : (registry_usb_or_mounted_device or registry_network_or_share)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Registry: USB Devices + Network Shares",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a1f8b00c-def0-11ef-b0a2-1e0b97a5af14",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "registry", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}
