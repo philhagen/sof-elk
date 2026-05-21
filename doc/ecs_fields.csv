@@ -371,8 +371,9 @@ event.action,copy of event.task,syslog,,6010-snare.conf,ECS,https://www.elastic.
 event.auth_result,copy of ssh.auth_result,syslog,,5016-sshd.conf,SOF-ELK,
 event.code,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-code
 event.dataset,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-dataset
-event.duration,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
-event.duration,,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
+event.duration,nanoseconds,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
+event.duration,nanoseconds,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
+event.duration,nanoseconds,volatility,,8620-postprocess-volatility.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
 event.module,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-module
 event.provider,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
 event.provider,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
