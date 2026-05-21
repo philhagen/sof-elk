@@ -1,6 +1,6 @@
 # SOF-ELK® Configuration File
 # (C)2026 Lewes Technology Consulting, LLC
-#         Original contribution from @Prof-GP
+#         Original contribution from Raymond Garay-Paravisini
 #
 # This file contains inputs for monitoring Volatility3 memory forensics output
 
@@ -8,19 +8,8 @@
   id: volatility-01
   paths:
     - /logstash/volatility/**/*.json
-  # not needed since file path/extension is defined above
-  # prospector.scanner.exclude_files: [ 'readme.txt', '\.gz$', '\.bz2$', '\.zip$', '\.bak$', '\.old$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
-  parsers:
-    - multiline:
-        type: pattern
-        pattern: "^(?:  {|])"
-        negate: true
-        match: after
-  # exclude_lines takes place AFTER the multiline processing
-  # this line will drop the start/end of the array
-  exclude_lines: [ "^\\[$", "^\\]$" ]
   processors:
     - add_labels:
         labels:
