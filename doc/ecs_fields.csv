@@ -377,6 +377,7 @@ event.module,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/referen
 event.provider,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
 event.provider,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
 event.provider,copy of winlog.provider_name,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
+event.start,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-start
 event.timezone,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-timezone
 event.type,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-type
 event.type,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-type
@@ -764,6 +765,7 @@ process.command_line,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/ref
 process.command_line,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.command_line,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.depth,,volatility,,6620-volatility-common.conf,SOF-ELK,,
+process.duration,,volatility,,6620-volatility-common.conf,SOF-ELK,,
 process.end,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-end
 process.entity_id,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
