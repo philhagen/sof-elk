@@ -8,7 +8,10 @@ def register(params)
   @target_field = params.fetch("target", "[processes]")
 end
 
-def handle(process, depth = 0)
+# this is a recursive function that will add each individual process structure to the "result" array,
+#   then traverse down the __children array, if present+populated.  depth will be assigned at each level,
+#   starting with 0
+def parse_process_tree(process, depth = 0)
   result = []
 
   process['process_depth'] = depth
@@ -17,7 +20,7 @@ def handle(process, depth = 0)
     children = process.delete('__children')
     result << process
     children.each do |child_process|
-      result += handle(child_process, depth+1)
+      result += parse_process_tree(child_process, depth+1)
     end
   else
     # this occurs when there is no __children or __children==[]
@@ -38,7 +41,7 @@ def filter(event)
   # Retrieve the source
   source = event.get("#{@source_field}")
 
-  flatlist = handle(source)
+  flatlist = parse_process_tree(source)
 
   event.set("#{@target_field}", flatlist)
   return [event]
