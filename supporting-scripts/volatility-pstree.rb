@@ -29,7 +29,8 @@ def filter(event, depth = 0)
     end
 
   elsif source['__children'].length == 0
-    output << event.except('__children')
+    event.delete('__children')
+    output << event
   end
 
   if depth > 0
