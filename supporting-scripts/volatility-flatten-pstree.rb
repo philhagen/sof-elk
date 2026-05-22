@@ -113,12 +113,12 @@ test "when multiple child processes at different levels" do
     events.first.get("[output][2][Audit]") == "Registry" &&
     events.first.get("[output][2][Cmd]") == "Registry" &&
     events.first.get("[output][2][PID]") == 92 &&
-    events.first.get("[output][2][process_depth]") == 1 &&
+    events.first.get("[output][2][process_depth]") == 2 &&
 
     events.first.get("[output][3][Audit]") == "\\Device\\HarddiskVolume3\\Windows\\System32\\RuntimeBroker.exe" &&
     events.first.get("[output][3][Cmd]") == "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding" &&
     events.first.get("[output][3][PID]") == 7852 &&
-    events.first.get("[output][3][process_depth]") == 2
+    events.first.get("[output][3][process_depth]") == 1
   end
 end
 
