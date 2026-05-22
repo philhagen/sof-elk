@@ -44,39 +44,39 @@ end
 ### Validation Tests
 test "when no child processes" do
   parameters {{ "source" => "raw", "target" => "output" }}
-  in_event {{ "raw" => { "Audit" => null, "Cmd" => null, "PID" => 4, "__children" => [] } }}
+  in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [] } }}
   expect("event is returned without __children") { |events|
-    events.first.get("output") == '[ { "Audit" => null, "Cmd" => null, "PID" => 4 } ]'
+    events.first.get("output") == '[ { "Audit" => nil, "Cmd" => nil, "PID" => 4 } ]'
   }
 end
 
 test "when one child process" do
   parameters {{ "source" => "raw", "target" => "output" }}
-  in_event {{ "raw" => { "Audit" => null, "Cmd" => null, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [] } ] } }}
+  in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [] } ] } }}
   expect("events are returned flat, without __children") { |events|
-    events.get("output") == '[ { "Audit" => null, "Cmd" => null, "PID" => 4 }, { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816 } ]'
+    events.get("output") == '[ { "Audit" => nil, "Cmd" => nil, "PID" => 4 }, { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816 } ]'
   }
 end
 
 test "when multiple child processes at same level" do
   parameters {{ "source" => "raw", "target" => "output" }}
-  in_event {{ "raw" => { "Audit" => null, "Cmd" => null, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [] }, { "Audit" => "Registry", "Cmd" => "Registry", "PID" => 92, "__children" => [] } ] } }}
+  in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [] }, { "Audit" => "Registry", "Cmd" => "Registry", "PID" => 92, "__children" => [] } ] } }}
   expect("events are returned flat, without __children") { |events|
-    events.get("output") == '[ { "Audit" => null, "Cmd" => null, "PID" => 4 }, { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816 } ]'
+    events.get("output") == '[ { "Audit" => nil, "Cmd" => nil, "PID" => 4 }, { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816 } ]'
   }
 end
 
 test "when multiple child processes at different levels" do
   parameters {{ "source" => "raw", "target" => "output" }}
-  in_event {{ "raw" => { "Audit" => null, "Cmd" => null, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [ { "Audit" => "Registry", "Cmd" => "Registry", "PID" => 92, "__children" => [] } ] }, { "Audit" => "\\Device\\HarddiskVolume3\\Windows\\System32\\RuntimeBroker.exe", "Cmd" => "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding", "PID" => 7852, "__children" => [] } ] } }}
+  in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [ { "Audit" => "Registry", "Cmd" => "Registry", "PID" => 92, "__children" => [] } ] }, { "Audit" => "\\Device\\HarddiskVolume3\\Windows\\System32\\RuntimeBroker.exe", "Cmd" => "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding", "PID" => 7852, "__children" => [] } ] } }}
   expect("events are returned flat, without __children") { |events|
-    events.get("output") == '[ { "Audit" => null, "Cmd" => null, "PID" => 4 }, { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816 }, "Audit" => "\\Device\\HarddiskVolume3\\Windows\\System32\\RuntimeBroker.exe", "Cmd": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding", "PID" => 7852 ]'
+    events.get("output") == '[ { "Audit" => nil, "Cmd" => nil, "PID" => 4 }, { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816 }, "Audit" => "\\Device\\HarddiskVolume3\\Windows\\System32\\RuntimeBroker.exe", "Cmd": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding", "PID" => 7852 ]'
   }
 end
 
 test "when source field does not exist" do
   parameters {{ "source" => "raw2", "target" => "output" }}
-  in_event {{ "raw" => { "Audit" => null, "Cmd" => null, "PID" => 4, "__children" => [] } }}
+  in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [] } }}
   expect("tags as not found") { |events|
     events.get("tags").include?("raw2_not_found")
   }
