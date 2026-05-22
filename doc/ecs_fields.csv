@@ -158,18 +158,18 @@ azure.storagelogs.properties.account_name,,azure,,6801-azure.conf,SOF-ELK,
 azure.storagelogs.properties.service_type,,azure,,6801-azure.conf,SOF-ELK,
 azure.storagelogs.status_text,,azure,,6801-azure.conf,SOF-ELK,
 azure.tenant_id,,azure,,6801-azure.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-azure#_azure
-backend.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-backend.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+backend.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+backend.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 backend.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-backend.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-backend.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-backend.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-backend.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-backend.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-backend.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-backend.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-backend.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-backend.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+backend.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+backend.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+backend.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+backend.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+backend.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+backend.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+backend.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+backend.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+backend.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 backend.ip,,httpdlog,,6100-httpd.conf,SOF-ELK,
 backend.port,,httpdlog,,6100-httpd.conf,SOF-ELK,
 cip.direction,,zeek_cip,,6279-zeek_enip-cip.conf,SOF-ELK,
@@ -192,19 +192,19 @@ cisco.asa.policy_id,from cisco_asa grok patterns,syslog,,6018-cisco_asa.conf,SOF
 cisco.asa.reason,from cisco_asa grok patterns,syslog,,6018-cisco_asa.conf,SOF-ELK,
 cisco.asa.source_username,from cisco_asa grok patterns,syslog,,6018-cisco_asa.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-cisco#_cisco_asa
 cisco.asa.username,from cisco_asa grok patterns,syslog,,6018-cisco_asa.conf,SOF-ELK,
-client.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-client.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+client.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+client.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 client.domain,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-domain
 client.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-client.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-client.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-client.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-client.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-client.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-client.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-client.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-client.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-client.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+client.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+client.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+client.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+client.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+client.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+client.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+client.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+client.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+client.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 client.ip,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
 client.ip,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
 client.mac,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-mac
@@ -219,10 +219,10 @@ cloud.region,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/referen
 cloud.resource.location,,netflow,,2050-netflow.conf,SOF-ELK,
 cloud.resource.type,,netflow,,2050-netflow.conf,SOF-ELK,
 destination.as.number,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-destination.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-destination.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
-destination.bytes_vis,Copy of destination_bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-destination.bytes_vis,Copy of destination_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
+destination.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+destination.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+destination.bytes_vis,Copy of destination_bytes,netflow,,8002-postprocess-netflow.conf,SOF-ELK,
+destination.bytes_vis,Copy of destination_bytes,zeek_conn,,8002-postprocess-netflow.conf,SOF-ELK,
 destination.bytes,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.bytes,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
@@ -231,15 +231,15 @@ destination.bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elasti
 destination.bytes,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-bytes
 destination.domain,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-domain
 destination.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-destination.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-destination.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-destination.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-destination.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-destination.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-destination.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-destination.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-destination.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-destination.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+destination.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+destination.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+destination.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+destination.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+destination.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+destination.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+destination.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+destination.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+destination.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 destination.host,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 destination.interface,,syslog,,6018-cisco_asa.conf,SOF-ELK,
 destination.ip_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
@@ -268,8 +268,8 @@ destination.ip,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs
 destination.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-mac
 destination.mac,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source
 destination.netmask,,netflow,,2050-netflow.conf,SOF-ELK,
-destination.packets_vis,Copy of destination.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-destination.packets_vis,Copy of destination.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
+destination.packets_vis,Copy of destination.packets,netflow,,8002-postprocess-netflow.conf,SOF-ELK,
+destination.packets_vis,Copy of destination.packets,zeek_conn,,8002-postprocess-netflow.conf,SOF-ELK,
 destination.packets,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-packets
 destination.packets,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-packets
 destination.port,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
@@ -294,23 +294,23 @@ destination.port,,zeek_profinet_io_cm,,6280-zeek_profinet_io_cm.conf,ECS,https:/
 destination.port,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 dhcp.message_type,,syslog,,6012-dhcpd.conf,SOF-ELK,
-dns.answers.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-dns.answers.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+dns.answers.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+dns.answers.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 dns.answers.class,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-class
 dns.answers.data,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
 dns.answers.data,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
 dns.answers.data,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
 dns.answers.data,,zeek_dns,,6200-zeek_dns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
 dns.answers.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-dns.answers.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-dns.answers.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-dns.answers.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-dns.answers.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-dns.answers.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-dns.answers.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-dns.answers.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-dns.answers.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-dns.answers.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+dns.answers.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+dns.answers.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+dns.answers.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+dns.answers.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+dns.answers.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+dns.answers.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+dns.answers.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+dns.answers.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+dns.answers.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 dns.answers.ip,,archive-passivedns,,6014-passivedns.conf,SOF-ELK,
 dns.answers.ip,,zeek_dns,,6200-zeek_dns.conf,SOF-ELK,
 dns.answers.ttl,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-ttl
@@ -373,7 +373,7 @@ event.code,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs
 event.dataset,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-dataset
 event.duration,nanoseconds,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
 event.duration,nanoseconds,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
-event.duration,nanoseconds,volatility,,8620-postprocess-volatility.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
+event.duration,nanoseconds,volatility,,8006-postprocess-volatility.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-duration
 event.module,,appleul,,6060-appleul.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-module
 event.provider,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
 event.provider,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-event#field-event-provider
@@ -387,7 +387,7 @@ exporter.mac,,netflow,,2050-netflow.conf,SOF-ELK,
 file.accessed,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-accessed
 file.attributes,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-attributes
 file.attributes,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-attributes
-file.attributes,created by ntfs_flags_to_array.rb,kape_*,,8599-postprocess-kape.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-attributes
+file.attributes,created by ntfs_flags_to_array.rb,kape_*,,8005-postprocess-kape.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-attributes
 file.attributes,replaced with array by ntfs_flags_to_array.rb,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-attributes
 file.created,,kape_lnkfiles,,6503-kape_lecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-created
 file.directory,,kape_filesystem,,6501-kape_mftecmd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-file#field-file-directory
@@ -566,7 +566,7 @@ k8s.file,,kubernetes,,1952-preprocess-kubernetes.conf,SOF-ELK,
 k8s.groups,,kubernetes,,6952-kubernetes.conf,SOF-ELK,
 k8s.level_letter,,kubernetes,,1952-preprocess-kubernetes.conf,SOF-ELK,
 k8s.line,,kubernetes,,1952-preprocess-kubernetes.conf,SOF-ELK,
-k8s.log_level,,kubernetes,,8952-postprocess-kubernetes.conf,SOF-ELK,
+k8s.log_level,,kubernetes,,8009-postprocess-kubernetes.conf,SOF-ELK,
 k8s.msg,,kubernetes,,1952-preprocess-kubernetes.conf,SOF-ELK,
 k8s.responseObject.status.result,,kubernetes,,1952-preprocess-kubernetes.conf,SOF-ELK,
 k8s.thread,,kubernetes,,1952-preprocess-kubernetes.conf,SOF-ELK,
@@ -623,8 +623,8 @@ modbus.response_values,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,SOF
 modbus.transaction_id,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,SOF-ELK,
 modbus.unit_id,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,SOF-ELK,
 netflow.connection_sum_duration_seconds,,netflow,,2050-netflow.conf,SOF-ELK,
-netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
+netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,netflow,,8002-postprocess-netflow.conf,SOF-ELK,
+netflow.delta_flow_count_vis,Copy of netflow.delta_flow_count,zeek_conn,,8002-postprocess-netflow.conf,SOF-ELK,
 netflow.delta_flow_count,,netflow,,2050-netflow.conf,SOF-ELK,
 netflow.delta_flow_count,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 netflow.engine_id,,netflow,,2050-netflow.conf,SOF-ELK,
@@ -668,7 +668,7 @@ network.iana_number,lookup from ip_proto_name2int.yaml,syslog,,6018-cisco_asa.co
 network.iana_number,lookup from ip_proto_name2int.yaml,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-iana-number
 network.iana_number,lookup from ip_proto_name2int.yaml,zeek_dns,,6200-zeek_dns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-iana-number
 network.iana_number,lookup from ip_proto_name2int.yaml,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-iana-number
-network.missed_bytes_vis,Copy of network.missed_bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
+network.missed_bytes_vis,Copy of network.missed_bytes,zeek_conn,,8002-postprocess-netflow.conf,SOF-ELK,
 network.missed_bytes,,netflow,,2050-netflow.conf,SOF-ELK,
 network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 network.missed_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
@@ -722,31 +722,31 @@ omron_fins.link_id,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,SOF
 omron_fins.memory_area_code,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,SOF-ELK,
 omron_fins.number_of_items,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,SOF-ELK,
 omron_fins.response_code,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,SOF-ELK,
-original_destination.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-original_destination.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+original_destination.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+original_destination.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 original_destination.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-original_destination.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-original_destination.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-original_destination.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-original_destination.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-original_destination.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-original_destination.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-original_destination.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-original_destination.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-original_destination.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+original_destination.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+original_destination.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+original_destination.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+original_destination.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+original_destination.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+original_destination.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+original_destination.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+original_destination.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+original_destination.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 original_destination.ip,,netflow,,2050-netflow.conf,SOF-ELK,
-original_source.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-original_source.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+original_source.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+original_source.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 original_source.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-original_source.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-original_source.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-original_source.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-original_source.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-original_source.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-original_source.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-original_source.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-original_source.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-original_source.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+original_source.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+original_source.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+original_source.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+original_source.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+original_source.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+original_source.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+original_source.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+original_source.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+original_source.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 original_source.ip,,netflow,,2050-netflow.conf,SOF-ELK,
 pam.event,,syslog,,6016-pam.conf,SOF-ELK,
 pam.module,,syslog,,6016-pam.conf,SOF-ELK,
@@ -840,24 +840,24 @@ process.wow64,,volatility,,6620-volatility-common.conf,SOF-ELK,
 related.hash,,hayabusa,,6605-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
 related.hash,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
 related.hash,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-hash
-related.ip,,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-ip
+related.ip,,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-ip
 related.mac,,all,,8053-postprocess-mac.conf,SOF-ELK,
 related.port,,all,,8051-postprocess_ports.conf,SOF-ELK,
 related.user,,hayabusa,,6605-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-user
 related.user,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-user
 related.user,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-related#field-related-user
-remote.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-remote.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+remote.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+remote.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 remote.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-remote.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-remote.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-remote.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-remote.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-remote.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-remote.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-remote.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-remote.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-remote.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+remote.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+remote.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+remote.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+remote.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+remote.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+remote.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+remote.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+remote.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+remote.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 remote.ip,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 remote.ip,,volatility,,6620-volatility-common.conf,SOF-ELK,
 remote.port,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
@@ -882,10 +882,10 @@ sof-elk.processing_time,,all,,8999-postprocess-all.conf,SOF-ELK,
 sof-elk.rawrequest,,httpdlog,,6100-httpd.conf,SOF-ELK,
 source.address,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-address
 source.as.number,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-source.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-source.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
-source.bytes_vis,Copy of source.bytes,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-source.bytes_vis,Copy of source.bytes,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
+source.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+source.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+source.bytes_vis,Copy of source.bytes,netflow,,8002-postprocess-netflow.conf,SOF-ELK,
+source.bytes_vis,Copy of source.bytes,zeek_conn,,8002-postprocess-netflow.conf,SOF-ELK,
 source.bytes,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.bytes,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
@@ -894,15 +894,15 @@ source.bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/
 source.bytes,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-bytes
 source.domain,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-domain
 source.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-source.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-source.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-source.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-source.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-source.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-source.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-source.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-source.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-source.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+source.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+source.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+source.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+source.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+source.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+source.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+source.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+source.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+source.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 source.host,,hayabusa,,6650-hayabusa.conf,SOF-ELK,
 source.interface,,syslog,,6018-cisco_asa.conf,SOF-ELK,
 source.ip_bytes,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
@@ -938,8 +938,8 @@ source.ip,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/refe
 source.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-mac
 source.mac,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source
 source.netmask,,netflow,,2050-netflow.conf,SOF-ELK,
-source.packets_vis,Copy of source.packets,netflow,,8054-postprocess-netflow.conf,SOF-ELK,
-source.packets_vis,Copy of source.packets,zeek_conn,,8054-postprocess-netflow.conf,SOF-ELK,
+source.packets_vis,Copy of source.packets,netflow,,8002-postprocess-netflow.conf,SOF-ELK,
+source.packets_vis,Copy of source.packets,zeek_conn,,8002-postprocess-netflow.conf,SOF-ELK,
 source.packets,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-packets
 source.packets,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-packets
 source.port,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
@@ -1027,8 +1027,8 @@ url.path,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/refer
 url.path,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-url#field-url-path
 url.query,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-url#field-url-query
 url.scheme,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-url#field-url-scheme
-user_agent.device.name,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-device-name
-user_agent.name,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-name
+user_agent.device.name,created by useragent filter,all,,8054-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-device-name
+user_agent.name,created by useragent filter,all,,8054-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-name
 user_agent.original,,aws,,6901-aws.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
 user_agent.original,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
 user_agent.original,,gcp,,6950-gcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
@@ -1036,10 +1036,10 @@ user_agent.original,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/r
 user_agent.original,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
 user_agent.original,,microsoft365,,6701-microsoft365.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
 user_agent.original,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-original
-user_agent.os.full,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-full
-user_agent.os.name,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-name
-user_agent.os.version,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-version
-user_agent.version,created by useragent filter,all,,8060-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-version
+user_agent.os.full,created by useragent filter,all,,8054-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-full
+user_agent.os.name,created by useragent filter,all,,8054-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-name
+user_agent.os.version,created by useragent filter,all,,8054-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-os#field-os-version
+user_agent.version,created by useragent filter,all,,8054-postprocess-useragent.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user_agent#field-user-agent-version
 user.domain,,syslog,,6010-snare.conf,filebeat,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-domain
 user.domain,copy of winlog.user.domain,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-user#field-user-domain
 user.id_type,,syslog,,6010-snare.conf,SOF-ELK,
@@ -1232,18 +1232,18 @@ winlog.user.name,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.
 winlog.user.name,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
 winlog.user.name,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
 winlog.user.type,,hayabusa,,6650-hayabusa.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
-xff.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-xff.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+xff.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+xff.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 xff.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-xff.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-xff.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-xff.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-xff.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-xff.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-xff.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-xff.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-xff.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-xff.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+xff.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+xff.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+xff.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+xff.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+xff.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+xff.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+xff.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+xff.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+xff.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 xff.ip,,httpdlog,,6100-httpd.conf,SOF-ELK,
 zeek.connection.history,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.local_orig,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
@@ -1278,35 +1278,35 @@ zeek.ftp.cmdarg.cmd,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.c
 zeek.ftp.cmdarg.seq,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_cmdarg
 zeek.ftp.cwd,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.originating_host,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
-zeek.ftp.data_channel.originating.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-zeek.ftp.data_channel.originating.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+zeek.ftp.data_channel.originating.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+zeek.ftp.data_channel.originating.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 zeek.ftp.data_channel.originating.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-zeek.ftp.data_channel.originating.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-zeek.ftp.data_channel.originating.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-zeek.ftp.data_channel.originating.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-zeek.ftp.data_channel.originating.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-zeek.ftp.data_channel.originating.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-zeek.ftp.data_channel.originating.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-zeek.ftp.data_channel.originating.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-zeek.ftp.data_channel.originating.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-zeek.ftp.data_channel.originating.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+zeek.ftp.data_channel.originating.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+zeek.ftp.data_channel.originating.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+zeek.ftp.data_channel.originating.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+zeek.ftp.data_channel.originating.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+zeek.ftp.data_channel.originating.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+zeek.ftp.data_channel.originating.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+zeek.ftp.data_channel.originating.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+zeek.ftp.data_channel.originating.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+zeek.ftp.data_channel.originating.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 zeek.ftp.data_channel.originating.ip,Copy of zeek.ftp.data_channel.originating_host,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
 zeek.ftp.data_channel.passive,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.reponse.port,Copy of zeek.ftp.data_channel.response_port,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
 zeek.ftp.data_channel.response_ip,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
 zeek.ftp.data_channel.response_port,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_data_channel
-zeek.ftp.data_channel.response.as.number,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
-zeek.ftp.data_channel.response.as.organization.name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
+zeek.ftp.data_channel.response.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
+zeek.ftp.data_channel.response.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 zeek.ftp.data_channel.response.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
-zeek.ftp.data_channel.response.geo.city_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
-zeek.ftp.data_channel.response.geo.continent_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
-zeek.ftp.data_channel.response.geo.country_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
-zeek.ftp.data_channel.response.geo.country_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
-zeek.ftp.data_channel.response.geo.location,created by geoip filter,all,geo_point,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
-zeek.ftp.data_channel.response.geo.postal_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
-zeek.ftp.data_channel.response.geo.region_iso_code,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
-zeek.ftp.data_channel.response.geo.region_name,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
-zeek.ftp.data_channel.response.geo.timezone,created by geoip filter,all,,8050-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+zeek.ftp.data_channel.response.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
+zeek.ftp.data_channel.response.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
+zeek.ftp.data_channel.response.geo.country_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-iso-code
+zeek.ftp.data_channel.response.geo.country_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-country-name
+zeek.ftp.data_channel.response.geo.location,created by geoip filter,all,geo_point,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-location
+zeek.ftp.data_channel.response.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-postal-code
+zeek.ftp.data_channel.response.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
+zeek.ftp.data_channel.response.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
+zeek.ftp.data_channel.response.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
 zeek.ftp.data_channel.response.ip,Copy of zeek.ftp.data_channel.response_ip,zeek_ftp,,6205-zeek_ftp.conf,SOF-ELK,
 zeek.ftp.file.fuid,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_ftp
 zeek.ftp.file.mime_type,,zeek_ftp,,6205-zeek_ftp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_ftp
