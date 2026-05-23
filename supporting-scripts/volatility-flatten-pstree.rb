@@ -58,20 +58,20 @@ test "when no child processes" do
   parameters {{ "source" => "raw", "target" => "output" }}
   in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [] } }}
 
-  expect("event is returned without __children") do |events|
+  expect("event is returned without __children") { |events|
     events.first.get("[output][0][Audit]") == nil &&
     events.first.get("[output][0][Cmd]") == nil &&
     events.first.get("[output][0][PID]") == 4 &&
     events.first.get("[output][0][process_depth]") == 0 &&
     events.first.get("[output][0][__children]") == nil
-  end
+  }
 end
 
 test "when one child process" do
   parameters {{ "source" => "raw", "target" => "output" }}
   in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [{ "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [] } ] } }}
   
-  expect("events are returned flat, without __children") do |events|
+  expect("events are returned flat, without __children") { |events|
     events.first.get("[output][0][Audit]") == nil &&
     events.first.get("[output][0][Cmd]") == nil &&
     events.first.get("[output][0][PID]") == 4 &&
@@ -83,14 +83,14 @@ test "when one child process" do
     events.first.get("[output][1][PID]") == 1816 &&
     events.first.get("[output][1][process_depth]") == 1 &&
     events.first.get("[output][1][__children]") == nil
-  end
+  }
 end
 
 test "when multiple child processes at same level" do
   parameters {{ "source" => "raw", "target" => "output" }}
   in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [] }, { "Audit" => "Registry", "Cmd" => "Registry", "PID" => 92, "__children" => [] } ] } }}
 
-  expect("events are returned flat, without __children") do |events|
+  expect("events are returned flat, without __children") { |events|
     events.first.get("[output][0][Audit]") == nil &&
     events.first.get("[output][0][Cmd]") == nil &&
     events.first.get("[output][0][PID]") == 4 &&
@@ -108,13 +108,13 @@ test "when multiple child processes at same level" do
     events.first.get("[output][2][PID]") == 92 &&
     events.first.get("[output][2][process_depth]") == 1 &&
     events.first.get("[output][2][__children]") == nil
-  end
+  }
 end
 
 test "when multiple child processes at different levels" do
   parameters {{ "source" => "raw", "target" => "output" }}
   in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [ { "Audit" => "MemCompression", "Cmd" => "MemCompression", "PID" => 1816, "__children" => [ { "Audit" => "Registry", "Cmd" => "Registry", "PID" => 92, "__children" => [] } ] }, { "Audit" => "\\Device\\HarddiskVolume3\\Windows\\System32\\RuntimeBroker.exe", "Cmd" => "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding", "PID" => 7852, "__children" => [] } ] } }}
-  expect("events are returned flat, without __children") do |events|
+  expect("events are returned flat, without __children") { |events|
     events.first.get("[output][0][Audit]") == nil &&
     events.first.get("[output][0][Cmd]") == nil &&
     events.first.get("[output][0][PID]") == 4 &&
@@ -138,13 +138,13 @@ test "when multiple child processes at different levels" do
     events.first.get("[output][3][PID]") == 7852 &&
     events.first.get("[output][3][process_depth]") == 1 &&
     events.first.get("[output][3][__children]") == nil
-  end
+  }
 end
 
 test "when source field does not exist" do
   parameters {{ "source" => "raw2", "target" => "output" }}
   in_event {{ "raw" => { "Audit" => nil, "Cmd" => nil, "PID" => 4, "__children" => [] } }}
-  expect("tags as not found") do |events|
+  expect("tags as not found") { |events|
     events.first.get("tags").include?("raw2_not_found")
-  end
+  }
 end

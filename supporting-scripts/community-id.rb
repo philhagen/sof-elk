@@ -164,7 +164,6 @@ def filter(event)
 end
 
 ### Validation Tests
-
 test "when proto is tcpv4" do
   parameters {{ "source_ip_field" => "src_ip", "dest_ip_field" => "dst_ip", "source_port_field" => "src_port", "dest_port_field" => "dst_port", "protocol_field" => "protocol", "target_field" => "community_id" }}
   in_event {{ "dst_ip" => "66.35.250.204", "src_ip" => "128.232.110.120", "dst_port" => 80, "src_port" => 34855, "protocol" => 6 }}
