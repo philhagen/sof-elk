@@ -19,7 +19,7 @@ end
 # while creating new ones only requires you to add a new instance of
 # LogStash::Event to the returned array
 def filter(event)
-  headerdata_perms_orig = event.get("#{@source_field}")
+  headerdata_perms_orig = event.get(@source_field)
 
   # set up the default fields
   headerdata_perms = {
@@ -119,7 +119,7 @@ def filter(event)
     headerdata_perms["keeplocalidlistforunctarget"] = true if (headerdata_perms_orig.include? "keeplocalidlistforunctarget")
   end
 
-  event.set("#{@source_field}", headerdata_perms)
+  event.set(@source_field, headerdata_perms)
   return [event]
 end
 

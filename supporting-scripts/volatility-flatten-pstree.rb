@@ -39,17 +39,17 @@ end
 
 def filter(event)
   # Tag and exit if source field isn't present
-  if event.get("#{@source_field}").nil?
+  if event.get(@source_field).nil?
     event.tag("#{@source_field}_not_found")
     return [event]
   end
 
   # Retrieve the source
-  source = event.get("#{@source_field}")
+  source = event.get(@source_field)
 
   flat_process_list = flatten_process_tree(source)
 
-  event.set("#{@target_field}", flat_process_list)
+  event.set(@target_field, flat_process_list)
   return [event]
 end
 

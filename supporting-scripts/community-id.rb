@@ -73,7 +73,7 @@ def register(params)
   @dest_port = params.fetch("dest_port_field", "[destination][port]")
   @protocol = params.fetch("protocol_field", "[network][iana_number]")
 
-  @target_field = params["target_field"]
+  @target_field = params.fetch("target_field")
 end
 
 def filter(event)
@@ -91,11 +91,11 @@ def filter(event)
   end
 
   # Retreive the fields
-  src_ip = event.get("#{@source_ip}")
-  src_p = event.get("#{@source_port}").to_i
-  dst_ip = event.get("#{@dest_ip}")
-  dst_p = event.get("#{@dest_port}").to_i
-  protocol = event.get("#{@protocol}").to_i
+  src_ip = event.get(@source_ip)
+  src_p = event.get(@source_port).to_i
+  dst_ip = event.get(@dest_ip)
+  dst_p = event.get(@dest_port).to_i
+  protocol = event.get(@protocol).to_i
 
   # Parse to sockaddr_in struct bytestring
   src = Socket.sockaddr_in(src_p, src_ip)
@@ -159,7 +159,7 @@ def filter(event)
   comm_id = nil
   comm_id = VERSION + Base64.strict_encode64(hash.digest)
 
-  event.set("#{@target_field}", comm_id)
+  event.set(@target_field, comm_id)
   return [event]
 end
 

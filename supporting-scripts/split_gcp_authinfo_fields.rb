@@ -45,7 +45,7 @@ def filter(event)
     end
   end
 
-  event.set("#{@destination_field}", output)
+  event.set(@destination_field, output)
   return [event]
 end
 

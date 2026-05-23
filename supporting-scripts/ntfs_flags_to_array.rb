@@ -19,7 +19,7 @@ end
 # while creating new ones only requires you to add a new instance of
 # LogStash::Event to the returned array
 def filter(event)
-  file_perms_orig = event.get("#{@source_field}")
+  file_perms_orig = event.get(@source_field)
 
   # set up the default fields
   file_perms = {
@@ -93,7 +93,7 @@ def filter(event)
     file_perms["indexview"] = true if (file_perms_orig.include? "indexview")
   end
 
-  event.set("#{@source_field}", file_perms)
+  event.set(@source_field, file_perms)
   return [event]
 end
 

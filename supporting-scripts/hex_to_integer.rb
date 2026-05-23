@@ -15,7 +15,7 @@ end
 # while creating new ones only requires you to add a new instance of
 # LogStash::Event to the returned array
 def filter(event)
-  hex_string = event.get("#{@source_field}")
+  hex_string = event.get(@source_field)
 
   # if already an integer, just return the unchanged event
   if hex_string.is_a?(Integer)
@@ -31,7 +31,7 @@ def filter(event)
     hex_string = "0x" + hex_string
   end
 
-  event.set("#{@source_field}", Integer(hex_string, 16))
+  event.set(@source_field, Integer(hex_string, 16))
 
   return [event]
 end
