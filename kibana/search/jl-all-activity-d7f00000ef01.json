@@ -1,0 +1,47 @@
+{
+  "attributes": {
+    "columns": [
+      "jumplist.variant",
+      "jumplist.app_description",
+      "file.target.path",
+      "file.target.drivetype",
+      "volume.serial_number",
+      "host.hostname",
+      "file.tracker.machine_id",
+      "tags"
+    ],
+    "description": "Every jump-list entry, both Automatic (Windows-managed DestList per AppID) and Custom (app-managed pinned/recent items). One row = one referenced file. Sorted by @timestamp desc so the most recently-opened files float to the top. This is the hero panel for jump-list triage.",
+    "grid": {
+      "columns": {
+        "jumplist.variant":           { "width": 90  },
+        "jumplist.app_description":   { "width": 200 },
+        "file.target.path":           { "width": 460 },
+        "file.target.drivetype":      { "width": 180 },
+        "volume.serial_number":       { "width": 120 },
+        "host.hostname":              { "width": 140 },
+        "file.tracker.machine_id":    { "width": 140 },
+        "tags":                       { "width": 260 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Jump Lists: ALL ACTIVITY — every entry, every app, sorted by @timestamp",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "jumplists", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

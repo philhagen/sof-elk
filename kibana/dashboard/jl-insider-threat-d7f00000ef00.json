@@ -1,0 +1,28 @@
+{
+  "attributes": {
+    "description": "Jump Lists — Insider Threat. Covers both .automaticDestinations-ms (Windows-managed per-AppID recent files with DestList MRU + Pinned state) and .customDestinations-ms (app-managed categories like Outlook Recent / Chrome Most-visited / PuTTY Pinned sessions). Top: App Usage donut showing which apps are actually in use. Below: ALL ACTIVITY hero, then 2x2 grid of insider-threat-flavored views (Removable Media, Network/UNC, Pinned, Cross-machine tracker) plus a Sensitive File Types panel.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"jl-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"jl-p1\",\"panelRefName\":\"panel_jl-p1\",\"title\":\"App Usage Distribution — which apps actually have jump-list activity on this host\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"jl-p2\",\"w\":48,\"x\":0,\"y\":12},\"panelIndex\":\"jl-p2\",\"panelRefName\":\"panel_jl-p2\",\"title\":\"ALL ACTIVITY — every jump-list entry, both AutoDest + CustomDest, by @timestamp desc\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"jl-p3\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"jl-p3\",\"panelRefName\":\"panel_jl-p3\",\"title\":\"REMOVABLE MEDIA — files opened from USB / external HDD / optical (drive-letter heuristic + DriveType=Removable)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"jl-p4\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"jl-p4\",\"panelRefName\":\"panel_jl-p4\",\"title\":\"NETWORK SHARES + mapped drives — UNC paths and W:-Z: drive letters\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"jl-p5\",\"w\":24,\"x\":0,\"y\":38},\"panelIndex\":\"jl-p5\",\"panelRefName\":\"panel_jl-p5\",\"title\":\"PINNED ITEMS — explicitly pinned by the user (strong intent signal)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"jl-p6\",\"w\":24,\"x\":24,\"y\":38},\"panelIndex\":\"jl-p6\",\"panelRefName\":\"panel_jl-p6\",\"title\":\"CROSS-MACHINE TRACKER — file originated on a different machine (LNK MachineID != Hostname)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"jl-p7\",\"w\":48,\"x\":0,\"y\":50},\"panelIndex\":\"jl-p7\",\"panelRefName\":\"panel_jl-p7\",\"title\":\"SENSITIVE FILE TYPES — SSH/PGP keys, certificates, archives, scripts\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "Jump Lists",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf10", "name": "jl-p1:panel_jl-p1", "type": "lens" },
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf01", "name": "jl-p2:panel_jl-p2", "type": "search" },
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf02", "name": "jl-p3:panel_jl-p3", "type": "search" },
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf03", "name": "jl-p4:panel_jl-p4", "type": "search" },
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf04", "name": "jl-p5:panel_jl-p5", "type": "search" },
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf05", "name": "jl-p6:panel_jl-p6", "type": "search" },
+    { "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf06", "name": "jl-p7:panel_jl-p7", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

@@ -7,7 +7,7 @@
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"re-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"re-p1\",\"panelRefName\":\"panel_re-p1\",\"title\":\"All Registry Activity (timeline)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"re-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"re-p2\",\"panelRefName\":\"panel_re-p2\",\"title\":\"Program Execution (BAM, AppCompat, Amcache, UserAssist, MUICache)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"re-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"re-p3\",\"panelRefName\":\"panel_re-p3\",\"title\":\"Typed / MRU User Input (RunMRU, TypedPaths, RecentDocs, Office MRUs)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"re-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"re-p4\",\"panelRefName\":\"panel_re-p4\",\"title\":\"USB Devices + Network Shares + WiFi/VPN\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"re-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"re-p5\",\"panelRefName\":\"panel_re-p5\",\"title\":\"Cloud Sync + Persistence + Threat Hunting\",\"type\":\"search\"}]",
     "timeRestore": false,
-    "title": "Registry — Insider Threat",
+    "title": "Registry",
     "version": 1
   },
   "coreMigrationVersion": "8.8.0",

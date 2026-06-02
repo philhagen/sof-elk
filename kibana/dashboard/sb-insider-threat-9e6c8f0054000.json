@@ -7,7 +7,7 @@
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{},\"sort\":[[\"shellbag.last_interacted\",\"desc\"]]},\"gridData\":{\"h\":12,\"i\":\"sb-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"sb-p1\",\"panelRefName\":\"panel_sb-p1\",\"title\":\"Confirmed User-Explored Folders (has_explored=true)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"sb-p2\",\"panelRefName\":\"panel_sb-p2\",\"title\":\"Likely Removable Media (D–K drive letters)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"sb-p3\",\"panelRefName\":\"panel_sb-p3\",\"title\":\"Network Resource Navigation (UNC, IP, Mapped W–Z)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"sb-p4\",\"panelRefName\":\"panel_sb-p4\",\"title\":\"Possibly Deleted Folders (NTFS, no live MFT entry)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"sb-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"sb-p5\",\"panelRefName\":\"panel_sb-p5\",\"title\":\"All Shellbag Activity (timeline)\",\"type\":\"search\"}]",
     "timeRestore": false,
-    "title": "Shellbags — Insider Threat",
+    "title": "Shellbags",
     "version": 1
   },
   "coreMigrationVersion": "8.8.0",

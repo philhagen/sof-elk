@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "tags",
+      "browser.title",
+      "browser.url",
+      "url.domain"
+    ],
+    "description": "NirSoft visits to insider-threat-flagged categories — same canonical tag set used by the Hindsight parser so behavior is consistent across tools. Covers: file-sharing services (Dropbox/Box/Mega/WeTransfer/etc.), personal cloud (Google Drive, OneDrive personal, iCloud, Proton), webmail (Gmail/Outlook.com/Yahoo Mail/Proton Mail), AI assistants (ChatGPT/Claude/Gemini/Copilot/Perplexity), job sites (LinkedIn jobs, Indeed, Glassdoor, etc.), and canary tokens.",
+    "grid": {
+      "columns": {
+        "user.name":      { "width": 110 },
+        "browser.family": { "width": 100 },
+        "tags":           { "width": 280 },
+        "browser.title":  { "width": 240 },
+        "browser.url":    { "width": 500 },
+        "url.domain":     { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"browser.source_tool : \\\"nirsoft_browsinghistoryview\\\" and (tags : browser_file_sharing or tags : browser_cloud_personal or tags : browser_webmail or tags : browser_ai_assistant or tags : browser_job_site or tags : browser_canary_token)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "NirSoft: EXFIL CHANNELS (file-sharing, personal cloud, webmail, AI, jobs, canary)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf06",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

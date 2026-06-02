@@ -7,7 +7,7 @@
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":18,\"i\":\"br-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"br-p1\",\"panelRefName\":\"panel_br-p1\",\"title\":\"ALL DOWNLOADS — file path, extension, danger flag, opened?, interrupt reason, URL\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"br-p2\",\"w\":24,\"x\":0,\"y\":18},\"panelIndex\":\"br-p2\",\"panelRefName\":\"panel_br-p2\",\"title\":\"Typed URLs (deliberate navigation)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"br-p3\",\"w\":24,\"x\":24,\"y\":18},\"panelIndex\":\"br-p3\",\"panelRefName\":\"panel_br-p3\",\"title\":\"Exfil Channels: file-sharing, personal cloud, webmail, AI, canary tokens\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"br-p4\",\"w\":24,\"x\":0,\"y\":30},\"panelIndex\":\"br-p4\",\"panelRefName\":\"panel_br-p4\",\"title\":\"Job-Search Activity (departure signal)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"br-p5\",\"w\":24,\"x\":24,\"y\":30},\"panelIndex\":\"br-p5\",\"panelRefName\":\"panel_br-p5\",\"title\":\"All Hindsight Activity (every record type)\",\"type\":\"search\"}]",
     "timeRestore": false,
-    "title": "Browser — Insider Threat (Hindsight)",
+    "title": "Browser History (Hindsight)",
     "version": 1
   },
   "coreMigrationVersion": "8.8.0",

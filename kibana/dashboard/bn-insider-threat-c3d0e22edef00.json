@@ -1,0 +1,28 @@
+{
+  "attributes": {
+    "description": "Browser — Insider Threat (NirSoft BrowsingHistoryView). Cross-browser surfing-history view that complements the Chromium-focused Hindsight dashboard. Top panel: cross-tool Browser Distribution donut — answers 'which browsers does this environment actually use?' across both NirSoft and Hindsight data. Below: ALL HISTORY hero, TYPED URLs (high-intent signal), FILE:// URLs (local-file access via browser), DOWNLOADS, FORM SUBMITS, and EXFIL CHANNELS (file-sharing / personal cloud / webmail / AI / job sites / canary tokens). All non-distribution panels filter to browser.source_tool : nirsoft_browsinghistoryview so they don't double-count Hindsight data.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"bn-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"bn-p1\",\"panelRefName\":\"panel_bn-p1\",\"title\":\"Browser Distribution — cross-tool view of which browsers users in this environment actually surf with (Chrome / Firefox / Edge / IE / etc.)\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"bn-p2\",\"w\":48,\"x\":0,\"y\":12},\"panelIndex\":\"bn-p2\",\"panelRefName\":\"panel_bn-p2\",\"title\":\"ALL HISTORY — every NirSoft record sorted by @timestamp desc\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"bn-p3\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"bn-p3\",\"panelRefName\":\"panel_bn-p3\",\"title\":\"TYPED URLs — user knew where they were going (strongest intent signal)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"bn-p4\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"bn-p4\",\"panelRefName\":\"panel_bn-p4\",\"title\":\"FILE:// URLs — local file access via browser (often sensitive docs / keys)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"bn-p5\",\"w\":24,\"x\":0,\"y\":38},\"panelIndex\":\"bn-p5\",\"panelRefName\":\"panel_bn-p5\",\"title\":\"DOWNLOADS — cross-browser (IE/Edge legacy + Firefox + Chrome via NirSoft)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"bn-p6\",\"w\":24,\"x\":24,\"y\":38},\"panelIndex\":\"bn-p6\",\"panelRefName\":\"panel_bn-p6\",\"title\":\"FORM SUBMITS — the URL the user posted data TO\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"bn-p7\",\"w\":48,\"x\":0,\"y\":50},\"panelIndex\":\"bn-p7\",\"panelRefName\":\"panel_bn-p7\",\"title\":\"EXFIL CHANNELS — file-sharing / personal cloud / webmail / AI / job sites / canary tokens\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "Browser History (NirSoft)",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf10", "name": "bn-p1:panel_bn-p1", "type": "lens" },
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf01", "name": "bn-p2:panel_bn-p2", "type": "search" },
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf02", "name": "bn-p3:panel_bn-p3", "type": "search" },
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf03", "name": "bn-p4:panel_bn-p4", "type": "search" },
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf04", "name": "bn-p5:panel_bn-p5", "type": "search" },
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf05", "name": "bn-p6:panel_bn-p6", "type": "search" },
+    { "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf06", "name": "bn-p7:panel_bn-p7", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

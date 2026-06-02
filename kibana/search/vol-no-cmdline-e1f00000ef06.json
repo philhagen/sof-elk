@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "columns": [
+      "process.pid",
+      "process.parent.pid",
+      "process.name",
+      "process.executable",
+      "process.executable_directory",
+      "process.thread_count",
+      "tags"
+    ],
+    "description": "Processes with NO command line set, excluding the always-empty system kernel processes (PID 0 = System Idle, PID 4 = System). Memory-resident injected code, doppelgänger / hollowed processes, and certain kernel-launched workers often present with a missing or empty Cmd field in pstree because the PEB has been tampered with or never populated. Treat as anomaly worth correlating against the same PID in pslist / dlllist / malfind.",
+    "grid": {
+      "columns": {
+        "process.pid":                  { "width": 80  },
+        "process.parent.pid":           { "width": 90  },
+        "process.name":                 { "width": 220 },
+        "process.executable":           { "width": 500 },
+        "process.executable_directory": { "width": 380 },
+        "process.thread_count":         { "width": 80  },
+        "tags":                         { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : vol_no_command_line\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Volatility: NO COMMAND LINE (often hidden / injected — PID > 4 only)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf06",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "volatility", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

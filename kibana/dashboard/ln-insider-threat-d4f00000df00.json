@@ -7,7 +7,7 @@
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"ln-p1\",\"panelRefName\":\"panel_ln-p1\",\"title\":\"All LNK Activity (Timeline)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"ln-p2\",\"panelRefName\":\"panel_ln-p2\",\"title\":\"Opened from Removable Media (USB volume serial + label persist)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"ln-p3\",\"panelRefName\":\"panel_ln-p3\",\"title\":\"Opened from Network Share (UNC path preserved)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"ln-p4\",\"panelRefName\":\"panel_ln-p4\",\"title\":\"Distributed Tracker GUID (LNKs made on a different machine)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"ln-p5\",\"panelRefName\":\"panel_ln-p5\",\"title\":\"Office Docs, PDFs, Archives Opened (IP-theft pivot)\",\"type\":\"search\"}]",
     "timeRestore": false,
-    "title": "LNK Files — Insider Threat",
+    "title": "LNK Files",
     "version": 1
   },
   "coreMigrationVersion": "8.8.0",

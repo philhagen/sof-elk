@@ -1,0 +1,29 @@
+{
+  "attributes": {
+    "description": "Volatility — Process Tree (windows.pstree.PsTree). Top: Process Image Distribution donut anchored on process.name. Below: ALL PROCESSES hero (reads as a tree via depth-ordered sort), then 2x2 of insider-threat-focused views (Suspicious Paths, LOLBins, Misplaced System Binaries, Evasive PowerShell) and a full-width strip for No-Command-Line + Remote-Access tools. Source pipeline: 6511-volatility-pstree.conf calls supporting-scripts/volatility-flatten-pstree.rb to flatten the recursive __children tree, then splits each process into its own ES doc.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"vol-p1\",\"panelRefName\":\"panel_vol-p1\",\"title\":\"Process Image Distribution — which executables dominate this memory dump\",\"type\":\"lens\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"vol-p2\",\"w\":48,\"x\":0,\"y\":12},\"panelIndex\":\"vol-p2\",\"panelRefName\":\"panel_vol-p2\",\"title\":\"ALL PROCESSES — depth-ordered, reads as a tree (use process.parent.pid to pivot up)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p3\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"vol-p3\",\"panelRefName\":\"panel_vol-p3\",\"title\":\"SUSPICIOUS PATHS — Temp / AppData / Public / ProgramData / Downloads\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p4\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"vol-p4\",\"panelRefName\":\"panel_vol-p4\",\"title\":\"LOLBINS — legit Windows binaries abused for execution / evasion / download\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p5\",\"w\":24,\"x\":0,\"y\":38},\"panelIndex\":\"vol-p5\",\"panelRefName\":\"panel_vol-p5\",\"title\":\"MISPLACED SYSTEM BINARIES — svchost/lsass/etc. NOT in System32 (rootkit/hollow signal)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p6\",\"w\":24,\"x\":24,\"y\":38},\"panelIndex\":\"vol-p6\",\"panelRefName\":\"panel_vol-p6\",\"title\":\"EVASIVE POWERSHELL — -enc / -nop / -w hidden / -exec bypass in the cmdline\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p7\",\"w\":24,\"x\":0,\"y\":50},\"panelIndex\":\"vol-p7\",\"panelRefName\":\"panel_vol-p7\",\"title\":\"NO COMMAND LINE — possible hidden/injected processes (excludes PID 0/4)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"vol-p8\",\"w\":24,\"x\":24,\"y\":50},\"panelIndex\":\"vol-p8\",\"panelRefName\":\"panel_vol-p8\",\"title\":\"REMOTE ACCESS / LATERAL TOOLING — PsExec / WinRM / PuTTY / VNC / etc.\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "Volatility - Process Tree",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf10", "name": "vol-p1:panel_vol-p1", "type": "lens" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf01", "name": "vol-p2:panel_vol-p2", "type": "search" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf02", "name": "vol-p3:panel_vol-p3", "type": "search" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf03", "name": "vol-p4:panel_vol-p4", "type": "search" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf04", "name": "vol-p5:panel_vol-p5", "type": "search" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf05", "name": "vol-p6:panel_vol-p6", "type": "search" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf06", "name": "vol-p7:panel_vol-p7", "type": "search" },
+    { "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf07", "name": "vol-p8:panel_vol-p8", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

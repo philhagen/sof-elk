@@ -7,7 +7,7 @@
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"fs-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"fs-p1\",\"panelRefName\":\"panel_fs-p1\",\"title\":\"Recent Filesystem Changes — USN $J in NON-system paths (noise-reduced timeline)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p2\",\"w\":24,\"x\":0,\"y\":14},\"panelIndex\":\"fs-p2\",\"panelRefName\":\"panel_fs-p2\",\"title\":\"Large Files (>= 100 MB) in User-Writable Locations (exfil staging)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p3\",\"w\":24,\"x\":24,\"y\":14},\"panelIndex\":\"fs-p3\",\"panelRefName\":\"panel_fs-p3\",\"title\":\"Recently Created Scripts (ps1/bat/sh/py/vbs/js/hta/wsf — all paths)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p4\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"fs-p4\",\"panelRefName\":\"panel_fs-p4\",\"title\":\"Timestomping + Alternate Data Streams (anti-forensics signatures)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p5\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"fs-p5\",\"panelRefName\":\"panel_fs-p5\",\"title\":\"USN $J — Scripts/Executables/Archives DELETED (cleanup signal)\",\"type\":\"search\"}]",
     "timeRestore": false,
-    "title": "Filesystem — Insider Threat",
+    "title": "KAPE - Filesystem",
     "version": 1
   },
   "coreMigrationVersion": "8.8.0",

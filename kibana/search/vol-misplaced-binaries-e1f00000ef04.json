@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "process.pid",
+      "process.parent.pid",
+      "process.name",
+      "process.executable_directory",
+      "process.command_line",
+      "tags"
+    ],
+    "description": "Well-known Windows system binaries (svchost / lsass / csrss / winlogon / services / smss / wininit / spoolsv / explorer / taskhost / dwm / sihost / ctfmon / runtimebroker) running from anywhere OTHER than System32 / SysWOW64 / WinSxS. This is one of the strongest single-event signals of a rootkit, process-hollowing, or persistence-as-system-process technique. A real svchost.exe is always in System32. If it's running from anywhere else, it's not real.",
+    "grid": {
+      "columns": {
+        "process.pid":                  { "width": 80  },
+        "process.parent.pid":           { "width": 90  },
+        "process.name":                 { "width": 200 },
+        "process.executable_directory": { "width": 420 },
+        "process.command_line":         { "width": 460 },
+        "tags":                         { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : vol_misplaced_system_binary\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Volatility: MISPLACED SYSTEM BINARIES (svchost/lsass/etc. NOT in System32)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "volatility", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

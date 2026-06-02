@@ -1,0 +1,59 @@
+{
+  "index_patterns": [
+    "volatility-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "total_fields": {
+            "limit": 2000
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "process": {
+          "properties": {
+            "pid":                  { "type": "integer" },
+            "name":                 { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "executable":           { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 4096 },
+            "executable_directory": { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 4096 },
+            "command_line":         { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "start":                { "type": "date"    },
+            "end":                  { "type": "date"    },
+            "thread_count":         { "type": "integer" },
+            "handle_count":         { "type": "integer" },
+            "session_id":           { "type": "integer" },
+            "depth":                { "type": "integer" },
+            "wow64":                { "type": "boolean" },
+            "parent": {
+              "properties": {
+                "pid":              { "type": "integer" },
+                "name":             { "type": "keyword" }
+              }
+            }
+          }
+        },
+        "volatility": {
+          "properties": {
+            "plugin":               { "type": "keyword" },
+            "offset_v":             { "type": "keyword" },
+            "source_file":          { "type": "keyword" }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK",
+    "purpose": "Volatility 3 memory-forensics output. Initial coverage is windows.pstree.PsTree (process tree, one ES doc per process), with the recursive __children tree flattened by supporting-scripts/volatility-flatten-pstree.rb and a process.depth field added. Insider-threat angles: processes running from suspicious user-writable locations (Temp / AppData / Public / Downloads), LOLBin executables, misplaced system binaries (svchost/lsass/etc. not in System32/SysWOW64), evasive PowerShell flags (-enc/-nop/-w hidden), no-command-line processes (often injected), deep process trees (loader chains), and remote-access tooling (PsExec/PuTTY/WinRM/etc.)."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.visit.type",
+      "browser.visit.count",
+      "browser.title",
+      "browser.url",
+      "url.domain",
+      "browser.history_file"
+    ],
+    "description": "Every NirSoft BrowsingHistoryView record sorted by @timestamp desc — the hero panel for browsing-history triage. Includes URL, page title, who visited it, in which browser, how many times, and the on-disk history file the record was pulled from.",
+    "grid": {
+      "columns": {
+        "user.name":           { "width": 110 },
+        "browser.family":      { "width": 100 },
+        "browser.visit.type":  { "width": 110 },
+        "browser.visit.count": { "width": 80  },
+        "browser.title":       { "width": 280 },
+        "browser.url":         { "width": 420 },
+        "url.domain":          { "width": 200 },
+        "browser.history_file":{ "width": 380 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"browser.source_tool : \\\"nirsoft_browsinghistoryview\\\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "NirSoft: ALL HISTORY — every record, every user, every browser",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

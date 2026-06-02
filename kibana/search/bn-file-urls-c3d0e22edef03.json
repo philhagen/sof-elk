@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.visit.count",
+      "browser.title",
+      "browser.url",
+      "browser.history_file"
+    ],
+    "description": "file:// URLs — the user opened a local file directly inside the browser instead of via Explorer/Finder. Common patterns: opening .ppk/.pem keys, .docx/.xlsx, internal share paths. For insider-threat triage, look for sensitive document paths and SSH/PGP key files (the .ppk in this sample dataset is the classic example). Also exposes Office DTS template caching which can hide file-touch evidence in a normally-quiet artifact.",
+    "grid": {
+      "columns": {
+        "user.name":           { "width": 110 },
+        "browser.family":      { "width": 100 },
+        "browser.visit.count": { "width": 80  },
+        "browser.title":       { "width": 220 },
+        "browser.url":         { "width": 560 },
+        "browser.history_file":{ "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"browser.source_tool : \\\"nirsoft_browsinghistoryview\\\" and tags : browser_local_file_access\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "NirSoft: FILE:// URLs (local-file access via the browser)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

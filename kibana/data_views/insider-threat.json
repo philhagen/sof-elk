@@ -6,6 +6,6 @@
     "id": "insider-threat",
     "name": "insider-threat-* (cross-artifact)",
     "timeFieldName": "@timestamp",
-    "title": "shellbags-*,prefetch-*,registry-*,browser-*,filesystem-*,lnkfiles-*,evtxlogs-*"
+    "title": "shellbags-*,prefetch-*,registry-*,browser-*,filesystem-*,lnkfiles-*,evtxlogs-*,jumplists-*"
   }
 }

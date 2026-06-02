@@ -7,7 +7,7 @@
     "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ev-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"ev-p1\",\"panelRefName\":\"panel_ev-p1\",\"title\":\"All Event Log Activity (Timeline — sort by @timestamp, filter by channel/event_id)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ev-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"ev-p2\",\"panelRefName\":\"panel_ev-p2\",\"title\":\"Authentication & Account Management (4624/4625/4634/4647/4648/4672 + account changes + RDP)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ev-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"ev-p3\",\"panelRefName\":\"panel_ev-p3\",\"title\":\"PowerShell Script & Pipeline (4104 script blocks, 4103 pipeline)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ev-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"ev-p4\",\"panelRefName\":\"panel_ev-p4\",\"title\":\"Process Execution (Sysmon 1 + Security 4688/4689 with command line)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ev-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"ev-p5\",\"panelRefName\":\"panel_ev-p5\",\"title\":\"Persistence (7045/7036 services, 4697-4702 scheduled tasks, Sysmon 19-21 WMI subs)\",\"type\":\"search\"}]",
     "timeRestore": false,
-    "title": "Event Log — Insider Threat",
+    "title": "KAPE - Event Log",
     "version": 1
   },
   "coreMigrationVersion": "8.8.0",

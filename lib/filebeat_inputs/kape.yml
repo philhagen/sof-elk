@@ -105,3 +105,63 @@
        labels:
          type: browser_history
   tags: [ 'json' ]
+
+- type: filestream
+  id: browser-nirsoft-json
+  paths:
+    # NirSoft BrowsingHistoryView output (csv2json'd to JSONL).
+    # BrowsingHistoryView native CSV is cp1252-encoded; pipe through
+    # csv2json.py before dropping into /logstash/kape/. Match the typical
+    # filename pattern (BrowsingHistory.json, *_nirsoft_*.json, etc.).
+    - /logstash/kape/**/BrowsingHistory*.json
+    - /logstash/kape/**/*nirsoft*BrowsingHistory*.json
+    - /logstash/kape/**/*BrowsingHistoryView*.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: browser_nirsoft
+  tags: [ 'json' ]
+
+- type: filestream
+  id: kape-jlecmd-json
+  paths:
+    # JLECmd output covers both jump-list variants. KAPE's JLECmd module
+    # produces files matching <YYYYMMDDHHMMSS>_AutomaticDestinations.csv
+    # and <YYYYMMDDHHMMSS>_CustomDestinations.csv. csv2json those to .json
+    # before dropping into /logstash/kape/.
+    - /logstash/kape/**/*AutomaticDestinations*.json
+    - /logstash/kape/**/*CustomDestinations*.json
+    - /logstash/kape/**/*JLECmd*.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: kape_jumplists
+  tags: [ 'json' ]
+
+- type: filestream
+  id: volatility-pstree-json
+  paths:
+    # Volatility 3 windows.pstree.PsTree output. Pre-process with
+    # supporting-scripts/vol2json.py first:
+    #   vol2json.py -r vol_out.json -w pstree.jsonl
+    # vol2json.py auto-detects encoding (UTF-8 / UTF-8-BOM / UTF-16 LE/BE,
+    # the last of which is what PowerShell `>` redirection produces by
+    # default — and what would otherwise silently fail JSON parse here),
+    # strips BOMs, and emits one root process tree per line.
+    - /logstash/kape/**/*pstree*.json
+    - /logstash/kape/**/*pstree*.jsonl
+    - /logstash/kape/**/*PsTree*.json
+    - /logstash/kape/**/*PsTree*.jsonl
+    - /logstash/kape/**/*volatility*pstree*.json
+    - /logstash/kape/**/*volatility*pstree*.jsonl
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: volatility_pstree
+  tags: [ 'json' ]

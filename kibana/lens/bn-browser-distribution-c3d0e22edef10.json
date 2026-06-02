@@ -1,0 +1,104 @@
+{
+  "attributes": {
+    "description": "Browser family distribution across every browser-history record in the environment, grouped by normalized [browser][family] (chrome/firefox/edge/ie/ie_edge/safari/opera/brave/vivaldi/other). Cross-tool — combines both NirSoft BrowsingHistoryView (legacy IE/Edge + Firefox + Chrome) and Hindsight (Chromium family) data so you can see at a glance which browsers users in this environment actually use for web surfing. Drill into the donut to filter the rest of the dashboard.",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "bn-browserdist-layer-10": {
+              "columnOrder": [
+                "bn-col-family",
+                "bn-col-count"
+              ],
+              "columns": {
+                "bn-col-family": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Browser Family",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "bn-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": { "id": "terms" },
+                    "size": 15
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "browser.family"
+                },
+                "bn-col-count": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": { "layers": {} },
+        "textBased": { "layers": {} }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": { "language": "kuery", "query": "browser.family : *" },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": { "type": "categorical" },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": { "type": "loop" },
+                  "rules": [ { "type": "other" } ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "bn-browserdist-layer-10",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [ "bn-col-count" ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [ "bn-col-family" ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "Browser Distribution (Chrome / Firefox / Edge / IE / etc.)",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf10",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    {
+      "id": "browser",
+      "name": "indexpattern-datasource-layer-bn-browserdist-layer-10",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

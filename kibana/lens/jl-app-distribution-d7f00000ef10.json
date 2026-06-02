@@ -1,0 +1,104 @@
+{
+  "attributes": {
+    "description": "App Usage Distribution — donut showing which applications have jump-list activity on this host. AppIdDescription is set by JLECmd from a curated AppId -> name database (Quick Access, Microsoft Word, Outlook, Firefox, PuTTY, Teams, etc.). For insider-threat triage, this tells you at a glance which tools the user has actually been working with. A spike in 'PuTTY' or 'WinSCP' usage, or a previously-unseen browser, can be the first hint of activity worth investigating.",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "jl-appdist-layer-10": {
+              "columnOrder": [
+                "jl-col-app",
+                "jl-col-count"
+              ],
+              "columns": {
+                "jl-col-app": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Application",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "jl-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": { "id": "terms" },
+                    "size": 20
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "jumplist.app_description"
+                },
+                "jl-col-count": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": { "layers": {} },
+        "textBased": { "layers": {} }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": { "language": "kuery", "query": "jumplist.app_description : *" },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": { "type": "categorical" },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": { "type": "loop" },
+                  "rules": [ { "type": "other" } ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "jl-appdist-layer-10",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [ "jl-col-count" ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [ "jl-col-app" ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "App Usage Distribution (Jump Lists)",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf10",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    {
+      "id": "jumplists",
+      "name": "indexpattern-datasource-layer-jl-appdist-layer-10",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

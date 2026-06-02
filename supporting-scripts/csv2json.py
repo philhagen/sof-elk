@@ -37,16 +37,29 @@ csv.field_size_limit(10 * 1024 * 1024)
 def detect_encoding(filename):
     """Sniff the first bytes of the file to determine encoding.
 
-    Returns one of: 'utf-8-sig', 'utf-16', or 'utf-8'. The 'utf-16' codec
-    handles both BE (FE FF) and LE (FF FE) BOMs.
+    Returns one of: 'utf-8-sig', 'utf-16', 'utf-8', or 'cp1252'. The 'utf-16'
+    codec handles both BE (FE FF) and LE (FF FE) BOMs.
+
+    cp1252 fallback: NirSoft tools (BrowsingHistoryView, etc.) and many other
+    Windows utilities default to writing CSV in the system ANSI code page,
+    which is cp1252 on en-US Windows installs. Without this fallback we'd
+    read those files as utf-8 + errors='replace' and silently replace bytes
+    like 0xA0 (non-breaking space in cp1252) with U+FFFD.
     """
     with open(filename, "rb") as f:
-        head = f.read(4)
+        head = f.read(4096)
     if head.startswith(b"\xef\xbb\xbf"):
         return "utf-8-sig"
     if head.startswith(b"\xff\xfe") or head.startswith(b"\xfe\xff"):
         return "utf-16"
-    return "utf-8"
+    try:
+        head.decode("utf-8")
+        return "utf-8"
+    except UnicodeDecodeError:
+        # First chunk has bytes that aren't valid utf-8. cp1252 maps every
+        # byte to *something*, so it always decodes — accept that as the
+        # best guess for Windows-origin CSV.
+        return "cp1252"
 
 
 def strip_nuls(line_iterator):

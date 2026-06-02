@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.visit.typed_count",
+      "browser.title",
+      "browser.url",
+      "url.domain",
+      "browser.history_file"
+    ],
+    "description": "URLs the user TYPED into the address bar (NirSoft visit_type == 'Typed URL' OR typed_count > 0). This is the strongest user-intent signal in browser history: typing a URL means the user knew where they were going. For insider-threat triage, scan this list for exfil sites, personal cloud storage, webmail, AI assistants, job sites, and competitor domains.",
+    "grid": {
+      "columns": {
+        "user.name":                 { "width": 110 },
+        "browser.family":            { "width": 100 },
+        "browser.visit.typed_count": { "width": 90  },
+        "browser.title":             { "width": 260 },
+        "browser.url":               { "width": 460 },
+        "url.domain":                { "width": 220 },
+        "browser.history_file":      { "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"browser.source_tool : \\\"nirsoft_browsinghistoryview\\\" and tags : browser_typed_url\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "NirSoft: TYPED URLs (high-intent — user knew where they were going)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}
