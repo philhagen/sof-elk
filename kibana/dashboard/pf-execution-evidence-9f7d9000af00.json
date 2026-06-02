@@ -1,0 +1,26 @@
+{
+  "attributes": {
+    "description": "Prefetch-based execution evidence for insider-threat investigations. Each panel filters the exploded execution timeline (one ES doc per recorded run timestamp) on a different forensic angle: user-profile execution, temp-location execution, remote-access tools, single-run binaries, and the full timeline. Use alongside the LNK, EVTX, and Shellbags dashboards for a complete picture of user activity.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"pf-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"pf-p1\",\"panelRefName\":\"panel_pf-p1\",\"title\":\"All Executions (timeline) — each row is one recorded run timestamp\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"pf-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"pf-p2\",\"panelRefName\":\"panel_pf-p2\",\"title\":\"Executed from User Profile (C:\\\\Users\\\\...)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"pf-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"pf-p3\",\"panelRefName\":\"panel_pf-p3\",\"title\":\"Executed from Temp / AppData / ProgramData\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"pf-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"pf-p4\",\"panelRefName\":\"panel_pf-p4\",\"title\":\"Remote-Access Tools\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"pf-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"pf-p5\",\"panelRefName\":\"panel_pf-p5\",\"title\":\"Single-Run Executables (RunCount=1)\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "Prefetch",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af01", "name": "pf-p1:panel_pf-p1", "type": "search" },
+    { "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af02", "name": "pf-p2:panel_pf-p2", "type": "search" },
+    { "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af03", "name": "pf-p3:panel_pf-p3", "type": "search" },
+    { "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af04", "name": "pf-p4:panel_pf-p4", "type": "search" },
+    { "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af05", "name": "pf-p5:panel_pf-p5", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

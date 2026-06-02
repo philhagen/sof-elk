@@ -1,0 +1,11 @@
+{
+  "data_view": {
+    "allowHidden": false,
+    "allowNoIndex": false,
+    "fieldFormats": {},
+    "id": "registry",
+    "name": "registry-*",
+    "timeFieldName": "@timestamp",
+    "title": "registry-*"
+  }
+}

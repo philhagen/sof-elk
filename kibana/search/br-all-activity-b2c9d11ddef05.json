@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.record_type",
+      "browser.url",
+      "browser.title",
+      "browser.interpretation"
+    ],
+    "description": "All Hindsight Timeline records across every type (url, download, autofill, site setting, preference). Baseline view — sort by @timestamp to walk the user's full browsing day. Use the record_type filter for fast slicing.",
+    "grid": {
+      "columns": {
+        "user.name":              { "width": 110 },
+        "browser.family":         { "width": 90  },
+        "browser.record_type":    { "width": 140 },
+        "browser.url":            { "width": 360 },
+        "browser.title":          { "width": 280 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Browser: All Hindsight Activity (Timeline)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b2c9d11d-def0-11ef-b0a2-1e0b97a5bf05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "_index",
+      "user.name",
+      "host.name",
+      "message",
+      "tags"
+    ],
+    "description": "Cross-artifact execution evidence: (1) every Prefetch execution event, (2) Registry BAM/AppCompatCache/Amcache/UserAssist/MUICache findings, (3) Windows process-creation events (Sysmon 1, Security 4688) from EVTX. If a binary ran on this host, it should show up here at least once.",
+    "grid": {
+      "columns": {
+        "_index":      { "width": 180 },
+        "user.name":   { "width": 110 },
+        "host.name":   { "width": 140 },
+        "message":     { "width": 600 },
+        "tags":        { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"_index : prefetch-* or (_index : registry-* and tags : registry_program_execution) or (_index : evtxlogs-* and winlog.event_id : (1 or 4688))\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Insider Threat: Execution Evidence (prefetch + registry + EVTX)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "insider-threat", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

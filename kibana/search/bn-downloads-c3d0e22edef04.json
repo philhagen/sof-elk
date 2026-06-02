@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.title",
+      "browser.url",
+      "url.domain",
+      "browser.history_file"
+    ],
+    "description": "NirSoft visit_type == 'Download' rows. NirSoft history is less granular than Hindsight (no danger_type / interrupt_reason / final on-disk path), but it captures downloads from IE/Edge legacy and Firefox places.sqlite that Hindsight doesn't see. Cross-reference with the Hindsight 'ALL DOWNLOADS' panel for a complete picture.",
+    "grid": {
+      "columns": {
+        "user.name":           { "width": 110 },
+        "browser.family":      { "width": 100 },
+        "browser.title":       { "width": 280 },
+        "browser.url":         { "width": 500 },
+        "url.domain":          { "width": 220 },
+        "browser.history_file":{ "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"browser.source_tool : \\\"nirsoft_browsinghistoryview\\\" and tags : browser_download\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "NirSoft: DOWNLOADS (cross-browser, including IE/Edge legacy + Firefox)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "c3d0e22e-def0-11ef-b0a2-1e0b97a5cf04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

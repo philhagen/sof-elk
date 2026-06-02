@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "columns": [
+      "jumplist.app_description",
+      "file.target.path",
+      "host.hostname",
+      "file.tracker.machine_id",
+      "file.tracker.mac",
+      "file.tracker.creation",
+      "tags"
+    ],
+    "description": "Files whose Distributed Link Tracker metadata reveals they ORIGINATED ON ANOTHER MACHINE. When a Windows host first opens a file, it stamps the file's LNK with the local MachineID + MAC. If that ID doesn't match the host where the jump-list entry was found, the file traveled between machines (USB / network share / file transfer / Resilient Sharepoint copy / etc.). This is one of the most reliable forensic signals for tracking file movement across systems.",
+    "grid": {
+      "columns": {
+        "jumplist.app_description":   { "width": 200 },
+        "file.target.path":           { "width": 460 },
+        "host.hostname":              { "width": 140 },
+        "file.tracker.machine_id":    { "width": 140 },
+        "file.tracker.mac":           { "width": 160 },
+        "file.tracker.creation":      { "width": 180 },
+        "tags":                       { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : jumplist_tracker_cross_machine\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Jump Lists: CROSS-MACHINE TRACKER (file originated on a different machine)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "jumplists", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

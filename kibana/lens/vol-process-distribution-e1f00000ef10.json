@@ -1,0 +1,104 @@
+{
+  "attributes": {
+    "description": "Process Image Distribution — donut showing how many processes in the dump belong to each unique executable name (process.name). Anchors the dashboard and tells you at a glance which images dominate the system (lots of svchost is normal; lots of unfamiliar names is not). Click a slice to filter the rest of the dashboard to just that image.",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "vol-procdist-layer-10": {
+              "columnOrder": [
+                "vol-col-name",
+                "vol-col-count"
+              ],
+              "columns": {
+                "vol-col-name": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Image Name",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "vol-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": { "id": "terms" },
+                    "size": 20
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "process.name"
+                },
+                "vol-col-count": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Processes",
+                  "operationType": "count",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": { "layers": {} },
+        "textBased": { "layers": {} }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": { "language": "kuery", "query": "process.name : *" },
+      "visualization": {
+        "layers": [
+          {
+            "categoryDisplay": "default",
+            "colorMapping": {
+              "assignments": [],
+              "colorMode": { "type": "categorical" },
+              "paletteId": "default",
+              "specialAssignments": [
+                {
+                  "color": { "type": "loop" },
+                  "rules": [ { "type": "other" } ],
+                  "touched": false
+                }
+              ]
+            },
+            "emptySizeRatio": 0.3,
+            "layerId": "vol-procdist-layer-10",
+            "layerType": "data",
+            "legendDisplay": "show",
+            "metrics": [ "vol-col-count" ],
+            "nestedLegend": true,
+            "numberDisplay": "percent",
+            "primaryGroups": [ "vol-col-name" ]
+          }
+        ],
+        "shape": "donut"
+      }
+    },
+    "title": "Process Image Distribution",
+    "visualizationType": "lnsPie"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf10",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    {
+      "id": "volatility",
+      "name": "indexpattern-datasource-layer-vol-procdist-layer-10",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

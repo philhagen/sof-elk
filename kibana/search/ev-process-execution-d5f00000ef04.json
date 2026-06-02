@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "winlog.event_id",
+      "winlog.computer_name",
+      "winlog.user.name",
+      "winlog.payload.event_data",
+      "kape.map_description",
+      "message"
+    ],
+    "description": "Process-creation events. Sysmon Event ID 1 includes the full command line, working directory, parent process, image hash, and signature info — by far the richest execution evidence available. Security 4688 (when Process Auditing is enabled with cmdline logging) covers the rest. Cross-reference with the Prefetch dashboard's execution timeline for double-confirmation that a binary actually ran.",
+    "grid": {
+      "columns": {
+        "winlog.event_id":           { "width": 80  },
+        "winlog.computer_name":      { "width": 140 },
+        "winlog.user.name":          { "width": 140 },
+        "winlog.payload.event_data": { "width": 700 },
+        "kape.map_description":      { "width": 240 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"winlog.event_id : (1 or 4688 or 4689) and winlog.channel : (\\\"Microsoft-Windows-Sysmon/Operational\\\" or Security)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Event Log: Process Execution (Sysmon 1 + Security 4688/4689)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d5f00000-def0-11ef-b0a2-1e0b97a5ef04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "evtxlogs", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

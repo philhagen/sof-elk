@@ -1,0 +1,39 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "browser.url",
+      "browser.title"
+    ],
+    "description": "Visits to job-search sites (LinkedIn Jobs, Indeed, Monster, ZipRecruiter, Glassdoor, Dice, CareerBuilder, Workday/Greenhouse/Lever applicant portals). Often correlates with imminent departure — a useful flag to plot alongside file-sharing and cloud-storage activity from the same user.",
+    "grid": {
+      "columns": {
+        "user.name":      { "width": 110 },
+        "browser.family": { "width": 90  },
+        "browser.url":    { "width": 520 },
+        "browser.title":  { "width": 300 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : browser_job_search\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Browser: Job-Search Activity",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b2c9d11d-def0-11ef-b0a2-1e0b97a5bf04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

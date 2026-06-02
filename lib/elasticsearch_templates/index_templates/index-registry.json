@@ -1,0 +1,50 @@
+{
+  "index_patterns": [
+    "registry-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "total_fields": {
+            "limit": 3000
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "registry": {
+          "properties": {
+            "hive_path":          { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "hive_type":          { "type": "keyword" },
+            "description":        { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "category":           { "type": "keyword" },
+            "key_path":           { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "value_name":         { "type": "keyword" },
+            "value_type":         { "type": "keyword" },
+            "value_data":         { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "value_data2":        { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "value_data3":        { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "comment":            { "type": "text" },
+            "recursive":          { "type": "boolean" },
+            "deleted":            { "type": "boolean" },
+            "last_write":         { "type": "date" },
+            "plugin_detail_file": { "type": "keyword" },
+            "batch_name":         { "type": "keyword" }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK",
+    "purpose": "Windows Registry findings parsed by RECmd (Eric Zimmerman) via KAPE, using a curated batch file (Kroll_Batch, DFIRBatch, etc.). One ES document per registry value across heterogeneous categories — Program Execution, User Activity, Devices, Network Shares, Cloud Storage, Threat Hunting, etc. @timestamp is the registry key LastWriteTimestamp. Use the registry.category field plus the registry_* tags to slice for insider-threat investigations."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "file.target.path",
+      "file.target.drivetype",
+      "file.target.volume.label",
+      "volume.serial_number",
+      "file.size",
+      "file.path"
+    ],
+    "description": "Every LNK file (Windows shortcut) parsed by LECmd. A LNK in C:\\Users\\<user>\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\ is hard evidence that user opened that file at least once. Sort by @timestamp (LNK mtime) for chronological order. Use file.target.path as the primary investigative column — that's the file the user actually opened.",
+    "grid": {
+      "columns": {
+        "file.target.path":         { "width": 460 },
+        "file.target.drivetype":    { "width": 110 },
+        "file.target.volume.label": { "width": 140 },
+        "volume.serial_number":     { "width": 140 },
+        "file.size":                { "width": 80  },
+        "file.path":                { "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "LNK Files: All Activity (Timeline)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "lnkfiles", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

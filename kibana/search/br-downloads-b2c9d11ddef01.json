@@ -1,0 +1,49 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "file.name",
+      "file.extension",
+      "browser.download.danger_type",
+      "browser.download.opened",
+      "browser.download.interrupt_reason",
+      "browser.url",
+      "file.path"
+    ],
+    "description": "Every browser download with the forensic story compressed into one row: who, in which browser, what file, what extension, did Edge/Chrome flag it as dangerous, did the user click through and open it anyway, was it interrupted (cancelled/AV-blocked), where on disk does it now live, and what URL did it come from. THE headline panel for browser-based insider-threat investigations.",
+    "grid": {
+      "columns": {
+        "user.name":                          { "width": 110 },
+        "browser.family":                     { "width": 90  },
+        "file.name":                          { "width": 280 },
+        "file.extension":                     { "width": 90  },
+        "browser.download.danger_type":       { "width": 220 },
+        "browser.download.opened":            { "width": 80  },
+        "browser.download.interrupt_reason":  { "width": 140 },
+        "browser.url":                        { "width": 360 },
+        "file.path":                          { "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : browser_download\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Browser: ALL DOWNLOADS (file path + danger + opened?)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b2c9d11d-def0-11ef-b0a2-1e0b97a5bf01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

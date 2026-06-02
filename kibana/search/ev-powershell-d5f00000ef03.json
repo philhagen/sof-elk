@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "winlog.event_id",
+      "winlog.computer_name",
+      "winlog.user.name",
+      "winlog.payload.event_data",
+      "kape.map_description",
+      "message"
+    ],
+    "description": "PowerShell script-block and pipeline-execution logging. 4104 (Microsoft-Windows-PowerShell/Operational) captures every script block executed — including base64-encoded, AMSI-bypassed, and obfuscated content. 4103 captures pipeline execution. Lower-priority but still useful: 400/600 from Windows PowerShell channel. If an attacker (or insider) ran PowerShell, this is where you see what they actually executed.",
+    "grid": {
+      "columns": {
+        "winlog.event_id":              { "width": 80  },
+        "winlog.computer_name":         { "width": 140 },
+        "winlog.user.name":             { "width": 140 },
+        "winlog.payload.event_data":    { "width": 600 },
+        "kape.map_description":         { "width": 240 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"winlog.channel : (\\\"Microsoft-Windows-PowerShell/Operational\\\" or \\\"Windows PowerShell\\\") or winlog.event_id : (4104 or 4103 or 400 or 403 or 600 or 800)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Event Log: PowerShell Script & Pipeline Activity (4104/4103)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d5f00000-def0-11ef-b0a2-1e0b97a5ef03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "evtxlogs", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

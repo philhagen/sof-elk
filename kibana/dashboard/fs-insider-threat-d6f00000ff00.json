@@ -1,0 +1,26 @@
+{
+  "attributes": {
+    "description": "Insider-threat-focused view of filesystem evidence parsed by MFTECmd (Eric Zimmerman) via KAPE — both the $MFT static table AND the $J Update Sequence Number Journal. Noise-reduced: the hero panel filters $J changes to NON-system paths and high-signal reasons only (the rest is Windows servicing noise). Below: large files in user-writable locations (exfil staging signal), recently created scripts in any path (payload / LOLBin drop signal), timestomping + alternate data streams (anti-forensics), and a high-signal-only $J operations timeline. Pivots: confirm a Downloads-folder file against the Browser dashboard's downloads list; correlate a recently created .ps1 against the Prefetch / EventLog PowerShell panels to see if it actually ran.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"fs-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"fs-p1\",\"panelRefName\":\"panel_fs-p1\",\"title\":\"Recent Filesystem Changes — USN $J in NON-system paths (noise-reduced timeline)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p2\",\"w\":24,\"x\":0,\"y\":14},\"panelIndex\":\"fs-p2\",\"panelRefName\":\"panel_fs-p2\",\"title\":\"Large Files (>= 100 MB) in User-Writable Locations (exfil staging)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p3\",\"w\":24,\"x\":24,\"y\":14},\"panelIndex\":\"fs-p3\",\"panelRefName\":\"panel_fs-p3\",\"title\":\"Recently Created Scripts (ps1/bat/sh/py/vbs/js/hta/wsf — all paths)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p4\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"fs-p4\",\"panelRefName\":\"panel_fs-p4\",\"title\":\"Timestomping + Alternate Data Streams (anti-forensics signatures)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"fs-p5\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"fs-p5\",\"panelRefName\":\"panel_fs-p5\",\"title\":\"USN $J — Scripts/Executables/Archives DELETED (cleanup signal)\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "KAPE - Filesystem",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff01", "name": "fs-p1:panel_fs-p1", "type": "search" },
+    { "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff02", "name": "fs-p2:panel_fs-p2", "type": "search" },
+    { "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff03", "name": "fs-p3:panel_fs-p3", "type": "search" },
+    { "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff04", "name": "fs-p4:panel_fs-p4", "type": "search" },
+    { "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff05", "name": "fs-p5:panel_fs-p5", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "jumplist.app_description",
+      "file.target.path",
+      "file.target.drivetype",
+      "host.hostname",
+      "file.tracker.machine_id",
+      "tags"
+    ],
+    "description": "Files accessed via UNC paths (\\\\server\\share\\...) or mapped network drives (W:-Z:). The jumplist_network_share / jumplist_likely_mapped_network / jumplist_network_confirmed tags catch all three angles: literal UNC prefix, drive-letter heuristic, and EZ Tools' DriveType=Network. For insider-threat triage this exposes which file servers and shares users have actively used — including SHARES YOU MAY NOT HAVE KNOWN ABOUT.",
+    "grid": {
+      "columns": {
+        "jumplist.app_description":   { "width": 200 },
+        "file.target.path":           { "width": 500 },
+        "file.target.drivetype":      { "width": 180 },
+        "host.hostname":              { "width": 140 },
+        "file.tracker.machine_id":    { "width": 140 },
+        "tags":                       { "width": 240 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : jumplist_network_share or tags : jumplist_likely_mapped_network or tags : jumplist_network_confirmed\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Jump Lists: NETWORK SHARES + mapped drives (UNC + W:-Z:)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "jumplists", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

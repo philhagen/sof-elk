@@ -1,0 +1,40 @@
+{
+  "attributes": {
+    "columns": [
+      "registry.description",
+      "registry.key_path",
+      "registry.value_name",
+      "registry.value_data",
+      "registry.value_data2",
+      "host.name"
+    ],
+    "description": "Program execution evidence pulled from the registry: BAM, AppCompatCache / ShimCache, Amcache, UserAssist, MUICache, FeatureUsage, PCA. Each row is a binary that ran (or that was tracked for execution), sorted by registry key last-write. Combine with the prefetch dashboard for the fullest execution picture.",
+    "grid": {
+      "columns": {
+        "registry.description": { "width": 200 },
+        "registry.key_path":    { "width": 380 },
+        "registry.value_data":  { "width": 320 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : registry_program_execution\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Registry: Program Execution Evidence",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "a1f8b00c-def0-11ef-b0a2-1e0b97a5af12",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "registry", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

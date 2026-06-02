@@ -1,0 +1,37 @@
+{
+  "attributes": {
+    "columns": [
+      "prefetch.executable_name",
+      "prefetch.executable_path",
+      "prefetch.run_count",
+      "prefetch.run_kind",
+      "host.name"
+    ],
+    "description": "Binaries launched from inside a user profile (C:\\Users\\...). Common pattern for dropped malware, portable hacking tools, or unauthorized utilities the user installed without admin. Filter further by user.name when investigating a specific actor.",
+    "grid": {
+      "columns": {
+        "prefetch.executable_path": { "width": 480 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : prefetch_user_profile\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Prefetch: Executed from User Profile",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "prefetch", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

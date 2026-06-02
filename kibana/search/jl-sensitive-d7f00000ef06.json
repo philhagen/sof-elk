@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "jumplist.app_description",
+      "file.target.path",
+      "file.target.drivetype",
+      "host.hostname",
+      "tags"
+    ],
+    "description": "Jump-list entries pointing at SENSITIVE FILE TYPES — SSH/PGP keys (.ppk .pem .p12 .pfx .id_rsa .kdbx), certificates (.cer .crt), archives that often hold staged exfil data (.zip .7z .rar .tar .gz .iso), and scripts that may indicate automation or malicious tooling (.ps1 .vbs .js .bat .cmd .py .rb .sh). For insider-threat triage, this panel surfaces credential-adjacent files and bulk-data containers in a single view.",
+    "grid": {
+      "columns": {
+        "jumplist.app_description":   { "width": 200 },
+        "file.target.path":           { "width": 500 },
+        "file.target.drivetype":      { "width": 180 },
+        "host.hostname":              { "width": 140 },
+        "tags":                       { "width": 280 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : jumplist_credential_or_key_file or tags : jumplist_archive_file or tags : jumplist_script_file\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Jump Lists: SENSITIVE FILE TYPES (keys / archives / scripts)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf06",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "jumplists", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

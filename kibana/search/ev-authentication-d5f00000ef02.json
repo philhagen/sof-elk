@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "winlog.event_id",
+      "winlog.computer_name",
+      "winlog.user.name",
+      "winlog.remote_host",
+      "kape.map_description",
+      "message"
+    ],
+    "description": "Authentication & account-management events. Successful logon (4624), failed logon (4625), logoff (4634/4647), explicit-creds logon (4648), special-privilege logon (4672 — admin-equivalent), account created (4720), added to group (4732), password reset (4724), account changed/disabled/locked (4738/4740/4767), RDP session reconnect/disconnect (4778/4779). Cross-reference with the Browser dashboard's downloads and the Shellbag's removable-media panel — a 2am 4624 followed by 2:30am downloads to a USB drive tells a complete story.",
+    "grid": {
+      "columns": {
+        "winlog.event_id":        { "width": 90  },
+        "winlog.computer_name":   { "width": 140 },
+        "winlog.user.name":       { "width": 140 },
+        "winlog.remote_host":     { "width": 160 },
+        "kape.map_description":   { "width": 240 },
+        "message":                { "width": 420 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"winlog.event_id : (4624 or 4625 or 4634 or 4647 or 4648 or 4672 or 4720 or 4722 or 4723 or 4724 or 4725 or 4726 or 4732 or 4733 or 4738 or 4740 or 4756 or 4767 or 4778 or 4779)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Event Log: Authentication & Account Management",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d5f00000-def0-11ef-b0a2-1e0b97a5ef02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "evtxlogs", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

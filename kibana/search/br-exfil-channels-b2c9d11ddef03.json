@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "user.name",
+      "browser.family",
+      "tags",
+      "browser.url",
+      "browser.title"
+    ],
+    "description": "Categories most commonly used as data-exfiltration channels in insider-threat cases: file-sharing services (WeTransfer / MEGA / MediaFire / AnonFiles / file.io), personal cloud storage (Google Drive / Dropbox / OneDrive personal / iCloud / Box), personal webmail (Gmail / Outlook.com / Yahoo / Proton), and generative AI assistants (ChatGPT / Claude / Gemini / Copilot / Perplexity — increasingly used to paste corporate data into).",
+    "grid": {
+      "columns": {
+        "user.name":         { "width": 110 },
+        "browser.family":    { "width": 90  },
+        "tags":              { "width": 220 },
+        "browser.url":       { "width": 480 },
+        "browser.title":     { "width": 280 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : (browser_file_sharing or browser_cloud_storage or browser_webmail_personal or browser_ai_assistant or browser_canary_token)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Browser: Exfil-Channel & Canary Visits",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "b2c9d11d-def0-11ef-b0a2-1e0b97a5bf03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "browser", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

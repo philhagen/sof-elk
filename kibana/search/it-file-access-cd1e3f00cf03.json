@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "_index",
+      "user.name",
+      "host.name",
+      "file.path",
+      "file.name",
+      "message"
+    ],
+    "description": "Cross-artifact file-access and movement: (1) Shellbags — folders the user navigated into, (2) LNK files — files the user actually opened and Windows tracked as 'recent', (3) MFT — every file create/modify recorded in the filesystem. All three are user-attributable proof that a file was touched, opened, or created.",
+    "grid": {
+      "columns": {
+        "_index":      { "width": 180 },
+        "user.name":   { "width": 110 },
+        "file.path":   { "width": 420 },
+        "file.name":   { "width": 200 },
+        "message":     { "width": 360 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"_index : (shellbags-* or lnkfiles-*) or (_index : filesystem-* and file.type : file)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Insider Threat: File Access & Movement (shellbags + LNK + MFT)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf03",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "insider-threat", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,0 +1,21 @@
+{
+  "data_view": {
+    "allowHidden": false,
+    "allowNoIndex": true,
+    "fieldFormats": {
+      "@timestamp": {
+        "id": "date",
+        "params": {
+          "pattern": "YYYY-MM-DD HH:mm:ss.SSS\\Z"
+        }
+      },
+      "file.size": {
+        "id": "bytes"
+      }
+    },
+    "id": "jumplists",
+    "name": "jumplists-*",
+    "timeFieldName": "@timestamp",
+    "title": "jumplists-*"
+  }
+}

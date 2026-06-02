@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "prefetch.executable_name",
+      "prefetch.run_kind",
+      "prefetch.run_count",
+      "prefetch.available_run_count",
+      "prefetch.executable_path",
+      "host.name"
+    ],
+    "description": "All recorded prefetch executions. Each row = one observed run timestamp; an executable that has run 8+ times will appear as multiple rows (one per recorded LastRun / PreviousRun0..6). Sort by @timestamp descending for the recent-execution timeline.",
+    "grid": {
+      "columns": {
+        "prefetch.executable_name": { "width": 220 },
+        "prefetch.executable_path": { "width": 440 },
+        "prefetch.run_kind":        { "width": 100 },
+        "prefetch.run_count":       { "width": 90 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Prefetch: All Executions (Timeline)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "9f7d9000-a000-11ef-b0a2-1e0b97a5af01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "prefetch", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

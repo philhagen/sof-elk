@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "columns": [
+      "jumplist.app_description",
+      "file.target.path",
+      "jumplist.destlist.mru_position",
+      "jumplist.interaction_count",
+      "host.hostname",
+      "tags"
+    ],
+    "description": "Items the user EXPLICITLY PINNED to an app's jump list (PinStatus = True in the AutoDest DestList). Pinning is a deliberate user action — they want this file/folder one click away. For insider-threat triage, this is a high-intent signal: pinned items frequently reveal the documents, network shares, or remote-access targets a user works with regularly. Sorted by @timestamp desc.",
+    "grid": {
+      "columns": {
+        "jumplist.app_description":      { "width": 200 },
+        "file.target.path":              { "width": 500 },
+        "jumplist.destlist.mru_position":{ "width": 110 },
+        "jumplist.interaction_count":    { "width": 110 },
+        "host.hostname":                 { "width": 140 },
+        "tags":                          { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : jumplist_pinned\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Jump Lists: PINNED ITEMS (user explicitly pinned — high-intent signal)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "jumplists", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

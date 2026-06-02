@@ -1,0 +1,47 @@
+{
+  "attributes": {
+    "columns": [
+      "process.depth",
+      "process.pid",
+      "process.parent.pid",
+      "process.name",
+      "process.command_line",
+      "process.executable_directory",
+      "process.thread_count",
+      "process.session_id"
+    ],
+    "description": "Every process from the Volatility 3 pstree dump, one ES doc per process. Columns chosen to read as a tree: depth (indent equivalent), pid, parent pid, image name, command line, where the executable lives on disk, thread count, session id. Default sort puts the system/root processes first (depth ascending, then pid).",
+    "grid": {
+      "columns": {
+        "process.depth":                { "width": 70  },
+        "process.pid":                  { "width": 80  },
+        "process.parent.pid":           { "width": 90  },
+        "process.name":                 { "width": 200 },
+        "process.command_line":         { "width": 500 },
+        "process.executable_directory": { "width": 360 },
+        "process.thread_count":         { "width": 80  },
+        "process.session_id":           { "width": 80  }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+    },
+    "sort": [["process.depth","asc"],["process.pid","asc"]],
+    "timeRestore": false,
+    "title": "Volatility: ALL PROCESSES (depth-ordered, reads as a tree)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf01",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "volatility", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

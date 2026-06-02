@@ -1,0 +1,83 @@
+{
+  "index_patterns": [
+    "prefetch-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "total_fields": {
+            "limit": 3000
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "prefetch": {
+          "properties": {
+            "note":                  { "type": "keyword" },
+            "source_filename":       { "type": "keyword" },
+            "executable_name":       { "type": "keyword" },
+            "executable_path":       { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "hash":                  { "type": "keyword" },
+            "size":                  { "type": "long" },
+            "version":               { "type": "keyword" },
+            "run_count":             { "type": "integer" },
+            "available_run_count":   { "type": "integer" },
+            "run_position":          { "type": "integer" },
+            "run_kind":              { "type": "keyword" },
+            "run_time":              { "type": "date" },
+            "run_timestamps":        { "type": "keyword" },
+            "parsing_error":         { "type": "boolean" },
+            "directories":           { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "files_loaded":          { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "source": {
+              "properties": {
+                "created":  { "type": "date" },
+                "mtime":    { "type": "date" },
+                "accessed": { "type": "date" }
+              }
+            },
+            "volume0": {
+              "properties": {
+                "name":    { "type": "keyword" },
+                "serial":  { "type": "keyword" },
+                "created": { "type": "date" }
+              }
+            },
+            "volume1": {
+              "properties": {
+                "name":    { "type": "keyword" },
+                "serial":  { "type": "keyword" },
+                "created": { "type": "date" }
+              }
+            },
+            "runs": {
+              "properties": {
+                "last":       { "type": "keyword" },
+                "previous_0": { "type": "keyword" },
+                "previous_1": { "type": "keyword" },
+                "previous_2": { "type": "keyword" },
+                "previous_3": { "type": "keyword" },
+                "previous_4": { "type": "keyword" },
+                "previous_5": { "type": "keyword" },
+                "previous_6": { "type": "keyword" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK",
+    "purpose": "Windows Prefetch (.pf) records parsed by PECmd (Eric Zimmerman) via KAPE. Each prefetch row is exploded into one ES document per recorded run timestamp (LastRun + PreviousRun0..6, up to 8 per file) so timeline panels show distinct executions. Primary use case is execution-evidence reconstruction in insider-threat and intrusion investigations."
+  }
+}

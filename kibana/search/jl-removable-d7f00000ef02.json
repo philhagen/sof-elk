@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "columns": [
+      "jumplist.app_description",
+      "file.target.path",
+      "file.target.drivetype",
+      "volume.serial_number",
+      "file.target.volume.label",
+      "host.hostname",
+      "tags"
+    ],
+    "description": "Files that lived on REMOVABLE media (USB thumbs, external HDDs, SD cards) at the time the user opened them, surfaced by the LNK target metadata. Two complementary signals: drive-letter heuristic D-K (jumplist_likely_removable_media) and EZ Tools' DriveType field saying 'Removable' (jumplist_removable_confirmed). Volume serial number lets you correlate the same physical drive across multiple users/machines.",
+    "grid": {
+      "columns": {
+        "jumplist.app_description":   { "width": 200 },
+        "file.target.path":           { "width": 480 },
+        "file.target.drivetype":      { "width": 180 },
+        "volume.serial_number":       { "width": 130 },
+        "file.target.volume.label":   { "width": 140 },
+        "host.hostname":              { "width": 140 },
+        "tags":                       { "width": 240 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : jumplist_likely_removable_media or tags : jumplist_removable_confirmed or tags : jumplist_optical_media\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Jump Lists: REMOVABLE MEDIA references (USB / external HDD / optical)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d7f00000-ef00-11ef-b0a2-1e0b97a5cf02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "jumplists", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

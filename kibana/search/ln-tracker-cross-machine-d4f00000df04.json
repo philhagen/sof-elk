@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "columns": [
+      "file.target.path",
+      "file.tracker.machine_id",
+      "file.tracker.mac",
+      "file.tracker.mac_vendor",
+      "file.tracker.creation"
+    ],
+    "description": "Every LNK file embeds a 'Distributed Link Tracker' GUID + MAC address from the machine where the LNK was originally created. When file.tracker.machine_id differs from the current host's machine_id (or the MAC vendor / creation time looks foreign), the LNK was made on a different machine and copied here — strong indicator of data movement, joint workstation use, or LNKs imported via removable media. Compare machine_id values across rows: if they group cleanly into 2+ distinct IDs, this host has been receiving LNKs from elsewhere.",
+    "grid": {
+      "columns": {
+        "file.target.path":         { "width": 360 },
+        "file.tracker.machine_id":  { "width": 300 },
+        "file.tracker.mac":         { "width": 160 },
+        "file.tracker.mac_vendor":  { "width": 220 },
+        "file.tracker.creation":    { "width": 200 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"file.tracker.machine_id : *\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "LNK Files: Distributed Tracker GUID (cross-machine evidence)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "lnkfiles", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

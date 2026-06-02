@@ -1,0 +1,113 @@
+{
+  "attributes": {
+    "description": "Host role distribution across all ingested artifacts (Domain Controller / Member Server / File Server / Endpoint). Combines two evidence streams: the registry parser sets host.role from HKLM\\...\\Control\\ProductOptions\\ProductType (LanmanNT/ServerNT/WinNT), and the EVTX parser sets host.role from event-source evidence (Kerberos events 4768/4769/4770/4771/4776 = DC; SMBServer 1006/3000/3001 = file server).",
+    "state": {
+      "adHocDataViews": {},
+      "datasourceStates": {
+        "formBased": {
+          "layers": {
+            "ei-roles-layer-09": {
+              "columnOrder": [
+                "ei-col-role",
+                "ei-col-hostname",
+                "ei-col-count"
+              ],
+              "columns": {
+                "ei-col-role": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Host Role",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "ei-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": { "id": "terms" },
+                    "size": 10
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "host.role.keyword"
+                },
+                "ei-col-hostname": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Hostname",
+                  "operationType": "terms",
+                  "params": {
+                    "accuracyMode": false,
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": { "columnId": "ei-col-count", "type": "column" },
+                    "orderDirection": "desc",
+                    "otherBucket": false,
+                    "parentFormat": { "id": "terms" },
+                    "size": 100
+                  },
+                  "scale": "ordinal",
+                  "sourceField": "host.hostname.keyword"
+                },
+                "ei-col-count": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": false,
+                  "label": "Records",
+                  "operationType": "count",
+                  "params": { "emptyAsNull": true },
+                  "scale": "ratio",
+                  "sourceField": "___records___"
+                }
+              },
+              "incompleteColumns": {},
+              "sampling": 1
+            }
+          }
+        },
+        "indexpattern": { "layers": {} },
+        "textBased": { "layers": {} }
+      },
+      "filters": [],
+      "internalReferences": [],
+      "query": { "language": "kuery", "query": "host.role:*" },
+      "visualization": {
+        "columns": [
+          { "columnId": "ei-col-role" },
+          { "columnId": "ei-col-hostname" },
+          { "columnId": "ei-col-count", "isMetric": true, "isTransposed": false }
+        ],
+        "headerRowHeight": "single",
+        "headerRowHeightLines": 1,
+        "layerId": "ei-roles-layer-09",
+        "layerType": "data",
+        "paging": { "enabled": true, "size": 20 },
+        "rowHeight": "single",
+        "rowHeightLines": 1
+      }
+    },
+    "title": "Host Roles (DC / File Server / Endpoint)",
+    "visualizationType": "lnsDatatable"
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "eef00000-ef00-11ef-b0a2-1e0b97a5cf09",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    {
+      "id": "all-records",
+      "name": "indexpattern-datasource-layer-ei-roles-layer-09",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "lens",
+  "typeMigrationVersion": "8.9.0"
+}

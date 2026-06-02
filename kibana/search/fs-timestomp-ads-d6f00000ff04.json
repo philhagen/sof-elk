@@ -1,0 +1,49 @@
+{
+  "attributes": {
+    "columns": [
+      "file.path",
+      "file.stdinfo.mtime",
+      "file.filename.mtime",
+      "file.stdinfo.created",
+      "file.filename.created",
+      "kape.mft.timestomped",
+      "kape.mft.isads",
+      "kape.mft.hasads",
+      "file.fork_name"
+    ],
+    "description": "Two classes of anti-forensic / data-hiding evidence rolled into one panel: (1) TIMESTOMPING — entries where the parser flagged the $STDINFO timestamps as inconsistent with the $FILENAME attribute timestamps (a classic SetFileTime / NewLnk-style attack signature); (2) ALTERNATE DATA STREAMS — files with kape.mft.isads:true (this row IS the ADS) or kape.mft.hasads:true (this file HAS an ADS), often used to smuggle payloads inside an otherwise normal-looking file. The fork_name column shows the stream name when isads:true.",
+    "grid": {
+      "columns": {
+        "file.path":              { "width": 440 },
+        "file.stdinfo.mtime":     { "width": 200 },
+        "file.filename.mtime":    { "width": 200 },
+        "file.stdinfo.created":   { "width": 200 },
+        "file.filename.created":  { "width": 200 },
+        "kape.mft.timestomped":   { "width": 120 },
+        "kape.mft.isads":         { "width": 80  },
+        "kape.mft.hasads":        { "width": 80  },
+        "file.fork_name":         { "width": 160 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"kape.mft.timestomped : true or kape.mft.isads : true or kape.mft.hasads : true\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Filesystem: Timestomping & Alternate Data Streams",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d6f00000-def0-11ef-b0a2-1e0b97a5ff04",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "filesystem", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

@@ -1,0 +1,65 @@
+{
+  "index_patterns": [
+    "jumplists-*"
+  ],
+  "composed_of": [
+    "settings-common",
+    "mappings-corecommon",
+    "mappings-string",
+    "mappings-final"
+  ],
+  "template": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "total_fields": {
+            "limit": 2000
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "jumplist": {
+          "properties": {
+            "variant":          { "type": "keyword" },
+            "app_id":           { "type": "keyword" },
+            "app_description":  { "type": "keyword", "fields": { "text": { "type": "text" } } },
+            "path":             { "type": "keyword", "fields": { "text": { "type": "text" } }, "ignore_above": 8191 },
+            "entry_name":       { "type": "keyword" },
+            "has_sps":          { "type": "keyword" },
+            "pinned":           { "type": "boolean" },
+            "interaction_count":{ "type": "integer" },
+            "notes":            { "type": "text" },
+            "destlist": {
+              "properties": {
+                "version":           { "type": "keyword" },
+                "last_used_entry":   { "type": "keyword" },
+                "mru_position":      { "type": "integer" },
+                "entry_number":      { "type": "integer" },
+                "creation":          { "type": "date" },
+                "mtime":             { "type": "date" }
+              }
+            }
+          }
+        },
+        "file": {
+          "properties": {
+            "tracker": {
+              "properties": {
+                "file_birth_droid":   { "type": "keyword" },
+                "file_droid":         { "type": "keyword" },
+                "volume_birth_droid": { "type": "keyword" },
+                "volume_droid":       { "type": "keyword" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "provider": "SOF-ELK",
+    "purpose": "Jump List output parsed by JLECmd (Eric Zimmerman) from KAPE. Covers both .automaticDestinations-ms (Windows-managed per-AppId recent files including DestList MRU + PinStatus + InteractionCount) and .customDestinations-ms (app-managed jump-list categories like Outlook 'Recent', Chrome 'Most visited', Firefox 'Recent Sessions', PuTTY pinned sessions). jumplist.variant = 'automatic' | 'custom'. Insider-threat angles: removable-media references (DriveType + drive-letter heuristics), UNC/network paths, distributed link-tracker cross-machine signals (MachineID != Hostname), pinned items (explicit user intent), and per-app categorization (Office / browser / remote access / collab / file explorer / settings)."
+  }
+}

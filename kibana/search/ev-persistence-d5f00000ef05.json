@@ -1,0 +1,42 @@
+{
+  "attributes": {
+    "columns": [
+      "winlog.event_id",
+      "winlog.channel",
+      "winlog.computer_name",
+      "winlog.user.name",
+      "winlog.payload.event_data",
+      "message"
+    ],
+    "description": "Persistence-mechanism installation events: service installs (System 7045 + Security 4697), scheduled task created/modified/deleted/enabled/disabled/triggered (Security 4698-4702), service status changes (System 7036), WMI subscriptions (Sysmon 19/20/21). Cross-reference with the Registry dashboard's Autoruns/ThreatHunting panel — a service install here usually correlates with a Run key or Services key write in registry.",
+    "grid": {
+      "columns": {
+        "winlog.event_id":           { "width": 80  },
+        "winlog.channel":            { "width": 200 },
+        "winlog.computer_name":      { "width": 140 },
+        "winlog.user.name":          { "width": 140 },
+        "winlog.payload.event_data": { "width": 500 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"winlog.event_id : (7045 or 7036 or 4697 or 4698 or 4699 or 4700 or 4701 or 4702 or 19 or 20 or 21)\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Event Log: Persistence — Service Installs + Scheduled Tasks + WMI Subs",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d5f00000-def0-11ef-b0a2-1e0b97a5ef05",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "evtxlogs", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

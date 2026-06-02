@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "columns": [
+      "process.depth",
+      "process.pid",
+      "process.parent.pid",
+      "process.name",
+      "process.executable_directory",
+      "process.command_line",
+      "tags"
+    ],
+    "description": "Processes whose on-disk executable lives in a user-writable / commonly-abused location: C:\\Users\\*\\AppData\\Local\\Temp, C:\\Users\\*\\AppData\\Roaming, C:\\Windows\\Temp, C:\\ProgramData, C:\\Users\\*\\Public, Downloads, Recycle Bin, or anywhere under C:\\Users\\<name>\\. These paths are favored by malware droppers, scheduled-task implants, and BYOT (bring-your-own-tool) insider activity because they're writable without admin rights.",
+    "grid": {
+      "columns": {
+        "process.depth":                { "width": 70  },
+        "process.pid":                  { "width": 80  },
+        "process.parent.pid":           { "width": 90  },
+        "process.name":                 { "width": 220 },
+        "process.executable_directory": { "width": 380 },
+        "process.command_line":         { "width": 460 },
+        "tags":                         { "width": 220 }
+      }
+    },
+    "hideChart": false,
+    "hits": 0,
+    "isTextBasedQuery": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"tags : vol_suspicious_path\"},\"version\":true}"
+    },
+    "sort": [["@timestamp","desc"]],
+    "timeRestore": false,
+    "title": "Volatility: SUSPICIOUS PATHS (Temp / AppData / Public / Downloads / etc.)",
+    "usesAdHocDataView": false,
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "e1f00000-ef00-11ef-b0a2-1e0b97a5cf02",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "volatility", "name": "kibanaSavedObjectMeta.searchSourceJSON.index", "type": "index-pattern" }
+  ],
+  "type": "search",
+  "typeMigrationVersion": "10.5.0"
+}

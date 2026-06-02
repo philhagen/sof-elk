@@ -1,0 +1,27 @@
+{
+  "attributes": {
+    "description": "Cross-artifact insider-threat investigation dashboard. Each panel groups findings by INVESTIGATIVE CONCEPT (execution, file access, exfil, auth, persistence) rather than by source artifact. Pulls from shellbags-*, prefetch-*, registry-*, browser-*, filesystem-*, lnkfiles-*, evtxlogs-* through one combined data view. The _index column on each panel tells you which artifact a given row came from so you can drill back into the per-artifact dashboards for full detail.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":14,\"i\":\"it-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"it-p1\",\"panelRefName\":\"panel_it-p1\",\"title\":\"UNIFIED TIMELINE — every artifact, every event, by @timestamp (use _index column to identify source)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"it-p2\",\"w\":24,\"x\":0,\"y\":14},\"panelIndex\":\"it-p2\",\"panelRefName\":\"panel_it-p2\",\"title\":\"Execution Evidence — Prefetch + Registry (BAM/AppCompat/Amcache/UserAssist) + EVTX (Sysmon 1, Security 4688)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"it-p3\",\"w\":24,\"x\":24,\"y\":14},\"panelIndex\":\"it-p3\",\"panelRefName\":\"panel_it-p3\",\"title\":\"File Access & Movement — Shellbags + LNK files + MFT (non-directory)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"it-p4\",\"w\":24,\"x\":0,\"y\":26},\"panelIndex\":\"it-p4\",\"panelRefName\":\"panel_it-p4\",\"title\":\"Exfil & Data-Out — browser downloads/exfil sites + USB & mapped drives + cloud-storage configs\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"it-p5\",\"w\":24,\"x\":24,\"y\":26},\"panelIndex\":\"it-p5\",\"panelRefName\":\"panel_it-p5\",\"title\":\"Authentication & Session — EVTX logon family (4624/4625/4634/4647/4648/4672/4778/4779 + account changes)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"it-p6\",\"w\":48,\"x\":0,\"y\":38},\"panelIndex\":\"it-p6\",\"panelRefName\":\"panel_it-p6\",\"title\":\"Persistence & Autoruns — registry Run keys/services/scheduled tasks + EVTX service installs\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "Insider Threat Overview",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf01", "name": "it-p1:panel_it-p1", "type": "search" },
+    { "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf02", "name": "it-p2:panel_it-p2", "type": "search" },
+    { "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf03", "name": "it-p3:panel_it-p3", "type": "search" },
+    { "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf04", "name": "it-p4:panel_it-p4", "type": "search" },
+    { "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf05", "name": "it-p5:panel_it-p5", "type": "search" },
+    { "id": "cd1e3f00-def0-11ef-b0a2-1e0b97a5cf06", "name": "it-p6:panel_it-p6", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}

@@ -1,0 +1,26 @@
+{
+  "attributes": {
+    "description": "Insider-threat-focused view of Windows LNK (shortcut) files parsed by LECmd (Eric Zimmerman) via KAPE. A LNK in a user's Recent folder is hard evidence that user opened that file. Cross-reference: a target path from the Removable Media panel often correlates with a USBSTOR entry in the Registry dashboard and a shellbag entry in the Shellbags dashboard — those three artifacts together give you 'user X plugged in USB Y, navigated to folder Z, and opened file W'.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+    },
+    "optionsJSON": "{\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
+    "panelsJSON": "[{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p1\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"ln-p1\",\"panelRefName\":\"panel_ln-p1\",\"title\":\"All LNK Activity (Timeline)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p2\",\"w\":24,\"x\":0,\"y\":12},\"panelIndex\":\"ln-p2\",\"panelRefName\":\"panel_ln-p2\",\"title\":\"Opened from Removable Media (USB volume serial + label persist)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p3\",\"w\":24,\"x\":24,\"y\":12},\"panelIndex\":\"ln-p3\",\"panelRefName\":\"panel_ln-p3\",\"title\":\"Opened from Network Share (UNC path preserved)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p4\",\"w\":24,\"x\":0,\"y\":24},\"panelIndex\":\"ln-p4\",\"panelRefName\":\"panel_ln-p4\",\"title\":\"Distributed Tracker GUID (LNKs made on a different machine)\",\"type\":\"search\"},{\"embeddableConfig\":{\"enhancements\":{}},\"gridData\":{\"h\":12,\"i\":\"ln-p5\",\"w\":24,\"x\":24,\"y\":24},\"panelIndex\":\"ln-p5\",\"panelRefName\":\"panel_ln-p5\",\"title\":\"Office Docs, PDFs, Archives Opened (IP-theft pivot)\",\"type\":\"search\"}]",
+    "timeRestore": false,
+    "title": "LNK Files",
+    "version": 1
+  },
+  "coreMigrationVersion": "8.8.0",
+  "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df00",
+  "managed": false,
+  "namespaces": ["default"],
+  "references": [
+    { "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df01", "name": "ln-p1:panel_ln-p1", "type": "search" },
+    { "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df02", "name": "ln-p2:panel_ln-p2", "type": "search" },
+    { "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df03", "name": "ln-p3:panel_ln-p3", "type": "search" },
+    { "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df04", "name": "ln-p4:panel_ln-p4", "type": "search" },
+    { "id": "d4f00000-def0-11ef-b0a2-1e0b97a5df05", "name": "ln-p5:panel_ln-p5", "type": "search" }
+  ],
+  "type": "dashboard",
+  "typeMigrationVersion": "10.2.0"
+}
