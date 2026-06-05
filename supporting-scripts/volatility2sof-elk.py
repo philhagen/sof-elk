@@ -56,7 +56,7 @@ def detect_encoding(filename):
     return "utf-8"
 
 
-def emit(obj, out):
+def emit_line(obj, out):
     """Serialize one record as a single line of compact UTF-8 JSON."""
     out.write(json.dumps(obj, ensure_ascii=False))
     out.write("\n")
@@ -67,7 +67,7 @@ def emit_object(obj, out, processed, skipped):
         for item in obj:
             processed, skipped = emit_object(item, out, processed, skipped)
     elif isinstance(obj, dict):
-        emit(obj, out)
+        emit_line(obj, out)
         processed += 1
     else:
         skipped += 1
