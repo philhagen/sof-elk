@@ -13,6 +13,7 @@ import json
 import argparse
 import re
 import sys
+import contextlib
 
 
 def normalize_field_name(name):
@@ -69,7 +70,12 @@ def process_csv_to_json(csv_filename, json_filename, tags):
         sys.exit(1)
 
     try:
-        with open(json_filename, "w", encoding="utf-8") as jsonfile:
+        if json_filename == "-":
+            cm = contextlib.nullcontext(sys.stdout)
+        else:
+            cm = open(json_filename, "w", encoding="utf-8")
+
+        with cm as jsonfile:
             for row in rows:
                 newrow = {
                     normalize_field_name(k): convert_value(v)
@@ -94,20 +100,20 @@ def process_csv_to_json(csv_filename, json_filename, tags):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert CSV file to JSON.")
     parser.add_argument(
-        "-r", "--read", dest="infile", help="CSV input file to process", required=True
+        "-r", "--read", dest="infile", help="CSV input file to process.", required=True
     )
     parser.add_argument(
         "-w",
         "--write",
         dest="outfile",
-        help="JSON output file to create",
+        help='JSON output file to create.  Use "-" for stdout.',
         required=True,
     )
     parser.add_argument(
         "-t",
         "--tag",
         dest="tags",
-        help='Optional string to add to "tags" field - can be used multiple times',
+        help='Optional string to add to "tags" field.  Can be used multiple times.',
         action="append",
     )
     args = parser.parse_args()
