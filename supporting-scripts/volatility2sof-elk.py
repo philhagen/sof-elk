@@ -51,9 +51,10 @@ def detect_encoding(filename):
         head = f.read(4)
     if head.startswith(b"\xff\xfe") or head.startswith(b"\xfe\xff"):
         return "utf-16"
-    if head.startswith(b"\xef\xbb\xbf"):
+    elif head.startswith(b"\xef\xbb\xbf"):
         return "utf-8-sig"
-    return "utf-8"
+    else:
+        return "utf-8"
 
 
 def emit_line(obj, out):
@@ -63,6 +64,7 @@ def emit_line(obj, out):
 
 
 def emit_object(obj, out, processed, skipped):
+    """Process an object, recursing and emitting line(s) as needed."""
     if isinstance(obj, list):
         for item in obj:
             processed, skipped = emit_object(item, out, processed, skipped)
@@ -128,7 +130,7 @@ def process(input_filename, output_filename, encoding=None):
 
     sys.stderr.write(
         f"volatility2sof-elk.py: {lines_processed} records  {input_filename} -> {output_filename}"
-        f" (encoding={encoding}{', skipped=' + str(lines_skipped) if lines_skipped > 0 else ''})"
+        f" (encoding={encoding}{', (skipped ' + str(lines_skipped)+ ')' if lines_skipped > 0 else ''})"
         f"\n"
     )
     return lines_processed
