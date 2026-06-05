@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SOF-ELK(R) Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script is used to NUKE data from elasticsearch.  This is incredibly destructive!
 # Optionally, re-load data from disk for the selected index or filepath
@@ -285,7 +285,7 @@ if args.reload:
         and os.path.getsize(filebeat_registry_file) > 0
     ):
         # load existing filebeat registry
-        reg_file = open(filebeat_registry_file, "rb")
+        reg_file = open(filebeat_registry_file, "r")
         try:
             reg_data = json.load(reg_file)
             reg_file.close()
@@ -297,11 +297,11 @@ if args.reload:
                 if not file in matches:
                     new_reg_data.append(filebeatrecord)
 
-            new_reg_file = open(filebeat_registry_file, "wb")
+            new_reg_file = open(filebeat_registry_file, "w")
             json.dump(new_reg_data, new_reg_file)
             new_reg_file.close()
 
-        except JSONDecodeError:
+        except json.JSONDecodeError:
             print(
                 "ERROR: Source data in filebeat registry file %s is not valid json.  Skipping."
                 % filebeat_registry_file
