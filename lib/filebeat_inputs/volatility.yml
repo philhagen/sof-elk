@@ -1,0 +1,17 @@
+# SOF-ELK® Configuration File
+# (C)2026 Lewes Technology Consulting, LLC
+#         Original contribution from Raymond Garay-Paravisini
+#
+# This file contains inputs for monitoring Volatility3 memory forensics output
+
+- type: filestream
+  id: volatility-01
+  paths:
+    - /logstash/volatility/**/*.json
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+        labels:
+          type: volatility
+  tags: [ 'json' ]

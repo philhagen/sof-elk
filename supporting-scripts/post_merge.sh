@@ -36,10 +36,10 @@ done
 systemctl restart logstash
 
 # create necessary ingest directories (don't forget to add new ones to ansible's filebeat role)
-ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility"
+ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility/pslist volatility/pstree volatility/psscan volatility/netscan volatility/cmdline volatility/netstat"
 for ingest_dir in ${ingest_dirs}; do
     if [ ! -d "/logstash/${ingest_dir}" ]; then
-        mkdir -m 1777 "/logstash/${ingest_dir}"
+        mkdir -m 1777 -p "/logstash/${ingest_dir}"
     fi
 done
 
@@ -68,7 +68,7 @@ fi
 ln -fs /usr/local/sof-elk/lib/sof-elk.svg "${LOGO_PATH}"
 
 # link supporting scripts
-for file in csv2json.py fw_modify.sh geoip_bootstrap.sh geoip_update_logstash.sh kick-aws-logs.sh load_all_dashboards.sh nfdump2sof-elk.sh post_merge.sh sof-elk_clear.py sof-elk_update.sh sof-elk_branch.sh ; do
+for file in csv2json.py fw_modify.sh geoip_bootstrap.sh geoip_update_logstash.sh kick-aws-logs.sh load_all_dashboards.sh nfdump2sof-elk.sh post_merge.sh sof-elk_clear.py sof-elk_update.sh sof-elk_branch.sh volatility2sof-elk.py ; do
     filepath=/usr/local/sof-elk/supporting-scripts/${file}
     if [ -h "/usr/local/sbin/${file}" ]; then
         rm -f "/usr/local/sbin/${file}"
