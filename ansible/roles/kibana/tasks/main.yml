@@ -1,6 +1,6 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 
 - name: Install Kibana
   ansible.builtin.apt:
@@ -30,7 +30,7 @@
     permanent: true
     state: enabled
   register: firewall_port
-  #when: not (ansible_system_vendor == 'Microsoft Corporation' and ansible_virtualization_type == 'VirtualPC')
+  #when: not (ansible_facts['system_vendor'] == 'Microsoft Corporation' and ansible_facts['virtualization_type'] == 'VirtualPC')
   tags: kibana
 
 - name: Restart firewalld

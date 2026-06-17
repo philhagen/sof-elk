@@ -1,6 +1,6 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 
 - name: Update localtime symlink to Etc/UTC
   ansible.builtin.file:
@@ -46,8 +46,8 @@
   ansible.builtin.apt:
     name: '{{ vmware_apt_packages }}'
     state: present
-  # NOTE: the ansible_system_vendor qualifier was added because the other two are "NA" when using VMware on Apple Silicon
-  when: (ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware") or ansible_system_vendor == "VMware, Inc."
+  # NOTE: the ansible_facts['system_vendor'] qualifier was added because the other two are "NA" when using VMware on Apple Silicon
+  when: (ansible_facts['virtualization_role'] == "guest" and ansible_facts['virtualization_type'] == "VMware") or ansible_facts['system_vendor'] == "VMware, Inc."
   tags: sof-elk_base
 
 - name: Set SSHD configuration options
@@ -207,7 +207,7 @@
 
 - name: Set new revision string in pre-login banner
   ansible.builtin.set_fact:
-    revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
+    revision_string: "*Ansible-built* on {{ ansible_facts['date_time']['date'] }} from branch {{ git_branch }}"
   tags:
     - sof-elk_base
     - pub2course
