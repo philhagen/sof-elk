@@ -56,9 +56,11 @@
     regexp: '{{ item.regex }}'
     line: '{{ item.line }}'
   with_items:
-    - { regex: '^UseDNS.*', line: 'UseDNS no' }
-    - { regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
-    - { regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
+    - { name: 'Disable DNS host validation', regex: '^UseDNS.*', line: 'UseDNS no' }
+    - { name: 'Enable PasswordAuthentication', regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
+    - { name: 'Enable KbdInteractiveAuthentication', regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
+  loop_control:
+    label: "{{ item.name }}"
   register: ssh_config
   tags: sof-elk_base
 
@@ -146,7 +148,7 @@
     shell: /bin/bash
     skeleton: /etc/skel
     state: present
-  when: getent_passwd['elk_user'] == none
+  when: ansible_facts['getent_passwd']['elk_user'] == none
   tags: sof-elk_base
 
 - name: Add to elk_user's .profile
@@ -326,6 +328,8 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/volatility2sof-elk.py', dest: '/usr/local/sbin/volatility2sof-elk.py' }
+  loop_control:
+    label: "{{ item.dest }}"
   tags: sof-elk_base
 
 - name: Install default GeoIP configuration
@@ -359,6 +363,8 @@
     - { name: 'ASN', md5: 'c20977100c0a6c0842583ba158e906ec' }
     - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
     - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
+  loop_control:
+    label: "{{ item.name }}"
   when: geoip_account is not defined
   tags: sof-elk_base
 
@@ -400,6 +406,8 @@
     - { name: 'lab-2.3_source_evidence.zip', md5: 'cdb30018bd02639b9a1ab4f5bc10009e' }
     - { name: 'lab-3.1_README.txt', md5: 'c274173fe8b96c9f2086475534fda364' }
     - { name: 'lab-3.1_source_evidence.zip', md5: '3996469559f0791c135b8700606b49ff' }
+  loop_control:
+    label: "{{ item.name }}"
   when: course_id == "public"
   tags: sof-elk_base
 
