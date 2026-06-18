@@ -49,6 +49,22 @@ path.data: /var/lib/logstash
 #
 # pipeline.batch.delay: 50
 #
+# Controls when output batches are split into smaller chunks. When the event count of a batch
+# increases by this multiplication factor by the end of the pipeline's filter section, it is
+# chunked based on the value of `pipeline.batch.size`. For example: a batch size of 50 that grows
+# to over 50,000 events (1000x50=50,000) will be sent to outputs 50 events at a time instead of a
+# single enormous batch. Useful when batch size grows unpredictably due to filter plugins such
+# as split or clone.
+# Default is 1000 (effectively disabled). Set to a lower value to enable chunking.
+#
+# pipeline.batch.output_chunking.growth_threshold_factor: 1000
+#
+# Set the pipeline's batch metrics reporting mode. It can be "disabled" to disable it.
+# "minimal" to collect only 1% of the batches metrics, "full" to collect all batches.
+# Default is "minimal".
+#
+# pipeline.batch.metrics.sampling_mode: "minimal"
+#
 # Force Logstash to exit during shutdown even if there are still inflight
 # events in memory. By default, logstash will refuse to quit until all
 # received events have been pushed to the outputs.
@@ -105,6 +121,15 @@ pipeline.ecs_compatibility: v8
 # Setting the interval this way is not recommended and might change in later versions.
 #
 # config.reload.interval: 3s
+#
+# Whether to allow the pipeline reload feature to recover a pipeline that has crashed.
+# Requires `config.reload.automatic`. Pipeline cannot include non-reloadable plugins.
+# Accepts one of the following values:
+# - `false` (default): never recover after observing crash
+# - `auto`: recover if-and-only-if `queue.type` is set to `persisted`
+# - `true`: always recover after observing crash (WARNING: risk of data loss)
+#
+# pipeline.recoverable: false
 #
 # Show fully compiled configuration as debug log message
 # NOTE: --log.level must be 'debug'
@@ -223,6 +248,10 @@ pipeline.ecs_compatibility: v8
 #
 # queue.checkpoint.writes: 1024
 #
+# If using queue.type: persisted, the compression goal. Valid values are `none`, `speed`, `balanced`, and `size`.
+# The default `none` is able to decompress previously-written events, even if they were compressed.
+#
+# queue.compression: none
 #
 # ------------ Dead-Letter Queue Settings --------------
 # Flag to turn on dead-letter queue.
@@ -241,6 +270,14 @@ pipeline.ecs_compatibility: v8
 # Default is 5000.
 #
 # dead_letter_queue.flush_interval: 5000
+
+# If using dead_letter_queue.enable: true, the interval in milliseconds that the DLQ scheduler checks for stale segments
+# to be flushed. A smaller value ensures faster segment rotation at the cost of CPU with more frequent scheduler runs.
+# A larger value reduces scheduler overhead but may delay segment sealing.
+# Minimum value is 1000 and cannot be greater than dead_letter_queue.flush_interval. 
+# Default is 1000.
+#
+# dead_letter_queue.flush_check_interval: 1000
 
 # If using dead_letter_queue.enable: true, controls which entries should be dropped to avoid exceeding the size limit.
 # Set the value to `drop_newer` (default) to stop accepting new events that would push the DLQ size over the limit.
