@@ -61,7 +61,8 @@
     - { name: 'Enable KbdInteractiveAuthentication', regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
   loop_control:
     label: "{{ item.name }}"
-  register: ssh_config
+  notify:
+    - restart sshd
   tags: sof-elk_base
 
 - name: Create SSHD host key generation service
@@ -90,7 +91,8 @@
     dest: /usr/lib/systemd/system/ssh.service
     regexp: '^After=.*'
     line: 'After=network.target sshd-keygen.service auditd.service'
-  register: ssh_systemd_service
+  notify: 
+    - restart sshd
   tags:
     - sof-elk_base
     - pub2course
@@ -106,16 +108,14 @@
     - sof-elk_base
     - pub2course
 
-- name: Restart SSHD
-  ansible.builtin.systemd_service:
-    daemon_reload: true
-    name: ssh
-    enabled: true
-    state: restarted
-  when: (not enablestart_sshd.changed) and (ssh_config.changed or ssh_systemd_service.changed)
+- name: Adjust netplan configuration
+  ansible.builtin.shell: |
+    netplan set "network.ethernets.{{ ansible_facts['default_ipv4']['interface'] }}.match.macaddress"=NULL
+    netplan set "network.ethernets.{{ ansible_facts['default_ipv4']['interface'] }}.match.name"="{{ ansible_facts['default_ipv4']['interface'] }}"
+  notify:
+    - apply netplan
   tags:
-    - sof-elk_base
-    - pub2course
+    - base
 
 - name: Disable nfcapd service
   ansible.builtin.systemd_service:

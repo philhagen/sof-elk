@@ -17,6 +17,8 @@
   become_user: root
   become_exe: sudo.ws     # needed to work around a bug in Ubuntu 26.04
                           # see https://www.reddit.com/r/ansible/comments/1t6ie61/become_true_not_working_with_ubuntu_2604_lts/
+  handlers:
+    - import_tasks: handlers/common.yml
   vars:
     elastic_stack_version: 9.4.2
     ansible_python_interpreter: auto_silent
