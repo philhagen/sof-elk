@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script will perform all the necessary steps to check out an upstream
 #   testing branch of the SOF-ELK repository to experiment with new features, etc.
@@ -9,8 +9,8 @@
 
 # include common functions
 functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
-if [ -f ${functions_include} ]; then
-    . ${functions_include}
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
 else
     echo "${functions_include} not present.  Exiting " 1>&2
     exit 1
@@ -50,13 +50,13 @@ require_root
 cd /usr/local/sof-elk/
 
 # make sure the requested branch exists
-if $( ! git ls-remote --heads origin | grep -q refs\/heads\/${BRANCH} ); then
+if ! git ls-remote --heads origin | grep -q "refs/heads/${BRANCH}" ; then
     echoerr "ERROR: No such remote branch exists: ${BRANCH}."
     exit 4
 fi
 
 # make sure there are no local changes
-if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
+if [[ $( git status --porcelain ) && ${FORCE} -eq 0 ]]; then
     echoerr "ERROR: You have local changes to this repository - will not overwrite without '-f' to force."
     echoerr "       Run 'git status' from the /usr/local/sof-elk/ directory to identify the local changes."
     echoerr "       Note that using '-f' will delete any modifications that have been made in this directory."
@@ -74,16 +74,19 @@ echo "To cancel this, press Ctrl-C."
 read -r
 
 # if there are local changes and -f was specified, discard all local changes
-if [[ $( git status --porcelain ) && FORCE -eq 1 ]]; then
+if [[ $( git status --porcelain ) && "${FORCE}" -eq 1 ]]; then
     git reset --hard > /dev/null
     git clean -fdx > /dev/null
 fi
 
-git remote set-branches --add origin ${BRANCH}
+git remote set-branches --add origin "${BRANCH}"
 git fetch origin
-git checkout ${BRANCH}
+git checkout "${BRANCH}"
 
 # the SKIP_HOOK followed by running post_merge.sh ensures the post-merge hook
 #   will run regardless of whether the content updates.
 SKIP_HOOK=1 sof-elk_update.sh | grep -v "Up-to-date"
+if [ "${PIPESTATUS[0]}" -ne 0 ]; then
+    echoerr "WARNING: sof-elk_update.sh exited with a non-zero status; continuing to post_merge.sh anyway."
+fi
 post_merge.sh

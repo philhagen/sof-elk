@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository
 #   is updated
@@ -46,7 +46,7 @@ done
 # activate all elastalert rules
 #for file in /usr/local/sof-elk/lib/elastalert_rules/*.yaml ; do
 #	if [ -h "/etc/elastalert_rules/$( basename "${file}" )" ]; then
-#		rm -f "/etc/elastalert_rules/$( basebame "${file}" )"
+#		rm -f "/etc/elastalert_rules/$( basename "${file}" )"
 #	fi
 #
 #	ln -s "${file}" "/etc/elastalert_rules/$( basename "${file}" )"
@@ -55,16 +55,10 @@ done
 #/usr/bin/systemctl restart elastalert
 
 # restart filebeat to account for any new config files and/or prospectors
-if [ -a  "${FILEBEAT_CONF_PATH}" ]; then
-    rm -f "${FILEBEAT_CONF_PATH}"
-fi
 ln -fs /usr/local/sof-elk/lib/configfiles/filebeat.yml "${FILEBEAT_CONF_PATH}"
 /usr/bin/systemctl restart filebeat
 
 # other housecleaning
-if [ -a "${LOGO_PATH}" ]; then
-    rm -rf "${LOGO_PATH}"
-fi
 ln -fs /usr/local/sof-elk/lib/sof-elk.svg "${LOGO_PATH}"
 
 # link supporting scripts
@@ -103,10 +97,3 @@ fi
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
-
-# specifically needed for fielded VMs, versions 20241217 and 202550806
-if [ -f /etc/cron.d/git-remote-update.cron ]; then
-    mv /etc/cron.d/git-remote-update.cron /etc/cron.d/git-remote-update
-fi
-
-apt -y install console-data virt-what > /dev/null 2>&1

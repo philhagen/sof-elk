@@ -115,7 +115,7 @@
   notify:
     - apply netplan
   tags:
-    - base
+    - sof-elk_base
 
 - name: Disable nfcapd service
   ansible.builtin.systemd_service:
