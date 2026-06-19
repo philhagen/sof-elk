@@ -7,8 +7,8 @@
 
 # include common functions
 functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
-if [ -f ${functions_include} ]; then
-    . ${functions_include}
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
 else
     echo "${functions_include} not present.  Exiting " 1>&2
     exit 2

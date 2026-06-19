@@ -26,18 +26,3 @@ while [[ "${status}" != "green" ]]; do
     fi
 done
 echo
- | jq -r '.status' )
-    if [[ "${status}" == "green" ]]; then
-        break
-    fi
-	sleep 1
-	echo -n '.'
-
-	waited=$(( waited + 1 ))
-    if [[ "${waited}" -ge "${maxwait}" ]]; then
-        echo
-        echo "ERROR: elasticsearch did not reach green status after ${maxwait} seconds." >&2
-        exit 1
-    fi
-done
-echo

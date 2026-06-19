@@ -108,7 +108,7 @@
     - sof-elk_base
     - pub2course
 
-- name: Adjust netplan configuration
+- name: Set netplan configuration
   ansible.builtin.shell: |
     netplan set "network.ethernets.{{ ansible_facts['default_ipv4']['interface'] }}.match.macaddress"=NULL
     netplan set "network.ethernets.{{ ansible_facts['default_ipv4']['interface'] }}.match.name"="{{ ansible_facts['default_ipv4']['interface'] }}"
@@ -261,7 +261,7 @@
     line: 'compress'
   tags: sof-elk_base
 
-- name: Clone SOF-ELK repo
+- name: Clone/update SOF-ELK repo
   ansible.builtin.git:
     repo: 'https://github.com/philhagen/sof-elk'
     dest: '/usr/local/sof-elk'

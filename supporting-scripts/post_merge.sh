@@ -18,10 +18,6 @@ esac
 
 # activate all "supported" Logstash configuration files
 for file in /usr/local/sof-elk/configfiles/* ; do
-    if [ -h "/etc/logstash/conf.d/$( basename "${file}" )" ]; then
-        rm -f "/etc/logstash/conf.d/$( basename "${file}" )"
-    fi
-
     ln -s "${file}" "/etc/logstash/conf.d/$( basename "${file}" )"
 done
 
@@ -64,9 +60,6 @@ ln -fs /usr/local/sof-elk/lib/sof-elk.svg "${LOGO_PATH}"
 # link supporting scripts
 for file in csv2json.py fw_modify.sh geoip_bootstrap.sh geoip_update_logstash.sh kick-aws-logs.sh load_all_dashboards.sh nfdump2sof-elk.sh post_merge.sh sof-elk_clear.py sof-elk_update.sh sof-elk_branch.sh volatility2sof-elk.py ; do
     filepath=/usr/local/sof-elk/supporting-scripts/${file}
-    if [ -h "/usr/local/sbin/${file}" ]; then
-        rm -f "/usr/local/sbin/${file}"
-    fi
 
     ln -s "${filepath}" "/usr/local/sbin/${file}"
 done
