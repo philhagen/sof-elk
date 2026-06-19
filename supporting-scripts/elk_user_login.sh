@@ -1,9 +1,9 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script is read at login time (local and remote) for the elk_user user account
-# it's designed to display useful stuff for the user/student
+# it's designed to display useful stuff for the user
 
 [ -r /etc/lsb-release ] && . /etc/lsb-release
 
@@ -13,8 +13,9 @@ if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
 fi
 
 echo
-echo "Welcome to the SOF-ELK® VM Distribution"
+echo "Welcome to the SOF-ELK® Distribution"
 printf "Built on %s (%s %s %s)\n" "$DISTRIB_DESCRIPTION" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+printf "Running on the '%s' branch\n" "$(cd /usr/local/sof-elk && git rev-parse --abbrev-ref HEAD)"
 echo "--------------------------------------"
 echo "Here are some useful commands:"
 echo "  sof-elk_clear.py"
