@@ -194,6 +194,8 @@
     mode: 0640
     owner: elk_user
     group: elk_user
+    modification_time: preserve
+    access_time: preserve
   tags: sof-elk_base
 
 - name: Set up pre-login banner template
@@ -276,6 +278,8 @@
     mode: 0640
     owner: elk_user
     group: elk_user
+    modification_time: preserve
+    access_time: preserve
   tags: sof-elk_base
 
 # the 'git config' command running with sudo reverts file ownership to root:root
