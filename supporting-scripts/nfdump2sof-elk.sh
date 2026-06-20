@@ -7,8 +7,8 @@
 #   feature
 
 functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
-if [ -f ${functions_include} ]; then
-    . ${functions_include}
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
 else
     echo "${functions_include} not present.  Exiting " 1>&2
     exit 1
@@ -19,11 +19,15 @@ NONSTANDARD_OUTPUT=0
 READFLAG="-R"
 
 # parse options
-while getopts ":e:r:w:" opt; do
+while getopts ":e:r:w:h" opt; do
   case "${opt}" in
     e) EXPORTER_IP="${OPTARG}" ;;
     r) SOURCE_LOCATION="${OPTARG}" ;;
     w) DESTINATION_FILE="${OPTARG}" ;;
+    h)
+        echo "Usage: ${0} (-e <exporter_ip>) -r <source_directory_or_file> -w <output_file>"
+        exit 0
+        ;;
     \?)
         echoerr "ERROR: Invalid option: -${OPTARG}."
         exit 2
