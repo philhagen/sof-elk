@@ -1,5 +1,5 @@
 #!/bin/bash
-# (C)2023 Phil Hagen <phil@lewestech.com>
+# (C)2026 Phil Hagen <phil@lewestech.com>
 #
 # This script will configure a GeoIP.conf file and install the latest MaxMind GeoIP databases
 # It will optionally configure a cron job to do this periodically
@@ -12,49 +12,53 @@
 # - geoipupdate utility on $PATH
 # - template GeoIP.conf.default identified in ${geoip_conf_template}
 
-if [ -z ${geoip_conf_template} ]; then
+if [ -z "${geoip_conf_template}" ]; then
     geoip_conf_template="/etc/GeoIP.conf.default"
 fi
-if [ -z ${geoip_conf_target} ]; then
+if [ -z "${geoip_conf_target}" ]; then
     geoip_conf_target="/etc/GeoIP.conf"
 fi
 
-if [[ $EUID -ne 0 ]]; then
+if [[ "${EUID}" -ne 0 ]]; then
     echo "This script must be run as root.  Exiting."
     exit 1
 fi
 
-if [ -f ${geoip_conf_target} ]; then
+if [ -f "${geoip_conf_target}" ]; then
     # not clobbering existing file
     echo "ERROR: ${geoip_conf_target} already exists - not overwriting."
     echo "       If you wish to replace this file, remove it and re-run this script."
-    exit
+    exit 2
 fi
 
-if [ ! -f ${geoip_conf_template} ]; then
+if [ ! -f "${geoip_conf_template}" ]; then
     # no template, so exit
     echo "ERROR: ${geoip_conf_template} does not exist - exiting."
-    exit
+    exit 3
 fi
 
-if ! command -v geoipupdate &> /dev/null ; then
+if ! command -v geoipupdate > /dev/null ; then
     echo "ERROR: geoipupdate tool not available. Cannot install MaxMind databases."
-    exit
+    exit 4
 else
     geoipupdateversion=$( geoipupdate -V 2>&1 | awk '{print $2}' )
+    geoipupdatemajor="${geoipupdateversion:0:1}"
+    if ! [[ "${geoipupdatemajor}" =~ ^[0-9]+$ ]]; then
+        echo "ERROR: Could not determine geoipupdate version from output: '${geoipupdateversion}'"
+        exit 5
+    fi
+    if [ "${geoipupdatemajor}" -lt 4 ]; then
+        echo "ERROR: Your version of the geoipupdate tool is too old.  Update to at least version 4.x and re-run the bootstrap script"
+        exit 6
+    fi
 fi
 
-if [ $( echo ${geoipupdateversion:0:1} ) -lt 4 ]; then
-    echo "ERROR: Your version of the geoipupdate tool is too old.  Update to at least version 4.x and re-run the bootstrap script"
-    exit
-fi
-
-target_dir=$( dirname ${geoip_conf_target} )
-realpath=$( realpath $0 )
-if [ ! -w ${target_dir} ]; then
+target_dir=$( dirname "${geoip_conf_target}" )
+realpath=$( realpath "${0}" )
+if [ ! -w "${target_dir}" ]; then
     echo "ERROR: ${target_dir} not writable, so cannot create ${geoip_conf_target}."
     echo "       You may need to run 'sudo ${realpath}'. Exiting."
-    exit
+    exit 7
 fi
 
 echo "Do you want to download the MaxMind GeoIP databases?"
@@ -63,8 +67,8 @@ echo "This prompt will time out in 30 seconds."
 read -t 30 -p "Y/N: " installmmdb
 echo
 
-if [ -z ${installmmdb} ] || [ ${installmmdb^^} != "Y" ]; then
-    exit
+if [ -z "${installmmdb}" ] || [ "${installmmdb^^}" != "Y" ]; then
+    exit 0
 fi
 
 echo "If you do not already have a MaxMind account, sign up here:"
@@ -79,26 +83,24 @@ read -p "Enter your MaxMind License Key: " license_key
 # The MaxMind updater is finicky... Script will try this many times to update before exiting with a failure
 RETRIES=3
 SUCCESS=0
-while [ ${SUCCESS} -eq 0 ]; do
+while [ "${SUCCESS}" -eq 0 ]; do
     # do this every loop because it'll prevent having a leftover "bad" file stuck in the root
-    sed "s/<%ACCOUNT_ID%>/${account_id}/g;s/<%LICENSE_KEY%>/${license_key}/g" ${geoip_conf_template} > ${geoip_conf_target}
+    sed "s/<%ACCOUNT_ID%>/${account_id}/g;s/<%LICENSE_KEY%>/${license_key}/g" "${geoip_conf_template}" > "${geoip_conf_target}"
 
     tmpfile=$( mktemp )
-    geoipupdate > ${tmpfile} 2>&1
-
-    if [ $? -eq 0 ]; then
+    if geoipupdate > "${tmpfile}" 2>&1; then
         SUCCESS=1
 
     else
-        RETRIES="$((${RETRIES}-1))"
+        RETRIES="$((RETRIES-1))"
 
-        rm -f ${geoip_conf_target}
+        rm -f "${geoip_conf_target}"
 
-        if [ ${RETRIES} -gt 0 ]; then
+        if [ "${RETRIES}" -gt 0 ]; then
             echo
             echo "Temporary failure of geoipupdate command.  Waiting 5 seconds to try again."
             echo "=== Begin geoipupdate output ==="
-            cat ${tmpfile}
+            cat "${tmpfile}"
             echo "=== End geoipupdate output ==="
             sleep 5
         else
@@ -107,12 +109,12 @@ while [ ${SUCCESS} -eq 0 ]; do
             echo "       You may have provided an invalid Account ID and/or License Key."
             echo "       If these were confirmed correct, wait a few minutes and run this"
             echo "       command again."
-            rm -f ${geoip_conf_target}
-            exit
+            rm -f "${geoip_conf_target}"
+            exit 9
         fi
     fi
  
-    rm -f ${tmpfile}
+    rm -f "${tmpfile}"
 done
 
 echo "MaxMind GeoIP databases have been installed."
@@ -123,6 +125,6 @@ systemctl restart logstash.service
 echo "Do you want to set a weekly cron job that will update the MaxMind GeoIP databases automatically?"
 read -p "Y/N: " install_cron_job
 
-if [ ${install_cron_job^^} == "Y" ]; then
+if [ "${install_cron_job^^}" == "Y" ]; then
     echo "18 4 * * 2 root /usr/local/sbin/geoip_update_logstash.sh" > /etc/cron.d/geoipupdate
 fi
