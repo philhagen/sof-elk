@@ -80,13 +80,13 @@ def filter(event)
     headerdata_perms["disablelinkpathtracking"] = true if (headerdata_perms_orig & 0x100000 != 0)
     headerdata_perms["disableknownfoldertracking"] = true if (headerdata_perms_orig & 0x200000 != 0)
     headerdata_perms["disableknownfolderalias"] = true if (headerdata_perms_orig & 0x400000 != 0)
-    headerdata_perms["allowlinktolink"] = true if (headerdata_perms_orig & 0x8000000 != 0)
+    headerdata_perms["allowlinktolink"] = true if (headerdata_perms_orig & 0x800000 != 0)
     headerdata_perms["unaliasonsave"] = true if (headerdata_perms_orig & 0x10000000 != 0)
     headerdata_perms["preferenvironmentpath"] = true if (headerdata_perms_orig & 0x20000000 != 0)
     headerdata_perms["keeplocalidlistforunctarget"] = true if (headerdata_perms_orig & 0x40000000 != 0)
 
     # set a tag if there are any extraneous flags not addressed above
-    event.tag("_headerdataflagsparsefailure") if (headerdata_perms_orig & 0x78FFFFFF != headerdata_perms_orig)
+    event.tag("_headerdataflagsparsefailure") if (headerdata_perms_orig & 0x70FFFFFF != headerdata_perms_orig)
 
   elsif @source_type == "str"
     # set true/false flags for each bit in the mask
@@ -236,7 +236,7 @@ end
 
 test "all flags in integer" do
   parameters {{ "source_field" => "flags", "source_type" => "int" }}
-  in_event {{ "flags" => 2030043135 }}
+  in_event {{ "flags" => 1895825407 }}
   expect("all true values") { |events|
     newflags = events.first.get("flags")
     newtags = events.first.get("tags")
@@ -315,7 +315,7 @@ test "some flags in integer" do
     newflags = events.first.get("flags")
     newtags = events.first.get("tags")
 
-    newflags["allowlinktolink"] == false &&
+    newflags["allowlinktolink"] == true &&
     newflags["disableknownfolderalias"] == false &&
     newflags["disableknownfoldertracking"] == true &&
     newflags["disablelinkpathtracking"] == true &&

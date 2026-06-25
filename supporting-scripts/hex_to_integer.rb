@@ -17,12 +17,13 @@ end
 def filter(event)
   hex_string = event.get(@source_field)
 
-  # if already an integer, just return the unchanged event
-  if hex_string.is_a?(Integer)
+  # field doesn't exist or it's already an integer, return an unchanged event
+  if hex_string.nil? || hex_string.is_a?(Integer)
     return [event]
-
-  # invalid hex input like nil or 0xZZ
-  elsif (hex_string == nil) || (hex_string.start_with?("0x") && !hex_string[2..][/\h/]) || (!hex_string[/\h/])
+  end
+  
+  # invalid hex input or 0xZZ
+  if (hex_string.start_with?("0x") && !hex_string[2..].match?(/\A\h+\z/)) || (!hex_string.start_with?("0x") && !hex_string.match?(/\A\h+\z/))
     event.tag("_hex_to_integer_fail")
     return [event]
 
@@ -87,9 +88,9 @@ end
 
 test "nil in source field" do
   parameters {{ "source_field" => "hex7" }}
-  in_event {{ "hex7" => nil }}
-  expect("the hex cannot be converted but the event should be tagged") { |events|
-      events.first.get("tags")&.include?("_hex_to_integer_fail")
+  in_event {{ "hex7" => nil, "other_field" => "test" }}
+  expect("source field is nil so object should be returned unchanged") { |events|
+      events.first.get("tags").nil? && events.first.get("hex7").nil? && events.first.get("other_field") == "test"
   }
 end
 
@@ -104,7 +105,7 @@ end
 test "numeric value in source field" do
   parameters {{ "source_field" => "hex9" }}
   in_event {{ "hex9" => 123 }}
-  expect("the value should be unchanged") { |events|
+  expect("the event should be returned unchanged") { |events|
     events.first.get("hex9") == 123
   }
 end

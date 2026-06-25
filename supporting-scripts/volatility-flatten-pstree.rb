@@ -1,7 +1,9 @@
 # SOF-ELK® Supporting script
 # (C)2026 Lewes Technology Consulting, LLC
 #
-# This script processes a volatility 3 "pstree" object and recursively structures all child processes into a flat set of results with a process depth field applied
+# This script processes a volatility 3 "pstree" object and recursively
+# structures all child processes into a flat set of results with a process
+# depth field applied
 
 def register(params)
   @source_field = params.fetch("source", "[message]")
