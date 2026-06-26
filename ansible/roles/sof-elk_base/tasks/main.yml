@@ -101,14 +101,14 @@
     owner: root
     group: root
     mode: '0644'
-  register: sshd-vsock
+  register: sshd_vsock
   tags:
     - sof-elk_base
 
 - name: Reload systemd daemon
   ansible.builtin.systemd:
     daemon_reload: true
-  when: sshd-vsock.changed
+  when: sshd_vsock.changed
   tags:
     - sof-elk_base
 
