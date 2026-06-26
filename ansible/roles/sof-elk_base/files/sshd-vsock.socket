@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenBSD Secure Shell server per-connection daemon
+Documentation=man:sshd(8) man:sshd_config(5)
+After=nss-user-lookup.target auditd.service
+
+[Service]
+EnvironmentFile=-/etc/default/ssh
+ExecStart=-/usr/sbin/sshd -i $SSHD_OPTS -o "AuthorizedKeysFile ${CREDENTIALS_DIRECTORY}/ssh.ephemeral-authorized_keys-all .ssh/authorized_keys"
+StandardInput=socket
+RuntimeDirectory=sshd
+RuntimeDirectoryPreserve=yes
+RuntimeDirectoryMode=0755
+ImportCredential=ssh.ephemeral-authorized_keys-all
