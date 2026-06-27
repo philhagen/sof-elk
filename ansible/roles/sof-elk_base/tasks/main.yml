@@ -27,6 +27,11 @@
   when: utc_localtime.changed or utc_timezone.changed
   tags: sof-elk_base
 
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: sof-elk
+  tags: sof-elk_base
+
 - name: Update all software packages
   ansible.builtin.apt:
     update_cache: true
