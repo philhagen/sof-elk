@@ -18,7 +18,7 @@
   handlers:
     - import_tasks: handlers/common.yml
   vars:
-    elastic_stack_version: 9.4.2
+    elastic_stack_version: 9.4.3
     ansible_python_interpreter: auto_silent
 
   pre_tasks:

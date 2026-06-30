@@ -201,6 +201,8 @@
     regex: '^{{ item[1] }}'
     line: '{{ item[1] }}'
     create: true
+  loop_control:
+    label: "{{ item[0] }}: {{ item[1] }}"
   with_nested:
     - [ 'root', 'elk_user' ]
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]

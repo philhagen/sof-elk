@@ -65,6 +65,7 @@ if [ ! -z "${indices}" ]; then
     read
 fi
 
+# this will show the volatility/* subdirs - prob need to handle those since they are expected.
 ingest_dir=$( find /logstash/ -mindepth 2 -print )
 if [ ! -z "${ingest_dir}" ]; then
     echo "The following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
