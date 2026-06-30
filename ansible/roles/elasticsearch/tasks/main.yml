@@ -1,6 +1,6 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 
 - name: Install Elasticsearch
   ansible.builtin.apt:
@@ -67,3 +67,13 @@
     state: restarted
   when: (not enablestart_elasticsearch) and (elasticsearch_systemd_config.changed or elasticsearch-config.changed)
   tags: elasticsearch
+
+- name: Delete default indices known to cause problems
+  ansible.builtin.uri:
+    url: http://localhost:9200/{{ item }}
+    method: DELETE
+    status_code: [200, 404]
+  with_items:
+    - .entity_analytics.watchlists.default
+  register: index_delete_result
+  changed_when: index_delete_result.status == 200  tags: elasticsearch
