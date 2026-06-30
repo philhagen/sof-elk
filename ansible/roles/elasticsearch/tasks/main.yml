@@ -76,4 +76,5 @@
   with_items:
     - .entity_analytics.watchlists.default
   register: index_delete_result
-  changed_when: index_delete_result.status == 200  tags: elasticsearch
+  changed_when: index_delete_result.status == 200
+  tags: elasticsearch
