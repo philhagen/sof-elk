@@ -117,6 +117,13 @@
   tags:
     - sof-elk_base
 
+- name: Remove sshd-vsock.socket issue.d file
+  ansible.builtin.file:
+    path: /run/issue.d/50-ssh-vsock.issue
+    state: absent
+  tags:
+    - sof-elk_base
+
 - name: Start and enable SSHD
   ansible.builtin.systemd_service:
     daemon_reload: true
