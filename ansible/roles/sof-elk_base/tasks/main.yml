@@ -164,7 +164,7 @@
     fail_key: false
   tags: sof-elk_base
 
-- name: Create elk_user account if needed
+- name: Create elk_user account
   ansible.builtin.user:
     name: 'elk_user'
     comment: 'SOF-ELK User'
