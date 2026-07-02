@@ -19,6 +19,33 @@
         "desc"
       ]
     ],
+    "tabs": [
+      {
+        "attributes": {
+          "columns": [
+            "operation_name",
+            "status",
+            "initiator",
+            "resource_group",
+            "resource_type",
+            "resource"
+          ],
+          "hits": 0,
+          "kibanaSavedObjectMeta": {
+            "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+          },
+          "sort": [
+            [
+              "@timestamp",
+              "desc"
+            ]
+          ],
+          "version": 1
+        },
+        "id": "6698a9e5-ffb7-465e-b67f-a0cd3d346805",
+        "label": "Untitled"
+      }
+    ],
     "title": "Azure Activity Log Discovery",
     "version": 1
   },
@@ -36,5 +63,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "10.5.0"
+  "typeMigrationVersion": "10.12.0"
 }

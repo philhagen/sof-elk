@@ -28,6 +28,44 @@
         "desc"
       ]
     ],
+    "tabs": [
+      {
+        "attributes": {
+          "columns": [
+            "log.syslog.hostname",
+            "log.syslog.appname",
+            "message"
+          ],
+          "grid": {
+            "columns": {
+              "log.syslog.appname": {
+                "width": 140
+              },
+              "log.syslog.hostname": {
+                "width": 140
+              }
+            }
+          },
+          "hideChart": false,
+          "hits": 0,
+          "isTextBasedQuery": false,
+          "kibanaSavedObjectMeta": {
+            "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+          },
+          "sort": [
+            [
+              "@timestamp",
+              "desc"
+            ]
+          ],
+          "timeRestore": false,
+          "usesAdHocDataView": false,
+          "version": 1
+        },
+        "id": "0a841c7b-5f4c-40d0-946f-77c8e2376652",
+        "label": "Untitled"
+      }
+    ],
     "timeRestore": false,
     "title": "Syslog Discovery",
     "usesAdHocDataView": false,
@@ -47,5 +85,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "10.5.0"
+  "typeMigrationVersion": "10.12.0"
 }
