@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenSSH Server Socket (systemd-ssh-generator, AF_VSOCK)
+Documentation=man:systemd-ssh-generator(8)
+Wants=ssh-access.target
+Before=ssh-access.target
+
+[Socket]
+ListenStream=vsock::22
+Accept=yes
+PollLimitIntervalSec=30s
+PollLimitBurst=50

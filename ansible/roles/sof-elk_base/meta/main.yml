@@ -1,7 +1,7 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 
 dependencies:
   - role: debian-apt-source
-    when: ansible_distribution == "Debian" and ansible_distribution_major_version is version('12', '>=')
+    when: ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] is version('12', '>=')

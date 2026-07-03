@@ -1,5 +1,5 @@
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script generates a community-id value from supplied source/dest IPs, source/dest ports, and layer 4 protocol
 
@@ -24,7 +24,7 @@ ICMP4_MAP = {
   15 => 16,
   # Info Reply => Info Req
   16 => 15,
-  # Rtr solicitation => Rtr Adverstisement
+  # Rtr solicitation => Rtr Advertisement
   10 => 9,
   # Mask => Mask reply
   17 => 18,
@@ -61,10 +61,6 @@ ICMP6_MAP = {
 
 VERSION = '1:'
 
-def bin_to_hex(s)
-  s.each_byte.map { |b| b.to_s(16).rjust(2, '0') }.join(':')
-end
-
 def register(params)
   @comm_id_seed = params.fetch("community_id_seed", "0").to_i
   @source_ip = params.fetch("source_ip_field", "[source][ip]")
@@ -77,11 +73,6 @@ def register(params)
 end
 
 def filter(event)
-  if @target_field.nil?
-    event.tag("community_id_target_field_not_set")
-    return [event]
-  end
-
   # Tag and quit if any fields aren't present
   [@source_ip, @source_port, @dest_ip, @dest_port, @protocol].each do |field|
     if event.get(field).nil?
@@ -156,7 +147,6 @@ def filter(event)
   hash.update(sport) # 2 bytes for port
   hash.update(dport) # 2 bytes for port
 
-  comm_id = nil
   comm_id = VERSION + Base64.strict_encode64(hash.digest)
 
   event.set(@target_field, comm_id)

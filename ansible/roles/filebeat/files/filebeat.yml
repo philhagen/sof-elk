@@ -1,10 +1,6 @@
-# SOF-ELK® Supporting script
-# (C)2023 Lewes Technology Consulting, LLC
-#
 # This file configures the filebeat daemon
 
-###################### Filebeat Configuration #########################
-
+############################ Filebeat Configuration ###########################
 # You can find the full configuration reference here:
 # https://www.elastic.co/guide/en/beats/filebeat/index.html
 
@@ -16,7 +12,7 @@ filebeat.config.inputs:
   enabled: true
   path: /usr/local/sof-elk/lib/filebeat_inputs/*.yml
 
-#============================= Filebeat modules ===============================
+# ============================== Filebeat modules ==============================
 
 filebeat.config.modules:
   # Glob pattern for configuration loading
@@ -28,7 +24,7 @@ filebeat.config.modules:
   # Period on which files under path should be checked for changes
   #reload.period: 10s
 
-# ================================ Outputs =====================================
+# =================================== Outputs ==================================
 
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:

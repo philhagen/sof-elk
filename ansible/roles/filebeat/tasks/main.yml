@@ -15,11 +15,12 @@
   tags: filebeat
 
 - name: Configure filebeat
-  ansible.builtin.file:
-    src: '/usr/local/sof-elk/lib/configfiles/filebeat.yml'
+  ansible.builtin.copy:
+    src: 'filebeat.yml'
     dest: '/etc/filebeat/filebeat.yml'
-    state: link
-    force: true
+    owner: root
+    group: root
+    mode: 0600
   register: filebeat_config
   tags: filebeat
 

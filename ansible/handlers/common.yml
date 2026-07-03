@@ -1,0 +1,9 @@
+---
+
+- name: restart sshd
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
+
+- name: apply netplan
+  ansible.builtin.command: netplan apply

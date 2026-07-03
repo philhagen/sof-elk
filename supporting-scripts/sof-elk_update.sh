@@ -1,14 +1,14 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script is used to update the repository from its git origin
 # It will not overwrite any local changes unless -f (force) is specified
 
 # include common functions
 functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
-if [ -f ${functions_include} ]; then
-    . ${functions_include}
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
 else
     echo "${functions_include} not present.  Exiting " 1>&2
     exit 1
@@ -32,11 +32,11 @@ done
 require_root
 
 cd /usr/local/sof-elk/ || exit 3
-if [[ $( git status --porcelain ) && $FORCE -eq 0 ]]; then
+if [[ $( git status --porcelain ) && "${FORCE}" -eq 0 ]]; then
     echoerr "ERROR: You have local changes to this repository - will not overwrite without '-f' to force."
     echoerr "       Run 'git status' from the /usr/local/sof-elk/ directory to identify the local changes."
     echoerr "       Note that using '-f' will delete any modifications that have been made in this directory."
-    exit 2
+    exit 4
 fi
 
 /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
@@ -52,7 +52,10 @@ elif [[ "${LOCAL}" == "${BASE}" ]]; then
     # Need to pull
     git reset --hard > /dev/null
     git clean -fdx > /dev/null
-    git pull origin
+    if ! git pull origin; then
+        echoerr "ERROR: git pull failed; not reloading Logstash."
+        exit 5
+    fi
 
     /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
     for lspid in $( pgrep -u logstash java ); do
