@@ -18,6 +18,32 @@
         "desc"
       ]
     ],
+    "tabs": [
+      {
+        "attributes": {
+          "columns": [
+            "source.ip",
+            "http.request.method",
+            "url.domain",
+            "url.path",
+            "http.response.status_code"
+          ],
+          "hits": 0,
+          "kibanaSavedObjectMeta": {
+            "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+          },
+          "sort": [
+            [
+              "@timestamp",
+              "desc"
+            ]
+          ],
+          "version": 1
+        },
+        "id": "5b2e1629-b405-43d1-8474-7dd625af1d66",
+        "label": "Untitled"
+      }
+    ],
     "title": "HTTPD Discovery",
     "version": 1
   },
@@ -35,5 +61,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "10.5.0"
+  "typeMigrationVersion": "10.12.0"
 }

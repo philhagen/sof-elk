@@ -13,21 +13,22 @@ SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
                   SANS FOR509: Cloud Forensics and Incident Response
                   SANS FOR589: Cybercrime Investigations
                   SANS Aviata: Cloud Solo Flight Challenge
+{% if course_id == "public" %}
                   XINTRA Attacking and Defending Azure & M365
+{% endif %}
 {% endif %}
 To learn more: http://for572.com/sof-elk-readme
 Revision: {{ revision_string }}
-
 -------------------------------------------------------------------------------
 {%if course_id == "for509" %}
-This VM is hosting the FOR509 Electronic Workbook.
+This system is hosting the FOR509 Electronic Workbook.
 - You can access it with a browser at http://\4
 
 {% endif %}
-This VM is running the Logstash and Kibana applications.
+This system is running the Logstash and Kibana applications.
 - You can access Kibana at http://\4:5601
 - You can SSH to this system at IP address \4
 
-The VM will ingest log files placed into the "/logstash/*/"
+SOF-ELK will ingest log files placed into the "/logstash/*/"
 directories.  See the Kibana homepage (link above) for specific guidance.
 

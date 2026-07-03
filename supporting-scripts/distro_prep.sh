@@ -1,6 +1,6 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script is used to prepare the VM for distribution
 # Command line options:
@@ -8,6 +8,14 @@
 #            compaction is not needed)
 #   -cloud: Used to prepare cloud instances for cloning/replication - skips steps
 #           not relevant to cloud environments (also forces -nodisk)
+
+functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
+else
+    echo "${functions_include} not present.  Exiting " 1>&2
+    exit 1
+fi
 
 if [[ -n $SSH_CONNECTION ]]; then
     echo "ERROR: This script must be run locally - Exiting."
@@ -41,11 +49,11 @@ if [ -s ~/distro_prep.txt ]; then
     echo "~/distro_prep.txt still contains instructions - Exiting."
     echo
     cat ~/distro_prep.txt
-    exit 2
+    exit 3
 fi
 
 echo "Checking that we're on the correct SOF-ELK® branch"
-cd /usr/local/sof-elk/
+cd /usr/local/sof-elk/ || exit 4
 git branch
 echo "ACTION REQUIRED!  Is this the correct branch?  (Should be 'public/v*' or 'class/for123/v*' with  all others removed.)"
 read
@@ -57,6 +65,7 @@ if [ ! -z "${indices}" ]; then
     read
 fi
 
+# this will show the volatility/* subdirs - prob need to handle those since they are expected.
 ingest_dir=$( find /logstash/ -mindepth 2 -print )
 if [ ! -z "${ingest_dir}" ]; then
     echo "The following logs and subdirectories are still present in the ingest directory.  Press return if this is correct or Ctrl-C to quit."
@@ -78,12 +87,18 @@ if [ -d ~elk_user/.ssh/ ]; then
 fi
 
 echo "updating local git repo clones"
-cd /usr/local/sof-elk/
+cd /usr/local/sof-elk/ || exit 4
 SKIP_HOOK=1 git pull --all
 
 echo "removing old kernels"
-RUNNING_KERNEL=$( uname -r )
-apt --yes purge $( apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v ${RUNNING_KERNEL} | awk -F/ '{print $1}' )
+if ! RUNNING_KERNEL=$( uname -r ); then
+    echoerr "ERROR: Could not determine running kernel version"
+    exit 4
+fi
+purgeList=$( apt list --installed | grep -Ei 'linux-image|linux-headers|linux-modules' | grep -v "${RUNNING_KERNEL}" | awk -F/ '{print $1}' )
+if [ -n "${purgeList}" ]; then
+    apt --yes purge ${purgeList}
+fi
 
 echo "removing unnecessary packages"
 apt --yes autoremove
@@ -120,15 +135,18 @@ md5values["City"]="4c60b3acf2e6782d48ce2b42979f7b98"
 md5values["Country"]="849e7667913e375bb3873f8778e8fb17"
 for GEOIPDB in ASN City Country; do
     file=GeoLite2-${GEOIPDB}.mmdb
-    local_path=/usr/local/share/GeoIP/${file}
-    md5=$( md5sum ${local_path} | awk '{print $1}' )
-    if [ ${md5} != ${md5values[${GEOIPDB}]} ]; then
-        echo "- ${local_path}"
-        rm -f ${local_path}
-        curl -s -L -o ${local_path} https://sof-elk.com/dist/${file}
-        chmod 644 ${local_path}
+    geoip_file_path=/usr/local/share/GeoIP/${file}
+    md5=$( md5sum "${geoip_file_path}" | awk '{print $1}' )
+    if [ "${md5}" != "${md5values[${GEOIPDB}]}" ]; then
+        echo "- ${geoip_file_path}"
+        rm -f "${geoip_file_path}"
+        if ! curl -s -L -o "${geoip_file_path}" https://sof-elk.com/dist/${file}; then
+            echoerr "WARNING: Could not download GeoIP database ${file}"
+        else
+            chmod 644 "${geoip_file_path}"
+        fi
     fi
-done
+done    
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
 
@@ -179,10 +197,14 @@ rm -f /etc/ssh/*key*
 echo "clearing cron/at content"
 systemctl stop atd
 systemctl stop cron
-rm -rf /var/spool/cron/atjobs/*
-echo "0" > /var/spool/cron/atjobs/.SEQ
-chmod 0600 /var/spool/cron/atjobs/.SEQ
-chown daemon:daemon /var/spool/cron/atjobs/.SEQ
+if [ -d /var/spool/cron/atjobs/ ]; then
+    rm -rf /var/spool/cron/atjobs/*
+    echo "0" > /var/spool/cron/atjobs/.SEQ
+    chmod 0600 /var/spool/cron/atjobs/.SEQ
+    chown daemon:daemon /var/spool/cron/atjobs/.SEQ
+else
+    echoerr "WARNING: /var/spool/cron/atjobs/ does not exist - could not reinitialize at jobs"
+fi
 
 echo "clearing mail spools"
 rm -f /var/spool/mail/root
@@ -192,7 +214,7 @@ echo "clearing systemd journal and regular log files"
 systemctl stop systemd-journald.service
 systemctl stop systemd-journald.socket
 rm -rf /var/log/journal/*
-find /var/log/ -type f -exec rm -rf {} \;
+find /var/log/ -type f -exec rm -f {} \;
 
 echo "clearing /tmp/"
 rm -rf /tmp/*
@@ -205,22 +227,22 @@ if [ $DISKSHRINK -eq 1 ]; then
     echo "zeroize swap:"
     swapoff -a
     for swappart in $( fdisk -l | grep swap | awk '{print $2}' | sed -e 's/:$//' ); do
-        echo "- zeroize $swappart (swap)"
-        dd if=/dev/zero of=$swappart
-        mkswap $swappart
+        echo "- zeroize ${swappart} (swap)"
+        dd if=/dev/zero of="${swappart}"
+        mkswap "${swappart}"
     done
 
     echo "shrink all drives:"
     for shrinkpart in $( vmware-toolbox-cmd disk list ); do
-        vmware-toolbox-cmd disk shrink ${shrinkpart}
+        vmware-toolbox-cmd disk shrink "${shrinkpart}"
     done
 fi
 
 if [ $CLOUDPREP -eq 0 ]; then
     read -p "Set the pre-login banner version for distribution? (Y/N)" set_distro_version
-    if [ ${set_distro_version} == "Y" ]; then
+    if [ "${set_distro_version}" = "Y" ]; then
         echo "updating /etc/issue file for boot message"
-        cat /etc/issue.prep | sed -e "s/<%REVNO%>/$revdate/" > /etc/issue
+        cat /etc/issue.prep | sed -e "s/<%REVNO%>/${revdate}/" > /etc/issue
     fi
 fi
 

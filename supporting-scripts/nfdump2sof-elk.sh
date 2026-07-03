@@ -1,14 +1,14 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script will read a file or directory tree of nfcapd-compatible netflow
 #   data and output in a format that SOF-ELK® can read with its NetFlow ingest
 #   feature
 
 functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
-if [ -f ${functions_include} ]; then
-    . ${functions_include}
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
 else
     echo "${functions_include} not present.  Exiting " 1>&2
     exit 1
@@ -16,13 +16,18 @@ fi
 
 # set default values
 NONSTANDARD_OUTPUT=0
+READFLAG="-R"
 
 # parse options
-while getopts ":e:r:w:" opt; do
+while getopts ":e:r:w:h" opt; do
   case "${opt}" in
     e) EXPORTER_IP="${OPTARG}" ;;
     r) SOURCE_LOCATION="${OPTARG}" ;;
     w) DESTINATION_FILE="${OPTARG}" ;;
+    h)
+        echo "Usage: ${0} (-e <exporter_ip>) -r <source_directory_or_file> -w <output_file>"
+        exit 0
+        ;;
     \?)
         echoerr "ERROR: Invalid option: -${OPTARG}."
         exit 2
@@ -39,7 +44,7 @@ if [[ -z ${SOURCE_LOCATION} ]]; then
     echoerr "Example: $0 -r /path/to/netflow/ -w /logstash/nfarch/<filename>.txt"
     echoerr ""
     echoerr "Can optionally supply an exporter IP address"
-    echoerr
+    echoerr ""
     echoerr "Example: $0 -e 1.2.3.4 -r /path/to/netflow/ -w /logstash/nfarch/<filename>.txt"
     echoerr ""
     exit 2
@@ -63,9 +68,7 @@ else
     exit 4
 fi
 
-if [ "${MODE}" == "dir" ]; then
-    READFLAG="-R"
-elif [ "${MODE}" == "file" ]; then
+if [ "${MODE}" == "file" ]; then
     READFLAG="-r"
 fi
 
@@ -91,15 +94,6 @@ if [[ ! "${DESTINATION_FILE}" =~ ^/logstash/nfarch/ ]]; then
     NONSTANDARD_OUTPUT=1
 fi
 
-# validate source data location
-nfdump "${READFLAG}" "${SOURCE_LOCATION}" -q -c 1 > /dev/null 2>&1
-
-TEST_RUN=$?
-if [ ${TEST_RUN} != 0 ]; then
-    echoerr "ERROR: Source data problem - please address prior to running this command."
-    exit 5
-fi
-
 # validate exporter IP address
 if [[ -z "${EXPORTER_IP}" ]]; then
     echoerr "WARNING: Using default exporter IP address. Specify with '-e' if needed."
@@ -112,12 +106,26 @@ if ! is_valid_ip "${EXPORTER_IP}"; then
     exit 6
 fi
 
+# validate source data location
+# -6: show full IP addresses without shortening
+# -q: hide header/footer in output
+# -N: show full numbers
+# -o: output format string
+# -c 1: only show the first record, resulting in fast exit
+nfdump "${READFLAG}" "${SOURCE_LOCATION}" -6 -q -N -o "fmt:${EXPORTER_IP} ${NFDUMP2SOFELK_FMT}" -c 1 > /dev/null 2>&1
+
+TEST_RUN=$?
+if [ ${TEST_RUN} -ne 0 ]; then
+    echoerr "ERROR: Source data problem - please address prior to running this command."
+    exit 5
+fi
+
 # finally run nfdump command
 echoerr "Running distillation.  Putting output in ${DESTINATION_FILE}"
 nfdump "${READFLAG}" "${SOURCE_LOCATION}" -6 -q -N -o "fmt:${EXPORTER_IP} ${NFDUMP2SOFELK_FMT}" > "${DESTINATION_FILE}"
 
 REAL_RUN=$?
-if [ ${REAL_RUN} != 0 ]; then
+if [ ${REAL_RUN} -ne 0 ]; then
     echoerr "ERROR: An unknown error occurred - data may not have loaded correctly."
     exit 7
 else

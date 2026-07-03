@@ -252,10 +252,10 @@ if doccount > 0:
         )
 
     elif args.nukeitall:
-        es.indices.delete(index="%s" % (",".join(populated_indices)), ignore=[400, 404])
+        es.options(ignore_status=[400, 404]).indices.delete(index="%s" % (",".join(populated_indices)))
 
     else:
-        es.indices.delete(index="%s-*" % (args.index), ignore=[400, 404])
+        es.options(ignore_status=[400, 404]).indices.delete(index="%s-*" % (args.index))
 
 else:
     print("No matching documents.  Nothing to delete.")

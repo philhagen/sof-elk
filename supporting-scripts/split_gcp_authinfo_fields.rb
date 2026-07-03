@@ -4,7 +4,7 @@
 # This script reformats the GCP "authorizationInfo" field into more a more searchable structure
 # for example (key_field = "permission"):
 # - source: [{"resource":"billingAccounts/019921-BE6AE6-562F1C","permission":"billing.resourceAssociations.create","granted":true,"resourceAttributes":{}},{"resource":"projects/suit-ai","permission":"resourcemanager.projects.createBillingAssignment","granted":true,"resourceAttributes":{}},{"resource":"projects/suit-ai","permission":"resourcemanager.projects.deleteBillingAssignment","granted":true,"resourceAttributes":{}}]
-# - result: {"billing.resourceAssociations.create":[{"resource":"billingAccounts/019921-BE6AE6-562F1C","granted":true},{"resource":"billingAccounts/019921-BE6AE6-562F1C","granted":true}],"resourcemanager.projects.createBillingAssignment":[{"resource":"projects/suit-ai","granted":true}],"resourcemanager.projects.deleteBillingAssignment":[{"resource":"projects/suit-ai","granted":true}]}
+# - result: {"billing.resourceAssociations.create":[{"resource":"billingAccounts/019921-BE6AE6-562F1C","granted":true}],"resourcemanager.projects.createBillingAssignment":[{"resource":"projects/suit-ai","granted":true}],"resourcemanager.projects.deleteBillingAssignment":[{"resource":"projects/suit-ai","granted":true}]}
 
 # the value of `params` is the value of the hash passed to `script_params`
 # in the logstash configuration
@@ -28,18 +28,18 @@ def filter(event)
   source_data = event.get(@source_field)
 
   # create empty hash to hold new result
-  output = Hash.new()
+  output = {}
 
-  for item in source_data
+  source_data.each do |item|
     if item.key?(@key_field)
       new_key = item[@key_field]
       unless output.key?(new_key)
-        output[new_key] = Array.new()
+        output[new_key] = []
       end
 
-      new_value = Hash.new()
-      new_value["resource"] = item["resource"]
-      new_value["granted"] = item["granted"]
+      new_value = {}
+      new_value["resource"] = item["resource"] if item.key?("resource")
+      new_value["granted"] = item["granted"] if item.key?("granted")
 
       output[new_key].push(new_value)
     end

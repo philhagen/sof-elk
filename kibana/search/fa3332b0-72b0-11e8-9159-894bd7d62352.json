@@ -21,6 +21,35 @@
         "desc"
       ]
     ],
+    "tabs": [
+      {
+        "attributes": {
+          "columns": [
+            "netflow.exporter.ip",
+            "network.transport",
+            "source.ip",
+            "source.port",
+            "destination.ip",
+            "destination.port",
+            "network.bytes",
+            "network.packets"
+          ],
+          "hits": 0,
+          "kibanaSavedObjectMeta": {
+            "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\",\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"version\":true}"
+          },
+          "sort": [
+            [
+              "@timestamp",
+              "desc"
+            ]
+          ],
+          "version": 1
+        },
+        "id": "48f9e5f4-a44c-4b4e-901a-83b684943f7b",
+        "label": "Untitled"
+      }
+    ],
     "title": "NetFlow Discovery",
     "version": 1
   },
@@ -38,5 +67,5 @@
     }
   ],
   "type": "search",
-  "typeMigrationVersion": "10.5.0"
+  "typeMigrationVersion": "10.12.0"
 }

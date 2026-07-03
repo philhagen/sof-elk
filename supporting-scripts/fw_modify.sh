@@ -1,22 +1,22 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script modifies the local firewall using the firewall-cmd utility
 
 # include common functions
 functions_include="/usr/local/sof-elk/supporting-scripts/functions.sh"
-if [ -f ${functions_include} ]; then
-    . ${functions_include}
+if [ -f "${functions_include}" ]; then
+    . "${functions_include}"
 else
     echo "${functions_include} not present.  Exiting " 1>&2
-    exit 2
+    exit 1
 fi
 
 # set local functions
 usage() {
     echo "Usage: $0 [-h] -a (open|close) -p <%PORT_NUMBER%> -r (tcp|udp)"
-    exit 3
+    exit 2
 }
 
 # parse options
@@ -28,17 +28,22 @@ while getopts ":a:p:r:h" opt; do
     h) usage ;;
     \?)
         echoerr "ERROR: Invalid option: -${OPTARG}"
-        exit 4
+        exit 3
         ;;
   esac
 done
+
+if ! which firewall-cmd > /dev/null; then
+    echoerr "ERROR: firewall-cmd not found - exiting."
+    exit 4
+fi
 
 # quit if not running with admin privs
 require_root
 
 # handle missing or empty options
 if [[ -z "${ACTION}" || ( "${ACTION}" != "open" && "${ACTION}" != "close" ) ]]; then
-    echo "Please specify the firewall action to take with the '-a' option.  Options are 'open' or 'closed'."
+    echo "Please specify the firewall action to take with the '-a' option.  Options are 'open' or 'close'."
     echo
     echo "Example: $0 -a open -p 5514 -r tcp"
     exit 5
@@ -52,8 +57,8 @@ if [[ -z "${PORT}" ]]; then
 fi
 
 re='^[0-9]+$'
-if ! [[ "${PORT}" =~ ${re} ]] ; then
-    echo "Error - ${PORT} is not a number.  Exiting."
+if ! [[ "${PORT}" =~ ${re} ]] || [ "${PORT}" -lt 1 ] || [ "${PORT}" -gt 65535 ]; then
+    echo "Error - ${PORT} is not a valid port number (must be 1-65535).  Exiting."
     exit 7
 fi
 
@@ -71,5 +76,11 @@ else
     FWCMDARG="--remove-port"
 fi
 
-firewall-cmd --zone=public ${FWCMDARG}="${PORT}"/"${PROTOCOL}" --permanent > /dev/null
-firewall-cmd --reload > /dev/null
+if ! firewall-cmd --zone=public ${FWCMDARG}="${PORT}"/"${PROTOCOL}" --permanent > /dev/null; then
+    echoerr "ERROR: firewall-cmd failed to ${ACTION} port ${PORT}/${PROTOCOL}."
+    exit 9
+fi
+if ! firewall-cmd --reload > /dev/null; then
+    echoerr "ERROR: firewall-cmd reload failed - changes may not be active."
+    exit 10
+fi

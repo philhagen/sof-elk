@@ -28,9 +28,9 @@ def filter(event)
   source_data = event.get(@source_field)
 
   # create empty hash to hold new result
-  output = Hash.new()
+  output = {}
 
-  for item in source_data
+  source_data.each do |item|
     new_value = Marshal.load(Marshal.dump(item))
     key = new_value.delete(@key_field)
 
@@ -45,7 +45,7 @@ end
 ## Validation tests
 test "single entry in source" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name" }}
-  in_event {{ "source" => [{ "name": "identity", "value1": "jvandyne", "value2": "orange" }] }}
+  in_event {{ "source" => [{ "name" => "identity", "value1" => "jvandyne", "value2" => "orange" }] }}
   expect ("the source element is restructured") { |events|
     events.first.get("[dest][identity][value1]") == "jvandyne" &&
     events.first.get("[dest][identity][value2]") == "orange"
@@ -54,7 +54,7 @@ end
 
 test "single value in source" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name" }}
-  in_event {{ "source" => [{ "name": "identity", "value1": "jvandyne" }] }}
+  in_event {{ "source" => [{ "name" => "identity", "value1" => "jvandyne" }] }}
   expect ("the source element is restructured") { |events|
     events.first.get("[dest][identity][value1]") == "jvandyne"
   }
@@ -62,7 +62,7 @@ end
 
 test "multiple items in source array" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name" }}
-  in_event {{ "source" => [{ "name": "identity", "value1": "jvandyne", "value2": "orange" }, { "name": "alert_data", "level": "debug", "message": "this is a test" }] }}
+  in_event {{ "source" => [{ "name" => "identity", "value1" => "jvandyne", "value2" => "orange" }, { "name" => "alert_data", "level" => "debug", "message" => "this is a test" }] }}
   expect ("the source element is restructured") { |events|
     events.first.get("[dest][identity][value1]") == "jvandyne" &&
     events.first.get("[dest][identity][value2]") == "orange" &&
@@ -73,7 +73,7 @@ end
 
 test "nonexistent source field" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name" }}
-  in_event {{ "source2" => [{ "name": "identity", "value1": "jvandyne", "value2": "orange" }] }}
+  in_event {{ "source2" => [{ "name" => "identity", "value1" => "jvandyne", "value2" => "orange" }] }}
   expect ("the event is tagged") { |events|
     events.first.get("tags")&.include?("source_not_found")
   }

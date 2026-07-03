@@ -103,6 +103,7 @@ test "no flags in string" do
   in_event {{ "flags" => "" }}
   expect("all false values") { |events| 
     newflags = events.first.get("flags")
+    newtags = events.first.get("tags")
 
     newflags["archive"] == false &&
     newflags["compressed"] == false &&
@@ -122,7 +123,8 @@ test "no flags in string" do
     newflags["sparsefile"] == false &&
     newflags["system"] == false &&
     newflags["temporary"] == false &&
-    newflags["virtual"] == false
+    newflags["virtual"] == false &&
+    (newtags.nil? || newtags&.exclude?("_siflagsparsefailure"))
   }
 end
 

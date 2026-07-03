@@ -1,11 +1,10 @@
 #!/bin/bash
 # SOF-ELK® Supporting script
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This script is used to perform post-merge steps, eg after the git repository
 #   is updated
 
-FILEBEAT_CONF_PATH=/etc/filebeat/filebeat.yml
 LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/assets/sof-elk.svg"
 
 # if a SKIP_HOOK variable is set to 1, don't do any of this
@@ -18,11 +17,7 @@ esac
 
 # activate all "supported" Logstash configuration files
 for file in /usr/local/sof-elk/configfiles/* ; do
-    if [ -h "/etc/logstash/conf.d/$( basename "${file}" )" ]; then
-        rm -f "/etc/logstash/conf.d/$( basename "${file}" )"
-    fi
-
-    ln -s "${file}" "/etc/logstash/conf.d/$( basename "${file}" )"
+    ln -fs "${file}" "/etc/logstash/conf.d/$( basename "${file}" )"
 done
 
 # deactivate dead configuration file symlinks links
@@ -45,36 +40,22 @@ done
 
 # activate all elastalert rules
 #for file in /usr/local/sof-elk/lib/elastalert_rules/*.yaml ; do
-#	if [ -h "/etc/elastalert_rules/$( basename "${file}" )" ]; then
-#		rm -f "/etc/elastalert_rules/$( basebame "${file}" )"
-#	fi
-#
-#	ln -s "${file}" "/etc/elastalert_rules/$( basename "${file}" )"
+#	ln -fs "${file}" "/etc/elastalert_rules/$( basename "${file}" )"
 #done
 # reload elastalert
 #/usr/bin/systemctl restart elastalert
 
 # restart filebeat to account for any new config files and/or prospectors
-if [ -a  "${FILEBEAT_CONF_PATH}" ]; then
-    rm -f "${FILEBEAT_CONF_PATH}"
-fi
-ln -fs /usr/local/sof-elk/lib/configfiles/filebeat.yml "${FILEBEAT_CONF_PATH}"
 /usr/bin/systemctl restart filebeat
 
 # other housecleaning
-if [ -a "${LOGO_PATH}" ]; then
-    rm -rf "${LOGO_PATH}"
-fi
 ln -fs /usr/local/sof-elk/lib/sof-elk.svg "${LOGO_PATH}"
 
 # link supporting scripts
 for file in csv2json.py fw_modify.sh geoip_bootstrap.sh geoip_update_logstash.sh kick-aws-logs.sh load_all_dashboards.sh nfdump2sof-elk.sh post_merge.sh sof-elk_clear.py sof-elk_update.sh sof-elk_branch.sh volatility2sof-elk.py ; do
     filepath=/usr/local/sof-elk/supporting-scripts/${file}
-    if [ -h "/usr/local/sbin/${file}" ]; then
-        rm -f "/usr/local/sbin/${file}"
-    fi
 
-    ln -s "${filepath}" "/usr/local/sbin/${file}"
+    ln -fs "${filepath}" "/usr/local/sbin/${file}"
 done
 for deadlink in /usr/local/sbin/* ; do
     if [ ! -e "${deadlink}" ] ; then
@@ -84,11 +65,7 @@ done
 
 # set up all cron jobs, remove old ones
 for file in /usr/local/sof-elk/supporting-scripts/cronjobs/* ; do
-    if [ -h "/etc/cron.d/$( basename "${file}" )" ]; then
-        rm -f "/etc/cron.d/$( basename "${file}" )"
-    fi
-
-    ln -s "${file}" "/etc/cron.d/$( basename "${file}" )"
+    ln -fs "${file}" "/etc/cron.d/$( basename "${file}" )"
 done
 for deadlink in /etc/cron.d/* ; do
     if [ ! -e "${deadlink}" ] ; then
@@ -103,10 +80,3 @@ fi
 
 # reload all dashboards
 /usr/local/sbin/load_all_dashboards.sh
-
-# specifically needed for fielded VMs, versions 20241217 and 202550806
-if [ -f /etc/cron.d/git-remote-update.cron ]; then
-    mv /etc/cron.d/git-remote-update.cron /etc/cron.d/git-remote-update
-fi
-
-apt -y install console-data virt-what > /dev/null 2>&1

@@ -47,6 +47,8 @@
     dest: '/etc/logstash/conf.d/{{ item.path | basename }}'
   with_items:
     - '{{ configfile_results.files }}'
+  loop_control:
+    label: "{{ item.path | basename }}"
   register: logstash_config_symlinks
   tags: logstash
 

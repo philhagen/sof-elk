@@ -28,10 +28,10 @@ def filter(event)
   source_data = event.get(@source_field)
 
   # create empty hash to hold new result
-  output = Hash.new()
+  output = {}
 
   if source_data.is_a?(Array)
-    for item in source_data
+    source_data.each do |item|
       if item.key?(@val_field) && !(item[@val_field] == "")
         output[item[@key_field]] = item[@val_field]
       end
@@ -39,12 +39,13 @@ def filter(event)
 
   elsif source_data.is_a?(Hash)
     item = source_data
-      if item.key?(@val_field) && !(item[@val_field] == "")
-        output[item[@key_field]] = item[@val_field]
-      end
-    
-  # PJH: This should probably have a final "else" stanza to raise an exception
-  #      if the source is not a hash or an array of hashes
+    if item.key?(@val_field) && !(item[@val_field] == "")
+      output[item[@key_field]] = item[@val_field]
+    end
+
+  else
+    event.tag("#{@source_field}_unexpected_type")
+    return [event]
   end
 
   event.set(@destination_field, output)
@@ -54,7 +55,7 @@ end
 ## Validation tests
 test "single entry in source (hash)" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
-  in_event {{ "source" => { "name": "identity", "value": "jvandyne" } }}
+  in_event {{ "source" => { "name" => "identity", "value" => "jvandyne" } }}
   expect ("the source element is restructured") { |events|
     events.first.get("[dest][identity]") == "jvandyne"
   }
@@ -62,7 +63,7 @@ end
 
 test "single entry in source (array)" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
-  in_event {{ "source" => [{ "name": "identity", "value": "jvandyne" }] }}
+  in_event {{ "source" => [{ "name" => "identity", "value" => "jvandyne" }] }}
   expect ("the source element is restructured") { |events|
     events.first.get("[dest][identity]") == "jvandyne"
   }
@@ -70,7 +71,7 @@ end
 
 test "multiple entries in source (array)" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
-  in_event {{ "source" => [{ "name": "identity", "value": "jvandyne" }, { "name": "color", "value": "red" }] }}
+  in_event {{ "source" => [{ "name" => "identity", "value" => "jvandyne" }, { "name" => "color", "value" => "red" }] }}
   expect ("the source element is restructured") { |events|
     events.first.get("[dest][identity]") == "jvandyne" &&
     events.first.get("[dest][color]") == "red"
@@ -79,7 +80,7 @@ end
 
 test "nonexistent source field" do
   parameters {{ "source_field" => "source", "destination_field" => "dest", "key_field" => "name", "val_field" => "value" }}
-  in_event {{ "source2" => [{ "name": "identity", "value": "jvandyne" }] }}
+  in_event {{ "source2" => [{ "name" => "identity", "value" => "jvandyne" }] }}
   expect ("the event is tagged"){ |events|
     events.first.get("tags")&.include?("source_not_found")
   }

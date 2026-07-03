@@ -1,6 +1,6 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 
 - name: Update localtime symlink to Etc/UTC
   ansible.builtin.file:
@@ -27,6 +27,11 @@
   when: utc_localtime.changed or utc_timezone.changed
   tags: sof-elk_base
 
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: sof-elk
+  tags: sof-elk_base
+
 - name: Update all software packages
   ansible.builtin.apt:
     update_cache: true
@@ -46,8 +51,8 @@
   ansible.builtin.apt:
     name: '{{ vmware_apt_packages }}'
     state: present
-  # NOTE: the ansible_system_vendor qualifier was added because the other two are "NA" when using VMware on Apple Silicon
-  when: (ansible_virtualization_role == "guest" and ansible_virtualization_type == "VMware") or ansible_system_vendor == "VMware, Inc."
+  # NOTE: the ansible_facts['system_vendor'] qualifier was added because the other two are "NA" when using VMware on Apple Silicon
+  when: (ansible_facts['virtualization_role'] == "guest" and ansible_facts['virtualization_type'] == "VMware") or ansible_facts['system_vendor'] == "VMware, Inc."
   tags: sof-elk_base
 
 - name: Set SSHD configuration options
@@ -56,10 +61,13 @@
     regexp: '{{ item.regex }}'
     line: '{{ item.line }}'
   with_items:
-    - { regex: '^UseDNS.*', line: 'UseDNS no' }
-    - { regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
-    - { regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
-  register: ssh_config
+    - { name: 'Disable DNS host validation', regex: '^UseDNS.*', line: 'UseDNS no' }
+    - { name: 'Enable PasswordAuthentication', regex: '^PasswordAuthentication', line: 'PasswordAuthentication yes' }
+    - { name: 'Enable KbdInteractiveAuthentication', regex: '^KbdInteractiveAuthentication', line: 'KbdInteractiveAuthentication yes' }
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - restart sshd
   tags: sof-elk_base
 
 - name: Create SSHD host key generation service
@@ -71,7 +79,6 @@
     mode: 0644
   tags:
     - sof-elk_base
-    - pub2course
 
 - name: Start and enable SSHD host key generation service
   ansible.builtin.systemd_service:
@@ -81,17 +88,41 @@
     state: started
   tags:
     - sof-elk_base
-    - pub2course
 
 - name: Set SSHD host key generation service order
   ansible.builtin.lineinfile:
     dest: /usr/lib/systemd/system/ssh.service
     regexp: '^After=.*'
     line: 'After=network.target sshd-keygen.service auditd.service'
-  register: ssh_systemd_service
+  notify: 
+    - restart sshd
   tags:
     - sof-elk_base
-    - pub2course
+
+- name: Deploy static sshd-vsock.socket
+  ansible.builtin.copy:
+    src: sshd-vsock.socket
+    dest: /etc/systemd/system/sshd-vsock.socket
+    owner: root
+    group: root
+    mode: '0644'
+  register: sshd_vsock
+  tags:
+    - sof-elk_base
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: true
+  when: sshd_vsock.changed
+  tags:
+    - sof-elk_base
+
+- name: Remove sshd-vsock.socket issue.d file
+  ansible.builtin.file:
+    path: /run/issue.d/50-ssh-vsock.issue
+    state: absent
+  tags:
+    - sof-elk_base
 
 - name: Start and enable SSHD
   ansible.builtin.systemd_service:
@@ -102,18 +133,15 @@
   register: enablestart_sshd
   tags:
     - sof-elk_base
-    - pub2course
 
-- name: Restart SSHD
-  ansible.builtin.systemd_service:
-    daemon_reload: true
-    name: ssh
-    enabled: true
-    state: restarted
-  when: (not enablestart_sshd.changed) and (ssh_config.changed or ssh_systemd_service.changed)
+- name: Set netplan configuration
+  ansible.builtin.shell: |
+    netplan set "network.ethernets.{{ ansible_facts['default_ipv4']['interface'] }}.match.macaddress"=NULL
+    netplan set "network.ethernets.{{ ansible_facts['default_ipv4']['interface'] }}.match.name"="{{ ansible_facts['default_ipv4']['interface'] }}"
+  notify:
+    - apply netplan
   tags:
     - sof-elk_base
-    - pub2course
 
 - name: Disable nfcapd service
   ansible.builtin.systemd_service:
@@ -136,7 +164,7 @@
     fail_key: false
   tags: sof-elk_base
 
-- name: Create elk_user account if needed
+- name: Create elk_user account
   ansible.builtin.user:
     name: 'elk_user'
     comment: 'SOF-ELK User'
@@ -146,7 +174,7 @@
     shell: /bin/bash
     skeleton: /etc/skel
     state: present
-  when: getent_passwd['elk_user'] == none
+  when: ansible_facts['getent_passwd']['elk_user'] == none
   tags: sof-elk_base
 
 - name: Add to elk_user's .profile
@@ -180,6 +208,8 @@
     regex: '^{{ item[1] }}'
     line: '{{ item[1] }}'
     create: true
+  loop_control:
+    label: "{{ item[0] }}: {{ item[1] }}"
   with_nested:
     - [ 'root', 'elk_user' ]
     - [ 'set smartindent', 'set tabstop=4', 'set shiftwidth=4', 'set expandtab', 'colorscheme torte', 'set hlsearch' ]
@@ -192,6 +222,8 @@
     mode: 0640
     owner: elk_user
     group: elk_user
+    modification_time: preserve
+    access_time: preserve
   tags: sof-elk_base
 
 - name: Set up pre-login banner template
@@ -207,7 +239,7 @@
 
 - name: Set new revision string in pre-login banner
   ansible.builtin.set_fact:
-    revision_string: "*Ansible-built* on {{ ansible_date_time.date }} from branch {{ git_branch }}"
+    revision_string: "*Ansible-built* on {{ ansible_facts['date_time']['date'] }} from branch {{ git_branch }}"
   tags:
     - sof-elk_base
     - pub2course
@@ -257,7 +289,7 @@
     line: 'compress'
   tags: sof-elk_base
 
-- name: Clone SOF-ELK repo
+- name: Clone/update SOF-ELK repo
   ansible.builtin.git:
     repo: 'https://github.com/philhagen/sof-elk'
     dest: '/usr/local/sof-elk'
@@ -274,6 +306,8 @@
     mode: 0640
     owner: elk_user
     group: elk_user
+    modification_time: preserve
+    access_time: preserve
   tags: sof-elk_base
 
 # the 'git config' command running with sudo reverts file ownership to root:root
@@ -323,9 +357,11 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/sof-elk_update.sh', dest: '/usr/local/sbin/sof-elk_update.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/kick-aws-logs.sh', dest: '/usr/local/sbin/kick-aws-logs.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/cronjobs/git-remote-update.cron', dest: '/etc/cron.d/git-remote-update' }
-    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
+    - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/volatility2sof-elk.py', dest: '/usr/local/sbin/volatility2sof-elk.py' }
+  loop_control:
+    label: "{{ item.dest }}"
   tags: sof-elk_base
 
 - name: Install default GeoIP configuration
@@ -359,6 +395,8 @@
     - { name: 'ASN', md5: 'c20977100c0a6c0842583ba158e906ec' }
     - { name: 'City', md5: '4c60b3acf2e6782d48ce2b42979f7b98' }
     - { name: 'Country', md5: '849e7667913e375bb3873f8778e8fb17' }
+  loop_control:
+    label: "{{ item.name }}"
   when: geoip_account is not defined
   tags: sof-elk_base
 
@@ -400,6 +438,8 @@
     - { name: 'lab-2.3_source_evidence.zip', md5: 'cdb30018bd02639b9a1ab4f5bc10009e' }
     - { name: 'lab-3.1_README.txt', md5: 'c274173fe8b96c9f2086475534fda364' }
     - { name: 'lab-3.1_source_evidence.zip', md5: '3996469559f0791c135b8700606b49ff' }
+  loop_control:
+    label: "{{ item.name }}"
   when: course_id == "public"
   tags: sof-elk_base
 

@@ -1,6 +1,17 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
+
+- name: Delete default indices known to cause problems
+  ansible.builtin.uri:
+    url: http://localhost:9200/{{ item }}
+    method: DELETE
+    status_code: [200, 404]
+  with_items:
+    - .entity_analytics.watchlists.default
+  register: index_delete_result
+  changed_when: index_delete_result.status == 200
+  tags: elasticsearch
 
 - name: Wait for Elasticsearch to be ready
   ansible.builtin.command: '/usr/local/sof-elk/supporting-scripts/wait_for_es.sh'
