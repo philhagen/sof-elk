@@ -36,7 +36,7 @@
                     "size": 10
                   },
                   "scale": "ordinal",
-                  "sourceField": "answer.geo.asnstr"
+                  "sourceField": "dns.answers.geo.asnstr"
                 },
                 "f28c7bb7-b695-4938-b3fe-e132f0f68d5d": {
                   "customLabel": true,
