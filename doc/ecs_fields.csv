@@ -798,6 +798,7 @@ process.parent.entity_id,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs
 process.parent.entity_id,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
 process.parent.executable,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.executable,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
+process.parent.executable,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-executable
 process.parent.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-command-line
 process.parent.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
@@ -822,6 +823,7 @@ process.pid,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/refere
 process.pid,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
+process.pid,copy of winlog.process.pid,syslog,,8055-postprocess-pids.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.pid,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-pid
 process.session_id,,volatility,,6620-volatility-common.conf,SOF-ELK,
 process.source.entity_id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-process#field-process-entity-id
@@ -1196,9 +1198,10 @@ winlog.payload_data.Content4,Only populated from unnamed payload data fields,kap
 winlog.payload_data.Content5,Only populated from unnamed payload data fields,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 winlog.payload_data.Content6,Only populated from unnamed payload data fields,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 winlog.plaso.record_number,,plaso,,6601-plaso.conf,SOF-ELK,
+winlog.process.parent.pid,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
 winlog.process.pid,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
+winlog.process.pid,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
 winlog.process.pid,,syslog,,6010-snare.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
-winlog.process.pid,copy of process.pid,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_winlog
 winlog.process.thread.id,,kape_evtxlogs,,6504-kape_evtxecmd.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.process.thread.id,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data
 winlog.provider_guid,,plaso,,6601-plaso.conf,winlogbeat,https://www.elastic.co/docs/reference/beats/winlogbeat/exported-fields-winlog#_event_data

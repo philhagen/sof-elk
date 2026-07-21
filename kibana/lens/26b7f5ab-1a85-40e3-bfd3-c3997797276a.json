@@ -48,7 +48,7 @@
                     "size": 10
                   },
                   "scale": "ordinal",
-                  "sourceField": "answer.ip"
+                  "sourceField": "dns.answers.ip"
                 }
               },
               "ignoreGlobalFilters": false,

@@ -146,7 +146,7 @@ for GEOIPDB in ASN City Country; do
             chmod 644 "${geoip_file_path}"
         fi
     fi
-done    
+done
 rm -f /etc/GeoIP.conf
 rm -f /etc/cron.d/geoipupdate
 
