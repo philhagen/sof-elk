@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This is a Filebeat prospector file that monitors the /logstash/hayabusa/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
@@ -8,6 +8,8 @@
   id: hayabusa-csv
   paths:
     - /logstash/hayabusa/**/*.csv
+    - /logstash/hayabusa/**/*.csv.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   parsers:
@@ -26,6 +28,8 @@
   id: hayabusa-json
   paths:
     - /logstash/hayabusa/**/*.json
+    - /logstash/hayabusa/**/*.json.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   parsers:
@@ -45,6 +49,8 @@
   id: hayabusa-jsonl
   paths:
     - /logstash/hayabusa/**/*.jsonl
+    - /logstash/hayabusa/**/*.jsonl.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:

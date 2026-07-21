@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This is a Filebeat prospector file that looks into the /logstash/appleul/ directory for files to load.
 # These are sent to localhost:5044, where Logstash is listening.
@@ -9,6 +9,9 @@
   paths:
     - /logstash/appleul/**/*.json
     - /logstash/appleul/**/*.jsonl
+    - /logstash/appleul/**/*.json.gz
+    - /logstash/appleul/**/*.jsonl.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:
