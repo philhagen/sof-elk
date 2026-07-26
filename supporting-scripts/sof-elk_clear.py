@@ -6,9 +6,8 @@
 # Optionally, re-load data from disk for the selected index or filepath
 
 from elasticsearch import Elasticsearch
-from subprocess import call
+from subprocess import call, DEVNULL
 from io import open
-from builtins import input
 import json
 import os
 import argparse
@@ -17,10 +16,15 @@ import re
 
 # set the top-level root location for all loaded files
 topdir = "/logstash/"
-
+log_path_field = "log.file.path.keyword"
+filebeat_registry_filename = "/var/lib/filebeat/registry/filebeat/log.json"
+filebeat_registry_checkpoint_filename = "/var/lib/filebeat/registry/filebeat/active.dat"
+files_to_reload = []
+doccount = 0
+populated_indices = []
 
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-def confirm(prompt=None, resp=False):
+def confirm(prompt=None, default_resp=False):
     """prompts for yes or no response from the user. Returns True for yes and
     False for no.
 
@@ -36,38 +40,44 @@ def confirm(prompt=None, resp=False):
     >>> confirm(prompt='Create Directory?', resp=False)
     Create Directory? [n]|y: y
     True
-
     """
 
     if prompt is None:
         prompt = "Confirm"
 
-    if resp:
+    if default_resp:
         prompt = "%s [%s]|%s: " % (prompt, "y", "n")
     else:
         prompt = "%s [%s]|%s: " % (prompt, "n", "y")
 
     while True:
-        ans = input(prompt)
+        ans = input(prompt).lower()
         if not ans:
-            return resp
-        if ans not in ["y", "Y", "n", "N"]:
+            return default_resp
+        if ans not in ["y", "n" ]:
             print("please enter y or n.")
             continue
-        if ans == "y" or ans == "Y":
+        if ans == "y":
             return True
-        if ans == "n" or ans == "N":
+        if ans == "n":
             return False
 
 
 # return a list of files that match the supplied root path
 def file_path_matches(path):
     matches = []
-    for root, dirnames, filenames in os.walk(path):
-        for filename in filenames:
-            filepath = os.path.join(root, filename)
-            if filepath.startswith(path):
-                matches.append(filepath)
+
+    if os.path.isfile(path):
+        matches.append(path)
+
+    else:
+        for root, dirnames, filenames in os.walk(path):
+
+            for filename in filenames:
+                filepath = os.path.join(root, filename)
+                if filepath.startswith(path):
+                    matches.append(filepath)
+
     return matches
 
 
@@ -75,6 +85,16 @@ def file_path_matches(path):
 # source: https://stackoverflow.com/a/1112350
 def ctrlc_handler(signal, frame):
     print("\n\nCtrl-C pressed. Exiting.")
+
+    if 'args' in globals() and args.reload:
+        if call(["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+            print("ERROR: Could not unmask filebeat service,  Exiting.")
+            exit(1)
+
+        if call(["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+            print("ERROR: Could not start filebeat service.  Exiting.")
+            exit(1)
+
     exit()
 
 
@@ -111,49 +131,106 @@ def get_es_indices(es):
     return list(index_dict)
 
 
-# this dictionary associates each on-disk source location with its corresponding ES index root name
-sourcedir_index_mapping = {
-    "syslog": "logstash",
-    "passivedns": "logstash",
-    "zeek": "logstash",
-    "nfarch": "netflow",
-    "httpd": "httpdlog",
-    "kape": "lnkfiles",
-    "kape": "kape",
-    "microsoft365": "microsoft365",
-    "kubernetes": "kubernetes",
-    "volatility/pslist": "volatility",
-    "volatility/pstree": "volatility",
-    "volatility/psscan": "volatility",
-    "volatility/netscan": "volatility",
-    "volatility/cmdline": "volatility",
-    "volatility/netstat": "volatility"
-}
-# automatically create the reverse dictionary
-index_sourcedir_mapping = {}
-for k, v in sourcedir_index_mapping.items():
-    index_sourcedir_mapping[v] = index_sourcedir_mapping.get(v, [])
-    index_sourcedir_mapping[v].append(topdir + k)
+# scrub a registry file of any entry that is in the supplied list of files
+# this function overwrites the specified registry file, so be sure filebeat is stopped first
+def scrub_registry_file(registry_filename, file_list, checkpoint=False):
+    if os.path.isfile(registry_filename) and os.path.getsize(registry_filename) > 0:
+        # load existing filebeat registry
+        with open (registry_filename, "r") as registry_file:
+            reg_data = []
 
-filebeat_registry_file = "/var/lib/filebeat/registry"
+            # checkpoint files are arrays.  main registry file is jsonl. ugh.
+            if checkpoint:
+                try:
+                    reg_data = json.load(registry_file, parse_float=preserve_sci_notation)
+
+                except json.JSONDecodeError:
+                    print(
+                        "ERROR: Could not load json data from registry file %s."
+                        % registry_filename
+                    )
+
+            else:
+                for registry_line in registry_file:
+                    try:
+                        reg_data.append(
+                            json.loads(registry_line, parse_float=preserve_sci_notation)
+                        )
+
+                    except json.JSONDecodeError:
+                        print(
+                            "ERROR: Skipping invalid json line in registry file %s."
+                            % (registry_filename)
+                        )
+
+
+        # create new registry, minus the files to be re-loaded
+        new_reg_data = []
+        for registry_entry in reg_data:
+            try:
+                file = str(registry_entry["v"]["meta"]["source"])
+                if not file in file_list:
+                    new_reg_data.append(registry_entry)
+
+            except KeyError:
+                new_reg_data.append(registry_entry)
+
+        with open(registry_filename, "w") as new_reg_file:
+
+            if checkpoint:
+                new_reg_file.write(dumps_preserving_notation(new_reg_data))
+
+            else:
+                for new_line in new_reg_data:
+                    new_reg_file.write(dumps_preserving_notation(new_line) + "\n")
+
+
+# these are needed to preserve numerical formatting within the JSON in the registry file
+class RawJSON:
+    """Wraps a raw JSON number/text so it's emitted verbatim, unquoted."""
+
+    def __init__(self, raw_text):
+        self.raw = raw_text
+
+
+def preserve_sci_notation(s):
+    # s is the original numeric substring exactly as it appeared in the source
+    if "e" in s or "E" in s:
+        return RawJSON(s)
+    return float(s)  # normal floats parse/format as usual
+
+
+class RawJSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, RawJSON):
+            return f"@@RAW@@{o.raw}@@RAW@@"
+        return super().default(o)
+
+
+def dumps_preserving_notation(data):
+    s = json.dumps(data, cls=RawJSONEncoder, ensure_ascii=False, separators=(",", ":"))
+    return re.sub(r'"@@RAW@@(.*?)@@RAW@@"', lambda m: m.group(1), s)
+
+
+# end numerical-formatting preservation
 
 parser = argparse.ArgumentParser(
     description="Clear the SOF-ELK(R) Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem."
 )
-group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument(
+operation = parser.add_mutually_exclusive_group(required=True)
+operation.add_argument(
     "-i",
     "--index",
     dest="index",
     help='Index to clear.  Use "-i list" to see what is currently loaded.',
 )
-group.add_argument(
+operation.add_argument(
     "-f",
     "--filepath",
     dest="filepath",
     help="Local directory root or single local file to clear.",
 )
-group.add_argument(
+operation.add_argument(
     "-a",
     "--all",
     dest="nukeitall",
@@ -167,20 +244,20 @@ parser.add_argument(
     dest="reload",
     action="store_true",
     default=False,
-    help='Reload source files from SOF-ELK(R) filesystem.  Requires "-f".',
+    help='Reload source files from SOF-ELK(R) filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.',
 )
 args = parser.parse_args()
-
-if args.reload and os.geteuid() != 0:
-    print("Reload functionality requires administrative privileges.  Run with 'sudo'.")
-    exit(1)
 
 # create Elasticsearch handle
 es = Elasticsearch(["http://localhost:9200"])
 try:
     es.info()
-except:
+except Exception:
     print("Could not establish a connection to elasticsearch.  Exiting.")
+    exit(1)
+
+if args.index == "":
+    print("ERROR: Must specify index name with '-i'.")
     exit(1)
 
 # get list of top-level indices if requested
@@ -193,26 +270,41 @@ if args.index == "list":
     else:
         print("The following indices are currently active in Elasticsearch:")
         for index in populated_indices:
-            res = es.count(index="%s-*" % (index), body={"query": {"match_all": {}}})
+            res = es.count(index="%s-*" % (index), query={"match_all": {}})
             doccount = res["count"]
 
             print("- %s (%s documents)" % (index, "{:,}".format(doccount)))
     exit(0)
 
+
+# do this up front to ensure full and consistent deletion of records if there is a reload (aka prevent records from shipping while this script is running)
+if args.reload:
+    if os.geteuid() != 0:
+        print("Reload functionality requires administrative privileges.  Run with 'sudo'.")
+        exit(1)
+
+    # stop and mask filebeat service
+    # masking prevents another process from starting the service while this script is operating
+    # TODO: this will result in a race condition if this script fails before the service is unmasked and restarted
+    if call(["/usr/bin/systemctl", "stop", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+        print("ERROR: Could not stop filebeat service.  Exiting.")
+        exit(1)
+
+    if call(["/usr/bin/systemctl", "mask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+        print("ERROR: Could not mask filebeat service,  Exiting.")
+        exit(1)
+
 ### delete from existing ES indices
 # display document count
 if args.filepath:
-    if args.filepath.startswith(topdir):
-        # force-set the index based on the directory
-        try:
-            args.index = sourcedir_index_mapping[args.filepath.split("/")[2]]
-        except KeyError:
-            print("No corresponding index for requested filepath.  Exiting.")
-            exit(1)
+    if os.path.isdir(args.filepath) and not args.filepath.endswith(os.sep):
+        args.filepath += os.sep
 
+    ### TODO: CHANGE FROM PREFIX TO FILEGLOB.  WILL NEED TO CHANGE ES QUERY AS WELL
+    if args.filepath.startswith(topdir):
         res = es.count(
-            index="%s-*" % (args.index),
-            body={"query": {"prefix": {"source.keyword": "%s" % (args.filepath)}}},
+            index="*",
+            query={"prefix": {log_path_field: args.filepath}},
         )
         doccount = res["count"]
 
@@ -224,37 +316,52 @@ elif args.nukeitall:
     populated_indices = [s + "-*" for s in get_es_indices(es)]
     if len(populated_indices) == 0:
         print("There are no active data indices in Elasticsearch")
-        doccount = 0
+
     else:
         res = es.count(
             index="%s" % (",".join(populated_indices)),
-            body={"query": {"match_all": {}}},
+            query={"match_all": {}},
         )
         doccount = res["count"]
 
-else:
-    res = es.count(index="%s-*" % (args.index), body={"query": {"match_all": {}}})
-    doccount = res["count"]
+elif args.index:
+    if args.reload:
+        res = es.search(index="%s-*" % (args.index), size=0, aggs={"unique_categories": {"terms": {"field": log_path_field, "size": 10000}}})
+
+        for file in res.body['aggregations']['unique_categories']['buckets']:
+            filename = file['key']
+            doccount += file['doc_count']
+
+            if os.path.isfile(filename):
+                files_to_reload.append(filename)
+            else:
+                print("- FILE NO LONGER PRESENT - WILL DELETE BUT CANNOT RELOAD: %s (%d records)" % (file['key'], file['doc_count']))
+
+    else:
+        res = es.count(index="%s-*" % (args.index), query={"match_all": {}})
+        doccount = res["count"]
 
 if doccount > 0:
     # get user confirmation to proceed
     print("%s documents found\n" % ("{:,}".format(doccount)))
 
-    if not confirm(prompt="Delete these documents permanently?", resp=False):
+    if not confirm(prompt="Delete these documents permanently?", default_resp=False):
         print("Will NOT delete documents.  Exiting.")
         exit(0)
 
     # delete the records
     if args.filepath:
         es.delete_by_query(
-            index="%s-*" % (args.index),
-            body={"query": {"prefix": {"source.keyword": "%s" % (args.filepath)}}},
+            index="*",
+            query={"prefix": {log_path_field: args.filepath}},
         )
 
     elif args.nukeitall:
-        es.options(ignore_status=[400, 404]).indices.delete(index="%s" % (",".join(populated_indices)))
+        es.options(ignore_status=[400, 404]).indices.delete(
+            index="%s" % (",".join(populated_indices))
+        )
 
-    else:
+    elif args.index:
         es.options(ignore_status=[400, 404]).indices.delete(index="%s-*" % (args.index))
 
 else:
@@ -262,55 +369,42 @@ else:
 
 ### reload from source files
 if args.reload:
-    # display files to be re-loaded
-    matches = []
-
-    if args.index and not args.filepath:
-        for filepath in index_sourcedir_mapping[args.index]:
-            matches = matches + file_path_matches(filepath)
-    elif args.filepath:
-        matches = file_path_matches(args.filepath)
+    # if args.index is set, files_to_reload[] has been populated above
+    if args.filepath:
+        files_to_reload = file_path_matches(args.filepath)
     elif args.nukeitall:
-        matches = file_path_matches(topdir)
+        files_to_reload = file_path_matches(topdir)
 
     # get user confirmation to proceed
     print("will re-load the following files:")
-    for match in matches:
+    for match in files_to_reload:
         print("- %s" % (match))
 
-    if not confirm(prompt="Reload these files?", resp=False):
+    if not confirm(prompt="Reload these files?", default_resp=False):
         print("Will NOT reload from files.  Exiting.")
         exit(1)
 
-    # stop filebeat service
-    call(["/usr/bin/systemctl", "stop", "filebeat"])
-
+    # if there is a checkpoint file, scrub it first
     if (
-        os.path.isfile(filebeat_registry_file)
-        and os.path.getsize(filebeat_registry_file) > 0
+        os.path.isfile(filebeat_registry_checkpoint_filename)
+        and os.path.getsize(filebeat_registry_checkpoint_filename) > 0
     ):
-        # load existing filebeat registry
-        reg_file = open(filebeat_registry_file, "r")
-        try:
-            reg_data = json.load(reg_file)
-            reg_file.close()
+        with open(
+            filebeat_registry_checkpoint_filename, "r"
+        ) as filebeat_registry_checkpoint_file:
+            checkpoint_filename = filebeat_registry_checkpoint_file.read().strip()
 
-            # create new registry, minus the files to be re-loaded
-            new_reg_data = []
-            for filebeatrecord in reg_data:
-                file = str(filebeatrecord["source"])
-                if not file in matches:
-                    new_reg_data.append(filebeatrecord)
+        scrub_registry_file(checkpoint_filename, files_to_reload, checkpoint=True)
 
-            new_reg_file = open(filebeat_registry_file, "w")
-            json.dump(new_reg_data, new_reg_file)
-            new_reg_file.close()
+    # scrub the main registry file
+    scrub_registry_file(filebeat_registry_filename, files_to_reload)
 
-        except json.JSONDecodeError:
-            print(
-                "ERROR: Source data in filebeat registry file %s is not valid json.  Skipping."
-                % filebeat_registry_file
-            )
+    # TODO: this should probably be put inside an exit/cleanup handler to ensure it restarts
+    # unmask and restart the filebeat service
+    if call(["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+        print("ERROR: Could not unmask filebeat service.  Exiting.")
+        exit(1)
 
-    # restart the filebeat service
-    call(["/usr/bin/systemctl", "start", "filebeat"])
+    if call(["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+        print("ERROR: Could not start filebeat service,  Exiting.")
+        exit(1)
