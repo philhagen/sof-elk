@@ -13,6 +13,8 @@ import os
 import argparse
 import signal
 import re
+from glob import glob
+import atexit
 
 # set the top-level root location for all loaded files
 topdir = "/logstash/"
@@ -63,43 +65,31 @@ def confirm(prompt=None, default_resp=False):
             return False
 
 
-# return a list of files that match the supplied root path
-def file_path_matches(path):
-    matches = []
+def list_files_glob(pattern='**/*', recursive=True):
+    files = glob(pattern, recursive=recursive)
+    return files
 
-    if os.path.isfile(path):
-        matches.append(path)
 
-    else:
-        for root, dirnames, filenames in os.walk(path):
+def exit_handler():
+    if call(["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+        print("ERROR: Could not unmask filebeat service.")
 
-            for filename in filenames:
-                filepath = os.path.join(root, filename)
-                if filepath.startswith(path):
-                    matches.append(filepath)
-
-    return matches
+    if call(["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+        print("ERROR: Could not start filebeat service.")
 
 
 # handle a ctrl-c cleanly
 # source: https://stackoverflow.com/a/1112350
-def ctrlc_handler(signal, frame):
+def ctrlc_handler(*args):
     print("\n\nCtrl-C pressed. Exiting.")
-
-    if 'args' in globals() and args.reload:
-        if call(["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
-            print("ERROR: Could not unmask filebeat service,  Exiting.")
-            exit(1)
-
-        if call(["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
-            print("ERROR: Could not start filebeat service.  Exiting.")
-            exit(1)
-
     exit()
 
+def kill_handler(*args):
+    print("\n\nProcess killed.")
+    exit()
 
 signal.signal(signal.SIGINT, ctrlc_handler)
-
+signal.signal(signal.SIGTERM, kill_handler)
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
@@ -233,7 +223,7 @@ operation.add_argument(
 operation.add_argument(
     "-a",
     "--all",
-    dest="nukeitall",
+    dest="deleteall",
     action="store_true",
     default=False,
     help="Remove all documents from all indices.",
@@ -283,6 +273,8 @@ if args.reload:
         print("Reload functionality requires administrative privileges.  Run with 'sudo'.")
         exit(1)
 
+    atexit.register(exit_handler)
+
     # stop and mask filebeat service
     # masking prevents another process from starting the service while this script is operating
     # TODO: this will result in a race condition if this script fails before the service is unmasked and restarted
@@ -297,23 +289,26 @@ if args.reload:
 ### delete from existing ES indices
 # display document count
 if args.filepath:
-    if os.path.isdir(args.filepath) and not args.filepath.endswith(os.sep):
-        args.filepath += os.sep
+    if os.path.isdir(args.filepath):
+        args.filepath = os.path.join(args.filepath, '**', '*')
 
-    ### TODO: CHANGE FROM PREFIX TO FILEGLOB.  WILL NEED TO CHANGE ES QUERY AS WELL
-    if args.filepath.startswith(topdir):
-        res = es.count(
-            index="*",
-            query={"prefix": {log_path_field: args.filepath}},
-        )
-        doccount = res["count"]
-
-    else:
-        print('File path must start with "%s".  Exiting.' % (topdir))
+    if not args.filepath.startswith(topdir):
+        print('ERROR: File path must start with "%s".  Exiting.' % (topdir))
         exit(1)
 
-elif args.nukeitall:
+    files_to_reload = list_files_glob(args.filepath)
+
+    res = es.count(
+        index="*",
+        query={"terms": {log_path_field: files_to_reload}}
+    )
+    doccount = res["count"]
+
+elif args.deleteall:
     populated_indices = [s + "-*" for s in get_es_indices(es)]
+
+    files_to_reload = list_files_glob(os.path.join(topdir, '**', '*'))
+
     if len(populated_indices) == 0:
         print("There are no active data indices in Elasticsearch")
 
@@ -353,10 +348,10 @@ if doccount > 0:
     if args.filepath:
         es.delete_by_query(
             index="*",
-            query={"prefix": {log_path_field: args.filepath}},
+            query={"terms": {log_path_field: files_to_reload}}
         )
 
-    elif args.nukeitall:
+    elif args.deleteall:
         es.options(ignore_status=[400, 404]).indices.delete(
             index="%s" % (",".join(populated_indices))
         )
@@ -370,18 +365,14 @@ else:
 ### reload from source files
 if args.reload:
     # if args.index is set, files_to_reload[] has been populated above
-    if args.filepath:
-        files_to_reload = file_path_matches(args.filepath)
-    elif args.nukeitall:
-        files_to_reload = file_path_matches(topdir)
 
     # get user confirmation to proceed
     print("will re-load the following files:")
-    for match in files_to_reload:
-        print("- %s" % (match))
+    for filename in files_to_reload:
+        print("- %s" % (filename))
 
     if not confirm(prompt="Reload these files?", default_resp=False):
-        print("Will NOT reload from files.  Exiting.")
+        print("Will NOT reload any files.  Exiting.")
         exit(1)
 
     # if there is a checkpoint file, scrub it first
@@ -398,13 +389,3 @@ if args.reload:
 
     # scrub the main registry file
     scrub_registry_file(filebeat_registry_filename, files_to_reload)
-
-    # TODO: this should probably be put inside an exit/cleanup handler to ensure it restarts
-    # unmask and restart the filebeat service
-    if call(["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
-        print("ERROR: Could not unmask filebeat service.  Exiting.")
-        exit(1)
-
-    if call(["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
-        print("ERROR: Could not start filebeat service,  Exiting.")
-        exit(1)
