@@ -25,6 +25,7 @@ files_to_reload = []
 doccount = 0
 populated_indices = []
 
+
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
 def confirm(prompt=None, default_resp=False, interactive=True):
     """prompts for yes or no response from the user. Returns True for yes and
@@ -60,7 +61,7 @@ def confirm(prompt=None, default_resp=False, interactive=True):
             return True
         if not ans:
             return default_resp
-        if ans not in ["y", "n" ]:
+        if ans not in ["y", "n"]:
             print("please enter y or n.")
             continue
         if ans == "y":
@@ -69,16 +70,26 @@ def confirm(prompt=None, default_resp=False, interactive=True):
             return False
 
 
-def list_files_glob(pattern='**/*', recursive=True):
+def list_files_glob(pattern="**/*", recursive=True):
     files = glob(pattern, recursive=recursive)
     return files
 
 
 def exit_handler():
-    if call(["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+    if (
+        call(
+            ["/usr/bin/systemctl", "unmask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL
+        )
+        != 0
+    ):
         print("ERROR: Could not unmask filebeat service.")
 
-    if call(["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+    if (
+        call(
+            ["/usr/bin/systemctl", "start", "filebeat"], stdout=DEVNULL, stderr=DEVNULL
+        )
+        != 0
+    ):
         print("ERROR: Could not start filebeat service.")
 
 
@@ -88,12 +99,15 @@ def ctrlc_handler(*args):
     print("\n\nCtrl-C pressed. Exiting.")
     exit()
 
+
 def kill_handler(*args):
     print("\n\nProcess killed.")
     exit()
 
+
 signal.signal(signal.SIGINT, ctrlc_handler)
 signal.signal(signal.SIGTERM, kill_handler)
+
 
 # get a list of indices other than the standard set
 def get_es_indices(es):
@@ -130,13 +144,15 @@ def get_es_indices(es):
 def scrub_registry_file(registry_filename, file_list, checkpoint=False):
     if os.path.isfile(registry_filename) and os.path.getsize(registry_filename) > 0:
         # load existing filebeat registry
-        with open (registry_filename, "r") as registry_file:
+        with open(registry_filename, "r") as registry_file:
             reg_data = []
 
             # checkpoint files are arrays.  main registry file is jsonl. ugh.
             if checkpoint:
                 try:
-                    reg_data = json.load(registry_file, parse_float=preserve_sci_notation)
+                    reg_data = json.load(
+                        registry_file, parse_float=preserve_sci_notation
+                    )
 
                 except json.JSONDecodeError:
                     print(
@@ -156,7 +172,6 @@ def scrub_registry_file(registry_filename, file_list, checkpoint=False):
                             "ERROR: Skipping invalid json line in registry file %s."
                             % (registry_filename)
                         )
-
 
         # create new registry, minus the files to be re-loaded
         new_reg_data = []
@@ -238,7 +253,7 @@ parser.add_argument(
     dest="reload",
     action="store_true",
     default=False,
-    help='Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.',
+    help="Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.",
 )
 parser.add_argument(
     "-y",
@@ -246,7 +261,7 @@ parser.add_argument(
     dest="noninteractive",
     action="store_true",
     default=False,
-    help="Suppress all interactive verifications.  Useful for scripting but beware - you won't get a chance to change course!"
+    help="Suppress all interactive verifications.  Useful for scripting but beware - you won't get a chance to change course!",
 )
 args = parser.parse_args()
 
@@ -282,7 +297,9 @@ if args.index == "list":
 # do this up front to ensure full and consistent deletion of records if there is a reload (aka prevent records from shipping while this script is running)
 if args.reload:
     if os.geteuid() != 0:
-        print("Reload functionality requires administrative privileges.  Run with 'sudo'.")
+        print(
+            "Reload functionality requires administrative privileges.  Run with 'sudo'."
+        )
         exit(1)
 
     atexit.register(exit_handler)
@@ -290,11 +307,17 @@ if args.reload:
     # stop and mask filebeat service
     # masking prevents another process from starting the service while this script is operating
     # TODO: this will result in a race condition if this script fails before the service is unmasked and restarted
-    if call(["/usr/bin/systemctl", "stop", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+    if (
+        call(["/usr/bin/systemctl", "stop", "filebeat"], stdout=DEVNULL, stderr=DEVNULL)
+        != 0
+    ):
         print("ERROR: Could not stop filebeat service.  Exiting.")
         exit(1)
 
-    if call(["/usr/bin/systemctl", "mask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL) != 0:
+    if (
+        call(["/usr/bin/systemctl", "mask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL)
+        != 0
+    ):
         print("ERROR: Could not mask filebeat service,  Exiting.")
         exit(1)
 
@@ -302,7 +325,7 @@ if args.reload:
 # display document count
 if args.filepath:
     if os.path.isdir(args.filepath):
-        args.filepath = os.path.join(args.filepath, '**', '*')
+        args.filepath = os.path.join(args.filepath, "**", "*")
 
     if not args.filepath.startswith(topdir):
         print('ERROR: File path must start with "%s".  Exiting.' % (topdir))
@@ -310,16 +333,13 @@ if args.filepath:
 
     files_to_reload = list_files_glob(args.filepath)
 
-    res = es.count(
-        index="*",
-        query={"terms": {log_path_field: files_to_reload}}
-    )
+    res = es.count(index="*", query={"terms": {log_path_field: files_to_reload}})
     doccount = res["count"]
 
 elif args.deleteall:
     populated_indices = [s + "-*" for s in get_es_indices(es)]
 
-    files_to_reload = list_files_glob(os.path.join(topdir, '**', '*'))
+    files_to_reload = list_files_glob(os.path.join(topdir, "**", "*"))
 
     if len(populated_indices) == 0:
         print("There are no active data indices in Elasticsearch")
@@ -333,16 +353,25 @@ elif args.deleteall:
 
 elif args.index:
     if args.reload:
-        res = es.search(index="%s-*" % (args.index), size=0, aggs={"unique_categories": {"terms": {"field": log_path_field, "size": 10000}}})
+        res = es.search(
+            index="%s-*" % (args.index),
+            size=0,
+            aggs={
+                "unique_categories": {"terms": {"field": log_path_field, "size": 10000}}
+            },
+        )
 
-        for file in res.body['aggregations']['unique_categories']['buckets']:
-            filename = file['key']
-            doccount += file['doc_count']
+        for file in res.body["aggregations"]["unique_categories"]["buckets"]:
+            filename = file["key"]
+            doccount += file["doc_count"]
 
             if os.path.isfile(filename):
                 files_to_reload.append(filename)
             else:
-                print("- FILE NO LONGER PRESENT - WILL DELETE BUT CANNOT RELOAD: %s (%d records)" % (file['key'], file['doc_count']))
+                print(
+                    "- FILE NO LONGER PRESENT - WILL DELETE BUT CANNOT RELOAD: %s (%d records)"
+                    % (file["key"], file["doc_count"])
+                )
 
     else:
         res = es.count(index="%s-*" % (args.index), query={"match_all": {}})
@@ -352,15 +381,18 @@ if doccount > 0:
     # get user confirmation to proceed
     print("%s documents found\n" % ("{:,}".format(doccount)))
 
-    if not confirm(prompt="Delete these documents permanently?", default_resp=False, interactive=args.interactive):
+    if not confirm(
+        prompt="Delete these documents permanently?",
+        default_resp=False,
+        interactive=args.interactive,
+    ):
         print("Will NOT delete documents.  Exiting.")
         exit(0)
 
     # delete the records
     if args.filepath:
         es.delete_by_query(
-            index="*",
-            query={"terms": {log_path_field: files_to_reload}}
+            index="*", query={"terms": {log_path_field: files_to_reload}}
         )
 
     elif args.deleteall:
@@ -383,7 +415,9 @@ if args.reload:
     for filename in files_to_reload:
         print("- %s" % (filename))
 
-    if not confirm(prompt="Reload these files?", default_resp=False, interactive=args.interactive):
+    if not confirm(
+        prompt="Reload these files?", default_resp=False, interactive=args.interactive
+    ):
         print("Will NOT reload any files.  Exiting.")
         exit(1)
 
