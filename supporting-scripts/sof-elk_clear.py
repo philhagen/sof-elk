@@ -26,12 +26,14 @@ doccount = 0
 populated_indices = []
 
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-def confirm(prompt=None, default_resp=False):
+def confirm(prompt=None, default_resp=False, interactive=True):
     """prompts for yes or no response from the user. Returns True for yes and
     False for no.
 
     'resp' should be set to the default value assumed by the caller when
     user simply types ENTER.
+
+    If 'interactive' is false, do not display or prompt anything, just return true
 
     >>> confirm(prompt='Create Directory?', resp=True)
     Create Directory? [y]|n:
@@ -54,6 +56,8 @@ def confirm(prompt=None, default_resp=False):
 
     while True:
         ans = input(prompt).lower()
+        if not interactive:
+            return True
         if not ans:
             return default_resp
         if ans not in ["y", "n" ]:
@@ -212,13 +216,13 @@ operation.add_argument(
     "-i",
     "--index",
     dest="index",
-    help='Index to clear.  Use "-i list" to see what is currently loaded.',
+    help='Index to remove.  Use "-i list" to see what is currently loaded.',
 )
 operation.add_argument(
     "-f",
     "--filepath",
     dest="filepath",
-    help="Local directory root or single local file to clear.",
+    help="Local directory root, single local file, or filesystem wildcard specification (glob) to remove.",
 )
 operation.add_argument(
     "-a",
@@ -234,7 +238,15 @@ parser.add_argument(
     dest="reload",
     action="store_true",
     default=False,
-    help='Reload source files from SOF-ELK(R) filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.',
+    help='Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.',
+)
+parser.add_argument(
+    "-y",
+    "--yes",
+    dest="noninteractive",
+    action="store_true",
+    default=False,
+    help="Suppress all interactive verifications.  Useful for scripting but beware - you won't get a chance to change course!"
 )
 args = parser.parse_args()
 
@@ -340,7 +352,7 @@ if doccount > 0:
     # get user confirmation to proceed
     print("%s documents found\n" % ("{:,}".format(doccount)))
 
-    if not confirm(prompt="Delete these documents permanently?", default_resp=False):
+    if not confirm(prompt="Delete these documents permanently?", default_resp=False, interactive=args.interactive):
         print("Will NOT delete documents.  Exiting.")
         exit(0)
 
@@ -371,7 +383,7 @@ if args.reload:
     for filename in files_to_reload:
         print("- %s" % (filename))
 
-    if not confirm(prompt="Reload these files?", default_resp=False):
+    if not confirm(prompt="Reload these files?", default_resp=False, interactive=args.interactive):
         print("Will NOT reload any files.  Exiting.")
         exit(1)
 
