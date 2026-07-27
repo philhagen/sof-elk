@@ -32,9 +32,6 @@ echo "Here are some useful commands:"
 echo "  sof-elk_clear.py"
 echo "    Forcibly removes all records from the Elasticsearch index."
 echo "    Use '-h' for usage."
-echo "  load_all_dashboards.sh"
-echo "    Resets all Kibana dashboards to the versions on disk in the"
-echo "    /usr/local/sof-elk/ directory."
 echo
 
 if [ -x /usr/local/sof-elk/supporting-scripts/git-check-pull-needed.sh ]; then

@@ -360,6 +360,8 @@
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_bootstrap.sh', dest: '/usr/local/sbin/geoip_bootstrap.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/geoip_update_logstash.sh', dest: '/usr/local/sbin/geoip_update_logstash.sh' }
     - { src: '/usr/local/sof-elk/supporting-scripts/volatility2sof-elk.py', dest: '/usr/local/sbin/volatility2sof-elk.py' }
+    - { src: '/usr/local/sof-elk/lib/scrawl_s.fnt.gz', dest: '/usr/share/consolefonts/scrawl_s.fnt.gz' }
+    - { src: '/usr/local/sof-elk/lib/scrawl_w.fnt.gz', dest: '/usr/share/consolefonts/scrawl_w.fnt.gz' }
   loop_control:
     label: "{{ item.dest }}"
   tags: sof-elk_base
