@@ -3,27 +3,28 @@ Kernel \r on an \m
 
 SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
          Logstash, and Kibana) Virtual machine
-{% if course_id == "for509" %}
-         Used in: SANS FOR509: Cloud Forensics and Incident Response
-                  SANS FOR572: Advanced Network Forensics and Analysis
-                  SANS FOR589: Cybercrime Investigations
-                  SANS Aviata: Cloud Solo Flight Challenge
-{% else %}
-         Used in: SANS FOR572: Advanced Network Forensics and Analysis
-                  SANS FOR509: Cloud Forensics and Incident Response
-                  SANS FOR589: Cybercrime Investigations
-                  SANS Aviata: Cloud Solo Flight Challenge
-{% if course_id == "public" %}
-                  XINTRA Attacking and Defending Azure & M365
-{% endif %}
-{% endif %}
+{%  if course_id != "" -%}
+{%-   set first = course_list | selectattr('id', 'equalto', course_id)  | list -%}
+{%-   if course_id == "FOR668" -%}
+{%-     set second = course_list | selectattr('id', 'equalto', 'FOR669') | list -%}
+{%-     set rest = course_list | rejectattr('id', 'equalto', course_id) | rejectattr('id', 'equalto', 'FOR669') | rejectattr('publicvmonly') | sort(attribute='order') | list %}
+{%-   else -%}
+{%-     set second = [] %}
+{%-     set rest = course_list | rejectattr('id', 'equalto', course_id) | rejectattr('publicvmonly') | sort(attribute='order') | list %}
+{%-   endif -%}
+{%-   set course_list = first + second + rest -%}
+{%- endif -%}
+{%- for course in course_list -%}
+{%-   if loop.first %}         Used in: {% else %}
+                  {% endif %}{{ course.brand }} {{ course.id }}: {{ course.name }}
+{%- endfor -%}
+
 To learn more: https://for572.com/sof-elk-readme
 Revision: {{ revision_string }}
 -------------------------------------------------------------------------------
-{%if course_id == "for509" %}
-This system is hosting the FOR509 Electronic Workbook.
+{%if course_id != "" %}
+This system is hosting the {{ course_id }} Electronic Workbook.
 - You can access it with a browser at http://\4
-
 {% endif %}
 This system is running the Logstash and Kibana applications.
 - You can access Kibana at http://\4:5601
