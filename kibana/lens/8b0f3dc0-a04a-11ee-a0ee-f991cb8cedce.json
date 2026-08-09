@@ -20,18 +20,23 @@
                   "dataType": "number",
                   "isBucketed": true,
                   "label": "IP Version",
-                  "operationType": "range",
+                  "operationType": "terms",
                   "params": {
-                    "includeEmptyRows": true,
-                    "maxBars": "auto",
-                    "ranges": [
-                      {
-                        "from": 0,
-                        "label": "",
-                        "to": 1000
-                      }
-                    ],
-                    "type": "histogram"
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "c98d821a-46a0-422c-8c41-78d7144d747d",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 5
                   },
                   "sourceField": "netflow.ip_version"
                 },
