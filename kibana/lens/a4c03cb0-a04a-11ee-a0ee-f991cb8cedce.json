@@ -5,9 +5,11 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "68a65f62-26b5-47d2-b385-dd36fdec442f": {
               "columnOrder": [
+                "9f56e9bb-dbaf-4fd3-b0f9-fc3727675880",
                 "24e74c9d-a85a-49d1-a737-2d82a6de6d0e",
                 "caae7c0b-0697-45c1-859c-f2ab6180020d",
                 "e5594ac1-0563-435c-9d42-4dd1d40dde4c"
@@ -39,6 +41,26 @@
                   "scale": "ordinal",
                   "sourceField": "network.transport"
                 },
+                "9f56e9bb-dbaf-4fd3-b0f9-fc3727675880": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": true,
+                  "label": "IP Version",
+                  "operationType": "range",
+                  "params": {
+                    "includeEmptyRows": true,
+                    "maxBars": "auto",
+                    "ranges": [
+                      {
+                        "from": 0,
+                        "label": "",
+                        "to": 1000
+                      }
+                    ],
+                    "type": "histogram"
+                  },
+                  "sourceField": "netflow.ip_version"
+                },
                 "caae7c0b-0697-45c1-859c-f2ab6180020d": {
                   "customLabel": true,
                   "dataType": "number",
@@ -60,7 +82,7 @@
                     "parentFormat": {
                       "id": "terms"
                     },
-                    "size": 10
+                    "size": 5
                   },
                   "scale": "ordinal",
                   "sourceField": "destination.port"
@@ -72,21 +94,36 @@
                   "label": "Bytes Exchanged",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -106,6 +143,9 @@
             "legendDisplay": "show",
             "legendMaxLines": 1,
             "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
             "metrics": [
               "e5594ac1-0563-435c-9d42-4dd1d40dde4c"
             ],
@@ -114,10 +154,10 @@
             "percentDecimals": 2,
             "primaryGroups": [
               "24e74c9d-a85a-49d1-a737-2d82a6de6d0e",
-              "caae7c0b-0697-45c1-859c-f2ab6180020d"
+              "caae7c0b-0697-45c1-859c-f2ab6180020d",
+              "9f56e9bb-dbaf-4fd3-b0f9-fc3727675880"
             ],
             "secondaryGroups": [],
-            "showValuesInLegend": true,
             "truncateLegend": true
           }
         ],
@@ -129,6 +169,7 @@
       }
     },
     "title": "NetFlow Volume by Destination Port",
+    "version": 2,
     "visualizationType": "lnsPie"
   },
   "coreMigrationVersion": "8.8.0",

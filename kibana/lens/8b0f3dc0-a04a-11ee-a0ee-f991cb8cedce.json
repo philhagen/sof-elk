@@ -5,14 +5,36 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "da69ca6f-c5f7-49eb-8066-0d75f71e9594": {
               "columnOrder": [
+                "78c5f7ab-0bd8-493b-990c-c7cfe5048538",
                 "de2f32c6-2fe3-4601-b602-39115ba147b2",
                 "a0eee9c2-a6ef-4c9e-b578-91125e061cd5",
                 "c98d821a-46a0-422c-8c41-78d7144d747d"
               ],
               "columns": {
+                "78c5f7ab-0bd8-493b-990c-c7cfe5048538": {
+                  "customLabel": true,
+                  "dataType": "number",
+                  "isBucketed": true,
+                  "label": "IP Version",
+                  "operationType": "range",
+                  "params": {
+                    "includeEmptyRows": true,
+                    "maxBars": "auto",
+                    "ranges": [
+                      {
+                        "from": 0,
+                        "label": "",
+                        "to": 1000
+                      }
+                    ],
+                    "type": "histogram"
+                  },
+                  "sourceField": "netflow.ip_version"
+                },
                 "a0eee9c2-a6ef-4c9e-b578-91125e061cd5": {
                   "customLabel": true,
                   "dataType": "number",
@@ -34,7 +56,7 @@
                     "parentFormat": {
                       "id": "terms"
                     },
-                    "size": 10
+                    "size": 5
                   },
                   "scale": "ordinal",
                   "sourceField": "source.port"
@@ -46,10 +68,16 @@
                   "label": "Bytes Exchanged",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 },
                 "de2f32c6-2fe3-4601-b602-39115ba147b2": {
                   "customLabel": true,
@@ -79,14 +107,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -106,6 +143,9 @@
             "legendDisplay": "show",
             "legendMaxLines": 1,
             "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
             "metrics": [
               "c98d821a-46a0-422c-8c41-78d7144d747d"
             ],
@@ -114,10 +154,10 @@
             "percentDecimals": 2,
             "primaryGroups": [
               "de2f32c6-2fe3-4601-b602-39115ba147b2",
-              "a0eee9c2-a6ef-4c9e-b578-91125e061cd5"
+              "a0eee9c2-a6ef-4c9e-b578-91125e061cd5",
+              "78c5f7ab-0bd8-493b-990c-c7cfe5048538"
             ],
             "secondaryGroups": [],
-            "showValuesInLegend": true,
             "truncateLegend": true
           }
         ],
@@ -129,6 +169,7 @@
       }
     },
     "title": "NetFlow Volume by Source Port",
+    "version": 2,
     "visualizationType": "lnsPie"
   },
   "coreMigrationVersion": "8.8.0",

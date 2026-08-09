@@ -17,16 +17,6 @@
           }
         }
       }
-    },
-    "mappings": {
-      "runtime": {
-        "file.size_vis": {
-          "type": "long",
-          "script": {
-            "source": "emit(doc['file.size'].value);"
-          }
-        }
-      }
     }
   },
   "_meta": {
