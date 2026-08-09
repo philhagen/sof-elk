@@ -3,6 +3,7 @@ Field Name,Description,labels.type,Field Type,Configuration File Where Mapped,EC
 apache.error.module,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-apache
 apache.proxy.error.code,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,SOF-ELK,
 apache.proxy.error.message,from sof-elk grok patterns,httpdlog,,6100-httpd.conf,SOF-ELK,
+assigned.ip,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
 aws.cloudtrail.error_code,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_session_issuer
 aws.cloudtrail.error_message,,aws,,6901-aws.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-aws#_session_issuer
 aws.cloudtrail.event_name,,aws,,6901-aws.conf,SOF-ELK,
@@ -194,7 +195,6 @@ cisco.asa.source_username,from cisco_asa grok patterns,syslog,,6018-cisco_asa.co
 cisco.asa.username,from cisco_asa grok patterns,syslog,,6018-cisco_asa.conf,SOF-ELK,
 client.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 client.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
-client.domain,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-domain
 client.geo.asnstr,Runtime field created via Elasticsearch template,N/A,,component-mappings-geohash.json,SOF-ELK,
 client.geo.city_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-city-name
 client.geo.continent_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-continent-code
@@ -205,11 +205,15 @@ client.geo.postal_code,created by geoip filter,all,,8051-postprocess-ip_addresse
 client.geo.region_iso_code,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-iso-code
 client.geo.region_name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-region-name
 client.geo.timezone,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-geo#field-geo-timezone
+client.hostname,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-domain
 client.ip,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
 client.ip,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
+client.ip,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
 client.mac,,syslog,,6012-dhcpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-mac
+client.mac,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-mac
 client.port,,kubernetes,,6952-kubernetes.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-port
 client.port,,microsoft365,,6701-microsoft365.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-port
+client.port,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-port
 client.user.name,,httpdlog,,6100-httpd.conf,SOF-ELK,
 cloud.availability_zone,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-availability-zone
 cloud.project.id,,netflow,,2050-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-cloud#field-cloud-project-id
@@ -257,6 +261,7 @@ destination.ip,,zeek_enip,,6279-zeek_enip-cip.conf,ECS,https://www.elastic.co/do
 destination.ip,,zeek_files,,6201-zeek_files.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,zeek_ftp,,6205-zeek_ftp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
+destination.ip,,zeek_irc,,6207-zeek_irc.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 destination.ip,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-ip
 destination.ip,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
@@ -283,6 +288,7 @@ destination.port,,zeek_enip,,6279-zeek_enip-cip.conf,ECS,https://www.elastic.co/
 destination.port,,zeek_files,,6201-zeek_files.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_ftp,,6205-zeek_ftp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
+destination.port,,zeek_irc,,6207-zeek_irc.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 destination.port,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
@@ -290,6 +296,7 @@ destination.port,,zeek_profinet_io_cm,,6280-zeek_profinet_io_cm.conf,ECS,https:/
 destination.port,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 dhcp.message_type,,syslog,,6012-dhcpd.conf,SOF-ELK,
+dhcp.message_type,,zeek_dhcp,,6012-dhcpd.conf,SOF-ELK,
 dns.answers.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 dns.answers.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 dns.answers.class,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-class
@@ -682,7 +689,9 @@ network.transport,,syslog,,6018-cisco_asa.conf,ECS,https://www.elastic.co/docs/r
 network.transport,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
+network.transport,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_dns,,6200-zeek_dns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
+network.transport,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.transport,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-transport
 network.type,,volatility,,6620-volatility-common.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-network#field-network-type
 next_hop.ip,,netflow,,2050-netflow.conf,SOF-ELK,
@@ -854,11 +863,14 @@ remote.ip,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 remote.ip,,volatility,,6620-volatility-common.conf,SOF-ELK,
 remote.port,,kape_evtxlogs,,6504-kape_evtxecmd.conf,SOF-ELK,
 remote.port,,volatility,,6620-volatility-common.conf,SOF-ELK,
+requested.ip,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
 rule.id,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
 rule.level,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
 rule.name,,hayabusa,,6650-hayabusa.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
 rule.name,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
 rule.name,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-rule#field-rule-name
+server.ip,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-ip
+server.port,,zeek_dhcp,,6206-zeek_dhcp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-client#field-client-port
 server.user.name,,httpdlog,,6100-httpd.conf,SOF-ELK,
 server.user.name,,zeek_http,,6201-zeek_http.conf,SOF-ELK,
 service.name,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-service#field-service-name
@@ -919,6 +931,7 @@ source.ip,,zeek_enip,,6279-zeek_enip-cip.conf,ECS,https://www.elastic.co/docs/re
 source.ip,,zeek_files,,6201-zeek_files.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_ftp,,6205-zeek_ftp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
+source.ip,,zeek_irc,,6207-zeek_irc.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
@@ -949,6 +962,7 @@ source.port,,zeek_enip,,6279-zeek_enip-cip.conf,ECS,https://www.elastic.co/docs/
 source.port,,zeek_files,,6201-zeek_files.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,zeek_ftp,,6205-zeek_ftp.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,zeek_http,,6201-zeek_http.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
+source.port,,zeek_irc,,6207-zeek_irc.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,zeek_modbus_detailed,,6277-zeek_modbus_detailed.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,zeek_notice,,6275-zeek_notice.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 source.port,,zeek_omron_fins_detail,,66278-zeek_omron_fins_detail.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
@@ -1241,6 +1255,13 @@ zeek.connection.service,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
 zeek.connection.state_message,lookup from zeek_connection_state2desc.yaml,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.state,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_connection
 zeek.connection.tunnel_parents,,zeek_conn,,2051-zeek_conn-netflow.conf,SOF-ELK,
+zeek.dhcp.client_fqdn,,zeek_dhcp,,6206-zeek_dhcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_dhcp
+zeek.dhcp.client.message,,zeek_dhcp,,6206-zeek_dhcp.conf,SOF-ELK
+zeek.dhcp.domain,,zeek_dhcp,,6206-zeek_dhcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_dhcp
+zeek.dhcp.duration,seconds,zeek_dhcp,,6206-zeek_dhcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_dhcp
+zeek.dhcp.hostname,,zeek_dhcp,,6206-zeek_dhcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_dhcp
+zeek.dhcp.lease_time,,zeek_dhcp,,6206-zeek_dhcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_dhcp
+zeek.dhcp.server.message,,zeek_dhcp,,6206-zeek_dhcp.conf,SOF-ELK
 zeek.files.analyzers,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.depth,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
 zeek.files.duration,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_files
@@ -1313,6 +1334,15 @@ zeek.http.resp_filename,,zeek_http,,6201-zeek_http.conf,filebeat,https://www.ela
 zeek.http.resp_fuids,,zeek_http,,6201-zeek_http.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_http
 zeek.http.resp_mime_types,,zeek_http,,6201-zeek_http.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_http
 zeek.http.status_msg,,zeek_http,,6201-zeek_http.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_http
+zeek.irc.addl,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.command,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.dcc.file.name,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.dcc.file.size,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.dcc.mime_type,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.fuid,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.nick,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.user,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
+zeek.irc.value,,zeek_irc,,6207-zeek_irc.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_irc
 zeek.notice.actions,,zeek_notice,,6275-zeek_notice.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_notice
 zeek.notice.email_destination,,zeek_notice,,6275-zeek_notice.conf,SOF-ELK,
 zeek.notice.file.description,,zeek_notice,,6275-zeek_notice.conf,SOF-ELK,
@@ -1327,6 +1357,7 @@ zeek.notice.suppress_for,,zeek_notice,,6275-zeek_notice.conf,filebeat,https://ww
 zeek.proxy_headers,,zeek_http,,6201-zeek_http.conf,SOF-ELK,
 zeek.session_id,,zeek_cip,,6279-zeek_enip-cip.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_zeek
 zeek.session_id,,zeek_conn,,2051-zeek_conn-netflow.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_zeek
+zeek.session_id,,zeek_dhcp,,6206-zeek_dhcp.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_zeek
 zeek.session_id,,zeek_dns,,6200-zeek_dns.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_zeek
 zeek.session_id,,zeek_enip,,6279-zeek_enip-cip.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_zeek
 zeek.session_id,,zeek_files,,6201-zeek_files.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-zeek#_zeek
