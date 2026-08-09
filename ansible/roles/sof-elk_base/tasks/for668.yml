@@ -2,6 +2,9 @@
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
 # (C)2026 Lewes Technology Consulting, LLC
 
+
+# for future reference: https://computingforgeeks.com/install-jupyter-ubuntu-2604/
+
 - name: Include course-specific variables
   ansible.builtin.include_vars:
     dir: vars
