@@ -17,6 +17,9 @@ fi
 # set default values
 FORCE=0
 
+# quit if not running with admin privs
+require_root
+
 # parse options
 while getopts ":f" opt; do
     case "${opt}" in
@@ -27,9 +30,6 @@ while getopts ":f" opt; do
             ;;
     esac
 done
-
-# quit if not running with admin privs
-require_root
 
 cd /usr/local/sof-elk/ || exit 3
 if [[ $( git status --porcelain ) && "${FORCE}" -eq 0 ]]; then

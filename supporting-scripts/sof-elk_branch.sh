@@ -25,6 +25,9 @@ usage() {
 # set default values
 FORCE=0
 
+# quit if not running with admin privs
+require_root
+
 # parse options
 while getopts ":b:fh" opt; do
   case "${opt}" in
@@ -43,9 +46,6 @@ if [ -z "${BRANCH}" ]; then
     echoerr "ERROR: Specify branch with '-b <%BRANCH_NAME%>' option."
     exit 3
 fi
-
-# quit if not running with admin privs
-require_root
 
 cd /usr/local/sof-elk/
 
