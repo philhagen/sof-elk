@@ -54,7 +54,7 @@ elif [[ "${LOCAL}" == "${BASE}" ]]; then
     # Need to pull
     git reset --hard > /dev/null
     git clean -fdx > /dev/null
-    if ! export PREV_COMMIT=${LOCAL} git pull origin; then
+    if ! PREV_COMMIT="${LOCAL}" git pull origin; then
         echoerr "ERROR: git pull failed; not reloading Logstash."
         exit 5
     fi
