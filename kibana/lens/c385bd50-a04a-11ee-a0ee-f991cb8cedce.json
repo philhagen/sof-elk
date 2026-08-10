@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "8f828ed2-4fcb-40ad-8aa9-d7e7ad670525": {
               "columnOrder": [
@@ -21,10 +22,16 @@
                   "label": "Volume",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 },
                 "6215243b-d5f1-4899-a634-f7f727d83c2b": {
                   "customLabel": true,
@@ -78,14 +85,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -125,6 +141,7 @@
       }
     },
     "title": "NetFlow Statistics by Destination AS",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",

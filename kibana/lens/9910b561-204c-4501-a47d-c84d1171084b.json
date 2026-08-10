@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "9f9da298-9b72-4070-b815-ea2b9382fd13": {
               "columnOrder": [
@@ -28,17 +29,26 @@
                     }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.packets_vis"
+                  "sourceField": "network.packets"
                 }
               },
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -52,12 +62,14 @@
         "layerId": "9f9da298-9b72-4070-b815-ea2b9382fd13",
         "layerType": "data",
         "metricAccessor": "5cb9aa2b-366e-4d25-a5b8-e325b601c811",
+        "primaryAlign": "center",
+        "secondaryAlign": "center",
         "titlesTextAlign": "center",
-        "valueFontMode": "fit",
-        "valuesTextAlign": "center"
+        "valueFontMode": "fit"
       }
     },
     "title": "Total Packets",
+    "version": 2,
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",

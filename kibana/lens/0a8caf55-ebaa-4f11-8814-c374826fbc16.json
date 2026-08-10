@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "76abbb23-cf2f-4a47-b5a2-902e3d4e74d7": {
               "columnOrder": [
@@ -28,17 +29,26 @@
                     }
                   },
                   "scale": "ratio",
-                  "sourceField": "netflow.delta_flow_count_vis"
+                  "sourceField": "netflow.delta_flow_count"
                 }
               },
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -52,13 +62,15 @@
         "layerId": "76abbb23-cf2f-4a47-b5a2-902e3d4e74d7",
         "layerType": "data",
         "metricAccessor": "662069a6-eb0d-46c6-8c19-0b06eaaac0fb",
+        "primaryAlign": "center",
+        "secondaryAlign": "center",
         "subtitle": "",
         "titlesTextAlign": "center",
-        "valueFontMode": "fit",
-        "valuesTextAlign": "center"
+        "valueFontMode": "fit"
       }
     },
     "title": "Total Flows",
+    "version": 2,
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",

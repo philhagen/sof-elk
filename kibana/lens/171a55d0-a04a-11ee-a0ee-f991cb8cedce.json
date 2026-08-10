@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "ce85e80f-357a-4fd6-a722-d634ca320d9e": {
               "columnOrder": [
@@ -57,24 +58,33 @@
                   "customLabel": true,
                   "dataType": "number",
                   "isBucketed": false,
-                  "label": "Bytes",
+                  "label": "Flows",
                   "operationType": "sum",
                   "params": {
                     "emptyAsNull": true
                   },
                   "scale": "ratio",
-                  "sourceField": "netflow.delta_flow_count_vis"
+                  "sourceField": "netflow.delta_flow_count"
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -116,7 +126,9 @@
             },
             "seriesType": "area",
             "simpleView": false,
-            "splitAccessor": "44fc1e53-a95f-44e2-8f8e-d84559ad2c6e",
+            "splitAccessors": [
+              "44fc1e53-a95f-44e2-8f8e-d84559ad2c6e"
+            ],
             "xAccessor": "25b7d82e-0bcf-4b56-be08-011b12b558d1",
             "xScaleType": "time",
             "yConfig": [
@@ -129,6 +141,7 @@
         ],
         "legend": {
           "isVisible": true,
+          "legendStats": [],
           "maxLines": 1,
           "position": "top",
           "shouldTruncate": true,
@@ -142,17 +155,17 @@
           "yRight": true
         },
         "valueLabels": "hide",
-        "valuesInLegend": false,
         "yLeftExtent": {
           "enforce": true,
           "mode": "full"
         },
         "yLeftScale": "linear",
         "yRightScale": "linear",
-        "yTitle": "Bytes"
+        "yTitle": "Flows"
       }
     },
     "title": "NetFlow Flows by Protocol",
+    "version": 2,
     "visualizationType": "lnsXY"
   },
   "coreMigrationVersion": "8.8.0",

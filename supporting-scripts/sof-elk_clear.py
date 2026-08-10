@@ -27,24 +27,26 @@ populated_indices = []
 
 
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-def confirm(prompt=None, default_resp=False, interactive=True):
+def confirm(prompt=None, default_resp=False, noninteractive=False):
     """prompts for yes or no response from the user. Returns True for yes and
     False for no.
 
-    'resp' should be set to the default value assumed by the caller when
+    'default_resp' should be set to the default value assumed by the caller when
     user simply types ENTER.
 
-    If 'interactive' is false, do not display or prompt anything, just return true
+    If 'noninteractive' is true, do not display or prompt anything, just return the default
 
-    >>> confirm(prompt='Create Directory?', resp=True)
+    >>> confirm(prompt='Create Directory?', default_resp=True)
     Create Directory? [y]|n:
     True
-    >>> confirm(prompt='Create Directory?', resp=False)
+    >>> confirm(prompt='Create Directory?', default_resp=False)
     Create Directory? [n]|y:
     False
-    >>> confirm(prompt='Create Directory?', resp=False)
+    >>> confirm(prompt='Create Directory?', default_resp=False)
     Create Directory? [n]|y: y
     True
+    >>> config(prompt='Create Directory?', default_resp=False, noninteractive=True)
+    False
     """
 
     if prompt is None:
@@ -57,9 +59,7 @@ def confirm(prompt=None, default_resp=False, interactive=True):
 
     while True:
         ans = input(prompt).lower()
-        if not interactive:
-            return True
-        if not ans:
+        if noninteractive or not ans:
             return default_resp
         if ans not in ["y", "n"]:
             print("please enter y or n.")
@@ -273,10 +273,6 @@ except Exception:
     print("Could not establish a connection to elasticsearch.  Exiting.")
     exit(1)
 
-if args.index == "":
-    print("ERROR: Must specify index name with '-i'.")
-    exit(1)
-
 # get list of top-level indices if requested
 if args.index == "list":
     populated_indices = get_es_indices(es)
@@ -303,23 +299,6 @@ if args.reload:
         exit(1)
 
     atexit.register(exit_handler)
-
-    # stop and mask filebeat service
-    # masking prevents another process from starting the service while this script is operating
-    # TODO: this will result in a race condition if this script fails before the service is unmasked and restarted
-    if (
-        call(["/usr/bin/systemctl", "stop", "filebeat"], stdout=DEVNULL, stderr=DEVNULL)
-        != 0
-    ):
-        print("ERROR: Could not stop filebeat service.  Exiting.")
-        exit(1)
-
-    if (
-        call(["/usr/bin/systemctl", "mask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL)
-        != 0
-    ):
-        print("ERROR: Could not mask filebeat service,  Exiting.")
-        exit(1)
 
 ### delete from existing ES indices
 # display document count
@@ -353,11 +332,15 @@ elif args.deleteall:
 
 elif args.index:
     if args.reload:
+        # note: this will fail if there are too many buckets (meaning over 65536 by default).
+        #       in the future, need to paginate but this is not an expected condition
         res = es.search(
             index="%s-*" % (args.index),
             size=0,
             aggs={
-                "unique_categories": {"terms": {"field": log_path_field, "size": 10000}}
+                "unique_categories": {
+                    "terms": {"field": log_path_field, "size": 1000000}
+                }
             },
         )
 
@@ -377,6 +360,24 @@ elif args.index:
         res = es.count(index="%s-*" % (args.index), query={"match_all": {}})
         doccount = res["count"]
 
+if args.reload:
+    # stop and mask filebeat service
+    # masking prevents another process from starting the service while this script is operating
+    # TODO: this will result in a race condition if this script fails before the service is unmasked and restarted
+    if (
+        call(["/usr/bin/systemctl", "stop", "filebeat"], stdout=DEVNULL, stderr=DEVNULL)
+        != 0
+    ):
+        print("ERROR: Could not stop filebeat service.  Exiting.")
+        exit(1)
+
+    if (
+        call(["/usr/bin/systemctl", "mask", "filebeat"], stdout=DEVNULL, stderr=DEVNULL)
+        != 0
+    ):
+        print("ERROR: Could not mask filebeat service,  Exiting.")
+        exit(1)
+
 if doccount > 0:
     # get user confirmation to proceed
     print("%s documents found\n" % ("{:,}".format(doccount)))
@@ -384,7 +385,7 @@ if doccount > 0:
     if not confirm(
         prompt="Delete these documents permanently?",
         default_resp=False,
-        interactive=args.interactive,
+        noninteractive=args.noninteractive,
     ):
         print("Will NOT delete documents.  Exiting.")
         exit(0)
@@ -416,7 +417,9 @@ if args.reload:
         print("- %s" % (filename))
 
     if not confirm(
-        prompt="Reload these files?", default_resp=False, interactive=args.interactive
+        prompt="Reload these files?",
+        default_resp=False,
+        noninteractive=args.noninteractive,
     ):
         print("Will NOT reload any files.  Exiting.")
         exit(1)

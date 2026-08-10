@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "aaa14272-4034-47d2-a007-d79257856353": {
               "columnOrder": [
@@ -36,22 +37,27 @@
                     "ranges": [
                       {
                         "from": 0,
+                        "label": "<1min",
                         "to": 60
                       },
                       {
                         "from": 60,
+                        "label": "1-5min",
                         "to": 600
                       },
                       {
                         "from": 600,
+                        "label": "5min-1hr",
                         "to": 3600
                       },
                       {
                         "from": 3600,
+                        "label": "1-24hrs",
                         "to": 86400
                       },
                       {
                         "from": 86400,
+                        "label": "24hrs+",
                         "to": null
                       }
                     ],
@@ -62,14 +68,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -89,6 +104,9 @@
             "legendDisplay": "show",
             "legendMaxLines": 1,
             "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
             "metrics": [
               "0210bd95-d705-459b-bf6c-efcaf6840b80"
             ],
@@ -99,7 +117,6 @@
               "72655823-524e-48ca-abd9-44937d18f140"
             ],
             "secondaryGroups": [],
-            "showValuesInLegend": true,
             "truncateLegend": true
           }
         ],
@@ -111,6 +128,7 @@
       }
     },
     "title": "DNS TTLs",
+    "version": 2,
     "visualizationType": "lnsPie"
   },
   "coreMigrationVersion": "8.8.0",

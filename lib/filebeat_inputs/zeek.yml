@@ -28,7 +28,6 @@
   processors:
     - add_labels:
        labels:
-#TODO: we are ingesting zeek_dns type here but i dont think this is in the preprocess_all file (maybe others???)
          type: zeek_dns
   tags: [ 'zeek' ]
 
@@ -201,20 +200,6 @@
     - add_labels:
        labels:
          type: zeek_dhcp
-  tags: [ 'zeek' ]
-
-- type: filestream
-  id: zeek-dpd-01
-  paths:
-    - /logstash/zeek/**/dpd.*
-  compression: auto
-  prospector.scanner.exclude_files: [ '\.bz2$', '\.zip$' ]
-  close.on_state_change.inactive: 5m
-  clean_removed: true
-  processors:
-    - add_labels:
-       labels:
-         type: zeek_dpd
   tags: [ 'zeek' ]
 
 - type: filestream
