@@ -5,9 +5,11 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "ed937590-4b45-4a21-a990-95bb8f162704": {
               "columnOrder": [
+                "45f47c7a-7861-46c9-a425-58a24a300567",
                 "5ea9c50e-f9e0-4415-b10d-a5abb0673311",
                 "7e66a946-4e9d-4a6c-914d-ed16688deb02",
                 "06fa008d-61b8-4371-a3b1-cfc85ee2e3b0"
@@ -24,6 +26,31 @@
                   },
                   "scale": "ratio",
                   "sourceField": "___records___"
+                },
+                "45f47c7a-7861-46c9-a425-58a24a300567": {
+                  "customLabel": true,
+                  "dataType": "string",
+                  "isBucketed": true,
+                  "label": "Response Code",
+                  "operationType": "terms",
+                  "params": {
+                    "exclude": [],
+                    "excludeIsRegex": false,
+                    "include": [],
+                    "includeIsRegex": false,
+                    "missingBucket": false,
+                    "orderBy": {
+                      "columnId": "06fa008d-61b8-4371-a3b1-cfc85ee2e3b0",
+                      "type": "column"
+                    },
+                    "orderDirection": "desc",
+                    "otherBucket": true,
+                    "parentFormat": {
+                      "id": "terms"
+                    },
+                    "size": 10
+                  },
+                  "sourceField": "dns.response.code.keyword"
                 },
                 "5ea9c50e-f9e0-4415-b10d-a5abb0673311": {
                   "customLabel": true,
@@ -79,14 +106,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -106,6 +142,9 @@
             "legendDisplay": "show",
             "legendMaxLines": 1,
             "legendPosition": "right",
+            "legendStats": [
+              "value"
+            ],
             "metrics": [
               "06fa008d-61b8-4371-a3b1-cfc85ee2e3b0"
             ],
@@ -114,10 +153,10 @@
             "percentDecimals": 2,
             "primaryGroups": [
               "5ea9c50e-f9e0-4415-b10d-a5abb0673311",
-              "7e66a946-4e9d-4a6c-914d-ed16688deb02"
+              "7e66a946-4e9d-4a6c-914d-ed16688deb02",
+              "45f47c7a-7861-46c9-a425-58a24a300567"
             ],
             "secondaryGroups": [],
-            "showValuesInLegend": true,
             "truncateLegend": true
           }
         ],
@@ -128,7 +167,8 @@
         "shape": "donut"
       }
     },
-    "title": "DNS Query Types",
+    "title": "DNS Query Types/Classes and Result Codes",
+    "version": 2,
     "visualizationType": "lnsPie"
   },
   "coreMigrationVersion": "8.8.0",
