@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "6faa94be-c538-448e-9178-fafbf5edf9cc": {
               "columnOrder": [
@@ -20,10 +21,16 @@
                   "label": "Bytes",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 },
                 "471f9f6f-8694-4668-9116-294161ad1dbd": {
                   "customLabel": true,
@@ -67,14 +74,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -116,7 +132,9 @@
             },
             "seriesType": "area",
             "simpleView": false,
-            "splitAccessor": "471f9f6f-8694-4668-9116-294161ad1dbd",
+            "splitAccessors": [
+              "471f9f6f-8694-4668-9116-294161ad1dbd"
+            ],
             "xAccessor": "a6308978-7b82-4db3-9254-b6e72e18f99c",
             "xScaleType": "time",
             "yConfig": [
@@ -129,6 +147,7 @@
         ],
         "legend": {
           "isVisible": true,
+          "legendStats": [],
           "maxLines": 1,
           "position": "top",
           "shouldTruncate": true,
@@ -142,7 +161,6 @@
           "yRight": true
         },
         "valueLabels": "hide",
-        "valuesInLegend": false,
         "yLeftExtent": {
           "enforce": true,
           "mode": "full"
@@ -153,6 +171,7 @@
       }
     },
     "title": "NetFlow Bytes by Protocol",
+    "version": 2,
     "visualizationType": "lnsXY"
   },
   "coreMigrationVersion": "8.8.0",

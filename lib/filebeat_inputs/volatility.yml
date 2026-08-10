@@ -8,6 +8,8 @@
   id: volatility-01
   paths:
     - /logstash/volatility/**/*.json
+    - /logstash/volatility/**/*.json.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:

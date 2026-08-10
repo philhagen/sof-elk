@@ -17,6 +17,9 @@ fi
 # set default values
 FORCE=0
 
+# quit if not running with admin privs
+require_root
+
 # parse options
 while getopts ":f" opt; do
     case "${opt}" in
@@ -27,9 +30,6 @@ while getopts ":f" opt; do
             ;;
     esac
 done
-
-# quit if not running with admin privs
-require_root
 
 cd /usr/local/sof-elk/ || exit 3
 if [[ $( git status --porcelain ) && "${FORCE}" -eq 0 ]]; then
@@ -49,18 +49,15 @@ if [[ "${LOCAL}" == "${REMOTE}" ]]; then
     echo "Up-to-date"
 
 elif [[ "${LOCAL}" == "${BASE}" ]]; then
+    echo "Updating from upstream"
+
     # Need to pull
     git reset --hard > /dev/null
     git clean -fdx > /dev/null
-    if ! git pull origin; then
+    if ! PREV_COMMIT="${LOCAL}" git pull origin; then
         echoerr "ERROR: git pull failed; not reloading Logstash."
         exit 5
     fi
-
-    /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
-    for lspid in $( pgrep -u logstash java ); do
-        kill -s HUP "${lspid}"
-    done
 
 elif [[ "${REMOTE}" == "${BASE}" ]]; then
     echo "Need to push - this should never happen"

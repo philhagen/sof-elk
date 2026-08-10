@@ -21,19 +21,7 @@
             "source": "emit(doc['source.bytes'].value + doc['destination.bytes'].value);"
           }
         },
-        "network.bytes_vis": {
-          "type": "long",
-          "script": {
-            "source": "emit(doc['source.bytes'].value + doc['destination.bytes'].value);"
-          }
-        },
         "network.packets": {
-          "type": "long",
-          "script": {
-            "source": "emit(doc['source.packets'].value + doc['destination.packets'].value);"
-          }
-        },
-        "network.packets_vis": {
           "type": "long",
           "script": {
             "source": "emit(doc['source.packets'].value + doc['destination.packets'].value);"
