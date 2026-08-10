@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This file creates a filebeat prospector for source data from the KAPE forensic tool suite
 
@@ -7,6 +7,8 @@
   id: kape-mftecmd-json
   paths:
     - /logstash/kape/**/*_MFTECmd*_Output.json
+    - /logstash/kape/**/*_MFTECmd*_Output.json.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:
@@ -19,6 +21,8 @@
   id: kape-lecmd-json
   paths:
     - /logstash/kape/**/*_LECmd_Output.json
+    - /logstash/kape/**/*_LECmd_Output.json.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:
@@ -31,6 +35,8 @@
   id: kape-evtxecmd-json
   paths:
     - /logstash/kape/**/*_EvtxECmd_Output.json
+    - /logstash/kape/**/*_EvtxECmd_Output.json.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:
@@ -43,9 +49,11 @@
   id: kape-pecmd-json
   paths:
     - /logstash/kape/**/*_PECmd_Output.json
+    - /logstash/kape/**/*_PECmd_Output.json.gz
+  compression: auto
   # the _PECmd_Output_Timeline.json file is intentionally excluded - it is a
   # flattened-per-run-time view of the same data already captured here
-  prospector.scanner.exclude_files: [ '_PECmd_Output_Timeline\.json$' ]
+  prospector.scanner.exclude_files: [ '_PECmd_Output_Timeline\.json$', '_PECmd_Output_Timeline\.json$.gz' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:

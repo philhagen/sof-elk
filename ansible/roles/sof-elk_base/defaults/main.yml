@@ -51,3 +51,10 @@ revision_string: "<%REVNO%>"
 arch_common_name:
   aarch64: "arm64"
   x86_64: "x64"
+
+course_list:
+  - { id: "FOR572", name: "Advanced Network Forensics and Analysis", brand: "SANS" }
+  - { id: "FOR509", name: "Cloud Forensics and Incident response", brand: "SANS" }
+  - { id: "FOR589", name: "Cybercrime Investigations", brand: "SANS" }
+  - { id: "Aviata", name: "Cloud Solo Flight Challenge", brand: "SANS" }
+  - { id: "", name: "Attacking and Defending Azure & M365", brand: "XINTRA" }

@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "ee5a114d-b4f0-43f4-858f-804e78800f47": {
               "columnOrder": [
@@ -21,10 +22,16 @@
                   "label": "Volume",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 },
                 "49def654-31c2-429d-abb9-7c6cecbe8327": {
                   "customLabel": true,
@@ -78,14 +85,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -125,6 +141,7 @@
       }
     },
     "title": "NetFlow Statistics by Exporter",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",

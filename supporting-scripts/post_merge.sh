@@ -6,6 +6,9 @@
 #   is updated
 
 LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/assets/sof-elk.svg"
+INGEST_DIRS="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility/pslist volatility/pstree volatility/psscan volatility/netscan volatility/cmdline volatility/netstat"
+RESTART_LOGSTASH=0
+RESTART_FILEBEAT=0
 
 # if a SKIP_HOOK variable is set to 1, don't do any of this
 # method from here: https://stackoverflow.com/a/33431504/1400064
@@ -15,24 +18,43 @@ case ${SKIP_HOOK:-0} in
     *) ;; # this should never happen
 esac
 
-# activate all "supported" Logstash configuration files
-for file in /usr/local/sof-elk/configfiles/* ; do
-    ln -fs "${file}" "/etc/logstash/conf.d/$( basename "${file}" )"
-done
+# if a previous commit ID has been set in a shell variable, determine what paths have changed for conditional restarts below
+if [ -n "${PREV_COMMIT}" ]; then
+    mapfile -t files_changed < <( git diff --name-only "$(git merge-base "${PREV_COMMIT}" HEAD)" )
 
-# deactivate dead configuration file symlinks links
-for deadlink in /etc/logstash/conf.d/* ; do
-    if [ ! -e "${deadlink}" ] ; then
-        rm -f "${deadlink}"
-    fi
-done
+    for file in "${files_changed[@]}"; do
+        if [[ "${file}" == configfiles/* ]]; then
+            RESTART_LOGSTASH=1
+        fi
+        if [[ "${file}" == lib/filebeat_inputs/* ]]; then
+            RESTART_FILEBEAT=1
+        fi
+    done
 
-# reload logstash
-systemctl restart logstash
+else
+    RESTART_LOGSTASH=1
+    RESTART_FILEBEAT=1
+fi
+
+if [[ "${RESTART_LOGSTASH}" -eq 1 ]]; then
+    # activate all "supported" Logstash configuration files
+    for file in /usr/local/sof-elk/configfiles/* ; do
+        ln -fs "${file}" "/etc/logstash/conf.d/$( basename "${file}" )"
+    done
+
+    # deactivate dead configuration file symlinks links
+    for deadlink in /etc/logstash/conf.d/* ; do
+        if [ ! -e "${deadlink}" ] ; then
+            rm -f "${deadlink}"
+        fi
+    done
+
+    # reload logstash
+    systemctl restart logstash
+fi
 
 # create necessary ingest directories (don't forget to add new ones to ansible's filebeat role)
-ingest_dirs="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility/pslist volatility/pstree volatility/psscan volatility/netscan volatility/cmdline volatility/netstat"
-for ingest_dir in ${ingest_dirs}; do
+for ingest_dir in ${INGEST_DIRS}; do
     if [ ! -d "/logstash/${ingest_dir}" ]; then
         mkdir -m 1777 -p "/logstash/${ingest_dir}"
     fi
@@ -45,8 +67,10 @@ done
 # reload elastalert
 #/usr/bin/systemctl restart elastalert
 
-# restart filebeat to account for any new config files and/or prospectors
-/usr/bin/systemctl restart filebeat
+if [[ "${RESTART_FILEBEAT}" -eq 1 ]]; then
+    # restart filebeat to account for any new config files and/or prospectors
+    /usr/bin/systemctl restart filebeat
+fi
 
 # other housecleaning
 ln -fs /usr/local/sof-elk/lib/sof-elk.svg "${LOGO_PATH}"

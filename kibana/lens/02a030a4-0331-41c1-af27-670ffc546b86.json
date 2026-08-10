@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "0ead8c18-9b3d-466c-9423-0f77749ea4ec": {
               "columnOrder": [
@@ -18,20 +19,35 @@
                   "label": "Total Bytes",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 }
               },
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -45,13 +61,15 @@
         "layerId": "0ead8c18-9b3d-466c-9423-0f77749ea4ec",
         "layerType": "data",
         "metricAccessor": "8d00caaa-8c1f-4d09-aea6-b872f5e5fcd5",
+        "primaryAlign": "center",
+        "secondaryAlign": "center",
         "subtitle": "",
         "titlesTextAlign": "center",
-        "valueFontMode": "fit",
-        "valuesTextAlign": "center"
+        "valueFontMode": "fit"
       }
     },
     "title": "Total Bytes",
+    "version": 2,
     "visualizationType": "lnsMetric"
   },
   "coreMigrationVersion": "8.8.0",

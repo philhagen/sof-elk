@@ -1,5 +1,5 @@
 # SOF-ELK® Configuration File
-# (C)2024 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
 #
 # This file creates filebeat shippers for live and archived NetFlow source data
 
@@ -15,7 +15,8 @@
   id: nfarch-01
   paths:
     - /logstash/nfarch/**
-  prospector.scanner.exclude_files: [ 'readme.txt', \.gz$', '\.bz2$', '\.zip$', '\.json$' ]
+  compression: auto
+  prospector.scanner.exclude_files: [ '\.bz2$', '\.zip$', '\.json$' ]
   close.on_state_change.inactive: 5m
   clean_removed: true
   processors:
@@ -27,6 +28,8 @@
   id: nfarch-json
   paths:
     - /logstash/nfarch/**/*.json
+    - /logstash/nfarch/**/*.json.gz
+  compression: auto
   close.on_state_change.inactive: 5m
   clean_removed: true
   parsers:

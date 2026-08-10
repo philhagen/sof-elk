@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "netflow",
           "layers": {
             "e9d014d7-3d14-44cb-8639-3dac3a6f7b2e": {
               "columnOrder": [
@@ -47,10 +48,16 @@
                   "label": "Volume",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "bytes",
+                      "params": {
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
-                  "sourceField": "network.bytes_vis"
+                  "sourceField": "network.bytes"
                 },
                 "65a63969-231d-4655-abc9-4bb3724bf300": {
                   "customLabel": true,
@@ -78,14 +85,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "netflow"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "netflow",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "netflow",
+              "timeField": "@timestamp",
+              "title": "netflow-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -126,6 +142,7 @@
       }
     },
     "title": "NetFlow Statistics by Source IP",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",
