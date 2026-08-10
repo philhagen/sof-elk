@@ -49,6 +49,8 @@ if [[ "${LOCAL}" == "${REMOTE}" ]]; then
     echo "Up-to-date"
 
 elif [[ "${LOCAL}" == "${BASE}" ]]; then
+    echo "Updating from upstream"
+
     # Need to pull
     git reset --hard > /dev/null
     git clean -fdx > /dev/null
