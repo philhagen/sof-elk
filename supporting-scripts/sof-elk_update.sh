@@ -57,11 +57,6 @@ elif [[ "${LOCAL}" == "${BASE}" ]]; then
         exit 5
     fi
 
-    /usr/local/sof-elk/supporting-scripts/git-remote-update.sh -now
-    for lspid in $( pgrep -u logstash java ); do
-        kill -s HUP "${lspid}"
-    done
-
 elif [[ "${REMOTE}" == "${BASE}" ]]; then
     echo "Need to push - this should never happen"
 
