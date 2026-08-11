@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "61e65387-8ff3-4bc8-abb0-14acb5dfb82c": {
               "columnOrder": [
@@ -52,14 +53,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -77,7 +87,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "d165ce19-80ac-4cd7-8f13-307478503d43"
+            "columnId": "d165ce19-80ac-4cd7-8f13-307478503d43",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",
@@ -91,6 +102,7 @@
       }
     },
     "title": "Source IP Addresses",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",

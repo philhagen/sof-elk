@@ -22,7 +22,14 @@
                   "label": "Packets",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
                   "sourceField": "network.packets"
@@ -52,7 +59,14 @@
                   "label": "Flows",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
                   "sourceField": "netflow.delta_flow_count"
@@ -128,7 +142,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "f54ca9b9-4978-4567-8dd2-d640a81813fa"
+            "columnId": "f54ca9b9-4978-4567-8dd2-d640a81813fa",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",

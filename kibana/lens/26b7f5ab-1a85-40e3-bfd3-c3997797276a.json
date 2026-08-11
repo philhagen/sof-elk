@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "652d1b66-6442-463f-873e-f999e6a35ae2": {
               "columnOrder": [
@@ -52,14 +53,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -77,7 +87,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "abe83607-e100-4ea1-b7a1-ffccc08d71d9"
+            "columnId": "abe83607-e100-4ea1-b7a1-ffccc08d71d9",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",
@@ -91,6 +102,7 @@
       }
     },
     "title": "DNS Answers",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",
