@@ -87,7 +87,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c"
+            "columnId": "2640c5e3-9a5c-4ffa-a3e9-c33643b2111c",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",
@@ -101,6 +102,7 @@
       }
     },
     "title": "HTTP User Agents",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",

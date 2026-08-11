@@ -22,6 +22,7 @@
                   "label": "Source IP",
                   "operationType": "terms",
                   "params": {
+                    "accuracyMode": false,
                     "exclude": [],
                     "excludeIsRegex": false,
                     "include": [],
@@ -66,7 +67,14 @@
                   "label": "Packets",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
                   "sourceField": "network.packets"
@@ -78,7 +86,14 @@
                   "label": "Flows",
                   "operationType": "sum",
                   "params": {
-                    "emptyAsNull": true
+                    "emptyAsNull": true,
+                    "format": {
+                      "id": "number",
+                      "params": {
+                        "compact": true,
+                        "decimals": 2
+                      }
+                    }
                   },
                   "scale": "ratio",
                   "sourceField": "netflow.delta_flow_count"
@@ -120,6 +135,7 @@
           },
           {
             "alignment": "right",
+            "colorMode": "none",
             "columnId": "65a63969-231d-4655-abc9-4bb3724bf300"
           },
           {
@@ -128,7 +144,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "0115529f-d256-4c68-8fcf-9e6c393feca3"
+            "columnId": "0115529f-d256-4c68-8fcf-9e6c393feca3",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",

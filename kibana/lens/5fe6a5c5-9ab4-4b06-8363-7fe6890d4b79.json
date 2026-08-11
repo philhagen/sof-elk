@@ -87,7 +87,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "1c508eb9-12b0-4c8a-8e00-3de390eb933c"
+            "columnId": "1c508eb9-12b0-4c8a-8e00-3de390eb933c",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",
@@ -101,6 +102,7 @@
       }
     },
     "title": "HTTPD Source ASNs",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",
