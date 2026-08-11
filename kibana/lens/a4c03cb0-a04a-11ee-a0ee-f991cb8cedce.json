@@ -173,7 +173,7 @@
         "shape": "donut"
       }
     },
-    "title": "NetFlow Volume by Destination Port",
+    "title": "NetFlow Volume by IP Version, Protocol, and Destination Port",
     "version": 2,
     "visualizationType": "lnsPie"
   },
