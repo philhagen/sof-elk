@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "6e251fb7-b93a-49a6-8779-2342db21c1f9": {
               "columnOrder": [
@@ -52,14 +53,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -77,7 +87,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "2b4be590-3426-4a7e-b343-9374168f9725"
+            "columnId": "2b4be590-3426-4a7e-b343-9374168f9725",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",
@@ -91,6 +102,7 @@
       }
     },
     "title": "Source ASNs",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",

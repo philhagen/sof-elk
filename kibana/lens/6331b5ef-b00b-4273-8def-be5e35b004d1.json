@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "1363c9f3-73c7-43d8-88e7-d7abf51a78ec": {
               "columnOrder": [
@@ -52,14 +53,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -77,7 +87,8 @@
           },
           {
             "alignment": "left",
-            "columnId": "03c177c6-0e4e-4097-81f8-cc124f9f2d76"
+            "columnId": "03c177c6-0e4e-4097-81f8-cc124f9f2d76",
+            "oneClickFilter": true
           }
         ],
         "headerRowHeight": "single",
@@ -91,6 +102,7 @@
       }
     },
     "title": "DNS Answer ASNs",
+    "version": 2,
     "visualizationType": "lnsDatatable"
   },
   "coreMigrationVersion": "8.8.0",
