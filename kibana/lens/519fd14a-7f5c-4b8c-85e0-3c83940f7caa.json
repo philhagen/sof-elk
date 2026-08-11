@@ -167,7 +167,7 @@
         "shape": "donut"
       }
     },
-    "title": "DNS Query Types/Classes and Result Codes",
+    "title": "DNS Result Codes and Query Classes/Types",
     "version": 2,
     "visualizationType": "lnsPie"
   },
