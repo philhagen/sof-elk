@@ -6,7 +6,10 @@
 # Allow alternate timestamps for syslog entries
 FULLSYSLOGTIMESTAMP %{SYSLOGTIMESTAMP:default_syslog_timestamp}|%{TIMESTAMP_ISO8601}
 
-# Grok patterns for iptables and other netowrk-based fields:
+# Override syslog line formats to accommodate UniFi (for now) and set up the framework for others in the future
+SYSLOGBASE2 %{SYSLOGTIMESTAMP:timestamp} (?:%{SYSLOGFACILITY} )?(?:%{SYSLOGHOST:[log][syslog][hostname]}) (?:%{UNIFIMAC:[device][mac]},%{DATA:[device][model][name]}-%{UNIFIVERSION:[device][firmware_version]}(?:: )?: )?(?:%{IPORHOST:[device][hostname]} )?%{SYSLOGPROG}:
+
+# Grok patterns for iptables and other network-related fields:
 ETHTYPE (?:(?:[A-Fa-f0-9]{2}):(?:[A-Fa-f0-9]{2}))
 UNIFIMAC (?:[A-Fa-f0-9]{12})
 NETFILTERMAC %{COMMONMAC:[destination][mac]}:%{COMMONMAC:[source][mac]}:%{ETHTYPE:[iptables][ether_type]}

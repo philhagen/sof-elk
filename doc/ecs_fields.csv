@@ -296,7 +296,7 @@ destination.port,,zeek_profinet_io_cm,,6280-zeek_profinet_io_cm.conf,ECS,https:/
 destination.port,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 device.hostname,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
-device.model.firmware_version,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
+device.firmware_version,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
 device.model.name,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.elastic.co/guide/en/ecs/8.17/ecs-device.html
 dhcp.message_type,,syslog,,6012-dhcpd.conf,SOF-ELK,
 dhcp.message_type,,zeek_dhcp,,6012-dhcpd.conf,SOF-ELK,

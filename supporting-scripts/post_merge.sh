@@ -7,8 +7,9 @@
 
 LOGO_PATH="/usr/share/kibana/node_modules/@kbn/core-apps-server-internal/assets/sof-elk.svg"
 INGEST_DIRS="syslog nfarch httpd passivedns zeek kape plaso microsoft365 azure aws gcp gws kubernetes hayabusa appleul volatility/pslist volatility/pstree volatility/psscan volatility/netscan volatility/cmdline volatility/netstat"
-RESTART_LOGSTASH=0
+RELOAD_LOGSTASH=0
 RESTART_FILEBEAT=0
+RESTART_KIBANA=0
 
 # if a SKIP_HOOK variable is set to 1, don't do any of this
 # method from here: https://stackoverflow.com/a/33431504/1400064
@@ -24,7 +25,7 @@ if [ -n "${PREV_COMMIT}" ]; then
 
     for file in "${files_changed[@]}"; do
         if [[ "${file}" == configfiles/* ]]; then
-            RESTART_LOGSTASH=1
+            RELOAD_LOGSTASH=1
         fi
         if [[ "${file}" == lib/filebeat_inputs/* ]]; then
             RESTART_FILEBEAT=1
@@ -32,11 +33,12 @@ if [ -n "${PREV_COMMIT}" ]; then
     done
 
 else
-    RESTART_LOGSTASH=1
+    RELOAD_LOGSTASH=1
     RESTART_FILEBEAT=1
+    RESTART_KIBANA=1
 fi
 
-if [[ "${RESTART_LOGSTASH}" -eq 1 ]]; then
+if [[ "${RELOAD_LOGSTASH}" -eq 1 ]]; then
     # activate all "supported" Logstash configuration files
     for file in /usr/local/sof-elk/configfiles/* ; do
         ln -fs "${file}" "/etc/logstash/conf.d/$( basename "${file}" )"
@@ -49,8 +51,10 @@ if [[ "${RESTART_LOGSTASH}" -eq 1 ]]; then
         fi
     done
 
-    # reload logstash
-    systemctl restart logstash
+    # reload logstash configurations
+    for lspid in $( pgrep -u logstash java ); do
+        kill -s HUP "${lspid}"
+    done
 fi
 
 # create necessary ingest directories (don't forget to add new ones to ansible's filebeat role)
