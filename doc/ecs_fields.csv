@@ -542,6 +542,7 @@ host.hostname,,azure,,6801-azure.conf,ECS,https://www.elastic.co/docs/reference/
 host.hostname,,httpdlog,,6100-httpd.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-host#field-host-hostname
 host.hostname,copy of winlog.computer_name,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-host#field-host-hostname
 host.hostname,copy of winlog.computer_name,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-host#field-host-hostname
+host.uptime,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-host#field-host-uptime
 http.proxy.cache_hierarchy_status,,httpdlog,,6100-httpd.conf,SOF-ELK,
 http.proxy.cache_status,,httpdlog,,6100-httpd.conf,SOF-ELK,
 http.request.cookie,,httpdlog,,6100-httpd.conf,SOF-ELK,
@@ -563,7 +564,6 @@ http.x_protocol,,httpdlog,,6100-httpd.conf,SOF-ELK,
 iptables.ether_type,,syslog,,6017-iptables.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-iptables#_iptables
 iptables.label,,syslog,,6017-iptables.conf,SOF-ELK,
 iptables.ttl,,syslog,,6017-iptables.conf,filebeat,https://www.elastic.co/docs/reference/beats/filebeat/exported-fields-iptables#_tcp_2
-iptables.uptime,,syslog,,6017-iptables.conf,SOF-ELK,
 k8s.access_key_id,,kubernetes,,6952-kubernetes.conf,SOF-ELK,
 k8s.account_id,,kubernetes,,6952-kubernetes.conf,SOF-ELK,
 k8s.arn,,kubernetes,,6952-kubernetes.conf,SOF-ELK,
