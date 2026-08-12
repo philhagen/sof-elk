@@ -295,6 +295,8 @@ destination.port,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,ECS,h
 destination.port,,zeek_profinet_io_cm,,6280-zeek_profinet_io_cm.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-port
 destination.port,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
 destination.port,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-destination#field-destination-port
+device.model.firmware_version,,syslog,,1100-preprocess-syslog.conf,SOF-ELK,
+device.model.name,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.elastic.co/guide/en/ecs/8.17/ecs-device.html
 dhcp.message_type,,syslog,,6012-dhcpd.conf,SOF-ELK,
 dhcp.message_type,,zeek_dhcp,,6012-dhcpd.conf,SOF-ELK,
 dns.answers.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
@@ -938,6 +940,7 @@ source.ip,,zeek_omron_fins_detail,,6278-zeek_omron_fins_detail.conf,ECS,https://
 source.ip,,zeek_profinet_io_cm,,6280-zeek_profinet_io_cm.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_ssl,,6203-zeek_ssl.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
 source.ip,,zeek_weird,,6276-zeek_weird.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-ip
+source.mac,,syslog,,1100-preprocess-syslog.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-mac
 source.mac,,syslog,,6017-iptables.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source#field-source-mac
 source.mac,,zeek_conn,,2051-zeek_conn-netflow.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-source
 source.netmask,,netflow,,2050-netflow.conf,SOF-ELK,
