@@ -20,7 +20,9 @@
                   "label": "HTTP User Agent",
                   "operationType": "terms",
                   "params": {
-                    "exclude": [],
+                    "exclude": [
+                      "__missing__"
+                    ],
                     "excludeIsRegex": false,
                     "include": [],
                     "includeIsRegex": false,

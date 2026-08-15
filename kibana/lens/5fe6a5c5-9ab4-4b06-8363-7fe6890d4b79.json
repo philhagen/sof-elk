@@ -32,7 +32,9 @@
                   "label": "Source ASN",
                   "operationType": "terms",
                   "params": {
-                    "exclude": [],
+                    "exclude": [
+                      "__missing__"
+                    ],
                     "excludeIsRegex": false,
                     "include": [],
                     "includeIsRegex": false,
