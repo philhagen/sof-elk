@@ -2,7 +2,7 @@
   "attributes": {
     "description": "",
     "kibanaSavedObjectMeta": {
-      "searchSourceJSON": "{\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
+      "searchSourceJSON": "{\"filter\":[{\"meta\":{\"disabled\":false,\"field\":\"labels.type\",\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index\",\"key\":\"labels.type\",\"negate\":true,\"params\":[\"zeek_dns\",\"zeek_dhcp\",\"zeek_ja4d\"],\"type\":\"phrases\"},\"query\":{\"bool\":{\"minimum_should_match\":1,\"should\":[{\"match_phrase\":{\"labels.type\":\"zeek_dns\"}},{\"match_phrase\":{\"labels.type\":\"zeek_dhcp\"}},{\"match_phrase\":{\"labels.type\":\"zeek_ja4d\"}}]}}}],\"query\":{\"language\":\"kuery\",\"query\":\"\"}}"
     },
     "optionsJSON": "{\"autoApplyFilters\":true,\"hidePanelBorders\":false,\"hidePanelTitles\":false,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"useMargins\":true}",
     "panelsJSON": "[{\"embeddableConfig\":{},\"gridData\":{\"h\":56,\"i\":\"2\",\"w\":48,\"x\":0,\"y\":29},\"panelIndex\":\"2\",\"type\":\"discover_session\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":14,\"i\":\"606dc94b-79cb-4987-91e0-353d014ccef8\",\"w\":48,\"x\":0,\"y\":0},\"panelIndex\":\"606dc94b-79cb-4987-91e0-353d014ccef8\",\"type\":\"vis\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"2a70de3a-9746-44d8-972f-5bd53a47a535\",\"w\":16,\"x\":0,\"y\":14},\"panelIndex\":\"2a70de3a-9746-44d8-972f-5bd53a47a535\",\"type\":\"vis\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":15,\"i\":\"fc77339f-f7d1-43b2-aa73-4a14b6630e42\",\"w\":16,\"x\":16,\"y\":14},\"panelIndex\":\"fc77339f-f7d1-43b2-aa73-4a14b6630e42\",\"type\":\"vis\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":5,\"i\":\"ac7572c4-2b34-47e4-9269-f297db88ae97\",\"w\":16,\"x\":32,\"y\":14},\"panelIndex\":\"ac7572c4-2b34-47e4-9269-f297db88ae97\",\"type\":\"vis\"}]",
@@ -40,6 +40,11 @@
       "id": "e45686d0-3021-11e8-9faf-f77fbc81a50d",
       "name": "2:savedObjectRef",
       "type": "search"
+    },
+    {
+      "id": "logstash",
+      "name": "kibanaSavedObjectMeta.searchSourceJSON.filter[0].meta.index",
+      "type": "index-pattern"
     }
   ],
   "type": "dashboard",
