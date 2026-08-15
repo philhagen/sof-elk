@@ -187,7 +187,34 @@
          type: zeek_cip
   tags: [ 'zeek' ]
 
-### TODO: I dont think any of the following types are being handled at all
+- type: filestream
+  id: zeek-ja4ssh-01
+  paths:
+    - /logstash/zeek/**/ja4ssh.*
+  compression: auto
+  prospector.scanner.exclude_files: [ '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_ja4ssh
+  tags: [ 'zeek' ]
+
+- type: filestream
+  id: zeek-ja4d-01
+  paths:
+    - /logstash/zeek/**/ja4d.*
+  compression: auto
+  prospector.scanner.exclude_files: [ '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_ja4d
+  tags: [ 'zeek' ]
+
 - type: filestream
   id: zeek-dhcp-01
   paths:
@@ -214,4 +241,18 @@
     - add_labels:
        labels:
          type: zeek_irc
+  tags: [ 'zeek' ]
+
+- type: filestream
+  id: zeek-ssh-01
+  paths:
+    - /logstash/zeek/**/ssh.*
+  compression: auto
+  prospector.scanner.exclude_files: [ '\.bz2$', '\.zip$' ]
+  close.on_state_change.inactive: 5m
+  clean_removed: true
+  processors:
+    - add_labels:
+       labels:
+         type: zeek_ssh
   tags: [ 'zeek' ]
