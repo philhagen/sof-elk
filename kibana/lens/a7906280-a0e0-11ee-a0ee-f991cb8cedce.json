@@ -5,6 +5,7 @@
       "adHocDataViews": {},
       "datasourceStates": {
         "formBased": {
+          "currentIndexPatternId": "logstash",
           "layers": {
             "b3dede6e-4c3b-4d20-ae36-686e8f3b8e8c": {
               "columnOrder": [
@@ -23,28 +24,28 @@
                       {
                         "input": {
                           "language": "lucenne",
-                          "query": "log.syslog.severity >= 0 and log.syslog.severity <= 2"
+                          "query": "log.syslog.severity.code:* and log.syslog.severity.code:(0 or 1 or 2)"
                         },
                         "label": "Emerg/Alert/Crit"
                       },
                       {
                         "input": {
                           "language": "kuery",
-                          "query": "log.syslog.severity:(3 or 4)"
+                          "query": "log.syslog.severity.code:* and log.syslog.severity.code:(3 or 4)"
                         },
                         "label": "Error/Warning"
                       },
                       {
                         "input": {
                           "language": "kuery",
-                          "query": "log.syslog.severity:(5 or 6)"
+                          "query": "log.syslog.severity.code:* and log.syslog.severity.code:(5 or 6)"
                         },
                         "label": "Notice/Info"
                       },
                       {
                         "input": {
                           "language": "kuery",
-                          "query": "log.syslog.severity < 0 or log.syslog.severity > 6 or not log.syslog.severity:*"
+                          "query": "log.syslog.severity.code < 0 or log.syslog.severity.code > 6 or not log.syslog.severity.code:*"
                         },
                         "label": "Unknown"
                       }
@@ -80,14 +81,23 @@
                 }
               },
               "ignoreGlobalFilters": false,
-              "incompleteColumns": {}
+              "incompleteColumns": {},
+              "indexPatternId": "logstash"
             }
           }
         },
         "indexpattern": {
+          "currentIndexPatternId": "logstash",
           "layers": {}
         },
         "textBased": {
+          "indexPatternRefs": [
+            {
+              "id": "logstash",
+              "timeField": "@timestamp",
+              "title": "logstash-*"
+            }
+          ],
           "layers": {}
         }
       },
@@ -129,7 +139,9 @@
             },
             "seriesType": "line",
             "simpleView": false,
-            "splitAccessor": "64da9782-b020-46e0-bd1f-49b72777a3a2",
+            "splitAccessors": [
+              "64da9782-b020-46e0-bd1f-49b72777a3a2"
+            ],
             "xAccessor": "a51ab18c-9d11-4b4a-858c-030f392a3d7b",
             "xScaleType": "time",
             "yConfig": [
@@ -142,6 +154,7 @@
         ],
         "legend": {
           "isVisible": true,
+          "legendStats": [],
           "maxLines": 1,
           "position": "right",
           "shouldTruncate": true,
@@ -155,7 +168,6 @@
           "yRight": true
         },
         "valueLabels": "hide",
-        "valuesInLegend": false,
         "yLeftExtent": {
           "enforce": true,
           "mode": "full"
@@ -166,6 +178,7 @@
       }
     },
     "title": "Event Timeline by Severity",
+    "version": 2,
     "visualizationType": "lnsXY"
   },
   "coreMigrationVersion": "8.8.0",
