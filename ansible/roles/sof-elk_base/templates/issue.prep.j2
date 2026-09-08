@@ -13,16 +13,18 @@ SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
 {%-     set rest = course_list | rejectattr('id', 'equalto', course_id) | rejectattr('publicvmonly') | sort(attribute='order') | list %}
 {%-   endif -%}
 {%-   set course_list = first + second + rest -%}
+{%- else -%}
+{%-   set course_list = course_list | sort(attribute='order') -%}
 {%- endif -%}
 {%- for course in course_list -%}
 {%-   if loop.first %}         Used in: {% else %}
-                  {% endif %}{{ course.brand }} {{ course.id }}: {{ course.name }}
-{%- endfor -%}
+                  {% endif %}{{ course.brand }}{% if course.id != "" %} {{ course.id }}{% endif %}: {{ course.name }}
+{%- endfor %}
 
 To learn more: https://for572.com/sof-elk-readme
 Revision: {{ revision_string }}
 -------------------------------------------------------------------------------
-{%if course_id != "" %}
+{%if local_ewb | default(false) %}
 This system is hosting the {{ course_id }} Electronic Workbook.
 - You can access it with a browser at http://\4
 {% endif %}
