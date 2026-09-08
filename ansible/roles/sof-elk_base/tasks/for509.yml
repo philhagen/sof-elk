@@ -112,7 +112,7 @@
   tags:
     - sof-elk_base
     - pub2course
- 
+
 # TODO: should probably determine if the keys already exist and use as a conditional
 - name: Create elk_user's .ssh directory
   ansible.builtin.file:
