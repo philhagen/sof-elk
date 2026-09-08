@@ -1,6 +1,8 @@
 ---
 # Ansible file supporting the build of a SOF-ELK(R) standalone system
-# (C)2025 Lewes Technology Consulting, LLC
+# (C)2026 Lewes Technology Consulting, LLC
+
+local_ewb: true
 
 course_apt_packages:
   - apache2

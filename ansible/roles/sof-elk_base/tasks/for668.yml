@@ -1,0 +1,32 @@
+---
+# Ansible file supporting the build of a SOF-ELK(R) standalone system
+# (C)2026 Lewes Technology Consulting, LLC
+
+
+# for future reference: https://computingforgeeks.com/install-jupyter-ubuntu-2604/
+
+- name: Include course-specific variables
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: "{{ course_id }}.yml"
+  tags:
+    - sof-elk_base
+    - pub2course
+
+- name: Remove sample evidence directory (for course-specific builds only)
+  ansible.builtin.file:
+    path: /home/elk_user/sample_evidence
+    state: absent
+  when: course_id != "public"
+  tags:
+    - sof-elk_base
+    - pub2course
+
+- name: Install course-specific packages
+  ansible.builtin.apt:
+    name: "{{ course_apt_packages }}"
+    state: present
+  when: course_apt_packages is defined
+  tags:
+    - sof-elk_base
+    - pub2course
