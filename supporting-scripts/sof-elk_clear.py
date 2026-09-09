@@ -13,7 +13,7 @@ import os
 import argparse
 import signal
 import re
-from glob import glob
+import glob
 import atexit
 
 # set the top-level root location for all loaded files
@@ -27,14 +27,16 @@ populated_indices = []
 
 
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-def confirm(prompt=None, default_resp=False, noninteractive=False):
+def confirm(
+    prompt=None, default_resp=False, noninteractive=False, noninteractive_action=None
+):
     """prompts for yes or no response from the user. Returns True for yes and
     False for no.
 
     'default_resp' should be set to the default value assumed by the caller when
     user simply types ENTER.
 
-    If 'noninteractive' is true, do not display or prompt anything, just return the default
+    If 'noninteractive' is true, do not display or prompt anything, just return the value specified in 'noninteractive_action'
 
     >>> confirm(prompt='Create Directory?', default_resp=True)
     Create Directory? [y]|n:
@@ -45,9 +47,14 @@ def confirm(prompt=None, default_resp=False, noninteractive=False):
     >>> confirm(prompt='Create Directory?', default_resp=False)
     Create Directory? [n]|y: y
     True
-    >>> config(prompt='Create Directory?', default_resp=False, noninteractive=True)
+    >>> confirm(prompt='Create Directory?', default_resp=False, noninteractive=True, noninteractive_action=True)
+    True
+    >>> confirm(prompt='Create Directory?', default_resp=False, noninteractive=True, noninteractive_action=False)
     False
     """
+
+    if noninteractive:
+        return noninteractive_action
 
     if prompt is None:
         prompt = "Confirm"
@@ -59,7 +66,7 @@ def confirm(prompt=None, default_resp=False, noninteractive=False):
 
     while True:
         ans = input(prompt).lower()
-        if noninteractive or not ans:
+        if not ans:
             return default_resp
         if ans not in ["y", "n"]:
             print("please enter y or n.")
@@ -71,7 +78,7 @@ def confirm(prompt=None, default_resp=False, noninteractive=False):
 
 
 def list_files_glob(pattern="**/*", recursive=True):
-    files = glob(pattern, recursive=recursive)
+    files = [f for f in glob.glob(pattern, recursive=recursive) if os.path.isfile(f)]
     return files
 
 
@@ -277,6 +284,7 @@ except Exception:
 if args.index == "list":
     populated_indices = get_es_indices(es)
     populated_indices.sort()
+    total_documents = 0
     if len(populated_indices) == 0:
         print("There are no active data indices in Elasticsearch")
 
@@ -285,8 +293,11 @@ if args.index == "list":
         for index in populated_indices:
             res = es.count(index="%s-*" % (index), query={"match_all": {}})
             doccount = res["count"]
+            total_documents += doccount
 
             print("- %s (%s documents)" % (index, "{:,}".format(doccount)))
+
+        print("Total documents: %s" % "{:,}".format(total_documents))
     exit(0)
 
 
@@ -386,6 +397,7 @@ if doccount > 0:
         prompt="Delete these documents permanently?",
         default_resp=False,
         noninteractive=args.noninteractive,
+        noninteractive_action=True,
     ):
         print("Will NOT delete documents.  Exiting.")
         exit(0)
@@ -420,6 +432,7 @@ if args.reload:
         prompt="Reload these files?",
         default_resp=False,
         noninteractive=args.noninteractive,
+        noninteractive_action=True,
     ):
         print("Will NOT reload any files.  Exiting.")
         exit(1)
