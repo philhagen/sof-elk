@@ -284,6 +284,7 @@ except Exception:
 if args.index == "list":
     populated_indices = get_es_indices(es)
     populated_indices.sort()
+    total_documents = 0
     if len(populated_indices) == 0:
         print("There are no active data indices in Elasticsearch")
 
@@ -292,8 +293,11 @@ if args.index == "list":
         for index in populated_indices:
             res = es.count(index="%s-*" % (index), query={"match_all": {}})
             doccount = res["count"]
+            total_documents += doccount
 
             print("- %s (%s documents)" % (index, "{:,}".format(doccount)))
+
+        print("Total documents: %s" % (total_documents))
     exit(0)
 
 
