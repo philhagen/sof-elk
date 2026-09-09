@@ -13,7 +13,7 @@ import os
 import argparse
 import signal
 import re
-from glob import glob
+import glob
 import atexit
 
 # set the top-level root location for all loaded files
@@ -78,7 +78,7 @@ def confirm(
 
 
 def list_files_glob(pattern="**/*", recursive=True):
-    files = glob(pattern, recursive=recursive)
+    files = [f for f in glob.glob(pattern, recursive=recursive) if os.path.isfile(f)]
     return files
 
 
