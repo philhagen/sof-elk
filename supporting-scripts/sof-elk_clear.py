@@ -297,7 +297,7 @@ if args.index == "list":
 
             print("- %s (%s documents)" % (index, "{:,}".format(doccount)))
 
-        print("Total documents: %s" % (total_documents))
+        print("Total documents: %s" % "{:,}".format(total_documents))
     exit(0)
 
 
