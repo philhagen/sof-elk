@@ -19,8 +19,7 @@ SOF-ELK: Security Operations and Forensic ELK (Elasticsearch,
 {%- for course in course_list -%}
 {%-   if loop.first %}         Used in: {% else %}
                   {% endif %}{{ course.brand }}{% if course.id != "" %} {{ course.id }}{% endif %}: {{ course.name }}
-{%- endfor %}
-
+{%- endfor -%}
 To learn more: https://for572.com/sof-elk-readme
 Revision: {{ revision_string }}
 -------------------------------------------------------------------------------
