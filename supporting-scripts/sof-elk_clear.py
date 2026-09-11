@@ -210,10 +210,12 @@ def scrub_registry_file(registry_filename, file_list, checkpoint=False):
 
             if not checkpoint:
                 for new_line in new_reg_data:
-                    new_reg_file.write(json.dumps(new_line) + "\n")
+                    new_reg_file.write(json.dumps(new_line, separators=(',', ':')) + "\n")
 
             else:
-                new_reg_file.write(json.dumps(new_reg_data))
+                new_reg_file.write("[\n")
+                new_reg_file.write(",\n".join(json.dumps(new_line, separators=(',', ':')) for new_line in new_reg_data))
+                new_reg_file.write("\n]\n")
 
 
 parser = argparse.ArgumentParser(
