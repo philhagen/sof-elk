@@ -405,7 +405,7 @@ else:
     print("No matching documents.  Nothing to delete.")
 
 ### reload from source files
-if args.reload:
+if args.reload and len(files_to_reload) > 0:
     # get user confirmation to proceed
     print("Will re-load the following files:")
     for filename in files_to_reload:
@@ -433,3 +433,6 @@ if args.reload:
 
     # scrub the main registry file
     scrub_registry_file(filebeat_registry_filename, files_to_reload)
+
+elif args.reload:
+    print("No files to reload.")
