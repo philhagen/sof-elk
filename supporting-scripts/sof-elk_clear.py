@@ -27,9 +27,7 @@ populated_indices = []
 
 
 # source: http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-def confirm(
-    prompt=None, default_resp=False, noninteractive=False, noninteractive_action=None
-):
+def confirm(prompt=None, default_resp=False, noninteractive=False):
     """prompts for yes or no response from the user. Returns True for yes and
     False for no.
 
@@ -47,14 +45,14 @@ def confirm(
     >>> confirm(prompt='Create Directory?', default_resp=False)
     Create Directory? [n]|y: y
     True
-    >>> confirm(prompt='Create Directory?', default_resp=False, noninteractive=True, noninteractive_action=True)
+    >>> confirm(prompt='Create Directory?', default_resp=False, noninteractive=True)
     True
-    >>> confirm(prompt='Create Directory?', default_resp=False, noninteractive=True, noninteractive_action=False)
-    False
+    >>> confirm(prompt='Create Directory?', default_resp=True, noninteractive=True)
+    True
     """
 
     if noninteractive:
-        return noninteractive_action
+        return True
 
     if prompt is None:
         prompt = "Confirm"
@@ -78,6 +76,8 @@ def confirm(
 
 
 def list_files_glob(pattern="**/*", recursive=True):
+    # build the list but only include regular files
+    # TODO: will this fail on symlinks?
     files = [f for f in glob.glob(pattern, recursive=recursive) if os.path.isfile(f)]
     return files
 
@@ -152,83 +152,36 @@ def scrub_registry_file(registry_filename, file_list, checkpoint=False):
     if os.path.isfile(registry_filename) and os.path.getsize(registry_filename) > 0:
         # load existing filebeat registry
         with open(registry_filename, "r") as registry_file:
-            reg_data = []
 
-            # checkpoint files are arrays.  main registry file is jsonl. ugh.
-            if checkpoint:
-                try:
-                    reg_data = json.load(
-                        registry_file, parse_float=preserve_sci_notation
-                    )
+            reg_file_lines = registry_file.readlines()
 
-                except json.JSONDecodeError:
-                    print(
-                        "ERROR: Could not load json data from registry file %s."
-                        % registry_filename
-                    )
-
-            else:
-                for registry_line in registry_file:
-                    try:
-                        reg_data.append(
-                            json.loads(registry_line, parse_float=preserve_sci_notation)
-                        )
-
-                    except json.JSONDecodeError:
-                        print(
-                            "ERROR: Skipping invalid json line in registry file %s."
-                            % (registry_filename)
-                        )
+        # prepend and append each file to narrow the regex down to just the field of interest
+        file_list_context = ['"source":"' + file_to_reload + '"' for file_to_reload in file_list]
+        pattern = re.compile("|".join(re.escape(sub) for sub in file_list_context))
 
         # create new registry, minus the files to be re-loaded
         new_reg_data = []
-        for registry_entry in reg_data:
-            try:
-                file = str(registry_entry["v"]["meta"]["source"])
-                if not file in file_list:
-                    new_reg_data.append(registry_entry)
+        reg_file_op_line = ""  #THIS IS ONlY PRESENT IN non-CHECKPOINT LOG FILES
 
-            except KeyError:
-                new_reg_data.append(registry_entry)
+        for reg_file_line in reg_file_lines:
+            if reg_file_line.startswith('{"op":"set","id":'):
+                reg_file_op_line = reg_file_line
+                continue
 
-        with open(registry_filename, "w") as new_reg_file:
+            elif not pattern.search(reg_file_line):
+                if not checkpoint:
+                    new_reg_data.append(reg_file_op_line)
+                    reg_file_op_line = ""
 
-            if checkpoint:
-                new_reg_file.write(dumps_preserving_notation(new_reg_data))
+                new_reg_data.append(reg_file_line)
 
             else:
-                for new_line in new_reg_data:
-                    new_reg_file.write(dumps_preserving_notation(new_line) + "\n")
+                # all that should be left here are lines that match a "source" regex and their preceding "op" lines
+                pass
 
+        with open(registry_filename, "w") as new_reg_file:
+            new_reg_file.writelines(new_reg_data)
 
-# these are needed to preserve numerical formatting within the JSON in the registry file
-class RawJSON:
-    """Wraps a raw JSON number/text so it's emitted verbatim, unquoted."""
-
-    def __init__(self, raw_text):
-        self.raw = raw_text
-
-
-def preserve_sci_notation(s):
-    # s is the original numeric substring exactly as it appeared in the source
-    if "e" in s or "E" in s:
-        return RawJSON(s)
-    return float(s)  # normal floats parse/format as usual
-
-
-class RawJSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, RawJSON):
-            return f"@@RAW@@{o.raw}@@RAW@@"
-        return super().default(o)
-
-
-def dumps_preserving_notation(data):
-    s = json.dumps(data, cls=RawJSONEncoder, ensure_ascii=False, separators=(",", ":"))
-    return re.sub(r'"@@RAW@@(.*?)@@RAW@@"', lambda m: m.group(1), s)
-
-
-# end numerical-formatting preservation
 
 parser = argparse.ArgumentParser(
     description="Clear the SOF-ELK(R) Elasticsearch database and optionally reload the input files for the deleted index.  Optionally narrow delete/reload scope to a file or parent path on the local filesystem."
@@ -254,23 +207,25 @@ operation.add_argument(
     default=False,
     help="Remove all documents from all indices.",
 )
-parser.add_argument(
-    "-r",
-    "--reload",
-    dest="reload",
-    action="store_true",
-    default=False,
-    help="Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.",
-)
+# parser.add_argument(
+#     "-r",
+#     "--reload",
+#     dest="reload",
+#     action="store_true",
+#     default=False,
+#     help="Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.",
+# )
 parser.add_argument(
     "-y",
     "--yes",
     dest="noninteractive",
     action="store_true",
     default=False,
-    help="Suppress all interactive verifications.  Useful for scripting but beware - you won't get a chance to change course!",
+    help="Suppress all interactive verifications by answering 'yes' to each.  Useful for scripting but beware - you won't get a chance to change course!",
 )
 args = parser.parse_args()
+# this is a short-circuit to temporarily (re-)disable the reload functionality
+args.reload = False
 
 # create Elasticsearch handle
 es = Elasticsearch(["http://localhost:9200"])
@@ -397,7 +352,6 @@ if doccount > 0:
         prompt="Delete these documents permanently?",
         default_resp=False,
         noninteractive=args.noninteractive,
-        noninteractive_action=True,
     ):
         print("Will NOT delete documents.  Exiting.")
         exit(0)
@@ -405,12 +359,12 @@ if doccount > 0:
     # delete the records
     if args.filepath:
         es.delete_by_query(
-            index="*", query={"terms": {log_path_field: files_to_reload}}
+            index="*", query={"terms": {log_path_field: files_to_reload}}, timeout="15m"
         )
 
     elif args.deleteall:
         es.options(ignore_status=[400, 404]).indices.delete(
-            index="%s" % (",".join(populated_indices))
+            index="%s" % (",".join(populated_indices)), timeout="15m"
         )
 
     elif args.index:
@@ -420,11 +374,9 @@ else:
     print("No matching documents.  Nothing to delete.")
 
 ### reload from source files
-if args.reload:
-    # if args.index is set, files_to_reload[] has been populated above
-
+if args.reload and len(files_to_reload) > 0:
     # get user confirmation to proceed
-    print("will re-load the following files:")
+    print("Will re-load the following files:")
     for filename in files_to_reload:
         print("- %s" % (filename))
 
@@ -432,7 +384,6 @@ if args.reload:
         prompt="Reload these files?",
         default_resp=False,
         noninteractive=args.noninteractive,
-        noninteractive_action=True,
     ):
         print("Will NOT reload any files.  Exiting.")
         exit(1)
@@ -451,3 +402,6 @@ if args.reload:
 
     # scrub the main registry file
     scrub_registry_file(filebeat_registry_filename, files_to_reload)
+
+elif args.reload:
+    print("No files to reload.")
