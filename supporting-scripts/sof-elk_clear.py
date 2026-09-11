@@ -152,70 +152,35 @@ def scrub_registry_file(registry_filename, file_list, checkpoint=False):
     if os.path.isfile(registry_filename) and os.path.getsize(registry_filename) > 0:
         # load existing filebeat registry
         with open(registry_filename, "r") as registry_file:
-            reg_data = []
 
-            # checkpoint files are arrays.  main registry file is jsonl. ugh.
-            if checkpoint:
-                try:
-                    reg_data = json.load(registry_file)
+            reg_file_lines = registry_file.readlines()
 
-                except json.JSONDecodeError:
-                    print(
-                        "ERROR: Could not load json data from registry file %s."
-                        % registry_filename
-                    )
-
-            else:
-                for registry_line in registry_file:
-                    try:
-                        reg_data.append(json.loads(registry_line))
-
-                    except json.JSONDecodeError:
-                        print(
-                            "ERROR: Skipping invalid json line in registry file %s."
-                            % (registry_filename)
-                        )
+        # prepend and append each file to narrow the regex down to just the field of interest
+        file_list_context = ['"source":"' + file_to_reload + '"' for file_to_reload in file_list]
+        pattern = re.compile("|".join(re.escape(sub) for sub in file_list_context))
 
         # create new registry, minus the files to be re-loaded
         new_reg_data = []
-        reg_file_op_line = {}
+        reg_file_op_line = ""  #THIS IS ONlY PRESENT IN non-CHECKPOINT LOG FILES
 
-        for registry_entry in reg_data:
-            # this is a line such as '{"op":"set","id":43268}'
-            # if so, store for later use or discard, depending on the next line being for a file that needs to be reloaded
-            if "op" in registry_entry.keys():
-                reg_file_op_line = registry_entry
+        for reg_file_line in reg_file_lines:
+            if reg_file_line.startswith('{"op":"set","id":'):
+                reg_file_op_line = reg_file_line
                 continue
 
-            try:
-                # Checkpoint files have a different json structure than log.json
-                # because yeah, of course they do. ugh again
+            elif not pattern.search(reg_file_line):
                 if not checkpoint:
-                    file = str(registry_entry["v"]["meta"]["source"])
-                else:
-                    file = str(registry_entry["meta"]["source"])
+                    new_reg_data.append(reg_file_op_line)
+                    reg_file_op_line = ""
 
-                if not file in file_list:
-                    if not checkpoint:
-                        new_reg_data.append(reg_file_op_line)
-                        reg_file_op_line = {}
-
-                    new_reg_data.append(registry_entry)
-
-            except KeyError:
-                # append any nonconforming entries unchanged
-                new_reg_data.append(registry_entry)
-
-        with open(registry_filename, "w") as new_reg_file:
-
-            if not checkpoint:
-                for new_line in new_reg_data:
-                    new_reg_file.write(json.dumps(new_line, separators=(',', ':')) + "\n")
+                new_reg_data.append(reg_file_line)
 
             else:
-                new_reg_file.write("[\n")
-                new_reg_file.write(",\n".join(json.dumps(new_line, separators=(',', ':')) for new_line in new_reg_data))
-                new_reg_file.write("\n]\n")
+                # all that should be left here are lines that match a "source" regex and their preceding "op" lines
+                pass
+
+        with open(registry_filename, "w") as new_reg_file:
+            new_reg_file.writelines(new_reg_data)
 
 
 parser = argparse.ArgumentParser(
@@ -242,14 +207,14 @@ operation.add_argument(
     default=False,
     help="Remove all documents from all indices.",
 )
-parser.add_argument(
-    "-r",
-    "--reload",
-    dest="reload",
-    action="store_true",
-    default=False,
-    help="Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.",
-)
+# parser.add_argument(
+#     "-r",
+#     "--reload",
+#     dest="reload",
+#     action="store_true",
+#     default=False,
+#     help="Reload source files from the local filesystem, as indicated by existing documents and their respective sources, or the index and the documents it contains.",
+# )
 parser.add_argument(
     "-y",
     "--yes",
@@ -259,6 +224,8 @@ parser.add_argument(
     help="Suppress all interactive verifications by answering 'yes' to each.  Useful for scripting but beware - you won't get a chance to change course!",
 )
 args = parser.parse_args()
+# this is a short-circuit to temporarily (re-)disable the reload functionality
+args.reload = False
 
 # create Elasticsearch handle
 es = Elasticsearch(["http://localhost:9200"])
