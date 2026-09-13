@@ -156,12 +156,14 @@ def scrub_registry_file(registry_filename, file_list, checkpoint=False):
             reg_file_lines = registry_file.readlines()
 
         # prepend and append each file to narrow the regex down to just the field of interest
-        file_list_context = ['"source":"' + file_to_reload + '"' for file_to_reload in file_list]
+        file_list_context = [
+            '"source":"' + file_to_reload + '"' for file_to_reload in file_list
+        ]
         pattern = re.compile("|".join(re.escape(sub) for sub in file_list_context))
 
         # create new registry, minus the files to be re-loaded
         new_reg_data = []
-        reg_file_op_line = ""  #THIS IS ONlY PRESENT IN non-CHECKPOINT LOG FILES
+        reg_file_op_line = ""  # THIS IS ONLY PRESENT IN non-CHECKPOINT LOG FILES
 
         for reg_file_line in reg_file_lines:
             if reg_file_line.startswith('{"op":"set","id":'):
