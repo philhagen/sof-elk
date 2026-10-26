@@ -6,15 +6,15 @@ This repository contains the configuration and support files for the SOF-ELK® V
 
 SOF-ELK® is a “big data analytics” platform focused on the typical needs of computer forensic investigators/analysts and information security operations personnel.  The platform is a customized build of the open source Elastic stack, consisting of the Elasticsearch storage and search engine, Logstash ingest and enrichment system, Kibana dashboard frontend, and Elastic Beats log shipper (specifically filebeat).  With a significant amount of customization and ongoing development, SOF-ELK® users can avoid the typically long and involved setup process the Elastic stack requires.  Instead, they can simply download the pre-built and ready-to-use SOF-ELK® virtual appliance that consumes various source data types (numerous log types as well as NetFlow), parsing out the most critical data and visualizing it on several stock dashboards.  Advanced users can build visualizations the suit their own investigative or operational requirements, optionally contributing those back to the primary code repository.
 
-The SOF-ELK® platform was initially developed for SANS FOR572, Advanced Network Forensics and Analysis, and is now used in several other SANS courses, with additional course integrations being considered.  Most importantly, the platform is also distributed as a free and open source resource for the community at large, without a specific course requirement or tie-in required to use it.
+The SOF-ELK® platform is also distributed as a free and open source resource for the community at large, without a specific course requirement or tie-in required to use it.
 
 More details about the pre-packaged VM are available here: <https://netfrn6.com/sof-elk-readme>.
 
 ## Branches
 
-* `main`: This branch is considered suitable for widespread use, but should not be used in the FOR572 class itself.  The classroom labs are version-locked, but work on this repository is ongoing.
+* `main`: This branch reflects the latest public, supported material but should not be used operationally.
 * `public/*`: These branches will be tied to public releases of the VM, allowing version-locked content control after deployment.
-* `class/*`: When a VM is prepared for distribution in a SANS course such as FOR572, a new sub-branch will be created under the "class" branch with a name corresponding to the VM version.  (e.g. "`class/v20170629`").
+* `class/*`: When a VM is prepared for distribution a course, a new sub-branch will be created under the "class" branch with a name corresponding to the VM version.  (e.g. "`class/<course_id>/v20170629`").
 * `develop`: This branch contains code that should be functional, but may break at times (and remain broken).  Of course, we'll try to avoid that, but it should be clear that this is NOT a branch suitable for "real world" use.
 * Other branches may be used for major version updates, etc.  These will be merged to main when deployed for mainstream use.
 

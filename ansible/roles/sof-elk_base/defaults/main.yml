@@ -53,10 +53,11 @@ arch_common_name:
   x86_64: "x64"
 
 course_list:
-  - { id: "FOR572", name: "Advanced Network Forensics and Analysis", brand: "SANS", order: 1 }
+#  - { id: "xxx", name: "xxx", brand: "xxx", order: 1 }
   - { id: "FOR509", name: "Cloud Forensics and Incident response", brand: "SANS", order: 2 }
   - { id: "FOR589", name: "Cybercrime Investigations", brand: "SANS", order: 3 }
   - { id: "FOR668", name: "Threat Hunting and Data Analysis", brand: "SANS", order: 4 }
   - { id: "FOR669", name: "Model-Assisted Threat Hunting", brand: "SANS", order: 5 }
+  - { id: "FOR572", name: "Advanced Network Forensics and Analysis", brand: "SANS", order: 6 }
   - { id: "Aviata", name: "Cloud Solo Flight Challenge", brand: "SANS", order: 100 }
   - { id: "", name: "Attacking and Defending Azure & M365", brand: "XINTRA", order: 200, publicvmonly: true }
