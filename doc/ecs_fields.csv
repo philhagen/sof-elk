@@ -320,6 +320,10 @@ dhcp.vendor_class_id,,zeek_ja4d,,6210-zeek_ja4d.conf,SOF-ELK,
 dns.answers.as.number,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-number
 dns.answers.as.organization.name,created by geoip filter,all,,8051-postprocess-ip_addresses.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-as#field-as-organization-name
 dns.answers.class,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-class
+dns.answers.count,,archive-passivedns,,8001-postprocess-dns.conf,SOF-ELK,
+dns.answers.count,,plaso,,8001-postprocess-dns.conf,SOF-ELK,
+dns.answers.count,,syslog,,8001-postprocess-dns.conf,SOF-ELK,
+dns.answers.count,,zeek_dns,,8001-postprocess-dns.conf,SOF-ELK,
 dns.answers.data,,archive-passivedns,,6014-passivedns.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
 dns.answers.data,,plaso,,6601-plaso.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
 dns.answers.data,,syslog,,6010-snare.conf,ECS,https://www.elastic.co/docs/reference/ecs/ecs-dns#field-dns-answers-data
