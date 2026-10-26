@@ -23,7 +23,7 @@ fi
 
 current_release=$( echo "${current_branch}" | sed -e 's/^public\/v\([0-9]\{8\}\).*/\1/' )
 
-latest_release=$( curl -s --head --referer "${current_release}" https://for572.com/sof-elk-versioncheck | grep "^Location: " | sed -e 's/^Location: .*v\([0-9]\{8\}\).*/\1/' )
+latest_release=$( curl -s --head --referer "${current_release}" https://netfrn6.com/sof-elk-versioncheck | grep "^Location: " | sed -e 's/^Location: .*v\([0-9]\{8\}\).*/\1/' )
 
 if ! [[ "${latest_release}" =~ ^[0-9]{8}$ ]]; then
     # couldn't determine latest version (network issue, site format change, etc.)

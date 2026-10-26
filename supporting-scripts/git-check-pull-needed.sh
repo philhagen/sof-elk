@@ -53,6 +53,6 @@ if [ -f "${vm_update_status_file}" ]; then
     echo "-----------------------------------------------"
     echo
     echo "There is a new VM version available for download. Please see the release"
-    echo "information at https://for572.com/sof-elk-readme"
+    echo "information at https://netfrn6.com/sof-elk-readme"
     echo
 fi
