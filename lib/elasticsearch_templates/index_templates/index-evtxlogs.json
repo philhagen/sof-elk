@@ -5,6 +5,7 @@
   "composed_of": [
     "settings-common",
     "mappings-corecommon",
+    "mappings-ip_address",
     "mappings-string",
     "mappings-final"
   ],
